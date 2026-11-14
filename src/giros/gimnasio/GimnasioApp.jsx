@@ -8,6 +8,8 @@ import usePageMetadata from "../../hooks/usePageMetadata"
 import Inicio from "./pages/Inicio"
 import Creditos from "./pages/Creditos"
 import Clases from "./pages/Clases"
+import Planes from "./pages/Planes"
+import Alta from "./pages/Alta"
 import SelectorTema from "./components/SelectorTema"
 import { guardarTema, leerTema } from "./lib/tema"
 import { VIDEOS_KEY, VideosPausados } from "./lib/videos"
@@ -26,12 +28,14 @@ import "./gimnasio.css"
 const SECCIONES = [
   ["/gimnasio#sucursales", "Sucursales"],
   ["/gimnasio/clases", "Clases"],
-  ["/gimnasio#planes", "Planes"],
+  ["/gimnasio/planes", "Planes"],
   ["/gimnasio#socio", "Socio"],
 ]
 const TITULOS = {
   "/gimnasio": "Inicio",
   "/gimnasio/clases": "Clases",
+  "/gimnasio/planes": "Planes",
+  "/gimnasio/alta": "Hazte socio",
   "/gimnasio/creditos": "Créditos",
 }
 const PENDIENTES = {
@@ -78,7 +82,13 @@ function GuiaBrio() {
           está llena, la lista de espera avanza un lugar cada 12 segundos para mostrar el cambio.
           Las reservas se guardan en este navegador; el resumen después de clase es un ejemplo.
         </li>
-        <li>Alta, área de socio, coaches y tienda vienen en las siguientes entregas.</li>
+        <li>
+          Planes compara las tres membresías y lleva al alta en cinco pasos: plan, cuenta, salud,
+          reglamento con firma y pago. El paso de salud solo explica el cuestionario: la demo no
+          pide datos de salud. Nada del alta se guarda ni se envía.
+        </li>
+        <li>La clase de prueba gratis se aparta desde Planes; es una por persona.</li>
+        <li>Área de socio, coaches y tienda vienen en las siguientes entregas.</li>
       </ul>
       <p>“Contactar” y “Hablemos” abren los canales reales de Ian para consultar un proyecto.</p>
     </div>
@@ -211,6 +221,8 @@ export default function GimnasioApp() {
               path="clases"
               element={<Clases reservas={reservas} ahora={ahora} {...acciones} />}
             />
+            <Route path="planes" element={<Planes />} />
+            <Route path="alta" element={<Alta />} />
             <Route path="creditos" element={<Creditos />} />
             <Route path="*" element={<Navigate to="/gimnasio" replace />} />
           </Routes>
