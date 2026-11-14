@@ -1,3 +1,11 @@
+# V4.4.4 · 14 de noviembre de 2026 · Brío, Planes y alta
+
+- Añadir `/gimnasio/planes`: comparador de las tres membresías con botón «Elegir» por plan, clase de prueba gratis y preguntas frecuentes.
+- Añadir `/gimnasio/alta`: alta simulada en cinco pasos (plan y sucursal base, cuenta, salud, reglamento con firma, pago) con validación, procesamiento y resultado. El paso de salud solo explica el cuestionario; la demo no pide datos de salud. Nada se guarda ni se envía.
+- Clase de prueba gratis desde Planes: una por persona, marcada en «Mis reservas».
+- Primer video: Fuerza, un bucle de ida y vuelta de 3.4 s (77 kB) recortado de un video CC BY 3.0 de FitnessScape, con créditos y cambios declarados.
+- Cuatro pruebas nuevas.
+
 # V4.4.3 · 14 de noviembre de 2026 · Brío, página de Clases
 
 - Añadir `/gimnasio/clases`: horario de los próximos siete días con filtros por día, disciplina, sucursal y coach.
