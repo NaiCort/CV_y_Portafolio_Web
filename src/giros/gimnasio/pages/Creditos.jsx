@@ -2,8 +2,8 @@ import { FOTOS } from "../data/medios"
 
 const NOMBRES = {
   combate: "Combate",
-  fuerza: "Fuerza",
   ciclo: "Ciclo",
+  press: "Fuerza, video",
   socia: "Perfil de ejemplo",
 }
 
@@ -14,8 +14,8 @@ export default function Creditos() {
         Créditos
       </h1>
       <p className="b-lead">
-        Las fotos vienen de Wikimedia Commons y se sirven desde este sitio. Ilustran el ambiente: no
-        son Brío, sus sucursales ni sus coaches.
+        Las fotos y el video vienen de Wikimedia Commons y se sirven desde este sitio. Ilustran el
+        ambiente: no son Brío, sus sucursales ni sus coaches.
       </p>
       <ul className="b-creditos-lista">
         {Object.entries(FOTOS).map(([id, foto]) => (
@@ -26,6 +26,7 @@ export default function Creditos() {
               <span>
                 {foto.autor} · {foto.licencia}
               </span>
+              {foto.cambios && <span>Cambios: {foto.cambios}</span>}
               <a href={foto.pagina} target="_blank" rel="noopener noreferrer">
                 Ver en Wikimedia Commons
               </a>

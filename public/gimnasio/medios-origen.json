@@ -9,15 +9,6 @@
     "sha256": "13f8b208f1b64eded0ea72d463568c65f1f0926580e305444a2044da527e07a0"
   },
   {
-    "id": "fuerza",
-    "archivo": "/gimnasio/fotos/fuerza.webp",
-    "titulo": "Watch me lift (5047995).jpg",
-    "autor": "U.S. Air Force photo by Airman 1st Class Jovante Johnson",
-    "licencia": "Public domain",
-    "pagina": "https://commons.wikimedia.org/wiki/File:Watch_me_lift_(5047995).jpg",
-    "sha256": "f12b49b3f46818fc5a7e74760980eb2256ce80dd639fb350256b078a9c26f2ae"
-  },
-  {
     "id": "ciclo",
     "archivo": "/gimnasio/fotos/ciclo.webp",
     "titulo": "Through Airmen's Eyes, FTAC instructor by day, Spin instructor by night 150713-F-PT740-033.jpg",
@@ -34,5 +25,24 @@
     "licencia": "CC BY-SA 4.0",
     "pagina": "https://commons.wikimedia.org/wiki/File:Fitness_Trainer_at_Starcomplex_Gym.jpg",
     "sha256": "0c12fe4a644b39f633efeb840670f760af23b6b3567a52843e38941f2c534bf1"
+  },
+  {
+    "id": "fuerza-video",
+    "archivo": "/gimnasio/videos/fuerza.mp4",
+    "titulo": "Half rack resistance exercise workout.webm",
+    "autor": "FitnessScape",
+    "licencia": "CC BY 3.0",
+    "pagina": "https://commons.wikimedia.org/wiki/File:Half_rack_resistance_exercise_workout.webm",
+    "cambios": "Tramo de 44.9 a 46.6 s, recortado, en blanco y negro, en bucle de ida y vuelta; sin audio",
+    "sha256": "87b75b3d50ab20c7a3941e9d1c6f3ef46a34b4b0329daaebd9ddd55e81d4bc46"
+  },
+  {
+    "id": "press",
+    "archivo": "/gimnasio/fotos/press.webp",
+    "titulo": "Cuadro del mismo video, póster del clip",
+    "autor": "FitnessScape",
+    "licencia": "CC BY 3.0",
+    "pagina": "https://commons.wikimedia.org/wiki/File:Half_rack_resistance_exercise_workout.webm",
+    "sha256": "fc9fb283f0ce75379d61e40f69783b51d88c5c25607f8adc38e4e16986d4ad89"
   }
 ]
