@@ -43,6 +43,19 @@ describe("Datos de Brío", () => {
     expect(CATEGORIAS.every((c) => HORARIO.some((h) => h.categoria === c.id))).toBe(true)
   })
 
+  it("ubica las cinco sucursales en Xalapa, separadas entre sí", () => {
+    for (const s of SUCURSALES) {
+      const [lon, lat] = s.coordenadas
+      expect(lon, s.id).toBeGreaterThan(-96.97)
+      expect(lon, s.id).toBeLessThan(-96.86)
+      expect(lat, s.id).toBeGreaterThan(19.49)
+      expect(lat, s.id).toBeLessThan(19.58)
+      expect(s.referencia.osm).toMatch(/^(way|node|relation)\/\d+$/)
+    }
+    const claves = SUCURSALES.map((s) => s.coordenadas.join(","))
+    expect(new Set(claves).size).toBe(5)
+  })
+
   it("describe cada plan en palabras, con un solo plan destacado", () => {
     expect(PLANES.filter((p) => p.destacado)).toHaveLength(1)
     expect(PLANES.map((p) => p.precio)).toEqual([549, 949, 1490])
@@ -52,15 +65,15 @@ describe("Datos de Brío", () => {
   it("da el horario de hoy de cada sucursal", () => {
     expect(horarioTexto(findSucursal("centro"), martes(10))).toBe("5:30 a 23:00")
     expect(horarioTexto(findSucursal("centro"), new Date(2026, 10, 21, 10))).toBe("7:00 a 20:00")
-    expect(horarioTexto(findSucursal("rio-norte"), martes(3))).toBe("Abierta las 24 horas")
+    expect(horarioTexto(findSucursal("macuiltepetl"), martes(3))).toBe("Abierta las 24 horas")
   })
 })
 
 describe("Aforo simulado", () => {
-  it("marca cerradas las sucursales fuera de horario y Río Norte siempre abierta", () => {
+  it("marca cerradas las sucursales fuera de horario y Macuiltépetl siempre abierta", () => {
     expect(abierta(findSucursal("centro"), martes(4))).toBe(false)
     expect(aforoEn(findSucursal("centro"), martes(4))).toBeNull()
-    expect(aforoEn(findSucursal("rio-norte"), martes(4))).toBeGreaterThan(0)
+    expect(aforoEn(findSucursal("macuiltepetl"), martes(4))).toBeGreaterThan(0)
   })
 
   it("sube en la tarde y se queda entre 2 y 97 %", () => {
@@ -89,7 +102,7 @@ describe("Horario de clases", () => {
     expect(sesiones[0].fecha > ahora).toBe(true)
     for (let i = 1; i < sesiones.length; i++)
       expect(sesiones[i].fecha >= sesiones[i - 1].fecha).toBe(true)
-    // La de 18:30 en Mirador ya empezó: la siguiente es a las 19:00.
+    // La de 18:30 en Tecajetes ya empezó: la siguiente es a las 19:00.
     expect(sesiones[0].hora).toBe("19:00")
     expect(sesiones.every((s) => s.fecha > ahora)).toBe(true)
   })
@@ -135,6 +148,9 @@ describe("Inicio de Brío", () => {
     expect(document.body.textContent).toContain(`${HORARIO.length} clases a la semana`)
     expect(document.querySelectorAll("#clases article")).toHaveLength(3)
     expect(document.querySelectorAll("table tbody tr")).toHaveLength(FILAS.length + 1)
+    expect(document.querySelectorAll(".b-planes-movil li")).toHaveLength(PLANES.length)
+    // Sin IntersectionObserver (jsdom) el mapa espera a que se pida.
+    expect(button("Ver el mapa de Xalapa")).toBeTruthy()
     expect(document.querySelectorAll('a[href="#"]')).toHaveLength(0)
     expect(document.querySelector(".b-qr path").getAttribute("d")).toMatch(/^M\d/)
   })
@@ -155,10 +171,12 @@ describe("Inicio de Brío", () => {
     await renderBrio()
     const lista = document.querySelector(".b-lista")
     await click(
-      [...lista.querySelectorAll("button")].find((b) => b.textContent.includes("Mirador")),
+      [...lista.querySelectorAll("button")].find((b) => b.textContent.includes("Tecajetes")),
     )
-    expect(document.querySelector(".b-ficha b").textContent).toBe("Mirador")
-    expect(document.querySelector(".b-pin.is-on").textContent).toContain("Mirador")
+    expect(document.querySelector(".b-ficha b").textContent).toBe("Tecajetes")
+    expect(
+      [...lista.querySelectorAll("button")].find((b) => b.textContent.includes("Tecajetes")),
+    ).toHaveProperty("ariaPressed", "true")
   })
 
   it("avisa que el área de socio llega después en lugar de no hacer nada", async () => {
