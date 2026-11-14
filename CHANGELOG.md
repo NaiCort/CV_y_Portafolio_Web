@@ -1,3 +1,11 @@
+# V4.4.0 · 14 de noviembre de 2026 · Brío, primera entrega del gimnasio
+
+- Añadir el giro Gimnasio con **Brío**, club ficticio de cinco sucursales, en `/gimnasio` (todavía sin enlace en la Bienvenida).
+- Inicio con la dirección «Combinada»: disco de pesas que gira al desplazarse, aforo simulado por sucursal, mapa dibujado de las sucursales, próximas clases del horario, vista previa del área de socio con pase QR que cambia cada 30 s, y tabla de planes con precios con IVA.
+- Dos temas de color, Cobalto y Distrito, sobre la misma estructura, guardados en el navegador.
+- Fuentes Anybody y Public Sans servidas desde el sitio; cuatro fotos de Wikimedia Commons con su página de Créditos.
+- Dieciséis pruebas nuevas.
+
 # V4.3.6 · 14 de noviembre de 2026 · cierre de Café
 
 - Añadir aviso de privacidad propio de Ladera con opción de borrar los datos guardados.
