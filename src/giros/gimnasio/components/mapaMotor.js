@@ -16,7 +16,7 @@ setWorkerUrl(workerUrl)
 export function crearMapa(contenedor, { sucursales, elegida, onElegir, onListo, onError }) {
   const limites = new LngLatBounds()
   sucursales.forEach((s) => limites.extend(s.coordenadas))
-  // En pantallas anchas la ficha flota abajo a la derecha: se deja espacio para no tapar marcas.
+  // Las etiquetas van a la derecha de cada punto: se deja más margen de ese lado.
   const ancho = contenedor.clientWidth >= 560
   const map = new Map({
     container: contenedor,
@@ -24,7 +24,7 @@ export function crearMapa(contenedor, { sucursales, elegida, onElegir, onListo, 
     bounds: limites,
     fitBoundsOptions: {
       padding: ancho
-        ? { top: 60, bottom: 250, left: 50, right: 130 }
+        ? { top: 60, bottom: 60, left: 50, right: 140 }
         : { top: 50, bottom: 50, left: 30, right: 110 },
     },
     attributionControl: false,
@@ -39,8 +39,7 @@ export function crearMapa(contenedor, { sucursales, elegida, onElegir, onListo, 
       "CooperativeGesturesHandler.MobileHelpText": "Usa dos dedos para mover el mapa",
     },
   })
-  // Controles arriba a la derecha y atribución abajo a la izquierda: la ficha de la sucursal
-  // flota abajo a la derecha en pantallas anchas.
+  // Controles arriba a la derecha y atribución abajo a la izquierda.
   map.addControl(new NavigationControl({ showCompass: false }), "top-right")
   map.addControl(new AttributionControl({ compact: true }), "bottom-left")
   // El mapa se redimensiona con su caja, no solo con la ventana.
@@ -90,8 +89,14 @@ export function crearMapa(contenedor, { sucursales, elegida, onElegir, onListo, 
     elegir(id) {
       marcar(id)
       const s = sucursales.find((item) => item.id === id)
-      if (s && !map.getBounds().contains(s.coordenadas))
-        map.easeTo({ center: s.coordenadas, duration: 300 })
+      if (!s) return
+      // Centra la sucursal elegida; acerca un poco si el mapa está muy alejado.
+      const quieto = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches
+      map.easeTo({
+        center: s.coordenadas,
+        zoom: Math.max(map.getZoom(), 13.5),
+        duration: quieto ? 0 : 400,
+      })
     },
     destruir: () => {
       observador.disconnect()

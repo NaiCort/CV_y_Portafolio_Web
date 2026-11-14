@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react"
+import { useEffect, useMemo, useRef, useState } from "react"
 import { Link } from "react-router-dom"
 import Disco from "../components/Disco"
 import MapaXalapa from "../components/MapaXalapa"
@@ -59,61 +59,90 @@ function Aforo({ ahora }) {
 }
 
 function Sucursales({ ahora }) {
-  const [elegida, setElegida] = useState("natura")
-  const s = findSucursal(elegida)
-  const pct = aforoEn(s, ahora)
+  const [elegida, setElegida] = useState("centro")
+  const lista = useRef(null)
+  // Si se elige desde el mapa, la fila abierta se lleva a la vista dentro de la lista, sin
+  // mover la página. En el teléfono la lista no se desplaza sola y esto no hace nada.
+  useEffect(() => {
+    const marco = lista.current
+    const fila = marco?.querySelector(".is-on")
+    if (!marco || !fila || marco.scrollHeight <= marco.clientHeight) return
+    const arriba = fila.offsetTop - marco.offsetTop
+    if (
+      arriba < marco.scrollTop ||
+      arriba + fila.offsetHeight > marco.scrollTop + marco.clientHeight
+    )
+      marco.scrollTo({ top: arriba - 8, behavior: "smooth" })
+  }, [elegida])
   return (
     <div className="b-sucursales">
-      <figure className="b-mapa-marco">
-        <MapaXalapa elegida={elegida} onElegir={setElegida} />
-        <div className="b-ficha" aria-live="polite">
-          <b>{s.nombre}</b>
-          <p>{s.direccion}</p>
-          <dl>
-            <div>
-              <dt>Hoy</dt>
-              <dd className="b-num">{horarioTexto(s, ahora)}</dd>
-            </div>
-            <div>
-              <dt>Aforo ahora</dt>
-              <dd className="b-num">{pct === null ? "Cerrada" : `${pct} %`}</dd>
-            </div>
-            <div>
-              <dt>Tiene</dt>
-              <dd>{s.tiene.join(", ")}</dd>
-            </div>
-          </dl>
-        </div>
-      </figure>
-      <div>
+      <div className="b-suc-cabeza">
         <h2 id="sucursales-titulo" className="b-d b-angosta">
           ¿Cuál te queda cerca?
         </h2>
         <p className="b-lead">Tu membresía abre las cinco. Cada una tiene algo propio.</p>
-        <ul className="b-lista">
-          {SUCURSALES.map((item) => {
-            const p = aforoEn(item, ahora)
-            return (
-              <li key={item.id}>
-                <button
-                  type="button"
-                  aria-pressed={item.id === elegida}
-                  onClick={() => setElegida(item.id)}
-                >
-                  <span>
-                    <strong>{item.nombre}</strong>
-                    <small>{item.rasgo}</small>
-                  </span>
-                  <em className="b-num">
-                    {p === null ? "cerrada" : `${p} %`}
-                    <br />
-                    {p === null ? "" : estadoAforo(p)}
-                  </em>
-                </button>
-              </li>
-            )
-          })}
-        </ul>
+      </div>
+      <div className="b-suc-grid">
+        <div className="b-mapa-marco">
+          <MapaXalapa elegida={elegida} onElegir={setElegida} />
+        </div>
+        <div className="b-suc-lista" ref={lista}>
+          <ul className="b-acordeon">
+            {SUCURSALES.map((item) => {
+              const p = aforoEn(item, ahora)
+              const on = item.id === elegida
+              return (
+                <li key={item.id} className={on ? "is-on" : ""}>
+                  <button
+                    type="button"
+                    id={`b-suc-${item.id}`}
+                    aria-expanded={on}
+                    aria-controls={`b-suc-${item.id}-datos`}
+                    onClick={() => setElegida(item.id)}
+                  >
+                    <span>
+                      <strong>{item.nombre}</strong>
+                      <small>{item.rasgo}</small>
+                    </span>
+                    <em className="b-num">
+                      {p === null ? "cerrada" : `${p} %`}
+                      <br />
+                      {p === null ? "" : estadoAforo(p)}
+                    </em>
+                  </button>
+                  <div
+                    id={`b-suc-${item.id}-datos`}
+                    role="region"
+                    aria-labelledby={`b-suc-${item.id}`}
+                    className="b-suc-datos"
+                    hidden={!on}
+                  >
+                    <p>{item.direccion}</p>
+                    <dl>
+                      <div>
+                        <dt>Hoy</dt>
+                        <dd className="b-num">{horarioTexto(item, ahora)}</dd>
+                      </div>
+                      <div>
+                        <dt>Aforo ahora</dt>
+                        <dd className="b-num">
+                          {p === null ? "Cerrada" : `${p} %, ${estadoAforo(p)}`}
+                        </dd>
+                      </div>
+                      <div>
+                        <dt>Tiene</dt>
+                        <dd>{item.tiene.join(", ")}</dd>
+                      </div>
+                    </dl>
+                    <p className="b-suc-ref">
+                      Referencia en el mapa: {item.referencia.nombre}. Ahí no hay ningún gimnasio.
+                    </p>
+                  </div>
+                </li>
+              )
+            })}
+          </ul>
+        </div>
       </div>
     </div>
   )
