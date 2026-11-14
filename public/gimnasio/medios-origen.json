@@ -1,0 +1,38 @@
+[
+  {
+    "id": "combate",
+    "archivo": "/gimnasio/fotos/combate.webp",
+    "titulo": "Training for Rumble in the Deid III begins (8614366).jpg",
+    "autor": "U.S. Air Force photo by Senior Airman Zachary Foster",
+    "licencia": "Public domain",
+    "pagina": "https://commons.wikimedia.org/wiki/File:Training_for_Rumble_in_the_Deid_III_begins_(8614366).jpg",
+    "sha256": "13f8b208f1b64eded0ea72d463568c65f1f0926580e305444a2044da527e07a0"
+  },
+  {
+    "id": "fuerza",
+    "archivo": "/gimnasio/fotos/fuerza.webp",
+    "titulo": "Watch me lift (5047995).jpg",
+    "autor": "U.S. Air Force photo by Airman 1st Class Jovante Johnson",
+    "licencia": "Public domain",
+    "pagina": "https://commons.wikimedia.org/wiki/File:Watch_me_lift_(5047995).jpg",
+    "sha256": "f12b49b3f46818fc5a7e74760980eb2256ce80dd639fb350256b078a9c26f2ae"
+  },
+  {
+    "id": "ciclo",
+    "archivo": "/gimnasio/fotos/ciclo.webp",
+    "titulo": "Through Airmen's Eyes, FTAC instructor by day, Spin instructor by night 150713-F-PT740-033.jpg",
+    "autor": "U.S. Air Force photo by Airman First Class Lynette Rolen",
+    "licencia": "Public domain",
+    "pagina": "https://commons.wikimedia.org/wiki/File:Through_Airmen%27s_Eyes,_FTAC_instructor_by_day,_Spin_instructor_by_night_150713-F-PT740-033.jpg",
+    "sha256": "fa640719b64cea3ed28fb0f35308f4e57fc8330571f40d366d2f932baf484829"
+  },
+  {
+    "id": "socia",
+    "archivo": "/gimnasio/fotos/socia.webp",
+    "titulo": "Fitness Trainer at Starcomplex Gym.jpg",
+    "autor": "Николай Панченко",
+    "licencia": "CC BY-SA 4.0",
+    "pagina": "https://commons.wikimedia.org/wiki/File:Fitness_Trainer_at_Starcomplex_Gym.jpg",
+    "sha256": "0c12fe4a644b39f633efeb840670f760af23b6b3567a52843e38941f2c534bf1"
+  }
+]
