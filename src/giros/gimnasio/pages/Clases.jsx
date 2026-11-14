@@ -7,7 +7,7 @@ import { CATEGORIAS, HORARIO, findCategoria } from "../data/clases"
 import { COACHES, findCoach } from "../data/coaches"
 import { SUCURSALES, findSucursal } from "../data/sucursales"
 import { MEDIOS } from "../data/medios"
-import { lugaresLibres, proximasClases } from "../lib/horario"
+import { cuandoTexto, lugaresLibres, proximasClases } from "../lib/horario"
 import { sesionPorId } from "../lib/reservas"
 
 const DIA = ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"]
@@ -57,8 +57,11 @@ export default function Clases({
   const [sucursal, setSucursal] = useState("todas")
   const [coach, setCoach] = useState("todos")
   const [abierta, setAbierta] = useState(desdeInicio)
+  // Llegar desde Planes con ?prueba=1 marca la siguiente reserva como clase de prueba gratis.
+  const [modoPrueba, setModoPrueba] = useState(() => params.get("prueba") === "1")
+  const pruebaPrevia = reservas.find((r) => r.prueba && r.estado !== "cancelada")
   useEffect(() => {
-    if (params.has("sesion")) setParams({}, { replace: true })
+    if (params.has("sesion") || params.has("prueba")) setParams({}, { replace: true })
   }, [params, setParams])
   const elegido = opciones.find((o) => o.clave === dia) || opciones[0]
   const sesiones = sesionesDelDia(elegido.fecha).filter(
@@ -93,6 +96,25 @@ export default function Clases({
       </section>
 
       <section className="b-wrap b-horario" aria-labelledby="b-horario-titulo">
+        {modoPrueba && (
+          <div className="b-modo-prueba" role="status">
+            {pruebaPrevia ? (
+              <p>
+                Ya apartaste tu clase de prueba gratis:{" "}
+                {findCategoria(pruebaPrevia.categoria).nombre},{" "}
+                {cuandoTexto(new Date(pruebaPrevia.fecha), ahora)}. Es una por persona.
+              </p>
+            ) : (
+              <p>
+                Elige tu clase de prueba gratis: reserva cualquier clase del horario. No necesitas
+                membresía.
+              </p>
+            )}
+            <button type="button" className="b-inline" onClick={() => setModoPrueba(false)}>
+              Salir del modo prueba
+            </button>
+          </div>
+        )}
         <h2 id="b-horario-titulo" className="b-d b-angosta">
           Horario
         </h2>
@@ -230,6 +252,7 @@ export default function Clases({
           sesion={abierta}
           ahora={ahora}
           nombrePrevio={reservas.at(-1)?.nombre || ""}
+          prueba={modoPrueba && !pruebaPrevia}
           onReservar={onReservar}
           onCerrar={() => setAbierta(null)}
         />

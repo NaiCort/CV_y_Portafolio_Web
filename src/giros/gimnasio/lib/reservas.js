@@ -60,7 +60,7 @@ export function guardar(storage, reservas) {
 
 const codigo = (ahora) => `BR-${String(ahora).slice(-5)}`
 
-export function reservar(reservas, { sesion, lugar, nombre, ahora }) {
+export function reservar(reservas, { sesion, lugar, nombre, ahora, prueba = false }) {
   const activa = reservas.find(
     (r) =>
       r.sesionId === sesion.id &&
@@ -83,6 +83,7 @@ export function reservar(reservas, { sesion, lugar, nombre, ahora }) {
       estado: espera ? "espera" : "confirmada",
       posicion: espera ? 2 : null,
       creada: ahora,
+      prueba: Boolean(prueba),
     },
   ]
 }

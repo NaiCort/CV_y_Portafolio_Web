@@ -107,7 +107,10 @@ export default function MisReservas({ reservas, ahora, onCancelar, onTerminar, o
               <li key={r.id} className={`is-${r.estado}`}>
                 <div className="b-reserva-cabeza">
                   <div>
-                    <strong>{cat.nombre}</strong>
+                    <strong>
+                      {cat.nombre}
+                      {r.prueba && <span className="b-prueba-etiqueta">Clase de prueba</span>}
+                    </strong>
                     <small className="b-num">
                       {cuandoTexto(fecha, ahora)} · {findSucursal(r.sucursal).nombre} · Coach{" "}
                       {findCoach(r.coach).nombre}

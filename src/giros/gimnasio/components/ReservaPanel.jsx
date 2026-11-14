@@ -7,7 +7,14 @@ import { cuandoTexto, lugaresLibres } from "../lib/horario"
 import { ESPERA_PASO_MS, NOMBRE_LUGAR, lugaresOcupados } from "../lib/reservas"
 
 // Reserva simulada: elegir lugar (o lista de espera), nombre, confirmar, resultado.
-export default function ReservaPanel({ sesion, ahora, nombrePrevio, onReservar, onCerrar }) {
+export default function ReservaPanel({
+  sesion,
+  ahora,
+  nombrePrevio,
+  prueba = false,
+  onReservar,
+  onCerrar,
+}) {
   const cat = findCategoria(sesion.categoria)
   const etiqueta = NOMBRE_LUGAR[sesion.categoria]
   const libres = lugaresLibres(sesion)
@@ -21,7 +28,7 @@ export default function ReservaPanel({ sesion, ahora, nombrePrevio, onReservar, 
   const timer = useRef(null)
   const nombreRef = useRef(null)
   useEffect(() => () => clearTimeout(timer.current), [])
-  const titulo = `${cat.nombre} · ${cuandoTexto(sesion.fecha, ahora)}`
+  const titulo = `${prueba ? "Clase de prueba: " : ""}${cat.nombre} · ${cuandoTexto(sesion.fecha, ahora)}`
   const confirmar = (event) => {
     event.preventDefault()
     if (!llena && etiqueta && !lugar) {
@@ -36,7 +43,7 @@ export default function ReservaPanel({ sesion, ahora, nombrePrevio, onReservar, 
     setError("")
     setEnviando(true)
     timer.current = setTimeout(() => {
-      setHecha(onReservar({ sesion, lugar: llena ? null : lugar, nombre }))
+      setHecha(onReservar({ sesion, lugar: llena ? null : lugar, nombre, prueba }))
       setEnviando(false)
     }, 800)
   }
@@ -59,6 +66,7 @@ export default function ReservaPanel({ sesion, ahora, nombrePrevio, onReservar, 
               {hecha.lugar ? `, ${etiqueta.toLowerCase()} ${hecha.lugar}` : ""}.
             </p>
           )}
+          {prueba && <p>Es tu clase de prueba: no cuesta nada y no necesitas membresía.</p>}
           <p className="b-ficcion">Reserva simulada: no se envió a ningún lugar.</p>
           <div className="b-acciones">
             <a className="b-btn b-btn-p" href="#mis-reservas" onClick={onCerrar}>
@@ -76,6 +84,9 @@ export default function ReservaPanel({ sesion, ahora, nombrePrevio, onReservar, 
             {cat.minutos} min
           </p>
           <fieldset disabled={enviando} className="b-reserva-campos">
+            {prueba && (
+              <p className="b-aviso-lleno">Clase de prueba gratis: no necesitas membresía.</p>
+            )}
             {llena ? (
               <p className="b-aviso-lleno">
                 Esta clase está llena. Puedes unirte a la lista de espera: si alguien cancela, el
