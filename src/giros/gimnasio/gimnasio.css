@@ -227,9 +227,9 @@
 .b-disco {
   position: absolute;
   top: 0;
-  right: -150px;
-  width: 640px;
-  height: 640px;
+  right: max(-150px, -10vw);
+  width: min(640px, 48vw);
+  height: min(640px, 48vw);
 }
 .b-disco-hule {
   fill: #16171a;
@@ -950,6 +950,23 @@
   .b-header nav {
     display: none;
   }
+  /* En teléfono y tableta el disco va debajo de los botones, en el flujo, y se corta en el
+     borde derecho e inferior: nunca encima del texto. */
+  .b-hero {
+    grid-template-columns: 1fr;
+    min-height: 0;
+    padding-top: 30px;
+  }
+  .b-disco {
+    position: relative;
+    top: auto;
+    right: auto;
+    justify-self: end;
+    width: min(88vw, 440px);
+    height: auto;
+    aspect-ratio: 1;
+    margin: 28px -18% -22% 0;
+  }
 }
 @media (max-width: 640px) {
   .b-wrap {
@@ -966,21 +983,9 @@
     padding: 0 14px;
     font-size: 0.875rem;
   }
-  .b-hero {
-    grid-template-columns: 1fr;
-    min-height: 0;
-    padding-block: 30px 330px;
-  }
   .b-hero-texto {
     margin: 20px 0 24px;
     font-size: 1.0625rem;
-  }
-  .b-disco {
-    top: auto;
-    right: -120px;
-    bottom: -20px;
-    width: 400px;
-    height: 400px;
   }
   .b-aforo {
     grid-template-columns: 1fr 1fr;
