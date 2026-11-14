@@ -11,14 +11,18 @@ Fitness, Barry's, PureGym, Wellhub, Gymbox) y las 13 referencias de Awwwards que
 
 ## Concepto
 
-**Brío, club de entrenamiento con cinco sucursales** en una ciudad sin nombre. Una
+**Brío, club de entrenamiento con cinco sucursales** en Xalapa (V4.4.1; antes, una ciudad
+sin nombre con mapa dibujado). Cada sucursal está junto a un espacio público real que sirve de
+referencia (Parque Juárez, Paseo de los Lagos, Macuiltépetl, Los Tecajetes, Parque Natura),
+sin que haya un gimnasio en esos puntos. Una
 membresía abre todas. Clases con coaches de planta, área de socio y tienda. Todo es
 ficticio: sucursales, coaches, socios, precios y productos.
 
 - **Idea propia del giro:** el **disco de pesas** como objeto de firma. Es el logotipo
   en grande, el marco de la portada y el color de acento (azul de 20 kg).
 - **Tres caracteres, una marca:** la portada y los planes (claros, con el disco); las
-  sucursales y las clases (franja oscura, mapa dibujado y video en blanco y negro); el
+  sucursales y las clases (franja oscura, mapa real de Xalapa en estilo oscuro y video en
+  blanco y negro); el
   área de socio (aspecto de app, con teléfono).
 - **Escena de uso:** desde el teléfono, antes de salir o en la fila del torniquete:
   qué tan lleno está, a qué hora es la clase, el pase para entrar.
@@ -120,7 +124,8 @@ pide, se reserva o está elegido. Nunca degradados con él.
 ## Anclas
 
 - Phive: objeto propio del gimnasio como firma y «elige tu club» como momento central.
-- Temple Noble Art: sucursales en un mapa dibujado de la ciudad.
+- Temple Noble Art: sucursales sobre el mapa de la ciudad (en Brío, mapa real de Xalapa con
+  MapLibre y OpenFreeMap, como el de Patio 12).
 - Fenriz y Locomotion: fotografía en blanco y negro con un solo acento; clases con
   nombre propio.
 - Fitonist: la app como protagonista, con el teléfono fijo.

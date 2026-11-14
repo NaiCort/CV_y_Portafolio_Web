@@ -33,13 +33,17 @@ function GuiaBrio() {
   return (
     <div className="space-y-4 text-sm leading-relaxed text-slate-300">
       <p>
-        Brío es un club de entrenamiento ficticio con cinco sucursales en una ciudad sin nombre.
-        Sucursales, coaches, socios, precios y horarios son de ejemplo.
+        Brío es un club de entrenamiento ficticio con cinco sucursales en Xalapa. Sucursales,
+        coaches, socios, precios y horarios son de ejemplo.
       </p>
       <ul className="list-disc pl-5 space-y-3">
         <li>
           El aforo cambia con la hora del día siguiendo una curva típica de gimnasio. No mide a
           nadie.
+        </li>
+        <li>
+          El mapa es real (OpenStreetMap, servido por OpenFreeMap). Cada sucursal está junto a un
+          parque o paseo público que sirve de referencia; ahí no hay ningún gimnasio.
         </li>
         <li>
           Las próximas clases salen de un horario semanal de ejemplo; los lugares libres son

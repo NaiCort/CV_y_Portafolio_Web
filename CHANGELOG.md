@@ -1,3 +1,10 @@
+# V4.4.1 · 14 de noviembre de 2026 · Brío, correcciones de la primera revisión
+
+- Disco de la portada: gira mientras cruza la pantalla, en lugar de detenerse a los 1600 px; el giro se compone en una capa propia para que no se trabe en el teléfono. En pantallas de hasta 900 px va debajo de los botones.
+- Planes en el teléfono: una tarjeta por plan que se apila al desplazarse, en lugar de la tabla ancha.
+- Mapa real de Xalapa (MapLibre con el estilo oscuro de OpenFreeMap, como en Patio 12) en lugar del mapa dibujado. Las sucursales pasan a Centro, Los Lagos, Macuiltépetl, Tecajetes y Natura, junto a parques y paseos públicos de referencia.
+- Una prueba nueva y dos ajustadas.
+
 # V4.4.0 · 14 de noviembre de 2026 · Brío, primera entrega del gimnasio
 
 - Añadir el giro Gimnasio con **Brío**, club ficticio de cinco sucursales, en `/gimnasio` (todavía sin enlace en la Bienvenida).

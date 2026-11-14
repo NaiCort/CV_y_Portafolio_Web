@@ -231,6 +231,14 @@
   width: min(640px, 48vw);
   height: min(640px, 48vw);
 }
+.b-disco {
+  will-change: transform;
+}
+.b-disco svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
 .b-disco-hule {
   fill: #16171a;
 }
@@ -321,59 +329,67 @@
   border-radius: 18px;
 }
 .b-mapa {
-  display: block;
-  width: 100%;
-  height: auto;
+  position: relative;
+  aspect-ratio: 760 / 560;
+  background: #141518;
 }
-.b-mapa-fondo {
-  fill: #141518;
+/* Más específico que .maplibregl-map, que impone position: relative al contenedor. */
+.b-mapa .b-mapa-lienzo {
+  position: absolute;
+  inset: 0;
 }
-.brio-root[data-tema="distrito"] .b-mapa-fondo {
-  fill: #1c1a18;
+.b-mapa-estado {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 14px;
+  padding: 24px;
+  color: var(--b-oscuro-suave);
+  text-align: center;
 }
-.b-mapa-calle {
-  fill: none;
-  stroke: #26282d;
-  stroke-width: 1.2;
-}
-.b-mapa-avenida {
-  fill: none;
-  stroke: #33363c;
-}
-.b-mapa-rio {
-  fill: none;
-  stroke: #2e3b3f;
-  stroke-width: 22;
-}
-.b-mapa-parque {
-  fill: #1f2a22;
-}
-.b-mapa-nota {
-  fill: #8a8d93;
-  font: 400 13px var(--b-texto);
-  letter-spacing: 1px;
-}
-.b-pin {
+.b-marca {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 32px;
+  padding: 0 10px 0 0;
+  border: 0;
+  background: none;
+  color: #eeedea;
+  font: 700 0.9375rem var(--b-texto);
   cursor: pointer;
 }
-.b-pin-punto {
-  fill: #eeedea;
-  stroke: #141518;
-  stroke-width: 3;
+.b-marca-nombre {
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: #141518e6;
 }
-.b-pin-nombre {
-  fill: #eeedea;
-  font: 700 17px var(--b-texto);
+.b-marca-punto {
+  width: 18px;
+  height: 18px;
+  border: 3px solid #141518;
+  border-radius: 50%;
+  background: #eeedea;
+  box-shadow: 0 0 0 2px #eeedea55;
+  transition: transform 200ms var(--b-ease);
 }
-.b-pin.is-on .b-pin-punto,
-.b-pin-halo {
-  fill: var(--b-oscuro-acento);
+.b-marca.is-on {
+  z-index: 2;
+  color: var(--b-oscuro-acento);
 }
-.b-pin-halo {
-  opacity: 0.2;
+.b-marca.is-on .b-marca-punto {
+  background: var(--b-oscuro-acento);
+  box-shadow: 0 0 0 8px color-mix(in srgb, var(--b-oscuro-acento) 30%, transparent);
+  transform: scale(1.2);
 }
-.b-pin.is-on .b-pin-nombre {
-  fill: var(--b-oscuro-acento);
+.b-marca:focus-visible {
+  outline: 3px solid var(--b-oscuro-acento);
+  outline-offset: 2px;
+}
+.b-mapa .maplibregl-ctrl-attrib {
+  font: 400 0.6875rem var(--b-texto);
 }
 .b-ficha {
   position: absolute;
@@ -812,6 +828,84 @@
   font-size: 0.875rem;
 }
 
+/* Planes en teléfono: una tarjeta por plan que se apila al desplazarse. */
+.b-planes-movil {
+  display: none;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.b-planes-movil li {
+  position: sticky;
+  top: 56px;
+  margin-bottom: 18px;
+  padding: 20px 18px 8px;
+  border: 1px solid var(--b-linea);
+  border-radius: 22px;
+  background: var(--b-hoja);
+  box-shadow: 0 -10px 30px -18px #16171a66;
+}
+.b-planes-movil li:nth-child(2) {
+  top: 72px;
+}
+.b-planes-movil li:nth-child(3) {
+  top: 88px;
+}
+.b-planes-movil li.is-on {
+  border-color: var(--b-acento);
+  background: var(--b-acento);
+  color: #fff;
+}
+.b-plan-cabeza {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+.b-plan-cabeza h3 {
+  font: 850 1.875rem/1 var(--b-titulo);
+  font-stretch: 112%;
+}
+.b-plan-cabeza p {
+  font: 800 1.5rem/1 var(--b-titulo);
+  font-stretch: 90%;
+  white-space: nowrap;
+}
+.b-plan-cabeza small {
+  font: 500 0.75rem var(--b-texto);
+}
+.b-plan-lema {
+  margin: 4px 0 10px;
+  font-size: 0.875rem;
+}
+.b-planes-movil dl > div {
+  display: grid;
+  grid-template-columns: 9.5rem 1fr;
+  gap: 10px;
+  padding: 9px 0;
+  border-top: 1px solid var(--b-linea);
+  font-size: 0.875rem;
+}
+.b-planes-movil li.is-on dl > div {
+  border-color: #ffffff40;
+}
+.b-planes-movil dt {
+  font-weight: 600;
+}
+.b-planes-movil .is-no dd {
+  color: #6b6964;
+}
+.b-planes-movil li.is-on .is-no dd {
+  color: #ffffffcc;
+}
+.brio-root[data-tema="distrito"] .b-planes-movil li:not(.is-on) {
+  border-color: #dcd5c9;
+  background: #f6f2ea;
+}
+.brio-root[data-tema="distrito"] .b-planes-movil li:not(.is-on) dl > div {
+  border-color: #dcd5c9;
+}
+
 /* Créditos */
 .b-creditos {
   padding-block: 64px 110px;
@@ -1003,6 +1097,9 @@
     grid-template-columns: 1fr;
     gap: 26px;
   }
+  .b-mapa {
+    aspect-ratio: 4 / 5;
+  }
   .b-ficha {
     position: static;
     width: auto;
@@ -1052,6 +1149,17 @@
   }
   .b-temas-nombre {
     display: none;
+  }
+  .b-planes h2 {
+    margin-bottom: 24px;
+    font-size: 2.5rem;
+    font-stretch: 100%;
+  }
+  .b-tabla-marco {
+    display: none;
+  }
+  .b-planes-movil {
+    display: block;
   }
   .b-temas-botones button {
     width: 40px;

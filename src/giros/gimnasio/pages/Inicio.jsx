@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react"
 import { Link } from "react-router-dom"
 import Disco from "../components/Disco"
-import MapaSucursales from "../components/MapaSucursales"
+import MapaXalapa from "../components/MapaXalapa"
 import PaseQR from "../components/PaseQR"
 import { SUCURSALES, findSucursal, horarioTexto } from "../data/sucursales"
 import { CATEGORIAS, HORARIO, findCategoria } from "../data/clases"
@@ -59,13 +59,13 @@ function Aforo({ ahora }) {
 }
 
 function Sucursales({ ahora }) {
-  const [elegida, setElegida] = useState("fundicion")
+  const [elegida, setElegida] = useState("natura")
   const s = findSucursal(elegida)
   const pct = aforoEn(s, ahora)
   return (
     <div className="b-sucursales">
       <figure className="b-mapa-marco">
-        <MapaSucursales elegida={elegida} onElegir={setElegida} />
+        <MapaXalapa elegida={elegida} onElegir={setElegida} />
         <div className="b-ficha" aria-live="polite">
           <b>{s.nombre}</b>
           <p>{s.direccion}</p>
@@ -179,7 +179,7 @@ function Telefono() {
   const ahora = useAhora()
   const siguiente = proximasClases(
     ahora,
-    (c) => c.categoria === "ciclo" && c.sucursal === "mirador",
+    (c) => c.categoria === "ciclo" && c.sucursal === "tecajetes",
   )[0]
   return (
     <div className="b-escena" aria-label="Vista previa del área de socio con el perfil de ejemplo">
@@ -198,7 +198,10 @@ function Telefono() {
           <div className="b-siguiente">
             <small>Tu próxima clase</small>
             <b className="b-num">Ciclo · {cuandoTexto(siguiente.fecha, ahora)}</b>
-            <span>Mirador · Coach Iván · bici 12</span>
+            <span>
+              {findSucursal(siguiente.sucursal).nombre} · Coach {findCoach(siguiente.coach).nombre}{" "}
+              · bici 12
+            </span>
           </div>
           <div className="b-semana">
             <div className="b-semana-h">
@@ -268,7 +271,7 @@ export default function Inicio({ onPendiente }) {
               </a>
             </div>
           </div>
-          <Disco className="b-disco" />
+          <Disco />
         </section>
       </div>
       <Aforo ahora={ahora} />
@@ -360,6 +363,27 @@ export default function Inicio({ onPendiente }) {
               </tbody>
             </table>
           </div>
+          <ol className="b-planes-movil" aria-label="Membresías, al mes con IVA">
+            {PLANES.map((p) => (
+              <li key={p.id} className={p.destacado ? "is-on" : ""}>
+                <div className="b-plan-cabeza">
+                  <h3>{p.nombre}</h3>
+                  <p className="b-num">
+                    {pesos(p.precio)} <small>MXN al mes</small>
+                  </p>
+                </div>
+                <p className="b-plan-lema">{p.lema}</p>
+                <dl>
+                  {FILAS.map((fila) => (
+                    <div key={fila.concepto} className={fila[p.id] ? "" : "is-no"}>
+                      <dt>{fila.concepto}</dt>
+                      <dd>{fila[p.id] || "No incluido"}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </li>
+            ))}
+          </ol>
           <p className="b-letra">
             Sin plazo forzoso. Cancelas desde tu perfil en un paso y te avisamos cinco días antes de
             cada renovación. Precios de ejemplo; esta demo no cobra.{" "}
