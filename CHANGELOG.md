@@ -1,3 +1,11 @@
+# V4.4.3 · 14 de noviembre de 2026 · Brío, página de Clases
+
+- Añadir `/gimnasio/clases`: horario de los próximos siete días con filtros por día, disciplina, sucursal y coach.
+- Reservar eligiendo bici, rack, costal o tapete; nombre para la recepción; procesamiento y confirmación con código. En una clase llena, lista de espera que avanza un lugar cada 12 s y avisa cuando se libera un lugar.
+- «Mis reservas»: cancelar con la regla de 2 horas, simular el final de la clase y ver un resumen con minutos, calorías estimadas y minutos por zona, y calificar la clase y al coach.
+- Las tarjetas de Inicio llevan «Reservar», que abre esa sesión en Clases. Componente de video con pausa global listo; los clips siguen pendientes porque Wikimedia Commons bloqueó las descargas.
+- Ocho pruebas nuevas.
+
 # V4.4.2 · 14 de noviembre de 2026 · Brío, mapa y lista de sucursales
 
 - Quitar la ficha que flotaba sobre el mapa y tapaba la sucursal elegida.
