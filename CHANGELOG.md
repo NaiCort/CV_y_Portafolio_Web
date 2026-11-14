@@ -1,3 +1,10 @@
+# V4.4.2 · 14 de noviembre de 2026 · Brío, mapa y lista de sucursales
+
+- Quitar la ficha que flotaba sobre el mapa y tapaba la sucursal elegida.
+- La lista de sucursales pasa a ser un acordeón: al elegir una se expande con dirección, horario de hoy, aforo, lo que tiene y su referencia, y el mapa se centra en ella. Elegir una marca del mapa abre su fila y la lleva a la vista dentro de la lista.
+- En escritorio, mapa y lista tienen la misma altura y la lista se desplaza por dentro; en el teléfono la lista crece con su contenido.
+- Una prueba reescrita para el acordeón.
+
 # V4.4.1 · 14 de noviembre de 2026 · Brío, correcciones de la primera revisión
 
 - Disco de la portada: gira mientras cruza la pantalla, en lugar de detenerse a los 1600 px; el giro se compone en una capa propia para que no se trabe en el teléfono. En pantallas de hasta 900 px va debajo de los botones.
