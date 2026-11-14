@@ -3,12 +3,12 @@ import { Link } from "react-router-dom"
 import Disco from "../components/Disco"
 import MapaXalapa from "../components/MapaXalapa"
 import PaseQR from "../components/PaseQR"
+import Clip, { BotonVideos } from "../components/Clip"
 import { SUCURSALES, findSucursal, horarioTexto } from "../data/sucursales"
 import { CATEGORIAS, HORARIO, findCategoria } from "../data/clases"
 import { findCoach } from "../data/coaches"
 import { FILAS, PLANES } from "../data/planes"
 import { SOCIO } from "../data/socio"
-import { FOTOS } from "../data/medios"
 import { aforoEn, estadoAforo } from "../lib/aforo"
 import { cuandoTexto, lugaresLibres, proximasClases } from "../lib/horario"
 
@@ -164,22 +164,19 @@ function Clases({ ahora }) {
         {HORARIO.length} clases a la semana en {CATEGORIAS.length} disciplinas. Los lugares libres
         son simulados.
       </p>
+      <div className="b-clases-acciones">
+        <Link className="b-btn" to="/gimnasio/clases">
+          Ver el horario completo
+        </Link>
+        <BotonVideos />
+      </div>
       <div className="b-clases-grid">
         {sesiones.map((sesion) => {
           const cat = findCategoria(sesion.categoria)
           const libres = lugaresLibres(sesion)
-          const foto = FOTOS[cat.foto]
           return (
             <article key={sesion.id}>
-              <img
-                src={`/gimnasio/fotos/${cat.foto}-640.webp`}
-                srcSet={`/gimnasio/fotos/${cat.foto}-640.webp 640w, /gimnasio/fotos/${cat.foto}.webp 1280w`}
-                sizes="(max-width: 640px) 100vw, 33vw"
-                alt={foto.alt}
-                loading="lazy"
-                width="640"
-                height="427"
-              />
+              <Clip id={cat.foto} sizes="(max-width: 640px) 100vw, 33vw" />
               <div className="b-clase-info">
                 <span className="b-etiqueta b-num">
                   {cuandoTexto(sesion.fecha, ahora)} ·{" "}
@@ -190,6 +187,13 @@ function Clases({ ahora }) {
                   {findSucursal(sesion.sucursal).nombre} · Coach {findCoach(sesion.coach).nombre} ·{" "}
                   {cat.minutos} min
                 </p>
+                <Link
+                  className="b-btn b-btn-claro"
+                  to={`/gimnasio/clases?sesion=${sesion.id}&fecha=${sesion.fecha.toISOString()}`}
+                  aria-label={`${libres === 0 ? "Lista de espera" : "Reservar"}: ${cat.nombre}, ${cuandoTexto(sesion.fecha, ahora)}`}
+                >
+                  {libres === 0 ? "Lista de espera" : "Reservar"}
+                </Link>
               </div>
             </article>
           )
@@ -292,9 +296,9 @@ export default function Inicio({ onPendiente }) {
               coaches de planta. Tu membresía abre todas, desde el primer día.
             </p>
             <div className="b-acciones">
-              <a className="b-btn b-btn-p" href="#clases">
-                Ver las próximas clases
-              </a>
+              <Link className="b-btn b-btn-p" to="/gimnasio/clases">
+                Reservar una clase
+              </Link>
               <a className="b-btn" href="#planes">
                 Comparar planes
               </a>

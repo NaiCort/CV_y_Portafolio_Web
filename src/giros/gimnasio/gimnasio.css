@@ -915,6 +915,456 @@
   border-color: #dcd5c9;
 }
 
+/* Video y foto de disciplina (Clip) */
+.b-clip {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(1) contrast(1.1) brightness(0.75);
+}
+.b-clases-grid .b-clip {
+  position: absolute;
+  inset: 0;
+}
+.b-clases-acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: -8px 0 26px;
+}
+.b-oscura .b-btn {
+  color: var(--b-oscuro-texto);
+}
+.brio-root .b-clase-info a.b-btn-claro {
+  min-height: 40px;
+  margin-top: 14px;
+  border-color: #ffffff;
+  background: #ffffff;
+  color: #16171a;
+}
+
+/* Página de Clases */
+.b-clases-cabeza {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+  padding-block: 48px 40px;
+}
+.b-clases-cabeza h1 {
+  font-size: clamp(3.5rem, 8vw, 7rem);
+}
+.b-clases-medio {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border-radius: 22px;
+  background: #222;
+}
+.b-horario {
+  padding-block: 24px 64px;
+}
+.b-horario h2,
+.b-mis-reservas h2 {
+  margin-bottom: 18px;
+  font-size: clamp(2.25rem, 4vw, 3.25rem);
+}
+.b-filtros {
+  display: grid;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+.b-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  border: 0;
+}
+.b-chips legend {
+  width: 100%;
+  margin-bottom: 6px;
+  color: var(--b-suave);
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+.b-chip {
+  position: relative;
+}
+.b-chip input {
+  position: absolute;
+  opacity: 0;
+  inset: 0;
+}
+.b-chip span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 40px;
+  padding: 0 16px;
+  border: 1.5px solid var(--b-linea);
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  cursor: pointer;
+  transition:
+    background-color 200ms var(--b-ease),
+    border-color 200ms var(--b-ease);
+}
+.b-chip input:checked + span {
+  border-color: var(--b-tinta);
+  background: var(--b-tinta);
+  color: var(--b-fondo);
+}
+.b-chip input:focus-visible + span {
+  outline: 3px solid var(--b-acento);
+  outline-offset: 2px;
+}
+.b-selects {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+.b-selects label,
+.b-campo {
+  display: grid;
+  gap: 4px;
+  color: var(--b-suave);
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+.b-selects select,
+.b-campo input {
+  min-width: 12rem;
+  min-height: 44px;
+  padding: 0 12px;
+  border: 1.5px solid var(--b-linea);
+  border-radius: 12px;
+  background: var(--b-hoja);
+  color: var(--b-tinta);
+  font: 500 1rem var(--b-texto);
+}
+.b-resultado {
+  margin: 4px 0 8px;
+  color: var(--b-suave);
+  font-size: 0.9375rem;
+}
+.b-inline {
+  border: 0;
+  background: none;
+  color: var(--b-tinta);
+  font: inherit;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+.b-sesiones {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.b-sesiones li {
+  display: grid;
+  grid-template-columns: 5.5rem 1fr auto auto;
+  gap: 16px;
+  align-items: center;
+  padding: 14px 0;
+  border-top: 1px solid var(--b-linea);
+}
+.b-sesiones li.is-pasada :is(.b-sesion-hora, strong) {
+  color: var(--b-suave);
+}
+.b-sesion-hora {
+  font: 850 1.75rem/1 var(--b-titulo);
+  font-stretch: 80%;
+}
+.b-sesion-info strong {
+  display: block;
+  font-size: 1.0625rem;
+}
+.b-sesion-info small,
+.b-sesion-lugares {
+  color: var(--b-suave);
+  font-size: 0.875rem;
+}
+.b-sesion-lugares {
+  text-align: right;
+}
+
+/* Panel de reserva. El diálogo se monta fuera de .brio-root: lleva sus propias variables, y el
+   tema llega por <html data-brio-tema>. */
+.b-modal {
+  --b-texto: "Brio Texto", system-ui, sans-serif;
+  --b-titulo: "Brio Titulo", "Arial Black", sans-serif;
+  --b-ease: cubic-bezier(0.23, 1, 0.32, 1);
+  --b-modal-acento: #1f47c9;
+  border-color: #d3cec4;
+  background: #f6f3ee;
+  color: #16171a;
+  font-family: var(--b-texto);
+  font-variant-numeric: tabular-nums;
+}
+html[data-brio-tema="distrito"] .b-modal {
+  --b-modal-acento: #b8431f;
+  background: #ede8df;
+  border-color: #dcd5c9;
+}
+.b-modal h2 {
+  font: 850 1.625rem/1.05 var(--b-titulo);
+  font-stretch: 85%;
+}
+.b-modal :where(a, button, input, select):focus-visible {
+  outline: 3px solid var(--b-modal-acento);
+  outline-offset: 2px;
+}
+.b-reserva-meta {
+  margin: -10px 0 14px;
+  color: #5d5e63;
+}
+.b-reserva-campos {
+  display: grid;
+  gap: 14px;
+  border: 0;
+}
+.b-lugares {
+  border: 0;
+}
+.b-lugares legend {
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+.b-lugares-rejilla {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 6px;
+}
+.b-lugares-rejilla label {
+  position: relative;
+}
+.b-lugares-rejilla input {
+  position: absolute;
+  opacity: 0;
+  inset: 0;
+}
+.b-lugares-rejilla span {
+  display: grid;
+  place-items: center;
+  height: 44px;
+  border: 1.5px solid #d3cec4;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.b-lugares-rejilla .is-ocupado span {
+  border-style: dashed;
+  background: #ece8e1;
+  color: #8a877f;
+  text-decoration: line-through;
+  cursor: not-allowed;
+}
+.b-lugares-rejilla input:checked + span {
+  border-color: var(--b-modal-acento);
+  background: var(--b-modal-acento);
+  color: #fff;
+}
+.b-lugares-rejilla input:focus-visible + span {
+  outline: 3px solid var(--b-modal-acento);
+  outline-offset: 2px;
+}
+.b-modal .b-campo {
+  color: #5d5e63;
+}
+.b-modal .b-campo input {
+  border-color: #8f8c85;
+  background: #fff;
+  color: #16171a;
+}
+.b-regla,
+.b-ficcion {
+  color: var(--b-suave);
+  font-size: 0.875rem;
+}
+.b-modal :is(.b-regla, .b-ficcion) {
+  color: #5d5e63;
+}
+.b-error {
+  color: #b42318;
+  font-weight: 600;
+}
+.b-aviso-lleno {
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: #ece8e1;
+}
+.b-modal .b-btn {
+  color: #16171a;
+}
+.b-modal .b-btn-p {
+  border-color: var(--b-modal-acento);
+  background: var(--b-modal-acento);
+  color: #fff;
+}
+.b-reserva-hecha {
+  display: grid;
+  gap: 12px;
+}
+.b-reserva-codigo {
+  font: 850 2rem/1 var(--b-titulo);
+  font-stretch: 90%;
+}
+
+/* Mis reservas */
+.b-mis-reservas {
+  padding-block: 24px 100px;
+}
+.b-reservas {
+  display: grid;
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.b-reservas > li {
+  display: grid;
+  gap: 14px;
+  padding: 18px 20px;
+  border: 1px solid var(--b-linea);
+  border-radius: 18px;
+  background: var(--b-hoja);
+}
+.b-reserva-cabeza {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 10px;
+}
+.b-reserva-cabeza strong {
+  display: block;
+  font: 850 1.5rem/1.1 var(--b-titulo);
+  font-stretch: 80%;
+}
+.b-reserva-cabeza small {
+  color: var(--b-suave);
+}
+.b-estado {
+  align-self: start;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: var(--b-tinte);
+  font-size: 0.8125rem;
+  font-weight: 700;
+}
+.b-reservas .is-espera .b-estado {
+  background: transparent;
+  border: 1.5px dashed var(--b-suave);
+}
+.b-confirmar p {
+  margin-bottom: 10px;
+}
+.b-resumen {
+  display: grid;
+  gap: 10px;
+}
+.b-resumen-cifras {
+  display: flex;
+  gap: 28px;
+}
+.b-resumen-cifras dt {
+  color: var(--b-suave);
+  font-size: 0.8125rem;
+}
+.b-resumen-cifras dd {
+  font: 850 2rem/1 var(--b-titulo);
+  font-stretch: 90%;
+}
+.b-resumen-zonas-titulo {
+  font-weight: 600;
+}
+.b-zonas {
+  display: flex;
+  gap: 3px;
+  height: 14px;
+}
+.b-zonas i,
+.b-zonas-leyenda i {
+  display: block;
+  border-radius: 4px;
+}
+.b-zona-0 {
+  background: #b9bcc2;
+}
+.b-zona-1 {
+  background: #7d8fd6;
+}
+.b-zona-2 {
+  background: var(--b-acento);
+}
+.b-zona-3 {
+  background: var(--b-tinta);
+}
+.b-zonas-leyenda {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.875rem;
+}
+.b-zonas-leyenda li {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.b-zonas-leyenda i {
+  width: 12px;
+  height: 12px;
+}
+.b-calificar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px 32px;
+}
+.b-estrellas {
+  display: flex;
+  gap: 2px;
+  border: 0;
+}
+.b-estrellas legend {
+  width: 100%;
+  margin-bottom: 4px;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+.b-estrellas label {
+  position: relative;
+}
+.b-estrellas input {
+  position: absolute;
+  opacity: 0;
+  inset: 0;
+}
+.b-estrellas span {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  color: var(--b-linea);
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+.b-estrellas span.is-on {
+  color: var(--b-acento);
+}
+.b-estrellas input:focus-visible + span {
+  outline: 3px solid var(--b-acento);
+  border-radius: 6px;
+}
+.brio-root[data-tema="distrito"] .b-estrellas span.is-on {
+  color: var(--b-oscuro-acento);
+}
+
 /* Créditos */
 .b-creditos {
   padding-block: 64px 110px;
@@ -1159,6 +1609,26 @@
   }
   .b-temas-nombre {
     display: none;
+  }
+  .b-clases-cabeza {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding-top: 28px;
+  }
+  .b-sesiones li {
+    grid-template-columns: 4.25rem 1fr;
+    gap: 6px 12px;
+  }
+  .b-sesion-lugares {
+    grid-column: 2;
+    text-align: left;
+  }
+  .b-sesiones li .b-btn {
+    grid-column: 2;
+    justify-self: start;
+  }
+  .b-lugares-rejilla {
+    grid-template-columns: repeat(4, 1fr);
   }
   .b-planes h2 {
     margin-bottom: 24px;

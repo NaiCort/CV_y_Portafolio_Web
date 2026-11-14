@@ -28,3 +28,11 @@ export const FOTOS = {
     pagina: "https://commons.wikimedia.org/wiki/File:Fitness_Trainer_at_Starcomplex_Gym.jpg",
   },
 }
+
+// Medio de cada disciplina: video en bucle cuando lo hay, foto como póster y respaldo.
+// Movilidad y Ritmo no tienen todavía un medio propio con licencia libre.
+export const MEDIOS = {
+  combate: { foto: "combate", alt: FOTOS.combate.alt, video: null },
+  fuerza: { foto: "fuerza", alt: FOTOS.fuerza.alt, video: null },
+  ciclo: { foto: "ciclo", alt: FOTOS.ciclo.alt, video: null },
+}
