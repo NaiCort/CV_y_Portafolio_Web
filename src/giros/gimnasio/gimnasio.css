@@ -315,11 +315,6 @@
 .b-oscura h2 {
   font-size: clamp(2.5rem, 4.5vw, 4rem);
 }
-.b-sucursales {
-  display: grid;
-  grid-template-columns: 1.35fr 1fr;
-  gap: 48px;
-}
 .b-mapa-marco {
   position: relative;
   align-self: start;
@@ -391,73 +386,87 @@
 .b-mapa .maplibregl-ctrl-attrib {
   font: 400 0.6875rem var(--b-texto);
 }
-.b-ficha {
+.b-suc-cabeza {
+  margin-bottom: 8px;
+}
+/* Mapa y lista comparten altura: la lista se desplaza por dentro y no estira la fila. */
+.b-suc-grid {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  gap: 40px;
+}
+.b-suc-lista {
+  position: relative;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  border-block: 1px solid var(--b-oscuro-linea);
+  scrollbar-color: var(--b-oscuro-linea) transparent;
+}
+.b-acordeon {
   position: absolute;
-  right: 16px;
-  bottom: 16px;
-  width: 300px;
-  padding: 16px 18px;
-  border-radius: 14px;
-  background: #f6f3ee;
-  color: #16171a;
-  font-size: 0.875rem;
-  box-shadow: 0 18px 40px -22px #000;
-}
-.b-ficha b {
-  display: block;
-  font: 850 1.5rem/1 var(--b-titulo);
-  font-stretch: 80%;
-}
-.b-ficha p {
-  margin: 4px 0 8px;
-  color: #5d5e63;
-}
-.b-ficha dl > div {
-  display: flex;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 6px 0;
-  border-top: 1px solid #d3cec4;
-}
-.b-ficha dd {
-  text-align: right;
-}
-.b-lista {
+  inset: 0 0 auto;
+  margin: 0;
+  padding: 0 4px 0 0;
   list-style: none;
-  padding: 0;
 }
-.b-lista button {
+.b-acordeon li + li {
+  border-top: 1px solid var(--b-oscuro-linea);
+}
+.b-acordeon button {
   display: grid;
   grid-template-columns: 1fr auto;
+  gap: 12px;
   width: 100%;
   padding: 15px 0;
   border: 0;
-  border-top: 1px solid var(--b-oscuro-linea);
   background: none;
   color: inherit;
   font: inherit;
   text-align: left;
   cursor: pointer;
 }
-.b-lista strong {
+.b-acordeon strong {
   display: block;
   font: 850 1.75rem/1.05 var(--b-titulo);
   font-stretch: 70%;
   transition: color 200ms var(--b-ease);
 }
-.b-lista small {
+.b-acordeon small,
+.b-acordeon em {
   color: var(--b-oscuro-suave);
   font-size: 0.875rem;
 }
-.b-lista em {
-  color: var(--b-oscuro-suave);
-  font-size: 0.875rem;
+.b-acordeon em {
   font-style: normal;
   text-align: right;
 }
-.b-lista button[aria-pressed="true"] strong,
-.b-lista button:hover strong {
+.b-acordeon .is-on strong,
+.b-acordeon button:hover strong {
   color: var(--b-oscuro-acento);
+}
+.b-suc-datos {
+  padding: 0 0 18px;
+  font-size: 0.9375rem;
+  animation: b-entra 240ms var(--b-ease);
+}
+.b-suc-datos > p:first-child {
+  margin-bottom: 8px;
+}
+.b-suc-datos dl > div {
+  display: grid;
+  grid-template-columns: 7.5rem 1fr;
+  gap: 12px;
+  padding: 7px 0;
+  border-top: 1px solid var(--b-oscuro-linea);
+}
+.b-suc-datos dt {
+  color: var(--b-oscuro-suave);
+}
+.b-suc-ref {
+  margin-top: 8px;
+  color: var(--b-oscuro-suave);
+  font-size: 0.8125rem;
 }
 .b-clases {
   margin-top: 110px;
@@ -1093,18 +1102,19 @@
   .b-oscura {
     padding-block: 64px;
   }
-  .b-sucursales {
+  .b-suc-grid {
     grid-template-columns: 1fr;
-    gap: 26px;
+    gap: 20px;
+  }
+  /* En el teléfono la lista crece con su contenido: nada de desplazamiento dentro de otro. */
+  .b-suc-lista {
+    overflow: visible;
+  }
+  .b-acordeon {
+    position: static;
   }
   .b-mapa {
-    aspect-ratio: 4 / 5;
-  }
-  .b-ficha {
-    position: static;
-    width: auto;
-    border-radius: 0;
-    box-shadow: none;
+    aspect-ratio: 1;
   }
   .b-clases {
     margin-top: 64px;

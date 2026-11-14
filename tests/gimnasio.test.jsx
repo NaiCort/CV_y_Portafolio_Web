@@ -167,16 +167,18 @@ describe("Inicio de Brío", () => {
     window.localStorage.removeItem(TEMA_KEY)
   })
 
-  it("elige una sucursal desde la lista y actualiza la ficha del mapa", async () => {
+  it("abre una sucursal a la vez en la lista y muestra sus datos", async () => {
     await renderBrio()
-    const lista = document.querySelector(".b-lista")
-    await click(
-      [...lista.querySelectorAll("button")].find((b) => b.textContent.includes("Tecajetes")),
-    )
-    expect(document.querySelector(".b-ficha b").textContent).toBe("Tecajetes")
-    expect(
-      [...lista.querySelectorAll("button")].find((b) => b.textContent.includes("Tecajetes")),
-    ).toHaveProperty("ariaPressed", "true")
+    const boton = (id) => document.getElementById(`b-suc-${id}`)
+    const datos = (id) => document.getElementById(`b-suc-${id}-datos`)
+    expect(boton("centro").getAttribute("aria-expanded")).toBe("true")
+    expect(datos("centro").hidden).toBe(false)
+    await click(boton("tecajetes"))
+    expect(boton("tecajetes").getAttribute("aria-expanded")).toBe("true")
+    expect(datos("tecajetes").hidden).toBe(false)
+    expect(datos("tecajetes").textContent).toContain("Parque de los Tecajetes")
+    expect(boton("centro").getAttribute("aria-expanded")).toBe("false")
+    expect(datos("centro").hidden).toBe(true)
   })
 
   it("avisa que el área de socio llega después en lugar de no hacer nada", async () => {
