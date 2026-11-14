@@ -1,0 +1,149 @@
+import { useEffect, useState } from "react"
+import { Link, Navigate, Route, Routes, useLocation } from "react-router-dom"
+import DemoBanner from "../../components/shared/DemoBanner"
+import ComercialCTA from "../../components/shared/ComercialCTA"
+import WaterMark from "../../components/WaterMark"
+import useFavicon from "../../hooks/useFavicon"
+import usePageMetadata from "../../hooks/usePageMetadata"
+import Inicio from "./pages/Inicio"
+import Creditos from "./pages/Creditos"
+import SelectorTema from "./components/SelectorTema"
+import { guardarTema, leerTema } from "./lib/tema"
+import "./gimnasio.css"
+
+const SECCIONES = [
+  ["sucursales", "Sucursales"],
+  ["clases", "Clases"],
+  ["planes", "Planes"],
+  ["socio", "Socio"],
+]
+const TITULOS = { "/gimnasio": "Inicio", "/gimnasio/creditos": "Créditos" }
+const PENDIENTES = {
+  socio: "El área de socio con el perfil de ejemplo llega en la siguiente entrega de la demo.",
+}
+const storage = () => {
+  try {
+    return window.localStorage
+  } catch {
+    return null
+  }
+}
+
+function GuiaBrio() {
+  return (
+    <div className="space-y-4 text-sm leading-relaxed text-slate-300">
+      <p>
+        Brío es un club de entrenamiento ficticio con cinco sucursales en una ciudad sin nombre.
+        Sucursales, coaches, socios, precios y horarios son de ejemplo.
+      </p>
+      <ul className="list-disc pl-5 space-y-3">
+        <li>
+          El aforo cambia con la hora del día siguiendo una curva típica de gimnasio. No mide a
+          nadie.
+        </li>
+        <li>
+          Las próximas clases salen de un horario semanal de ejemplo; los lugares libres son
+          simulados.
+        </li>
+        <li>
+          El teléfono muestra el área de socio con un perfil inventado. El código QR cambia cada 30
+          segundos y no abre ningún torniquete.
+        </li>
+        <li>
+          Hay dos temas de color, Cobalto y Distrito, en la esquina inferior derecha. La elección se
+          guarda en este navegador.
+        </li>
+        <li>Esta es la primera entrega: reservas, alta, área de socio y tienda vienen después.</li>
+      </ul>
+      <p>“Contactar” y “Hablemos” abren los canales reales de Ian para consultar un proyecto.</p>
+    </div>
+  )
+}
+
+export default function GimnasioApp() {
+  useFavicon("/favicons/gimnasio.svg")
+  const { pathname, hash } = useLocation()
+  const [tema, setTema] = useState(() => leerTema(storage()))
+  const [aviso, setAviso] = useState(null)
+  useEffect(() => guardarTema(storage(), tema), [tema])
+  useEffect(() => {
+    if (!aviso) return undefined
+    const timer = setTimeout(() => setAviso(null), 6000)
+    return () => clearTimeout(timer)
+  }, [aviso])
+  const titulo = TITULOS[pathname.replace(/\/+$/, "")]
+  usePageMetadata(
+    `${titulo || "Página no encontrada"} — Brío, club de entrenamiento · Demo de Ian Aldana Martínez`,
+    "Gimnasio ficticio con cinco sucursales: aforo en vivo, clases, planes sin letra chica y área de socio simulada. Portafolio de Ian Aldana Martínez.",
+  )
+  useEffect(() => {
+    const destino = hash ? document.getElementById(decodeURIComponent(hash.slice(1))) : null
+    if (destino) {
+      destino.scrollIntoView({ block: "start" })
+      const h = destino.querySelector("h2")
+      h?.setAttribute("tabindex", "-1")
+      h?.focus({ preventScroll: true })
+    } else document.querySelector("#contenido h1")?.focus({ preventScroll: true })
+  }, [pathname, hash])
+  const pendiente = (clave) => setAviso({ id: Date.now(), texto: PENDIENTES[clave] })
+  return (
+    <div className="brio-root" data-tema={tema}>
+      <a className="skip-link" href="#contenido">
+        Saltar al contenido
+      </a>
+      <DemoBanner guide={<GuiaBrio />} />
+      <header className="b-header b-wrap">
+        <Link className="b-logo" to="/gimnasio" aria-label="Brío, inicio">
+          BRÍO
+        </Link>
+        <nav aria-label="Navegación de la demo">
+          {SECCIONES.map(([id, nombre]) => (
+            <Link key={id} to={`/gimnasio#${id}`}>
+              {nombre}
+            </Link>
+          ))}
+        </nav>
+        <div className="b-header-acciones">
+          <button type="button" className="b-btn" onClick={() => pendiente("socio")}>
+            Entrar
+          </button>
+          <Link className="b-btn b-btn-p" to="/gimnasio#clases">
+            Ver clases
+          </Link>
+        </div>
+      </header>
+      <main id="contenido" tabIndex={-1}>
+        <Routes>
+          <Route index element={<Inicio onPendiente={pendiente} />} />
+          <Route path="creditos" element={<Creditos />} />
+          <Route path="*" element={<Navigate to="/gimnasio" replace />} />
+        </Routes>
+      </main>
+      <ComercialCTA
+        giro="gimnasio"
+        accentColor={tema === "distrito" ? "#E0683F" : "#6A8CFF"}
+        backgroundColor={tema === "distrito" ? "#1C1A18" : "#141518"}
+        textColor="#EEEDEA"
+        fontFamily="Brio Texto, system-ui, sans-serif"
+        headingFontFamily="Brio Titulo, system-ui, sans-serif"
+        radius={18}
+      />
+      <footer className="b-footer b-wrap">
+        <p>Brío · club de entrenamiento. Negocio ficticio creado para una demostración.</p>
+        <Link to="/gimnasio/creditos">Créditos de fotos y tipografías</Link>
+      </footer>
+      <div className="b-aviso-region" role="status" aria-live="polite">
+        {aviso && (
+          <div key={aviso.id} className="b-aviso">
+            <span>{aviso.texto}</span>
+            <button type="button" onClick={() => setAviso(null)}>
+              Cerrar aviso
+            </button>
+          </div>
+        )}
+      </div>
+      <SelectorTema tema={tema} onCambiar={setTema} />
+      <WaterMark />
+    </div>
+  )
+}
