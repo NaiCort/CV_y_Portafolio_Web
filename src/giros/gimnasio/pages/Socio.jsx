@@ -45,6 +45,7 @@ function Entrar({ onEntrar, onPrivacidad }) {
             <label htmlFor="b-entrar-correo">Correo</label>
             <input
               id="b-entrar-correo"
+              name="correo"
               type="email"
               autoComplete="username"
               spellCheck={false}
@@ -58,6 +59,7 @@ function Entrar({ onEntrar, onPrivacidad }) {
             <label htmlFor="b-entrar-clave">Contraseña</label>
             <input
               id="b-entrar-clave"
+              name="clave"
               type="password"
               autoComplete="current-password"
               value={clave}
@@ -305,6 +307,7 @@ function Invitados({ invitados, ahora, plan, onInvitar }) {
             <label htmlFor="b-inv-nombre">Nombre de tu invitado</label>
             <input
               id="b-inv-nombre"
+              name="invitado"
               value={nombre}
               maxLength={40}
               autoComplete="off"

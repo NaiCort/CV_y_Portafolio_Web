@@ -2337,6 +2337,50 @@ a.b-producto:hover .b-producto-nombre {
   max-width: 40rem;
 }
 
+.b-chip input:disabled + span {
+  border-style: dashed;
+  color: var(--b-suave);
+  text-decoration: line-through;
+  cursor: not-allowed;
+}
+/* Pasada de cierre (V4.4.7): esquema de color, anclas, toque y estados al pasar el ratón */
+.brio-root {
+  color-scheme: light;
+}
+.brio-root[data-tema="distrito"],
+html[data-brio-tema="distrito"] {
+  color-scheme: dark;
+}
+.brio-root section[id] {
+  scroll-margin-top: 56px;
+}
+.brio-root :is(.b-btn, .b-chip, .b-inline, .b-clase-tarjeta, .b-producto, .b-acordeon button) {
+  touch-action: manipulation;
+}
+.brio-root main :is(p, li) {
+  text-wrap: pretty;
+}
+.b-paquetes > p,
+.b-coach-datos > p,
+.b-evaluacion p {
+  max-width: 64ch;
+}
+@media (hover: hover) {
+  .b-btn:not(:disabled):hover {
+    background-color: color-mix(in srgb, currentColor 10%, transparent);
+  }
+  .brio-root .b-btn-p:not(:disabled):hover {
+    border-color: color-mix(in srgb, var(--b-acento) 84%, #000000);
+    background-color: color-mix(in srgb, var(--b-acento) 84%, #000000);
+  }
+  .b-chip:hover input:not(:disabled) + span {
+    border-color: currentColor;
+  }
+  .b-inline:hover {
+    text-decoration-thickness: 2px;
+  }
+}
+
 /* Créditos */
 .b-creditos {
   padding-block: 64px 110px;
@@ -2380,7 +2424,7 @@ a.b-producto:hover .b-producto-nombre {
   flex-wrap: wrap;
   justify-content: space-between;
   gap: 12px;
-  padding-block: 28px 64px;
+  padding-block: 28px 124px; /* deja libre el selector de tema fijo */
   color: var(--b-suave);
   font-size: 0.875rem;
 }

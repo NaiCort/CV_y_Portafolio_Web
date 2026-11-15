@@ -225,6 +225,7 @@ export default function Carrito({ tienda, esSocio, ahora, dispatch }) {
                 <label htmlFor="b-carrito-nombre">Nombre para recoger</label>
                 <input
                   id="b-carrito-nombre"
+                  name="nombre"
                   ref={nombreRef}
                   value={nombre}
                   maxLength={40}

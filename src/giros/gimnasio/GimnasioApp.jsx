@@ -221,7 +221,7 @@ export default function GimnasioApp() {
         </a>
         <DemoBanner guide={<GuiaBrio />} />
         <header className="b-header b-wrap">
-          <Link className="b-logo" to="/gimnasio" aria-label="Brío, inicio">
+          <Link className="b-logo" to="/gimnasio" aria-label="Brío, inicio" translate="no">
             BRÍO
           </Link>
           <nav className="b-nav" aria-label="Navegación de la demo">
@@ -267,6 +267,7 @@ export default function GimnasioApp() {
           className="b-menu-movil b-wrap"
           aria-label="Menú de la demo"
           hidden={!menuAbierto}
+          onClick={(e) => e.target.closest("a") && setMenuEn(null)}
         >
           {SECCIONES.map(([to, nombre]) => (
             <Link key={to} to={to} aria-current={to === pathname ? "page" : undefined}>

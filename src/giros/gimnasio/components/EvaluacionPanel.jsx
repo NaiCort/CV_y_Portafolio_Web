@@ -189,6 +189,7 @@ export default function EvaluacionPanel({ coachInicial, previa, ahora, onConfirm
               <label htmlFor="b-eva-nombre">Tu nombre</label>
               <input
                 id="b-eva-nombre"
+                name="nombre"
                 ref={nombreRef}
                 value={nombre}
                 maxLength={40}
