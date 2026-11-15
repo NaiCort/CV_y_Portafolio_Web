@@ -108,6 +108,10 @@ pide, se reserva o está elegido. Nunca degradados con él.
   para pausar. Con movimiento reducido o ahorro de datos solo cambia el color. Nada de video
   en la portada (ahí está el disco), para no castigar la carga inicial.
 - Los videos ilustran el ambiente; no se presentan como Brío ni como sus coaches.
+- **Coaches sin foto:** las fichas son tipográficas (nombre en Anybody angosta y grande).
+  Nadie de los videos se presenta como coach.
+- **Tienda:** sin fotos de producto; cada producto tiene un dibujo de línea propio
+  (trazo de 5 px redondeado, en el acento sobre el tinte), no íconos genéricos repetidos.
 
 ## Forma, sombras y densidad
 

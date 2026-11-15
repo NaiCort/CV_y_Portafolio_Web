@@ -1,3 +1,13 @@
+# V4.4.6 · 15 de noviembre de 2026 · Brío, coaches y tienda
+
+- Añadir `/gimnasio/coaches`: seis coaches de ejemplo con su forma de trabajar, formación, clases y sucursales; filtro por objetivo y enlace a su horario.
+- Evaluación gratuita con coach, sucursal, día y hora, una por persona, sin datos de salud; se puede cancelar.
+- Paquetes de sesiones personales (1, 4 y 8) con precio por sesión y precio de socio, en el mismo carrito de la tienda.
+- Añadir `/gimnasio/tienda`: diez productos con dibujo propio, ficha con variante, cantidad y piezas por sucursal, carrito con IVA desglosado y precio de socio, y pedido para recoger en sucursal sin cobro. «Tus pedidos» con cancelación.
+- Encabezado con Coaches, Tienda y carrito; menú para teléfono, que faltaba en pantallas de 900 px o menos.
+- El aviso de privacidad incluye y borra carrito, pedidos y evaluación.
+- Quince pruebas nuevas.
+
 # V4.4.5 · 15 de noviembre de 2026 · Brío, área de socio
 
 - Añadir `/gimnasio/socio`: entrada simulada con el perfil de ejemplo (Andrea) y su panel: pase QR con «Simular entrada», semana de actividad, reloj «conectado» de forma simulada, pases de invitado según el plan, historial de composición corporal con gráfica y tabla, sus reservas, y la membresía.

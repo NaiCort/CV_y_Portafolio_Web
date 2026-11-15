@@ -19,6 +19,7 @@ export default function Privacidad({ onCerrar, onBorrar }) {
         </p>
         <h3>Lo que guarda en este navegador</h3>
         <ul className="b-reglamento">
+          <li>El carrito, tus pedidos apartados y tu evaluación con un coach.</li>
           <li>El tema de color elegido.</li>
           <li>Tus reservas de clase, con el nombre que escribiste para la recepción.</li>
           <li>
