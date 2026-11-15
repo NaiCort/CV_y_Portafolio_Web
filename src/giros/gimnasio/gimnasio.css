@@ -476,18 +476,20 @@
   grid-template-columns: 1.3fr 1fr 1fr;
   gap: 16px;
 }
-.b-clases-grid article {
+.b-clase-tarjeta {
   position: relative;
+  display: block;
   height: 460px;
   overflow: hidden;
   border-radius: 18px;
   background: #222;
+  color: #fff;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
 }
-.b-clases-grid img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: grayscale(1) contrast(1.1) brightness(0.75);
+.b-clase-tarjeta:focus-visible {
+  outline: 3px solid var(--b-acento);
+  outline-offset: 3px;
 }
 .b-clase-info {
   position: absolute;
@@ -916,17 +918,60 @@
   border-color: #dcd5c9;
 }
 
-/* Video y foto de disciplina (Clip) */
+/* Video y foto de disciplina (Clip): blanco y negro en reposo, color y video al activarse */
 .b-clip {
-  display: block;
+  position: absolute;
+  inset: 0;
+  filter: grayscale(1) contrast(1.1) brightness(0.75);
+  transition: filter 280ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.b-clip.is-activo {
+  filter: none;
+}
+.b-clip :is(img, video) {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: grayscale(1) contrast(1.1) brightness(0.75);
 }
-.b-clases-grid .b-clip {
-  position: absolute;
-  inset: 0;
+.b-clip video {
+  opacity: 0;
+  transition: opacity 240ms ease-out;
+}
+.b-clip video.is-corriendo {
+  opacity: 1;
+}
+.b-clase-tarjeta .b-clip {
+  transform: scale(1);
+  transition:
+    filter 280ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.b-clase-tarjeta.is-activa .b-clip {
+  transform: scale(1.03);
+}
+.b-clase-ir {
+  display: inline-block;
+  margin-top: 12px;
+  font-weight: 700;
+  opacity: 0;
+  transform: translateY(4px);
+  transition:
+    opacity 220ms ease-out,
+    transform 220ms ease-out;
+}
+.b-clase-tarjeta.is-activa .b-clase-ir {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .b-clase-tarjeta .b-clip,
+  .b-clase-tarjeta.is-activa .b-clip,
+  .b-clase-ir,
+  .b-clase-tarjeta.is-activa .b-clase-ir {
+    transform: none;
+  }
 }
 .b-clases-acciones {
   display: flex;
@@ -936,13 +981,6 @@
 }
 .b-oscura .b-btn {
   color: var(--b-oscuro-texto);
-}
-.brio-root .b-clase-info a.b-btn-claro {
-  min-height: 40px;
-  margin-top: 14px;
-  border-color: #ffffff;
-  background: #ffffff;
-  color: #16171a;
 }
 
 /* Página de Clases */
@@ -2037,7 +2075,7 @@ html[data-brio-tema="distrito"] .b-modal {
   .b-clases-grid {
     grid-template-columns: 1fr;
   }
-  .b-clases-grid article {
+  .b-clase-tarjeta {
     height: 340px;
   }
   .b-socio {

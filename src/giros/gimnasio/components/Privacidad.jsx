@@ -19,7 +19,7 @@ export default function Privacidad({ onCerrar, onBorrar }) {
         </p>
         <h3>Lo que guarda en este navegador</h3>
         <ul className="b-reglamento">
-          <li>El tema de color elegido y si pausaste los videos.</li>
+          <li>El tema de color elegido.</li>
           <li>Tus reservas de clase, con el nombre que escribiste para la recepción.</li>
           <li>
             Si entraste con el perfil de ejemplo y lo que cambiaste en él: membresía, invitados,

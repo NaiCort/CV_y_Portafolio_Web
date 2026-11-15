@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 import Disco from "../components/Disco"
 import MapaXalapa from "../components/MapaXalapa"
 import PaseQR from "../components/PaseQR"
-import Clip, { BotonVideos } from "../components/Clip"
+import Clip from "../components/Clip"
 import TablaPlanes from "../components/TablaPlanes"
 import { SUCURSALES, findSucursal, horarioTexto } from "../data/sucursales"
 import { CATEGORIAS, HORARIO, findCategoria } from "../data/clases"
@@ -155,6 +155,7 @@ function Clases({ ahora }) {
       (a, b) => a.fecha - b.fecha,
     )
   }, [ahora])
+  const [activa, setActiva] = useState(null)
   return (
     <div className="b-clases">
       <h2 id="clases-titulo" className="b-d b-angosta">
@@ -168,38 +169,66 @@ function Clases({ ahora }) {
         <Link className="b-btn" to="/gimnasio/clases">
           Ver el horario completo
         </Link>
-        <BotonVideos />
       </div>
       <div className="b-clases-grid">
-        {sesiones.map((sesion) => {
-          const cat = findCategoria(sesion.categoria)
-          const libres = lugaresLibres(sesion)
-          return (
-            <article key={sesion.id}>
-              <Clip id={cat.foto} sizes="(max-width: 640px) 100vw, 33vw" />
-              <div className="b-clase-info">
-                <span className="b-etiqueta b-num">
-                  {cuandoTexto(sesion.fecha, ahora)} ·{" "}
-                  {libres === 0 ? "lista de espera" : `${libres} lugares`}
-                </span>
-                <h3>{cat.nombre}</h3>
-                <p>
-                  {findSucursal(sesion.sucursal).nombre} · Coach {findCoach(sesion.coach).nombre} ·{" "}
-                  {cat.minutos} min
-                </p>
-                <Link
-                  className="b-btn b-btn-claro"
-                  to={`/gimnasio/clases?sesion=${sesion.id}&fecha=${sesion.fecha.toISOString()}`}
-                  aria-label={`${libres === 0 ? "Lista de espera" : "Reservar"}: ${cat.nombre}, ${cuandoTexto(sesion.fecha, ahora)}`}
-                >
-                  {libres === 0 ? "Lista de espera" : "Reservar"}
-                </Link>
-              </div>
-            </article>
-          )
-        })}
+        {sesiones.map((sesion) => (
+          <TarjetaClase
+            key={sesion.id}
+            sesion={sesion}
+            ahora={ahora}
+            activa={activa === sesion.id}
+            onActivar={(si) => setActiva((a) => (si ? sesion.id : a === sesion.id ? null : a))}
+          />
+        ))}
       </div>
     </div>
+  )
+}
+
+// Cada tarjeta es el enlace para reservar. Con ratón o teclado, pasar encima o enfocarla
+// enciende el video; con el dedo, el primer toque lo enciende y el segundo abre la reserva.
+function TarjetaClase({ sesion, ahora, activa, onActivar }) {
+  const cat = findCategoria(sesion.categoria)
+  const libres = lugaresLibres(sesion)
+  const cuando = cuandoTexto(sesion.fecha, ahora)
+  const destino = `/gimnasio/clases?sesion=${sesion.id}&fecha=${sesion.fecha.toISOString()}`
+  const toque = useRef({ tipo: "mouse", yaActiva: false })
+  return (
+    <Link
+      className={`b-clase-tarjeta${activa ? " is-activa" : ""}`}
+      to={destino}
+      onPointerEnter={(e) => e.pointerType === "mouse" && onActivar(true)}
+      onPointerLeave={(e) => e.pointerType === "mouse" && onActivar(false)}
+      onPointerDown={(e) => {
+        toque.current = { tipo: e.pointerType, yaActiva: activa }
+      }}
+      onFocus={() => onActivar(true)}
+      onBlur={() => onActivar(false)}
+      onClick={(e) => {
+        const { tipo, yaActiva } = toque.current
+        toque.current = { tipo: "mouse", yaActiva: false }
+        if (tipo !== "mouse" && !yaActiva) {
+          e.preventDefault()
+          onActivar(true)
+        }
+      }}
+    >
+      <Clip id={cat.foto} activo={activa} decorativa />
+      <div className="b-clase-info">
+        <span className="b-etiqueta b-num">
+          {cuando} · {libres === 0 ? "lista de espera" : `${libres} lugares`}
+        </span>
+        <h3>{cat.nombre}</h3>
+        <p>
+          {findSucursal(sesion.sucursal).nombre} · Coach {findCoach(sesion.coach).nombre} ·{" "}
+          {cat.minutos} min
+        </p>
+        <span className="b-clase-ir">
+          {libres === 0 ? "Entrar a la lista de espera" : "Reservar"}
+          <span aria-hidden="true"> →</span>
+        </span>
+      </div>
+    </Link>
   )
 }
 

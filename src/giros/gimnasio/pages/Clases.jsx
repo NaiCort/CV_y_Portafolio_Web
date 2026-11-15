@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react"
 import { useSearchParams } from "react-router-dom"
-import Clip, { BotonVideos } from "../components/Clip"
+import Clip from "../components/Clip"
 import ReservaPanel from "../components/ReservaPanel"
 import MisReservas from "../components/MisReservas"
 import { CATEGORIAS, HORARIO, findCategoria } from "../data/clases"
@@ -88,10 +88,9 @@ export default function Clases({
             {SUCURSALES.length} sucursales. Reserva tu lugar; las reservas son simuladas y se
             guardan en este navegador.
           </p>
-          <BotonVideos />
         </div>
         <div className="b-clases-medio">
-          <Clip id={medio} sizes="(max-width: 900px) 100vw, 45vw" prioridad />
+          <Clip id={medio} prioridad />
         </div>
       </section>
 

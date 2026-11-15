@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useReducer, useRef, useState } from "react"
+import { useCallback, useEffect, useReducer, useRef, useState } from "react"
 import { Link, Navigate, Route, Routes, useLocation } from "react-router-dom"
 import DemoBanner from "../../components/shared/DemoBanner"
 import ComercialCTA from "../../components/shared/ComercialCTA"
@@ -15,7 +15,6 @@ import Privacidad from "./components/Privacidad"
 import { SOCIO_KEY, cargarSocio, guardarSocio, socioReducer } from "./lib/socio"
 import SelectorTema from "./components/SelectorTema"
 import { TEMA_KEY, guardarTema, leerTema } from "./lib/tema"
-import { VIDEOS_KEY, VideosPausados } from "./lib/videos"
 import { findCategoria } from "./data/clases"
 import {
   avanzarEspera,
@@ -176,31 +175,8 @@ export default function GimnasioApp() {
     onTerminar: (id) => setReservas((r) => terminar(r, id)),
     onCalificar: (id, campo, valor) => setReservas((r) => calificar(r, id, campo, valor)),
   }
-  // Botón global para pausar los videos; la preferencia se guarda.
-  const [pausados, setPausados] = useState(() => {
-    try {
-      return window.localStorage.getItem(VIDEOS_KEY) === "1"
-    } catch {
-      return false
-    }
-  })
-  const videos = useMemo(
-    () => ({
-      pausados,
-      alternar: () =>
-        setPausados((p) => {
-          try {
-            window.localStorage.setItem(VIDEOS_KEY, p ? "0" : "1")
-          } catch {
-            /* Opcional. */
-          }
-          return !p
-        }),
-    }),
-    [pausados],
-  )
   return (
-    <VideosPausados.Provider value={videos}>
+    <>
       <div className="brio-root" data-tema={tema}>
         <a className="skip-link" href="#contenido">
           Saltar al contenido
@@ -285,7 +261,7 @@ export default function GimnasioApp() {
           <Privacidad
             onCerrar={() => setPrivacidad(false)}
             onBorrar={() => {
-              for (const clave of [RESERVAS_KEY, SOCIO_KEY, VIDEOS_KEY, TEMA_KEY]) {
+              for (const clave of [RESERVAS_KEY, SOCIO_KEY, TEMA_KEY]) {
                 try {
                   window.localStorage.removeItem(clave)
                 } catch {
@@ -295,7 +271,6 @@ export default function GimnasioApp() {
               setReservas([])
               dispatchSocio({ type: "borrar" })
               setTema("cobalto")
-              setPausados(false)
               setPrivacidad(false)
               avisar("Se borraron las reservas, el perfil de ejemplo y tus preferencias.")
             }}
@@ -304,6 +279,6 @@ export default function GimnasioApp() {
         <SelectorTema tema={tema} onCambiar={setTema} />
         <WaterMark />
       </div>
-    </VideosPausados.Provider>
+    </>
   )
 }
