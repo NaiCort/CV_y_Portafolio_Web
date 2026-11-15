@@ -15,17 +15,17 @@
     "autor": "FitnessScape",
     "licencia": "CC BY 3.0",
     "pagina": "https://commons.wikimedia.org/wiki/File:Half_rack_resistance_exercise_workout.webm",
-    "cambios": "Montaje en color de dos tomas (39.4 a 45.6 s y 56.3 a 61.6 s), recortado para dejar fuera los letreros; sin audio",
-    "sha256": "496774c41ded4f58e49c8b66cc14f0583daccfc75ddd70a03493426a779d9de2"
+    "cambios": "Toma continua de 39.2 a 46.9 s, en color, recortada para dejar fuera los letreros; sin audio",
+    "sha256": "ad19292ae075bc1b4d6c67d54098a58a48625fa30e13b0099a7423fcd1f69bbd"
   },
   {
     "id": "fuerza",
     "archivo": "/gimnasio/fotos/fuerza-640.webp",
-    "titulo": "Primer cuadro del montaje, póster del video",
+    "titulo": "Primer cuadro de la toma, póster del video",
     "autor": "FitnessScape",
     "licencia": "CC BY 3.0",
     "pagina": "https://commons.wikimedia.org/wiki/File:Half_rack_resistance_exercise_workout.webm",
-    "sha256": "f70a8bc9476249b694c1da9584816f83395d3a730f6b2a3eafec3105d1affe19"
+    "sha256": "126bebae2ff4c5189d335863fd75ba0cfdef9b0598fc1011996939a32e508f82"
   },
   {
     "id": "combate-video",

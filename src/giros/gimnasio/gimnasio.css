@@ -828,16 +828,11 @@
   color: #6b6964;
 }
 .brio-root[data-tema="distrito"]
-  :is(.b-planes thead th small, .b-precio small, .b-letra, .b-planes > .b-lead) {
+  :is(.b-planes thead th small, .b-precio small, .b-planes > .b-lead) {
   color: #6b655c;
 }
 .brio-root[data-tema="distrito"] .b-planes thead th.is-on small {
   color: #ffffff;
-}
-.b-letra {
-  margin-top: 14px;
-  color: var(--b-suave);
-  font-size: 0.875rem;
 }
 
 /* Planes en teléfono: una tarjeta por plan que se apila al desplazarse. */
@@ -934,6 +929,10 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+/* En Fuerza el atleta está a la derecha del cuadro. */
+.b-clip[data-medio="fuerza"] :is(img, video) {
+  object-position: 72% 50%;
 }
 .b-clip video {
   opacity: 0;

@@ -25,7 +25,7 @@ export default function Clip({ id, activo = false, decorativa = false, prioridad
     else v.pause()
   }, [activo, cargado])
   return (
-    <div className={`b-clip${activo ? " is-activo" : ""}`}>
+    <div className={`b-clip${activo ? " is-activo" : ""}`} data-medio={id}>
       <img
         src={`/gimnasio/fotos/${medio.foto}-640.webp`}
         alt={decorativa ? "" : medio.alt}
@@ -41,6 +41,8 @@ export default function Clip({ id, activo = false, decorativa = false, prioridad
           muted
           loop
           playsInline
+          disablePictureInPicture
+          disableRemotePlayback
           preload="auto"
           aria-hidden="true"
           onPlaying={() => setCorriendo(true)}
