@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "react"
+import { useCallback, useEffect, useMemo, useReducer, useRef, useState } from "react"
 import { Link, Navigate, Route, Routes, useLocation } from "react-router-dom"
 import DemoBanner from "../../components/shared/DemoBanner"
 import ComercialCTA from "../../components/shared/ComercialCTA"
@@ -10,14 +10,18 @@ import Creditos from "./pages/Creditos"
 import Clases from "./pages/Clases"
 import Planes from "./pages/Planes"
 import Alta from "./pages/Alta"
+import Socio from "./pages/Socio"
+import Privacidad from "./components/Privacidad"
+import { SOCIO_KEY, cargarSocio, guardarSocio, socioReducer } from "./lib/socio"
 import SelectorTema from "./components/SelectorTema"
-import { guardarTema, leerTema } from "./lib/tema"
+import { TEMA_KEY, guardarTema, leerTema } from "./lib/tema"
 import { VIDEOS_KEY, VideosPausados } from "./lib/videos"
 import { findCategoria } from "./data/clases"
 import {
   avanzarEspera,
   calificar,
   cancelar,
+  RESERVAS_KEY,
   cargar,
   guardar,
   reservar,
@@ -29,17 +33,15 @@ const SECCIONES = [
   ["/gimnasio#sucursales", "Sucursales"],
   ["/gimnasio/clases", "Clases"],
   ["/gimnasio/planes", "Planes"],
-  ["/gimnasio#socio", "Socio"],
+  ["/gimnasio/socio", "Socio"],
 ]
 const TITULOS = {
   "/gimnasio": "Inicio",
   "/gimnasio/clases": "Clases",
   "/gimnasio/planes": "Planes",
   "/gimnasio/alta": "Hazte socio",
+  "/gimnasio/socio": "Área de socio",
   "/gimnasio/creditos": "Créditos",
-}
-const PENDIENTES = {
-  socio: "El área de socio con el perfil de ejemplo llega en la siguiente entrega de la demo.",
 }
 const storage = () => {
   try {
@@ -88,7 +90,13 @@ function GuiaBrio() {
           pide datos de salud. Nada del alta se guarda ni se envía.
         </li>
         <li>La clase de prueba gratis se aparta desde Planes; es una por persona.</li>
-        <li>Área de socio, coaches y tienda vienen en las siguientes entregas.</li>
+        <li>
+          El área de socio se abre con el perfil de ejemplo de Andrea (los datos para entrar se
+          muestran en pantalla). Ahí están el pase, la semana, la composición corporal, el reloj
+          simulado, los pases de invitado y la membresía: congelar, cancelar en un paso y el aviso
+          antes de renovar.
+        </li>
+        <li>Coaches y tienda vienen en la siguiente entrega.</li>
       </ul>
       <p>“Contactar” y “Hablemos” abren los canales reales de Ian para consultar un proyecto.</p>
     </div>
@@ -125,7 +133,11 @@ export default function GimnasioApp() {
       h?.focus({ preventScroll: true })
     } else document.querySelector("#contenido h1")?.focus({ preventScroll: true })
   }, [pathname, hash])
-  const pendiente = (clave) => setAviso({ id: Date.now(), texto: PENDIENTES[clave] })
+  const avisar = (texto) => setAviso({ id: Date.now(), texto })
+  // Área de socio simulada: solo el perfil de ejemplo.
+  const [socio, dispatchSocio] = useReducer(socioReducer, undefined, () => cargarSocio(storage()))
+  useEffect(() => guardarSocio(storage(), socio), [socio])
+  const [privacidad, setPrivacidad] = useState(false)
   // Reservas simuladas, guardadas en este navegador.
   const [reservas, setReservas] = useState(() => cargar(storage()))
   const reservasRef = useRef(reservas)
@@ -206,9 +218,9 @@ export default function GimnasioApp() {
             ))}
           </nav>
           <div className="b-header-acciones">
-            <button type="button" className="b-btn" onClick={() => pendiente("socio")}>
-              Entrar
-            </button>
+            <Link className="b-btn" to="/gimnasio/socio">
+              {socio.sesion ? "Mi perfil" : "Entrar"}
+            </Link>
             <Link className="b-btn b-btn-p" to="/gimnasio/clases">
               Reservar clase
             </Link>
@@ -216,13 +228,27 @@ export default function GimnasioApp() {
         </header>
         <main id="contenido" tabIndex={-1}>
           <Routes>
-            <Route index element={<Inicio onPendiente={pendiente} />} />
+            <Route index element={<Inicio />} />
             <Route
               path="clases"
               element={<Clases reservas={reservas} ahora={ahora} {...acciones} />}
             />
             <Route path="planes" element={<Planes />} />
             <Route path="alta" element={<Alta />} />
+            <Route
+              path="socio"
+              element={
+                <Socio
+                  socio={socio}
+                  dispatch={dispatchSocio}
+                  reservas={reservas}
+                  acciones={acciones}
+                  ahora={ahora}
+                  onAviso={avisar}
+                  onPrivacidad={() => setPrivacidad(true)}
+                />
+              }
+            />
             <Route path="creditos" element={<Creditos />} />
             <Route path="*" element={<Navigate to="/gimnasio" replace />} />
           </Routes>
@@ -238,7 +264,12 @@ export default function GimnasioApp() {
         />
         <footer className="b-footer b-wrap">
           <p>Brío · club de entrenamiento. Negocio ficticio creado para una demostración.</p>
-          <Link to="/gimnasio/creditos">Créditos de fotos y tipografías</Link>
+          <div className="b-footer-enlaces">
+            <Link to="/gimnasio/creditos">Créditos de fotos, video y tipografías</Link>
+            <button type="button" className="b-inline" onClick={() => setPrivacidad(true)}>
+              Aviso de privacidad
+            </button>
+          </div>
         </footer>
         <div className="b-aviso-region" role="status" aria-live="polite">
           {aviso && (
@@ -250,6 +281,26 @@ export default function GimnasioApp() {
             </div>
           )}
         </div>
+        {privacidad && (
+          <Privacidad
+            onCerrar={() => setPrivacidad(false)}
+            onBorrar={() => {
+              for (const clave of [RESERVAS_KEY, SOCIO_KEY, VIDEOS_KEY, TEMA_KEY]) {
+                try {
+                  window.localStorage.removeItem(clave)
+                } catch {
+                  /* Nada que borrar. */
+                }
+              }
+              setReservas([])
+              dispatchSocio({ type: "borrar" })
+              setTema("cobalto")
+              setPausados(false)
+              setPrivacidad(false)
+              avisar("Se borraron las reservas, el perfil de ejemplo y tus preferencias.")
+            }}
+          />
+        )}
         <SelectorTema tema={tema} onCambiar={setTema} />
         <WaterMark />
       </div>

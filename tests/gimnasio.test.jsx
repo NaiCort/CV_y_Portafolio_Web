@@ -181,12 +181,11 @@ describe("Inicio de Brío", () => {
     expect(datos("centro").hidden).toBe(true)
   })
 
-  it("avisa que el área de socio llega después en lugar de no hacer nada", async () => {
+  it("lleva al área de socio desde la cabecera y desde la vista previa", async () => {
     await renderBrio()
-    await click(button("Entrar"))
-    expect(document.querySelector(".b-aviso").textContent).toContain("siguiente entrega")
-    await click(button("Cerrar aviso"))
-    expect(document.querySelector(".b-aviso")).toBeNull()
+    const enlaces = [...document.querySelectorAll('a[href="/gimnasio/socio"]')]
+    expect(enlaces.some((a) => a.textContent.trim() === "Entrar")).toBe(true)
+    expect(enlaces.length).toBeGreaterThanOrEqual(2)
   })
 
   it("muestra los créditos con autor y licencia", async () => {

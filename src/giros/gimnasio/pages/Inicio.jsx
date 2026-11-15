@@ -280,7 +280,7 @@ function Telefono() {
   )
 }
 
-export default function Inicio({ onPendiente }) {
+export default function Inicio() {
   const ahora = useAhora()
   return (
     <>
@@ -345,9 +345,9 @@ export default function Inicio({ onPendiente }) {
                 <span>Pide y recoge al llegar a tu sucursal</span>
               </li>
             </ul>
-            <button type="button" className="b-btn b-btn-p" onClick={() => onPendiente("socio")}>
+            <Link className="b-btn b-btn-p" to="/gimnasio/socio">
               Entrar con el perfil de ejemplo
-            </button>
+            </Link>
           </div>
           <Telefono />
         </section>
