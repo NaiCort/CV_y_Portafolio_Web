@@ -1,23 +1,5 @@
 [
   {
-    "id": "combate",
-    "archivo": "/gimnasio/fotos/combate.webp",
-    "titulo": "Training for Rumble in the Deid III begins (8614366).jpg",
-    "autor": "U.S. Air Force photo by Senior Airman Zachary Foster",
-    "licencia": "Public domain",
-    "pagina": "https://commons.wikimedia.org/wiki/File:Training_for_Rumble_in_the_Deid_III_begins_(8614366).jpg",
-    "sha256": "13f8b208f1b64eded0ea72d463568c65f1f0926580e305444a2044da527e07a0"
-  },
-  {
-    "id": "ciclo",
-    "archivo": "/gimnasio/fotos/ciclo.webp",
-    "titulo": "Through Airmen's Eyes, FTAC instructor by day, Spin instructor by night 150713-F-PT740-033.jpg",
-    "autor": "U.S. Air Force photo by Airman First Class Lynette Rolen",
-    "licencia": "Public domain",
-    "pagina": "https://commons.wikimedia.org/wiki/File:Through_Airmen%27s_Eyes,_FTAC_instructor_by_day,_Spin_instructor_by_night_150713-F-PT740-033.jpg",
-    "sha256": "fa640719b64cea3ed28fb0f35308f4e57fc8330571f40d366d2f932baf484829"
-  },
-  {
     "id": "socia",
     "archivo": "/gimnasio/fotos/socia.webp",
     "titulo": "Fitness Trainer at Starcomplex Gym.jpg",
@@ -44,5 +26,43 @@
     "licencia": "CC BY 3.0",
     "pagina": "https://commons.wikimedia.org/wiki/File:Half_rack_resistance_exercise_workout.webm",
     "sha256": "fc9fb283f0ce75379d61e40f69783b51d88c5c25607f8adc38e4e16986d4ad89"
+  },
+  {
+    "id": "combate-video",
+    "archivo": "/gimnasio/videos/combate.mp4",
+    "titulo": "Airmen trains for Rumble in the Deid IV (955484).webm",
+    "autor": "Senior Airman Violette Hosack, Fuerza Aérea de EE. UU.",
+    "licencia": "Dominio público",
+    "pagina": "https://commons.wikimedia.org/wiki/File:Airmen_trains_for_Rumble_in_the_Deid_IV_(955484).webm",
+    "cambios": "Tramo de 38.4 a 40.6 s, recortado, en blanco y negro, en bucle de ida y vuelta; sin audio",
+    "sha256": "329983debc6a45ee12c29a1dc2ffb437cd37ab576abc63c3a98668e0ace2632d"
+  },
+  {
+    "id": "sparring",
+    "archivo": "/gimnasio/fotos/sparring.webp",
+    "titulo": "Cuadro del mismo video, póster del clip",
+    "autor": "Senior Airman Violette Hosack, Fuerza Aérea de EE. UU.",
+    "licencia": "Dominio público",
+    "pagina": "https://commons.wikimedia.org/wiki/File:Airmen_trains_for_Rumble_in_the_Deid_IV_(955484).webm",
+    "sha256": "100e65d8a6863ce4f48753f3132ce570fde75ae9ec8d040de2409ccc425e69e1"
+  },
+  {
+    "id": "ciclo-video",
+    "archivo": "/gimnasio/videos/ciclo.mp4",
+    "titulo": "Kiwanis Spinning Event haalt 10.000 euro op voor Leontienhuis.webm",
+    "autor": "RN7",
+    "licencia": "CC BY 3.0",
+    "pagina": "https://commons.wikimedia.org/wiki/File:Kiwanis_Spinning_Event_haalt_10.000_euro_op_voor_Leontienhuis.webm",
+    "cambios": "Tramo de 32.6 a 35.2 s, recortado para quitar logotipos, en blanco y negro, en bucle de ida y vuelta; sin audio",
+    "sha256": "b6c8290ecdb565c4222a787cc2d51afce3da05be551bc6b1f2819fecb3c5c7e1"
+  },
+  {
+    "id": "grupo",
+    "archivo": "/gimnasio/fotos/grupo.webp",
+    "titulo": "Cuadro del mismo video, póster del clip",
+    "autor": "RN7",
+    "licencia": "CC BY 3.0",
+    "pagina": "https://commons.wikimedia.org/wiki/File:Kiwanis_Spinning_Event_haalt_10.000_euro_op_voor_Leontienhuis.webm",
+    "sha256": "9185c337c92d24e0c065348d13dcf7a7017f6476bf93a590355e533304248930"
   }
 ]
