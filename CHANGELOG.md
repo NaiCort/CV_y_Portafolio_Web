@@ -4,8 +4,9 @@
 - Congelar uno o dos meses, reactivar y cancelar en un paso, sin penalización; aviso de renovación cinco días antes, como pide Profeco.
 - Aviso de privacidad propio de Brío, con botón para borrar todos los datos de la demo guardados en el navegador. La demo no pide datos de salud al visitante: los que se ven son inventados.
 - La cabecera lleva «Entrar» o «Mi perfil», y la vista previa de Inicio enlaza al área de socio.
-- Videos de Combate y Ciclo: bucles cortos de Wikimedia Commons (dominio público y CC BY 3.0), en blanco y negro, con créditos. Movilidad y Ritmo siguen con su tarjeta sin medio.
-- Seis pruebas nuevas y una ajustada.
+- Videos de Combate y Ciclo, de Wikimedia Commons (dominio público y CC BY 3.0), con créditos. Movilidad y Ritmo siguen sin medio.
+- Tras la revisión de Ian: las tarjetas de clase de Inicio son el enlace para reservar, sin botón aparte. En reposo son una imagen fija en blanco y negro; al pasar el ratón, enfocarlas o tocarlas recuperan el color y corre su video (con el dedo, el segundo toque reserva). Los tres videos pasan a montajes en color de 9 a 12 s. Se quita el botón «Pausar videos».
+- Siete pruebas nuevas y dos ajustadas.
 
 # V4.4.4 · 14 de noviembre de 2026 · Brío, Planes y alta
 

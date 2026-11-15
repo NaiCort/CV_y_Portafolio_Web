@@ -23,6 +23,14 @@ Entorno: Node 22, Chromium de Playwright, compilación de producción con `vite 
 
   **Sin infracciones.**
 
+## Tras la revisión de Ian
+
+- 152 pruebas en 21 archivos. Nueva: la tarjeta es un enlace, no hay botón de reserva ni «Pausar videos», el primer toque la activa y el segundo abre Clases.
+- En Chromium a 1440 px: en reposo las tres tarjetas en blanco y negro y sin video descargado; al pasar el ratón por Fuerza, color y video corriendo; al salir, pausa y blanco y negro; con Tab y foco en Combate, color y video; Enter abre Clases.
+- En un iPhone 13 emulado: el primer toque activa Combate sin salir de Inicio; tocar Ciclo apaga Combate y enciende Ciclo; el segundo toque abre Clases. Sin errores de consola.
+- Con movimiento reducido: color al pasar el ratón, sin video.
+- axe-core sin infracciones en Inicio, Clases, área de socio y Créditos, en los dos temas.
+
 ## No comprobado todavía
 
 Teléfono físico, Safari, lector de pantalla y Core Web Vitals.
