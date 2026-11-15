@@ -55,13 +55,17 @@ export default function Clases({
   const [dia, setDia] = useState(() => desdeInicio?.fecha.toDateString() || opciones[0].clave)
   const [categoria, setCategoria] = useState("todas")
   const [sucursal, setSucursal] = useState("todas")
-  const [coach, setCoach] = useState("todos")
+  // Llegar desde Coaches con ?coach=… filtra el horario por ese coach.
+  const [coach, setCoach] = useState(() =>
+    findCoach(params.get("coach")) ? params.get("coach") : "todos",
+  )
   const [abierta, setAbierta] = useState(desdeInicio)
   // Llegar desde Planes con ?prueba=1 marca la siguiente reserva como clase de prueba gratis.
   const [modoPrueba, setModoPrueba] = useState(() => params.get("prueba") === "1")
   const pruebaPrevia = reservas.find((r) => r.prueba && r.estado !== "cancelada")
   useEffect(() => {
-    if (params.has("sesion") || params.has("prueba")) setParams({}, { replace: true })
+    if (params.has("sesion") || params.has("prueba") || params.has("coach"))
+      setParams({}, { replace: true })
   }, [params, setParams])
   const elegido = opciones.find((o) => o.clave === dia) || opciones[0]
   const sesiones = sesionesDelDia(elegido.fecha).filter(

@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useReducer, useRef, useState } from "react"
 import { Link, Navigate, Route, Routes, useLocation } from "react-router-dom"
+import { Menu, ShoppingBag } from "lucide-react"
 import DemoBanner from "../../components/shared/DemoBanner"
 import ComercialCTA from "../../components/shared/ComercialCTA"
 import WaterMark from "../../components/WaterMark"
@@ -11,6 +12,14 @@ import Clases from "./pages/Clases"
 import Planes from "./pages/Planes"
 import Alta from "./pages/Alta"
 import Socio from "./pages/Socio"
+import Coaches from "./pages/Coaches"
+import Tienda from "./pages/Tienda"
+import Producto from "./pages/Producto"
+import Carrito from "./pages/Carrito"
+import { findProducto } from "./data/tienda"
+import { nombrePaquete } from "./data/coaches"
+import { TIENDA_KEY, cargarTienda, cuentas, guardarTienda, tiendaReducer } from "./lib/tienda"
+import { EVALUACION_KEY, cargarEvaluacion, guardarEvaluacion } from "./lib/evaluacion"
 import Privacidad from "./components/Privacidad"
 import { SOCIO_KEY, cargarSocio, guardarSocio, socioReducer } from "./lib/socio"
 import SelectorTema from "./components/SelectorTema"
@@ -32,6 +41,8 @@ const SECCIONES = [
   ["/gimnasio#sucursales", "Sucursales"],
   ["/gimnasio/clases", "Clases"],
   ["/gimnasio/planes", "Planes"],
+  ["/gimnasio/coaches", "Coaches"],
+  ["/gimnasio/tienda", "Tienda"],
   ["/gimnasio/socio", "Socio"],
 ]
 const TITULOS = {
@@ -40,6 +51,9 @@ const TITULOS = {
   "/gimnasio/planes": "Planes",
   "/gimnasio/alta": "Hazte socio",
   "/gimnasio/socio": "Área de socio",
+  "/gimnasio/coaches": "Coaches",
+  "/gimnasio/tienda": "Tienda",
+  "/gimnasio/carrito": "Carrito",
   "/gimnasio/creditos": "Créditos",
 }
 const storage = () => {
@@ -95,7 +109,16 @@ function GuiaBrio() {
           simulado, los pases de invitado y la membresía: congelar, cancelar en un paso y el aviso
           antes de renovar.
         </li>
-        <li>Coaches y tienda vienen en la siguiente entrega.</li>
+        <li>
+          Coaches presenta a seis coaches inventados (sin fotos: nadie de los videos es coach de
+          Brío). La evaluación gratuita se agenda con coach, sucursal, día y hora; es una por
+          persona y no pide datos de salud.
+        </li>
+        <li>
+          La tienda tiene diez productos de ejemplo. Se apartan en línea y se pagan al recoger en la
+          sucursal; si entras con el perfil de ejemplo ves el precio de socio. Las existencias por
+          sucursal son de ejemplo. Nada se cobra ni se envía.
+        </li>
       </ul>
       <p>“Contactar” y “Hablemos” abren los canales reales de Ian para consultar un proyecto.</p>
     </div>
@@ -118,7 +141,9 @@ export default function GimnasioApp() {
     const timer = setTimeout(() => setAviso(null), 6000)
     return () => clearTimeout(timer)
   }, [aviso])
-  const titulo = TITULOS[pathname.replace(/\/+$/, "")]
+  const ruta = pathname.replace(/\/+$/, "")
+  const titulo =
+    TITULOS[ruta] || (ruta.startsWith("/gimnasio/tienda/") && findProducto(ruta.slice(17))?.nombre)
   usePageMetadata(
     `${titulo || "Página no encontrada"} — Brío, club de entrenamiento · Demo de Ian Aldana Martínez`,
     "Gimnasio ficticio con cinco sucursales: aforo en vivo, clases, tres niveles de membresía y área de socio simulada. Portafolio de Ian Aldana Martínez.",
@@ -137,6 +162,19 @@ export default function GimnasioApp() {
   const [socio, dispatchSocio] = useReducer(socioReducer, undefined, () => cargarSocio(storage()))
   useEffect(() => guardarSocio(storage(), socio), [socio])
   const [privacidad, setPrivacidad] = useState(false)
+  const esSocio = socio.sesion && socio.membresia !== "cancelada"
+  // Tienda: carrito y pedidos simulados, guardados en este navegador.
+  const [tienda, dispatchTienda] = useReducer(tiendaReducer, undefined, () =>
+    cargarTienda(storage()),
+  )
+  useEffect(() => guardarTienda(storage(), tienda), [tienda])
+  const piezas = cuentas(tienda.carrito, false).piezas
+  // Evaluación gratuita con un coach: una por persona.
+  const [evaluacion, setEvaluacion] = useState(() => cargarEvaluacion(storage()))
+  useEffect(() => guardarEvaluacion(storage(), evaluacion), [evaluacion])
+  // Menú del teléfono: se cierra solo al cambiar de página.
+  const [menuEn, setMenuEn] = useState(null)
+  const menuAbierto = menuEn === pathname + hash
   // Reservas simuladas, guardadas en este navegador.
   const [reservas, setReservas] = useState(() => cargar(storage()))
   const reservasRef = useRef(reservas)
@@ -186,7 +224,7 @@ export default function GimnasioApp() {
           <Link className="b-logo" to="/gimnasio" aria-label="Brío, inicio">
             BRÍO
           </Link>
-          <nav aria-label="Navegación de la demo">
+          <nav className="b-nav" aria-label="Navegación de la demo">
             {SECCIONES.map(([to, nombre]) => (
               <Link key={to} to={to} aria-current={to === pathname ? "page" : undefined}>
                 {nombre}
@@ -194,14 +232,49 @@ export default function GimnasioApp() {
             ))}
           </nav>
           <div className="b-header-acciones">
+            {piezas > 0 && (
+              <Link
+                className="b-btn b-btn-carrito"
+                to="/gimnasio/carrito"
+                aria-current={pathname === "/gimnasio/carrito" ? "page" : undefined}
+              >
+                <ShoppingBag aria-hidden="true" size={18} strokeWidth={2.25} />
+                <span className="b-carrito-texto">Carrito</span>
+                <span className="b-num b-cuenta">{piezas}</span>
+                <span className="b-oculto">{piezas === 1 ? " artículo" : " artículos"}</span>
+              </Link>
+            )}
             <Link className="b-btn" to="/gimnasio/socio">
               {socio.sesion ? "Mi perfil" : "Entrar"}
             </Link>
-            <Link className="b-btn b-btn-p" to="/gimnasio/clases">
+            <Link className="b-btn b-btn-p b-btn-reservar" to="/gimnasio/clases">
               Reservar clase
             </Link>
+            <button
+              type="button"
+              className="b-btn b-btn-menu"
+              aria-expanded={menuAbierto}
+              aria-controls="b-menu-movil"
+              onClick={() => setMenuEn(menuAbierto ? null : pathname + hash)}
+            >
+              <Menu aria-hidden="true" size={18} strokeWidth={2.25} />
+              <span className="b-menu-texto">Menú</span>
+            </button>
           </div>
         </header>
+        <nav
+          id="b-menu-movil"
+          className="b-menu-movil b-wrap"
+          aria-label="Menú de la demo"
+          hidden={!menuAbierto}
+        >
+          {SECCIONES.map(([to, nombre]) => (
+            <Link key={to} to={to} aria-current={to === pathname ? "page" : undefined}>
+              {nombre}
+            </Link>
+          ))}
+          <Link to="/gimnasio/clases">Reservar clase</Link>
+        </nav>
         <main id="contenido" tabIndex={-1}>
           <Routes>
             <Route index element={<Inicio />} />
@@ -222,6 +295,45 @@ export default function GimnasioApp() {
                   ahora={ahora}
                   onAviso={avisar}
                   onPrivacidad={() => setPrivacidad(true)}
+                />
+              }
+            />
+            <Route
+              path="coaches"
+              element={
+                <Coaches
+                  evaluacion={evaluacion}
+                  esSocio={esSocio}
+                  ahora={ahora}
+                  onEvaluacion={(e) => {
+                    setEvaluacion(e)
+                    if (!e) avisar("Evaluación cancelada.")
+                  }}
+                  onAgregar={(p) => {
+                    dispatchTienda({ type: "agregar", tipo: "paquete", id: p.id, cantidad: 1 })
+                    avisar(`Agregaste al carrito: ${nombrePaquete(p)}.`)
+                  }}
+                />
+              }
+            />
+            <Route
+              path="tienda"
+              element={
+                <Tienda tienda={tienda} esSocio={esSocio} ahora={ahora} dispatch={dispatchTienda} />
+              }
+            />
+            <Route
+              path="tienda/:id"
+              element={<Producto esSocio={esSocio} dispatch={dispatchTienda} />}
+            />
+            <Route
+              path="carrito"
+              element={
+                <Carrito
+                  tienda={tienda}
+                  esSocio={esSocio}
+                  ahora={ahora}
+                  dispatch={dispatchTienda}
                 />
               }
             />
@@ -261,7 +373,7 @@ export default function GimnasioApp() {
           <Privacidad
             onCerrar={() => setPrivacidad(false)}
             onBorrar={() => {
-              for (const clave of [RESERVAS_KEY, SOCIO_KEY, TEMA_KEY]) {
+              for (const clave of [RESERVAS_KEY, SOCIO_KEY, TIENDA_KEY, EVALUACION_KEY, TEMA_KEY]) {
                 try {
                   window.localStorage.removeItem(clave)
                 } catch {
@@ -270,9 +382,13 @@ export default function GimnasioApp() {
               }
               setReservas([])
               dispatchSocio({ type: "borrar" })
+              dispatchTienda({ type: "borrar" })
+              setEvaluacion(null)
               setTema("cobalto")
               setPrivacidad(false)
-              avisar("Se borraron las reservas, el perfil de ejemplo y tus preferencias.")
+              avisar(
+                "Se borraron las reservas, el perfil, el carrito, los pedidos y tus preferencias.",
+              )
             }}
           />
         )}

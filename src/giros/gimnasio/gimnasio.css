@@ -1867,6 +1867,476 @@ html[data-brio-tema="distrito"] .b-modal {
   font-stretch: 90%;
 }
 
+/* Menú del teléfono y carrito en el encabezado */
+.b-btn-menu {
+  display: none;
+  gap: 6px;
+}
+.b-menu-movil {
+  display: grid;
+  gap: 2px;
+  padding-block: 4px 18px;
+  border-bottom: 1px solid var(--b-linea);
+}
+.brio-root .b-menu-movil a {
+  padding: 12px 0;
+  font: 800 1.375rem/1.1 var(--b-titulo);
+  font-stretch: 110%;
+  text-decoration: none;
+}
+.brio-root .b-menu-movil a[aria-current="page"] {
+  text-decoration: underline;
+  text-decoration-thickness: 3px;
+  text-underline-offset: 5px;
+}
+.b-btn-carrito {
+  gap: 8px;
+}
+.b-cuenta {
+  display: inline-grid;
+  place-items: center;
+  min-width: 24px;
+  height: 24px;
+  padding: 0 6px;
+  border-radius: 999px;
+  background: var(--b-acento);
+  color: var(--b-sobre-acento);
+  font-size: 0.8125rem;
+}
+
+/* Coaches */
+.b-coaches-cabeza,
+.b-tienda-cabeza {
+  padding-block: 48px 8px;
+}
+.b-coaches-cabeza h1,
+.b-tienda-cabeza h1 {
+  font-size: clamp(3.5rem, 8vw, 7rem);
+}
+.b-evaluacion {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px 40px;
+  margin-top: 24px;
+  padding-block: 28px;
+  border-block: 2px solid var(--b-tinta);
+}
+.b-evaluacion > div:first-child {
+  max-width: 40rem;
+}
+.b-evaluacion h2 {
+  margin-bottom: 10px;
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+}
+.b-tu-evaluacion {
+  display: grid;
+  gap: 12px;
+  max-width: 28rem;
+  padding: 18px 20px;
+  border-radius: 18px;
+  background: var(--b-tinte);
+}
+.b-equipo {
+  padding-block: 64px 24px;
+}
+.b-equipo > h2,
+.b-paquetes > h2 {
+  margin-bottom: 18px;
+  font-size: clamp(2rem, 4vw, 3rem);
+}
+.b-coaches {
+  margin: 22px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.b-coach {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.6fr);
+  gap: 16px 40px;
+  padding-block: 30px;
+  border-top: 1px solid var(--b-linea);
+}
+.b-coach-nombre h3 {
+  font-size: clamp(3rem, 7vw, 5.5rem);
+  font-stretch: 75%;
+}
+.b-coach-nombre p {
+  margin-top: 8px;
+  font-weight: 700;
+}
+.b-coach-datos {
+  display: grid;
+  align-content: start;
+  gap: 12px;
+  max-width: 44rem;
+}
+.b-coach-meta {
+  color: var(--b-suave);
+  font-size: 0.9375rem;
+}
+.b-coach-formacion {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.b-coach-formacion li {
+  padding: 4px 12px;
+  border: 1px solid var(--b-linea);
+  border-radius: 999px;
+  font-size: 0.875rem;
+}
+.b-coach .b-acciones {
+  align-items: center;
+}
+.b-paquetes {
+  padding-block: 56px 100px;
+}
+.b-paquetes > p {
+  max-width: 40rem;
+  color: var(--b-suave);
+}
+.b-paquetes-lista {
+  margin: 26px 0 0;
+  padding: 0;
+  list-style: none;
+  border-radius: 22px;
+  background: var(--b-hoja);
+}
+.b-paquetes-lista li {
+  display: grid;
+  grid-template-columns: 5rem minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 12px 28px;
+  padding: 20px 26px;
+}
+.b-paquetes-lista li + li {
+  border-top: 1px solid var(--b-linea);
+}
+.b-paquete-sesiones {
+  font: 850 3rem/1 var(--b-titulo);
+  font-stretch: 80%;
+  color: var(--b-acento);
+}
+.brio-root[data-tema="distrito"] .b-paquete-sesiones {
+  color: var(--b-oscuro-acento);
+}
+.b-paquete-nombre,
+.b-paquete-precio {
+  display: grid;
+  gap: 2px;
+  font-weight: 700;
+}
+.b-paquete-precio {
+  text-align: right;
+}
+.b-paquete-precio b {
+  font: 850 1.5rem/1 var(--b-titulo);
+}
+.b-paquetes-lista small {
+  color: var(--b-suave);
+  font-weight: 400;
+  font-size: 0.875rem;
+}
+.b-evaluar-fila {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+/* Tienda */
+.b-tienda-socio {
+  font-weight: 600;
+}
+.b-tienda {
+  padding-block: 28px 64px;
+}
+.b-productos {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 22px 16px;
+  margin: 22px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.brio-root a.b-producto {
+  display: grid;
+  gap: 4px;
+  color: var(--b-tinta);
+  text-decoration: none;
+}
+.b-producto-picto {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1;
+  margin-bottom: 8px;
+  border-radius: 18px;
+  background: var(--b-tinte);
+  color: var(--b-acento);
+  transition: transform 240ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.brio-root[data-tema="distrito"] .b-producto-picto {
+  color: var(--b-oscuro-acento);
+}
+.b-picto {
+  width: 58%;
+  height: auto;
+}
+a.b-producto:hover .b-producto-picto {
+  transform: scale(0.97);
+}
+a.b-producto:hover .b-producto-nombre {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.b-producto-nombre {
+  font-weight: 800;
+  font-size: 1.0625rem;
+}
+.b-producto-detalle {
+  color: var(--b-suave);
+  font-size: 0.9375rem;
+}
+.b-precio-tienda {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 10px;
+  margin-top: 4px;
+  color: var(--b-suave);
+  font-size: 0.875rem;
+}
+.b-precio-actual {
+  color: var(--b-tinta);
+  font: 850 1.25rem/1 var(--b-titulo);
+}
+.b-pedidos {
+  padding-bottom: 100px;
+}
+.b-pedidos h2 {
+  margin-bottom: 14px;
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+}
+.b-pedidos ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.b-pedidos li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 24px;
+  padding-block: 16px;
+  border-top: 1px solid var(--b-linea);
+}
+.b-pedidos li > div:first-child {
+  display: grid;
+  gap: 2px;
+}
+.b-pedidos li.is-cancelado > div:first-child {
+  color: var(--b-suave);
+}
+
+/* Ficha de producto */
+.b-ficha-producto {
+  padding-block: 28px 100px;
+}
+.b-migas {
+  margin-bottom: 18px;
+  color: var(--b-suave);
+  font-size: 0.9375rem;
+}
+.b-ficha-rejilla {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  gap: 40px;
+  align-items: start;
+}
+.b-producto-picto-grande {
+  position: sticky;
+  top: 24px;
+  border-radius: 24px;
+}
+.b-ficha-texto {
+  display: grid;
+  gap: 14px;
+  max-width: 36rem;
+}
+.b-ficha-texto h1 {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+}
+.b-ficha-texto .b-precio-actual {
+  font-size: 1.75rem;
+}
+.b-puntos {
+  display: grid;
+  gap: 4px;
+  margin: 0;
+  padding-left: 1.2em;
+}
+.b-agregar {
+  display: grid;
+  gap: 16px;
+  padding-block: 20px;
+  border-block: 1px solid var(--b-linea);
+}
+.b-agregar > .b-btn-p {
+  justify-self: start;
+}
+.b-cantidad {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.b-cantidad > span {
+  margin-right: 6px;
+  font-weight: 700;
+}
+.b-cantidad .b-btn {
+  width: 44px;
+  min-height: 44px;
+  padding: 0;
+  font-size: 1.25rem;
+}
+.b-cantidad .b-btn:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+.b-cantidad output {
+  min-width: 2ch;
+  font-weight: 800;
+  text-align: center;
+}
+.b-agregado {
+  font-weight: 600;
+}
+.b-ficha-sub {
+  margin-top: 10px;
+  font: 850 1.25rem/1.1 var(--b-titulo);
+  font-stretch: 100%;
+}
+.b-existencias {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.b-existencias li {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding-block: 8px;
+  border-top: 1px solid var(--b-linea);
+}
+.b-existencias li.is-agotado span:last-child {
+  color: var(--b-suave);
+}
+
+/* Carrito */
+.b-carrito {
+  padding-block: 40px 100px;
+}
+.b-carrito h1 {
+  margin-bottom: 26px;
+  font-size: clamp(2.75rem, 6vw, 4.5rem);
+}
+.b-carrito-vacio {
+  display: grid;
+  gap: 16px;
+}
+.b-carrito-rejilla {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  gap: 32px;
+  align-items: start;
+}
+.b-lineas {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.b-linea {
+  display: grid;
+  grid-template-columns: 76px minmax(0, 1fr) auto auto;
+  grid-template-areas: "picto texto cantidad total" "picto texto quitar quitar";
+  align-items: center;
+  gap: 4px 20px;
+  padding-block: 18px;
+  border-top: 1px solid var(--b-linea);
+}
+.b-linea-picto {
+  grid-area: picto;
+  margin: 0;
+  border-radius: 14px;
+}
+.b-linea-sesiones {
+  font: 850 1.5rem/1 var(--b-titulo);
+}
+.b-linea-texto {
+  grid-area: texto;
+  display: grid;
+  gap: 2px;
+}
+.b-linea-texto a {
+  font-weight: 800;
+}
+.b-linea-texto span {
+  color: var(--b-suave);
+  font-size: 0.875rem;
+}
+.b-linea .b-cantidad {
+  grid-area: cantidad;
+}
+.b-linea-total {
+  grid-area: total;
+  min-width: 5.5rem;
+  font-weight: 800;
+  text-align: right;
+}
+.b-linea .b-inline {
+  grid-area: quitar;
+  justify-self: end;
+  font-size: 0.875rem;
+}
+.b-pagar {
+  position: sticky;
+  top: 24px;
+}
+.b-cuentas {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+}
+.b-cuentas div {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+.b-cuentas dd {
+  margin: 0;
+}
+.b-cuentas-total {
+  padding-top: 8px;
+  border-top: 1px solid var(--b-linea);
+  font: 850 1.375rem/1.2 var(--b-titulo);
+}
+.b-listo {
+  font-weight: 600;
+}
+.b-pagar .b-btn-p {
+  width: 100%;
+}
+.b-pedido-hecho {
+  display: grid;
+  gap: 14px;
+  max-width: 40rem;
+}
+
 /* Créditos */
 .b-creditos {
   padding-block: 64px 110px;
@@ -2001,9 +2471,34 @@ html[data-brio-tema="distrito"] .b-modal {
   }
 }
 
-@media (max-width: 900px) {
-  .b-header nav {
+@media (max-width: 1080px) {
+  .b-header .b-nav {
     display: none;
+  }
+  .b-btn-menu {
+    display: inline-flex;
+  }
+}
+@media (min-width: 1081px) {
+  .b-menu-movil {
+    display: none;
+  }
+}
+@media (max-width: 900px) {
+  .b-coach,
+  .b-ficha-rejilla,
+  .b-carrito-rejilla {
+    grid-template-columns: 1fr;
+  }
+  .b-productos {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .b-producto-picto-grande {
+    position: static;
+    max-width: 420px;
+  }
+  .b-pagar {
+    position: static;
   }
   /* En teléfono y tableta el disco va debajo de los botones, en el flujo, y se corta en el
      borde derecho e inferior: nunca encima del texto. */
@@ -2026,6 +2521,41 @@ html[data-brio-tema="distrito"] .b-modal {
 @media (max-width: 640px) {
   .b-wrap {
     padding-inline: 18px;
+  }
+  .b-btn-reservar {
+    display: none;
+  }
+  .b-carrito-texto {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .b-header-acciones {
+    gap: 6px;
+  }
+  .b-btn-carrito {
+    gap: 6px;
+  }
+  .b-paquetes-lista li {
+    grid-template-columns: 3.5rem minmax(0, 1fr);
+    padding: 18px;
+  }
+  .b-paquete-precio {
+    grid-column: 2;
+    text-align: left;
+  }
+  .b-paquetes-lista .b-btn {
+    grid-column: 1 / -1;
+  }
+  .b-evaluar-fila {
+    grid-template-columns: 1fr;
+  }
+  .b-linea {
+    grid-template-columns: 60px minmax(0, 1fr) auto;
+    grid-template-areas: "picto texto texto" "picto cantidad total" ". quitar quitar";
   }
   .b-header {
     height: 64px;
@@ -2152,5 +2682,26 @@ html[data-brio-tema="distrito"] .b-modal {
   .b-temas-botones button {
     width: 40px;
     height: 40px;
+  }
+}
+@media (max-width: 420px) {
+  .b-header {
+    gap: 8px;
+  }
+  .brio-root .b-logo {
+    font-size: 1.3rem;
+  }
+  .b-header-acciones .b-btn {
+    padding: 0 11px;
+  }
+}
+@media (max-width: 360px) {
+  .b-menu-texto {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
   }
 }
