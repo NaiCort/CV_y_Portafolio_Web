@@ -27,13 +27,15 @@
 - **Sin botón «Pausar videos».** Ya no hace falta: ningún video arranca solo.
 - **La tarjeta es el botón.** Combate, Fuerza y Ciclo en Inicio ya no llevan «Reservar» abajo; toda la tarjeta es el enlace a esa sesión en Clases y conserva la etiqueta de hora y lugares, el nombre y los datos. En reposo es una imagen fija en blanco y negro. Al pasar el ratón o enfocarla con el teclado recupera el color, corre el video y aparece «Reservar →»; al soltarla se pausa y vuelve al blanco y negro. Con el dedo, el primer toque la activa (y apaga la anterior) y el segundo abre la reserva. Con movimiento reducido solo cambia el color.
 - **Videos más largos y en color.** Cada uno es un montaje de tomas seguidas del mismo video de origen, recortado para dejar fuera letreros y logotipos:
-  - Fuerza: press por encima de la cabeza y sentadilla, 11.5 s, 327 kB.
+  - Fuerza: una toma continua de press por encima de la cabeza, 7.7 s, 187 kB. En la fuente el atleta siempre queda a la derecha y los letreros junto a él; las otras tomas (sentadilla, remo, peso muerto, press inclinado) quedaban cortadas o con letrero, así que se dejó la única que encuadra bien, centrada en la tarjeta.
   - Combate: sparring, saco, pies en la escalera y espejo, 9.4 s, 558 kB.
   - Ciclo: ciclista, pedales y la clase completa, 9.6 s, 712 kB.
 
   El video se descarga solo la primera vez que se activa la tarjeta; el póster (primer cuadro del montaje) es lo único que carga con la página. Las fotos anteriores de Fuerza, Combate y Ciclo se retiraron.
 - **Combate y Ciclo como imagen fija:** no pude reproducir la falla; en Chromium los tres clips corrían. Lo más probable es que la vista previa revisada fuera todavía la de V4.4.4, donde solo Fuerza tenía video. Con el cambio a «activar para reproducir» las tres tarjetas usan el mismo camino.
 - La página de Clases muestra la imagen fija de la disciplina, sin video.
+- El video desactiva imagen en imagen, para que el navegador no ponga sus botones encima.
+- **Planes en Inicio:** el título pasa a «Tres niveles de experiencia» y se quita la nota de abajo (plazo, aviso de renovación y enlace a Créditos), que repetía lo que ya está en Planes y en el pie.
 
 ## Sigue pendiente
 
