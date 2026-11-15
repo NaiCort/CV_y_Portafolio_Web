@@ -521,7 +521,9 @@ export default function Socio({
   const titulo = useRef(null)
   const [sucursalEntrada, setSucursalEntrada] = useState(SOCIO.base)
   useEffect(() => {
-    if (socio.sesion) titulo.current?.focus({ preventScroll: true })
+    if (!socio.sesion) return
+    window.scrollTo(0, 0)
+    titulo.current?.focus({ preventScroll: true })
   }, [socio.sesion])
   if (!socio.sesion)
     return (

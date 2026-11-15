@@ -1,4 +1,4 @@
-import { HORARIO } from "../data/clases"
+import { HORARIO, findCategoria } from "../data/clases"
 import { HORAS_EVALUACION } from "../data/coaches"
 
 // Evaluación gratuita con un coach: una por persona, guardada en este navegador.
@@ -55,6 +55,18 @@ export function horasLibres(coachId, sucursalId, dia, ahora) {
     let x = 3
     for (const c of `${coachId}|${sucursalId}|${dia.getDate()}|${hora}`)
       x = (x * 33 + c.charCodeAt(0)) % 997
-    return { hora, fecha, libre: x % 3 !== 0 && fecha.getTime() > ahora.getTime() + 3600000 }
+    // La evaluación dura 45 min; se deja media hora para moverse entre sucursales.
+    const inicio = h * 60 + m
+    const enClase = HORARIO.some((c) => {
+      if (c.coach !== coachId || c.dia !== dia.getDay()) return false
+      const [ch, cm] = c.hora.split(":").map(Number)
+      const desde = ch * 60 + cm
+      return inicio < desde + findCategoria(c.categoria).minutos + 30 && desde < inicio + 45 + 30
+    })
+    return {
+      hora,
+      fecha,
+      libre: !enClase && x % 3 !== 0 && fecha.getTime() > ahora.getTime() + 3600000,
+    }
   })
 }

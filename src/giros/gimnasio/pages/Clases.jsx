@@ -181,7 +181,7 @@ export default function Clases({
         <p className="b-resultado" role="status">
           {sesiones.length === 0
             ? "No hay clases con esos filtros este día."
-            : `${sesiones.length} ${sesiones.length === 1 ? "clase" : "clases"} el ${elegido.nombre.toLowerCase()}`}
+            : `${sesiones.length} ${sesiones.length === 1 ? "clase" : "clases"} ${["Hoy", "Mañana"].includes(elegido.nombre) ? elegido.nombre.toLowerCase() : `el ${elegido.nombre.toLowerCase()}`}`}
           {sesiones.length === 0 && siguiente && (
             <>
               {" "}

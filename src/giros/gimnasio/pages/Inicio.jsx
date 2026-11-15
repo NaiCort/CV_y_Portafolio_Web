@@ -10,7 +10,7 @@ import { CATEGORIAS, HORARIO, findCategoria } from "../data/clases"
 import { findCoach } from "../data/coaches"
 import { PLANES } from "../data/planes"
 import { SOCIO } from "../data/socio"
-import { aforoEn, estadoAforo } from "../lib/aforo"
+import { aforoEn, cuandoAbre, estadoAforo } from "../lib/aforo"
 import { cuandoTexto, lugaresLibres, proximasClases } from "../lib/horario"
 
 const CON_FOTO = CATEGORIAS.filter((c) => c.foto).map((c) => c.id)
@@ -38,7 +38,7 @@ function Aforo({ ahora }) {
           <div key={s.id}>
             {s.nombre}
             <small className="b-num">
-              {pct === null ? "Cerrada ahora" : `${pct} % · ${estado}`}
+              {pct === null ? `Cerrada · ${cuandoAbre(s, ahora)}` : `${pct} % · ${estado}`}
             </small>
             <div
               className={pct >= 60 ? "b-barra is-alta" : "b-barra"}
@@ -126,7 +126,9 @@ function Sucursales({ ahora }) {
                       <div>
                         <dt>Aforo ahora</dt>
                         <dd className="b-num">
-                          {p === null ? "Cerrada" : `${p} %, ${estadoAforo(p)}`}
+                          {p === null
+                            ? `Cerrada, ${cuandoAbre(item, ahora)}`
+                            : `${p} %, ${estadoAforo(p)}`}
                         </dd>
                       </div>
                       <div>

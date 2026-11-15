@@ -50,7 +50,7 @@ const PLANTILLA = [
   ["tecajetes", "ciclo", "7:00", "LXV", "ivan"],
   ["tecajetes", "ciclo", "20:00", "LMXJV", "ivan"],
   ["tecajetes", "movilidad", "18:30", "MJ", "sofia"],
-  ["tecajetes", "movilidad", "9:30", "S", "sofia"],
+  ["tecajetes", "movilidad", "11:00", "S", "sofia"],
   ["natura", "combate", "7:00", "MJ", "rafa"],
   ["natura", "combate", "19:00", "LMXJV", "rafa"],
   ["natura", "ciclo", "18:00", "LXV", "ivan"],
