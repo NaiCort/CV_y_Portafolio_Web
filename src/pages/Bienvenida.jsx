@@ -58,10 +58,10 @@ const GIROS = [
     available: true,
   },
   {
-    path: null,
+    path: "/gimnasio",
     name: "Gimnasio",
-    desc: "Energía, comunidad, y una razón real para inscribirse.",
-    available: false,
+    desc: "Brío: cinco sucursales, clases con reserva, área de socio y tienda.",
+    available: true,
   },
   {
     path: null,
