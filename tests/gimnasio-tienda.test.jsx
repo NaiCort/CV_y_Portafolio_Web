@@ -244,6 +244,10 @@ describe("Menú y privacidad", () => {
     await click(menu.querySelector('a[href="/gimnasio/tienda"]'))
     expect(h1()).toBe("Tienda")
     expect(document.querySelector("#b-menu-movil").hidden).toBe(true)
+    // Elegir la página en la que ya estás también lo cierra.
+    await click(button("Menú"))
+    await click(document.querySelector('#b-menu-movil a[href="/gimnasio/tienda"]'))
+    expect(document.querySelector("#b-menu-movil").hidden).toBe(true)
   })
 
   it("borra carrito, pedidos y evaluación desde el aviso de privacidad", async () => {
