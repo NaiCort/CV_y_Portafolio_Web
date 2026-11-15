@@ -101,7 +101,10 @@ export default function Tienda({ tienda, esSocio, ahora, dispatch }) {
           </p>
         )}
       </section>
-      <section className="b-wrap b-tienda" aria-label="Productos">
+      <section className="b-wrap b-tienda" aria-labelledby="b-productos-titulo">
+        <h2 id="b-productos-titulo" className="b-oculto">
+          Productos
+        </h2>
         <fieldset className="b-chips">
           <legend>Mostrar</legend>
           {[{ id: "todo", nombre: "Todo" }, ...CATEGORIAS_TIENDA].map((c) => (

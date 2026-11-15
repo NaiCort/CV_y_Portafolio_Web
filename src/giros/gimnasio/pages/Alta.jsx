@@ -91,6 +91,7 @@ export default function Alta() {
       <label htmlFor={`b-alta-${id}`}>{etiqueta}</label>
       <input
         id={`b-alta-${id}`}
+        name={id}
         value={datos[id]}
         onChange={cambiar(id)}
         aria-invalid={Boolean(errores[id])}

@@ -136,6 +136,7 @@ export default function ReservaPanel({
                 name="nombre"
                 value={nombre}
                 maxLength={30}
+                name="nombre"
                 autoComplete="given-name"
                 onChange={(e) => {
                   setNombre(e.target.value)
