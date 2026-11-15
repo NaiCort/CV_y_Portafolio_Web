@@ -1,9 +1,9 @@
 import { FOTOS } from "../data/medios"
 
 const NOMBRES = {
-  sparring: "Combate, video",
-  grupo: "Ciclo, video",
-  press: "Fuerza, video",
+  fuerza: "Fuerza, video",
+  combate: "Combate, video",
+  ciclo: "Ciclo, video",
   socia: "Perfil de ejemplo",
 }
 

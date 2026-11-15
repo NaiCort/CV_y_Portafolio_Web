@@ -15,17 +15,17 @@
     "autor": "FitnessScape",
     "licencia": "CC BY 3.0",
     "pagina": "https://commons.wikimedia.org/wiki/File:Half_rack_resistance_exercise_workout.webm",
-    "cambios": "Tramo de 44.9 a 46.6 s, recortado, en blanco y negro, en bucle de ida y vuelta; sin audio",
-    "sha256": "87b75b3d50ab20c7a3941e9d1c6f3ef46a34b4b0329daaebd9ddd55e81d4bc46"
+    "cambios": "Montaje en color de dos tomas (39.4 a 45.6 s y 56.3 a 61.6 s), recortado para dejar fuera los letreros; sin audio",
+    "sha256": "496774c41ded4f58e49c8b66cc14f0583daccfc75ddd70a03493426a779d9de2"
   },
   {
-    "id": "press",
-    "archivo": "/gimnasio/fotos/press.webp",
-    "titulo": "Cuadro del mismo video, póster del clip",
+    "id": "fuerza",
+    "archivo": "/gimnasio/fotos/fuerza-640.webp",
+    "titulo": "Primer cuadro del montaje, póster del video",
     "autor": "FitnessScape",
     "licencia": "CC BY 3.0",
     "pagina": "https://commons.wikimedia.org/wiki/File:Half_rack_resistance_exercise_workout.webm",
-    "sha256": "fc9fb283f0ce75379d61e40f69783b51d88c5c25607f8adc38e4e16986d4ad89"
+    "sha256": "f70a8bc9476249b694c1da9584816f83395d3a730f6b2a3eafec3105d1affe19"
   },
   {
     "id": "combate-video",
@@ -34,17 +34,17 @@
     "autor": "Senior Airman Violette Hosack, Fuerza Aérea de EE. UU.",
     "licencia": "Dominio público",
     "pagina": "https://commons.wikimedia.org/wiki/File:Airmen_trains_for_Rumble_in_the_Deid_IV_(955484).webm",
-    "cambios": "Tramo de 38.4 a 40.6 s, recortado, en blanco y negro, en bucle de ida y vuelta; sin audio",
-    "sha256": "329983debc6a45ee12c29a1dc2ffb437cd37ab576abc63c3a98668e0ace2632d"
+    "cambios": "Montaje en color de cuatro tomas (38.2 a 40.8, 42.9 a 44.8, 48.45 a 51.2 y 54.15 a 56.3 s), recortado; sin audio",
+    "sha256": "867b5f1288a2c6237c7e079e5a9e602627269675ab1e7f88d198562150e09603"
   },
   {
-    "id": "sparring",
-    "archivo": "/gimnasio/fotos/sparring.webp",
-    "titulo": "Cuadro del mismo video, póster del clip",
+    "id": "combate",
+    "archivo": "/gimnasio/fotos/combate-640.webp",
+    "titulo": "Primer cuadro del montaje, póster del video",
     "autor": "Senior Airman Violette Hosack, Fuerza Aérea de EE. UU.",
     "licencia": "Dominio público",
     "pagina": "https://commons.wikimedia.org/wiki/File:Airmen_trains_for_Rumble_in_the_Deid_IV_(955484).webm",
-    "sha256": "100e65d8a6863ce4f48753f3132ce570fde75ae9ec8d040de2409ccc425e69e1"
+    "sha256": "4eb1b781f34eb0c65282eb2ffef7bf5562c8574d6d74aa5334e84e285cc0b95f"
   },
   {
     "id": "ciclo-video",
@@ -53,16 +53,16 @@
     "autor": "RN7",
     "licencia": "CC BY 3.0",
     "pagina": "https://commons.wikimedia.org/wiki/File:Kiwanis_Spinning_Event_haalt_10.000_euro_op_voor_Leontienhuis.webm",
-    "cambios": "Tramo de 32.6 a 35.2 s, recortado para quitar logotipos, en blanco y negro, en bucle de ida y vuelta; sin audio",
-    "sha256": "b6c8290ecdb565c4222a787cc2d51afce3da05be551bc6b1f2819fecb3c5c7e1"
+    "cambios": "Montaje en color de tres tomas (19.4 a 22.6, 28.6 a 31.8 y 32.5 a 35.7 s), recortado para quitar logotipos y letreros; sin audio",
+    "sha256": "29f1cc0eca37cc2088c1812e8341682ca742695e009bf63a09e3116883cd7d7b"
   },
   {
-    "id": "grupo",
-    "archivo": "/gimnasio/fotos/grupo.webp",
-    "titulo": "Cuadro del mismo video, póster del clip",
+    "id": "ciclo",
+    "archivo": "/gimnasio/fotos/ciclo-640.webp",
+    "titulo": "Primer cuadro del montaje, póster del video",
     "autor": "RN7",
     "licencia": "CC BY 3.0",
     "pagina": "https://commons.wikimedia.org/wiki/File:Kiwanis_Spinning_Event_haalt_10.000_euro_op_voor_Leontienhuis.webm",
-    "sha256": "9185c337c92d24e0c065348d13dcf7a7017f6476bf93a590355e533304248930"
+    "sha256": "aa80c583d26d4ebf72e700db0235ed02dc486c8074d2b6645c5645d86f34eaa4"
   }
 ]
