@@ -26,6 +26,11 @@ Entorno: Node 22, Chromium de Playwright, compilación de producción con `vite 
 
 Todas por debajo de 2.5 s y de 0.1. Los videos no cuentan: solo se descargan al activar una tarjeta. INP no se mide en laboratorio sin interacción real.
 
+## Revisión final
+
+- **171 pruebas en 23 archivos**: cuatro nuevas en `tests/gimnasio-revision.test.jsx` (coaches sin clases encimadas y clases dentro del horario de su sucursal, evaluación fuera de las clases del coach, hora de apertura, texto del conteo de clases).
+- `npm run test:browser:gimnasio`: **5 de 5 aprobados** tras las correcciones.
+
 ## No comprobado
 
 Teléfono físico, Safari y lector de pantalla real: revisión de Ian en la vista previa.

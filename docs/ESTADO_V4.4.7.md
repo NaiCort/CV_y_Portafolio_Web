@@ -18,6 +18,18 @@
   - El menú del teléfono no se cerraba al elegir la página en la que ya estabas.
 - **Pruebas de navegador** `npm run test:browser:gimnasio` (`scripts/verify-gimnasio.mjs`), con el mismo arnés que Café.
 
+## Revisión final pedida por Ian (15/11)
+
+Repaso de todas las páginas en el teléfono y de los datos con pruebas nuevas (`tests/gimnasio-revision.test.jsx`). Errores encontrados y corregidos:
+
+- **Sofía tenía dos clases a la vez** los sábados: Movilidad en Centro a las 9:00 (50 min) y en Tecajetes a las 9:30. La de Tecajetes pasa a las 11:00. Una prueba nueva comprueba que ningún coach tenga clases encimadas y que cada clase empiece y termine con la sucursal abierta.
+- **La evaluación gratuita ofrecía horas en que el coach daba clase** (por ejemplo, Rafa a las 19:00 en Natura). Ahora descarta esas horas y deja media hora para moverse entre sucursales.
+- **«2 clases el hoy»** en el horario: ahora dice «2 clases hoy», «mañana» o «el mar».
+- **Sucursal cerrada sin decir cuándo abre:** «Cerrada · abre a las 5:30» o «abre mañana a las 7:00», en el aforo y en la lista de sucursales.
+- Al entrar al área de socio, terminar el alta o apartar un pedido, la pantalla nueva empieza arriba en lugar de quedarse a media página.
+
+La investigación sobre sitios de gimnasio y su comparación con Brío está en `docs/INVESTIGACION_GIMNASIO.md`, con ocho propuestas para que Ian decida.
+
 ## Lo que el detector señala y no se cambia aquí
 
 - La llamada comercial compartida (`ComercialCTA`): etiqueta en mayúsculas sobre el título y un h3 que, en páginas sin h2 (alta, carrito vacío), salta un nivel. Ya estaba anotada para V4.8; se añade el salto de nivel.
