@@ -121,7 +121,7 @@ export default function GimnasioApp() {
   const titulo = TITULOS[pathname.replace(/\/+$/, "")]
   usePageMetadata(
     `${titulo || "Página no encontrada"} — Brío, club de entrenamiento · Demo de Ian Aldana Martínez`,
-    "Gimnasio ficticio con cinco sucursales: aforo en vivo, clases, planes sin letra chica y área de socio simulada. Portafolio de Ian Aldana Martínez.",
+    "Gimnasio ficticio con cinco sucursales: aforo en vivo, clases, tres niveles de membresía y área de socio simulada. Portafolio de Ian Aldana Martínez.",
   )
   useEffect(() => {
     const destino = hash ? document.getElementById(decodeURIComponent(hash.slice(1))) : null

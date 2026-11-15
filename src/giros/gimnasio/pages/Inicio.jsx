@@ -382,14 +382,9 @@ export default function Inicio() {
         </section>
         <section id="planes" className="b-planes" aria-labelledby="planes-titulo">
           <h2 id="planes-titulo" className="b-d b-ancha">
-            Tres planes, sin letra chica
+            Tres niveles de experiencia
           </h2>
           <TablaPlanes tituloId="planes-titulo" />
-          <p className="b-letra">
-            Sin plazo forzoso. Cancelas desde tu perfil en un paso y te avisamos cinco días antes de
-            cada renovación. Precios de ejemplo; esta demo no cobra.{" "}
-            <Link to="/gimnasio/creditos">Créditos de fotos y tipografías</Link>
-          </p>
         </section>
       </div>
     </>
