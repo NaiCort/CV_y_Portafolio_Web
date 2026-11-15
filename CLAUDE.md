@@ -17,8 +17,8 @@ acciones ficticias del negocio.
 
 - Se trabaja **una demo a la vez**, en este orden: Psicólogo (cerrada) → Restaurante
   (cerrada en V4.2.5 con **Patio 12**) → Café (cerrada en V4.3.6 con **Ladera**) →
-  **Gimnasio (siguiente, V4.4)** →
-  Taller mecánico (V4.5) → Despacho contable (V4.6) → Revista digital (V4.7).
+  Gimnasio (cerrada en V4.4.7 con **Brío**) → **Taller mecánico (siguiente, V4.5)** →
+  Despacho contable (V4.6) → Revista digital (V4.7).
 - **Restaurante = solo Patio 12.** No se construyen las sub-categorías (fonda, comida
   rápida, lujo) ni el panel de empleados y precios: ambas ideas quedaron descartadas.
 - **Café = Ladera**, una sola identidad y un solo local, sin gestión de empleados. Su
@@ -89,12 +89,13 @@ maqueta «Fachadas» para una demo futura.
 
 ## Estado de Gimnasio
 
-**Gimnasio = Brío** (V4.4, en curso): club ficticio de cinco sucursales con clases,
-coaches, área de socio simulada con un perfil de ejemplo y tienda corta. Hechas V4.4.0 a
-V4.4.6 (inicio, clases, planes y alta, área de socio, coaches y tienda); falta el cierre
-V4.4.7. Ian eligió la dirección «Combinada» con video en lugar de fotos y dos temas
-(Cobalto y Distrito). Leer `docs/FICHA_GIMNASIO.md` antes de tocar
-`src/giros/gimnasio/`.
+**Gimnasio = Brío**, cerrado en V4.4.7: club ficticio de cinco sucursales en Xalapa con
+clases y reservas, planes y alta, área de socio con un perfil de ejemplo, coaches con
+evaluación gratuita y tienda corta. Dirección «Combinada» con dos temas (Cobalto y
+Distrito); las tarjetas de clase son el enlace y su video en color solo corre al
+activarlas. Pendiente del visto bueno de Ian en la vista previa. Pruebas de navegador en
+`npm run test:browser:gimnasio`. Leer `docs/FICHA_GIMNASIO.md` antes de tocar
+`src/giros/gimnasio/`. Sin medio propio todavía: Movilidad y Ritmo.
 
 ## Pendientes para la fase de ajustes (V4.8)
 
@@ -112,8 +113,9 @@ No tocar antes de terminar las siete demos.
 4. **Patio 12:** quitar la etiqueta en mayúsculas sobre el título en Inicio y Carta.
 5. Fichas de identidad a posteriori de los cuatro temas de Psicólogo y de Patio 12.
 6. **Componentes compartidos:** la llamada comercial (`ComercialCTA`) lleva una etiqueta
-   en mayúsculas sobre el título y una tarjeta centrada; el banner de demo genera la alerta
-   `region` de axe (buenas prácticas). Revisar ambos para todas las demos.
+   en mayúsculas sobre el título, una tarjeta centrada y un h3 que salta de nivel en páginas
+   sin h2; el banner de demo genera la alerta `region` de axe (buenas prácticas); la marca
+   de agua fija se superpone al texto al desplazarse. Revisar los tres para todas las demos.
 7. **Precarga de fuentes en `index.html`** (todas las demos): en red lenta, el cambio de
    tipografía mueve el texto (CLS 0.146 medido en Créditos de Ladera).
 8. Dependencias de desarrollo con avisos moderados de `npm audit` (vitest, minimatch vía

@@ -1,3 +1,11 @@
+# V4.4.7 · 15 de noviembre de 2026 · cierre de Gimnasio
+
+- La Bienvenida enlaza Gimnasio (Brío).
+- Pasada final con web-design-guidelines e impeccable: estados al pasar el ratón en botones y filtros, horas ocupadas tachadas, tema Distrito con esquema oscuro, margen al saltar a secciones, nombres en los campos, texto sin palabras sueltas y h2 en la tienda.
+- Corregir el selector de tema que tapaba «Aviso de privacidad» a 1024 px y el menú del teléfono que no se cerraba al elegir la página actual.
+- Añadir `npm run test:browser:gimnasio`: cinco recorridos de 320 a 1440 px, 5 de 5 aprobados.
+- Core Web Vitals de laboratorio en diez páginas: LCP de 1.83 a 2.26 s y CLS de 0.000 a 0.071.
+
 # V4.4.6 · 15 de noviembre de 2026 · Brío, coaches y tienda
 
 - Añadir `/gimnasio/coaches`: seis coaches de ejemplo con su forma de trabajar, formación, clases y sucursales; filtro por objetivo y enlace a su horario.
