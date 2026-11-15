@@ -90,9 +90,10 @@ maqueta «Fachadas» para una demo futura.
 ## Estado de Gimnasio
 
 **Gimnasio = Brío** (V4.4, en curso): club ficticio de cinco sucursales con clases,
-coaches, área de socio simulada con un perfil de ejemplo y tienda corta. Investigación y
-maquetas hechas; Ian eligió la dirección «Combinada» con video en lugar de fotos y dos
-temas (Cobalto y Distrito). Leer `docs/FICHA_GIMNASIO.md` antes de tocar
+coaches, área de socio simulada con un perfil de ejemplo y tienda corta. Hechas V4.4.0 a
+V4.4.6 (inicio, clases, planes y alta, área de socio, coaches y tienda); falta el cierre
+V4.4.7. Ian eligió la dirección «Combinada» con video en lugar de fotos y dos temas
+(Cobalto y Distrito). Leer `docs/FICHA_GIMNASIO.md` antes de tocar
 `src/giros/gimnasio/`.
 
 ## Pendientes para la fase de ajustes (V4.8)
