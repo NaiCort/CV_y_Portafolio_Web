@@ -1,9 +1,9 @@
 import { FOTOS } from "../data/medios"
 
 const NOMBRES = {
-  combate: "Combate",
-  ciclo: "Ciclo",
-  press: "Fuerza, video",
+  fuerza: "Fuerza, video",
+  combate: "Combate, video",
+  ciclo: "Ciclo, video",
   socia: "Perfil de ejemplo",
 }
 
@@ -14,7 +14,7 @@ export default function Creditos() {
         Créditos
       </h1>
       <p className="b-lead">
-        Las fotos y el video vienen de Wikimedia Commons y se sirven desde este sitio. Ilustran el
+        Las fotos y los videos vienen de Wikimedia Commons y se sirven desde este sitio. Ilustran el
         ambiente: no son Brío, sus sucursales ni sus coaches.
       </p>
       <ul className="b-creditos-lista">

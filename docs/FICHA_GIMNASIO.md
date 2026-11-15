@@ -95,14 +95,18 @@ pide, se reserva o está elegido. Nunca degradados con él.
   Candidatos encontrados: entrenamiento de box (Rumble in the Deid, dominio público),
   peso muerto y powerlifting (dominio público), kettlebell (CC BY-SA), ciclo en grupo
   (CC BY), salto de cuerda (CC BY-SA).
-- **Formato:** 4–8 s, sin audio, 720 px de ancho, H.264 en MP4 (y WebM si ahorra peso).
-  Meta: 400–800 KB por clip. Póster WebP de 1280 y 640 px.
-- **Filtro:** blanco y negro con más contraste (`grayscale(1) contrast(1.1)`), igual que
-  las fotos de la maqueta, en los dos temas. El color lo pone la interfaz, no el video.
-- **Reglas:** `muted`, `playsinline`, `loop`, `preload="none"`. Solo se reproduce el
-  video que está en pantalla. Un botón visible detiene todos los videos. Con movimiento
-  reducido o ahorro de datos se muestra solo el póster. Nada de video en la portada
-  (ahí está el disco), para no castigar la carga inicial.
+- **Formato:** montaje en color de 9–12 s con dos a cuatro tomas seguidas de la misma
+  fuente, sin audio, 560–640 px de ancho, H.264 en MP4. Meta: menos de 800 KB por clip.
+  Póster WebP: el primer cuadro del montaje.
+- **Tarjeta = botón (V4.4.5, decisión de Ian):** cada tarjeta de clase es el enlace para
+  reservar, sin botón aparte. En reposo es una imagen fija en blanco y negro
+  (`grayscale(1) contrast(1.1)`). Al pasar el ratón o enfocarla con el teclado recupera el
+  color, corre el video y aparece «Reservar →»; al hacer clic abre la reserva. Con el dedo, el
+  primer toque la activa y el segundo abre la reserva.
+- **Reglas:** `muted`, `playsinline`, `loop`. El video se pide solo la primera vez que se
+  activa la tarjeta y se pausa al soltarla; como nunca arranca solo, no hace falta un botón
+  para pausar. Con movimiento reducido o ahorro de datos solo cambia el color. Nada de video
+  en la portada (ahí está el disco), para no castigar la carga inicial.
 - Los videos ilustran el ambiente; no se presentan como Brío ni como sus coaches.
 
 ## Forma, sombras y densidad

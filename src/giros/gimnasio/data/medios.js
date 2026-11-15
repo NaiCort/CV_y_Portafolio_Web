@@ -1,26 +1,30 @@
-// Fotos de Wikimedia Commons. Huellas y origen en public/gimnasio/medios-origen.json.
+// Fotos y videos de Wikimedia Commons. Huellas y origen en public/gimnasio/medios-origen.json.
 // Ilustran el ambiente; no son Brío, sus sucursales ni sus coaches.
 export const FOTOS = {
-  combate: {
-    alt: "Dos personas practican golpes con guantes de box en un gimnasio",
-    autor: "Senior Airman Zachary Foster, Fuerza Aérea de EE. UU.",
-    licencia: "Dominio público",
-    pagina:
-      "https://commons.wikimedia.org/wiki/File:Training_for_Rumble_in_the_Deid_III_begins_(8614366).jpg",
-  },
-  ciclo: {
-    alt: "Una instructora sonríe sobre una bicicleta fija en una clase de ciclo",
-    autor: "Airman First Class Lynette Rolen, Fuerza Aérea de EE. UU.",
-    licencia: "Dominio público",
-    pagina:
-      "https://commons.wikimedia.org/wiki/File:Through_Airmen%27s_Eyes,_FTAC_instructor_by_day,_Spin_instructor_by_night_150713-F-PT740-033.jpg",
-  },
-  press: {
-    alt: "Una persona levanta una barra con discos por encima de la cabeza frente a un rack",
+  fuerza: {
+    alt: "Un hombre levanta una barra por encima de la cabeza y luego hace sentadillas frente a un rack",
     autor: "FitnessScape (video «Half rack resistance exercise workout»)",
     licencia: "CC BY 3.0",
-    cambios: "Tramo de 2 s recortado, en blanco y negro y en bucle de ida y vuelta; sin audio.",
+    cambios: "Montaje de dos tomas (11.5 s), recortado para dejar fuera los letreros; sin audio.",
     pagina: "https://commons.wikimedia.org/wiki/File:Half_rack_resistance_exercise_workout.webm",
+  },
+  combate: {
+    alt: "Un coach y una boxeadora practican desplazamientos y golpes en un gimnasio",
+    autor:
+      "Senior Airman Violette Hosack, Fuerza Aérea de EE. UU. (video «Airmen trains for Rumble in the Deid IV»)",
+    licencia: "Dominio público",
+    cambios: "Montaje de cuatro tomas (9.4 s), recortado; sin audio.",
+    pagina:
+      "https://commons.wikimedia.org/wiki/File:Airmen_trains_for_Rumble_in_the_Deid_IV_(955484).webm",
+  },
+  ciclo: {
+    alt: "Un grupo pedalea en bicicletas fijas durante una clase de ciclo",
+    autor: "RN7 (video «Kiwanis Spinning Event haalt 10.000 euro op voor Leontienhuis»)",
+    licencia: "CC BY 3.0",
+    cambios:
+      "Montaje de tres tomas (9.6 s), recortado para quitar logotipos y letreros; sin audio.",
+    pagina:
+      "https://commons.wikimedia.org/wiki/File:Kiwanis_Spinning_Event_haalt_10.000_euro_op_voor_Leontienhuis.webm",
   },
   socia: {
     alt: "",
@@ -30,10 +34,12 @@ export const FOTOS = {
   },
 }
 
-// Medio de cada disciplina: video en bucle cuando lo hay, foto como póster y respaldo.
-// Movilidad y Ritmo no tienen todavía un medio propio con licencia libre.
-export const MEDIOS = {
-  combate: { foto: "combate", alt: FOTOS.combate.alt, video: null },
-  fuerza: { foto: "press", alt: FOTOS.press.alt, video: "/gimnasio/videos/fuerza.mp4" },
-  ciclo: { foto: "ciclo", alt: FOTOS.ciclo.alt, video: null },
-}
+// Medio de cada disciplina: póster fijo en blanco y negro; el video en color corre solo al
+// pasar el ratón, enfocar o tocar la tarjeta. Movilidad y Ritmo no tienen todavía un medio
+// propio con licencia libre.
+export const MEDIOS = Object.fromEntries(
+  ["fuerza", "combate", "ciclo"].map((id) => [
+    id,
+    { foto: id, alt: FOTOS[id].alt, video: `/gimnasio/videos/${id}.mp4` },
+  ]),
+)

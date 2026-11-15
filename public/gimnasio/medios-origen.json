@@ -1,23 +1,5 @@
 [
   {
-    "id": "combate",
-    "archivo": "/gimnasio/fotos/combate.webp",
-    "titulo": "Training for Rumble in the Deid III begins (8614366).jpg",
-    "autor": "U.S. Air Force photo by Senior Airman Zachary Foster",
-    "licencia": "Public domain",
-    "pagina": "https://commons.wikimedia.org/wiki/File:Training_for_Rumble_in_the_Deid_III_begins_(8614366).jpg",
-    "sha256": "13f8b208f1b64eded0ea72d463568c65f1f0926580e305444a2044da527e07a0"
-  },
-  {
-    "id": "ciclo",
-    "archivo": "/gimnasio/fotos/ciclo.webp",
-    "titulo": "Through Airmen's Eyes, FTAC instructor by day, Spin instructor by night 150713-F-PT740-033.jpg",
-    "autor": "U.S. Air Force photo by Airman First Class Lynette Rolen",
-    "licencia": "Public domain",
-    "pagina": "https://commons.wikimedia.org/wiki/File:Through_Airmen%27s_Eyes,_FTAC_instructor_by_day,_Spin_instructor_by_night_150713-F-PT740-033.jpg",
-    "sha256": "fa640719b64cea3ed28fb0f35308f4e57fc8330571f40d366d2f932baf484829"
-  },
-  {
     "id": "socia",
     "archivo": "/gimnasio/fotos/socia.webp",
     "titulo": "Fitness Trainer at Starcomplex Gym.jpg",
@@ -33,16 +15,54 @@
     "autor": "FitnessScape",
     "licencia": "CC BY 3.0",
     "pagina": "https://commons.wikimedia.org/wiki/File:Half_rack_resistance_exercise_workout.webm",
-    "cambios": "Tramo de 44.9 a 46.6 s, recortado, en blanco y negro, en bucle de ida y vuelta; sin audio",
-    "sha256": "87b75b3d50ab20c7a3941e9d1c6f3ef46a34b4b0329daaebd9ddd55e81d4bc46"
+    "cambios": "Montaje en color de dos tomas (39.4 a 45.6 s y 56.3 a 61.6 s), recortado para dejar fuera los letreros; sin audio",
+    "sha256": "496774c41ded4f58e49c8b66cc14f0583daccfc75ddd70a03493426a779d9de2"
   },
   {
-    "id": "press",
-    "archivo": "/gimnasio/fotos/press.webp",
-    "titulo": "Cuadro del mismo video, póster del clip",
+    "id": "fuerza",
+    "archivo": "/gimnasio/fotos/fuerza-640.webp",
+    "titulo": "Primer cuadro del montaje, póster del video",
     "autor": "FitnessScape",
     "licencia": "CC BY 3.0",
     "pagina": "https://commons.wikimedia.org/wiki/File:Half_rack_resistance_exercise_workout.webm",
-    "sha256": "fc9fb283f0ce75379d61e40f69783b51d88c5c25607f8adc38e4e16986d4ad89"
+    "sha256": "f70a8bc9476249b694c1da9584816f83395d3a730f6b2a3eafec3105d1affe19"
+  },
+  {
+    "id": "combate-video",
+    "archivo": "/gimnasio/videos/combate.mp4",
+    "titulo": "Airmen trains for Rumble in the Deid IV (955484).webm",
+    "autor": "Senior Airman Violette Hosack, Fuerza Aérea de EE. UU.",
+    "licencia": "Dominio público",
+    "pagina": "https://commons.wikimedia.org/wiki/File:Airmen_trains_for_Rumble_in_the_Deid_IV_(955484).webm",
+    "cambios": "Montaje en color de cuatro tomas (38.2 a 40.8, 42.9 a 44.8, 48.45 a 51.2 y 54.15 a 56.3 s), recortado; sin audio",
+    "sha256": "867b5f1288a2c6237c7e079e5a9e602627269675ab1e7f88d198562150e09603"
+  },
+  {
+    "id": "combate",
+    "archivo": "/gimnasio/fotos/combate-640.webp",
+    "titulo": "Primer cuadro del montaje, póster del video",
+    "autor": "Senior Airman Violette Hosack, Fuerza Aérea de EE. UU.",
+    "licencia": "Dominio público",
+    "pagina": "https://commons.wikimedia.org/wiki/File:Airmen_trains_for_Rumble_in_the_Deid_IV_(955484).webm",
+    "sha256": "4eb1b781f34eb0c65282eb2ffef7bf5562c8574d6d74aa5334e84e285cc0b95f"
+  },
+  {
+    "id": "ciclo-video",
+    "archivo": "/gimnasio/videos/ciclo.mp4",
+    "titulo": "Kiwanis Spinning Event haalt 10.000 euro op voor Leontienhuis.webm",
+    "autor": "RN7",
+    "licencia": "CC BY 3.0",
+    "pagina": "https://commons.wikimedia.org/wiki/File:Kiwanis_Spinning_Event_haalt_10.000_euro_op_voor_Leontienhuis.webm",
+    "cambios": "Montaje en color de tres tomas (19.4 a 22.6, 28.6 a 31.8 y 32.5 a 35.7 s), recortado para quitar logotipos y letreros; sin audio",
+    "sha256": "29f1cc0eca37cc2088c1812e8341682ca742695e009bf63a09e3116883cd7d7b"
+  },
+  {
+    "id": "ciclo",
+    "archivo": "/gimnasio/fotos/ciclo-640.webp",
+    "titulo": "Primer cuadro del montaje, póster del video",
+    "autor": "RN7",
+    "licencia": "CC BY 3.0",
+    "pagina": "https://commons.wikimedia.org/wiki/File:Kiwanis_Spinning_Event_haalt_10.000_euro_op_voor_Leontienhuis.webm",
+    "sha256": "aa80c583d26d4ebf72e700db0235ed02dc486c8074d2b6645c5645d86f34eaa4"
   }
 ]

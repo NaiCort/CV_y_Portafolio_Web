@@ -476,18 +476,20 @@
   grid-template-columns: 1.3fr 1fr 1fr;
   gap: 16px;
 }
-.b-clases-grid article {
+.b-clase-tarjeta {
   position: relative;
+  display: block;
   height: 460px;
   overflow: hidden;
   border-radius: 18px;
   background: #222;
+  color: #fff;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
 }
-.b-clases-grid img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: grayscale(1) contrast(1.1) brightness(0.75);
+.b-clase-tarjeta:focus-visible {
+  outline: 3px solid var(--b-acento);
+  outline-offset: 3px;
 }
 .b-clase-info {
   position: absolute;
@@ -916,17 +918,60 @@
   border-color: #dcd5c9;
 }
 
-/* Video y foto de disciplina (Clip) */
+/* Video y foto de disciplina (Clip): blanco y negro en reposo, color y video al activarse */
 .b-clip {
-  display: block;
+  position: absolute;
+  inset: 0;
+  filter: grayscale(1) contrast(1.1) brightness(0.75);
+  transition: filter 280ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.b-clip.is-activo {
+  filter: none;
+}
+.b-clip :is(img, video) {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: grayscale(1) contrast(1.1) brightness(0.75);
 }
-.b-clases-grid .b-clip {
-  position: absolute;
-  inset: 0;
+.b-clip video {
+  opacity: 0;
+  transition: opacity 240ms ease-out;
+}
+.b-clip video.is-corriendo {
+  opacity: 1;
+}
+.b-clase-tarjeta .b-clip {
+  transform: scale(1);
+  transition:
+    filter 280ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.b-clase-tarjeta.is-activa .b-clip {
+  transform: scale(1.03);
+}
+.b-clase-ir {
+  display: inline-block;
+  margin-top: 12px;
+  font-weight: 700;
+  opacity: 0;
+  transform: translateY(4px);
+  transition:
+    opacity 220ms ease-out,
+    transform 220ms ease-out;
+}
+.b-clase-tarjeta.is-activa .b-clase-ir {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .b-clase-tarjeta .b-clip,
+  .b-clase-tarjeta.is-activa .b-clip,
+  .b-clase-ir,
+  .b-clase-tarjeta.is-activa .b-clase-ir {
+    transform: none;
+  }
 }
 .b-clases-acciones {
   display: flex;
@@ -936,13 +981,6 @@
 }
 .b-oscura .b-btn {
   color: var(--b-oscuro-texto);
-}
-.brio-root .b-clase-info a.b-btn-claro {
-  min-height: 40px;
-  margin-top: 14px;
-  border-color: #ffffff;
-  background: #ffffff;
-  color: #16171a;
 }
 
 /* Página de Clases */
@@ -1605,6 +1643,231 @@ html[data-brio-tema="distrito"] .b-modal {
   vertical-align: middle;
 }
 
+/* Área de socio */
+.b-entrar {
+  max-width: 34rem;
+  padding-block: 48px 100px;
+}
+.b-entrar h1,
+.b-area h1 {
+  font-size: clamp(2.75rem, 6vw, 4.5rem);
+}
+.b-entrar-form {
+  margin-bottom: 18px;
+}
+.b-area {
+  padding-block: 40px 100px;
+}
+.b-area-cabeza {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+}
+.b-area-cabeza .b-lead {
+  margin-bottom: 0;
+}
+.b-renovacion {
+  margin: 22px 0 0;
+  padding: 14px 18px;
+  border-radius: 14px;
+  background: var(--b-tinte);
+}
+.b-renovacion a {
+  font-weight: 700;
+}
+.b-area-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 22px;
+}
+.b-socio-tarjeta {
+  display: grid;
+  align-content: start;
+  gap: 12px;
+  padding: 22px;
+  border: 1px solid var(--b-linea);
+  border-radius: 22px;
+  background: var(--b-hoja);
+}
+.b-socio-tarjeta h2 {
+  font: 850 1.625rem/1.05 var(--b-titulo);
+  font-stretch: 85%;
+}
+.b-area .b-pase {
+  border: 1px solid var(--b-linea);
+  color: #16171a;
+}
+.b-area .b-pase span {
+  color: #5d5e63;
+}
+.b-entrada {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 10px;
+}
+.b-entrada label {
+  width: 100%;
+  font-weight: 700;
+  font-size: 0.875rem;
+}
+.b-entrada select,
+.b-invitar select {
+  min-height: 46px;
+  padding: 0 12px;
+  border: 1.5px solid var(--b-suave);
+  border-radius: 12px;
+  background: var(--b-fondo);
+  color: var(--b-tinta);
+  font: 500 1rem var(--b-texto);
+}
+.b-semana-total {
+  font-weight: 700;
+}
+.b-area .b-barras i {
+  background: var(--b-linea);
+}
+.b-area .b-barras i.is-on {
+  background: var(--b-tinta);
+}
+.b-area .b-dias span {
+  color: var(--b-suave);
+}
+.b-reloj-datos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px 28px;
+}
+.b-reloj-datos dt {
+  color: var(--b-suave);
+  font-size: 0.8125rem;
+}
+.b-reloj-datos dd {
+  font: 850 1.75rem/1 var(--b-titulo);
+  font-stretch: 90%;
+}
+.b-invitar {
+  display: grid;
+  gap: 12px;
+}
+.b-invitados {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.b-invitados li {
+  display: grid;
+  gap: 2px;
+  padding-top: 10px;
+  border-top: 1px solid var(--b-linea);
+}
+.b-invitados small {
+  color: var(--b-suave);
+}
+.b-composicion {
+  margin-top: 16px;
+}
+.b-grafica {
+  width: 100%;
+  max-width: 640px;
+  height: auto;
+}
+.b-linea-musculo,
+.b-linea-grasa {
+  fill: none;
+  stroke-width: 3;
+}
+.b-linea-musculo {
+  stroke: var(--b-acento);
+}
+.b-linea-grasa {
+  stroke: var(--b-tinta);
+  stroke-dasharray: 6 5;
+}
+.b-punto-musculo {
+  fill: var(--b-acento);
+  background: var(--b-acento);
+}
+.b-punto-grasa {
+  fill: var(--b-tinta);
+  background: var(--b-tinta);
+}
+.brio-root[data-tema="distrito"] :is(.b-linea-musculo) {
+  stroke: var(--b-oscuro-acento);
+}
+.brio-root[data-tema="distrito"] .b-punto-musculo {
+  fill: var(--b-oscuro-acento);
+  background: var(--b-oscuro-acento);
+}
+.b-grafica-eje {
+  fill: var(--b-suave);
+  font: 500 13px var(--b-texto);
+}
+.b-leyenda {
+  display: flex;
+  gap: 18px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.875rem;
+}
+.b-leyenda li {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.b-leyenda i {
+  display: block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+.b-tabla-mediciones {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+}
+.b-tabla-mediciones :is(th, td) {
+  padding: 8px 6px;
+  border-top: 1px solid var(--b-linea);
+  text-align: left;
+}
+.b-tabla-mediciones thead th {
+  color: var(--b-suave);
+  font-weight: 600;
+  font-size: 0.8125rem;
+}
+.b-area-reservas {
+  margin-top: 16px;
+}
+.b-area .b-mis-reservas {
+  padding: 24px 0 18px;
+}
+.b-membresia {
+  margin-top: 32px;
+}
+.b-area-pie {
+  margin-top: 24px;
+}
+.b-footer-enlaces {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 22px;
+}
+.b-footer .b-inline {
+  color: var(--b-suave);
+  font-weight: 400;
+}
+.b-privacidad h3 {
+  font: 850 1.125rem/1.2 var(--b-titulo);
+  font-stretch: 90%;
+}
+
 /* Créditos */
 .b-creditos {
   padding-block: 64px 110px;
@@ -1812,7 +2075,7 @@ html[data-brio-tema="distrito"] .b-modal {
   .b-clases-grid {
     grid-template-columns: 1fr;
   }
-  .b-clases-grid article {
+  .b-clase-tarjeta {
     height: 340px;
   }
   .b-socio {
@@ -1869,6 +2132,12 @@ html[data-brio-tema="distrito"] .b-modal {
   }
   .b-lugares-rejilla {
     grid-template-columns: repeat(4, 1fr);
+  }
+  .b-area-grid {
+    grid-template-columns: 1fr;
+  }
+  .b-tabla-mediciones {
+    font-size: 0.8125rem;
   }
   .b-planes h2 {
     margin-bottom: 24px;

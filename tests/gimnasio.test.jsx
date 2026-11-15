@@ -1,3 +1,4 @@
+import { act } from "react"
 import { MemoryRouter, Route, Routes } from "react-router-dom"
 import { describe, expect, it } from "vitest"
 import GimnasioApp from "../src/giros/gimnasio/GimnasioApp"
@@ -146,13 +147,33 @@ describe("Inicio de Brío", () => {
     expect(document.querySelectorAll("h1")).toHaveLength(1)
     expect(document.title).toContain("Brío")
     expect(document.body.textContent).toContain(`${HORARIO.length} clases a la semana`)
-    expect(document.querySelectorAll("#clases article")).toHaveLength(3)
+    expect(document.querySelectorAll("#clases a.b-clase-tarjeta")).toHaveLength(3)
     expect(document.querySelectorAll("table tbody tr")).toHaveLength(FILAS.length + 1)
     expect(document.querySelectorAll(".b-planes-movil li")).toHaveLength(PLANES.length)
     // Sin IntersectionObserver (jsdom) el mapa espera a que se pida.
     expect(button("Ver el mapa de Xalapa")).toBeTruthy()
     expect(document.querySelectorAll('a[href="#"]')).toHaveLength(0)
     expect(document.querySelector(".b-qr path").getAttribute("d")).toMatch(/^M\d/)
+  })
+
+  it("las tarjetas de clase son el enlace: con el dedo, el primer toque las activa", async () => {
+    await renderBrio()
+    const tarjeta = document.querySelector("#clases a.b-clase-tarjeta")
+    expect(tarjeta.getAttribute("href")).toMatch(/^\/gimnasio\/clases\?sesion=/)
+    expect(document.querySelector("#clases .b-btn-claro")).toBeNull()
+    expect(document.body.textContent).not.toContain("Pausar videos")
+    const tocar = async () => {
+      const e = new Event("pointerdown", { bubbles: true })
+      Object.defineProperty(e, "pointerType", { value: "touch" })
+      await act(async () => tarjeta.dispatchEvent(e))
+      await click(tarjeta)
+    }
+    await tocar()
+    expect(tarjeta.classList.contains("is-activa")).toBe(true)
+    expect(tarjeta.querySelector(".b-clip").classList.contains("is-activo")).toBe(true)
+    expect(document.querySelector("h1").textContent).not.toBe("Clases")
+    await tocar()
+    expect(document.querySelector("h1").textContent).toBe("Clases")
   })
 
   it("cambia de tema, lo marca y lo guarda", async () => {
@@ -181,12 +202,11 @@ describe("Inicio de Brío", () => {
     expect(datos("centro").hidden).toBe(true)
   })
 
-  it("avisa que el área de socio llega después en lugar de no hacer nada", async () => {
+  it("lleva al área de socio desde la cabecera y desde la vista previa", async () => {
     await renderBrio()
-    await click(button("Entrar"))
-    expect(document.querySelector(".b-aviso").textContent).toContain("siguiente entrega")
-    await click(button("Cerrar aviso"))
-    expect(document.querySelector(".b-aviso")).toBeNull()
+    const enlaces = [...document.querySelectorAll('a[href="/gimnasio/socio"]')]
+    expect(enlaces.some((a) => a.textContent.trim() === "Entrar")).toBe(true)
+    expect(enlaces.length).toBeGreaterThanOrEqual(2)
   })
 
   it("muestra los créditos con autor y licencia", async () => {
