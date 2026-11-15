@@ -2,10 +2,10 @@
 // Ilustran el ambiente; no son Brío, sus sucursales ni sus coaches.
 export const FOTOS = {
   fuerza: {
-    alt: "Un hombre levanta una barra por encima de la cabeza y luego hace sentadillas frente a un rack",
+    alt: "Un hombre levanta una barra por encima de la cabeza frente a un rack",
     autor: "FitnessScape (video «Half rack resistance exercise workout»)",
     licencia: "CC BY 3.0",
-    cambios: "Montaje de dos tomas (11.5 s), recortado para dejar fuera los letreros; sin audio.",
+    cambios: "Toma continua de 7.7 s, recortada para dejar fuera los letreros; sin audio.",
     pagina: "https://commons.wikimedia.org/wiki/File:Half_rack_resistance_exercise_workout.webm",
   },
   combate: {
