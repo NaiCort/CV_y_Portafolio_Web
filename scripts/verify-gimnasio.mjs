@@ -170,6 +170,19 @@ await suite("gimnasio", async ({ run, base }) => {
 
         // Tema Distrito y aviso de privacidad: borrar todo.
         await button(page, "Tema Distrito").click()
+        // La franja clara de planes no debe mover el contenido ni desbordar (error del 16/11).
+        for (const ruta of ["/gimnasio/planes", "/gimnasio"]) {
+          await go(page, base, ruta)
+          await page.locator(".b-planes").scrollIntoViewIfNeeded()
+          await bounds(page)
+          const [logo, planes] = await page.evaluate(() =>
+            [".b-logo", ".b-planes h1, .b-planes h2"].map(
+              (s) => document.querySelector(s).getBoundingClientRect().left,
+            ),
+          )
+          assert(Math.abs(logo - planes) < 2, `Planes alineado en Distrito (${ruta})`)
+        }
+        await go(page, base, "/gimnasio/carrito")
         await page.locator("footer").getByRole("button", { name: "Aviso de privacidad" }).click()
         await audit(page)
         await button(dialog(page), "Borrar mis datos de esta demo").click()
