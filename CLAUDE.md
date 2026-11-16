@@ -89,9 +89,10 @@ maqueta «Fachadas» para una demo futura.
 
 ## Estado de Gimnasio
 
-**Gimnasio = Brío**, cerrado en V4.4.7: club ficticio de cinco sucursales en Xalapa con
-clases y reservas, planes y alta, área de socio con un perfil de ejemplo, coaches con
-evaluación gratuita y tienda corta. Dirección «Combinada» con dos temas (Cobalto y
+**Gimnasio = Brío**, cerrado en V4.4.7 y ampliado en V4.4.8 con las propuestas de
+`docs/INVESTIGACION_GIMNASIO.md`: club ficticio de cinco sucursales en Xalapa con clases
+y reservas, planes y alta, área de socio con un perfil de ejemplo, coaches con evaluación
+gratuita, tienda corta y «Tu primera visita». Dirección «Combinada» con dos temas (Cobalto y
 Distrito); las tarjetas de clase son el enlace y su video en color solo corre al
 activarlas. Pendiente del visto bueno de Ian en la vista previa. Pruebas de navegador en
 `npm run test:browser:gimnasio`. Leer `docs/FICHA_GIMNASIO.md` antes de tocar

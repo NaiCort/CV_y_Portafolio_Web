@@ -1126,6 +1126,9 @@
   color: var(--b-suave);
   font-size: 0.875rem;
 }
+.b-sesion-info small {
+  display: block;
+}
 .b-sesion-lugares {
   text-align: right;
 }
@@ -2343,6 +2346,206 @@ a.b-producto:hover .b-producto-nombre {
   text-decoration: line-through;
   cursor: not-allowed;
 }
+.b-hero-nota {
+  margin-top: 12px;
+  color: var(--b-suave);
+  font-size: 0.875rem;
+}
+/* Nivel e intensidad de cada disciplina (V4.4.8) */
+.b-intensidad span {
+  display: inline-flex;
+  gap: 2px;
+  margin-left: 6px;
+  vertical-align: middle;
+}
+.b-intensidad i {
+  display: block;
+  width: 10px;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--b-linea);
+}
+.b-intensidad i.is-on {
+  background: currentColor;
+}
+.b-guia-clases {
+  margin: 4px 0 22px;
+  border-block: 1px solid var(--b-linea);
+}
+.b-guia-clases summary {
+  padding-block: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.b-guia-clases dl {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr));
+  gap: 18px 28px;
+  margin: 0 0 20px;
+}
+.b-guia-clases dt {
+  font: 850 1.25rem/1.1 var(--b-titulo);
+  font-stretch: 90%;
+}
+.b-guia-clases dd {
+  margin: 4px 0 0;
+  font-size: 0.9375rem;
+}
+.b-guia-clases .b-traer {
+  color: var(--b-suave);
+}
+/* Tu primera visita (V4.4.8) */
+.b-primera {
+  padding-block: 48px 100px;
+}
+.b-primera-cabeza h1 {
+  font-size: clamp(2.75rem, 7vw, 5.5rem);
+}
+.b-primera-rejilla {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 36px 56px;
+  margin-top: 48px;
+  padding-top: 36px;
+  border-top: 2px solid var(--b-tinta);
+}
+.b-primera-rejilla section {
+  display: grid;
+  align-content: start;
+  gap: 12px;
+  max-width: 34rem;
+}
+.b-primera-rejilla h2 {
+  font: 850 1.75rem/1.05 var(--b-titulo);
+  font-stretch: 85%;
+  text-wrap: balance;
+}
+.b-primera-lista {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding-left: 1.2em;
+  list-style: disc;
+}
+.b-tranquilas {
+  margin-top: 64px;
+}
+.b-tranquilas h2 {
+  margin-bottom: 10px;
+  font-size: clamp(2rem, 4vw, 3rem);
+}
+.b-tabla-tranquilas {
+  width: 100%;
+  margin-top: 18px;
+  border-collapse: collapse;
+}
+.b-tabla-tranquilas :is(th, td) {
+  padding: 12px 10px 12px 0;
+  border-top: 1px solid var(--b-linea);
+  text-align: left;
+}
+.b-tabla-tranquilas thead th {
+  color: var(--b-suave);
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+@media (max-width: 900px) {
+  .b-primera-rejilla {
+    grid-template-columns: 1fr;
+  }
+}
+/* Aforo de hoy por hora, en la ficha de cada sucursal (V4.4.8) */
+.b-aforo-dia {
+  margin: 16px 0 4px;
+}
+.b-aforo-dia figcaption {
+  margin-bottom: 10px;
+  font-size: 0.875rem;
+}
+.b-aforo-barras {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 84px;
+}
+.b-aforo-barras div {
+  display: grid;
+  flex: 1;
+  grid-template-rows: 1fr auto;
+  align-items: end;
+  height: 100%;
+}
+.b-aforo-barras i {
+  display: block;
+  border-radius: 3px 3px 0 0;
+  background: color-mix(in srgb, var(--b-oscuro-texto) 38%, transparent);
+}
+.b-aforo-barras .is-ahora i {
+  background: var(--b-oscuro-acento, #6a8cff);
+}
+.b-aforo-barras span {
+  height: 16px;
+  color: var(--b-oscuro-suave);
+  font-size: 0.6875rem;
+  line-height: 16px;
+  text-align: center;
+}
+/* Lo que no cobramos, debajo del comparador (V4.4.8) */
+.b-sin-cobros {
+  max-width: 64ch;
+  margin-top: 20px;
+  font-size: 1.0625rem;
+}
+/* Opiniones de ejemplo en Planes (V4.4.8): la primera grande, las demás en columna */
+.b-opiniones {
+  padding-block: 56px 24px;
+}
+.b-opiniones h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+}
+.b-opiniones > .b-nota {
+  margin-top: 8px;
+}
+.b-opiniones ul {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+  gap: 0 48px;
+  margin: 26px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.b-opiniones li {
+  padding-block: 18px;
+  border-top: 1px solid var(--b-linea);
+}
+.b-opiniones li:first-child {
+  grid-row: span 3;
+  padding-top: 22px;
+  border-top: 2px solid var(--b-tinta);
+}
+.b-opiniones li:first-child blockquote p {
+  font: 800 clamp(1.5rem, 2.6vw, 2.125rem)/1.15 var(--b-titulo);
+  font-stretch: 90%;
+}
+.b-opiniones blockquote {
+  margin: 0;
+}
+.b-opiniones blockquote p {
+  font-size: 1.0625rem;
+}
+.b-opiniones figcaption {
+  margin-top: 10px;
+  color: var(--b-suave);
+  font-size: 0.875rem;
+}
+@media (max-width: 900px) {
+  .b-opiniones ul {
+    grid-template-columns: 1fr;
+  }
+  .b-opiniones li:first-child {
+    grid-row: auto;
+  }
+}
 /* Pasada de cierre (V4.4.7): esquema de color, anclas, toque y estados al pasar el ratón */
 .brio-root {
   color-scheme: light;
@@ -2369,9 +2572,15 @@ html[data-brio-tema="distrito"] {
   .b-btn:not(:disabled):hover {
     background-color: color-mix(in srgb, currentColor 10%, transparent);
   }
+  /* También en los diálogos, que se montan fuera de .brio-root. */
   .brio-root .b-btn-p:not(:disabled):hover {
     border-color: color-mix(in srgb, var(--b-acento) 84%, #000000);
     background-color: color-mix(in srgb, var(--b-acento) 84%, #000000);
+  }
+  /* Los diálogos se montan fuera de .brio-root y tienen su propio acento. */
+  .b-modal .b-btn.b-btn-p:not(:disabled):hover {
+    border-color: color-mix(in srgb, var(--b-modal-acento) 84%, #000000);
+    background-color: color-mix(in srgb, var(--b-modal-acento) 84%, #000000);
   }
   .b-chip:hover input:not(:disabled) + span {
     border-color: currentColor;

@@ -294,6 +294,10 @@ export default function Alta() {
                   <dt>Inscripción</dt>
                   <dd className="b-num">$0</dd>
                 </div>
+                <div>
+                  <dt>Mantenimiento anual</dt>
+                  <dd className="b-num">$0</dd>
+                </div>
                 <div className="b-alta-total">
                   <dt>Total, IVA incluido</dt>
                   <dd className="b-num">{pesos(plan.precio)} MXN</dd>

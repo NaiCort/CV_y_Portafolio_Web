@@ -31,7 +31,7 @@
 
 **Ya cubierto y, en varios puntos, por encima de lo común:** precios con IVA a la vista; inscripción $0; cancelar en un paso y congelar sin llamar a nadie; aviso de renovación cinco días antes; horario en el sitio con reserva en tres toques desde Inicio; lista de espera que avanza sola; aforo por sucursal; mapa real; coaches con su forma de trabajar y un coach para principiantes; evaluación gratuita; clase de prueba gratis; Movilidad (yoga y pilates) en el horario; tienda con precio de socio; aviso de privacidad y borrado de datos; disco que gira con el desplazamiento, tipografía grande y video al activar las tarjetas, con versión para movimiento reducido.
 
-**Huecos que vale la pena considerar** (propuestas, no hechas):
+**Huecos que vale la pena considerar.** Ian pidió agregar las ocho el 16/11; están hechas en V4.4.8 (ver `docs/ESTADO_V4.4.8.md`).
 
 | # | Propuesta | Por qué | Tamaño |
 |---|---|---|---|

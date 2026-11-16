@@ -1,5 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react"
 import Modal from "../../../components/shared/Modal"
+import BotonCalendario from "./BotonCalendario"
+import { eventoDeEvaluacion } from "../lib/calendario"
 import { COACHES, OBJETIVOS, findCoach } from "../data/coaches"
 import { findSucursal } from "../data/sucursales"
 import { cuandoCita } from "../lib/formato"
@@ -76,6 +78,7 @@ export default function EvaluacionPanel({ coachInicial, previa, ahora, onConfirm
             cuestionario de salud antes de empezar; esta demo no lo pide.
           </p>
           <div className="b-acciones">
+            <BotonCalendario evento={eventoDeEvaluacion(hecha)} nombre={`brio-${hecha.id}`} />
             <button type="button" className="b-btn b-btn-p" onClick={onCerrar}>
               Listo
             </button>

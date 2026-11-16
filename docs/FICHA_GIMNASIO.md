@@ -163,5 +163,6 @@ palomitas en los planes, carruseles automáticos, emojis, imágenes generadas co
 | Planes | `/gimnasio/planes` | Comparador, alta en pasos, cancelación en un paso |
 | Coaches | `/gimnasio/coaches` | Fichas, evaluación gratuita, paquetes de sesiones |
 | Tienda | `/gimnasio/tienda` | Catálogo corto, producto, carrito, recoger en sucursal |
+| Primera visita | `/gimnasio/primera-visita` | Llegada, qué traer, primer entrenamiento, horas tranquilas (V4.4.8) |
 | Socio | `/gimnasio/socio` | Inicio de sesión de ejemplo, pase, reservas, semana, InBody, cancelar |
 | Créditos | `/gimnasio/creditos` | Videos y fotos con autor y licencia |

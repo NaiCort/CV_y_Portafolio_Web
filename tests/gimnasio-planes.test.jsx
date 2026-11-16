@@ -24,7 +24,13 @@ describe("Página de Planes", () => {
       const enlaces = [...document.querySelectorAll(`a[href="/gimnasio/alta?plan=${p.id}"]`)]
       expect(enlaces.length, p.id).toBe(2)
     }
-    expect(document.querySelectorAll(".b-preguntas details")).toHaveLength(5)
+    expect(document.querySelectorAll(".b-preguntas details")).toHaveLength(9)
+    expect(document.querySelector(".b-sin-cobros").textContent).toContain("mantenimiento anual")
+    expect(document.body.textContent).toContain("¿Qué pasa si cierra una sucursal?")
+    // Opiniones de ejemplo, declaradas como inventadas y sin calificaciones.
+    expect(document.querySelectorAll(".b-opiniones blockquote")).toHaveLength(4)
+    expect(document.querySelector(".b-opiniones").textContent).toContain("inventados")
+    expect(document.querySelector(".b-opiniones").textContent).not.toMatch(/★|kilos|kg/)
     expect(document.querySelector('a[href="/gimnasio/clases?prueba=1"]')).toBeTruthy()
   })
 })

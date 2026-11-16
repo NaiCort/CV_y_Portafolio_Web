@@ -1,4 +1,6 @@
 import { useState } from "react"
+import BotonCalendario from "./BotonCalendario"
+import { eventoDeReserva } from "../lib/calendario"
 import { findCategoria } from "../data/clases"
 import { findCoach } from "../data/coaches"
 import { findSucursal } from "../data/sucursales"
@@ -158,6 +160,9 @@ export default function MisReservas({ reservas, ahora, onCancelar, onTerminar, o
                       <button type="button" className="b-btn" onClick={() => setConfirmando(r.id)}>
                         {r.estado === "espera" ? "Salir de la lista" : "Cancelar reserva"}
                       </button>
+                    )}
+                    {r.estado === "confirmada" && regla !== "pasada" && (
+                      <BotonCalendario evento={eventoDeReserva(r)} nombre={`brio-${r.id}`} />
                     )}
                     {r.estado === "confirmada" && (
                       <button type="button" className="b-btn" onClick={() => onTerminar(r.id)}>

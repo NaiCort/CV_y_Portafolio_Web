@@ -13,6 +13,9 @@ export const SUCURSALES = [
     horario: { semana: [5.5, 23], finde: [7, 20] },
     capacidad: 220,
     ritmo: 1,
+    accesibilidad: "Rampa en la entrada y elevador a los dos pisos; vestidor y baño accesibles.",
+    estacionamiento:
+      "Sin estacionamiento propio: dos horas con descuento en el estacionamiento público de la esquina. Biciestacionamiento para 20.",
   },
   {
     id: "lagos",
@@ -25,6 +28,10 @@ export const SUCURSALES = [
     horario: { semana: [6, 22], finde: [7, 20] },
     capacidad: 260,
     ritmo: 1.12,
+    accesibilidad:
+      "Todo en una planta, con rampa; grúa para entrar a la alberca y vestidor accesible.",
+    estacionamiento:
+      "30 cajones gratis para socios, 2 de ellos para personas con discapacidad. Biciestacionamiento.",
   },
   {
     id: "macuiltepetl",
@@ -37,6 +44,9 @@ export const SUCURSALES = [
     horario: { semana: [0, 24], finde: [0, 24] },
     capacidad: 160,
     ritmo: 0.72,
+    accesibilidad: "Rampa y elevador; área de pesas en planta baja y vestidor accesible.",
+    estacionamiento:
+      "60 cajones gratis, abiertos las 24 horas, con 3 para personas con discapacidad.",
   },
   {
     id: "tecajetes",
@@ -49,6 +59,10 @@ export const SUCURSALES = [
     horario: { semana: [6, 22], finde: [7, 20] },
     capacidad: 180,
     ritmo: 0.95,
+    accesibilidad:
+      "Planta baja con rampa; los salones de clase del primer piso no tienen elevador.",
+    estacionamiento:
+      "Sin estacionamiento propio: cajones en la calle. Biciestacionamiento para 30.",
   },
   {
     id: "natura",
@@ -61,6 +75,9 @@ export const SUCURSALES = [
     horario: { semana: [6, 23], finde: [8, 20] },
     capacidad: 200,
     ritmo: 1.05,
+    accesibilidad: "Todo en planta baja, con rampa y vestidor accesible.",
+    estacionamiento:
+      "Estacionamiento del Parque Natura, compartido; los socios no pagan las primeras dos horas.",
   },
 ]
 
