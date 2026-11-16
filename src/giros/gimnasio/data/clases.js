@@ -7,6 +7,9 @@ export const CATEGORIAS = [
     minutos: 45,
     cupo: 14,
     foto: "fuerza",
+    nivel: "todos",
+    intensidad: 2,
+    traer: "Ropa cómoda, tenis de suela plana y toalla. Barras y discos los pone el club.",
   },
   {
     id: "ciclo",
@@ -15,6 +18,9 @@ export const CATEGORIAS = [
     minutos: 45,
     cupo: 24,
     foto: "ciclo",
+    nivel: "todos",
+    intensidad: 3,
+    traer: "Toalla, agua y tenis de suela rígida. La bici se ajusta a tu altura al llegar.",
   },
   {
     id: "combate",
@@ -23,6 +29,9 @@ export const CATEGORIAS = [
     minutos: 50,
     cupo: 16,
     foto: "combate",
+    nivel: "todos",
+    intensidad: 3,
+    traer: "Agua y vendas. Si no tienes, en tu primera clase te prestamos vendas y guantes.",
   },
   {
     id: "movilidad",
@@ -30,10 +39,26 @@ export const CATEGORIAS = [
     desc: "Yoga y pilates en tapete",
     minutos: 50,
     cupo: 20,
+    nivel: "empezar",
+    intensidad: 1,
+    traer: "Ropa que te deje moverte. Tapete y bloques los pone el club.",
   },
-  { id: "ritmo", nombre: "Ritmo", desc: "Cardio de baile", minutos: 45, cupo: 30 },
+  {
+    id: "ritmo",
+    nombre: "Ritmo",
+    desc: "Cardio de baile",
+    minutos: 45,
+    cupo: 30,
+    nivel: "empezar",
+    intensidad: 2,
+    traer: "Tenis ligeros y agua. No hace falta saber bailar.",
+  },
 ]
 export const findCategoria = (id) => CATEGORIAS.find((categoria) => categoria.id === id)
+
+// Nivel = técnica que pide la clase; intensidad = esfuerzo (1 suave, 2 media, 3 alta).
+export const NIVELES = { empezar: "Para empezar", todos: "Todos los niveles" }
+export const INTENSIDADES = { 1: "suave", 2: "media", 3: "alta" }
 
 // Días con letra: L M X J V S D.
 const DIAS = { D: 0, L: 1, M: 2, X: 3, J: 4, V: 5, S: 6 }

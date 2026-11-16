@@ -67,6 +67,9 @@ export default function ReservaPanel({
             </p>
           )}
           {prueba && <p>Es tu clase de prueba: no cuesta nada y no necesitas membresía.</p>}
+          <p>
+            <b>Qué traer:</b> {cat.traer}
+          </p>
           <p className="b-ficcion">Reserva simulada: no se envió a ningún lugar.</p>
           <div className="b-acciones">
             <a className="b-btn b-btn-p" href="#mis-reservas" onClick={onCerrar}>

@@ -3,7 +3,8 @@ import { useSearchParams } from "react-router-dom"
 import Clip from "../components/Clip"
 import ReservaPanel from "../components/ReservaPanel"
 import MisReservas from "../components/MisReservas"
-import { CATEGORIAS, HORARIO, findCategoria } from "../data/clases"
+import { CATEGORIAS, HORARIO, NIVELES, findCategoria } from "../data/clases"
+import Nivel from "../components/Nivel"
 import { COACHES, findCoach } from "../data/coaches"
 import { SUCURSALES, findSucursal } from "../data/sucursales"
 import { MEDIOS } from "../data/medios"
@@ -56,6 +57,7 @@ export default function Clases({
   const [categoria, setCategoria] = useState("todas")
   const [sucursal, setSucursal] = useState("todas")
   // Llegar desde Coaches con ?coach=… filtra el horario por ese coach.
+  const [nivel, setNivel] = useState("todos")
   const [coach, setCoach] = useState(() =>
     findCoach(params.get("coach")) ? params.get("coach") : "todos",
   )
@@ -72,7 +74,8 @@ export default function Clases({
     (s) =>
       (categoria === "todas" || s.categoria === categoria) &&
       (sucursal === "todas" || s.sucursal === sucursal) &&
-      (coach === "todos" || s.coach === coach),
+      (coach === "todos" || s.coach === coach) &&
+      (nivel === "todos" || findCategoria(s.categoria).nivel === nivel),
   )
   const medio = MEDIOS[categoria] ? categoria : "combate"
   const reservada = (s) =>
@@ -121,6 +124,20 @@ export default function Clases({
         <h2 id="b-horario-titulo" className="b-d b-angosta">
           Horario
         </h2>
+        <details className="b-guia-clases">
+          <summary>¿Cuál elijo? Las cinco disciplinas</summary>
+          <dl>
+            {CATEGORIAS.map((c) => (
+              <div key={c.id}>
+                <dt>{c.nombre}</dt>
+                <dd>
+                  {c.desc}. {c.minutos} min. <Nivel categoria={c} />
+                </dd>
+                <dd className="b-traer">Qué traer: {c.traer}</dd>
+              </div>
+            ))}
+          </dl>
+        </details>
         <div className="b-filtros">
           <fieldset className="b-chips">
             <legend>Día</legend>
@@ -149,6 +166,23 @@ export default function Clases({
                   onChange={() => setCategoria(c.id)}
                 />
                 <span>{c.nombre}</span>
+              </label>
+            ))}
+          </fieldset>
+          <fieldset className="b-chips">
+            <legend>Nivel</legend>
+            {[
+              ["todos", "Todos"],
+              ["empezar", NIVELES.empezar],
+            ].map(([id, nombre]) => (
+              <label key={id} className="b-chip">
+                <input
+                  type="radio"
+                  name="nivel"
+                  checked={nivel === id}
+                  onChange={() => setNivel(id)}
+                />
+                <span>{nombre}</span>
               </label>
             ))}
           </fieldset>
@@ -192,6 +226,7 @@ export default function Clases({
                   setCategoria("todas")
                   setSucursal("todas")
                   setCoach("todos")
+                  setNivel("todos")
                 }}
               >
                 Quitar filtros
@@ -213,6 +248,9 @@ export default function Clases({
                   <small>
                     {findSucursal(s.sucursal).nombre} · Coach {findCoach(s.coach).nombre} ·{" "}
                     {cat.minutos} min
+                  </small>
+                  <small>
+                    <Nivel categoria={cat} />
                   </small>
                 </span>
                 <span className="b-sesion-lugares b-num">

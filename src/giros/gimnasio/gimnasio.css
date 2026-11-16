@@ -1126,6 +1126,9 @@
   color: var(--b-suave);
   font-size: 0.875rem;
 }
+.b-sesion-info small {
+  display: block;
+}
 .b-sesion-lugares {
   text-align: right;
 }
@@ -2347,6 +2350,49 @@ a.b-producto:hover .b-producto-nombre {
   margin-top: 12px;
   color: var(--b-suave);
   font-size: 0.875rem;
+}
+/* Nivel e intensidad de cada disciplina (V4.4.8) */
+.b-intensidad span {
+  display: inline-flex;
+  gap: 2px;
+  margin-left: 6px;
+  vertical-align: middle;
+}
+.b-intensidad i {
+  display: block;
+  width: 10px;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--b-linea);
+}
+.b-intensidad i.is-on {
+  background: currentColor;
+}
+.b-guia-clases {
+  margin: 4px 0 22px;
+  border-block: 1px solid var(--b-linea);
+}
+.b-guia-clases summary {
+  padding-block: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.b-guia-clases dl {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr));
+  gap: 18px 28px;
+  margin: 0 0 20px;
+}
+.b-guia-clases dt {
+  font: 850 1.25rem/1.1 var(--b-titulo);
+  font-stretch: 90%;
+}
+.b-guia-clases dd {
+  margin: 4px 0 0;
+  font-size: 0.9375rem;
+}
+.b-guia-clases .b-traer {
+  color: var(--b-suave);
 }
 /* Pasada de cierre (V4.4.7): esquema de color, anclas, toque y estados al pasar el ratón */
 .brio-root {
