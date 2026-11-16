@@ -64,10 +64,10 @@ const GIROS = [
     available: true,
   },
   {
-    path: null,
+    path: "/taller",
     name: "Taller mecánico",
-    desc: "Confianza técnica, mostrada, no solo prometida.",
-    available: false,
+    desc: "Rosales y Vértice: testigos del tablero, presupuesto por partida y citas.",
+    available: true,
   },
   {
     path: null,
