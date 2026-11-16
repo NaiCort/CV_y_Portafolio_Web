@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { Menu } from "lucide-react"
 import { Link, Navigate, Route, Routes, useLocation } from "react-router-dom"
 import DemoBanner from "../../components/shared/DemoBanner"
 import ComercialCTA from "../../components/shared/ComercialCTA"
@@ -13,6 +14,9 @@ import Cita from "./pages/Cita"
 import Consulta from "./pages/Consulta"
 import Precios from "./pages/Precios"
 import Usados from "./pages/Usados"
+import Hojalateria from "./pages/Hojalateria"
+import Hibridos from "./pages/Hibridos"
+import Garaje from "./pages/Garaje"
 import SelectorTema from "./components/SelectorTema"
 import { TALLERES } from "./data/talleres"
 import { guardarTema, leerTema } from "./lib/tema"
@@ -28,10 +32,19 @@ const SECCIONES = {
     ["ubicacion", "Cómo llegar"],
   ],
   vertice: [
-    ["testigos", "Testigos del tablero"],
     ["/taller/precios", "Precios"],
+    ["/taller/hojalateria", "Hojalatería y seguros"],
+    ["/taller/hibridos", "Híbridos"],
     ["sucursales", "Sucursales"],
+    ["/taller/garaje", "Mi garaje"],
+  ],
+}
+// En el menú del teléfono van además estas páginas.
+const EXTRA_MOVIL = {
+  rosales: [["/taller/cita", "Agendar cita"]],
+  vertice: [
     ["/taller/consulta", "Consulta tu auto"],
+    ["/taller/cita", "Agendar cita"],
   ],
 }
 const TITULOS = {
@@ -40,6 +53,9 @@ const TITULOS = {
   "/taller/consulta": "Consulta tu auto",
   "/taller/precios": "Lista de precios",
   "/taller/usados": "Revisión antes de comprar un usado",
+  "/taller/hojalateria": "Hojalatería y seguros",
+  "/taller/hibridos": "Híbridos y eléctricos",
+  "/taller/garaje": "Mi garaje",
   "/taller/creditos": "Créditos",
 }
 const MENSAJES = {
@@ -106,6 +122,12 @@ function GuiaTaller() {
           guardan solo en este navegador y se pueden cancelar o agregar al calendario.
         </li>
         <li>
+          En Vértice, «Hojalatería y seguros» explica cómo se trabaja con o sin aseguradora y
+          calcula si conviene usar el deducible; «Híbridos» muestra un reporte de batería de
+          ejemplo; «Mi garaje» se abre con el perfil de ejemplo de Mariana (los datos para entrar se
+          muestran en pantalla) y permite actualizar el kilometraje de sus dos autos.
+        </li>
+        <li>
           «Precios» tiene la lista completa de cada taller con una suma aproximada y las reglas de
           cobro del contrato tipo de Profeco. «Revisión de usados» es solo de Rosales: qué se revisa
           y un reporte de ejemplo de un auto inventado.
@@ -117,6 +139,15 @@ function GuiaTaller() {
       </ul>
       <p>“Contactar” y “Hablemos” abren los canales reales de Ian para consultar un proyecto.</p>
     </div>
+  )
+}
+
+function EnlaceSeccion({ id, nombre, ruta }) {
+  const to = id.startsWith("/") ? id : `/taller#${id}`
+  return (
+    <Link to={to} aria-current={to === ruta ? "page" : undefined}>
+      {nombre}
+    </Link>
   )
 }
 
@@ -149,6 +180,9 @@ export default function TallerApp() {
     return () => delete document.documentElement.dataset.tallerTema
   }, [tema])
   const ruta = pathname.replace(/\/+$/, "")
+  // Menú del teléfono: se cierra solo al cambiar de página o de sección.
+  const [menuEn, setMenuEn] = useState(null)
+  const menuAbierto = menuEn === pathname + hash
   usePageMetadata(
     `${TITULOS[ruta] || "Página no encontrada"} — ${taller.nombre}, ${taller.descripcion} · Demo de Ian Aldana Martínez`,
     "Taller mecánico ficticio con dos temas: un taller familiar de colonia y un servicio multimarca con sucursales. Testigos del tablero, presupuesto por partida y precios a la vista. Portafolio de Ian Aldana Martínez.",
@@ -183,18 +217,9 @@ export default function TallerApp() {
             {taller.nombre}
           </Link>
           <nav className="t-nav" aria-label="Secciones del taller">
-            {SECCIONES[tema].map(([id, nombre]) => {
-              const to = id.startsWith("/") ? id : `/taller#${id}`
-              return (
-                <Link
-                  key={id}
-                  to={to}
-                  aria-current={to === pathname.replace(/\/+$/, "") ? "page" : undefined}
-                >
-                  {nombre}
-                </Link>
-              )
-            })}
+            {SECCIONES[tema].map(([id, nombre]) => (
+              <EnlaceSeccion key={id} id={id} nombre={nombre} ruta={ruta} />
+            ))}
           </nav>
           <button type="button" className="t-tel t-num" onClick={() => setLlamada(true)}>
             <span className="t-oculto">Llamar al </span>
@@ -207,7 +232,28 @@ export default function TallerApp() {
           >
             Agendar cita
           </Link>
+          <button
+            type="button"
+            className="t-btn t-btn-s t-menu-boton"
+            aria-expanded={menuAbierto}
+            aria-controls="t-menu-movil"
+            onClick={() => setMenuEn(menuAbierto ? null : pathname + hash)}
+          >
+            <Menu aria-hidden="true" size={18} strokeWidth={2.25} />
+            Menú
+          </button>
         </div>
+        <nav
+          id="t-menu-movil"
+          className="t-menu-movil t-wrap"
+          aria-label="Menú del taller"
+          hidden={!menuAbierto}
+          onClick={(e) => e.target.closest("a") && setMenuEn(null)}
+        >
+          {[...SECCIONES[tema], ...EXTRA_MOVIL[tema]].map(([id, nombre]) => (
+            <EnlaceSeccion key={id} id={id} nombre={nombre} ruta={ruta} />
+          ))}
+        </nav>
       </header>
       <main id="contenido" tabIndex={-1}>
         <Routes>
@@ -232,6 +278,12 @@ export default function TallerApp() {
           <Route path="consulta" element={<Consulta key={tema} taller={taller} />} />
           <Route path="precios" element={<Precios key={tema} taller={taller} />} />
           <Route path="usados" element={<Usados taller={taller} onCambiar={setTema} />} />
+          <Route path="hojalateria" element={<Hojalateria taller={taller} onCambiar={setTema} />} />
+          <Route path="hibridos" element={<Hibridos taller={taller} onCambiar={setTema} />} />
+          <Route
+            path="garaje"
+            element={<Garaje taller={taller} onCambiar={setTema} citas={citas} />}
+          />
           <Route path="creditos" element={<Creditos />} />
           <Route path="*" element={<Navigate to="/taller" replace />} />
         </Routes>
