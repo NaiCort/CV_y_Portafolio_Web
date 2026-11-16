@@ -108,26 +108,24 @@ export default function PrimeraVisita({ ahora }) {
           Cuándo está más tranquilo
         </h2>
         <p>Horas con menos de un tercio del aforo, según el aforo simulado de cada sucursal.</p>
-        <div className="b-tabla-scroll">
-          <table className="b-tabla-tranquilas">
-            <thead>
-              <tr>
-                <th scope="col">Sucursal</th>
-                <th scope="col">Entre semana</th>
-                <th scope="col">Fin de semana</th>
+        <table className="b-tabla-tranquilas">
+          <thead>
+            <tr>
+              <th scope="col">Sucursal</th>
+              <th scope="col">Entre semana</th>
+              <th scope="col">Fin de semana</th>
+            </tr>
+          </thead>
+          <tbody>
+            {filas.map(({ s, semana, finde }) => (
+              <tr key={s.id}>
+                <th scope="row">{s.nombre}</th>
+                <td className="b-num">{semana}</td>
+                <td className="b-num">{finde}</td>
               </tr>
-            </thead>
-            <tbody>
-              {filas.map(({ s, semana, finde }) => (
-                <tr key={s.id}>
-                  <th scope="row">{s.nombre}</th>
-                  <td className="b-num">{semana}</td>
-                  <td className="b-num">{finde}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+            ))}
+          </tbody>
+        </table>
       </section>
     </div>
   )

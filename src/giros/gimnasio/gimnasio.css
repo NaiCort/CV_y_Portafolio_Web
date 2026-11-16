@@ -2418,6 +2418,7 @@ a.b-producto:hover .b-producto-nombre {
 .b-primera-rejilla h2 {
   font: 850 1.75rem/1.05 var(--b-titulo);
   font-stretch: 85%;
+  text-wrap: balance;
 }
 .b-primera-lista {
   display: grid;
@@ -2433,12 +2434,8 @@ a.b-producto:hover .b-producto-nombre {
   margin-bottom: 10px;
   font-size: clamp(2rem, 4vw, 3rem);
 }
-.b-tabla-scroll {
-  overflow-x: auto;
-}
 .b-tabla-tranquilas {
   width: 100%;
-  min-width: 30rem;
   margin-top: 18px;
   border-collapse: collapse;
 }
@@ -2575,9 +2572,15 @@ html[data-brio-tema="distrito"] {
   .b-btn:not(:disabled):hover {
     background-color: color-mix(in srgb, currentColor 10%, transparent);
   }
+  /* También en los diálogos, que se montan fuera de .brio-root. */
   .brio-root .b-btn-p:not(:disabled):hover {
     border-color: color-mix(in srgb, var(--b-acento) 84%, #000000);
     background-color: color-mix(in srgb, var(--b-acento) 84%, #000000);
+  }
+  /* Los diálogos se montan fuera de .brio-root y tienen su propio acento. */
+  .b-modal .b-btn.b-btn-p:not(:disabled):hover {
+    border-color: color-mix(in srgb, var(--b-modal-acento) 84%, #000000);
+    background-color: color-mix(in srgb, var(--b-modal-acento) 84%, #000000);
   }
   .b-chip:hover input:not(:disabled) + span {
     border-color: currentColor;

@@ -115,6 +115,16 @@ function GuiaBrio() {
           antes de renovar.
         </li>
         <li>
+          Cada disciplina dice su nivel, su intensidad y qué traer; el horario se filtra por nivel.
+          Las reservas y la evaluación se pueden agregar al calendario con un archivo que se
+          descarga en el navegador.
+        </li>
+        <li>
+          La ficha de cada sucursal muestra el aforo simulado de hoy hora por hora, su accesibilidad
+          y su estacionamiento. Las opiniones de socios en Planes son de ejemplo: personas y textos
+          inventados.
+        </li>
+        <li>
           Coaches presenta a seis coaches inventados (sin fotos: nadie de los videos es coach de
           Brío). La evaluación gratuita se agenda con coach, sucursal, día y hora; es una por
           persona y no pide datos de salud.
