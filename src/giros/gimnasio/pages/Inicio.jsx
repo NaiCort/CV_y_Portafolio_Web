@@ -136,6 +136,14 @@ function Sucursales({ ahora }) {
                         <dt>Tiene</dt>
                         <dd>{item.tiene.join(", ")}</dd>
                       </div>
+                      <div>
+                        <dt>Accesibilidad</dt>
+                        <dd>{item.accesibilidad}</dd>
+                      </div>
+                      <div>
+                        <dt>Estacionamiento</dt>
+                        <dd>{item.estacionamiento}</dd>
+                      </div>
                     </dl>
                     <AforoDelDia sucursal={item} ahora={ahora} />
                     <p className="b-suc-ref">

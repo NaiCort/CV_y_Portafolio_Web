@@ -93,3 +93,17 @@ describe("Aforo de hoy por hora", () => {
     expect(ficha.querySelector(".b-oculto").textContent).toContain("(ahora)")
   })
 })
+
+describe("Accesibilidad y estacionamiento", () => {
+  it("cada sucursal dice cómo se entra y dónde estacionarse, y la ficha lo muestra", async () => {
+    for (const s of SUCURSALES) {
+      expect(s.accesibilidad.length, s.id).toBeGreaterThan(20)
+      expect(s.estacionamiento.length, s.id).toBeGreaterThan(20)
+    }
+    await renderBrio("/gimnasio")
+    const ficha = document.querySelector("#b-suc-centro-datos").textContent
+    expect(ficha).toContain("Accesibilidad")
+    expect(ficha).toContain("Estacionamiento")
+    expect(ficha).toContain(findSucursal("centro").estacionamiento)
+  })
+})
