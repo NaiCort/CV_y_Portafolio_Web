@@ -38,6 +38,7 @@ await suite("gimnasio", async ({ run, base }) => {
           "/gimnasio/tienda",
           "/gimnasio/tienda/guantes",
           "/gimnasio/carrito",
+          "/gimnasio/primera-visita",
           "/gimnasio/creditos",
         ]) {
           await go(page, base, path)
@@ -67,8 +68,16 @@ await suite("gimnasio", async ({ run, base }) => {
           await page.waitForURL(/\/gimnasio\/clases/)
         }
 
-        // Clases: reservar un lugar.
+        // Primera visita: horas tranquilas de las cinco sucursales.
+        await go(page, base, "/gimnasio/primera-visita")
+        assert.equal(await page.locator(".b-tabla-tranquilas tbody tr").count(), 5)
+
+        // Clases: filtro por nivel, reservar un lugar y agregarlo al calendario.
         await go(page, base, "/gimnasio/clases")
+        await page.locator(".b-chip", { hasText: "Para empezar" }).click()
+        for (const s of await page.locator(".b-sesiones strong").allTextContents())
+          assert(["Movilidad", "Ritmo"].includes(s), `Nivel para empezar: ${s}`)
+        await page.locator(".b-chip", { hasText: "Todos" }).first().click()
         const dias = page.locator(".b-chips").first().locator("label")
         let d = 0
         while (!(await page.locator(".b-sesiones .b-btn-p").count())) await dias.nth(++d).click()
@@ -80,6 +89,12 @@ await suite("gimnasio", async ({ run, base }) => {
         await audit(page)
         await dialog(page).locator("button[type=submit]").click()
         await dialog(page).locator(".b-reserva-hecha").waitFor()
+        assert.match(await dialog(page).textContent(), /Qué traer/)
+        const [ics] = await Promise.all([
+          page.waitForEvent("download"),
+          button(dialog(page), "Agregar a mi calendario").click(),
+        ])
+        assert.match(ics.suggestedFilename(), /^brio-BR-\d+\.ics$/)
         await button(dialog(page), "Cerrar").click()
         assert.equal(
           (await guardado(page, "brio-reservas-v1")).reservas.length,
