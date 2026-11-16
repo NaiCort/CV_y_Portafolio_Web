@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { Link } from "react-router-dom"
 import { TESTIGOS, URGENCIAS, findTestigo } from "../data/testigos"
 import { findServicio } from "../data/talleres"
 import { precioServicio } from "../lib/formato"
@@ -42,7 +43,7 @@ export function IconoTestigo({ id }) {
 }
 
 // «¿Qué luz se encendió?»: seis testigos y la lectura del elegido para el taller del tema.
-export default function Testigos({ taller, onAgendar }) {
+export default function Testigos({ taller }) {
   const [elegido, setElegido] = useState("motor")
   const testigo = findTestigo(elegido)
   const oferta = testigo.taller[taller.id]
@@ -91,15 +92,9 @@ export default function Testigos({ taller, onAgendar }) {
             </p>
           </div>
         </div>
-        <button
-          type="button"
-          className="t-btn t-btn-p"
-          onClick={() =>
-            onAgendar(`Hola, se me encendió la luz de ${testigo.nombre.toLowerCase()}`)
-          }
-        >
+        <Link className="t-btn t-btn-p" to={`/taller/cita?testigo=${testigo.id}`}>
           Agendar revisión
-        </button>
+        </Link>
       </div>
     </>
   )

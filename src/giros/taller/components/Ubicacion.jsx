@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react"
+import { Link } from "react-router-dom"
 import MapaTaller from "./MapaTaller"
 import { DIAS } from "../data/ubicaciones"
 import { estadoAhora, horarioAgrupado } from "../lib/horario"
@@ -99,7 +100,7 @@ function LocalRosales({ local, onLlamar }) {
 }
 
 // Vértice: cuatro sucursales en una lista que se desplaza junto al mapa.
-function SucursalesVertice({ sucursales, onAgendar }) {
+function SucursalesVertice({ sucursales }) {
   const ahora = useAhora()
   const [elegida, setElegida] = useState(sucursales[0].id)
   return (
@@ -137,13 +138,9 @@ function SucursalesVertice({ sucursales, onAgendar }) {
                     ))}
                   </ul>
                   <div className="t-ficha-acciones">
-                    <button
-                      type="button"
-                      className="t-btn t-btn-p"
-                      onClick={() => onAgendar(`Hola, quiero agendar en la sucursal ${s.nombre}`)}
-                    >
+                    <Link className="t-btn t-btn-p" to={`/taller/cita?sucursal=${s.id}`}>
                       Agendar aquí
-                    </button>
+                    </Link>
                     <Referencia referencia={s.referencia} />
                   </div>
                 </div>
@@ -156,7 +153,7 @@ function SucursalesVertice({ sucursales, onAgendar }) {
   )
 }
 
-export default function Ubicacion({ taller, onAgendar, onLlamar }) {
+export default function Ubicacion({ taller, onLlamar }) {
   const esRosales = taller.id === "rosales"
   return (
     <section
@@ -175,7 +172,7 @@ export default function Ubicacion({ taller, onAgendar, onLlamar }) {
       {esRosales ? (
         <LocalRosales local={taller.local} onLlamar={onLlamar} />
       ) : (
-        <SucursalesVertice sucursales={taller.sucursales} onAgendar={onAgendar} />
+        <SucursalesVertice sucursales={taller.sucursales} />
       )}
     </section>
   )

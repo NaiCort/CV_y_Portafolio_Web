@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import Testigos from "../components/Testigos"
 import OrdenServicio from "../components/OrdenServicio"
 import ConsultaAuto from "../components/ConsultaAuto"
@@ -32,7 +33,7 @@ function Garaje({ garaje }) {
   )
 }
 
-export default function Inicio({ taller, onAgendar, onWhatsApp, onLlamar }) {
+export default function Inicio({ taller, onWhatsApp, onLlamar }) {
   const esRosales = taller.id === "rosales"
   return (
     <>
@@ -43,9 +44,9 @@ export default function Inicio({ taller, onAgendar, onWhatsApp, onLlamar }) {
           </h1>
           <p className="t-bajada">{taller.bajada}</p>
           <div className="t-acciones">
-            <button type="button" className="t-btn t-btn-p" onClick={() => onAgendar()}>
+            <Link className="t-btn t-btn-p" to="/taller/cita">
               Agendar cita
-            </button>
+            </Link>
             <button type="button" className="t-btn t-btn-s" onClick={onWhatsApp}>
               Escribir por WhatsApp
             </button>
@@ -72,7 +73,7 @@ export default function Inicio({ taller, onAgendar, onWhatsApp, onLlamar }) {
             cuánto cuesta revisarlo.
           </p>
         </div>
-        <Testigos taller={taller} onAgendar={onAgendar} />
+        <Testigos taller={taller} />
         <p className="t-nota">
           Orientación general. Cada auto es distinto: si dudas, revisa el manual o llámanos.
         </p>
@@ -128,7 +129,7 @@ export default function Inicio({ taller, onAgendar, onWhatsApp, onLlamar }) {
         </ul>
       </section>
 
-      <Ubicacion key={taller.id} taller={taller} onAgendar={onAgendar} onLlamar={onLlamar} />
+      <Ubicacion key={taller.id} taller={taller} onLlamar={onLlamar} />
     </>
   )
 }
