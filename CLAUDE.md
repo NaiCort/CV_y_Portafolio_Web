@@ -17,7 +17,7 @@ acciones ficticias del negocio.
 
 - Se trabaja **una demo a la vez**, en este orden: Psicólogo (cerrada) → Restaurante
   (cerrada en V4.2.5 con **Patio 12**) → Café (cerrada en V4.3.6 con **Ladera**) →
-  Gimnasio (cerrada en V4.4.7 con **Brío**) → **Taller mecánico (siguiente, V4.5)** →
+  Gimnasio (cerrada en V4.4.8 con **Brío**) → **Taller mecánico (en curso, V4.5)** →
   Despacho contable (V4.6) → Revista digital (V4.7).
 - **Restaurante = solo Patio 12.** No se construyen las sub-categorías (fonda, comida
   rápida, lujo) ni el panel de empleados y precios: ambas ideas quedaron descartadas.
