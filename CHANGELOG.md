@@ -1,3 +1,11 @@
+# V4.5.4 · 16 de noviembre de 2026 · Taller mecánico, precios y revisión de usados
+
+- Añadir `/taller/precios` en los dos talleres: lista completa por categoría, suma aproximada, reglas de cobro de Profeco y formas de pago.
+- Añadir `/taller/usados` (Rosales): precio fijo, qué se revisa y un reporte de ejemplo desplegable.
+- Las páginas de un solo taller ofrecen cambiar de taller si se abren desde el otro.
+- Menú con páginas propias de cada taller.
+- Ocho pruebas nuevas y las dos páginas en los recorridos de navegador.
+
 # V4.5.3 · 16 de noviembre de 2026 · Taller mecánico, presupuesto con visto bueno
 
 - Añadir `/taller/consulta`: presupuesto por partida con medida, desglose y «Autorizar» o «No por ahora».
