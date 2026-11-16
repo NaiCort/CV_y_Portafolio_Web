@@ -1,3 +1,12 @@
+# V4.5.2 · 16 de noviembre de 2026 · Taller mecánico, agendar cita
+
+- Añadir `/taller/cita`: servicio, auto, dónde y cuándo, datos y confirmación con folio.
+- Rosales: mecánico a domicilio dentro de 3 km. Vértice: sucursal por especialidad y recolección.
+- Horas según el horario de cada local, con ocupaciones simuladas.
+- Desde un testigo llega el servicio sugerido; si no conviene manejar, propone domicilio o recolección.
+- «Tus citas» con cancelación y «Agregar a mi calendario».
+- Diez pruebas nuevas y la cita completa en los recorridos de navegador.
+
 # V4.5.1 · 16 de noviembre de 2026 · Taller mecánico, mapa de ubicaciones
 
 - Mapa real de Xalapa en Inicio; cada taller muestra solo sus locales, en zonas distintas.
