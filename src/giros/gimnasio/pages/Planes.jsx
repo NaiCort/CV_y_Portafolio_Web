@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom"
 import TablaPlanes from "../components/TablaPlanes"
+import { OPINIONES } from "../data/opiniones"
 
 const PREGUNTAS = [
   [
@@ -56,6 +57,28 @@ export default function Planes() {
           <strong>Lo que no cobramos:</strong> inscripción, mantenimiento anual, anualidades ni
           penalización por cancelar. Pagas el mes de tu plan y nada más.
         </p>
+      </section>
+      <section className="b-wrap b-opiniones" aria-labelledby="b-opiniones-titulo">
+        <h2 id="b-opiniones-titulo" className="b-d b-media">
+          Lo que dicen en el club
+        </h2>
+        <p className="b-nota">
+          Opiniones de ejemplo: las personas y lo que dicen son inventados para esta demo.
+        </p>
+        <ul>
+          {OPINIONES.map((o) => (
+            <li key={o.id}>
+              <figure>
+                <blockquote>
+                  <p>«{o.texto}»</p>
+                </blockquote>
+                <figcaption>
+                  <b>{o.nombre}</b> · {o.detalle}
+                </figcaption>
+              </figure>
+            </li>
+          ))}
+        </ul>
       </section>
       <section className="b-wrap" aria-labelledby="b-prueba-titulo">
         <div className="b-prueba">

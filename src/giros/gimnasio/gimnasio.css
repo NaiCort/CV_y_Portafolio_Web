@@ -2499,6 +2499,56 @@ a.b-producto:hover .b-producto-nombre {
   margin-top: 20px;
   font-size: 1.0625rem;
 }
+/* Opiniones de ejemplo en Planes (V4.4.8): la primera grande, las demás en columna */
+.b-opiniones {
+  padding-block: 56px 24px;
+}
+.b-opiniones h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+}
+.b-opiniones > .b-nota {
+  margin-top: 8px;
+}
+.b-opiniones ul {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+  gap: 0 48px;
+  margin: 26px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.b-opiniones li {
+  padding-block: 18px;
+  border-top: 1px solid var(--b-linea);
+}
+.b-opiniones li:first-child {
+  grid-row: span 3;
+  padding-top: 22px;
+  border-top: 2px solid var(--b-tinta);
+}
+.b-opiniones li:first-child blockquote p {
+  font: 800 clamp(1.5rem, 2.6vw, 2.125rem)/1.15 var(--b-titulo);
+  font-stretch: 90%;
+}
+.b-opiniones blockquote {
+  margin: 0;
+}
+.b-opiniones blockquote p {
+  font-size: 1.0625rem;
+}
+.b-opiniones figcaption {
+  margin-top: 10px;
+  color: var(--b-suave);
+  font-size: 0.875rem;
+}
+@media (max-width: 900px) {
+  .b-opiniones ul {
+    grid-template-columns: 1fr;
+  }
+  .b-opiniones li:first-child {
+    grid-row: auto;
+  }
+}
 /* Pasada de cierre (V4.4.7): esquema de color, anclas, toque y estados al pasar el ratón */
 .brio-root {
   color-scheme: light;
