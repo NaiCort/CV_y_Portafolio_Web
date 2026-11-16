@@ -2273,3 +2273,77 @@ html[data-taller-tema="vertice"] .t-modal {
 .t-solo-en h2 {
   font-size: 1.375rem;
 }
+
+/* Aviso de privacidad y avisos */
+.t-pie-enlaces {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: start;
+  gap: 4px 20px;
+}
+.t-pie-enlaces .t-inline {
+  color: inherit;
+  font-size: inherit;
+}
+.t-privacidad {
+  display: grid;
+  gap: 12px;
+  color: #d5d9df;
+  font-size: 0.94rem;
+}
+.t-privacidad h3 {
+  margin-top: 6px;
+  color: #fff;
+  font:
+    650 1.0625rem/1.2 "Taller Titulo",
+    system-ui,
+    sans-serif;
+}
+.t-privacidad ul {
+  display: grid;
+  gap: 4px;
+  padding-left: 1.2rem;
+}
+.t-privacidad-acciones {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-top: 8px;
+}
+.t-privacidad-acciones p {
+  flex-basis: 100%;
+}
+.t-modal .t-btn-s {
+  border-color: #626b78;
+  color: #fff;
+}
+.t-aviso-region {
+  position: fixed;
+  bottom: calc(5.5rem + env(safe-area-inset-bottom, 0px));
+  left: 50%;
+  z-index: 75;
+  width: min(30rem, calc(100vw - 2rem));
+  transform: translateX(-50%);
+}
+.t-aviso {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  background: #111318;
+  color: #fff;
+  font-size: 0.9rem;
+  box-shadow: 0 16px 40px -16px #000a;
+  animation: t-funde 220ms var(--t-ease, ease-out);
+}
+.t-aviso .t-inline {
+  flex: none;
+  min-height: 44px;
+  color: #fff;
+}
+.t-consulta-h2 {
+  font-size: 1.375rem;
+}

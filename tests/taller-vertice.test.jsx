@@ -170,3 +170,40 @@ describe("Páginas de Vértice", () => {
     expect($("#t-menu-movil").hidden).toBe(true)
   })
 })
+
+describe("Aviso de privacidad", () => {
+  it("dice qué guarda y borra todo con confirmación", async () => {
+    localStorage.setItem(GARAJE_KEY, JSON.stringify({ sesion: true, km: { mazda: 64000 } }))
+    localStorage.setItem(
+      CITAS_KEY,
+      JSON.stringify([
+        {
+          id: "VC-1",
+          taller: "vertice",
+          servicio: "alineacion",
+          sucursal: "cardenas",
+          fecha: new Date(2026, 10, 30, 9).toISOString(),
+          auto: "Mazda 3",
+          estado: "confirmada",
+        },
+      ]),
+    )
+    await renderTaller("/taller/garaje")
+    expect($(".t-garaje-panel")).toBeTruthy()
+    await click(button("Aviso de privacidad"))
+    const dialogo = document.querySelector("dialog")
+    expect(dialogo.textContent).toContain("Lo que guarda en este navegador")
+    await click(button("Borrar mis datos de esta demo", dialogo))
+    await click(button("No borrar", dialogo))
+    expect(localStorage.getItem(GARAJE_KEY)).not.toBeNull()
+    await click(button("Borrar mis datos de esta demo", dialogo))
+    await click(button("Sí, borrar todo", dialogo))
+    expect(document.querySelector("dialog")).toBeNull()
+    expect(localStorage.getItem(CITAS_KEY)).toBe("[]")
+    expect(localStorage.getItem(TEMA_KEY)).toBe("rosales")
+    expect(JSON.parse(localStorage.getItem(GARAJE_KEY) ?? "{}").sesion).not.toBe(true)
+    expect($(".t-aviso").textContent).toContain("Se borraron")
+    // Mi garaje es de Vértice: ahora, con Rosales, ofrece cambiar de taller.
+    expect($(".t-solo-en")).toBeTruthy()
+  })
+})
