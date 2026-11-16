@@ -28,6 +28,8 @@
 
 - **Planes en el tema Distrito (encontrado por Ian en su PC):** en la página Planes el contenido se iba a la izquierda y el fondo claro no llegaba a la orilla derecha; en la portada, la franja quedaba más angosta y el título se partía. La franja clara se hacía con márgenes calculados con `100vw`, que solo funcionan dentro de un contenedor centrado y además cuentan la barra de desplazamiento de Windows. Ahora el fondo se pinta con `border-image` hacia los lados y el contenido queda en el mismo lugar que en Cobalto. El recorrido de navegador ahora revisa Planes y la portada con Distrito activo y barras de desplazamiento visibles.
 
+- **El contenido se recorría al cambiar de tema (Ian, 16/11):** en Distrito la franja de planes llevaba 100 px más de espacio arriba (52 px en la página Planes) y la franja oscura de la portada una línea de 1 px. Ahora Distrito usa los mismos espacios que Cobalto: el fondo claro sube 72 px (40 px en teléfono) sobre el relleno de la sección anterior sin ocupar lugar, y la línea es una sombra interior. Medido en las once páginas a 1440 y 390 px: misma altura en los dos temas.
+
 Revisado sin cambios: textos de todas las páginas contra lo que hace el sitio, rutas y títulos, aviso de privacidad y borrado, créditos, temas, teclado y movimiento reducido.
 
 ## Qué revisar en la vista previa
