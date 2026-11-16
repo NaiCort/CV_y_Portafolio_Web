@@ -19,6 +19,15 @@
 - En el teléfono, la tabla de horas tranquilas se desplazaba de lado y no se alcanzaba con el teclado (axe). Ahora se acomoda al ancho sin desplazarse.
 - «Lo que no cobramos» empezó como una lista tachada: se leía mal y en el tema Distrito quedaba oscuro sobre oscuro. Quedó como una frase.
 
+## Última revisión antes de Taller (16/11)
+
+- En Clases, filtrar Movilidad o Ritmo mostraba la foto de box en el encabezado, porque esas dos disciplinas no tienen medio propio. Ahora muestran un panel con su nombre y su descripción en el color de acento, hasta que tengan video.
+- El plan Total prometía «reserva 48 h antes», algo que el horario no aplica (todos ven los mismos siete días). Ahora dice «Ilimitadas, con reserva».
+- En la tabla de horas tranquilas, cada tramo («10:00 a 17:00») ya no se parte en dos líneas en el teléfono.
+- En el tema Distrito, las marcas apagadas de intensidad se ven mejor.
+
+Revisado sin cambios: textos de todas las páginas contra lo que hace el sitio, rutas y títulos, aviso de privacidad y borrado, créditos, temas, teclado y movimiento reducido.
+
 ## Qué revisar en la vista previa
 
 1. Portada: el botón «Clase de prueba gratis» y el enlace «Así es tu primera visita».

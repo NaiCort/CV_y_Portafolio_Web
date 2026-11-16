@@ -8,7 +8,7 @@ import { aforoPorHora, horasTranquilas } from "../lib/aforo"
 // «10:00 a 17:00»; si ningún tramo baja de un tercio, la hora menos llena.
 function tramoTexto(sucursal, fecha) {
   const tramos = horasTranquilas(sucursal, fecha)
-  if (tramos.length) return tramos.map(([a, b]) => `${a}:00 a ${b}:00`).join(" y ")
+  if (tramos.length) return tramos.map(([a, b]) => `${a}:00\u00a0a\u00a0${b}:00`).join(" y ")
   const visitables = aforoPorHora(sucursal, fecha).filter((x) => x.hora >= 6 && x.hora < 22)
   const menos = visitables.reduce((a, b) => (b.pct < a.pct ? b : a))
   return `Suele estar concurrida; la hora menos llena es a las ${menos.hora}:00`

@@ -6,7 +6,7 @@ import { COACHES } from "../src/giros/gimnasio/data/coaches"
 import { SUCURSALES, findSucursal } from "../src/giros/gimnasio/data/sucursales"
 import { abierta, cuandoAbre } from "../src/giros/gimnasio/lib/aforo"
 import { horasLibres } from "../src/giros/gimnasio/lib/evaluacion"
-import { render } from "./helpers"
+import { click, render } from "./helpers"
 
 const minutos = (hora) => {
   const [h, m] = hora.split(":").map(Number)
@@ -53,6 +53,27 @@ describe("Revisión final de Brío", () => {
     expect(cuandoAbre(centro, new Date(2026, 10, 17, 23, 30))).toBe("abre mañana a las 5:30")
     // Viernes en la noche: el sábado abre a las 7:00.
     expect(cuandoAbre(centro, new Date(2026, 10, 20, 23, 30))).toBe("abre mañana a las 7:00")
+  })
+
+  it("no muestra la foto de box cuando se filtra una disciplina sin medio propio", async () => {
+    await render(
+      <MemoryRouter initialEntries={["/gimnasio/clases"]}>
+        <Routes>
+          <Route path="/gimnasio/*" element={<GimnasioApp />} />
+        </Routes>
+      </MemoryRouter>,
+    )
+    const chip = (nombre) =>
+      [...document.querySelectorAll('input[name="categoria"]')].find(
+        (i) => i.nextElementSibling.textContent === nombre,
+      )
+    await click(chip("Movilidad"))
+    const medio = document.querySelector(".b-clases-medio")
+    expect(medio.classList.contains("b-medio-texto")).toBe(true)
+    expect(medio.querySelector("img, video")).toBeNull()
+    expect(medio.textContent).toContain("Movilidad")
+    await click(chip("Ciclo"))
+    expect(document.querySelector(".b-clases-medio img")).toBeTruthy()
   })
 
   it("cuenta las clases del día sin «el hoy»", async () => {

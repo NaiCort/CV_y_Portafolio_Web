@@ -17,7 +17,7 @@ export const FILAS = [
     concepto: "Clases grupales",
     acceso: null,
     club: "Ilimitadas, con reserva",
-    total: "Ilimitadas, reserva 48 h antes",
+    total: "Ilimitadas, con reserva",
   },
   {
     concepto: "Coach personal",

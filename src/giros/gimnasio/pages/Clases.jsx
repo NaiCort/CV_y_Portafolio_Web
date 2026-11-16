@@ -77,6 +77,8 @@ export default function Clases({
       (coach === "todos" || s.coach === coach) &&
       (nivel === "todos" || findCategoria(s.categoria).nivel === nivel),
   )
+  // Movilidad y Ritmo aún no tienen video ni foto con licencia libre: se muestra su nombre.
+  const sinMedio = categoria !== "todas" && !MEDIOS[categoria]
   const medio = MEDIOS[categoria] ? categoria : "combate"
   const reservada = (s) =>
     reservas.find(
@@ -96,8 +98,15 @@ export default function Clases({
             guardan en este navegador.
           </p>
         </div>
-        <div className="b-clases-medio">
-          <Clip id={medio} prioridad />
+        <div className={sinMedio ? "b-clases-medio b-medio-texto" : "b-clases-medio"}>
+          {sinMedio ? (
+            <p>
+              <span className="b-d b-angosta">{findCategoria(categoria).nombre}</span>
+              <small>{findCategoria(categoria).desc}</small>
+            </p>
+          ) : (
+            <Clip id={medio} prioridad />
+          )}
         </div>
       </section>
 
