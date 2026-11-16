@@ -2,7 +2,7 @@
 
 Portafolio de demos interactivas de Ian Habid Aldana Martínez, una por giro de negocio.
 La fuente de planificación es el **Documento Maestro** (fuera del repositorio, versión
-vigente: V4.2.5 rev.1 del 11/11/2026). Este archivo resume lo que hace falta para trabajar
+vigente: V4.4.8, revisión documental 3 del 16/11/2026; la PARTE XII tiene el estado actual). Este archivo resume lo que hace falta para trabajar
 en el código sin tenerlo a la mano. Si algo aquí contradice una petición de Ian en la
 conversación, manda lo que Ian diga y luego se actualiza este archivo.
 
@@ -94,7 +94,7 @@ maqueta «Fachadas» para una demo futura.
 y reservas, planes y alta, área de socio con un perfil de ejemplo, coaches con evaluación
 gratuita, tienda corta y «Tu primera visita». Dirección «Combinada» con dos temas (Cobalto y
 Distrito); las tarjetas de clase son el enlace y su video en color solo corre al
-activarlas. Pendiente del visto bueno de Ian en la vista previa. Pruebas de navegador en
+activarlas. Cerrado con el visto bueno de Ian el 16/11/2026. Pruebas de navegador en
 `npm run test:browser:gimnasio`. Leer `docs/FICHA_GIMNASIO.md` antes de tocar
 `src/giros/gimnasio/`. Sin medio propio todavía: Movilidad y Ritmo.
 
