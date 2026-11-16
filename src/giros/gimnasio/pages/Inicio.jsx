@@ -4,6 +4,7 @@ import Disco from "../components/Disco"
 import MapaXalapa from "../components/MapaXalapa"
 import PaseQR from "../components/PaseQR"
 import Clip from "../components/Clip"
+import AforoDelDia from "../components/AforoDelDia"
 import TablaPlanes from "../components/TablaPlanes"
 import { SUCURSALES, findSucursal, horarioTexto } from "../data/sucursales"
 import { CATEGORIAS, HORARIO, findCategoria } from "../data/clases"
@@ -136,6 +137,7 @@ function Sucursales({ ahora }) {
                         <dd>{item.tiene.join(", ")}</dd>
                       </div>
                     </dl>
+                    <AforoDelDia sucursal={item} ahora={ahora} />
                     <p className="b-suc-ref">
                       Referencia en el mapa: {item.referencia.nombre}. Ahí no hay ningún gimnasio.
                     </p>

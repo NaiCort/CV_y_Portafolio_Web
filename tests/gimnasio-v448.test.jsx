@@ -1,9 +1,9 @@
 import { MemoryRouter, Route, Routes } from "react-router-dom"
-import { describe, expect, it } from "vitest"
+import { afterEach, describe, expect, it, vi } from "vitest"
 import GimnasioApp from "../src/giros/gimnasio/GimnasioApp"
 import { CATEGORIAS, NIVELES } from "../src/giros/gimnasio/data/clases"
 import { SUCURSALES, findSucursal } from "../src/giros/gimnasio/data/sucursales"
-import { abierta, aforoEn, horasTranquilas } from "../src/giros/gimnasio/lib/aforo"
+import { abierta, aforoEn, aforoPorHora, horasTranquilas } from "../src/giros/gimnasio/lib/aforo"
 import { click, render } from "./helpers"
 
 const renderBrio = (path) =>
@@ -71,5 +71,25 @@ describe("Tu primera visita", () => {
     expect(document.body.textContent).toContain("Qué traer")
     expect(document.querySelector('main a[href="/gimnasio/clases?prueba=1"]')).toBeTruthy()
     expect(document.querySelector('footer a[href="/gimnasio/primera-visita"]')).toBeTruthy()
+  })
+})
+
+describe("Aforo de hoy por hora", () => {
+  afterEach(() => vi.useRealTimers())
+
+  it("solo cuenta las horas abiertas y marca la actual en la ficha de la sucursal", async () => {
+    const sabado = new Date(2026, 10, 21, 12)
+    expect(aforoPorHora(findSucursal("centro"), sabado).map((x) => x.hora)).toEqual([
+      7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
+    ])
+    expect(aforoPorHora(findSucursal("macuiltepetl"), sabado)).toHaveLength(24)
+    vi.useFakeTimers({ toFake: ["Date"] })
+    vi.setSystemTime(new Date(2026, 10, 17, 18, 20))
+    await renderBrio("/gimnasio")
+    const ficha = document.querySelector("#b-suc-centro-datos .b-aforo-dia")
+    expect(ficha.querySelector("figcaption").textContent).toMatch(/más lleno a las \d+:00/)
+    expect(ficha.querySelector(".is-ahora")).toBeTruthy()
+    expect(ficha.querySelector(".b-oculto").textContent).toContain("18:00")
+    expect(ficha.querySelector(".b-oculto").textContent).toContain("(ahora)")
   })
 })
