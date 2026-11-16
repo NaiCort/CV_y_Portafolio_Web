@@ -23,7 +23,7 @@
 
 - **NOM-174-SCFI-2007**, vigente, aplica a la reparación y mantenimiento de vehículos: lista de precios de los servicios a la vista, contrato de adhesión registrado en Profeco (con su número y fecha), orden de servicio con el estado del vehículo al recibirlo y responsabilidad del taller por daños mientras lo tiene ([AMDA](https://www.amda.mx/profeco-registro-y-contratos-de-adhesion/), [vLex](https://vlex.com.mx/vid/practicas-comerciales-elementos-prestacion-39526977), [Garage Auto](https://garageauto.app/orden-de-servicio-cfdi-taller/)).
 - **LFPC:** presupuesto por escrito antes del servicio con refacciones, mano de obra y vigencia (art. 59); comprobante de los trabajos con desglose y garantía (art. 62); **garantía mínima de 90 días** desde la entrega (art. 77, reforma de 2018; antes eran 60); si el servicio es deficiente, bonificación de al menos 20 % (arts. 92 Bis y 92 Ter) ([LFPC, Cámara de Diputados](http://www.diputados.gob.mx/LeyesBiblio/pdf/LFPC.pdf), [Juristas](https://juristas.mx/en/laws/ley-federal-de-proteccion-al-consumidor/articulo-77)).
-- **Contrato tipo:** si el cliente no acepta el presupuesto, paga solo la revisión y el diagnóstico; las piezas reemplazadas quedan a su disposición al recoger, salvo que diga lo contrario, sean de garantía o residuos peligrosos; el tiempo en reparación no cuenta dentro de la garantía ([contrato registrado, RPCA 2025](https://rpca.profeco.gob.mx/getDoc?p=5337-2025), [Garage Auto](https://garageauto.app/orden-de-servicio-cfdi-taller/)).
+- **Contrato tipo:** si el cliente no acepta el presupuesto, paga solo la revisión y el diagnóstico; las piezas reemplazadas quedan a su disposición al recoger, salvo que diga lo contrario, sean de garantía o residuos peligrosos; el tiempo en reparación no cuenta dentro de la garantía. Leído directamente el 16/11: un aumento de más de 20 % sobre el presupuesto necesita autorización por escrito; las refacciones son nuevas salvo que el cliente autorice usadas o reconstruidas; la garantía de 90 días cubre la mano de obra y las refacciones llevan la del fabricante; si el auto no se recoge en 48 horas, el taller puede cobrar depósito (un salario mínimo por cada 24 horas); el cliente puede cancelar dentro de cinco días hábiles si el servicio no ha empezado ([contrato registrado, RPCA 2025](https://rpca.profeco.gob.mx/getDoc?p=5337-2025), [Garage Auto](https://garageauto.app/orden-de-servicio-cfdi-taller/)).
 - **Quejas más comunes ante Profeco:** no dar garantía ni nota, no mostrar tarifas, no devolver las piezas cambiadas, entregar tarde y cobrar distinto a lo acordado. En un operativo nacional, Profeco verificó 409 talleres y sancionó a 197, sobre todo por no tener contrato registrado, no informar precios ni garantías ([LJA](https://www.lja.mx/2014/09/talleres-mecanicos-el-cuarto-servicio-mas-denunciado-ante-la-profeco/), [Quadratín](https://jalisco.quadratin.com.mx/principal/sanciona-profeco-197-talleres-mecanicos-diversas-irregularidades/), [El Horizonte](https://www.elhorizonte.mx/finanzas/por-tener-mas-quejas-profeco-verifica-a-los-talleres-mecanicos/1874479)).
 
 ## 4. Diseño y movimiento
@@ -54,3 +54,30 @@ Fuera de alcance, como en las otras demos: pagos reales, integración con asegur
 4. **¿Hojalatería con aseguradora** (siniestro, deducible, autorización)? ¿Híbridos?
 5. **¿Venta de refacciones o productos?** Mi recomendación es que no: el taller vende servicio.
 6. **¿Tienes referencias** propias (sitios o talleres que te gusten), como las de Awwwards para Gimnasio?
+
+## 7. Respuestas de Ian (16/11) y propuesta
+
+1. **Dos talleres en una demo, uno por tema.** A diferencia de las otras demos, el tema no cambia solo los colores: cambia de negocio.
+   - Un taller **general, de barrio y familiar, independiente**, con un solo local.
+   - Un taller **multimarca de ciudad**, más grande, con varias sucursales.
+2. **Sucursales:** el taller familiar tiene un solo taller; el multimarca, varias sucursales en la ciudad.
+3. **¿Un perfil de cliente es algo que un taller realmente maneja?** Sí, pero según su tamaño:
+   - **Cadenas grandes:** Firestone ofrece una cuenta gratuita con «garaje digital» (autos, historial, mantenimiento recomendado y citas) y deja ver el estado del servicio sin cuenta ([Firestone](https://www.firestonecompleteautocare.com/vehicle-health-dashboard/)).
+   - **Talleres independientes:** con programas como Shopmonkey o Tekmetric mandan un enlace por mensaje para ver el avance, la inspección con fotos y aprobar el presupuesto, sin cuenta.
+   - **En México, el taller de barrio** lo hace por WhatsApp.
+
+   **Propuesta:** el taller familiar no tiene cuenta. Tiene «Consulta tu auto» con folio y placas (el enlace que llegaría por WhatsApp), con el avance, las fotos, el presupuesto para aprobar y la garantía. El multimarca tiene «Mi garaje», con cuenta de ejemplo, autos, historial, recordatorios por kilometraje, garantías vigentes y citas en cualquier sucursal. Así cada uno se comporta como lo haría de verdad.
+4. **Sí a todo, con especialidades.** Propuesta de reparto:
+   - **Taller familiar:**
+     - mecánica general y diagnóstico honesto, con trato directo con el dueño;
+     - precios por servicio y revisión antes de comprar un auto usado;
+     - mecánico a domicilio en la colonia.
+   - **Taller multimarca:**
+     - hojalatería y pintura con aseguradoras (siniestro, deducible, autorización);
+     - técnicos capacitados en híbridos;
+     - recolección y entrega;
+     - varias sucursales y cuenta de cliente.
+
+   Los dos cumplen lo mismo ante Profeco: presupuesto, orden de servicio, garantía de 90 días y piezas devueltas.
+5. **Sin venta de refacciones.**
+6. **Sin referencias propias:** se armó `docs/REFERENCIAS_TALLER.md` con los talleres mejor valorados (J.D. Power, recopilaciones de 2026, cadenas mexicanas y talleres de Xalapa), con un indicador de cuáles se pudieron abrir. Ninguno se pudo abrir desde el entorno por la red.
