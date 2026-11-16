@@ -31,6 +31,11 @@ Entorno: Node 22, Chromium de Playwright, compilación de producción con `vite 
 - Medido con barras de desplazamiento visibles a 390, 1440 y 1980 px: en Planes y en la portada, la sección, el título y la tabla quedan en la misma posición con Cobalto y con Distrito, sin desplazamiento horizontal.
 - `npm run test:browser:gimnasio` ahora abre Planes y la portada con Distrito activo, revisa el desbordamiento y que el título de planes quede alineado con el logotipo. **5 de 5 aprobados.**
 
+## Cambio de tema sin saltos (16/11)
+
+- Altura de página en Cobalto y en Distrito, con barras de desplazamiento visibles, en las once páginas de Brío a 1440 y 390 px: **idéntica** en todas, sin desplazamiento horizontal. Posición del título de planes idéntica en la portada y en Planes a 390, 768, 1440 y 1980 px.
+- El recorrido de navegador cambia de Distrito a Cobalto en Planes y en la portada y comprueba que la altura y el título no se muevan.
+
 ## No comprobado
 
 Teléfono físico, Safari, lector de pantalla real y la importación del `.ics` en cada aplicación de calendario: revisión de Ian en la vista previa.

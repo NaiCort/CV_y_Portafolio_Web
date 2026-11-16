@@ -307,7 +307,8 @@
   color: var(--b-oscuro-texto);
 }
 .brio-root[data-tema="distrito"] .b-oscura {
-  border-top: 1px solid var(--b-linea);
+  /* Línea divisoria sin ocupar espacio: los dos temas miden lo mismo. */
+  box-shadow: inset 0 1px 0 var(--b-linea);
 }
 .b-oscura .b-lead {
   color: var(--b-oscuro-suave);
@@ -753,12 +754,18 @@
   padding-bottom: 120px;
 }
 /* En Distrito la franja de planes va en claro de orilla a orilla. El fondo se pinta con
-   border-image hacia los lados, así el contenido queda en el mismo lugar que en Cobalto y la
-   barra de desplazamiento no provoca desborde (antes se usaban márgenes con 100vw). */
+   border-image hacia los lados y 72 px hacia arriba (sobre el relleno de la sección anterior),
+   sin ocupar lugar: los espacios son los mismos que en Cobalto y nada se mueve al cambiar de
+   tema, y la barra de desplazamiento no provoca desborde (antes se usaban márgenes con 100vw
+   y 100 px de relleno extra). */
 .brio-root[data-tema="distrito"] .b-planes {
-  padding-top: 100px;
-  border-image: conic-gradient(var(--b-planes-fondo) 0 0) fill 0 / /0 100vw;
+  background: var(--b-planes-fondo);
+  border-image: conic-gradient(var(--b-planes-fondo) 0 0) fill 0 / /72px 100vw 0;
   color: #141312;
+}
+/* En la página Planes la franja empieza justo debajo del encabezado. */
+.brio-root[data-tema="distrito"] .b-planes-pagina {
+  border-image-outset: 0 100vw;
 }
 .b-planes h2 {
   margin-bottom: 36px;
@@ -2883,6 +2890,9 @@ html[data-brio-tema="distrito"] {
   }
   .b-clase-tarjeta {
     height: 340px;
+  }
+  .brio-root[data-tema="distrito"] .b-planes:not(.b-planes-pagina) {
+    border-image-outset: 40px 100vw 0;
   }
   .b-socio {
     grid-template-columns: 1fr;

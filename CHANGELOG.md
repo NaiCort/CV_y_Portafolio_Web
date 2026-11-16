@@ -7,7 +7,7 @@
 - Planes: «Lo que no cobramos», cuatro preguntas de Profeco y opiniones de socios de ejemplo declaradas como inventadas; mantenimiento anual $0 en el alta.
 - «Agregar a mi calendario» (archivo .ics) en reservas y evaluación.
 - Corregir el botón principal de los diálogos, que perdía el fondo al pasar el ratón.
-- Corregir Planes en el tema Distrito: el contenido se iba a la izquierda y el fondo claro no llegaba a la orilla.
+- Corregir Planes en el tema Distrito: el contenido se iba a la izquierda, el fondo claro no llegaba a la orilla y la página se recorría al cambiar de tema.
 - Última revisión: Movilidad y Ritmo sin la foto de box en Clases, sin la promesa de reservar 48 h antes en el plan Total y tramos de horas sin cortes.
 - Ocho pruebas nuevas y dos ampliadas.
 
