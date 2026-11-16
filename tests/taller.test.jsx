@@ -5,6 +5,8 @@ import TallerApp from "../src/giros/taller/TallerApp"
 import { TALLERES, findServicio } from "../src/giros/taller/data/talleres"
 import { TESTIGOS, URGENCIAS } from "../src/giros/taller/data/testigos"
 import { FOTOS } from "../src/giros/taller/data/medios"
+import { LOCAL_ROSALES, SUCURSALES_VERTICE } from "../src/giros/taller/data/ubicaciones"
+import { estadoAhora, horarioAgrupado } from "../src/giros/taller/lib/horario"
 import { buscarOrden, ETAPAS, ETAPA_EJEMPLO } from "../src/giros/taller/lib/consulta"
 import { precioServicio, precioTexto } from "../src/giros/taller/lib/formato"
 import { TEMA_KEY, guardarTema, leerTema } from "../src/giros/taller/lib/tema"
@@ -64,6 +66,58 @@ describe("Datos del taller", () => {
   })
 })
 
+describe("Ubicaciones", () => {
+  const km = ([lon1, lat1], [lon2, lat2]) => Math.hypot((lon1 - lon2) * 105, (lat1 - lat2) * 111)
+  it("ubica los dos talleres en Xalapa, en zonas distintas y sin repetir puntos", () => {
+    const puntos = [LOCAL_ROSALES, ...SUCURSALES_VERTICE]
+    for (const p of puntos) {
+      const [lon, lat] = p.coordenadas
+      expect(lon, p.id).toBeGreaterThan(-96.97)
+      expect(lon, p.id).toBeLessThan(-96.86)
+      expect(lat, p.id).toBeGreaterThan(19.49)
+      expect(lat, p.id).toBeLessThan(19.59)
+      expect(p.referencia.osm, p.id).toMatch(/^(way|node|relation)\/\d+$/)
+      expect(p.horario, p.id).toHaveLength(7)
+    }
+    // El taller familiar no comparte zona con ninguna sucursal del multimarca (más de 2 km).
+    for (const s of SUCURSALES_VERTICE)
+      expect(km(LOCAL_ROSALES.coordenadas, s.coordenadas), s.id).toBeGreaterThan(2)
+    expect(new Set(SUCURSALES_VERTICE.map((s) => s.id)).size).toBe(4)
+  })
+
+  it("dice si está abierto y cuándo abre", () => {
+    const h = LOCAL_ROSALES.horario
+    // Martes 17 de noviembre de 2026.
+    expect(estadoAhora(h, new Date(2026, 10, 17, 10))).toEqual({
+      abierto: true,
+      texto: "Abierto hasta las 18:30",
+    })
+    expect(estadoAhora(h, new Date(2026, 10, 17, 7)).texto).toBe("Abre hoy a las 8:30")
+    expect(estadoAhora(h, new Date(2026, 10, 17, 19)).texto).toBe("Abre mañana a las 8:30")
+    // Sábado por la tarde: el domingo cierra, abre el lunes.
+    expect(estadoAhora(h, new Date(2026, 10, 21, 15)).texto).toBe("Abre el lunes a las 8:30")
+  })
+
+  it("agrupa los días con el mismo horario", () => {
+    const grupos = horarioAgrupado(LOCAL_ROSALES.horario, [
+      "Domingo",
+      "Lunes",
+      "Martes",
+      "Miércoles",
+      "Jueves",
+      "Viernes",
+      "Sábado",
+    ])
+    expect(grupos.map((g) => [g.dias, g.texto])).toEqual([
+      ["Lunes a viernes", "8:30 a 18:30"],
+      ["Sábado", "8:30 a 14:00"],
+      ["Domingo", "Cerrado"],
+    ])
+    expect(grupos[0].incluye(3)).toBe(true)
+    expect(grupos[0].incluye(0)).toBe(false)
+  })
+})
+
 describe("Consulta tu auto", () => {
   const orden = TALLERES.rosales.orden
   it("encuentra la orden de ejemplo sin importar guiones, espacios ni mayúsculas", () => {
@@ -105,6 +159,8 @@ describe("Portada", () => {
     expect(container.querySelector("h1").textContent).toBe(TALLERES.rosales.titulo)
     expect(container.querySelector("#consulta")).toBeTruthy()
     expect(container.querySelector("#sucursales")).toBeNull()
+    expect(container.querySelector("#ubicacion .t-ficha")).toBeTruthy()
+    expect(container.querySelectorAll(".t-mapa")).toHaveLength(1)
     expect(container.querySelectorAll(".t-lista-precios li")).toHaveLength(6)
   })
 
@@ -113,7 +169,8 @@ describe("Portada", () => {
     await click(button("Vértice (multimarca)"))
     expect(container.querySelector("h1").textContent).toBe(TALLERES.vertice.titulo)
     expect(container.querySelector(".taller-root").dataset.tema).toBe("vertice")
-    expect(container.querySelectorAll(".t-sucursales li")).toHaveLength(4)
+    expect(container.querySelectorAll(".t-sucursales > li")).toHaveLength(4)
+    expect(container.querySelector("#ubicacion")).toBeNull()
     expect(container.querySelector("#consulta")).toBeNull()
     expect(container.querySelector(".t-garaje")).toBeTruthy()
     expect(localStorage.getItem(TEMA_KEY)).toBe("vertice")
@@ -135,6 +192,28 @@ describe("Portada", () => {
     await click(button("Vértice (multimarca)"))
     expect(lectura().textContent).toContain("Alineación y balanceo")
     expect(lectura().textContent).toContain("$690")
+  })
+
+  it("cada tema muestra solo sus locales y la lista elige sucursal", async () => {
+    const { container } = await renderTaller()
+    expect(container.querySelector("#ubicacion").textContent).toContain("Colonia Revolución")
+    expect(container.querySelector("#ubicacion").textContent).not.toContain("Arco Sur")
+    await click(button("Vértice (multimarca)"))
+    const lista = container.querySelector(".t-sucursales")
+    const abiertos = () => [...lista.querySelectorAll(".t-sucursal-detalle:not([hidden])")]
+    expect(abiertos()).toHaveLength(1)
+    const arco = [...lista.querySelectorAll(".t-sucursal-boton")].find((b) =>
+      b.textContent.includes("Arco Sur"),
+    )
+    await click(arco)
+    expect(arco.getAttribute("aria-expanded")).toBe("true")
+    expect(abiertos()).toHaveLength(1)
+    expect(abiertos()[0].textContent).toContain("Avenida Arco Sur")
+    expect(container.querySelector("#sucursales").textContent).not.toContain("Colonia Revolución")
+    await click(button("Agendar aquí", abiertos()[0]))
+    expect(document.querySelector("dialog").textContent).toContain(
+      "Hola, quiero agendar en la sucursal Arco Sur",
+    )
   })
 
   it("agenda desde el testigo con un mensaje de WhatsApp simulado", async () => {

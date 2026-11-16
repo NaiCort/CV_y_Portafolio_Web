@@ -17,12 +17,20 @@ estructura (como Cobalto y Distrito en Brío, pero aquí cada tema es otro negoc
   por servicio, revisión antes de comprar un usado y mecánico a domicilio en la colonia. Sin
   cuenta: el cliente consulta su auto con el folio de la orden y sus placas.
 - **Vértice**: servicio automotriz multimarca con cuatro sucursales (Ánimas, Centro, Arco
-  Sur y Sumidero), cada una con su especialidad: hojalatería con aseguradoras, mecánica
+  Sur y Lázaro Cárdenas), cada una con su especialidad: hojalatería con aseguradoras, mecánica
   general, híbridos, llantas y alineación. Recolección y entrega, fotos y video del
   diagnóstico, autorización por WhatsApp y una cuenta «Mi garaje».
 
-Todo es ficticio: talleres, personas, folios, placas, precios y el número de contrato. Las
-sucursales usan avenidas reales de Xalapa como referencia; ahí no hay ningún taller.
+Todo es ficticio: talleres, personas, folios, placas, precios y el número de contrato. Cada
+local está junto a una calle o lugar real de Xalapa que sirve de referencia; ahí no hay ningún
+taller.
+
+**Ubicación (V4.5.1, pedido de Ian):** mapa real de Xalapa (MapLibre y OpenFreeMap, como
+Brío). Cada tema muestra solo sus locales y los dos negocios no comparten zona. Rosales tiene
+un solo local en la colonia Revolución, al norte, en estilo claro, con una ficha fija al lado:
+abierto ahora, horario, cómo llegar, estacionamiento, accesibilidad y lo que ofrece. Vértice
+tiene cuatro sucursales en el oriente, el sur y el centro, en estilo oscuro, con una lista que
+se desplaza junto al mapa; elegir una en el mapa o en la lista abre su ficha.
 
 - **Idea propia del giro:** el **tablero del auto**. El cliente llega con una pregunta
   («se prendió esta luz») y el sitio la contesta: qué puede ser, si urge y cuánto cuesta

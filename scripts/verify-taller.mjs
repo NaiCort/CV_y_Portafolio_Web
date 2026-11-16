@@ -6,11 +6,19 @@ const go = async (page, base, path) => {
   await page.locator("main h1").waitFor()
 }
 const altura = (page) => page.evaluate(() => document.documentElement.scrollHeight)
-const tema = (page, nombre) =>
-  page
+// Cambia de taller y espera a que terminen las transiciones de color (200 ms).
+const tema = async (page, nombre) => {
+  await page
     .locator(".t-temas")
     .getByRole("button", { name: new RegExp(`^${nombre}`) })
     .click()
+  await page.waitForFunction(() =>
+    document
+      .querySelector(".taller-root")
+      .getAnimations({ subtree: true })
+      .every((a) => a.playState !== "running"),
+  )
+}
 
 await suite("taller", async ({ run, base }) => {
   for (const width of [320, 390, 768, 1024, 1440])
@@ -62,6 +70,13 @@ await suite("taller", async ({ run, base }) => {
         )
         await audit(page)
 
+        // Mapa de Rosales: un solo local, distinto de los de Vértice, con su ficha al lado.
+        await page.locator("#ubicacion .t-mapa").scrollIntoViewIfNeeded()
+        await page.locator(".t-pin").first().waitFor({ timeout: 20000 })
+        assert.equal(await page.locator(".t-pin").count(), 1)
+        assert.match(await page.locator("#ubicacion .t-ficha").textContent(), /Colonia Revolución/)
+        await audit(page)
+
         // Barra de contacto en teléfono; la llamada es simulada.
         const barra = page.locator(".t-barra-movil")
         if (width < 640) {
@@ -79,7 +94,21 @@ await suite("taller", async ({ run, base }) => {
         // Cambiar de taller: Vértice tiene sucursales y Mi garaje, y lo recuerda al volver.
         await tema(page, "Vértice")
         await page.locator("#sucursales").waitFor()
-        assert.equal(await page.locator(".t-sucursales li").count(), 4)
+        assert.equal(await page.locator(".t-sucursales > li").count(), 4)
+        // Mapa de Vértice: cuatro marcas; tocar una abre su ficha en la lista.
+        await page.locator("#sucursales .t-mapa").scrollIntoViewIfNeeded()
+        await page.locator(".t-pin").nth(3).waitFor({ timeout: 20000 })
+        assert.equal(await page.locator(".t-pin").count(), 4)
+        await page.locator(".t-pin", { hasText: "Arco Sur" }).click()
+        await page.locator("#t-suc-arco-sur").waitFor()
+        assert.equal(
+          await page
+            .locator(".t-sucursal-boton", { hasText: "Arco Sur" })
+            .getAttribute("aria-expanded"),
+          "true",
+        )
+        await bounds(page)
+        await audit(page)
         assert.equal(await page.locator("#consulta").count(), 0)
         assert.equal(await page.locator(".taller-root").getAttribute("data-tema"), "vertice")
         await page.reload()
