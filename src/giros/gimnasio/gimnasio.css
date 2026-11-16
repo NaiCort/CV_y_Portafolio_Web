@@ -2343,6 +2343,11 @@ a.b-producto:hover .b-producto-nombre {
   text-decoration: line-through;
   cursor: not-allowed;
 }
+.b-hero-nota {
+  margin-top: 12px;
+  color: var(--b-suave);
+  font-size: 0.875rem;
+}
 /* Pasada de cierre (V4.4.7): esquema de color, anclas, toque y estados al pasar el ratón */
 .brio-root {
   color-scheme: light;

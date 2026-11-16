@@ -153,6 +153,10 @@ describe("Inicio de Brío", () => {
     // Sin IntersectionObserver (jsdom) el mapa espera a que se pida.
     expect(button("Ver el mapa de Xalapa")).toBeTruthy()
     expect(document.querySelectorAll('a[href="#"]')).toHaveLength(0)
+    // La portada ofrece primero la clase de prueba gratis (decisión del 16/11).
+    const principal = document.querySelector(".b-hero .b-btn-p")
+    expect(principal.getAttribute("href")).toBe("/gimnasio/clases?prueba=1")
+    expect(principal.textContent).toBe("Clase de prueba gratis")
     expect(document.querySelector(".b-qr path").getAttribute("d")).toMatch(/^M\d/)
   })
 

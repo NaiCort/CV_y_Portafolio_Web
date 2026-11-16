@@ -327,13 +327,14 @@ export default function Inicio() {
               coaches de planta. Tu membresía abre todas, desde el primer día.
             </p>
             <div className="b-acciones">
-              <Link className="b-btn b-btn-p" to="/gimnasio/clases">
-                Reservar una clase
+              <Link className="b-btn b-btn-p" to="/gimnasio/clases?prueba=1">
+                Clase de prueba gratis
               </Link>
               <Link className="b-btn" to="/gimnasio/planes">
                 Comparar planes
               </Link>
             </div>
+            <p className="b-hero-nota">Sin membresía y sin tarjeta: eliges la clase y llegas.</p>
           </div>
           <Disco />
         </section>
