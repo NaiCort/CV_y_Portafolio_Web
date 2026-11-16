@@ -36,6 +36,12 @@ Entorno: Node 22, Chromium de Playwright, compilación de producción con `vite 
 - Altura de página en Cobalto y en Distrito, con barras de desplazamiento visibles, en las once páginas de Brío a 1440 y 390 px: **idéntica** en todas, sin desplazamiento horizontal. Posición del título de planes idéntica en la portada y en Planes a 390, 768, 1440 y 1980 px.
 - El recorrido de navegador cambia de Distrito a Cobalto en Planes y en la portada y comprueba que la altura y el título no se muevan.
 
+## Sin destello al cambiar de tema (16/11)
+
+- Cambio de Distrito a Cobalto y de Cobalto a Distrito con la animación activa, en la portada y en Planes, leyendo los colores en cada cuadro durante 320 ms: la franja de planes se mantiene clara (luminosidad mínima 232 de 255) y el título oscuro (máxima 23). Captura a mitad de la animación sin fondo negro.
+- El recorrido de navegador comprueba que la franja de planes tenga fondo propio en Cobalto.
+- Alturas de las once páginas iguales en los dos temas, otra vez, y axe sin infracciones en Inicio, Planes y alta.
+
 ## No comprobado
 
 Teléfono físico, Safari, lector de pantalla real y la importación del `.ics` en cada aplicación de calendario: revisión de Ian en la vista previa.

@@ -30,6 +30,8 @@
 
 - **El contenido se recorría al cambiar de tema (Ian, 16/11):** en Distrito la franja de planes llevaba 100 px más de espacio arriba (52 px en la página Planes) y la franja oscura de la portada una línea de 1 px. Ahora Distrito usa los mismos espacios que Cobalto: el fondo claro sube 72 px (40 px en teléfono) sobre el relleno de la sección anterior sin ocupar lugar, y la línea es una sombra interior. Medido en las once páginas a 1440 y 390 px: misma altura en los dos temas.
 
+- **Destello al pasar de Distrito a Cobalto (Ian, 16/11):** la página anima el cambio de colores en 240 ms. En Cobalto la franja de planes era transparente, así que durante esa animación dejaba ver el fondo todavía oscuro y el título heredaba el color todavía claro: por un instante, fondo negro con letras blancas. Ahora la franja tiene su propio fondo claro y texto oscuro en los dos temas (en Cobalto, del mismo color que la página), con la misma forma; solo en Distrito sube sobre la sección oscura anterior. Medido cuadro por cuadro durante la animación, en los dos sentidos: la franja nunca baja de una luminosidad de 232 y el título nunca pasa de 23.
+
 Revisado sin cambios: textos de todas las páginas contra lo que hace el sitio, rutas y títulos, aviso de privacidad y borrado, créditos, temas, teclado y movimiento reducido.
 
 ## Qué revisar en la vista previa

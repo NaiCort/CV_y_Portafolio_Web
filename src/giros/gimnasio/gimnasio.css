@@ -32,7 +32,8 @@
   --b-telefono: #16171a;
   --b-pantalla: #f6f3ee;
   --b-pantalla-texto: #16171a;
-  --b-planes-fondo: transparent;
+  --b-planes-fondo: #ece8e1;
+  --b-planes-tinta: #16171a;
   --b-ease: cubic-bezier(0.23, 1, 0.32, 1);
   --b-titulo: "Brio Titulo", "Arial Black", sans-serif;
   --b-texto: "Brio Texto", system-ui, sans-serif;
@@ -66,6 +67,7 @@
   --b-pantalla: #ede8df;
   --b-pantalla-texto: #141312;
   --b-planes-fondo: #ede8df;
+  --b-planes-tinta: #141312;
 }
 .brio-root ::selection {
   background: var(--b-acento);
@@ -750,22 +752,20 @@
 }
 
 /* Planes */
+/* La franja de planes tiene su propio fondo claro y texto oscuro en los dos temas, pintado de
+   orilla a orilla con border-image hacia los lados, sin ocupar lugar. Así no se transparenta
+   mientras la página anima el cambio de tema (antes, de Distrito a Cobalto se veía un instante
+   en negro con letras blancas) y los espacios son los mismos en Cobalto y en Distrito. */
 .b-planes {
   padding-bottom: 120px;
-}
-/* En Distrito la franja de planes va en claro de orilla a orilla. El fondo se pinta con
-   border-image hacia los lados y 72 px hacia arriba (sobre el relleno de la sección anterior),
-   sin ocupar lugar: los espacios son los mismos que en Cobalto y nada se mueve al cambiar de
-   tema, y la barra de desplazamiento no provoca desborde (antes se usaban márgenes con 100vw
-   y 100 px de relleno extra). */
-.brio-root[data-tema="distrito"] .b-planes {
   background: var(--b-planes-fondo);
-  border-image: conic-gradient(var(--b-planes-fondo) 0 0) fill 0 / /72px 100vw 0;
-  color: #141312;
+  border-image: conic-gradient(var(--b-planes-fondo) 0 0) fill 0 / /0 100vw;
+  color: var(--b-planes-tinta);
 }
-/* En la página Planes la franja empieza justo debajo del encabezado. */
-.brio-root[data-tema="distrito"] .b-planes-pagina {
-  border-image-outset: 0 100vw;
+/* En Distrito la franja sube 72 px sobre el relleno oscuro de la sección anterior (en Cobalto
+   no, para no cortar la sombra del teléfono). En la página Planes empieza bajo el encabezado. */
+.brio-root[data-tema="distrito"] .b-planes:not(.b-planes-pagina) {
+  border-image-outset: 72px 100vw 0;
 }
 .b-planes h2 {
   margin-bottom: 36px;
