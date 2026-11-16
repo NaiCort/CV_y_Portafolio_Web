@@ -181,6 +181,19 @@ await suite("gimnasio", async ({ run, base }) => {
             ),
           )
           assert(Math.abs(logo - planes) < 2, `Planes alineado en Distrito (${ruta})`)
+          // Cambiar de tema no debe mover nada: misma altura de página y mismo lugar del título.
+          const medir = () =>
+            page.evaluate(() => [
+              document.documentElement.scrollHeight,
+              Math.round(
+                document.querySelector(".b-planes h1, .b-planes h2").getBoundingClientRect().top +
+                  scrollY,
+              ),
+            ])
+          const distrito = await medir()
+          await button(page, "Tema Cobalto").click()
+          assert.deepEqual(await medir(), distrito, `Mismo tamaño en los dos temas (${ruta})`)
+          await button(page, "Tema Distrito").click()
         }
         await go(page, base, "/gimnasio/carrito")
         await page.locator("footer").getByRole("button", { name: "Aviso de privacidad" }).click()
