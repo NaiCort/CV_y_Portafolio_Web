@@ -9,9 +9,11 @@ import useFavicon from "../../hooks/useFavicon"
 import usePageMetadata from "../../hooks/usePageMetadata"
 import Inicio from "./pages/Inicio"
 import Creditos from "./pages/Creditos"
+import Cita from "./pages/Cita"
 import SelectorTema from "./components/SelectorTema"
 import { TALLERES } from "./data/talleres"
 import { guardarTema, leerTema } from "./lib/tema"
+import { cargarCitas, guardarCitas } from "./lib/citas"
 import "./taller.css"
 
 const SECCIONES = {
@@ -29,7 +31,11 @@ const SECCIONES = {
     ["sucursales", "Sucursales"],
   ],
 }
-const TITULOS = { "/taller": "Inicio", "/taller/creditos": "Créditos" }
+const TITULOS = {
+  "/taller": "Inicio",
+  "/taller/cita": "Agendar cita",
+  "/taller/creditos": "Créditos",
+}
 const MENSAJES = {
   rosales: [
     "Hola, ¿pueden revisar mi auto esta semana?",
@@ -85,6 +91,12 @@ function GuiaTaller() {
         </li>
         <li>En Vértice, «Mi garaje» muestra un perfil de ejemplo.</li>
         <li>
+          «Agendar cita» pide el servicio, el auto, dónde y cuándo, y tus datos. En Rosales el
+          mecánico puede ir a domicilio dentro de la colonia; en Vértice se elige sucursal y se
+          puede pedir recolección. Las horas tachadas son ocupaciones simuladas. Las citas se
+          guardan solo en este navegador y se pueden cancelar o agregar al calendario.
+        </li>
+        <li>
           Llamar y WhatsApp abren una simulación: no se marca ni se envía nada. Precios, personas y
           horarios son de ejemplo.
         </li>
@@ -137,10 +149,12 @@ export default function TallerApp() {
     } else document.querySelector("#contenido h1")?.focus({ preventScroll: true })
   }, [pathname, hash])
 
-  const agendar = (mensaje) =>
-    setChat({
-      mensajes: mensaje ? [mensaje, ...MENSAJES[tema].slice(0, 2)] : MENSAJES[tema],
-    })
+  // Citas simuladas, guardadas en este navegador.
+  const [citas, setCitas] = useState(() => cargarCitas(storage()))
+  useEffect(() => guardarCitas(storage(), citas), [citas])
+  const agregarCita = (cita) => setCitas((c) => [...c, cita])
+  const cancelarCita = (id) =>
+    setCitas((c) => c.map((x) => (x.id === id ? { ...x, estado: "cancelada" } : x)))
   const whatsapp = () => setChat({ mensajes: MENSAJES[tema] })
 
   return (
@@ -165,6 +179,13 @@ export default function TallerApp() {
             <span className="t-oculto">Llamar al </span>
             {taller.telefono}
           </button>
+          <Link
+            className="t-btn t-btn-p t-cab-cita"
+            to="/taller/cita"
+            aria-current={pathname.replace(/\/+$/, "") === "/taller/cita" ? "page" : undefined}
+          >
+            Agendar cita
+          </Link>
         </div>
       </header>
       <main id="contenido" tabIndex={-1}>
@@ -172,11 +193,18 @@ export default function TallerApp() {
           <Route
             index
             element={
-              <Inicio
+              <Inicio taller={taller} onWhatsApp={whatsapp} onLlamar={() => setLlamada(true)} />
+            }
+          />
+          <Route
+            path="cita"
+            element={
+              <Cita
+                key={tema}
                 taller={taller}
-                onAgendar={agendar}
-                onWhatsApp={whatsapp}
-                onLlamar={() => setLlamada(true)}
+                citas={citas}
+                onAgendar={agregarCita}
+                onCancelar={cancelarCita}
               />
             }
           />
@@ -201,7 +229,7 @@ export default function TallerApp() {
           <p>{taller.horario}</p>
           <p>
             Garantía de {taller.garantia} en mano de obra. Negocio ficticio creado para una
-            demostración; solo guarda en tu navegador el taller elegido.
+            demostración; solo guarda en tu navegador el taller elegido y tus citas de ejemplo.
           </p>
         </div>
         <Link to="/taller/creditos">Créditos de fotos y tipografías</Link>
@@ -213,9 +241,7 @@ export default function TallerApp() {
         <button type="button" onClick={whatsapp}>
           WhatsApp
         </button>
-        <button type="button" onClick={() => agendar()}>
-          Agendar
-        </button>
+        <Link to="/taller/cita">Agendar</Link>
       </nav>
       {llamada && <LlamadaSimulada taller={taller} onCerrar={() => setLlamada(false)} />}
       <WhatsAppPreview

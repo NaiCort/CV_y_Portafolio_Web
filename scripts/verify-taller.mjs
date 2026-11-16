@@ -31,7 +31,7 @@ await suite("taller", async ({ run, base }) => {
       },
       async ({ page }) => {
         for (const taller of ["Mecánica Rosales", "Vértice"]) {
-          for (const path of ["/taller", "/taller/creditos"]) {
+          for (const path of ["/taller", "/taller/cita", "/taller/creditos"]) {
             await go(page, base, path)
             await tema(page, taller)
             assert.equal(await page.locator("h1").count(), 1, `Un h1 en ${path}`)
@@ -50,13 +50,44 @@ await suite("taller", async ({ run, base }) => {
         assert.match(await page.locator("#t-lectura h3").textContent(), /Temperatura del motor/)
         assert.match(await page.locator("#t-lectura").textContent(), /Detente/)
 
-        // Agendar desde el testigo abre el WhatsApp simulado con ese mensaje.
-        await button(page.locator("#t-lectura"), "Agendar revisión").click()
-        await dialog(page).waitFor()
-        assert.match(await dialog(page).textContent(), /Hola, se me encendió la luz de temperatura/)
+        // Agendar desde el testigo: la cita llega con el servicio y el aviso del testigo.
+        await page.locator("#t-lectura").getByRole("link", { name: "Agendar revisión" }).click()
+        await page.waitForURL(/\/taller\/cita\?testigo=temperatura/)
+        await page.locator("main h1").waitFor()
+        assert.match(await page.locator(".t-cita-aviso").textContent(), /Temperatura del motor/)
+        assert(await page.getByLabel("Diagnóstico con escáner", { exact: false }).isChecked())
         await bounds(page)
         await audit(page)
-        await close(page)
+        const seguir = () => page.getByRole("button", { name: "Continuar", exact: true }).click()
+        await seguir()
+        await page.getByLabel("Marca", { exact: true }).fill("Nissan")
+        await page.getByLabel("Modelo", { exact: true }).fill("Versa")
+        await seguir()
+        // No conviene manejar: queda elegido el mecánico a domicilio.
+        assert(await page.getByLabel(/Que vaya el mecánico/).isChecked())
+        await page.getByLabel("Colonia", { exact: true }).selectOption("Revolución")
+        await page.getByLabel("Calle y número", { exact: true }).fill("Calle Ejemplo 12")
+        await page.locator(".t-dias .t-chip").first().click()
+        await page.locator(".t-horas .t-chip:not(.is-ocupada)").first().click()
+        await bounds(page)
+        await audit(page)
+        await seguir()
+        await page.getByLabel("Nombre", { exact: true }).fill("Ana Ejemplo")
+        await page.getByLabel("WhatsApp", { exact: true }).fill("2280000000")
+        await seguir()
+        await page.getByRole("button", { name: "Confirmar cita" }).click()
+        await page.locator(".t-cita-hecha").waitFor()
+        assert.match(await page.locator(".t-cita-folio").textContent(), /^Folio RC-/)
+        await bounds(page)
+        await audit(page)
+        const descarga = page.waitForEvent("download")
+        await page
+          .locator(".t-cita-hecha")
+          .getByRole("button", { name: "Agregar a mi calendario" })
+          .click()
+        assert.match((await descarga).suggestedFilename(), /^RC-.+\.ics$/)
+        await page.locator(".t-cita-hecha").getByRole("link", { name: "Volver al inicio" }).click()
+        await page.locator("main h1").waitFor()
 
         // Consulta tu auto con la orden de ejemplo.
         const consulta = page.locator(".t-consulta")

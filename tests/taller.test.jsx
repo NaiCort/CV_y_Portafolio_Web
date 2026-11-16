@@ -210,19 +210,30 @@ describe("Portada", () => {
     expect(abiertos()).toHaveLength(1)
     expect(abiertos()[0].textContent).toContain("Avenida Arco Sur")
     expect(container.querySelector("#sucursales").textContent).not.toContain("Colonia Revolución")
-    await click(button("Agendar aquí", abiertos()[0]))
-    expect(document.querySelector("dialog").textContent).toContain(
-      "Hola, quiero agendar en la sucursal Arco Sur",
-    )
+    expect(
+      [...abiertos()[0].querySelectorAll("a")]
+        .find((a) => a.textContent === "Agendar aquí")
+        .getAttribute("href"),
+    ).toBe("/taller/cita?sucursal=arco-sur")
   })
 
-  it("agenda desde el testigo con un mensaje de WhatsApp simulado", async () => {
-    await renderTaller()
+  it("lleva a agendar desde la portada, el testigo y la barra del teléfono", async () => {
+    const { container } = await renderTaller()
     await click(button("Frenos"))
-    await click(button("Agendar revisión"))
+    const enlace = [...container.querySelectorAll("#t-lectura a")].find(
+      (a) => a.textContent === "Agendar revisión",
+    )
+    expect(enlace.getAttribute("href")).toBe("/taller/cita?testigo=frenos")
+    expect(container.querySelector(".t-heroe a.t-btn-p").getAttribute("href")).toBe("/taller/cita")
+    expect(container.querySelector(".t-barra-movil a").getAttribute("href")).toBe("/taller/cita")
+  })
+
+  it("WhatsApp sigue siendo una conversación simulada", async () => {
+    await renderTaller()
+    await click(button("Escribir por WhatsApp"))
     const chat = document.querySelector("dialog")
-    expect(chat.textContent).toContain("Hola, se me encendió la luz de frenos")
     expect(chat.textContent).toContain("Mecánica Rosales")
+    expect(chat.textContent).toContain("En un sitio real")
   })
 
   it("simula la llamada sin marcar a ningún número", async () => {
