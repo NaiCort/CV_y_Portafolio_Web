@@ -1,3 +1,11 @@
+# V4.5.1 · 16 de noviembre de 2026 · Taller mecánico, mapa de ubicaciones
+
+- Mapa real de Xalapa en Inicio; cada taller muestra solo sus locales, en zonas distintas.
+- Rosales: un local en la colonia Revolución con ficha fija (abierto ahora, horario, cómo llegar, estacionamiento y accesibilidad).
+- Vértice: cuatro sucursales con lista desplazable junto al mapa; elegir una abre su ficha y «Agendar aquí».
+- La sucursal Sumidero pasa a llamarse Lázaro Cárdenas.
+- Cuatro pruebas nuevas y recorridos de navegador con el mapa.
+
 # V4.5.0 · 16 de noviembre de 2026 · Taller mecánico, primera entrega
 
 - Investigación de talleres y referencias revisadas en navegador; tres maquetas de portada (Orden, Rótulo y Tablero) y dirección «Combinada» elegida por Ian.
