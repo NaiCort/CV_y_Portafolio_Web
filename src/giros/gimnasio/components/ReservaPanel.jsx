@@ -1,5 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react"
 import Modal from "../../../components/shared/Modal"
+import BotonCalendario from "./BotonCalendario"
+import { eventoDeReserva } from "../lib/calendario"
 import { findCategoria } from "../data/clases"
 import { findCoach } from "../data/coaches"
 import { findSucursal } from "../data/sucursales"
@@ -72,6 +74,9 @@ export default function ReservaPanel({
           </p>
           <p className="b-ficcion">Reserva simulada: no se envió a ningún lugar.</p>
           <div className="b-acciones">
+            {hecha.estado === "confirmada" && (
+              <BotonCalendario evento={eventoDeReserva(hecha)} nombre={`brio-${hecha.id}`} />
+            )}
             <a className="b-btn b-btn-p" href="#mis-reservas" onClick={onCerrar}>
               Ver mis reservas
             </a>

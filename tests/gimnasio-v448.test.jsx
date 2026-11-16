@@ -5,6 +5,7 @@ import { CATEGORIAS, NIVELES } from "../src/giros/gimnasio/data/clases"
 import { SUCURSALES, findSucursal } from "../src/giros/gimnasio/data/sucursales"
 import { abierta, aforoEn, aforoPorHora, horasTranquilas } from "../src/giros/gimnasio/lib/aforo"
 import { click, render } from "./helpers"
+import { crearIcs, eventoDeReserva } from "../src/giros/gimnasio/lib/calendario"
 
 const renderBrio = (path) =>
   render(
@@ -105,5 +106,31 @@ describe("Accesibilidad y estacionamiento", () => {
     expect(ficha).toContain("Accesibilidad")
     expect(ficha).toContain("Estacionamiento")
     expect(ficha).toContain(findSucursal("centro").estacionamiento)
+  })
+})
+
+describe("Agregar al calendario", () => {
+  it("arma un .ics válido con hora en UTC, duración, lugar y aviso", () => {
+    const evento = eventoDeReserva({
+      id: "BR-12345",
+      fecha: new Date(Date.UTC(2026, 10, 17, 13, 0)).toISOString(),
+      categoria: "combate",
+      sucursal: "natura",
+      coach: "rafa",
+    })
+    const ics = crearIcs({ ...evento, ahora: new Date(Date.UTC(2026, 10, 16)) })
+    expect(ics.startsWith("BEGIN:VCALENDAR\r\n")).toBe(true)
+    expect(ics).toContain("DTSTART:20261117T130000Z")
+    expect(ics).toContain("DTEND:20261117T135000Z")
+    expect(ics).toContain("UID:BR-12345@brio.demo")
+    expect(ics).toContain("SUMMARY:Combate en Brío Natura")
+    expect(ics).toContain("TRIGGER:-PT1H")
+    // Las comas del lugar van escapadas.
+    expect(ics).toMatch(/LOCATION:Brío Natura\\, /)
+    expect(ics.split("\r\n").filter((l) => l.startsWith("BEGIN:"))).toHaveLength(3)
+    for (const linea of ics.split("\r\n"))
+      expect(new TextEncoder().encode(linea).length, linea).toBeLessThanOrEqual(75)
+    // Al desplegar, la descripción completa sigue ahí.
+    expect(ics.replace(/\r\n /g, "")).toContain("Qué traer: Agua y vendas.")
   })
 })
