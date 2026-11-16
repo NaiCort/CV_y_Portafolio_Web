@@ -2493,6 +2493,12 @@ a.b-producto:hover .b-producto-nombre {
   line-height: 16px;
   text-align: center;
 }
+/* Lo que no cobramos, debajo del comparador (V4.4.8) */
+.b-sin-cobros {
+  max-width: 64ch;
+  margin-top: 20px;
+  font-size: 1.0625rem;
+}
 /* Pasada de cierre (V4.4.7): esquema de color, anclas, toque y estados al pasar el ratón */
 .brio-root {
   color-scheme: light;

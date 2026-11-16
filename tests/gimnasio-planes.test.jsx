@@ -24,7 +24,9 @@ describe("Página de Planes", () => {
       const enlaces = [...document.querySelectorAll(`a[href="/gimnasio/alta?plan=${p.id}"]`)]
       expect(enlaces.length, p.id).toBe(2)
     }
-    expect(document.querySelectorAll(".b-preguntas details")).toHaveLength(5)
+    expect(document.querySelectorAll(".b-preguntas details")).toHaveLength(9)
+    expect(document.querySelector(".b-sin-cobros").textContent).toContain("mantenimiento anual")
+    expect(document.body.textContent).toContain("¿Qué pasa si cierra una sucursal?")
     expect(document.querySelector('a[href="/gimnasio/clases?prueba=1"]')).toBeTruthy()
   })
 })
