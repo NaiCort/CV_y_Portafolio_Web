@@ -1,0 +1,26 @@
+[
+  {
+    "id": "rosales",
+    "archivo": "/taller/fotos/rosales-1280.webp",
+    "titulo": "Car repair shop.jpg",
+    "autor": "Martin Vorel",
+    "licencia": "CC BY-SA 4.0",
+    "pagina": "https://commons.wikimedia.org/wiki/File:Car_repair_shop.jpg",
+    "cambios": "Reducida a 1280 px",
+    "sha256": "7b809edfda9f8cf6aacd0cc5bebe5c109ec156cc948a0e1c04a5849744366d00",
+    "ancho": 1280,
+    "alto": 854
+  },
+  {
+    "id": "vertice",
+    "archivo": "/taller/fotos/vertice-1280.webp",
+    "titulo": "Chery A1 - service shop in Ukraine (7).jpg",
+    "autor": "ANT Berezhnyi",
+    "licencia": "CC BY 3.0",
+    "pagina": "https://commons.wikimedia.org/wiki/File:Chery_A1_-_service_shop_in_Ukraine_(7).jpg",
+    "cambios": "Matrícula difuminada; reducida a 1280 px",
+    "sha256": "9128576b371d559ea85340c1fd079a9099f5c03d923f89ada28aa9b4d8936e49",
+    "ancho": 1280,
+    "alto": 960
+  }
+]

@@ -1,3 +1,12 @@
+# V4.5.0 · 16 de noviembre de 2026 · Taller mecánico, primera entrega
+
+- Investigación de talleres y referencias revisadas en navegador; tres maquetas de portada (Orden, Rótulo y Tablero) y dirección «Combinada» elegida por Ian.
+- Ficha de identidad con dos talleres ficticios, uno por tema: Mecánica Rosales (familiar) y Vértice (multimarca, cuatro sucursales).
+- Añadir `/taller`: portada, «¿Qué luz se encendió?» con seis testigos del tablero, orden de servicio de ejemplo con partidas en semáforo, precios desde, «Consulta tu auto» (Rosales) y Mi garaje y sucursales (Vértice).
+- Llamada y WhatsApp simulados; barra de contacto en el teléfono.
+- Fuentes y fotos servidas desde el sitio, con créditos en `/taller/creditos`.
+- Añadir `npm run test:browser:taller` (5 de 5 aprobados) y catorce pruebas nuevas.
+
 # V4.4.8 · 16 de noviembre de 2026 · Brío, lo que pedía la investigación
 
 - Portada con «Clase de prueba gratis» como botón principal.
