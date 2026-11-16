@@ -2546,6 +2546,28 @@ a.b-producto:hover .b-producto-nombre {
     grid-row: auto;
   }
 }
+/* Disciplina sin medio propio en el encabezado de Clases (V4.4.8) */
+.b-medio-texto {
+  display: grid;
+  align-items: end;
+  padding: 26px;
+  background: var(--b-acento);
+  color: var(--b-sobre-acento);
+}
+.b-medio-texto p {
+  display: grid;
+  gap: 6px;
+}
+.b-medio-texto span {
+  font-size: clamp(3.5rem, 9vw, 7rem);
+  line-height: 0.85;
+}
+.b-medio-texto small {
+  font-size: 1rem;
+}
+.brio-root[data-tema="distrito"] .b-intensidad i:not(.is-on) {
+  background: color-mix(in srgb, currentColor 30%, transparent);
+}
 /* Pasada de cierre (V4.4.7): esquema de color, anclas, toque y estados al pasar el ratón */
 .brio-root {
   color-scheme: light;
