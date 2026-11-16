@@ -54,3 +54,30 @@ Fuera de alcance, como en las otras demos: pagos reales, integración con asegur
 4. **¿Hojalatería con aseguradora** (siniestro, deducible, autorización)? ¿Híbridos?
 5. **¿Venta de refacciones o productos?** Mi recomendación es que no: el taller vende servicio.
 6. **¿Tienes referencias** propias (sitios o talleres que te gusten), como las de Awwwards para Gimnasio?
+
+## 7. Respuestas de Ian (16/11) y propuesta
+
+1. **Dos talleres en una demo, uno por tema.** A diferencia de las otras demos, el tema no cambia solo los colores: cambia de negocio.
+   - Un taller **general, de barrio y familiar, independiente**, con un solo local.
+   - Un taller **multimarca de ciudad**, más grande, con varias sucursales.
+2. **Sucursales:** el taller familiar tiene un solo taller; el multimarca, varias sucursales en la ciudad.
+3. **¿Un perfil de cliente es algo que un taller realmente maneja?** Sí, pero según su tamaño:
+   - **Cadenas grandes:** Firestone ofrece una cuenta gratuita con «garaje digital» (autos, historial, mantenimiento recomendado y citas) y deja ver el estado del servicio sin cuenta ([Firestone](https://www.firestonecompleteautocare.com/vehicle-health-dashboard/)).
+   - **Talleres independientes:** con programas como Shopmonkey o Tekmetric mandan un enlace por mensaje para ver el avance, la inspección con fotos y aprobar el presupuesto, sin cuenta.
+   - **En México, el taller de barrio** lo hace por WhatsApp.
+
+   **Propuesta:** el taller familiar no tiene cuenta. Tiene «Consulta tu auto» con folio y placas (el enlace que llegaría por WhatsApp), con el avance, las fotos, el presupuesto para aprobar y la garantía. El multimarca tiene «Mi garaje», con cuenta de ejemplo, autos, historial, recordatorios por kilometraje, garantías vigentes y citas en cualquier sucursal. Así cada uno se comporta como lo haría de verdad.
+4. **Sí a todo, con especialidades.** Propuesta de reparto:
+   - **Taller familiar:**
+     - mecánica general y diagnóstico honesto, con trato directo con el dueño;
+     - precios por servicio y revisión antes de comprar un auto usado;
+     - mecánico a domicilio en la colonia.
+   - **Taller multimarca:**
+     - hojalatería y pintura con aseguradoras (siniestro, deducible, autorización);
+     - técnicos capacitados en híbridos;
+     - recolección y entrega;
+     - varias sucursales y cuenta de cliente.
+
+   Los dos cumplen lo mismo ante Profeco: presupuesto, orden de servicio, garantía de 90 días y piezas devueltas.
+5. **Sin venta de refacciones.**
+6. **Sin referencias propias:** se armó `docs/REFERENCIAS_TALLER.md` con los talleres mejor valorados (J.D. Power, recopilaciones de 2026, cadenas mexicanas y talleres de Xalapa), con un indicador de cuáles se pudieron abrir. Ninguno se pudo abrir desde el entorno por la red.
