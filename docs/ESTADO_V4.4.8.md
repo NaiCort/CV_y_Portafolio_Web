@@ -26,6 +26,8 @@
 - En la tabla de horas tranquilas, cada tramo («10:00 a 17:00») ya no se parte en dos líneas en el teléfono.
 - En el tema Distrito, las marcas apagadas de intensidad se ven mejor.
 
+- **Planes en el tema Distrito (encontrado por Ian en su PC):** en la página Planes el contenido se iba a la izquierda y el fondo claro no llegaba a la orilla derecha; en la portada, la franja quedaba más angosta y el título se partía. La franja clara se hacía con márgenes calculados con `100vw`, que solo funcionan dentro de un contenedor centrado y además cuentan la barra de desplazamiento de Windows. Ahora el fondo se pinta con `border-image` hacia los lados y el contenido queda en el mismo lugar que en Cobalto. El recorrido de navegador ahora revisa Planes y la portada con Distrito activo y barras de desplazamiento visibles.
+
 Revisado sin cambios: textos de todas las páginas contra lo que hace el sitio, rutas y títulos, aviso de privacidad y borrado, créditos, temas, teclado y movimiento reducido.
 
 ## Qué revisar en la vista previa
