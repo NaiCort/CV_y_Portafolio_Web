@@ -47,6 +47,7 @@ export default function Alta() {
   const titulo = useRef(null)
   useEffect(() => () => clearTimeout(timer.current), [])
   useEffect(() => {
+    window.scrollTo(0, 0)
     titulo.current?.focus({ preventScroll: true })
   }, [paso, hecho])
   const plan = PLANES.find((p) => p.id === datos.plan)

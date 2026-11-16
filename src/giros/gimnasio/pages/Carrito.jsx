@@ -73,7 +73,10 @@ function Linea({ linea, esSocio, dispatch }) {
 
 function Hecho({ pedido, ahora }) {
   const titulo = useRef(null)
-  useEffect(() => titulo.current?.focus(), [])
+  useEffect(() => {
+    window.scrollTo(0, 0)
+    titulo.current?.focus({ preventScroll: true })
+  }, [])
   const sucursal = findSucursal(pedido.sucursal)
   return (
     <section className="b-wrap b-carrito" aria-labelledby="b-hecho-titulo">

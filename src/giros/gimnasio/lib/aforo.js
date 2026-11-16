@@ -38,3 +38,16 @@ export function estadoAforo(porcentaje) {
   if (porcentaje < 80) return "lleno a medias"
   return "lleno"
 }
+
+// «abre a las 5:30» o «abre mañana a las 7:00», para una sucursal cerrada.
+export function cuandoAbre(sucursal, fecha) {
+  const hhmm = (h) => `${Math.floor(h)}:${String(Math.round((h % 1) * 60)).padStart(2, "0")}`
+  const ahora = fecha.getHours() + fecha.getMinutes() / 60
+  const finde = (d) => [0, 6].includes(d.getDay())
+  const [abreHoy] = finde(fecha) ? sucursal.horario.finde : sucursal.horario.semana
+  if (ahora < abreHoy) return `abre a las ${hhmm(abreHoy)}`
+  const manana = new Date(fecha)
+  manana.setDate(manana.getDate() + 1)
+  const [abre] = finde(manana) ? sucursal.horario.finde : sucursal.horario.semana
+  return `abre mañana a las ${hhmm(abre)}`
+}
