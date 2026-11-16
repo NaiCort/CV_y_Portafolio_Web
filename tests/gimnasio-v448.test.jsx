@@ -2,6 +2,8 @@ import { MemoryRouter, Route, Routes } from "react-router-dom"
 import { describe, expect, it } from "vitest"
 import GimnasioApp from "../src/giros/gimnasio/GimnasioApp"
 import { CATEGORIAS, NIVELES } from "../src/giros/gimnasio/data/clases"
+import { SUCURSALES, findSucursal } from "../src/giros/gimnasio/data/sucursales"
+import { abierta, aforoEn, horasTranquilas } from "../src/giros/gimnasio/lib/aforo"
 import { click, render } from "./helpers"
 
 const renderBrio = (path) =>
@@ -37,5 +39,37 @@ describe("Nivel, intensidad y qué traer", () => {
     }
     expect([...vistas].sort()).toEqual(["Movilidad", "Ritmo"])
     expect(document.querySelector(".b-sesiones .b-nivel").textContent).toContain("Para empezar")
+  })
+})
+
+describe("Tu primera visita", () => {
+  it("las horas tranquilas caen dentro del horario y bajo un tercio del aforo", () => {
+    for (const s of SUCURSALES)
+      for (const fecha of [new Date(2026, 10, 18, 12), new Date(2026, 10, 21, 12)])
+        for (const [a, b] of horasTranquilas(s, fecha)) {
+          expect(b - a, s.id).toBeGreaterThanOrEqual(2)
+          for (let h = a; h < b; h++) {
+            const f = new Date(fecha)
+            f.setHours(h, 30, 0, 0)
+            expect(abierta(s, f), `${s.id} ${h}:30`).toBe(true)
+            const g = new Date(fecha)
+            g.setHours(h, 0, 0, 0)
+            expect(aforoEn(s, g) ?? 0, `${s.id} ${h}:00`).toBeLessThan(35)
+          }
+        }
+    // El sábado Centro cierra a las 20:00: ningún tramo pasa de ahí.
+    const centro = horasTranquilas(findSucursal("centro"), new Date(2026, 10, 21, 12))
+    expect(Math.max(...centro.map(([, b]) => b))).toBeLessThanOrEqual(20)
+  })
+
+  it("explica la llegada, qué traer y las horas tranquilas, con enlaces desde la portada", async () => {
+    await renderBrio("/gimnasio")
+    await click(document.querySelector('.b-hero-nota a[href="/gimnasio/primera-visita"]'))
+    expect(document.querySelector("main h1").textContent).toBe("Tu primera visita")
+    expect(document.title).toContain("Tu primera visita")
+    expect(document.querySelectorAll(".b-tabla-tranquilas tbody tr")).toHaveLength(5)
+    expect(document.body.textContent).toContain("Qué traer")
+    expect(document.querySelector('main a[href="/gimnasio/clases?prueba=1"]')).toBeTruthy()
+    expect(document.querySelector('footer a[href="/gimnasio/primera-visita"]')).toBeTruthy()
   })
 })

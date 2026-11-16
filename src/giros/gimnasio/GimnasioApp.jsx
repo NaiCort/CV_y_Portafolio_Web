@@ -16,6 +16,7 @@ import Coaches from "./pages/Coaches"
 import Tienda from "./pages/Tienda"
 import Producto from "./pages/Producto"
 import Carrito from "./pages/Carrito"
+import PrimeraVisita from "./pages/PrimeraVisita"
 import { findProducto } from "./data/tienda"
 import { nombrePaquete } from "./data/coaches"
 import { TIENDA_KEY, cargarTienda, cuentas, guardarTienda, tiendaReducer } from "./lib/tienda"
@@ -54,6 +55,7 @@ const TITULOS = {
   "/gimnasio/coaches": "Coaches",
   "/gimnasio/tienda": "Tienda",
   "/gimnasio/carrito": "Carrito",
+  "/gimnasio/primera-visita": "Tu primera visita",
   "/gimnasio/creditos": "Créditos",
 }
 const storage = () => {
@@ -102,7 +104,10 @@ function GuiaBrio() {
           reglamento con firma y pago. El paso de salud solo explica el cuestionario: la demo no
           pide datos de salud. Nada del alta se guarda ni se envía.
         </li>
-        <li>La clase de prueba gratis se aparta desde Planes; es una por persona.</li>
+        <li>
+          La clase de prueba gratis se aparta desde la portada o desde Planes; es una por persona.
+          «Tu primera visita» explica qué pasa al llegar y cuándo está tranquila cada sucursal.
+        </li>
         <li>
           El área de socio se abre con el perfil de ejemplo de Andrea (los datos para entrar se
           muestran en pantalla). Ahí están el pase, la semana, la composición corporal, el reloj
@@ -338,6 +343,7 @@ export default function GimnasioApp() {
                 />
               }
             />
+            <Route path="primera-visita" element={<PrimeraVisita ahora={ahora} />} />
             <Route path="creditos" element={<Creditos />} />
             <Route path="*" element={<Navigate to="/gimnasio" replace />} />
           </Routes>
@@ -354,6 +360,7 @@ export default function GimnasioApp() {
         <footer className="b-footer b-wrap">
           <p>Brío · club de entrenamiento. Negocio ficticio creado para una demostración.</p>
           <div className="b-footer-enlaces">
+            <Link to="/gimnasio/primera-visita">Tu primera visita</Link>
             <Link to="/gimnasio/creditos">Créditos de fotos, video y tipografías</Link>
             <button type="button" className="b-inline" onClick={() => setPrivacidad(true)}>
               Aviso de privacidad

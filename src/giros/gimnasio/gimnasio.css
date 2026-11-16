@@ -2394,6 +2394,69 @@ a.b-producto:hover .b-producto-nombre {
 .b-guia-clases .b-traer {
   color: var(--b-suave);
 }
+/* Tu primera visita (V4.4.8) */
+.b-primera {
+  padding-block: 48px 100px;
+}
+.b-primera-cabeza h1 {
+  font-size: clamp(2.75rem, 7vw, 5.5rem);
+}
+.b-primera-rejilla {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 36px 56px;
+  margin-top: 48px;
+  padding-top: 36px;
+  border-top: 2px solid var(--b-tinta);
+}
+.b-primera-rejilla section {
+  display: grid;
+  align-content: start;
+  gap: 12px;
+  max-width: 34rem;
+}
+.b-primera-rejilla h2 {
+  font: 850 1.75rem/1.05 var(--b-titulo);
+  font-stretch: 85%;
+}
+.b-primera-lista {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding-left: 1.2em;
+  list-style: disc;
+}
+.b-tranquilas {
+  margin-top: 64px;
+}
+.b-tranquilas h2 {
+  margin-bottom: 10px;
+  font-size: clamp(2rem, 4vw, 3rem);
+}
+.b-tabla-scroll {
+  overflow-x: auto;
+}
+.b-tabla-tranquilas {
+  width: 100%;
+  min-width: 30rem;
+  margin-top: 18px;
+  border-collapse: collapse;
+}
+.b-tabla-tranquilas :is(th, td) {
+  padding: 12px 10px 12px 0;
+  border-top: 1px solid var(--b-linea);
+  text-align: left;
+}
+.b-tabla-tranquilas thead th {
+  color: var(--b-suave);
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+@media (max-width: 900px) {
+  .b-primera-rejilla {
+    grid-template-columns: 1fr;
+  }
+}
 /* Pasada de cierre (V4.4.7): esquema de color, anclas, toque y estados al pasar el ratón */
 .brio-root {
   color-scheme: light;

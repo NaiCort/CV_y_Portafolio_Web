@@ -48,9 +48,14 @@ export default function Planes() {
               membresía.
             </p>
           </div>
-          <Link className="b-btn b-btn-p" to="/gimnasio/clases?prueba=1">
-            Elegir mi clase de prueba
-          </Link>
+          <div className="b-acciones">
+            <Link className="b-btn b-btn-p" to="/gimnasio/clases?prueba=1">
+              Elegir mi clase de prueba
+            </Link>
+            <Link className="b-btn" to="/gimnasio/primera-visita">
+              Cómo es la primera visita
+            </Link>
+          </div>
         </div>
       </section>
       <section className="b-wrap" aria-labelledby="b-preguntas-titulo">

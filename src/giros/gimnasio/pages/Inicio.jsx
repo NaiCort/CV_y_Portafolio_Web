@@ -334,7 +334,10 @@ export default function Inicio() {
                 Comparar planes
               </Link>
             </div>
-            <p className="b-hero-nota">Sin membresía y sin tarjeta: eliges la clase y llegas.</p>
+            <p className="b-hero-nota">
+              Sin membresía y sin tarjeta. ¿Nunca has ido a un gimnasio?{" "}
+              <Link to="/gimnasio/primera-visita">Así es tu primera visita</Link>
+            </p>
           </div>
           <Disco />
         </section>

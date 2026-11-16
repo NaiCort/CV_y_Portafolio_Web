@@ -51,3 +51,38 @@ export function cuandoAbre(sucursal, fecha) {
   const [abre] = finde(manana) ? sucursal.horario.finde : sucursal.horario.semana
   return `abre mañana a las ${hhmm(abre)}`
 }
+
+// Aforo de cada hora en punto en que la sucursal está abierta ese día.
+export function aforoPorHora(sucursal, fecha) {
+  const horas = []
+  for (let h = 0; h < 24; h++) {
+    const f = new Date(fecha)
+    f.setHours(h, 0, 0, 0)
+    const fin = new Date(f)
+    fin.setMinutes(59)
+    const pct = aforoEn(sucursal, f) ?? aforoEn(sucursal, fin)
+    if (pct !== null) horas.push({ hora: h, pct })
+  }
+  return horas
+}
+
+// Tramos de dos horas o más con aforo «tranquilo» (menos de 35 %), entre las 6:00 y las 22:00.
+export function horasTranquilas(sucursal, fecha) {
+  const tramos = []
+  let inicio = null
+  let fin = null
+  const cerrar = () => {
+    if (inicio !== null && fin - inicio >= 2) tramos.push([inicio, fin])
+    inicio = null
+  }
+  for (const { hora, pct } of aforoPorHora(sucursal, fecha)) {
+    const tranquila = hora >= 6 && hora < 22 && pct < 35
+    if (!tranquila || hora !== fin) cerrar()
+    if (tranquila) {
+      if (inicio === null) inicio = hora
+      fin = hora + 1
+    }
+  }
+  cerrar()
+  return tramos
+}
