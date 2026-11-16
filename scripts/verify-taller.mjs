@@ -1,5 +1,18 @@
 import assert from "node:assert/strict"
-import { suite, audit, bounds, button, dialog, close } from "./restaurant-browser.mjs"
+import { suite, audit as auditar, bounds, button, dialog, close } from "./restaurant-browser.mjs"
+
+// axe mide colores reales: antes se espera a que terminen los fundidos y transiciones.
+const quieto = (page) =>
+  page.waitForFunction(() =>
+    document
+      .querySelector(".taller-root")
+      .getAnimations({ subtree: true })
+      .every((a) => a.playState !== "running"),
+  )
+const audit = async (page) => {
+  await quieto(page)
+  await auditar(page)
+}
 
 const go = async (page, base, path) => {
   await page.goto(`${base}${path}`)
@@ -31,7 +44,7 @@ await suite("taller", async ({ run, base }) => {
       },
       async ({ page }) => {
         for (const taller of ["Mecánica Rosales", "Vértice"]) {
-          for (const path of ["/taller", "/taller/cita", "/taller/creditos"]) {
+          for (const path of ["/taller", "/taller/cita", "/taller/consulta", "/taller/creditos"]) {
             await go(page, base, path)
             await tema(page, taller)
             assert.equal(await page.locator("h1").count(), 1, `Un h1 en ${path}`)
@@ -94,12 +107,39 @@ await suite("taller", async ({ run, base }) => {
         await consulta.scrollIntoViewIfNeeded()
         await consulta.locator(".t-consulta-ejemplo").click()
         await button(consulta, "Consultar").click()
-        await page.locator(".t-consulta-resultado").waitFor()
+        await page.waitForURL(/\/taller\/consulta\?folio=/)
+        await page.locator(".t-presu").waitFor()
         assert.match(
           await page.locator('.t-etapas [aria-current="step"]').textContent(),
           /Esperando tu visto bueno/,
         )
+        await bounds(page)
         await audit(page)
+        // Visto bueno: falta decidir, luego autorizar una partida y firmar.
+        await page.getByRole("button", { name: "Enviar mi visto bueno" }).click()
+        assert.match(await page.getByRole("alert").textContent(), /Falta decidir/)
+        const decisiones = page.locator(".t-presu .t-decision")
+        await decisiones.nth(0).getByText("Autorizar").click()
+        await decisiones.nth(1).getByText("No por ahora").click()
+        await page.getByLabel("Escribe tu nombre como firma").fill("Ana Ejemplo")
+        await page.getByRole("button", { name: "Enviar mi visto bueno" }).click()
+        await page.locator(".t-reparacion").waitFor()
+        await page.getByRole("button", { name: "Avanzar la simulación" }).click()
+        await page.locator(".t-hallazgo").waitFor()
+        await audit(page)
+        await page.locator(".t-hallazgo .t-decision").getByText("Autorizar").click()
+        await page.getByRole("button", { name: "Terminar la reparación" }).click()
+        await page.locator(".t-entrega").waitFor()
+        assert.match(await page.locator(".t-comprobante-total").textContent(), /\$1,630/)
+        await bounds(page)
+        await audit(page)
+        await page.getByRole("button", { name: "Reiniciar la orden de ejemplo" }).click()
+        await page.locator(".t-firma").waitFor()
+        await page
+          .locator(".t-consulta-salida")
+          .getByRole("link", { name: "Volver al inicio" })
+          .click()
+        await page.locator("main h1").waitFor()
 
         // Mapa de Rosales: un solo local, distinto de los de Vértice, con su ficha al lado.
         await page.locator("#ubicacion .t-mapa").scrollIntoViewIfNeeded()

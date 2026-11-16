@@ -10,6 +10,7 @@ import usePageMetadata from "../../hooks/usePageMetadata"
 import Inicio from "./pages/Inicio"
 import Creditos from "./pages/Creditos"
 import Cita from "./pages/Cita"
+import Consulta from "./pages/Consulta"
 import SelectorTema from "./components/SelectorTema"
 import { TALLERES } from "./data/talleres"
 import { guardarTema, leerTema } from "./lib/tema"
@@ -21,7 +22,7 @@ const SECCIONES = {
     ["testigos", "Testigos del tablero"],
     ["presupuesto", "Presupuesto"],
     ["precios", "Precios"],
-    ["consulta", "Consulta tu auto"],
+    ["/taller/consulta", "Consulta tu auto"],
     ["ubicacion", "Cómo llegar"],
   ],
   vertice: [
@@ -29,11 +30,13 @@ const SECCIONES = {
     ["presupuesto", "Presupuesto"],
     ["precios", "Precios"],
     ["sucursales", "Sucursales"],
+    ["/taller/consulta", "Consulta tu auto"],
   ],
 }
 const TITULOS = {
   "/taller": "Inicio",
   "/taller/cita": "Agendar cita",
+  "/taller/consulta": "Consulta tu auto",
   "/taller/creditos": "Créditos",
 }
 const MENSAJES = {
@@ -80,8 +83,11 @@ function GuiaTaller() {
           presupuesto por partida y firma. Folios, placas y número de contrato son inventados.
         </li>
         <li>
-          En Rosales, «Consulta tu auto» encuentra la orden de ejemplo con su folio y sus placas y
-          muestra en qué etapa va. No hay otras órdenes ni servidor.
+          «Consulta tu auto» abre la orden de ejemplo de cada taller con su folio y sus placas: el
+          presupuesto por partida con la medida, el desglose y la decisión de autorizar o no; la
+          firma; la reparación, con un hallazgo que pide autorización antes de seguir; y la entrega
+          con comprobante, piezas cambiadas y garantía. Si no se autoriza nada, se paga solo el
+          diagnóstico. No hay otras órdenes ni servidor; «Reiniciar» vuelve al principio.
         </li>
         <li>
           El mapa es real (OpenStreetMap, servido por OpenFreeMap). Rosales tiene un solo local en
@@ -169,11 +175,18 @@ export default function TallerApp() {
             {taller.nombre}
           </Link>
           <nav className="t-nav" aria-label="Secciones del taller">
-            {SECCIONES[tema].map(([id, nombre]) => (
-              <Link key={id} to={`/taller#${id}`}>
-                {nombre}
-              </Link>
-            ))}
+            {SECCIONES[tema].map(([id, nombre]) => {
+              const to = id.startsWith("/") ? id : `/taller#${id}`
+              return (
+                <Link
+                  key={id}
+                  to={to}
+                  aria-current={to === pathname.replace(/\/+$/, "") ? "page" : undefined}
+                >
+                  {nombre}
+                </Link>
+              )
+            })}
           </nav>
           <button type="button" className="t-tel t-num" onClick={() => setLlamada(true)}>
             <span className="t-oculto">Llamar al </span>
@@ -208,6 +221,7 @@ export default function TallerApp() {
               />
             }
           />
+          <Route path="consulta" element={<Consulta key={tema} taller={taller} />} />
           <Route path="creditos" element={<Creditos />} />
           <Route path="*" element={<Navigate to="/taller" replace />} />
         </Routes>

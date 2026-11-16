@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from "react"
-import { ETAPAS, buscarOrden } from "../lib/consulta"
+import { buscarOrden } from "../lib/consulta"
 
-// Consulta tu auto (Rosales): folio y placas, sin cuenta. Cinco estados: inicial, escritura,
-// búsqueda, resultado y salida («Consultar otra»).
-export default function ConsultaAuto({ orden }) {
+// Consulta tu auto: folio y placas, sin cuenta. Al encontrar la orden avisa a quien la usa
+// (la portada lleva a /taller/consulta; esa página la abre ahí mismo).
+export default function ConsultaAuto({ orden, onEncontrada }) {
   const [folio, setFolio] = useState("")
   const [placas, setPlacas] = useState("")
   const [estado, setEstado] = useState({ estado: "inicial" })
@@ -11,8 +11,7 @@ export default function ConsultaAuto({ orden }) {
   const resultado = useRef(null)
   useEffect(() => () => clearTimeout(timer.current), [])
   useEffect(() => {
-    if (["encontrada", "no-encontrada", "incompleto"].includes(estado.estado))
-      resultado.current?.focus()
+    if (["no-encontrada", "incompleto"].includes(estado.estado)) resultado.current?.focus()
   }, [estado])
 
   const consultar = (e) => {
@@ -21,48 +20,19 @@ export default function ConsultaAuto({ orden }) {
     const r = buscarOrden(orden, folio, placas)
     if (r.estado === "incompleto") return setEstado(r)
     setEstado({ estado: "buscando" })
-    timer.current = setTimeout(() => setEstado(r), 600)
+    timer.current = setTimeout(() => {
+      if (r.estado === "encontrada") {
+        setEstado({ estado: "inicial" })
+        onEncontrada({ folio: orden.folio, placas: orden.placas })
+      } else setEstado(r)
+    }, 600)
   }
   const usarEjemplo = () => {
     setFolio(orden.folio)
     setPlacas(orden.placas)
     setEstado({ estado: "inicial" })
   }
-  const otra = () => {
-    setFolio("")
-    setPlacas("")
-    setEstado({ estado: "inicial" })
-  }
 
-  if (estado.estado === "encontrada") {
-    const actual = ETAPAS.findIndex((e) => e.id === estado.etapa)
-    return (
-      <div className="t-consulta-resultado" ref={resultado} tabIndex={-1}>
-        <p className="t-consulta-titulo">
-          Folio <span className="t-dato">{orden.folio}</span> · {orden.vehiculo}
-        </p>
-        <ol className="t-etapas">
-          {ETAPAS.map((e, i) => (
-            <li
-              key={e.id}
-              className={i < actual ? "is-hecha" : i === actual ? "is-actual" : undefined}
-              aria-current={i === actual ? "step" : undefined}
-            >
-              <b>{e.nombre}</b>
-              <span>{e.detalle}</span>
-            </li>
-          ))}
-        </ol>
-        <p className="t-nota">
-          Estado de ejemplo: en un taller real, aquí verías tu presupuesto para darle el visto
-          bueno.
-        </p>
-        <button type="button" className="t-btn t-btn-s" onClick={otra}>
-          Consultar otra orden
-        </button>
-      </div>
-    )
-  }
   return (
     <form className="t-consulta" onSubmit={consultar} noValidate>
       <label>
