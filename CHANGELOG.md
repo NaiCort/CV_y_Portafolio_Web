@@ -7,7 +7,8 @@
 - Planes: «Lo que no cobramos», cuatro preguntas de Profeco y opiniones de socios de ejemplo declaradas como inventadas; mantenimiento anual $0 en el alta.
 - «Agregar a mi calendario» (archivo .ics) en reservas y evaluación.
 - Corregir el botón principal de los diálogos, que perdía el fondo al pasar el ratón.
-- Siete pruebas nuevas y dos ampliadas.
+- Última revisión: Movilidad y Ritmo sin la foto de box en Clases, sin la promesa de reservar 48 h antes en el plan Total y tramos de horas sin cortes.
+- Ocho pruebas nuevas y dos ampliadas.
 
 # V4.4.7 · 15 de noviembre de 2026 · cierre de Gimnasio
 
