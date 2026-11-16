@@ -192,6 +192,13 @@ await suite("gimnasio", async ({ run, base }) => {
             ])
           const distrito = await medir()
           await button(page, "Tema Cobalto").click()
+          // La franja nunca queda transparente: si no, en plena animación se ve la página oscura
+          // detrás, con el título en blanco (error del 16/11 de Distrito a Cobalto).
+          assert.doesNotMatch(
+            await page.locator(".b-planes").evaluate((s) => getComputedStyle(s).backgroundColor),
+            /rgba\(0, 0, 0, 0\)|transparent/,
+            `Franja de planes con fondo propio en Cobalto (${ruta})`,
+          )
           assert.deepEqual(await medir(), distrito, `Mismo tamaño en los dos temas (${ruta})`)
           await button(page, "Tema Distrito").click()
         }
