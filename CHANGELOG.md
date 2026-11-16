@@ -1,3 +1,14 @@
+# V4.4.8 · 16 de noviembre de 2026 · Brío, lo que pedía la investigación
+
+- Portada con «Clase de prueba gratis» como botón principal.
+- Nivel, intensidad y qué traer en cada disciplina, con filtro por nivel y una guía «¿Cuál elijo?» en Clases.
+- Añadir `/gimnasio/primera-visita`: llegada, qué traer, un primer entrenamiento y las horas tranquilas de cada sucursal.
+- Aforo de hoy por hora, accesibilidad y estacionamiento en la ficha de cada sucursal.
+- Planes: «Lo que no cobramos», cuatro preguntas de Profeco y opiniones de socios de ejemplo declaradas como inventadas; mantenimiento anual $0 en el alta.
+- «Agregar a mi calendario» (archivo .ics) en reservas y evaluación.
+- Corregir el botón principal de los diálogos, que perdía el fondo al pasar el ratón.
+- Siete pruebas nuevas y dos ampliadas.
+
 # V4.4.7 · 15 de noviembre de 2026 · cierre de Gimnasio
 
 - La Bienvenida enlaza Gimnasio (Brío).
