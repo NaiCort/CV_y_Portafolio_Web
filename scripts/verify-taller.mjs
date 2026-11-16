@@ -244,6 +244,20 @@ await suite("taller", async ({ run, base }) => {
         }
         await go(page, base, "/taller")
 
+        // Aviso de privacidad: borrar todo vuelve a Rosales y vacía las citas.
+        await page.locator(".t-pie").getByRole("button", { name: "Aviso de privacidad" }).click()
+        await dialog(page).waitFor()
+        await audit(page)
+        await button(dialog(page), "Borrar mis datos de esta demo").click()
+        await button(dialog(page), "Sí, borrar todo").click()
+        await dialog(page).waitFor({ state: "detached" })
+        assert.match(await page.locator(".t-aviso").textContent(), /Se borraron/)
+        assert.equal(await page.evaluate(() => localStorage.getItem("taller-citas-v1")), "[]")
+        assert.equal(await page.locator(".taller-root").getAttribute("data-tema"), "rosales")
+        await tema(page, "Vértice")
+        await page.reload()
+        await page.locator("main h1").waitFor()
+
         // La misma página no cambia de altura por volver al mismo tema (con las fuentes ya
         // cargadas: tras recargar, el cambio de tipografía mueve el texto, anotado para V4.8).
         await page.evaluate(() => document.fonts.ready)

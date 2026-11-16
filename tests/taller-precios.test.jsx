@@ -112,3 +112,18 @@ describe("Revisión antes de comprar un usado", () => {
     expect(elegido.closest("label").textContent).toContain("Revisión antes de comprar un usado")
   })
 })
+
+describe("Bienvenida", () => {
+  it("enlaza el taller mecánico en el directorio de giros", async () => {
+    const { default: Bienvenida } = await import("../src/pages/Bienvenida")
+    await render(
+      <MemoryRouter>
+        <Bienvenida />
+      </MemoryRouter>,
+    )
+    const enlace = [...document.querySelectorAll("a")].find((a) =>
+      a.textContent.includes("Taller mecánico"),
+    )
+    expect(enlace.getAttribute("href")).toBe("/taller")
+  })
+})

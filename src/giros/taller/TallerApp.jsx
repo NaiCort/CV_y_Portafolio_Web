@@ -19,8 +19,11 @@ import Hibridos from "./pages/Hibridos"
 import Garaje from "./pages/Garaje"
 import SelectorTema from "./components/SelectorTema"
 import { TALLERES } from "./data/talleres"
-import { guardarTema, leerTema } from "./lib/tema"
-import { cargarCitas, guardarCitas } from "./lib/citas"
+import { TEMA_KEY, guardarTema, leerTema } from "./lib/tema"
+import { CITAS_KEY, cargarCitas, guardarCitas } from "./lib/citas"
+import { ORDEN_KEY } from "./lib/orden"
+import { GARAJE_KEY } from "./lib/garaje"
+import Privacidad from "./components/Privacidad"
 import "./taller.css"
 
 const SECCIONES = {
@@ -137,6 +140,9 @@ function GuiaTaller() {
           horarios son de ejemplo.
         </li>
       </ul>
+      <p>
+        El «Aviso de privacidad», al pie de cada página, dice qué se guarda y permite borrarlo todo.
+      </p>
       <p>“Contactar” y “Hablemos” abren los canales reales de Ian para consultar un proyecto.</p>
     </div>
   )
@@ -173,6 +179,15 @@ export default function TallerApp() {
   const taller = TALLERES[tema]
   const [chat, setChat] = useState(null)
   const [llamada, setLlamada] = useState(false)
+  const [privacidad, setPrivacidad] = useState(false)
+  // Al borrar los datos, las páginas se vuelven a montar para leer el almacenamiento vacío.
+  const [reinicio, setReinicio] = useState(0)
+  const [aviso, setAviso] = useState(null)
+  useEffect(() => {
+    if (!aviso) return undefined
+    const timer = setTimeout(() => setAviso(null), 6000)
+    return () => clearTimeout(timer)
+  }, [aviso])
   useEffect(() => {
     guardarTema(storage(), tema)
     // Los diálogos se montan fuera de .taller-root; el tema les llega por <html>.
@@ -255,7 +270,7 @@ export default function TallerApp() {
           ))}
         </nav>
       </header>
-      <main id="contenido" tabIndex={-1}>
+      <main id="contenido" tabIndex={-1} key={reinicio}>
         <Routes>
           <Route
             index
@@ -305,10 +320,15 @@ export default function TallerApp() {
           <p>{taller.horario}</p>
           <p>
             Garantía de {taller.garantia} en mano de obra. Negocio ficticio creado para una
-            demostración; solo guarda en tu navegador el taller elegido y tus citas de ejemplo.
+            demostración; lo que guarda se queda en tu navegador.
           </p>
         </div>
-        <Link to="/taller/creditos">Créditos de fotos y tipografías</Link>
+        <div className="t-pie-enlaces">
+          <Link to="/taller/creditos">Créditos de fotos y tipografías</Link>
+          <button type="button" className="t-inline" onClick={() => setPrivacidad(true)}>
+            Aviso de privacidad
+          </button>
+        </div>
       </footer>
       <nav className="t-barra-movil" aria-label="Contacto rápido">
         <button type="button" onClick={() => setLlamada(true)}>
@@ -320,6 +340,35 @@ export default function TallerApp() {
         <Link to="/taller/cita">Agendar</Link>
       </nav>
       {llamada && <LlamadaSimulada taller={taller} onCerrar={() => setLlamada(false)} />}
+      {privacidad && (
+        <Privacidad
+          onCerrar={() => setPrivacidad(false)}
+          onBorrar={() => {
+            for (const clave of [TEMA_KEY, CITAS_KEY, ORDEN_KEY, GARAJE_KEY]) {
+              try {
+                window.localStorage.removeItem(clave)
+              } catch {
+                /* Nada que borrar. */
+              }
+            }
+            setCitas([])
+            setTema("rosales")
+            setReinicio((n) => n + 1)
+            setPrivacidad(false)
+            setAviso("Se borraron las citas, el presupuesto, Mi garaje y el taller elegido.")
+          }}
+        />
+      )}
+      <div className="t-aviso-region" role="status" aria-live="polite">
+        {aviso && (
+          <div className="t-aviso">
+            <span>{aviso}</span>
+            <button type="button" className="t-inline" onClick={() => setAviso(null)}>
+              Cerrar aviso
+            </button>
+          </div>
+        )}
+      </div>
       <WhatsAppPreview
         isOpen={Boolean(chat)}
         onClose={() => setChat(null)}

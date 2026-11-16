@@ -412,6 +412,7 @@ export default function Consulta({ taller }) {
         <Orden taller={taller} />
       ) : (
         <div className="t-consulta-bloque">
+          <h2 className="t-consulta-h2">Escribe el folio y las placas</h2>
           <ConsultaAuto
             orden={taller.orden}
             onEncontrada={({ folio, placas }) => setParams({ folio, placas })}

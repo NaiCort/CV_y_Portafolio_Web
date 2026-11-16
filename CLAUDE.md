@@ -2,7 +2,7 @@
 
 Portafolio de demos interactivas de Ian Habid Aldana Martínez, una por giro de negocio.
 La fuente de planificación es el **Documento Maestro** (fuera del repositorio, versión
-vigente: V4.4.8, revisión documental 3 del 16/11/2026; la PARTE XII tiene el estado actual). Este archivo resume lo que hace falta para trabajar
+vigente: V4.5.6, revisión documental 4 del 16/11/2026; la PARTE XIII tiene el estado actual). Este archivo resume lo que hace falta para trabajar
 en el código sin tenerlo a la mano. Si algo aquí contradice una petición de Ian en la
 conversación, manda lo que Ian diga y luego se actualiza este archivo.
 
@@ -17,8 +17,8 @@ acciones ficticias del negocio.
 
 - Se trabaja **una demo a la vez**, en este orden: Psicólogo (cerrada) → Restaurante
   (cerrada en V4.2.5 con **Patio 12**) → Café (cerrada en V4.3.6 con **Ladera**) →
-  Gimnasio (cerrada en V4.4.8 con **Brío**) → **Taller mecánico (en curso, V4.5)** →
-  Despacho contable (V4.6) → Revista digital (V4.7).
+  Gimnasio (cerrada en V4.4.8 con **Brío**) → Taller mecánico (cerrada en V4.5.6 con
+  **Rosales y Vértice**) → **Despacho contable (V4.6, siguiente)** → Revista digital (V4.7).
 - **Restaurante = solo Patio 12.** No se construyen las sub-categorías (fonda, comida
   rápida, lujo) ni el panel de empleados y precios: ambas ideas quedaron descartadas.
 - **Café = Ladera**, una sola identidad y un solo local, sin gestión de empleados. Su
@@ -100,13 +100,14 @@ activarlas. Cerrado con el visto bueno de Ian el 16/11/2026. Pruebas de navegado
 
 ## Estado de Taller mecánico
 
-**Taller = Mecánica Rosales y Vértice**, en curso desde V4.5.0: dos talleres ficticios en
-Xalapa, uno por tema, sobre la misma estructura (dirección «Combinada»: testigos del tablero
-y orden de servicio en papel). Rosales es familiar, de un solo local y sin cuenta («Consulta
-tu auto» con folio y placas); Vértice es multimarca con cuatro sucursales, hojalatería,
-híbridos, recolección y «Mi garaje». Sin venta de refacciones. Leer `docs/FICHA_TALLER.md`
-antes de tocar `src/giros/taller/`. Pruebas de navegador en `npm run test:browser:taller`.
-La Bienvenida lo enlazará al cerrar V4.5.
+**Taller = Mecánica Rosales y Vértice**, cerrado en V4.5.6 (pendiente del visto bueno de Ian
+en la vista previa): dos talleres ficticios en Xalapa, uno por tema, sobre la misma estructura
+(dirección «Combinada»: testigos del tablero y orden de servicio en papel). Rosales es familiar,
+de un solo local, sin cuenta y con revisión de usados; Vértice es multimarca con cuatro
+sucursales, hojalatería con calculadora de deducible, híbridos y «Mi garaje» con un perfil de
+ejemplo. Ambos: mapa, cita, presupuesto con visto bueno por partida, lista de precios y aviso
+de privacidad. Sin venta de refacciones. Leer `docs/FICHA_TALLER.md` antes de tocar
+`src/giros/taller/`. Pruebas de navegador en `npm run test:browser:taller`.
 
 ## Pendientes para la fase de ajustes (V4.8)
 

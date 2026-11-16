@@ -1,3 +1,11 @@
+# V4.5.6 · 16 de noviembre de 2026 · cierre de Taller mecánico
+
+- Aviso de privacidad con «Borrar mis datos de esta demo».
+- La Bienvenida enlaza Taller mecánico (Rosales y Vértice).
+- Foto de portada de Rosales más ligera: LCP de laboratorio de 3.87 s a 2.85 s.
+- Pasada final con impeccable en las nueve páginas y los dos talleres; Core Web Vitals de laboratorio.
+- Dos pruebas nuevas; recorridos de navegador con el aviso de privacidad, también sobre la compilación de producción.
+
 # V4.5.5 · 16 de noviembre de 2026 · Taller mecánico, páginas de Vértice
 
 - Añadir `/taller/hojalateria`: con o sin seguro, calculadora de deducible y trabajos de ejemplo.

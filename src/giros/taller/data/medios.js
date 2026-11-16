@@ -5,7 +5,7 @@ export const FOTOS = {
     nombre: "Portada de Mecánica Rosales",
     autor: "Martin Vorel",
     licencia: "CC BY-SA 4.0",
-    cambios: "Reducida a 1280 px.",
+    cambios: "Reducida a 1280 px, con un suavizado ligero del grano.",
     pagina: "https://commons.wikimedia.org/wiki/File:Car_repair_shop.jpg",
   },
   vertice: {

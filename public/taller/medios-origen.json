@@ -6,8 +6,8 @@
     "autor": "Martin Vorel",
     "licencia": "CC BY-SA 4.0",
     "pagina": "https://commons.wikimedia.org/wiki/File:Car_repair_shop.jpg",
-    "cambios": "Reducida a 1280 px",
-    "sha256": "7b809edfda9f8cf6aacd0cc5bebe5c109ec156cc948a0e1c04a5849744366d00",
+    "cambios": "Reducida a 1280 px con un suavizado ligero del grano para que cargue más rápido",
+    "sha256": "76d0ebb676d0f94724de71354d24ed6f457842bbc84d7861061ddb64680f9047",
     "ancho": 1280,
     "alto": 854
   },
