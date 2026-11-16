@@ -98,6 +98,16 @@ activarlas. Cerrado con el visto bueno de Ian el 16/11/2026. Pruebas de navegado
 `npm run test:browser:gimnasio`. Leer `docs/FICHA_GIMNASIO.md` antes de tocar
 `src/giros/gimnasio/`. Sin medio propio todavía: Movilidad y Ritmo.
 
+## Estado de Taller mecánico
+
+**Taller = Mecánica Rosales y Vértice**, en curso desde V4.5.0: dos talleres ficticios en
+Xalapa, uno por tema, sobre la misma estructura (dirección «Combinada»: testigos del tablero
+y orden de servicio en papel). Rosales es familiar, de un solo local y sin cuenta («Consulta
+tu auto» con folio y placas); Vértice es multimarca con cuatro sucursales, hojalatería,
+híbridos, recolección y «Mi garaje». Sin venta de refacciones. Leer `docs/FICHA_TALLER.md`
+antes de tocar `src/giros/taller/`. Pruebas de navegador en `npm run test:browser:taller`.
+La Bienvenida lo enlazará al cerrar V4.5.
+
 ## Pendientes para la fase de ajustes (V4.8)
 
 No tocar antes de terminar las siete demos.
