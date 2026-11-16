@@ -11,6 +11,8 @@ import Inicio from "./pages/Inicio"
 import Creditos from "./pages/Creditos"
 import Cita from "./pages/Cita"
 import Consulta from "./pages/Consulta"
+import Precios from "./pages/Precios"
+import Usados from "./pages/Usados"
 import SelectorTema from "./components/SelectorTema"
 import { TALLERES } from "./data/talleres"
 import { guardarTema, leerTema } from "./lib/tema"
@@ -20,15 +22,14 @@ import "./taller.css"
 const SECCIONES = {
   rosales: [
     ["testigos", "Testigos del tablero"],
-    ["presupuesto", "Presupuesto"],
-    ["precios", "Precios"],
+    ["/taller/precios", "Precios"],
+    ["/taller/usados", "Revisión de usados"],
     ["/taller/consulta", "Consulta tu auto"],
     ["ubicacion", "Cómo llegar"],
   ],
   vertice: [
     ["testigos", "Testigos del tablero"],
-    ["presupuesto", "Presupuesto"],
-    ["precios", "Precios"],
+    ["/taller/precios", "Precios"],
     ["sucursales", "Sucursales"],
     ["/taller/consulta", "Consulta tu auto"],
   ],
@@ -37,6 +38,8 @@ const TITULOS = {
   "/taller": "Inicio",
   "/taller/cita": "Agendar cita",
   "/taller/consulta": "Consulta tu auto",
+  "/taller/precios": "Lista de precios",
+  "/taller/usados": "Revisión antes de comprar un usado",
   "/taller/creditos": "Créditos",
 }
 const MENSAJES = {
@@ -101,6 +104,11 @@ function GuiaTaller() {
           mecánico puede ir a domicilio dentro de la colonia; en Vértice se elige sucursal y se
           puede pedir recolección. Las horas tachadas son ocupaciones simuladas. Las citas se
           guardan solo en este navegador y se pueden cancelar o agregar al calendario.
+        </li>
+        <li>
+          «Precios» tiene la lista completa de cada taller con una suma aproximada y las reglas de
+          cobro del contrato tipo de Profeco. «Revisión de usados» es solo de Rosales: qué se revisa
+          y un reporte de ejemplo de un auto inventado.
         </li>
         <li>
           Llamar y WhatsApp abren una simulación: no se marca ni se envía nada. Precios, personas y
@@ -222,6 +230,8 @@ export default function TallerApp() {
             }
           />
           <Route path="consulta" element={<Consulta key={tema} taller={taller} />} />
+          <Route path="precios" element={<Precios key={tema} taller={taller} />} />
+          <Route path="usados" element={<Usados taller={taller} onCambiar={setTema} />} />
           <Route path="creditos" element={<Creditos />} />
           <Route path="*" element={<Navigate to="/taller" replace />} />
         </Routes>

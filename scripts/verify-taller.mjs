@@ -44,7 +44,14 @@ await suite("taller", async ({ run, base }) => {
       },
       async ({ page }) => {
         for (const taller of ["Mecánica Rosales", "Vértice"]) {
-          for (const path of ["/taller", "/taller/cita", "/taller/consulta", "/taller/creditos"]) {
+          for (const path of [
+            "/taller",
+            "/taller/cita",
+            "/taller/consulta",
+            "/taller/precios",
+            "/taller/usados",
+            "/taller/creditos",
+          ]) {
             await go(page, base, path)
             await tema(page, taller)
             assert.equal(await page.locator("h1").count(), 1, `Un h1 en ${path}`)
@@ -162,6 +169,26 @@ await suite("taller", async ({ run, base }) => {
         await audit(page)
         await close(page)
 
+        // Lista de precios: la suma aproximada responde.
+        await go(page, base, "/taller/precios")
+        await page
+          .locator(".t-precio-elegir", { hasText: "Afinación mayor" })
+          .locator("input")
+          .check()
+        assert.equal(await page.locator(".t-suma-total").textContent(), "$1,450")
+        await audit(page)
+        // Revisión de usados: el reporte de ejemplo se despliega y lleva a la cita.
+        await go(page, base, "/taller/usados")
+        await page.locator(".t-reporte-lista button", { hasText: "Papeles" }).click()
+        await page.locator("#t-rep-papeles").waitFor()
+        await audit(page)
+        await page
+          .locator(".t-usados-precio")
+          .getByRole("link", { name: "Agendar la revisión" })
+          .click()
+        await page.waitForURL(/servicio=usados/)
+        await go(page, base, "/taller")
+
         // Cambiar de taller: Vértice tiene sucursales y Mi garaje, y lo recuerda al volver.
         await tema(page, "Vértice")
         await page.locator("#sucursales").waitFor()
@@ -192,14 +219,20 @@ await suite("taller", async ({ run, base }) => {
         await tema(page, "Vértice")
         assert.equal(await altura(page), antes, "Sin saltos al ir y volver de tema")
 
-        // Navegación por secciones en pantallas anchas.
+        // Navegación en pantallas anchas: una sección de la portada y una página.
         if (width >= 1024) {
-          await page.locator(".t-nav").getByRole("link", { name: "Precios", exact: true }).click()
-          await page.waitForFunction(() => location.hash === "#precios")
+          await page
+            .locator(".t-nav")
+            .getByRole("link", { name: "Sucursales", exact: true })
+            .click()
+          await page.waitForFunction(() => location.hash === "#sucursales")
           await page.waitForFunction(() => {
-            const b = document.querySelector("#precios").getBoundingClientRect()
+            const b = document.querySelector("#sucursales").getBoundingClientRect()
             return b.top >= 0 && b.top < innerHeight / 2
           })
+          await page.locator(".t-nav").getByRole("link", { name: "Precios", exact: true }).click()
+          await page.waitForURL(/\/taller\/precios$/)
+          assert.equal(await page.locator(".t-nav a[aria-current=page]").textContent(), "Precios")
         }
       },
     )

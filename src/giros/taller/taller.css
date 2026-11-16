@@ -91,7 +91,7 @@
 .taller-root h3 {
   text-wrap: balance;
 }
-.taller-root p {
+.taller-root :is(p, li) {
   text-wrap: pretty;
 }
 .t-wrap {
@@ -1486,6 +1486,231 @@
   }
 }
 
+/* Lista de precios completa */
+.t-precios-mas {
+  margin-top: 20px;
+}
+.t-precios-pagina {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  gap: 48px;
+  align-items: start;
+  margin-top: 32px;
+}
+.t-precios-listas {
+  display: grid;
+  gap: 36px;
+}
+.t-precios-listas h2 {
+  margin-bottom: 6px;
+  font-size: clamp(1.375rem, 2.2vw, 1.75rem);
+}
+.t-precio-elegir {
+  display: grid;
+  grid-template-columns: 18px 1fr;
+  align-items: start;
+  gap: 12px;
+  cursor: pointer;
+}
+div.t-precio-elegir {
+  cursor: default;
+}
+.t-precio-elegir input {
+  margin-top: 3px;
+}
+.t-precio-hueco {
+  width: 18px;
+}
+.t-suma {
+  position: sticky;
+  top: 24px;
+  display: grid;
+  gap: 12px;
+  padding: 22px;
+  border: 1px solid var(--t-linea);
+  border-radius: 14px;
+  background: var(--t-panel);
+}
+.t-suma h2 {
+  font-size: 1.25rem;
+}
+.t-suma-total {
+  font: 650 2.25rem/1 var(--t-titulo);
+}
+.t-suma .t-inline {
+  justify-self: start;
+  min-height: 44px;
+  color: var(--t-suave);
+  font-size: 0.875rem;
+}
+.t-suma .t-btn {
+  justify-self: start;
+}
+.t-reglas {
+  display: grid;
+  gap: 14px;
+  max-width: 760px;
+  margin-top: 48px;
+}
+
+/* Revisión de usados */
+.t-solo-en {
+  display: grid;
+  gap: 18px;
+  max-width: 620px;
+  margin-top: 24px;
+  padding: 22px 24px;
+  border: 1px solid var(--t-linea);
+  border-radius: 14px;
+  background: var(--t-panel);
+}
+.t-usados-cab {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 32px;
+  align-items: end;
+}
+.t-usados-precio {
+  display: grid;
+  gap: 8px;
+  justify-items: start;
+  padding: 22px;
+  border: 1px solid var(--t-linea);
+  border-radius: 14px;
+  background: var(--t-panel);
+}
+.t-usados-precio > span:first-child {
+  font: 650 2.5rem/1 var(--t-titulo);
+}
+.t-usados-precio > span:nth-child(2) {
+  color: var(--t-suave);
+  font-size: 0.875rem;
+}
+.t-usados-seccion {
+  margin-top: 48px;
+}
+.t-usados-seccion.t-dos {
+  align-items: start;
+}
+.t-usados-pasos {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  margin-top: 18px;
+  padding-top: 18px;
+  border-top: 1px solid var(--t-linea);
+  list-style: none;
+}
+.t-usados-pasos li {
+  display: grid;
+  gap: 4px;
+}
+.t-usados-pasos b {
+  font: 650 1.1875rem/1.2 var(--t-titulo);
+}
+.t-usados-pasos span {
+  color: var(--t-suave);
+  font-size: 0.94rem;
+}
+.t-revisamos {
+  display: grid;
+  gap: 20px;
+  margin-top: 18px;
+}
+.t-revisamos h3 {
+  margin-bottom: 6px;
+  font: 650 1.0625rem/1.2 var(--t-titulo);
+}
+.t-reporte {
+  display: grid;
+  gap: 12px;
+  margin: 18px 0 0;
+  padding: 22px 22px 18px;
+  border-radius: 3px;
+  background: var(--t-papel);
+  color: var(--t-papel-tinta);
+  box-shadow:
+    0 1px 0 #00000014,
+    0 22px 44px -26px #0000008c;
+}
+.t-reporte-cab {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 4px 12px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--t-papel-tinta);
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+.t-reporte-veredicto {
+  font: 650 1.375rem/1.15 var(--t-titulo);
+}
+.t-reporte > p {
+  font-size: 0.94rem;
+}
+.t-reporte-lista {
+  list-style: none;
+  border-top: 1px solid var(--t-renglon);
+}
+.t-reporte-lista > li {
+  border-bottom: 1px solid var(--t-renglon);
+}
+.t-reporte-lista button {
+  display: grid;
+  grid-template-columns: 12px 1fr auto auto;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 46px;
+  padding: 8px 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  font-size: 0.94rem;
+  text-align: left;
+  cursor: pointer;
+}
+.t-reporte-lista button span {
+  color: var(--t-papel-suave);
+  font-size: 0.8125rem;
+}
+.t-reporte-lista button span:last-child {
+  min-width: 4.5rem;
+  color: var(--t-papel-tinta);
+  font-weight: 700;
+  text-align: right;
+}
+.t-reporte-lista button:focus-visible {
+  outline: 3px solid var(--t-papel-tinta);
+  outline-offset: 2px;
+}
+.t-reporte-lista ul {
+  display: grid;
+  gap: 4px;
+  padding: 0 0 12px 22px;
+  font-size: 0.875rem;
+}
+.t-reporte-lista ul[hidden] {
+  display: none;
+}
+.t-reporte-total {
+  font-weight: 700;
+}
+@media (max-width: 900px) {
+  .t-precios-pagina,
+  .t-usados-cab {
+    grid-template-columns: 1fr;
+  }
+  .t-suma {
+    position: static;
+  }
+  .t-usados-pasos {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* Créditos */
 .t-creditos h2 {
   margin-top: 40px;
@@ -1757,4 +1982,7 @@ html[data-taller-tema="vertice"] .t-modal {
     animation-duration: 1ms !important;
     transition-duration: 1ms !important;
   }
+}
+.t-precios-listas .t-lista-precios li {
+  align-items: center;
 }
