@@ -264,13 +264,11 @@ describe("Portada", () => {
     expect(folio.value).toBe("R-2611-047")
     await click(button("Consultar", form))
     await advance(600)
-    const resultado = container.querySelector(".t-consulta-resultado")
-    expect(resultado.querySelector('[aria-current="step"]').textContent).toContain(
+    // Encontrada: la portada lleva a la orden con su presupuesto.
+    expect(container.querySelector("h1").textContent).toBe("Consulta tu auto")
+    expect(container.querySelector('.t-etapas [aria-current="step"]').textContent).toContain(
       "Esperando tu visto bueno",
     )
-    expect(resultado.querySelectorAll(".is-hecha")).toHaveLength(2)
-    await click(button("Consultar otra orden"))
-    expect(container.querySelector(".t-consulta input").value).toBe("")
   })
 
   it("muestra los créditos y regresa al inicio desde rutas desconocidas", async () => {

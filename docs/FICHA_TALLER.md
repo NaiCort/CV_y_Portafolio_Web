@@ -146,7 +146,7 @@ arriba, degradados, brillos, emojis, imágenes generadas con IA.
 |---|---|---|---|
 | Inicio | `/taller` | Portada, testigos, orden de ejemplo, precios, sucursales o consulta | Ambos |
 | Agendar (V4.5.2) | `/taller/cita` | Servicio, auto, día y hora, recolección (Vértice) o domicilio (Rosales) | Ambos |
-| Consulta tu auto | `/taller/consulta` | Folio y placas, etapas, presupuesto por partida con visto bueno | Ambos |
+| Consulta tu auto (V4.5.3) | `/taller/consulta` | Folio y placas, etapas, presupuesto por partida con visto bueno | Ambos |
 | Precios | `/taller/precios` | Lista completa, mano de obra, garantía, contrato Profeco | Ambos |
 | Revisión de usados | `/taller/usados` | Qué se revisa, precio fijo, reporte de ejemplo | Rosales |
 | Hojalatería y seguros | `/taller/hojalateria` | Aseguradoras, antes y después, deducible | Vértice |

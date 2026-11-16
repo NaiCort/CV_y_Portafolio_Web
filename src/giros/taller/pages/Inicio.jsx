@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import Testigos from "../components/Testigos"
 import OrdenServicio from "../components/OrdenServicio"
 import ConsultaAuto from "../components/ConsultaAuto"
@@ -35,6 +35,8 @@ function Garaje({ garaje }) {
 
 export default function Inicio({ taller, onWhatsApp, onLlamar }) {
   const esRosales = taller.id === "rosales"
+  const navigate = useNavigate()
+  const ejemplo = `/taller/consulta?${new URLSearchParams({ folio: taller.orden.folio, placas: taller.orden.placas })}`
   return (
     <>
       <section className="t-wrap t-heroe" aria-labelledby="t-titulo">
@@ -95,10 +97,18 @@ export default function Inicio({ taller, onWhatsApp, onLlamar }) {
             <div id="consulta" className="t-consulta-bloque">
               <h3>Consulta tu auto</h3>
               <p>Con el folio de tu orden y tus placas ves en qué va, sin llamar y sin cuenta.</p>
-              <ConsultaAuto orden={taller.orden} />
+              <ConsultaAuto
+                orden={taller.orden}
+                onEncontrada={(o) => navigate(`/taller/consulta?${new URLSearchParams(o)}`)}
+              />
             </div>
           ) : (
-            <Garaje garaje={taller.garaje} />
+            <>
+              <Link className="t-btn t-btn-p t-presu-enlace" to={ejemplo}>
+                Autorizar el presupuesto de ejemplo
+              </Link>
+              <Garaje garaje={taller.garaje} />
+            </>
           )}
         </div>
         <OrdenServicio orden={taller.orden} />

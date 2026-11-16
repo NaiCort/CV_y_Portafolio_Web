@@ -1277,6 +1277,215 @@
   font-size: 0.875rem;
 }
 
+/* Consulta tu auto: presupuesto por partida */
+.t-presu-enlace {
+  margin-top: 26px;
+}
+.t-orden-cabecera {
+  display: grid;
+  gap: 4px;
+  margin-top: 26px;
+  color: var(--t-suave);
+  font-size: 0.94rem;
+}
+.t-orden-cabecera p:first-child {
+  color: var(--t-tinta);
+  font-weight: 600;
+}
+.t-etapas-fila {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 12px;
+  margin: 22px 0 0;
+  padding: 16px 0;
+  border-block: 1px solid var(--t-linea);
+}
+.t-etapas-fila li {
+  font-size: 0.875rem;
+}
+.t-etapas-fila span {
+  font-size: 0.8125rem;
+}
+.t-presu {
+  margin-top: 36px;
+}
+.t-presu-lista {
+  display: grid;
+  gap: 12px;
+  margin-top: 18px;
+  list-style: none;
+}
+.t-presu-partida {
+  display: grid;
+  gap: 10px;
+  padding: 18px 20px;
+  border: 1px solid var(--t-linea);
+  border-radius: 14px;
+  background: var(--t-panel);
+}
+.t-presu-cab {
+  display: grid;
+  grid-template-columns: 12px 1fr auto auto;
+  align-items: center;
+  gap: 12px;
+}
+.t-presu-cab h3 {
+  font: 650 1.1875rem/1.2 var(--t-titulo);
+}
+.t-presu-cab b {
+  font: 650 1.25rem/1 var(--t-titulo);
+  white-space: nowrap;
+}
+.t-presu-nivel {
+  color: var(--t-suave);
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+.t-presu-partida > p {
+  max-width: 68ch;
+  font-size: 0.94rem;
+}
+.t-medida {
+  display: grid;
+  gap: 6px;
+  max-width: 420px;
+  font-size: 0.875rem;
+}
+.t-medida-barra {
+  height: 6px;
+  overflow: hidden;
+  border-radius: 3px;
+  background: var(--t-linea);
+}
+.t-medida-barra i {
+  display: block;
+  height: 100%;
+  background: var(--t-nivel);
+}
+.t-desglose {
+  color: var(--t-suave);
+  font-size: 0.875rem;
+}
+.t-decision {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  min-width: 0;
+  border: 0;
+}
+.t-decision label {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  padding: 0 16px;
+  border: 1px solid var(--t-linea);
+  border-radius: 999px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 200ms var(--t-ease);
+}
+.t-decision label.is-on {
+  border-color: var(--t-acento);
+  box-shadow: inset 0 0 0 1px var(--t-acento);
+}
+.t-decision:disabled label {
+  cursor: default;
+  opacity: 0.75;
+}
+.t-presu-panel {
+  margin-top: 28px;
+}
+.t-presu-panel:focus {
+  outline: none;
+}
+.t-firma,
+.t-reparacion,
+.t-entrega,
+.t-hallazgo {
+  display: grid;
+  gap: 16px;
+  max-width: 760px;
+}
+.t-reparacion,
+.t-entrega {
+  padding: 24px 26px;
+  border: 1px solid var(--t-linea);
+  border-radius: 14px;
+  background: var(--t-panel);
+  animation: t-funde 220ms var(--t-ease);
+}
+.t-hallazgo {
+  padding: 18px 20px;
+  border: 1px solid var(--t-espera);
+  border-radius: 12px;
+}
+.t-hallazgo h3,
+.t-entrega h3 {
+  font: 650 1.1875rem/1.2 var(--t-titulo);
+}
+.t-firma > .t-btn,
+.t-reparacion > .t-btn,
+.t-hallazgo > .t-btn {
+  justify-self: start;
+}
+.t-comprobante {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+.t-comprobante caption {
+  margin-bottom: 8px;
+  color: var(--t-suave);
+  font-size: 0.8125rem;
+  text-align: left;
+}
+.t-comprobante :is(th, td) {
+  padding: 9px 8px 9px 0;
+  border-bottom: 1px solid var(--t-linea);
+  text-align: right;
+  vertical-align: top;
+}
+.t-comprobante :is(th:first-child, tbody th, tfoot th) {
+  font-weight: 400;
+  text-align: left;
+}
+.t-comprobante thead th {
+  color: var(--t-suave);
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+.t-comprobante-total :is(th, td) {
+  font-weight: 700;
+  font-size: 1.0625rem;
+}
+.t-consulta-salida {
+  margin-top: 36px;
+}
+@media (max-width: 900px) {
+  .t-etapas-fila {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 640px) {
+  .t-presu-cab {
+    grid-template-columns: 12px 1fr auto;
+  }
+  .t-presu-nivel {
+    grid-column: 2;
+    grid-row: 2;
+  }
+  .t-reparacion,
+  .t-entrega {
+    padding: 20px 16px;
+  }
+  .t-comprobante thead th:nth-child(2),
+  .t-comprobante thead th:nth-child(3),
+  .t-comprobante tbody td:nth-child(2),
+  .t-comprobante tbody td:nth-child(3) {
+    display: none;
+  }
+}
+
 /* Créditos */
 .t-creditos h2 {
   margin-top: 40px;

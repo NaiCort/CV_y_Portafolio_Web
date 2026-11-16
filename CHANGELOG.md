@@ -1,3 +1,12 @@
+# V4.5.3 · 16 de noviembre de 2026 · Taller mecánico, presupuesto con visto bueno
+
+- Añadir `/taller/consulta`: presupuesto por partida con medida, desglose y «Autorizar» o «No por ahora».
+- Firma con el nombre; si no se autoriza nada, se paga solo el diagnóstico.
+- Reparación con un hallazgo que pide autorización (regla de Profeco del 20 %).
+- Entrega con comprobante desglosado, piezas devueltas o recicladas y garantía con fecha.
+- «Consulta tu auto» en el menú de los dos talleres.
+- Once pruebas nuevas y el presupuesto completo en los recorridos de navegador.
+
 # V4.5.2 · 16 de noviembre de 2026 · Taller mecánico, agendar cita
 
 - Añadir `/taller/cita`: servicio, auto, dónde y cuándo, datos y confirmación con folio.
