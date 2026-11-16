@@ -1,3 +1,11 @@
+# V4.5.5 · 16 de noviembre de 2026 · Taller mecánico, páginas de Vértice
+
+- Añadir `/taller/hojalateria`: con o sin seguro, calculadora de deducible y trabajos de ejemplo.
+- Añadir `/taller/hibridos`: qué se atiende, seguridad, reporte de batería de ejemplo y preguntas.
+- Añadir `/taller/garaje`: perfil de ejemplo con dos autos, kilometraje, recordatorio, orden abierta e historial.
+- Menú para teléfono y tableta.
+- Nueve pruebas nuevas y las tres páginas en los recorridos de navegador.
+
 # V4.5.4 · 16 de noviembre de 2026 · Taller mecánico, precios y revisión de usados
 
 - Añadir `/taller/precios` en los dos talleres: lista completa por categoría, suma aproximada, reglas de cobro de Profeco y formas de pago.

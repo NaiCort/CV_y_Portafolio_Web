@@ -149,9 +149,9 @@ arriba, degradados, brillos, emojis, imágenes generadas con IA.
 | Consulta tu auto (V4.5.3) | `/taller/consulta` | Folio y placas, etapas, presupuesto por partida con visto bueno | Ambos |
 | Precios (V4.5.4) | `/taller/precios` | Lista completa, mano de obra, garantía, contrato Profeco | Ambos |
 | Revisión de usados (V4.5.4) | `/taller/usados` | Qué se revisa, precio fijo, reporte de ejemplo | Rosales |
-| Hojalatería y seguros | `/taller/hojalateria` | Aseguradoras, antes y después, deducible | Vértice |
-| Híbridos | `/taller/hibridos` | Qué se atiende, sucursal especializada | Vértice |
-| Mi garaje | `/taller/garaje` | Perfil de ejemplo, autos, historial, siguiente servicio | Vértice |
+| Hojalatería y seguros (V4.5.5) | `/taller/hojalateria` | Aseguradoras, antes y después, deducible | Vértice |
+| Híbridos (V4.5.5) | `/taller/hibridos` | Qué se atiende, sucursal especializada | Vértice |
+| Mi garaje (V4.5.5) | `/taller/garaje` | Perfil de ejemplo, autos, historial, siguiente servicio | Vértice |
 | Créditos | `/taller/creditos` | Fotos y tipografías con autor y licencia | Ambos |
 
 Las páginas de un solo taller se ofrecen solo en su tema; si se abren desde el otro,
