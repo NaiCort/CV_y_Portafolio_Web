@@ -752,10 +752,12 @@
 .b-planes {
   padding-bottom: 120px;
 }
+/* En Distrito la franja de planes va en claro de orilla a orilla. El fondo se pinta con
+   border-image hacia los lados, así el contenido queda en el mismo lugar que en Cobalto y la
+   barra de desplazamiento no provoca desborde (antes se usaban márgenes con 100vw). */
 .brio-root[data-tema="distrito"] .b-planes {
-  margin-inline: calc(50% - 50vw);
-  padding: 100px calc(50vw - 50% + 40px) 120px;
-  background: var(--b-planes-fondo);
+  padding-top: 100px;
+  border-image: conic-gradient(var(--b-planes-fondo) 0 0) fill 0 / /0 100vw;
   color: #141312;
 }
 .b-planes h2 {
@@ -2910,9 +2912,6 @@ html[data-brio-tema="distrito"] {
     top: 0;
     right: 0;
     left: auto;
-  }
-  .brio-root[data-tema="distrito"] .b-planes {
-    padding-inline: calc(50vw - 50% + 18px);
   }
   .b-temas-nombre {
     display: none;
