@@ -126,17 +126,22 @@ export default function Inicio({ taller, onWhatsApp, onLlamar }) {
             {taller.garantia}. Precios con IVA.
           </p>
         </div>
-        <ul className="t-lista-precios">
-          {taller.servicios.map((s) => (
-            <li key={s.id}>
-              <div>
-                <b>{s.nombre}</b>
-                <span>{s.detalle}</span>
-              </div>
-              <span className="t-precio t-num">{precioServicio(s)}</span>
-            </li>
-          ))}
-        </ul>
+        <div>
+          <ul className="t-lista-precios">
+            {taller.servicios.map((s) => (
+              <li key={s.id}>
+                <div>
+                  <b>{s.nombre}</b>
+                  <span>{s.detalle}</span>
+                </div>
+                <span className="t-precio t-num">{precioServicio(s)}</span>
+              </li>
+            ))}
+          </ul>
+          <Link className="t-btn t-btn-s t-precios-mas" to="/taller/precios">
+            Ver la lista completa
+          </Link>
+        </div>
       </section>
 
       <Ubicacion key={taller.id} taller={taller} onLlamar={onLlamar} />
