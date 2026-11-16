@@ -26,6 +26,11 @@ Entorno: Node 22, Chromium de Playwright, compilación de producción con `vite 
 - axe-core con los seis scripts de Brío (Inicio y Créditos, Clases, Planes y alta, área de socio, Coaches y tienda, primera visita), en los dos temas a 1440 y 390 px: **sin infracciones**.
 - Revisión visual en 390 y 1440 px del panel de Movilidad y Ritmo en los dos temas y de la tabla de horas tranquilas.
 
+## Planes en el tema Distrito (16/11)
+
+- Medido con barras de desplazamiento visibles a 390, 1440 y 1980 px: en Planes y en la portada, la sección, el título y la tabla quedan en la misma posición con Cobalto y con Distrito, sin desplazamiento horizontal.
+- `npm run test:browser:gimnasio` ahora abre Planes y la portada con Distrito activo, revisa el desbordamiento y que el título de planes quede alineado con el logotipo. **5 de 5 aprobados.**
+
 ## No comprobado
 
 Teléfono físico, Safari, lector de pantalla real y la importación del `.ics` en cada aplicación de calendario: revisión de Ian en la vista previa.
