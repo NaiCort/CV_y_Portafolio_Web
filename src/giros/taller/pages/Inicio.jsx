@@ -1,6 +1,7 @@
 import Testigos from "../components/Testigos"
 import OrdenServicio from "../components/OrdenServicio"
 import ConsultaAuto from "../components/ConsultaAuto"
+import Ubicacion from "../components/Ubicacion"
 import { kmTexto, precioServicio } from "../lib/formato"
 
 function Garaje({ garaje }) {
@@ -31,7 +32,7 @@ function Garaje({ garaje }) {
   )
 }
 
-export default function Inicio({ taller, onAgendar, onWhatsApp }) {
+export default function Inicio({ taller, onAgendar, onWhatsApp, onLlamar }) {
   const esRosales = taller.id === "rosales"
   return (
     <>
@@ -127,23 +128,7 @@ export default function Inicio({ taller, onAgendar, onWhatsApp }) {
         </ul>
       </section>
 
-      {!esRosales && (
-        <section id="sucursales" className="t-wrap t-seccion" aria-labelledby="t-sucursales-titulo">
-          <div className="t-sec-cab">
-            <h2 id="t-sucursales-titulo">Cuatro sucursales</h2>
-            <p>Todas hacen mecánica general. Cada una tiene además su especialidad.</p>
-          </div>
-          <ul className="t-sucursales">
-            {taller.sucursales.map((s) => (
-              <li key={s.id}>
-                <b>{s.nombre}</b>
-                <span>{s.referencia}</span>
-                <em>{s.especialidad}</em>
-              </li>
-            ))}
-          </ul>
-        </section>
-      )}
+      <Ubicacion key={taller.id} taller={taller} onAgendar={onAgendar} onLlamar={onLlamar} />
     </>
   )
 }

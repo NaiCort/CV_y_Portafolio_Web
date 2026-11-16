@@ -20,6 +20,7 @@ const SECCIONES = {
     ["presupuesto", "Presupuesto"],
     ["precios", "Precios"],
     ["consulta", "Consulta tu auto"],
+    ["ubicacion", "Cómo llegar"],
   ],
   vertice: [
     ["testigos", "Testigos del tablero"],
@@ -77,9 +78,12 @@ function GuiaTaller() {
           muestra en qué etapa va. No hay otras órdenes ni servidor.
         </li>
         <li>
-          En Vértice, «Mi garaje» muestra un perfil de ejemplo. Las sucursales usan avenidas reales
-          como referencia; ahí no hay ningún taller.
+          El mapa es real (OpenStreetMap, servido por OpenFreeMap). Rosales tiene un solo local en
+          la colonia Revolución; Vértice, cuatro sucursales en otras zonas de la ciudad. Cada punto
+          está junto a una calle o lugar real que sirve de referencia; ahí no hay ningún taller. El
+          horario y el «abierto ahora» son de ejemplo.
         </li>
+        <li>En Vértice, «Mi garaje» muestra un perfil de ejemplo.</li>
         <li>
           Llamar y WhatsApp abren una simulación: no se marca ni se envía nada. Precios, personas y
           horarios son de ejemplo.
@@ -167,7 +171,14 @@ export default function TallerApp() {
         <Routes>
           <Route
             index
-            element={<Inicio taller={taller} onAgendar={agendar} onWhatsApp={whatsapp} />}
+            element={
+              <Inicio
+                taller={taller}
+                onAgendar={agendar}
+                onWhatsApp={whatsapp}
+                onLlamar={() => setLlamada(true)}
+              />
+            }
           />
           <Route path="creditos" element={<Creditos />} />
           <Route path="*" element={<Navigate to="/taller" replace />} />

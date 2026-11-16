@@ -116,7 +116,7 @@ export const TESTIGOS = [
       },
       vertice: {
         servicio: "alineacion",
-        nota: "La sucursal Sumidero revisa presión y ponchaduras sin costo; si hace falta, alinea y balancea.",
+        nota: "La sucursal Lázaro Cárdenas revisa presión y ponchaduras sin costo; si hace falta, alinea y balancea.",
       },
     },
   },

@@ -1,5 +1,7 @@
 // Dos talleres ficticios, uno por tema (docs/FICHA_TALLER.md). Personas, folios, placas,
 // precios y número de contrato son de ejemplo. Precios en pesos, con IVA.
+import { LOCAL_ROSALES, SUCURSALES_VERTICE } from "./ubicaciones"
+
 export const CONTRATO_EJEMPLO = "1234-2026"
 
 export const TALLERES = {
@@ -12,7 +14,8 @@ export const TALLERES = {
     bajada:
       "Mecánica Rosales, taller familiar en la colonia Revolución desde 1989. Diagnóstico con escáner, presupuesto por escrito y tus piezas viejas de regreso.",
     telefono: "228 104 2236",
-    direccion: "Colonia Revolución, Xalapa · a dos cuadras del mercado",
+    direccion: "Colonia Revolución, al norte de Xalapa",
+    local: LOCAL_ROSALES,
     horario: "Lunes a viernes de 8:30 a 18:30 · sábado de 8:30 a 14:00",
     garantia: "90 días o 5,000 km",
     manoDeObra: 450,
@@ -168,32 +171,7 @@ export const TALLERES = {
       ultimo: 60000,
       siguiente: 70000,
     },
-    sucursales: [
-      {
-        id: "animas",
-        nombre: "Ánimas",
-        referencia: "Av. Lázaro Cárdenas",
-        especialidad: "Hojalatería y pintura",
-      },
-      {
-        id: "centro",
-        nombre: "Centro",
-        referencia: "Av. Ávila Camacho",
-        especialidad: "Mecánica general",
-      },
-      {
-        id: "arco-sur",
-        nombre: "Arco Sur",
-        referencia: "Paseo Arco Sur",
-        especialidad: "Híbridos",
-      },
-      {
-        id: "sumidero",
-        nombre: "Sumidero",
-        referencia: "Carretera a Coatepec",
-        especialidad: "Llantas y alineación",
-      },
-    ],
+    sucursales: SUCURSALES_VERTICE,
   },
 }
 

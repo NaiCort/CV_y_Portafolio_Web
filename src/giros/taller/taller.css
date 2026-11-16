@@ -708,34 +708,228 @@
   white-space: nowrap;
 }
 
-/* Sucursales (Vértice) */
-.t-sucursales {
+/* Ubicación: mapa con la ficha de Rosales o la lista de sucursales de Vértice */
+.t-ubicacion {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
-  margin-top: 26px;
-  list-style: none;
+  grid-template-columns: 1.35fr 1fr;
+  gap: 32px;
+  margin-top: 28px;
 }
-.t-sucursales li {
-  display: grid;
-  gap: 2px;
-  padding: 18px 20px;
+.t-mapa {
+  position: relative;
+  align-self: start;
+  aspect-ratio: 760 / 560;
+  overflow: hidden;
   border: 1px solid var(--t-linea);
   border-radius: 14px;
   background: var(--t-panel);
 }
-.t-sucursales b {
+/* Más específico que .maplibregl-map, que impone position: relative al contenedor. */
+.t-mapa .t-mapa-lienzo {
+  position: absolute;
+  inset: 0;
+}
+.t-mapa-estado {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 14px;
+  padding: 24px;
+  color: var(--t-suave);
+  text-align: center;
+}
+.t-mapa .maplibregl-ctrl-attrib {
+  font: 400 0.6875rem var(--t-texto);
+}
+.t-pin {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 32px;
+  padding: 0 10px 0 0;
+  border: 0;
+  background: none;
+  color: var(--t-tinta);
+  font: 700 0.9375rem var(--t-texto);
+  cursor: pointer;
+}
+.t-pin-nombre {
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--t-panel) 92%, transparent);
+  box-shadow: 0 1px 4px #00000026;
+}
+.t-pin-punto {
+  width: 18px;
+  height: 18px;
+  border: 3px solid var(--t-panel);
+  border-radius: 50%;
+  background: var(--t-suave);
+  transition: transform 200ms var(--t-ease);
+}
+.t-pin.is-on {
+  z-index: 2;
+}
+.t-pin.is-on .t-pin-punto {
+  background: var(--t-acento);
+  box-shadow: 0 0 0 8px color-mix(in srgb, var(--t-acento) 28%, transparent);
+  transform: scale(1.2);
+}
+.t-pin:focus-visible {
+  outline: 3px solid var(--t-acento);
+  outline-offset: 2px;
+}
+.t-estado {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--t-suave);
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+.t-estado i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--t-apagado);
+}
+.t-estado.is-abierto {
+  color: var(--t-tinta);
+}
+.t-estado.is-abierto i {
+  background: var(--t-bien);
+}
+.t-horario {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.906rem;
+}
+.t-horario th,
+.t-horario td {
+  padding: 7px 0;
+  border-bottom: 1px solid var(--t-linea);
+  text-align: left;
+}
+.t-horario th {
+  font-weight: 400;
+}
+.t-horario td {
+  text-align: right;
+}
+.t-horario .is-hoy {
+  font-weight: 700;
+}
+.t-horario .is-hoy th {
+  font-weight: 700;
+}
+.t-ficha {
+  display: grid;
+  align-content: start;
+  gap: 16px;
+}
+.t-ficha-dir {
   font: 650 1.25rem/1.2 var(--t-titulo);
 }
-.t-sucursales span {
+.t-ficha-datos {
+  display: grid;
+  gap: 10px;
+}
+.t-ficha-datos dt {
+  color: var(--t-suave);
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+.t-ficha-datos dd {
+  font-size: 0.94rem;
+}
+.t-ficha-extras {
+  display: grid;
+  gap: 6px;
+  list-style: none;
+  font-size: 0.906rem;
+}
+.t-ficha-extras li {
+  position: relative;
+  padding-left: 16px;
+}
+.t-ficha-extras li::before {
+  content: "";
+  position: absolute;
+  top: 0.55em;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--t-acento);
+}
+.t-ficha-acciones {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 18px;
+}
+.t-ref {
   color: var(--t-suave);
   font-size: 0.875rem;
 }
-.t-sucursales em {
-  color: var(--t-acento);
-  font-size: 0.85rem;
+/* La lista se desplaza por dentro y no estira la fila: la altura la pone el mapa. */
+.t-sucursales-marco {
+  position: relative;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  border-block: 1px solid var(--t-linea);
+  scrollbar-color: var(--t-linea) transparent;
+}
+.t-sucursales {
+  position: absolute;
+  inset: 0 0 auto;
+  padding-right: 6px;
+  list-style: none;
+}
+.t-sucursales > li + li {
+  border-top: 1px solid var(--t-linea);
+}
+.t-sucursal-boton {
+  display: grid;
+  gap: 2px;
+  width: 100%;
+  padding: 16px 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.t-sucursal-boton b {
+  font: 650 1.375rem/1.1 var(--t-titulo);
+  transition: color 200ms var(--t-ease);
+}
+.t-sucursal-boton em {
+  color: var(--t-suave);
+  font-size: 0.875rem;
   font-style: normal;
-  font-weight: 700;
+}
+.t-sucursales > li.is-on .t-sucursal-boton b {
+  color: var(--t-acento);
+}
+@media (hover: hover) {
+  .t-sucursal-boton:hover b {
+    color: var(--t-acento);
+  }
+}
+.t-sucursal-detalle {
+  display: grid;
+  gap: 14px;
+  padding-bottom: 20px;
+  font-size: 0.94rem;
+  animation: t-funde 220ms var(--t-ease);
+}
+.t-sucursal-detalle[hidden] {
+  display: none;
 }
 
 /* Créditos */
@@ -887,8 +1081,11 @@ html[data-taller-tema="vertice"] .t-modal {
     grid-template-columns: 1fr;
     gap: 14px;
   }
-  .t-sucursales {
-    grid-template-columns: 1fr 1fr;
+  .t-ubicacion {
+    grid-template-columns: 1fr;
+  }
+  .t-sucursales-marco {
+    height: 460px;
   }
   .t-dos {
     gap: 36px;
@@ -935,8 +1132,11 @@ html[data-taller-tema="vertice"] .t-modal {
   .t-garaje-km {
     font-size: 2.625rem;
   }
-  .t-sucursales {
-    grid-template-columns: 1fr;
+  .t-mapa {
+    aspect-ratio: 1;
+  }
+  .t-sucursales-marco {
+    height: 420px;
   }
   .t-temas-nombre {
     display: none;
