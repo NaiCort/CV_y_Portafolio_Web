@@ -50,6 +50,9 @@ await suite("taller", async ({ run, base }) => {
             "/taller/consulta",
             "/taller/precios",
             "/taller/usados",
+            "/taller/hojalateria",
+            "/taller/hibridos",
+            "/taller/garaje",
             "/taller/creditos",
           ]) {
             await go(page, base, path)
@@ -213,7 +216,38 @@ await suite("taller", async ({ run, base }) => {
         await page.locator("main h1").waitFor()
         assert.match(await page.locator("main h1").textContent(), /Tu auto, a la vista/)
 
-        // La misma página no cambia de altura por volver al mismo tema.
+        // Mi garaje con el perfil de ejemplo: kilometraje y salida.
+        await go(page, base, "/taller/garaje")
+        await page.getByRole("button", { name: "Usar el perfil de ejemplo" }).click()
+        await page.getByRole("button", { name: "Entrar", exact: true }).click()
+        await page.locator(".t-garaje-panel").waitFor()
+        await page.locator("#t-km-mazda").fill("64000")
+        await page.getByRole("button", { name: "Guardar" }).click()
+        assert.equal(await page.locator(".t-garaje-km").textContent(), "64,000 km")
+        await bounds(page)
+        await audit(page)
+        await page.getByRole("button", { name: "Salir" }).click()
+        await page.locator(".t-entrar").waitFor()
+        // Hojalatería: la calculadora del deducible responde.
+        await go(page, base, "/taller/hojalateria")
+        await page.locator("#t-reparacion").fill("30000")
+        assert.match(await page.locator(".t-deducible-resultado").textContent(), /usar el seguro/)
+        await audit(page)
+        // Menú del teléfono y la tableta.
+        if (width < 900) {
+          await page.getByRole("button", { name: "Menú" }).click()
+          await page.locator("#t-menu-movil").getByRole("link", { name: "Híbridos" }).click()
+          await page.waitForURL(/\/taller\/hibridos$/)
+          await page.locator("#t-menu-movil").waitFor({ state: "hidden" })
+          await bounds(page)
+          await audit(page)
+        }
+        await go(page, base, "/taller")
+
+        // La misma página no cambia de altura por volver al mismo tema (con las fuentes ya
+        // cargadas: tras recargar, el cambio de tipografía mueve el texto, anotado para V4.8).
+        await page.evaluate(() => document.fonts.ready)
+        await quieto(page)
         const antes = await altura(page)
         await tema(page, "Mecánica Rosales")
         await tema(page, "Vértice")

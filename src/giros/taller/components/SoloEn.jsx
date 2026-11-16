@@ -10,6 +10,7 @@ export default function SoloEn({ taller, titulo, onCambiar }) {
         {titulo}
       </h1>
       <div className="t-solo-en">
+        <h2>Es un servicio de {otro.nombre}</h2>
         <p>
           Este servicio es de <b>{otro.nombre}</b>, {otro.descripcion}. Estás viendo el otro taller
           de la demo.
