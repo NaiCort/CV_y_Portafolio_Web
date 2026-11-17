@@ -18,7 +18,7 @@ acciones ficticias del negocio.
 - Se trabaja **una demo a la vez**, en este orden: Psicólogo (cerrada) → Restaurante
   (cerrada en V4.2.5 con **Patio 12**) → Café (cerrada en V4.3.6 con **Ladera**) →
   Gimnasio (cerrada en V4.4.8 con **Brío**) → Taller mecánico (cerrada en V4.5.6 con
-  **Rosales y Vértice**) → **Despacho contable (V4.6, siguiente)** → Revista digital (V4.7).
+  **Rosales y Vértice**) → **Despacho contable (en curso, V4.6)** → Revista digital (V4.7).
 - **Restaurante = solo Patio 12.** No se construyen las sub-categorías (fonda, comida
   rápida, lujo) ni el panel de empleados y precios: ambas ideas quedaron descartadas.
 - **Café = Ladera**, una sola identidad y un solo local, sin gestión de empleados. Su
@@ -100,8 +100,8 @@ activarlas. Cerrado con el visto bueno de Ian el 16/11/2026. Pruebas de navegado
 
 ## Estado de Taller mecánico
 
-**Taller = Mecánica Rosales y Vértice**, cerrado en V4.5.6 (pendiente del visto bueno de Ian
-en la vista previa): dos talleres ficticios en Xalapa, uno por tema, sobre la misma estructura
+**Taller = Mecánica Rosales y Vértice**, cerrado en V4.5.6 con el visto bueno de Ian
+(17/11/2026): dos talleres ficticios en Xalapa, uno por tema, sobre la misma estructura
 (dirección «Combinada»: testigos del tablero y orden de servicio en papel). Rosales es familiar,
 de un solo local, sin cuenta y con revisión de usados; Vértice es multimarca con cuatro
 sucursales, hojalatería con calculadora de deducible, híbridos y «Mi garaje» con un perfil de
