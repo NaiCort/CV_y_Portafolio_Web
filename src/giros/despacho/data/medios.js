@@ -1,7 +1,26 @@
-// Fotos de Cotejo: licencia de Unsplash, servidas desde este sitio. Son ilustrativas: la persona
-// retratada no es Elena Murrieta ni trabaja en un despacho, y la sala no está en Xalapa.
+// Fotos de Cotejo, servidas desde este sitio: Xalapa de Wikimedia Commons (CC0) y las demás de
+// Unsplash. Son ilustrativas: las personas no son Elena, ni clientas, ni personal de Cotejo, y la
+// sala no está en Xalapa.
 // Procedencia completa en public/despacho/medios-origen.json.
 export const FOTOS = {
+  xalapa: {
+    src: "/despacho/fotos/xalapa-1920.webp",
+    srcSet: "/despacho/fotos/xalapa-960.webp 960w, /despacho/fotos/xalapa-1920.webp 1920w",
+    ancho: 1920,
+    alto: 1084,
+    alt: "Techos de Xalapa bajo un cielo con nubes, con las montañas al fondo",
+    pie: "Techos de Xalapa. Foto de Koffermejia en Wikimedia Commons, dominio público (CC0).",
+    origen: "https://commons.wikimedia.org/wiki/File:Cielo_de_Xalapa_02.jpg",
+  },
+  consulta: {
+    src: "/despacho/fotos/consulta-1280.webp",
+    srcSet: "/despacho/fotos/consulta-640.webp 640w, /despacho/fotos/consulta-1280.webp 1280w",
+    ancho: 1280,
+    alto: 855,
+    alt: "Dos mujeres conversan en una mesa blanca junto a un ventanal, cada una con su libreta",
+    pie: "Foto ilustrativa: no son clientas ni personal de Cotejo.",
+    origen: "https://images.unsplash.com/photo-1573496267526-08a69e46a409",
+  },
   contadora: {
     src: "/despacho/fotos/contadora-800.webp",
     srcSet: "/despacho/fotos/contadora-400.webp 400w, /despacho/fotos/contadora-800.webp 800w",
