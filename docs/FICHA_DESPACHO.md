@@ -1,6 +1,6 @@
 # Ficha de identidad · Cotejo (Despacho contable, V4.6)
 
-Guía de identidad y calidad visual v1.1 (Documento Maestro, Parte X). Versión 1: 18 de noviembre de 2026. Dirección «Expediente», elegida por Ian entre tres maquetas (Libro, Día 17 y Expediente). Nombre aprobado por Ian. **Versión 2 (V4.6.7):** portada editorial, mezcla de las maquetas «Libro mayor» y «Consulta» que eligió Ian a partir de dos referencias suyas (un despacho de Xalapa con foto grande en la portada y un sitio editorial de logística con título enorme y fotos que acompañan el desplazamiento).
+Guía de identidad y calidad visual v1.1 (Documento Maestro, Parte X). Versión 1: 18 de noviembre de 2026. Dirección «Expediente», elegida por Ian entre tres maquetas (Libro, Día 17 y Expediente). Nombre aprobado por Ian. **Versión 2 (V4.6.7):** portada editorial, mezcla de las maquetas «Libro mayor» y «Consulta» que eligió Ian a partir de dos referencias suyas (un despacho de Xalapa con foto grande en la portada y un sitio editorial de logística con título enorme y fotos que acompañan el desplazamiento). **Versión 3 (V4.6.8):** el mismo lenguaje en toda la demo, a partir de la maqueta que Ian aprobó («Así se ve bien»).
 
 Investigación previa: [INVESTIGACION_DESPACHO.md](INVESTIGACION_DESPACHO.md) y [REFERENCIAS_DESPACHO.md](REFERENCIAS_DESPACHO.md).
 
@@ -29,7 +29,7 @@ Un solo tema, claro.
 | Acento | Petróleo | `#0F5C6E` | Acción principal, enlaces, lo elegido | Blanco sobre petróleo 7.6:1; 6.7:1 sobre fondo |
 | Aviso | Papel ámbar | `#FBF4E4` | «Te pedimos…» y fechas límite | Tinta 14.8:1 |
 
-**Semáforo** (función, siempre con texto al lado; nunca como adorno): al día `#2F7D4F` (5.0:1 sobre blanco), atención `#9A6A06` para texto y `#C98A0C` para el punto, urgente `#B6362B` (5.9:1).
+**Semáforo** (función, siempre con texto al lado; nunca como adorno): al día `#2F7D4F` (5.0:1 sobre blanco), atención `#8A5F05` para texto y `#C98A0C` para el punto, urgente `#B6362B` (5.9:1).
 
 Regla del acento: un solo petróleo por pantalla para la acción principal; el semáforo solo marca estado. Sin degradados.
 
@@ -63,6 +63,17 @@ Regla del acento: un solo petróleo por pantalla para la acción principal; el s
 3. **Consulta:** texto a la izquierda con tres datos de confianza y, a la derecha, la foto de una consulta con el expediente de ejemplo encima, que se puede aprobar ahí mismo.
 
 En el teléfono, la portada llena la pantalla para que la foto de Xalapa cargue en diferido (LCP de texto) y sus botones quedan por encima de la barra de contacto.
+
+## Sistema «libro mayor» en toda la demo (V4.6.8)
+
+- **Encabezado de página:** ruta, título grande en Literata 500 con la segunda parte en gris en su propio renglón, bajada, y renglones del libro mayor con palomas a la derecha (SVG en mosaico, no degradado).
+- **Listas y tablas:** línea gruesa arriba (2 px tinta), renglones con línea fina y cifras en Literata alineadas a la derecha. Así se ven regímenes y precios, servicios, especialidades, herramientas, guías, el previo, lo que te pedimos, documentos, resultados de calculadoras y «Antes de contratarnos».
+- **Papel blanco solo para objetos:** expediente, recibo, formulario de cotización, diagnóstico y calendario. Siempre al lado del texto, nunca encima. El semáforo del expediente completo es una carpeta.
+- **Paneles oscuros con foto y frase en ocre:** Xalapa en la portada, la lista palomeada («Nada se presenta sin tu visto bueno») y el Cofre de Perote en el recordatorio por WhatsApp.
+- **Contadora:** retrato grande con su cita en Literata. **Opiniones:** una grande y dos chicas.
+- **Pie oscuro** en todas las páginas con «Que todo cuadre antes del 17.» y los dos botones.
+- **Tipografías de respaldo medidas:** Times o Liberation Serif al 117.6 % y Noto o DejaVu Serif al 91.4 % para Literata; Arial para Instrument Sans (mismo ancho). Mientras llegan las tipografías, el texto ocupa casi lo mismo y la página no salta.
+- **Ámbar para texto:** `#8A5F05` (antes `#9A6A06`), porque ahora va sobre el fondo y no sobre blanco: 5.0:1.
 
 ## Movimiento
 

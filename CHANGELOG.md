@@ -1,3 +1,13 @@
+# V4.6.8 · 18 de noviembre de 2026 · Despacho contable, toda la demo en libro mayor
+
+- El estilo de la portada en toda la demo, según la maqueta aprobada por Ian: encabezado con título grande y renglones del libro mayor en las nueve páginas interiores; listas y tablas como libro; papel blanco solo para los objetos; paneles oscuros con foto y frase en ocre; pie oscuro con la frase de la portada.
+- La tarjeta del expediente ya no tapa texto ni foto: va en la columna del texto, debajo del párrafo.
+- Inicio: regímenes como renglones con el recibo al lado, días del mes en grande, panel «Nada se presenta sin tu visto bueno», servicios en índice, especialidades con foto de Xalapa, contadora con su cita y opiniones con una destacada.
+- Tu expediente: semáforo como carpeta, previo y solicitudes como libro y recordatorio por WhatsApp en banda oscura con el Cofre de Perote.
+- Tres fotos nuevas: dos de Xalapa (Koffermejia, Wikimedia Commons, CC BY-SA 4.0) y una ilustrativa de Unsplash; los créditos se generan de los datos de las fotos.
+- Tipografías de respaldo con medidas ajustadas: CLS de 0.000 a 0.040 en las diez páginas.
+- Ámbar de texto más oscuro (`#8A5F05`) para el contraste sobre el fondo.
+
 # V4.6.7 · 18 de noviembre de 2026 · Despacho contable, portada editorial
 
 - Nueva portada de Cotejo, mezcla de las maquetas «Libro mayor» y «Consulta» que eligió Ian: libro mayor que se palomea solo con título enorme, panel con la foto real de los techos de Xalapa (Wikimedia Commons, CC0) que se aleja al desplazarse y la consulta con el expediente de ejemplo encima.
