@@ -1,6 +1,6 @@
 # Ficha de identidad · Cotejo (Despacho contable, V4.6)
 
-Guía de identidad y calidad visual v1.1 (Documento Maestro, Parte X). Versión 1: 18 de noviembre de 2026. Dirección «Expediente», elegida por Ian entre tres maquetas (Libro, Día 17 y Expediente). Nombre aprobado por Ian.
+Guía de identidad y calidad visual v1.1 (Documento Maestro, Parte X). Versión 1: 18 de noviembre de 2026. Dirección «Expediente», elegida por Ian entre tres maquetas (Libro, Día 17 y Expediente). Nombre aprobado por Ian. **Versión 2 (V4.6.7):** portada editorial, mezcla de las maquetas «Libro mayor» y «Consulta» que eligió Ian a partir de dos referencias suyas (un despacho de Xalapa con foto grande en la portada y un sitio editorial de logística con título enorme y fotos que acompañan el desplazamiento).
 
 Investigación previa: [INVESTIGACION_DESPACHO.md](INVESTIGACION_DESPACHO.md) y [REFERENCIAS_DESPACHO.md](REFERENCIAS_DESPACHO.md).
 
@@ -42,13 +42,13 @@ Regla del acento: un solo petróleo por pantalla para la acción principal; el s
 
 ## Fotografía e ilustración
 
-**Dos fotos ilustrativas, el resto dibujado** (cambio de V4.6.6, a pedido de Ian). Cotejo se apoya en documentos dibujados con HTML (expediente, recibo, previo, calendario). La investigación extra ([INVESTIGACION_DESPACHO_2.md](INVESTIGACION_DESPACHO_2.md), sección 4) mostró que la foto del dueño da más confianza que no tener imagen, e Ian pidió una foto del local y de la contadora con imágenes de uso libre, como en Psicología. Reglas:
+**Cuatro fotos, el resto dibujado** (cambio de V4.6.6 y V4.6.7, a pedido de Ian). Cotejo se apoya en documentos dibujados con HTML (expediente, recibo, previo, calendario). La investigación extra ([INVESTIGACION_DESPACHO_2.md](INVESTIGACION_DESPACHO_2.md), sección 4) mostró que la foto del dueño da más confianza que no tener imagen, e Ian pidió una foto del local y de la contadora con imágenes de uso libre, como en Psicología. Reglas:
 
-- Solo dos: un retrato para «Con una contadora al frente» y la sala de juntas debajo. Nada de fotos de equipos sonriendo ni apretones de manos.
-- Licencia de Unsplash, servidas desde el sitio en WebP, con procedencia y huella en `public/despacho/medios-origen.json`.
-- Cada foto dice en su pie que es ilustrativa; el retrato dice que **la persona no es Elena** ni trabaja en Cotejo. Así no se presenta a una persona real como la contadora inventada.
+- Cuatro: Xalapa (real, de Wikimedia Commons, CC0) en el panel de la portada; la consulta bajo el expediente; el retrato de «Con una contadora al frente» y la sala de juntas. Nada de fotos de equipos sonriendo ni apretones de manos.
+- Las ilustrativas con licencia de Unsplash; todas servidas desde el sitio en WebP, con procedencia y huella en `public/despacho/medios-origen.json`.
+- Cada foto con personas dice en su pie que es ilustrativa; el retrato dice que **la persona no es Elena** ni trabaja en Cotejo, y la consulta, que no son clientas ni personal. La de Xalapa lleva su autor y licencia. Así no se presenta a una persona real como la contadora inventada.
 - Recorte que deja fuera lo que delate otra ciudad (la sala tenía un cuadro reconocible de otra ciudad).
-- Sin carga en la primera pantalla (`loading="lazy"`), para no mover el LCP.
+- Ninguna en la primera pantalla (`loading="lazy"`), para no mover el LCP.
 
 ## Forma, sombras y densidad
 
@@ -56,10 +56,19 @@ Regla del acento: un solo petróleo por pantalla para la acción principal; el s
 - Una sola sombra suave para los documentos que flotan (expediente y recibo). Lo demás, superficies y líneas.
 - Portada con aire; precios, calendario y expediente densos.
 
+## Portada editorial (V4.6.7)
+
+1. **Libro mayor:** fondo de papel con renglones y columnas de un libro contable que se palomean solos, en orden de lectura (ocre para lo que pide atención). Título enorme en Literata, «Que todo cuadre antes del 17.», con la segunda mitad en gris. Es decorativo (`aria-hidden`), se dibuja en un canvas y se desvanece hacia abajo para no competir con el título.
+2. **Panel de Xalapa:** foto real de los techos de Xalapa a todo lo ancho, oscurecida, con una frase de contexto y la frase principal en ocre `#E7C27D`. La foto se aleja al desplazarse (animación ligada al desplazamiento, solo sin movimiento reducido).
+3. **Consulta:** texto a la izquierda con tres datos de confianza y, a la derecha, la foto de una consulta con el expediente de ejemplo encima, que se puede aprobar ahí mismo.
+
+En el teléfono, la portada llena la pantalla para que la foto de Xalapa cargue en diferido (LCP de texto) y sus botones quedan por encima de la barra de contacto.
+
 ## Movimiento
 
 - **Momento propio:** al elegir un régimen, el precio del recibo cambia con un fundido corto y la lista de lo que incluye se recompone (220 ms). Con movimiento reducido, cambio inmediato.
 - En el expediente, al aprobar el previo, su punto pasa de ámbar a verde (240 ms).
+- Portada: las palomas del libro mayor aparecen una cada 18 ms al cargar (dibujo completo con movimiento reducido); la foto de Xalapa pasa de escala 1.25 a 1 mientras entra en pantalla.
 - Interfaz: 200–300 ms, ease-out, entradas desde 0.95, fundido con movimiento reducido.
 
 ## Anclas
@@ -68,6 +77,7 @@ Regla del acento: un solo petróleo por pantalla para la acción principal; el s
 - RDC Contadores: «gira tu régimen, el recibo cambia».
 - ARG Contadores: el proceso con fechas («día 25: recibes el previo»).
 - Heru: menú por régimen y por problema; calculadoras como entrada.
+- Referencias de Ian para la versión 2: la foto grande y los datos de contacto arriba de un despacho real de Xalapa, y el título enorme con panel fotográfico de un sitio editorial de logística. Se toma la técnica, no el texto ni el dibujo.
 
 ## Patrones vigilados permitidos con motivo
 
@@ -75,7 +85,7 @@ Ninguno de forma estructural. El semáforo de tres colores es función, no adorn
 
 ## Patrones prohibidos
 
-Más fotos de banco que las dos ilustrativas, fotos de equipos, apretones de manos, gráficas de barras decorativas que suben, calculadoras y lupas como ilustración, muros de logotipos de clientes, contadores de «clientes satisfechos», menú numerado 01–04, etiqueta sobre el título, tarjetas iguales con ícono arriba, morado e índigo, degradados, emojis, urgencia falsa.
+Más fotos de banco que las tres ilustrativas, fotos de equipos, apretones de manos, gráficas de barras decorativas que suben, calculadoras y lupas como ilustración, muros de logotipos de clientes, contadores de «clientes satisfechos», menú numerado 01–04, etiqueta sobre el título, tarjetas iguales con ícono arriba, morado e índigo, degradados, emojis, urgencia falsa.
 
 ## Páginas previstas
 

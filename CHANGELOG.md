@@ -1,3 +1,9 @@
+# V4.6.7 · 18 de noviembre de 2026 · Despacho contable, portada editorial
+
+- Nueva portada de Cotejo, mezcla de las maquetas «Libro mayor» y «Consulta» que eligió Ian: libro mayor que se palomea solo con título enorme, panel con la foto real de los techos de Xalapa (Wikimedia Commons, CC0) que se aleja al desplazarse y la consulta con el expediente de ejemplo encima.
+- Créditos con las cuatro fotos; procedencia de las nuevas en `public/despacho/medios-origen.json`.
+- Dos pruebas nuevas; la portada en los recorridos de navegador. La espera de animaciones antes de axe ignora las ligadas al desplazamiento.
+
 # V4.6.6 · 18 de noviembre de 2026 · Despacho contable, confianza
 
 - Dos fotos ilustrativas de Unsplash servidas desde el sitio: retrato en «Con una contadora al frente» (el pie dice que la persona no es Elena) y la sala de juntas; procedencia en `public/despacho/medios-origen.json` y créditos.
