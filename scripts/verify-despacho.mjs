@@ -35,6 +35,7 @@ await suite("despacho", async ({ run, base }) => {
           "/despacho/expediente",
           "/despacho/servicios",
           "/despacho/regularizacion",
+          "/despacho/guias",
           "/despacho/creditos",
         ]) {
           await go(page, base, path)
@@ -130,10 +131,31 @@ await suite("despacho", async ({ run, base }) => {
         await audit(page)
         await close(page)
         await audit(page)
+        // Recordatorio por WhatsApp: elegir, activar y ver el ejemplo.
+        await page.getByRole("button", { name: "Elegir mis avisos" }).click()
+        await page.getByRole("button", { name: "Activar el recordatorio" }).click()
+        await page.locator(".d-wa-burbujas li").first().waitFor()
+        await bounds(page)
+        await audit(page)
         await page.getByRole("button", { name: "Reiniciar el ejemplo" }).click()
         await page.getByRole("button", { name: "Salir" }).click()
         await page.locator(".d-entrar").waitFor()
         await go(page, base, "/despacho")
+        // Fotos ilustrativas cargadas y con su aviso.
+        await page.locator(".d-retrato img").scrollIntoViewIfNeeded()
+        await page.waitForFunction(() =>
+          [...document.querySelectorAll(".d-retrato img, .d-sala img")].every(
+            (i) => i.complete && i.naturalWidth > 0,
+          ),
+        )
+        assert.match(await page.locator(".d-retrato figcaption").textContent(), /no es Elena/)
+        // Guías: de la portada a una guía en particular.
+        await page
+          .locator(".d-guias")
+          .getByRole("link", { name: /Si te llega una carta/ })
+          .click()
+        await page.waitForFunction(() => location.hash === "#requerimiento")
+        await audit(page)
         // Regularización: el cálculo responde y lleva a cotizar con atrasadas.
         await go(page, base, "/despacho/regularizacion")
         await page.getByLabel("¿Cuántos meses te faltan?").fill("12")

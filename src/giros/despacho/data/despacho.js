@@ -9,7 +9,6 @@ export const DESPACHO = {
   contadora: {
     nombre: "Elena Murrieta",
     titulo: "C.P.C.",
-    iniciales: "EM",
     detalle:
       "Contadora pública con cédula profesional, certificada por el IMCP y con 18 años de experiencia. Revisa cada declaración antes de presentarla.",
   },
