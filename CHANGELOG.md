@@ -1,3 +1,9 @@
+# V4.6.3 · 18 de noviembre de 2026 · Despacho contable, Tu expediente
+
+- Añadir `/despacho/expediente`: perfil de ejemplo sin contraseña con semáforo, previo para aprobar o preguntar, presentación simulada, solicitudes con fecha límite (el archivo no sale del navegador) y documentos.
+- «Tu expediente» en la cabecera y el menú; la portada y las herramientas enlazan a él.
+- Siete pruebas nuevas y el expediente en los recorridos de navegador.
+
 # V4.6.2 · 18 de noviembre de 2026 · Despacho contable, herramientas
 
 - Añadir `/despacho/diagnostico`: cinco preguntas, régimen probable, riesgos y plan sugerido.
