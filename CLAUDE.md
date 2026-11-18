@@ -2,7 +2,7 @@
 
 Portafolio de demos interactivas de Ian Habid Aldana Martínez, una por giro de negocio.
 La fuente de planificación es el **Documento Maestro** (fuera del repositorio, versión
-vigente: V4.6.5, revisión documental 5 del 18/11/2026; la PARTE XIV tiene el estado actual). Este archivo resume lo que hace falta para trabajar
+vigente: V4.6.8, revisión documental 6 del 18/11/2026; la PARTE XV tiene el estado actual). Este archivo resume lo que hace falta para trabajar
 en el código sin tenerlo a la mano. Si algo aquí contradice una petición de Ian en la
 conversación, manda lo que Ian diga y luego se actualiza este archivo.
 
@@ -112,8 +112,8 @@ de privacidad. Sin venta de refacciones. Leer `docs/FICHA_TALLER.md` antes de to
 
 ## Estado de Despacho contable
 
-**Despacho = Cotejo**, cerrado en V4.6.5 y ampliado en V4.6.6 con la investigación extra
-(`docs/INVESTIGACION_DESPACHO_2.md`), pendiente del visto bueno de Ian: un solo despacho ficticio en Xalapa para
+**Despacho = Cotejo**, cerrado en V4.6.5, ampliado en V4.6.6 con la investigación extra
+(`docs/INVESTIGACION_DESPACHO_2.md`) y rediseñado en V4.6.7 y V4.6.8, con el visto bueno de Ian (18/11/2026): un solo despacho ficticio en Xalapa para
 personas físicas y empresas, con una contadora al frente (inventada) y dos fotos ilustrativas de Unsplash
 (retrato y sala; el pie dice que la persona no es Elena). Dirección
 «Expediente»: semáforo de cumplimiento y recibo por régimen; desde V4.6.7, portada editorial (mezcla de
