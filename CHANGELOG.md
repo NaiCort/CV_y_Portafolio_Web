@@ -1,3 +1,11 @@
+# V4.6.2 · 18 de noviembre de 2026 · Despacho contable, herramientas
+
+- Añadir `/despacho/diagnostico`: cinco preguntas, régimen probable, riesgos y plan sugerido.
+- Añadir `/despacho/calendario`: obligaciones del mes por régimen, con o sin empleados.
+- Añadir `/despacho/calculadoras`: ISR de RESICO, aguinaldo y finiquito con la UMA 2026.
+- Menú con las herramientas; la portada enlaza a cada una.
+- Diez pruebas nuevas y las tres páginas en los recorridos de navegador.
+
 # V4.6.1 · 18 de noviembre de 2026 · Despacho contable, precios y cotización
 
 - Añadir `/despacho/precios`: precios por régimen y lo que se cobra aparte.

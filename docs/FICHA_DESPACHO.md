@@ -78,9 +78,9 @@ Fotos de banco de oficina o de equipos, apretones de manos, gráficas de barras 
 | Inicio | `/despacho` | Expediente de ejemplo, recibo por régimen, cómo trabajamos, servicios, herramientas, contadora al frente |
 | Precios y cotización (V4.6.1) | `/despacho/precios` | Precios aproximados por régimen y extras; cotizar con un formulario corto |
 | Servicios | `/despacho/servicios` | Cada servicio con qué incluye y qué te pedimos |
-| Diagnóstico | `/despacho/diagnostico` | Cinco preguntas: régimen sugerido, riesgos y plan |
-| Calendario fiscal | `/despacho/calendario` | Lo que vence este mes según el régimen |
-| Calculadoras | `/despacho/calculadoras` | RESICO, aguinaldo y finiquito, orientativas |
+| Diagnóstico (V4.6.2) | `/despacho/diagnostico` | Cinco preguntas: régimen sugerido, riesgos y plan |
+| Calendario fiscal (V4.6.2) | `/despacho/calendario` | Lo que vence este mes según el régimen |
+| Calculadoras (V4.6.2) | `/despacho/calculadoras` | RESICO, aguinaldo y finiquito, orientativas |
 | ¿Te dejaron de presentar? | `/despacho/regularizacion` | Revisar acuses, autocorrección y cómo te ayudamos |
 | Tu expediente | `/despacho/expediente` | Perfil de ejemplo: semáforo, previo para aprobar, solicitudes con fecha límite |
 | Créditos y privacidad | `/despacho/creditos` | Tipografías; aviso de privacidad con la ley de 2025 y borrado |
