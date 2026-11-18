@@ -1,0 +1,115 @@
+import Expediente from "../components/Expediente"
+import Recibo from "../components/Recibo"
+import { DESPACHO, HERRAMIENTAS, MES, SERVICIOS } from "../data/despacho"
+
+export default function Inicio({ onWhatsApp, onCotizar }) {
+  const c = DESPACHO.contadora
+  return (
+    <>
+      <section className="d-wrap d-heroe" aria-labelledby="d-titulo">
+        <div>
+          <h1 id="d-titulo" tabIndex={-1}>
+            Sabes cómo vas con el SAT sin tener que preguntar
+          </h1>
+          <p className="d-bajada">
+            Despacho contable para personas físicas y empresas en Xalapa. Tu situación en un
+            semáforo, el previo antes del 17 y WhatsApp para todo lo demás.
+          </p>
+          <div className="d-acciones">
+            <button type="button" className="d-btn d-btn-p" onClick={() => onCotizar()}>
+              Cotizar en 24 horas
+            </button>
+            <button type="button" className="d-btn" onClick={onWhatsApp}>
+              Escribir por WhatsApp
+            </button>
+          </div>
+        </div>
+        <Expediente />
+      </section>
+
+      <section id="precios" className="d-wrap d-sec" aria-labelledby="d-precios-titulo">
+        <div className="d-sec-cab">
+          <h2 id="d-precios-titulo">Elige tu régimen y ve el precio</h2>
+          <p>
+            Precios aproximados con IVA. Si no sabes cuál es el tuyo, te lo decimos sin costo en la
+            primera llamada.
+          </p>
+        </div>
+        <Recibo onCotizar={onCotizar} />
+      </section>
+
+      <section id="como" className="d-wrap d-sec" aria-labelledby="d-como-titulo">
+        <div className="d-sec-cab">
+          <h2 id="d-como-titulo">Así trabajamos cada mes</h2>
+          <p>Nada se presenta sin tu visto bueno y nada se te pasa el 17.</p>
+        </div>
+        <ol className="d-mes">
+          {MES.map(([cuando, que, detalle]) => (
+            <li key={cuando}>
+              <span className="d-mes-cuando">{cuando}</span>
+              <b>{que}</b>
+              <span>{detalle}</span>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      <section id="servicios" className="d-wrap d-sec" aria-labelledby="d-serv-titulo">
+        <div className="d-sec-cab">
+          <h2 id="d-serv-titulo">Todo lo contable, en un solo despacho</h2>
+          <p>Para personas físicas y para empresas. Lo que no está en la lista, lo cotizamos.</p>
+        </div>
+        <ul className="d-servicios">
+          {SERVICIOS.map(([nombre, detalle]) => (
+            <li key={nombre}>
+              <b>{nombre}</b>
+              <span>{detalle}</span>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section id="herramientas" className="d-wrap d-sec" aria-labelledby="d-herr-titulo">
+        <div className="d-sec-cab">
+          <h2 id="d-herr-titulo">Herramientas sin costo</h2>
+          <p>
+            Para saber dónde estás antes de hablar con nosotros. Llegan en las siguientes entregas
+            de esta demo.
+          </p>
+        </div>
+        <ul className="d-herr">
+          {HERRAMIENTAS.map(([nombre, detalle]) => (
+            <li key={nombre}>
+              <b>{nombre}</b>
+              <span>{detalle}</span>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section id="equipo" className="d-wrap d-sec" aria-labelledby="d-equipo-titulo">
+        <div className="d-frente">
+          <span className="d-monograma" aria-hidden="true">
+            {c.iniciales}
+          </span>
+          <div>
+            <h2 id="d-equipo-titulo">Con una contadora al frente</h2>
+            <p className="d-frente-nombre">
+              {c.titulo} {c.nombre}
+            </p>
+            <p>{c.detalle}</p>
+            <ul className="d-confianza">
+              <li>Nunca te pedimos tu e.firma: es tuya y equivale a tu firma.</li>
+              <li>Lo que sabemos de tu negocio queda bajo secreto profesional.</li>
+              <li>Si cambias de despacho, te entregamos todo tu expediente.</li>
+            </ul>
+            <p className="d-nota">
+              Persona y cédula inventadas para esta demo; en un despacho real, la cédula se verifica
+              gratis en el registro de la SEP.
+            </p>
+          </div>
+        </div>
+      </section>
+    </>
+  )
+}
