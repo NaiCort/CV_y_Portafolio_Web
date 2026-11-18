@@ -134,3 +134,118 @@
 4. **Modelo:** ¿gratuita con donaciones, membresía con beneficios, suscripción con muro suave, o una mezcla?
 5. **Funciones:** de la sección 5, ¿todas o algunas? En especial: escuchar el artículo, guardar, boletín, comentarios, pódcast y tienda de números impresos.
 6. **Cantidad de contenido:** ¿cuántos artículos completos (por ejemplo, un número de seis piezas más dos números anteriores con su portada y sumario)?
+
+## 10. Respuestas de Ian (18/11)
+
+1. **Dos revistas:** «Ciencia y Tecnología» y «Moda y Celebridades».
+2. **Para todo el mundo hispano.**
+3. **Por números y en flujo, pero cada revista funciona distinto:**
+   - **Moda y Celebridades:** la portada del sitio es **siempre** el número más reciente, que se recorre completo bajando. Arriba, una cabecera que parece semitransparente, con letras blancas y elegantes, siempre visible. Ahí está el selector de otros números: un desplegable también transparente, con desplazamiento, ordenado por fecha de publicación. **Un solo editor.**
+   - **Ciencia y Tecnología:** la portada es una sección de varios números. Al elegir uno se ve su portada más grande y, al lado, una descripción breve y los autores, cada uno con enlace a su perfil. Debajo, tres botones: **guardar en marcadores**, **leer en el sitio** y **descargar en PDF**. Aquí **los usuarios publican sus propias investigaciones**: varios autores y varios perfiles. Las capturas de Ian dan la idea de estructura, solo para esta revista.
+   - **En ambas:** una **cuenta de ejemplo** y una sección de **marcadores** donde se guardan los números para verlos después.
+4. **Modelo:** el que mejor se acomode a cada una.
+5. **Funciones:**
+   - **Audio:** música de fondo ambiental, ningún otro audio.
+   - **Guardar y comentar:** en las dos.
+   - **Más funciones:** las que convengan a cada una, aunque no sean las mismas.
+6. **Contenido:** aparentar más de veinte artículos en cada una, para que parezcan sitios con tiempo, pero construir solo **dos completos** en cada revista.
+
+## 11. Lo que muestran las referencias visuales de Ian
+
+**Moda y Celebridades (23 imágenes del zip)**
+
+- **Cabecera enorme** en una serif de alto contraste, a todo lo ancho. Muchas veces la cabeza de la persona tapa parte de las letras, lo que da profundidad.
+- **Textos de portada** («segundas») alrededor de la figura: mayúsculas condensadas o serif fina, con números grandes («28 secretos», «16 maneras»), y a veces una firma o palabra en letra manuscrita.
+- **Una palabra gigante** vertical, recortada o detrás del sujeto (TROUSERS, DARK, BEAUTIFUL).
+- **Paleta:** casi siempre negro, blanco o crema y **un solo rojo** de acento; algunas en rosa o granate.
+- **Detalles de impresión:** número, mes y año, precio, código de barras, «Issue 01».
+- **Interior** («Revista - Idea 1» y la plantilla de hombre):
+  - dobles páginas con fotos a sangre;
+  - palabras enormes con fotos dentro de las letras;
+  - mosaicos de fotos;
+  - columnas de texto con capitular.
+
+  Es la experiencia de **hojear** el número.
+- **Perfil tipo red social** (la imagen de Instagram): sirve de modelo para la cuenta de ejemplo.
+
+**Ciencia y Tecnología (5 capturas de un sitio de lectura por capítulos)**
+
+- **Cabecera de catálogo:**
+  - búsqueda con atajo de teclado;
+  - marcadores;
+  - mejorar a premium;
+  - notificaciones y avatar.
+- **Inicio:**
+  - carrusel de portadas con la central más grande;
+  - «En tendencia» con calificación;
+  - «Últimas actualizaciones» con lo más nuevo de cada título;
+  - «Populares» por semana, mes y siempre;
+  - «Selección del editor».
+- **Ficha del título:**
+  - portada grande a la izquierda;
+  - título, otros nombres y sinopsis;
+  - botones de marcar, empezar y lo más reciente;
+  - lista de entregas con búsqueda y orden.
+
+**Lo que se toma y lo que no:** se toma la **estructura** y el **lenguaje visual**. No se copian marcas reales (Vogue, LIFE), ni la apariencia exacta del sitio de las capturas, ni fotos o nombres de famosos reales.
+
+## 12. Qué implica para cada revista
+
+**Personas reales y marcas**
+
+- En México, publicar el **retrato** de una persona exige su consentimiento, salvo fotos tomadas en lugar público con fines informativos (artículo 87 de la Ley Federal del Derecho de Autor).
+- La Suprema Corte lee «retrato» en sentido amplio ([tesis 1a./J. 166/2023, vía Tax Today](https://www.taxtodaymexico.com/scjn-lleva-a-cabo-interpretacion-de-la-acepcion-retrato/)). En 2026 confirmó una multa a un medio que usó una imagen sin fines informativos ([SCJN, ADR 2808/2025](https://www2.scjn.gob.mx/juridica/engroses/3/2025/10/2_349571_7592_firmado.pdf); [El Cronista](https://www.cronista.com/mexico/actualidad-mx/nuevo-fallo-de-la-suprema-corte-los-jueces-aprobaron-multas-de-hasta-5-mil-uma-a-quienes-usen-fotos-de-personas-sin-permiso)).
+- **Para la demo:**
+  - **celebridades ficticias**, con nombres inventados y fotos de bancos de licencia libre, cada una con el aviso de persona ilustrativa;
+  - **cabeceras propias**, nunca Vogue ni LIFE.
+
+**Ciencia y Tecnología, donde publican los usuarios** ([Preprints.org](https://www.preprints.org/blog/post/preprint-servers-explained); [CASRAI](https://casrai.org/guides/preprint-servers-explained); [PKP sobre SciELO Preprints](https://pkp.sfu.ca/?p=7150)):
+
+- **Revisar no es arbitrar:** en los servidores de preimpresos, la moderación revisa tema y formato y no equivale a revisión por pares. Cada texto debería decir su estado: «Preimpresión: sin revisión por pares» o «Revisado por pares».
+- **Lo que identifica a cada texto:** fecha, DOI, licencia (casi siempre CC BY 4.0), autores con ORCID, resumen y área, y el PDF como versión de referencia.
+- **Para la demo:**
+  - perfiles de autor con un ORCID de ejemplo;
+  - etiqueta de estado en cada texto, «cómo citar» (APA y BibTeX) y licencia;
+  - un **envío simulado**: subir manuscrito, moderación simulada y aparece en tu perfil, solo en el navegador;
+  - el PDF descargable es real: un archivo generado para los dos artículos completos.
+
+**Música de fondo**
+
+- Las WCAG 2.2 (criterio 1.4.2, nivel A) piden que, si algo suena solo más de tres segundos, haya cómo pausarlo o bajarlo sin tocar el volumen del sistema ([W3C](https://www.w3.org/WAI/WCAG21/Understanding/audio-control.html)).
+- Los navegadores bloquean el sonido automático sin interacción previa.
+- **Para la demo:**
+  - la música empieza **apagada**, con un botón visible en la cabecera («Música») que la enciende, la pausa y regula el volumen;
+  - recuerda la preferencia;
+  - pistas con licencia libre servidas desde el sitio.
+
+**Modelo de negocio (el que mejor se acomoda a cada una)**
+
+- **Moda y Celebridades:**
+  - el número actual se lee gratis;
+  - los números anteriores completos y la edición impresa son para suscriptores (suscripción simulada, con aviso de renovación y cancelación en un paso, como pide la ley);
+  - publicidad elegante en páginas de anuncio dentro del número, como en papel, nunca ventanas emergentes.
+- **Ciencia y Tecnología:**
+  - acceso abierto: leer, descargar y publicar es gratis, como en los preimpresos;
+  - se sostiene con una membresía de apoyo opcional y con instituciones patrocinadoras, como Aeon.
+
+**Funciones propuestas además de las pedidas**
+
+- **Moda y Celebridades:**
+  - hojear el número (dobles páginas);
+  - «lista de reproducción del número» (la música del número);
+  - galería «Detrás de cámaras»;
+  - compartir la portada;
+  - pedir la edición impresa (simulado).
+- **Ciencia y Tecnología:**
+  - búsqueda con atajo de teclado y filtros por área;
+  - populares por semana, mes y siempre;
+  - seguir autores y avisos de nuevas publicaciones;
+  - cómo citar, métricas (vistas, descargas, citas) y versiones;
+  - enviar una investigación;
+  - comentarios con respuestas del autor.
+
+**Contenido**
+
+- **Moda y Celebridades:** más de veinte números en el selector, cada uno con portada, fecha y tema; dos números completos para recorrer.
+- **Ciencia y Tecnología:** más de veinte entradas con portada, autores y área; dos completas para leer en el sitio y en PDF.
+- **Fotos:** de ciencia, de la NASA y otras de dominio público en Wikimedia Commons; de moda, de bancos de licencia libre. Todo servido desde el sitio y con créditos.
