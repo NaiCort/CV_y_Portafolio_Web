@@ -109,6 +109,16 @@ ejemplo. Ambos: mapa, cita, presupuesto con visto bueno por partida, lista de pr
 de privacidad. Sin venta de refacciones. Leer `docs/FICHA_TALLER.md` antes de tocar
 `src/giros/taller/`. Pruebas de navegador en `npm run test:browser:taller`.
 
+## Estado de Despacho contable
+
+**Despacho = Cotejo**, en curso desde V4.6.0: un solo despacho ficticio en Xalapa para
+personas físicas y empresas, con una contadora al frente (inventada) y sin fotos. Dirección
+«Expediente»: semáforo de cumplimiento y recibo por régimen. Precios aproximados y
+cotización; todos los servicios y herramientas (diagnóstico, calendario, calculadoras). El
+portal de cliente es un «expediente» ligero sin contraseña (ver la sección 9 de
+`docs/INVESTIGACION_DESPACHO.md`). Leer `docs/FICHA_DESPACHO.md` antes de tocar
+`src/giros/despacho/`. Pruebas de navegador en `npm run test:browser:despacho`.
+
 ## Pendientes para la fase de ajustes (V4.8)
 
 No tocar antes de terminar las siete demos.

@@ -1,7 +1,7 @@
 {
   "name": "multiples-demos",
   "private": true,
-  "version": "4.5.6",
+  "version": "4.6.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -19,7 +19,8 @@
     "format:check": "prettier --check .",
     "test:browser:cafe": "node scripts/verify-cafe.mjs",
     "test:browser:gimnasio": "node scripts/verify-gimnasio.mjs",
-    "test:browser:taller": "node scripts/verify-taller.mjs"
+    "test:browser:taller": "node scripts/verify-taller.mjs",
+    "test:browser:despacho": "node scripts/verify-despacho.mjs"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.2",

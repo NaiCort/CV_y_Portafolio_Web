@@ -1,3 +1,11 @@
+# V4.6.0 · 18 de noviembre de 2026 · Despacho contable, primera entrega
+
+- Investigación de despachos contables (incluido si hace falta un portal de cliente) y referencias revisadas en navegador.
+- Tres maquetas de portada; dirección «Expediente» y nombre Cotejo elegidos por Ian. Ficha de identidad.
+- Añadir `/despacho`: expediente de ejemplo con semáforo y previo para aprobar, precio por régimen, cómo trabajamos, servicios, herramientas y contadora al frente.
+- WhatsApp y llamada simulados, barra de contacto y menú para teléfono.
+- Añadir `npm run test:browser:despacho` (5 de 5) y siete pruebas nuevas.
+
 # V4.5.6 · 16 de noviembre de 2026 · cierre de Taller mecánico
 
 - Aviso de privacidad con «Borrar mis datos de esta demo».
