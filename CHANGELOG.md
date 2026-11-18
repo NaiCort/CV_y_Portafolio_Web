@@ -1,3 +1,10 @@
+# V4.6.4 · 18 de noviembre de 2026 · Despacho contable, servicios y regularización
+
+- Añadir `/despacho/servicios`: los nueve servicios con qué incluyen, qué se pide y precio.
+- Añadir `/despacho/regularizacion`: cómo revisar y corregir declaraciones atrasadas antes de que el SAT las pida, con el costo de ponerse al día.
+- Aviso de privacidad con la ley de 2025 y borrado del expediente.
+- Seis pruebas nuevas y las páginas en los recorridos de navegador.
+
 # V4.6.3 · 18 de noviembre de 2026 · Despacho contable, Tu expediente
 
 - Añadir `/despacho/expediente`: perfil de ejemplo sin contraseña con semáforo, previo para aprobar o preguntar, presentación simulada, solicitudes con fecha límite (el archivo no sale del navegador) y documentos.
