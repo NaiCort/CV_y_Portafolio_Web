@@ -2,6 +2,7 @@ import { useState } from "react"
 import { useSearchParams } from "react-router-dom"
 import { UMA_DIARIA, aguinaldo, finiquito, isrResico } from "../lib/calculos"
 import { precioTexto } from "../lib/formato"
+import Cabeza from "../components/Cabeza"
 
 const pesos = new Intl.NumberFormat("es-MX", { style: "currency", currency: "MXN" })
 const dinero = (n) => pesos.format(n)
@@ -184,30 +185,31 @@ export default function Calculadoras() {
   const actual = TABS.find(([id]) => id === params.get("c")) ?? TABS[0]
   const [, nombre, Componente] = actual
   return (
-    <section className="d-wrap d-sec d-pagina" aria-labelledby="d-titulo">
-      <h1 id="d-titulo" tabIndex={-1}>
-        Calculadoras
-      </h1>
-      <p className="d-bajada">
-        Orientativas, con las tablas y la UMA de 2026. Para un caso real, te lo calculamos con tus
-        recibos y facturas.
-      </p>
-      <div className="d-tabs" role="group" aria-label="Elige una calculadora">
-        {TABS.map(([id, n]) => (
-          <button
-            key={id}
-            type="button"
-            aria-pressed={id === actual[0]}
-            onClick={() => setParams({ c: id }, { replace: true })}
-          >
-            {n}
-          </button>
-        ))}
+    <section className="d-pagina" aria-labelledby="d-titulo">
+      <Cabeza
+        ruta={[["/despacho#herramientas", "Herramientas"], "Calculadoras"]}
+        titulo="Haz la cuenta"
+        gris="antes que el SAT."
+        bajada="Orientativas, con las tablas y la UMA de 2026. Para un caso real, te lo calculamos con tus recibos y facturas."
+      />
+      <div className="d-wrap d-pagina-cuerpo">
+        <div className="d-tabs" role="group" aria-label="Elige una calculadora">
+          {TABS.map(([id, n]) => (
+            <button
+              key={id}
+              type="button"
+              aria-pressed={id === actual[0]}
+              onClick={() => setParams({ c: id }, { replace: true })}
+            >
+              {n}
+            </button>
+          ))}
+        </div>
+        <form className="d-calc" onSubmit={(e) => e.preventDefault()} aria-label={nombre}>
+          <h2>{nombre}</h2>
+          <Componente key={actual[0]} />
+        </form>
       </div>
-      <form className="d-calc" onSubmit={(e) => e.preventDefault()} aria-label={nombre}>
-        <h2>{nombre}</h2>
-        <Componente key={actual[0]} />
-      </form>
     </section>
   )
 }

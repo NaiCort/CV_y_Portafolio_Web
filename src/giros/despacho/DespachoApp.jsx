@@ -238,24 +238,39 @@ export default function DespachoApp() {
         headingFontFamily="Cotejo Titulo, Georgia, serif"
         radius={18}
       />
-      <footer className="d-wrap d-pie">
-        <div>
-          <p>
-            <b>{DESPACHO.completo}</b> · {DESPACHO.direccion}
+      <footer className="d-pie">
+        <div className="d-wrap">
+          <p className="d-pie-lema">
+            Que todo cuadre <span>antes del 17.</span>
           </p>
-          <p>{DESPACHO.horario}</p>
-          <p>
-            Despacho ficticio creado para una demostración; el expediente de ejemplo se guarda solo
-            en tu navegador y se borra desde el aviso de privacidad.
-          </p>
-        </div>
-        <div className="d-pie-enlaces">
-          <Link to="/despacho/regularizacion">¿Te dejaron de presentar?</Link>
-          <Link to="/despacho/guias">Guías cortas</Link>
-          <Link to="/despacho/creditos">Créditos</Link>
-          <button type="button" className="d-inline" onClick={() => setPrivacidad(true)}>
-            Aviso de privacidad
-          </button>
+          <div className="d-acciones">
+            <Link className="d-btn d-btn-p" to="/despacho/precios#cotizar">
+              Cotizar en 24 horas
+            </Link>
+            <button type="button" className="d-btn d-btn-claro" onClick={whatsapp}>
+              Escribir por WhatsApp
+            </button>
+          </div>
+          <div className="d-pie-cols">
+            <div>
+              <p>
+                <b>{DESPACHO.completo}</b> · {DESPACHO.direccion}
+              </p>
+              <p>{DESPACHO.horario}</p>
+              <p>
+                Despacho ficticio creado para una demostración; el expediente de ejemplo se guarda
+                solo en tu navegador y se borra desde el aviso de privacidad.
+              </p>
+            </div>
+            <div className="d-pie-enlaces">
+              <Link to="/despacho/regularizacion">¿Te dejaron de presentar?</Link>
+              <Link to="/despacho/guias">Guías cortas</Link>
+              <Link to="/despacho/creditos">Créditos</Link>
+              <button type="button" className="d-inline" onClick={() => setPrivacidad(true)}>
+                Aviso de privacidad
+              </button>
+            </div>
+          </div>
         </div>
       </footer>
       <nav className="d-barra-movil" aria-label="Contacto rápido">

@@ -74,5 +74,62 @@
     "sha256": "c62e1c765c1ae8dc30b60eca6126f75ec0ecfe33e80f508b5d1fb3146c8047b6",
     "ancho": 640,
     "alto": 427
+  },
+  {
+    "id": "lista",
+    "archivo": "/despacho/fotos/lista-1600.webp",
+    "titulo": "Mano palomeando una lista",
+    "autor": "No verificado: el sitio de Unsplash no permite consultas automáticas desde este entorno",
+    "licencia": "Licencia de Unsplash (uso libre, sin atribución obligatoria)",
+    "pagina": "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b",
+    "cambios": "Reducida a 1600 y 800 px en WebP",
+    "sha256": "68208df9e62ecfbb9307ebc1f241b1c9a0292a969feb1487bf2c4d41e96b4b5a",
+    "ancho": 1600,
+    "alto": 1065
+  },
+  {
+    "id": "lista-800",
+    "archivo": "/despacho/fotos/lista-800.webp",
+    "sha256": "ec8824d14e31199343f492a1e6d29878d910fd55a91c06542a568f420c8b4b58",
+    "ancho": 800,
+    "alto": 532
+  },
+  {
+    "id": "calle",
+    "archivo": "/despacho/fotos/calle-1280.webp",
+    "titulo": "Cofre de Perote desde calle de Xalapa.jpg",
+    "autor": "Koffermejia",
+    "licencia": "CC BY-SA 4.0",
+    "pagina": "https://commons.wikimedia.org/wiki/File:Cofre_de_Perote_desde_calle_de_Xalapa.jpg",
+    "cambios": "Reducida a 1280 y 640 px en WebP, sin otros cambios",
+    "sha256": "c17ad4b01af50d3b8677433ca6ce627b2462eb1fb5ada9b7ef1256c518488fcc",
+    "ancho": 1280,
+    "alto": 957
+  },
+  {
+    "id": "calle-640",
+    "archivo": "/despacho/fotos/calle-640.webp",
+    "sha256": "4ff784baa89db490b952bf9d41af1826d4b6f5279e65a1b2b80d7bce29baf2d1",
+    "ancho": 640,
+    "alto": 478
+  },
+  {
+    "id": "cofre",
+    "archivo": "/despacho/fotos/cofre-1280.webp",
+    "titulo": "Vista a detalle Cofre de Perote desde calle de Xalapa.jpg",
+    "autor": "Koffermejia",
+    "licencia": "CC BY-SA 4.0",
+    "pagina": "https://commons.wikimedia.org/wiki/File:Vista_a_detalle_Cofre_de_Perote_desde_calle_de_Xalapa.jpg",
+    "cambios": "Reducida a 1280 y 640 px en WebP, sin otros cambios",
+    "sha256": "902c763b212d9a1c8c326a6a929f79ffc0ed6cdcd71dcd0cb459bbd8d230c7ef",
+    "ancho": 1280,
+    "alto": 957
+  },
+  {
+    "id": "cofre-640",
+    "archivo": "/despacho/fotos/cofre-640.webp",
+    "sha256": "705bf9aea3e1a99057758a406821f7adda956277766f4efe1464305a66ab5982",
+    "ancho": 640,
+    "alto": 478
   }
 ]

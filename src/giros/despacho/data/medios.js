@@ -1,9 +1,11 @@
-// Fotos de Cotejo, servidas desde este sitio: Xalapa de Wikimedia Commons (CC0) y las demás de
-// Unsplash. Son ilustrativas: las personas no son Elena, ni clientas, ni personal de Cotejo, y la
+// Fotos de Cotejo, servidas desde este sitio: las de Xalapa, de Wikimedia Commons (CC0 y CC BY-SA
+// 4.0); las demás, de Unsplash. Son ilustrativas: las personas no son Elena, ni clientas, ni personal de Cotejo, y la
 // sala no está en Xalapa.
 // Procedencia completa en public/despacho/medios-origen.json.
 export const FOTOS = {
   xalapa: {
+    credito: "Techos de Xalapa, en el panel de la portada. Koffermejia, dominio público (CC0)",
+    enlace: "página en Wikimedia Commons",
     src: "/despacho/fotos/xalapa-1920.webp",
     srcSet: "/despacho/fotos/xalapa-960.webp 960w, /despacho/fotos/xalapa-1920.webp 1920w",
     ancho: 1920,
@@ -13,6 +15,8 @@ export const FOTOS = {
     origen: "https://commons.wikimedia.org/wiki/File:Cielo_de_Xalapa_02.jpg",
   },
   consulta: {
+    credito: "Consulta, en la portada. Unsplash",
+    enlace: "original en Unsplash",
     src: "/despacho/fotos/consulta-1280.webp",
     srcSet: "/despacho/fotos/consulta-640.webp 640w, /despacho/fotos/consulta-1280.webp 1280w",
     ancho: 1280,
@@ -21,7 +25,44 @@ export const FOTOS = {
     pie: "Foto ilustrativa: no son clientas ni personal de Cotejo.",
     origen: "https://images.unsplash.com/photo-1573496267526-08a69e46a409",
   },
+  lista: {
+    credito: "Mano que palomea una lista, en la portada. Unsplash",
+    enlace: "original en Unsplash",
+    src: "/despacho/fotos/lista-1600.webp",
+    srcSet: "/despacho/fotos/lista-800.webp 800w, /despacho/fotos/lista-1600.webp 1600w",
+    ancho: 1600,
+    alto: 1065,
+    alt: "Una mano palomea con pluma una lista en una libreta cuadriculada",
+    pie: "Foto ilustrativa",
+    origen: "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b",
+  },
+  calle: {
+    credito:
+      "Calle de Xalapa con el Cofre de Perote, en «Con quién trabajamos más». Koffermejia, CC BY-SA 4.0",
+    enlace: "página en Wikimedia Commons",
+    src: "/despacho/fotos/calle-1280.webp",
+    srcSet: "/despacho/fotos/calle-640.webp 640w, /despacho/fotos/calle-1280.webp 1280w",
+    ancho: 1280,
+    alto: 957,
+    alt: "Calle de Xalapa al atardecer, con cables de luz y el Cofre de Perote al fondo",
+    pie: "Calle de Xalapa con el Cofre de Perote al fondo. Foto de Koffermejia, Wikimedia Commons, CC BY-SA 4.0.",
+    origen: "https://commons.wikimedia.org/wiki/File:Cofre_de_Perote_desde_calle_de_Xalapa.jpg",
+  },
+  cofre: {
+    credito: "El Cofre de Perote desde Xalapa, en Tu expediente. Koffermejia, CC BY-SA 4.0",
+    enlace: "página en Wikimedia Commons",
+    src: "/despacho/fotos/cofre-1280.webp",
+    srcSet: "/despacho/fotos/cofre-640.webp 640w, /despacho/fotos/cofre-1280.webp 1280w",
+    ancho: 1280,
+    alto: 957,
+    alt: "El Cofre de Perote visto entre cables desde una calle de Xalapa",
+    pie: "El Cofre de Perote desde Xalapa. Foto de Koffermejia, Wikimedia Commons, CC BY-SA 4.0.",
+    origen:
+      "https://commons.wikimedia.org/wiki/File:Vista_a_detalle_Cofre_de_Perote_desde_calle_de_Xalapa.jpg",
+  },
   contadora: {
+    credito: "Retrato de «Con una contadora al frente». Unsplash",
+    enlace: "original en Unsplash",
     src: "/despacho/fotos/contadora-800.webp",
     srcSet: "/despacho/fotos/contadora-400.webp 400w, /despacho/fotos/contadora-800.webp 800w",
     ancho: 800,
@@ -31,6 +72,8 @@ export const FOTOS = {
     origen: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e",
   },
   sala: {
+    credito: "Sala de juntas; se recortó para dejar fuera un cuadro de otra ciudad. Unsplash",
+    enlace: "original en Unsplash",
     src: "/despacho/fotos/sala-1280.webp",
     srcSet: "/despacho/fotos/sala-640.webp 640w, /despacho/fotos/sala-1280.webp 1280w",
     ancho: 1280,

@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom"
 import Expediente from "../components/Expediente"
+import Foto from "../components/Foto"
 import LibroMayor from "../components/LibroMayor"
 import Recibo from "../components/Recibo"
 import { ESPECIALIDADES, GUIAS, OPINIONES } from "../data/confianza"
@@ -55,13 +56,14 @@ export default function Inicio({ onWhatsApp }) {
         <p className="d-xalapa-pie">{FOTOS.xalapa.pie}</p>
       </section>
 
-      <section className="d-consulta" aria-labelledby="d-consulta-titulo">
+      <section className="d-wrap d-consulta" aria-labelledby="d-consulta-titulo">
         <div className="d-consulta-texto">
           <h2 id="d-consulta-titulo">Contadores en Xalapa que te avisan antes</h2>
           <p>
             Revisamos cada mes, te mandamos el previo y nada se presenta sin tu visto bueno. Así se
             ve tu expediente: pruébalo.
           </p>
+          <Expediente />
           <ul className="d-datos">
             <li>
               <b>18 años</b>
@@ -77,22 +79,10 @@ export default function Inicio({ onWhatsApp }) {
             </li>
           </ul>
         </div>
-        <div className="d-consulta-foto">
-          <figure className="d-consulta-img">
-            <img
-              src={FOTOS.consulta.src}
-              srcSet={FOTOS.consulta.srcSet}
-              sizes="(max-width: 900px) 100vw, 55vw"
-              width={FOTOS.consulta.ancho}
-              height={FOTOS.consulta.alto}
-              alt={FOTOS.consulta.alt}
-              loading="lazy"
-              decoding="async"
-            />
-            <figcaption>{FOTOS.consulta.pie}</figcaption>
-          </figure>
-          <Expediente />
-        </div>
+        <figure className="d-consulta-img">
+          <Foto f={FOTOS.consulta} sizes="(max-width: 900px) 100vw, 50vw" />
+          <figcaption>{FOTOS.consulta.pie}</figcaption>
+        </figure>
       </section>
 
       <section id="precios" className="d-wrap d-sec" aria-labelledby="d-precios-titulo">
@@ -112,14 +102,28 @@ export default function Inicio({ onWhatsApp }) {
           <p>Nada se presenta sin tu visto bueno y nada se te pasa el 17.</p>
         </div>
         <ol className="d-mes">
-          {MES.map(([cuando, que, detalle]) => (
+          {MES.map(([dia, cuando, que, detalle]) => (
             <li key={cuando}>
+              <span className="d-mes-dia" aria-hidden="true">
+                {dia}
+              </span>
               <span className="d-mes-cuando">{cuando}</span>
               <b>{que}</b>
               <span>{detalle}</span>
             </li>
           ))}
         </ol>
+      </section>
+
+      <section className="d-pf" aria-labelledby="d-pf-titulo">
+        <Foto f={FOTOS.lista} sizes="100vw" />
+        <div className="d-wrap">
+          <p className="d-pf-contexto">
+            Antes de presentar, cada renglón se compara contra lo que el SAT ya sabe de ti.
+          </p>
+          <h2 id="d-pf-titulo">Nada se presenta sin tu visto bueno.</h2>
+        </div>
+        <p className="d-pf-pie">{FOTOS.lista.pie}</p>
       </section>
 
       <section id="servicios" className="d-wrap d-sec" aria-labelledby="d-serv-titulo">
@@ -133,6 +137,7 @@ export default function Inicio({ onWhatsApp }) {
               <Link to={`/despacho/servicios#${x.id}`}>
                 <b>{x.nombre}</b>
                 <span>{x.para}</span>
+                <i aria-hidden="true">→</i>
               </Link>
             </li>
           ))}
@@ -140,23 +145,32 @@ export default function Inicio({ onWhatsApp }) {
       </section>
 
       <section id="especialidades" className="d-wrap d-sec" aria-labelledby="d-esp-titulo">
-        <div className="d-sec-cab">
-          <h2 id="d-esp-titulo">Con quién trabajamos más</h2>
-          <p>
-            Atendemos a todos, pero estos casos los vemos cada semana y sabemos dónde se tropiezan.
-          </p>
-        </div>
-        <dl className="d-especialidades">
-          {ESPECIALIDADES.map((x) => (
-            <div key={x.quien}>
-              <dt>
-                <b>{x.quien}</b>
-                <span>{x.ejemplos}</span>
-              </dt>
-              <dd>{x.vemos}</dd>
+        <div className="d-esp">
+          <figure className="d-esp-foto">
+            <Foto f={FOTOS.calle} sizes="(max-width: 900px) 100vw, 40vw" />
+            <figcaption>{FOTOS.calle.pie}</figcaption>
+          </figure>
+          <div>
+            <div className="d-sec-cab d-sec-cab-sola">
+              <h2 id="d-esp-titulo">Con quién trabajamos más</h2>
+              <p>
+                Atendemos a todos, pero estos casos los vemos cada semana y sabemos dónde se
+                tropiezan.
+              </p>
             </div>
-          ))}
-        </dl>
+            <dl className="d-especialidades">
+              {ESPECIALIDADES.map((x) => (
+                <div key={x.quien}>
+                  <dt>
+                    <b>{x.quien}</b>
+                    <span>{x.ejemplos}</span>
+                  </dt>
+                  <dd>{x.vemos}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        </div>
       </section>
 
       <section id="herramientas" className="d-wrap d-sec" aria-labelledby="d-herr-titulo">
@@ -167,18 +181,11 @@ export default function Inicio({ onWhatsApp }) {
         <ul className="d-herr">
           {HERRAMIENTAS.map(([nombre, detalle, ruta]) => (
             <li key={nombre}>
-              {ruta ? (
-                <Link to={ruta}>
-                  <b>{nombre}</b>
-                  <span>{detalle}</span>
-                </Link>
-              ) : (
-                <div>
-                  <b>{nombre}</b>
-                  <span>{detalle}</span>
-                  <em>Llega en la siguiente entrega de esta demo.</em>
-                </div>
-              )}
+              <Link to={ruta}>
+                <b>{nombre}</b>
+                <span>{detalle}</span>
+                <em aria-hidden="true">Abrir →</em>
+              </Link>
             </li>
           ))}
         </ul>
@@ -204,46 +211,36 @@ export default function Inicio({ onWhatsApp }) {
       <section id="equipo" className="d-wrap d-sec" aria-labelledby="d-equipo-titulo">
         <div className="d-frente">
           <figure className="d-retrato">
-            <img
-              src={FOTOS.contadora.src}
-              srcSet={FOTOS.contadora.srcSet}
-              sizes="(max-width: 640px) 60vw, 240px"
-              width={FOTOS.contadora.ancho}
-              height={FOTOS.contadora.alto}
-              alt={FOTOS.contadora.alt}
-              loading="lazy"
-              decoding="async"
-            />
+            <Foto f={FOTOS.contadora} sizes="(max-width: 900px) 90vw, 420px" />
             <figcaption>{FOTOS.contadora.pie}</figcaption>
           </figure>
           <div>
             <h2 id="d-equipo-titulo">Con una contadora al frente</h2>
+            <blockquote className="d-cita">
+              <p>
+                «Reviso cada declaración antes de que se presente. Si algo no cuadra, te lo digo
+                antes que el SAT.»
+              </p>
+            </blockquote>
             <p className="d-frente-nombre">
-              {c.titulo} {c.nombre}
+              <b>
+                {c.titulo} {c.nombre}
+              </b>{" "}
+              · {c.detalle}
             </p>
-            <p>{c.detalle}</p>
             <ul className="d-confianza">
               <li>Nunca te pedimos tu e.firma: es tuya y equivale a tu firma.</li>
               <li>Lo que sabemos de tu negocio queda bajo secreto profesional.</li>
               <li>Si cambias de despacho, te entregamos todo tu expediente.</li>
             </ul>
             <p className="d-nota">
-              Persona y cédula inventadas para esta demo; en un despacho real, la cédula se verifica
-              gratis en el registro de la SEP.
+              Persona, cita y cédula inventadas para esta demo; en un despacho real, la cédula se
+              verifica gratis en el registro de la SEP.
             </p>
           </div>
         </div>
         <figure className="d-sala">
-          <img
-            src={FOTOS.sala.src}
-            srcSet={FOTOS.sala.srcSet}
-            sizes="(max-width: 1180px) calc(100vw - 36px), 1120px"
-            width={FOTOS.sala.ancho}
-            height={FOTOS.sala.alto}
-            alt={FOTOS.sala.alt}
-            loading="lazy"
-            decoding="async"
-          />
+          <Foto f={FOTOS.sala} sizes="(max-width: 1200px) 100vw, 1136px" />
           <figcaption>
             {FOTOS.sala.pie} Atendemos con cita de {DESPACHO.horario.toLowerCase()}.
           </figcaption>

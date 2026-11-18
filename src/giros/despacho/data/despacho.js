@@ -100,10 +100,21 @@ export const REGIMENES = [
 
 // Cómo se trabaja cada mes, con fechas (no pasos numerados).
 export const MES = [
-  ["Del 1 al 5", "Nos mandas lo que falte", "Estados de cuenta y facturas que no estén en el SAT."],
-  ["Día 10", "Te enviamos el previo", "Cuánto vas a pagar y por qué, para que lo apruebes."],
-  ["Antes del 17", "Presentamos y pagas", "Con tu visto bueno; te damos la línea de captura."],
   [
+    "1",
+    "Del 1 al 5",
+    "Nos mandas lo que falte",
+    "Estados de cuenta y facturas que no estén en el SAT.",
+  ],
+  ["10", "Día 10", "Te enviamos el previo", "Cuánto vas a pagar y por qué, para que lo apruebes."],
+  [
+    "16",
+    "Antes del 17",
+    "Presentamos y pagas",
+    "Con tu visto bueno; te damos la línea de captura.",
+  ],
+  [
+    "17",
     "Al presentar",
     "Te dejamos el acuse",
     "En tu expediente, junto con la opinión de cumplimiento.",
