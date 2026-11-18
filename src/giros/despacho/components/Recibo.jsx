@@ -1,9 +1,10 @@
 import { useState } from "react"
+import { Link } from "react-router-dom"
 import { REGIMENES, findRegimen } from "../data/despacho"
 import { precioTexto } from "../lib/formato"
 
 // «Elige tu régimen y ve el precio»: el recibo cambia con el régimen elegido.
-export default function Recibo({ onCotizar }) {
+export default function Recibo() {
   const [elegido, setElegido] = useState("resico")
   const r = findRegimen(elegido)
   return (
@@ -39,9 +40,9 @@ export default function Recibo({ onCotizar }) {
           Aproximado, con IVA. Depende de cuántas facturas emites y recibes y de si tienes
           empleados.
         </p>
-        <button type="button" className="d-btn d-btn-p" onClick={() => onCotizar(r)}>
+        <Link className="d-btn d-btn-p" to={`/despacho/precios?regimen=${r.id}#cotizar`}>
           Cotizar mi caso
-        </button>
+        </Link>
       </div>
     </div>
   )

@@ -10,17 +10,22 @@ import useFavicon from "../../hooks/useFavicon"
 import usePageMetadata from "../../hooks/usePageMetadata"
 import Inicio from "./pages/Inicio"
 import Creditos from "./pages/Creditos"
+import Precios from "./pages/Precios"
 import { DESPACHO } from "./data/despacho"
 import "./despacho.css"
 
 const SECCIONES = [
-  ["precios", "Precios"],
+  ["/despacho/precios", "Precios"],
   ["como", "Cómo trabajamos"],
   ["servicios", "Servicios"],
   ["herramientas", "Herramientas"],
   ["equipo", "Quiénes somos"],
 ]
-const TITULOS = { "/despacho": "Inicio", "/despacho/creditos": "Créditos" }
+const TITULOS = {
+  "/despacho": "Inicio",
+  "/despacho/precios": "Precios y cotización",
+  "/despacho/creditos": "Créditos",
+}
 const MENSAJES = [
   "Hola, quiero una cotización para mi negocio",
   "Hola, mi contador dejó de presentar mis declaraciones",
@@ -42,8 +47,9 @@ function Guia() {
           SAT. «Aprobar el previo» cambia el semáforo; no se envía nada.
         </li>
         <li>
-          Al elegir un régimen, el recibo muestra el precio aproximado y lo que incluye. «Cotizar»
-          abre una conversación de WhatsApp simulada.
+          Al elegir un régimen, el recibo muestra el precio aproximado y lo que incluye. «Precios»
+          tiene la lista completa, lo que se cobra aparte y una cotización con estimación al
+          momento; la solicitud es simulada y no se guarda.
         </li>
         <li>Llamar y WhatsApp son simulaciones: no se marca ni se envía nada.</li>
       </ul>
@@ -68,8 +74,13 @@ function Llamada({ onCerrar }) {
   )
 }
 
-function EnlaceSeccion({ id, nombre }) {
-  return <Link to={`/despacho#${id}`}>{nombre}</Link>
+function EnlaceSeccion({ id, nombre, ruta }) {
+  const to = id.startsWith("/") ? id : `/despacho#${id}`
+  return (
+    <Link to={to} aria-current={to === ruta ? "page" : undefined}>
+      {nombre}
+    </Link>
+  )
 }
 
 export default function DespachoApp() {
@@ -95,13 +106,6 @@ export default function DespachoApp() {
   }, [pathname, hash])
 
   const whatsapp = () => setChat({ mensajes: MENSAJES })
-  const cotizar = (regimen) =>
-    setChat({
-      mensajes: regimen
-        ? [`Hola, quiero cotizar: ${regimen.nombre.toLowerCase()}`, ...MENSAJES.slice(1)]
-        : MENSAJES,
-    })
-
   return (
     <div className="despacho-root">
       <a className="skip-link" href="#contenido">
@@ -115,16 +119,16 @@ export default function DespachoApp() {
           </Link>
           <nav className="d-nav" aria-label="Secciones del despacho">
             {SECCIONES.map(([id, nombre]) => (
-              <EnlaceSeccion key={id} id={id} nombre={nombre} />
+              <EnlaceSeccion key={id} id={id} nombre={nombre} ruta={ruta} />
             ))}
           </nav>
           <button type="button" className="d-tel d-num" onClick={() => setLlamada(true)}>
             <span className="d-oculto">Llamar al </span>
             {DESPACHO.telefono}
           </button>
-          <button type="button" className="d-btn d-btn-p d-cab-cta" onClick={() => cotizar()}>
+          <Link className="d-btn d-btn-p d-cab-cta" to="/despacho/precios#cotizar">
             Cotizar
-          </button>
+          </Link>
           <button
             type="button"
             className="d-btn d-menu-boton"
@@ -144,13 +148,14 @@ export default function DespachoApp() {
           onClick={(e) => e.target.closest("a") && setMenuEn(null)}
         >
           {SECCIONES.map(([id, nombre]) => (
-            <EnlaceSeccion key={id} id={id} nombre={nombre} />
+            <EnlaceSeccion key={id} id={id} nombre={nombre} ruta={ruta} />
           ))}
         </nav>
       </header>
       <main id="contenido" tabIndex={-1}>
         <Routes>
-          <Route index element={<Inicio onWhatsApp={whatsapp} onCotizar={cotizar} />} />
+          <Route index element={<Inicio onWhatsApp={whatsapp} />} />
+          <Route path="precios" element={<Precios />} />
           <Route path="creditos" element={<Creditos />} />
           <Route path="*" element={<Navigate to="/despacho" replace />} />
         </Routes>
@@ -181,9 +186,7 @@ export default function DespachoApp() {
         <button type="button" onClick={whatsapp}>
           WhatsApp
         </button>
-        <button type="button" onClick={() => cotizar()}>
-          Cotizar
-        </button>
+        <Link to="/despacho/precios#cotizar">Cotizar</Link>
       </nav>
       {llamada && <Llamada onCerrar={() => setLlamada(false)} />}
       <WhatsAppPreview

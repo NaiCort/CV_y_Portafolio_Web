@@ -21,6 +21,7 @@ export const REGIMENES = [
     nombre: "Sueldos y salarios",
     para: "Para quien solo recibe sueldo y quiere hacer su declaración anual o recuperar su saldo a favor.",
     precio: 900,
+    facturas: null,
     unidad: "al año",
     incluye: [
       "Declaración anual con deducciones personales",
@@ -33,6 +34,7 @@ export const REGIMENES = [
     nombre: "RESICO persona física",
     para: "Para quien cobra por su cuenta y factura menos de $3.5 millones al año.",
     precio: 690,
+    facturas: 30,
     unidad: "al mes",
     incluye: [
       "Declaraciones mensuales y anual",
@@ -46,6 +48,7 @@ export const REGIMENES = [
     nombre: "Plataformas digitales",
     para: "Para quien gana con apps: transporte, hospedaje o ventas en línea.",
     precio: 490,
+    facturas: null,
     unidad: "al mes",
     incluye: [
       "Declaraciones mensuales y anual",
@@ -58,6 +61,7 @@ export const REGIMENES = [
     nombre: "Arrendamiento",
     para: "Para quien renta casas, departamentos o locales.",
     precio: 790,
+    facturas: 10,
     unidad: "al mes",
     incluye: [
       "Declaraciones mensuales y anual",
@@ -70,6 +74,7 @@ export const REGIMENES = [
     nombre: "Actividad empresarial",
     para: "Para negocios de una persona física con gastos que deducir o empleados.",
     precio: 1290,
+    facturas: 60,
     unidad: "al mes",
     incluye: [
       "Contabilidad completa y declaraciones",
@@ -83,6 +88,7 @@ export const REGIMENES = [
     nombre: "Persona moral",
     para: "Para sociedades y pymes. El precio sube con las facturas y la nómina.",
     precio: 3900,
+    facturas: 100,
     unidad: "al mes",
     incluye: [
       "Contabilidad, impuestos y contabilidad electrónica",
@@ -125,3 +131,21 @@ export const HERRAMIENTAS = [
 ]
 
 export const findRegimen = (id) => REGIMENES.find((r) => r.id === id)
+
+// Lo que se cobra aparte, aproximado con IVA.
+export const EXTRAS = [
+  ["Cada 10 facturas más al mes", "Sobre las incluidas en tu plan", 120, "al mes"],
+  ["Nómina e IMSS", "Por empleado: recibos, cuotas e INFONAVIT", 180, "al mes"],
+  ["Declaración anual sola", "Si no tienes iguala con nosotros", 1500, "una vez"],
+  ["Declaración atrasada", "Por cada mes que falte presentar", 450, "por mes"],
+  [
+    "Constitución de una sociedad",
+    "Acta con notario aparte, alta en el SAT y primeras obligaciones",
+    6500,
+    "una vez",
+  ],
+  ["Respuesta a un requerimiento del SAT", "Análisis, escrito y seguimiento", 2800, "desde"],
+  ["Dictamen fiscal", "Por contador público inscrito; depende del tamaño", 25000, "desde"],
+]
+export const COSTO_FACTURAS = 120
+export const COSTO_EMPLEADO = 180
