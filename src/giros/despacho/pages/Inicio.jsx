@@ -73,16 +73,23 @@ export default function Inicio({ onWhatsApp }) {
       <section id="herramientas" className="d-wrap d-sec" aria-labelledby="d-herr-titulo">
         <div className="d-sec-cab">
           <h2 id="d-herr-titulo">Herramientas sin costo</h2>
-          <p>
-            Para saber dónde estás antes de hablar con nosotros. Llegan en las siguientes entregas
-            de esta demo.
-          </p>
+          <p>Para saber dónde estás antes de hablar con nosotros.</p>
         </div>
         <ul className="d-herr">
-          {HERRAMIENTAS.map(([nombre, detalle]) => (
+          {HERRAMIENTAS.map(([nombre, detalle, ruta]) => (
             <li key={nombre}>
-              <b>{nombre}</b>
-              <span>{detalle}</span>
+              {ruta ? (
+                <Link to={ruta}>
+                  <b>{nombre}</b>
+                  <span>{detalle}</span>
+                </Link>
+              ) : (
+                <div>
+                  <b>{nombre}</b>
+                  <span>{detalle}</span>
+                  <em>Llega en la siguiente entrega de esta demo.</em>
+                </div>
+              )}
             </li>
           ))}
         </ul>

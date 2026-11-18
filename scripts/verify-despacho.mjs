@@ -26,7 +26,14 @@ await suite("despacho", async ({ run, base }) => {
         reducedMotion: width === 1440 ? "no-preference" : "reduce",
       },
       async ({ page }) => {
-        for (const path of ["/despacho", "/despacho/precios", "/despacho/creditos"]) {
+        for (const path of [
+          "/despacho",
+          "/despacho/precios",
+          "/despacho/diagnostico",
+          "/despacho/calendario",
+          "/despacho/calculadoras",
+          "/despacho/creditos",
+        ]) {
           await go(page, base, path)
           assert.equal(await page.locator("h1").count(), 1, `Un h1 en ${path}`)
           assert.equal(await page.locator('a[href="#"], a[href^="tel:"]').count(), 0)
@@ -59,6 +66,41 @@ await suite("despacho", async ({ run, base }) => {
         await dialog(page).waitFor()
         await audit(page)
         await close(page)
+        // Diagnóstico completo.
+        await page
+          .locator(".d-herr")
+          .getByRole("link", { name: /Diagnóstico gratuito/ })
+          .click()
+        await page.locator(".d-opciones").waitFor()
+        for (const r of [
+          "Por mi cuenta: servicios u honorarios",
+          "Menos de $1 millón",
+          "No",
+          "No estoy seguro",
+          "No sé qué es",
+        ]) {
+          await page.locator(".d-opciones label", { hasText: r }).first().click()
+          await page.locator(".d-diag button[type=submit]").click()
+        }
+        await page.locator(".d-diag-resultado").waitFor()
+        assert.match(await page.locator(".d-diag-resultado h2").textContent(), /RESICO/)
+        await bounds(page)
+        await audit(page)
+        // Calendario: cambiar de régimen y de mes.
+        await go(page, base, "/despacho/calendario")
+        await page.getByLabel("Tu régimen").selectOption("moral")
+        await page.getByRole("button", { name: "Mes siguiente" }).click()
+        assert((await page.locator(".d-cal-lista li").count()) > 0)
+        await audit(page)
+        // Calculadoras: las tres.
+        await go(page, base, "/despacho/calculadoras")
+        for (const c of ["Aguinaldo", "Finiquito", "ISR de RESICO"]) {
+          await page.locator(".d-tabs").getByRole("button", { name: c }).click()
+          await page.locator(".d-calc-total").waitFor()
+          await bounds(page)
+          await audit(page)
+        }
+        await go(page, base, "/despacho")
         // Menú o navegación, según el ancho.
         if (width < 900) {
           await page.getByRole("button", { name: "Menú" }).click()

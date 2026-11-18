@@ -124,10 +124,14 @@ export const MES = [
 ]
 
 export const HERRAMIENTAS = [
-  ["Diagnóstico gratuito", "Cinco preguntas: tu régimen, tus riesgos y qué plan te conviene."],
-  ["Calendario fiscal", "Lo que te vence este mes según tu régimen."],
-  ["Calculadoras", "RESICO, aguinaldo y finiquito, orientativas."],
-  ["Tu expediente", "Aprueba el previo y sube lo que te pedimos, sin contraseña."],
+  [
+    "Diagnóstico gratuito",
+    "Cinco preguntas: tu régimen, tus riesgos y qué plan te conviene.",
+    "/despacho/diagnostico",
+  ],
+  ["Calendario fiscal", "Lo que te vence este mes según tu régimen.", "/despacho/calendario"],
+  ["Calculadoras", "RESICO, aguinaldo y finiquito, orientativas.", "/despacho/calculadoras"],
+  ["Tu expediente", "Aprueba el previo y sube lo que te pedimos, sin contraseña.", null],
 ]
 
 export const findRegimen = (id) => REGIMENES.find((r) => r.id === id)
