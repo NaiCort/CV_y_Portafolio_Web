@@ -70,10 +70,10 @@ const GIROS = [
     available: true,
   },
   {
-    path: null,
+    path: "/despacho",
     name: "Despacho contable",
-    desc: "Orden, claridad, y cifras que inspiran confianza.",
-    available: false,
+    desc: "Cotejo: tu expediente con semáforo, precios por régimen y herramientas fiscales.",
+    available: true,
   },
   {
     path: null,
