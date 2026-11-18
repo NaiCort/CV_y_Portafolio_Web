@@ -91,6 +91,6 @@ describe("Portada", () => {
     const { container } = await renderDespacho("/despacho/creditos")
     expect(container.querySelector("h1").textContent).toBe("Créditos")
     const otra = await renderDespacho("/despacho/nada")
-    expect(otra.container.querySelector("h1").textContent).toContain("Sabes cómo vas")
+    expect(otra.container.querySelector("h1").textContent).toContain("Que todo cuadre")
   })
 })

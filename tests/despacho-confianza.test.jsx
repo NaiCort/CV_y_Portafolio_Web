@@ -36,9 +36,10 @@ describe("Fotos ilustrativas", () => {
       expect(existsSync(ruta), ruta).toBe(true)
       expect(createHash("sha256").update(readFileSync(ruta)).digest("hex"), ruta).toBe(m.sha256)
     }
-    for (const f of Object.values(FOTOS)) {
+    for (const [id, f] of Object.entries(FOTOS)) {
       expect(f.src.startsWith("/despacho/fotos/")).toBe(true)
-      expect(f.pie).toContain("ilustrativa")
+      // Xalapa es una foto real del lugar; las demás son ilustrativas y lo dicen.
+      expect(f.pie, id).toMatch(id === "xalapa" ? /Wikimedia Commons/ : /ilustrativa/)
     }
   })
 
@@ -135,5 +136,24 @@ describe("Recordatorio por WhatsApp", () => {
     })
     await click(button("Desactivar el recordatorio", rec))
     expect(button("Elegir mis avisos", rec)).toBeTruthy()
+  })
+})
+
+describe("Portada editorial", () => {
+  it("lleva el libro mayor, el panel de Xalapa con crédito y el expediente sobre la consulta", async () => {
+    await renderDespacho("/despacho")
+    expect($("h1").textContent).toBe("Que todo cuadre antes del 17.")
+    expect($(".d-portada canvas").getAttribute("aria-hidden")).toBe("true")
+    expect($(".d-panel-xalapa img").getAttribute("src")).toBe(FOTOS.xalapa.src)
+    expect($(".d-xalapa-pie").textContent).toContain("Koffermejia")
+    expect($(".d-consulta-foto .d-exp")).toBeTruthy()
+    expect($(".d-consulta-img figcaption").textContent).toContain("ilustrativa")
+    expect(document.querySelectorAll(".d-datos li")).toHaveLength(3)
+  })
+
+  it("los créditos enlazan las cuatro fotos", async () => {
+    await renderDespacho("/despacho/creditos")
+    const enlaces = [...document.querySelectorAll(".d-pagina a")].map((a) => a.getAttribute("href"))
+    for (const f of Object.values(FOTOS)) expect(enlaces).toContain(f.origen)
   })
 })
