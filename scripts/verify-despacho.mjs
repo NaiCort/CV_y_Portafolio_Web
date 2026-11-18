@@ -26,7 +26,7 @@ await suite("despacho", async ({ run, base }) => {
         reducedMotion: width === 1440 ? "no-preference" : "reduce",
       },
       async ({ page }) => {
-        for (const path of ["/despacho", "/despacho/creditos"]) {
+        for (const path of ["/despacho", "/despacho/precios", "/despacho/creditos"]) {
           await go(page, base, path)
           assert.equal(await page.locator("h1").count(), 1, `Un h1 en ${path}`)
           assert.equal(await page.locator('a[href="#"], a[href^="tel:"]').count(), 0)
@@ -42,11 +42,21 @@ await suite("despacho", async ({ run, base }) => {
         await page.getByRole("button", { name: "Aprobar el previo de ejemplo" }).click()
         await page.getByRole("button", { name: "Deshacer" }).waitFor()
         await audit(page)
-        // Cotizar abre WhatsApp simulado.
-        await button(page.locator(".d-recibo"), "Cotizar mi caso").click()
-        await dialog(page).waitFor()
-        assert.match(await dialog(page).textContent(), /quiero cotizar: persona moral/)
+        // Cotizar lleva a la cotización con el régimen elegido.
+        await page.locator(".d-recibo").getByRole("link", { name: "Cotizar mi caso" }).click()
+        await page.waitForURL(/precios\?regimen=moral/)
+        await page.locator("#d-empleados").fill("5")
+        assert.match(await page.locator(".d-estimado").textContent(), /\$4,800/)
+        await page.getByLabel("Nombre", { exact: true }).fill("Ana Ejemplo")
+        await page.getByLabel("WhatsApp", { exact: true }).fill("2281112233")
+        await page.getByRole("button", { name: "Pedir cotización" }).click()
+        await page.locator(".d-cot-hecha").waitFor()
         await bounds(page)
+        await audit(page)
+        // WhatsApp simulado.
+        await go(page, base, "/despacho")
+        await button(page.locator(".d-heroe"), "Escribir por WhatsApp").click()
+        await dialog(page).waitFor()
         await audit(page)
         await close(page)
         // Menú o navegación, según el ancho.

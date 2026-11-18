@@ -47,12 +47,18 @@ describe("Portada", () => {
     expect(moral.className).toBe("is-on")
   })
 
-  it("cotizar desde el recibo abre WhatsApp simulado con el régimen", async () => {
+  it("cotizar desde el recibo lleva a la cotización con el régimen", async () => {
     await renderDespacho()
-    await click(button("Cotizar mi caso"))
-    const chat = document.querySelector("dialog")
-    expect(chat.textContent).toContain("Hola, quiero cotizar: resico persona física")
-    expect(chat.textContent).toContain("En un sitio real")
+    const enlace = [...document.querySelectorAll(".d-recibo a")].find(
+      (x) => x.textContent === "Cotizar mi caso",
+    )
+    expect(enlace.getAttribute("href")).toBe("/despacho/precios?regimen=resico#cotizar")
+  })
+
+  it("WhatsApp es una conversación simulada", async () => {
+    await renderDespacho()
+    await click(button("Escribir por WhatsApp"))
+    expect(document.querySelector("dialog").textContent).toContain("En un sitio real")
   })
 
   it("aprobar el previo de ejemplo cambia su semáforo y se puede deshacer", async () => {

@@ -1,8 +1,9 @@
+import { Link } from "react-router-dom"
 import Expediente from "../components/Expediente"
 import Recibo from "../components/Recibo"
 import { DESPACHO, HERRAMIENTAS, MES, SERVICIOS } from "../data/despacho"
 
-export default function Inicio({ onWhatsApp, onCotizar }) {
+export default function Inicio({ onWhatsApp }) {
   const c = DESPACHO.contadora
   return (
     <>
@@ -16,9 +17,9 @@ export default function Inicio({ onWhatsApp, onCotizar }) {
             semáforo, el previo antes del 17 y WhatsApp para todo lo demás.
           </p>
           <div className="d-acciones">
-            <button type="button" className="d-btn d-btn-p" onClick={() => onCotizar()}>
+            <Link className="d-btn d-btn-p" to="/despacho/precios#cotizar">
               Cotizar en 24 horas
-            </button>
+            </Link>
             <button type="button" className="d-btn" onClick={onWhatsApp}>
               Escribir por WhatsApp
             </button>
@@ -35,7 +36,7 @@ export default function Inicio({ onWhatsApp, onCotizar }) {
             primera llamada.
           </p>
         </div>
-        <Recibo onCotizar={onCotizar} />
+        <Recibo />
       </section>
 
       <section id="como" className="d-wrap d-sec" aria-labelledby="d-como-titulo">

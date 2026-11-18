@@ -1,3 +1,10 @@
+# V4.6.1 · 18 de noviembre de 2026 · Despacho contable, precios y cotización
+
+- Añadir `/despacho/precios`: precios por régimen y lo que se cobra aparte.
+- Cotización con estimación al momento según facturas y empleados, y confirmación simulada con folio.
+- Los botones «Cotizar» llevan a la cotización, con el régimen elegido.
+- Seis pruebas nuevas y la cotización en los recorridos de navegador.
+
 # V4.6.0 · 18 de noviembre de 2026 · Despacho contable, primera entrega
 
 - Investigación de despachos contables (incluido si hace falta un portal de cliente) y referencias revisadas en navegador.

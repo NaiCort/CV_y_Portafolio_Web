@@ -76,7 +76,7 @@ Fotos de banco de oficina o de equipos, apretones de manos, gráficas de barras 
 | Página | Ruta | Contenido |
 |---|---|---|
 | Inicio | `/despacho` | Expediente de ejemplo, recibo por régimen, cómo trabajamos, servicios, herramientas, contadora al frente |
-| Precios y cotización | `/despacho/precios` | Precios aproximados por régimen y extras; cotizar con un formulario corto |
+| Precios y cotización (V4.6.1) | `/despacho/precios` | Precios aproximados por régimen y extras; cotizar con un formulario corto |
 | Servicios | `/despacho/servicios` | Cada servicio con qué incluye y qué te pedimos |
 | Diagnóstico | `/despacho/diagnostico` | Cinco preguntas: régimen sugerido, riesgos y plan |
 | Calendario fiscal | `/despacho/calendario` | Lo que vence este mes según el régimen |

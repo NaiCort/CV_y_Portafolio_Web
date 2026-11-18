@@ -614,6 +614,182 @@
     margin-left: auto;
   }
 }
+
+/* Enlaces con forma de botón */
+.despacho-root a.d-btn {
+  text-decoration: none;
+}
+.despacho-root a.d-btn-p {
+  color: #fff;
+}
+.d-nav a[aria-current="page"] {
+  color: var(--d-tinta);
+  font-weight: 700;
+}
+.d-menu-movil a[aria-current="page"] {
+  color: var(--d-acento);
+}
+
+/* Precios */
+.d-tabla-precios {
+  max-width: 900px;
+  border-top: 2px solid var(--d-tinta);
+  list-style: none;
+}
+.d-tabla-precios li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--d-linea);
+}
+.d-tabla-precios li > div {
+  display: grid;
+  gap: 2px;
+}
+.d-tabla-precios li span {
+  color: var(--d-suave);
+  font-size: 0.9rem;
+}
+.d-tabla-precios .d-precio {
+  color: var(--d-tinta);
+  font: 600 1.25rem/1 var(--d-titulo);
+  white-space: nowrap;
+}
+.d-precio small {
+  color: var(--d-suave);
+  font: 400 0.8rem var(--d-texto);
+}
+
+/* Cotización */
+.d-cotizar-bloque {
+  max-width: 820px;
+  margin-top: 48px;
+  padding: 28px;
+  border-radius: 18px;
+  background: var(--d-hoja);
+}
+.d-cotizar-bloque h2 {
+  margin-top: 0;
+}
+.d-cotizar,
+.d-cot-hecha {
+  display: grid;
+  gap: 18px;
+  margin-top: 18px;
+}
+.d-cot-hecha:focus {
+  outline: none;
+}
+.d-cot-hecha h3 {
+  font: 600 1.375rem/1.1 var(--d-titulo);
+}
+.d-cotizar > .d-btn {
+  justify-self: start;
+}
+.d-campos {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+.d-campo {
+  display: grid;
+  align-content: start;
+  gap: 6px;
+}
+.d-campo:has(textarea) {
+  grid-column: 1 / -1;
+}
+.d-campo label {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+.d-campo :is(input, select, textarea) {
+  width: 100%;
+  min-height: 46px;
+  padding: 10px 12px;
+  border: 1px solid var(--d-linea);
+  border-radius: 10px;
+  background: var(--d-hoja);
+  color: var(--d-tinta);
+  font: 400 1rem/1.4 var(--d-texto);
+}
+.d-campo [aria-invalid="true"] {
+  border-color: var(--d-mal);
+}
+.d-campo-ayuda {
+  color: var(--d-suave);
+  font-size: 0.8125rem;
+}
+.d-campo-error {
+  color: var(--d-mal);
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+.d-estimado {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 14px;
+  padding: 16px 18px;
+  border-radius: 12px;
+  background: var(--d-fondo);
+  color: var(--d-suave);
+  font-size: 0.9rem;
+}
+.d-estimado b {
+  color: var(--d-tinta);
+  font: 600 1.75rem/1 var(--d-titulo);
+}
+.d-check {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 44px;
+  cursor: pointer;
+}
+.despacho-root input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--d-acento);
+}
+.d-resumen {
+  border-top: 1px solid var(--d-linea);
+}
+.d-resumen div {
+  display: grid;
+  grid-template-columns: 8rem 1fr;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--d-linea);
+}
+.d-resumen dt {
+  color: var(--d-suave);
+  font-size: 0.875rem;
+}
+@media (max-width: 640px) {
+  .d-campos,
+  .d-resumen div {
+    grid-template-columns: 1fr;
+  }
+  .d-cotizar-bloque {
+    padding: 20px 16px;
+  }
+  .d-tabla-precios li {
+    grid-template-columns: 1fr;
+  }
+  .d-barra-movil a {
+    display: grid;
+    place-items: center;
+    min-height: 56px;
+    background: var(--d-acento);
+    color: #fff;
+    font: 700 0.97rem/1 var(--d-texto);
+    text-decoration: none;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .despacho-root,
   .despacho-root * {
