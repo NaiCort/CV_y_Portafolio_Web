@@ -32,6 +32,7 @@ await suite("despacho", async ({ run, base }) => {
           "/despacho/diagnostico",
           "/despacho/calendario",
           "/despacho/calculadoras",
+          "/despacho/expediente",
           "/despacho/creditos",
         ]) {
           await go(page, base, path)
@@ -100,6 +101,36 @@ await suite("despacho", async ({ run, base }) => {
           await bounds(page)
           await audit(page)
         }
+        await go(page, base, "/despacho")
+        // Tu expediente: abrir, aprobar, presentar, subir y ver un documento.
+        await go(page, base, "/despacho/expediente")
+        await page.getByRole("button", { name: "Abrir el expediente de ejemplo" }).click()
+        await page.locator(".d-panel").waitFor()
+        await bounds(page)
+        await audit(page)
+        await page.getByRole("button", { name: "Aprobar el previo" }).click()
+        await page.getByRole("button", { name: "Simular la presentación" }).click()
+        await page.locator(".d-documentos li", { hasText: "declaración de noviembre" }).waitFor()
+        await page
+          .locator(".d-solicitudes input[type=file]")
+          .first()
+          .setInputFiles({
+            name: "estado.pdf",
+            mimeType: "application/pdf",
+            buffer: Buffer.from("x"),
+          })
+        await page.locator(".d-sol-hecha").first().waitFor()
+        await page.getByRole("button", { name: "Ya lo confirmé" }).click()
+        await page
+          .getByRole("button", { name: /^Ver Acuse de la declaración de noviembre/ })
+          .click()
+        await dialog(page).waitFor()
+        await audit(page)
+        await close(page)
+        await audit(page)
+        await page.getByRole("button", { name: "Reiniciar el ejemplo" }).click()
+        await page.getByRole("button", { name: "Salir" }).click()
+        await page.locator(".d-entrar").waitFor()
         await go(page, base, "/despacho")
         // Menú o navegación, según el ancho.
         if (width < 900) {

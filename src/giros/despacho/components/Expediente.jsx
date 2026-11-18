@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { Link } from "react-router-dom"
 
 const ESTADOS = {
   ok: "Al día",
@@ -47,9 +48,12 @@ export default function Expediente() {
             </button>
           </>
         ) : (
-          <button type="button" className="d-btn d-btn-p" onClick={() => setAprobado(true)}>
-            Aprobar el previo de ejemplo
-          </button>
+          <>
+            <button type="button" className="d-btn d-btn-p" onClick={() => setAprobado(true)}>
+              Aprobar el previo de ejemplo
+            </button>
+            <Link to="/despacho/expediente">Ver el expediente completo</Link>
+          </>
         )}
       </div>
     </figure>

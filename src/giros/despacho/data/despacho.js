@@ -131,7 +131,11 @@ export const HERRAMIENTAS = [
   ],
   ["Calendario fiscal", "Lo que te vence este mes según tu régimen.", "/despacho/calendario"],
   ["Calculadoras", "RESICO, aguinaldo y finiquito, orientativas.", "/despacho/calculadoras"],
-  ["Tu expediente", "Aprueba el previo y sube lo que te pedimos, sin contraseña.", null],
+  [
+    "Tu expediente",
+    "Aprueba el previo y sube lo que te pedimos, sin contraseña.",
+    "/despacho/expediente",
+  ],
 ]
 
 export const findRegimen = (id) => REGIMENES.find((r) => r.id === id)

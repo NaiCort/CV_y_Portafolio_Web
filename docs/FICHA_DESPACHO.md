@@ -82,5 +82,5 @@ Fotos de banco de oficina o de equipos, apretones de manos, gráficas de barras 
 | Calendario fiscal (V4.6.2) | `/despacho/calendario` | Lo que vence este mes según el régimen |
 | Calculadoras (V4.6.2) | `/despacho/calculadoras` | RESICO, aguinaldo y finiquito, orientativas |
 | ¿Te dejaron de presentar? | `/despacho/regularizacion` | Revisar acuses, autocorrección y cómo te ayudamos |
-| Tu expediente | `/despacho/expediente` | Perfil de ejemplo: semáforo, previo para aprobar, solicitudes con fecha límite |
+| Tu expediente (V4.6.3) | `/despacho/expediente` | Perfil de ejemplo: semáforo, previo para aprobar, solicitudes con fecha límite |
 | Créditos y privacidad | `/despacho/creditos` | Tipografías; aviso de privacidad con la ley de 2025 y borrado |

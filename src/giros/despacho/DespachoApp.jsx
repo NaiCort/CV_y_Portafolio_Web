@@ -14,6 +14,7 @@ import Precios from "./pages/Precios"
 import Diagnostico from "./pages/Diagnostico"
 import Calendario from "./pages/Calendario"
 import Calculadoras from "./pages/Calculadoras"
+import ExpedientePagina from "./pages/ExpedientePagina"
 import { DESPACHO } from "./data/despacho"
 import "./despacho.css"
 
@@ -26,6 +27,7 @@ const SECCIONES = [
 ]
 // En el menú del teléfono van además estas secciones.
 const EXTRA_MOVIL = [
+  ["/despacho/expediente", "Tu expediente"],
   ["como", "Cómo trabajamos"],
   ["equipo", "Quiénes somos"],
 ]
@@ -35,6 +37,7 @@ const TITULOS = {
   "/despacho/diagnostico": "Diagnóstico gratuito",
   "/despacho/calendario": "Calendario fiscal",
   "/despacho/calculadoras": "Calculadoras",
+  "/despacho/expediente": "Tu expediente",
   "/despacho/creditos": "Créditos",
 }
 const MENSAJES = [
@@ -66,6 +69,12 @@ function Guia() {
           Diagnóstico, calendario y calculadoras son orientativos: el diagnóstico sugiere régimen y
           riesgos con cinco respuestas, el calendario marca las fechas del mes por régimen y las
           calculadoras usan las tablas y la UMA de 2026. Nada se guarda.
+        </li>
+        <li>
+          «Tu expediente» abre sin contraseña el perfil de ejemplo de Mariana (RESICO): semáforo,
+          previo del mes para aprobar o preguntar, documentos que el despacho pide (el archivo no
+          sale del navegador: solo se anota su nombre) y documentos para consultar. Se guarda en
+          este navegador.
         </li>
         <li>Llamar y WhatsApp son simulaciones: no se marca ni se envía nada.</li>
       </ul>
@@ -142,6 +151,13 @@ export default function DespachoApp() {
             <span className="d-oculto">Llamar al </span>
             {DESPACHO.telefono}
           </button>
+          <Link
+            className="d-btn d-cab-cta"
+            to="/despacho/expediente"
+            aria-current={ruta === "/despacho/expediente" ? "page" : undefined}
+          >
+            Tu expediente
+          </Link>
           <Link className="d-btn d-btn-p d-cab-cta" to="/despacho/precios#cotizar">
             Cotizar
           </Link>
@@ -175,6 +191,7 @@ export default function DespachoApp() {
           <Route path="diagnostico" element={<Diagnostico />} />
           <Route path="calendario" element={<Calendario />} />
           <Route path="calculadoras" element={<Calculadoras />} />
+          <Route path="expediente" element={<ExpedientePagina onWhatsApp={whatsapp} />} />
           <Route path="creditos" element={<Creditos />} />
           <Route path="*" element={<Navigate to="/despacho" replace />} />
         </Routes>
@@ -194,7 +211,10 @@ export default function DespachoApp() {
             <b>{DESPACHO.completo}</b> · {DESPACHO.direccion}
           </p>
           <p>{DESPACHO.horario}</p>
-          <p>Despacho ficticio creado para una demostración; esta página no guarda datos.</p>
+          <p>
+            Despacho ficticio creado para una demostración; el expediente de ejemplo se guarda solo
+            en tu navegador.
+          </p>
         </div>
         <Link to="/despacho/creditos">Créditos</Link>
       </footer>
