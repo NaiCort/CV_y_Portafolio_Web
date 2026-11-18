@@ -1,0 +1,96 @@
+# Investigación: despachos contables y sus sitios (V4.6)
+
+17 de noviembre de 2026. Ian pidió una investigación exhaustiva antes de empezar Despacho contable. Fuentes: encuestas de la industria, sitios de despachos y plataformas mexicanas abiertos en navegador, leyes y reglas del SAT, IMSS, IMCP y la SEP. Las referencias, con el indicador de cuáles se abrieron, están en [REFERENCIAS_DESPACHO.md](REFERENCIAS_DESPACHO.md).
+
+## 1. Qué busca el cliente de un contador
+
+- **Que conteste.** El 85 % de quienes deciden en un negocio dice que la rapidez de respuesta pesa «mucho» o «muchísimo» al elegir contador; la recomendación es la forma más común de encontrarlo (58 %) ([TaxDome 2025, vía CPA Practice Advisor](https://www.cpapracticeadvisor.com/2025/10/29/what-do-businesses-actually-value-when-choosing-or-staying-with-an-accounting-firm/171881/)).
+- **No llevarse sorpresas.** Los dueños quieren proyecciones trimestrales y conversaciones para no enterarse del impuesto al final ([CPA Practice Advisor](https://www.cpapracticeadvisor.com/2025/11/03/what-most-accounting-firms-miss-about-serving-small-businesses/172199/)).
+- **Consejo, no solo trámites.** El 87 % de las pymes quiere asesoría (flujo de efectivo, planeación fiscal, decisiones), pero solo el 34 % siente que la recibe; el 85 % valora que el contador le ahorre dinero con planeación ([BrightSG sobre Wolters Kluwer](https://brightsg.com/en-ie/blog/what-do-clients-actually-want-from-their-accountant-in-2026/), [TaxDome 2025](https://www.cpapracticeadvisor.com/2025/10/29/what-do-businesses-actually-value-when-choosing-or-staying-with-an-accounting-firm/171881/)).
+- **Ver su situación sin pedirla.** El 71 % de las pymes quiere acceso a sus números en un portal, no reportes por correo cuando el contador decida (Sage, citado por BrightSG). El 79 % quiere herramientas digitales fáciles y el 71 %, un arranque claro ([TaxDome](https://taxdome.com/blog/accounting-statistics)).
+- **La satisfacción es baja.** Solo el 48 % de 1,000 clientes está del todo satisfecho con su contador; entre los satisfechos, el 77 % dice que su contador usa bien la tecnología; uno de cada cinco pagaría hasta 50 % más por un servicio más rápido ([TaxDome, Client Satisfaction Report](https://taxdome.com/blog/client-satisfaction-report-statistics-what-taxpayers-expect-from-their-accountants)). El 26 % de los negocios deja a su despacho porque lo superó.
+- **Hablar seguido.** El 86 % ve a su contador como asesor de confianza, pero solo el 39 % habla con él una vez al mes o más; quienes piensan cambiarlo hablan menos con él ([OnPay](https://onpay.com/ledger/small-businesses-accountant-stats/)).
+
+## 2. México: cómo se contrata un contador
+
+- **Cobro por iguala mensual** según el régimen, el número de facturas, si hay IVA y si hay nómina. Rangos de 2026: RESICO persona física de $500 a $800; persona física con actividad empresarial u honorarios de $800 a $1,200; pyme persona moral de $3,000 a $7,000 (hasta $15,000 la mediana); declaración anual aparte de $1,500 a $8,000 (persona moral de $6,000 a $25,000). Los contadores en línea cobran de 20 a 40 % menos; en la Ciudad de México, de 15 a 25 % más. No hay arancel obligatorio ([Praxium](https://praxiumconsultores.com/blog/cuanto-cobra-un-contador-en-mexico-honorarios-2026), [Praxium, persona moral](https://praxiumconsultores.com/blog/cuanto-cobra-contador-persona-moral)).
+- **Precios publicados por algunos:** RDC Contadores, RESICO desde $812 con IVA; ARG Contadores, desde $1,500 más IVA (hasta 10 facturas); Siempre Contable, desde $899; SinConta, $350; Heru, de $249 a $1,999 según el plan; Konta, Plan Personalizado $1,749 más IVA; Simmple, persona moral desde $1,500 más IVA ([RDC](https://www.rdcontadores.com/servicios), [ARG](https://argcontadores.com/), [Heru](https://www.heru.app/planes/), [Konta](https://konta.com/), [Simmple](https://www.simmple.mx/)).
+- **Contadores digitales.** Heru, Konta, SinConta y Simmple venden el servicio por suscripción con un contador detrás: conectas tu RFC, ellos calculan y presentan antes del 17 y piden tu autorización antes de enviar; regularizan declaraciones atrasadas y siguen saldos a favor ([Heru](https://www.heru.app/), [Expansión](https://expansion.mx/economia/2023/04/13/declaracion-anual-sat-app-heru)).
+- **Herramientas gratuitas** como gancho: calculadoras de ISR, RESICO, IVA, aguinaldo y finiquito; calendario fiscal; diagnóstico de riesgo o de bloqueo de sellos ([Siempre Contable](https://www.siemprecontable.net/recursos), [Grupo CerVel](https://grupocervel.com/herramientas/calendario-fiscal), [Praxium](https://praxiumconsultores.com/)).
+- **WhatsApp** como canal principal y **primera asesoría o diagnóstico sin costo** (Konta, ARG, Simmple, Praxium, Carbajal).
+- **Pymes poco digitalizadas:** según INEGI (ENAPROCE 2018), el 18 % no llevaba contabilidad y el 50 % usaba un contador; un estudio de 2025 dice que 70 % de las pymes no usa software contable. El SAT mandó más de 17 millones de requerimientos en 2024 ([ITSitio](https://www.itsitio.com/mx/infraestructura/7-de-cada-10-empresas-en-mexico-siguen-operando-a-ciegas-sin-software-contable-este-es-el-problema/), [OCH Group](https://www.ochgroup.co/por-que-las-empresas-despiden-a-las-buenas-firmas-de-contabilidad/)).
+
+## 3. Lo que hace un despacho cada mes (y el calendario)
+
+- **Día 17:** pagos provisionales de ISR, IVA definitivo, retenciones e IEPS; cuotas obrero-patronales del IMSS (mensuales) y, cada dos meses, retiro e INFONAVIT. Si cae en día inhábil, pasa al siguiente hábil ([Siempre al día](https://siemprealdia.co/mexico/fiscal/obligaciones-fiscales-en-noviembre/), [Carbajal](https://carbajalcontadores.com/2026/09/22/calendario-fiscal-sat-octubre-2026-pagos-provisionales-iva-y-diot-vencen-el-lunes-19-de-octubre-guia-completa-de-fechas-y-multas)).
+- **DIOT:** las fuentes recientes la ponen el último día del mes siguiente (regla 4.5.1 de la RMF 2026); otras siguen diciendo el 17.
+- **Contabilidad electrónica:** balanza de personas morales dentro de los primeros 3 días del segundo mes; personas físicas, el día 5.
+- **Anuales:** personas morales el 31 de marzo, personas físicas en abril; PTU de personas morales a más tardar el 30 de mayo.
+- **Revisión de cumplimiento:** opinión de cumplimiento 32-D (vale 30 días; sale negativa por declaraciones omitidas, créditos fiscales, buzón tributario sin activar o estar en el listado 69-B), buzón tributario habilitado con contactos confirmados (sin él, opinión negativa y riesgo de restricción de sellos; las multas del 86-D se pospusieron a 2027 según el transitorio de la RMF 2026), domicilio localizado, y la 32-D de proveedores y clientes ([Siempre Contable](https://www.siemprecontable.net/blog/opinion-de-cumplimiento-32d), [Contadigital](https://www.contadigital.mx/posts/resolucion-miscelanea-fiscal-2026), [Expansión](https://expansion.mx/finanzas-personales/2025/12/29/quienes-estan-obligados-activar-buzon-tributario-sat)).
+- **RESICO personas físicas:** ingresos de hasta $3.5 millones al año; ISR de 1 % a 2.5 % sobre lo cobrado, sin deducciones; las personas morales retienen 1.25 %; se sale al rebasar el límite o al dejar de pagar tres meses seguidos ([Alegra](https://blog.alegra.com/mexico/resico-personas-fisicas/), [Siempre Contable](https://www.siemprecontable.net/regimenes/resico)).
+
+## 4. Confianza, ley y ética
+
+- **e.firma y Contraseña.** La e.firma equivale a la firma autógrafa y es intransferible: no se le entrega al contador. Lo usual es compartir solo la Contraseña (antes CIEC), cambiarla al terminar la relación y revisar el buzón y las declaraciones; hay fuentes que recomiendan ni siquiera eso ([Mifiel](https://blog.mifiel.com/fiel-contador-pesima-idea/), [Informador](https://www.informador.mx/economia/sat-2026-lo-que-nunca-debes-hacer-con-tu-e.firma-al-contratar-a-un-contador-20260415-0059.html), [CSFacturación](https://blog.csfacturacion.com/e-firma-contrasena-ciec-y-csd-que-son-y-en-que-se-diferencian/)). Para la demo: el portal nunca pide la e.firma y lo dice.
+- **Cuando el contador falla.** La queja más común es «no presentó mis declaraciones». Lo que se recomienda: revisar los acuses en el portal del SAT y corregir antes de un requerimiento (autocorrección del art. 73 CFF: sin multa, solo recargos; con requerimiento, de $2,050 a $25,360 por declaración). El contador puede ser responsable solidario, pero hay que probar la relación con recibos o contrato; si es miembro del IMCP o de un colegio, se puede presentar queja ahí ([Heru](https://www.heru.app/blog/que-hago-si-mi-contador-no-presento-mis-declaraciones/), [Fiscalia](https://www.fiscalia.com/modules.php?idCat=10&idTema=49053&name=Foros&sop=verTopico)). Prodecon defiende frente al SAT, no frente a contadores privados ([Prodecon](https://x.com/ProdeconMexico/status/1924600579675816100?lang=es)).
+- **Credenciales verificables.** La cédula profesional se consulta gratis en el Registro Nacional de Profesionistas de la SEP; Siempre Contable enlaza «Verificar en la SEP» junto al nombre de su contadora ([guía de consulta](https://guiacedulaprofesional.com.mx/consulta-cedula-profesional/)). La certificación CPC del IMCP es voluntaria y dura cuatro años con educación continua; para firmar dictámenes fiscales el SAT pide registro como contador público inscrito, cédula, tres años en un colegio, certificación vigente y estar al corriente (art. 52 CFF y RCFF) ([IMCP](https://imcp.org.mx/wp-content/uploads/2019/08/Reglamentopara_CertificacionProfesionaldelosContadoresPublicos_2019.pdf), [FISC](https://fisc.mx/ley/cff/articulo-52)).
+- **Secreto profesional.** El Código de Ética del IMCP obliga a no revelar lo que se sabe del cliente, salvo autorización o deber legal ([Código de Ética](https://ccpmich.com.mx/assets/archivos/Codigo_de_etica_profesional_IMCP.pdf)).
+- **Datos personales.** La nueva Ley Federal de Protección de Datos Personales en Posesión de los Particulares rige desde el 21 de marzo de 2025; el INAI desapareció y supervisa la Secretaría Anticorrupción y Buen Gobierno. El aviso de privacidad debe listar los datos y separar las finalidades que requieren consentimiento; ya no se remite al INAI ([Garrigues](https://www.garrigues.com/es_ES/noticia/mexico-nueva-ley-federal-proteccion-datos-personales-posesion-particulares-introduce), [Normatic](https://normatic.ai/blog/mexico-nueva-lfpdppp-2025-fin-del-inai/)). Para la demo, el aviso se escribe con la ley de 2025 (ninguna demo anterior menciona al INAI).
+
+## 5. Sitios: qué hacen los mejores
+
+- **Precios a la vista.** Casi todos los sitios mejor evaluados publican precios o niveles (Kruze, Shay CPA, Avalon, Pilot) y una calculadora reduce la ansiedad del cliente ([Nanoglobals](https://nanoglobals.com/accounting-firm-websites/), [Sitemancer](https://sitemancer.com/guide/complete-guide-accounting-and-tax-services-cpas-tax-preparers-marketing/website-essentials-for-accounting-firms-services-niches-and-trust-elements/)). En México lo hacen RDC («gira tu régimen: el recibo cambia»), ARG, Siempre Contable, Heru y Konta.
+- **Portal de cliente visible** en la cabecera, con una línea de cómo se guardan los documentos; mandar papeles por correo se ve anticuado ([Buzzy Branding](https://buzzybranding.com/guides/websites-for-accountants-cpas/), [Simpalm](https://www.simpalm.com/blog/how-to-design-website-for-cpa-and-accounting-firms)).
+- **El proceso dicho con fechas.** ARG: «Día 25: recibes el previo de tus impuestos». Siempre Contable muestra un ejemplo de reporte mensual (declaración, nómina IMSS, buzón, próxima entrega día 17).
+- **Por régimen o situación.** Heru y ARG ordenan su menú por régimen (RESICO, plataformas, arrendamiento, honorarios) y por problema (declaraciones atrasadas, saldo a favor, migrar de contador).
+- **Persona al frente.** «Una contadora titulada al frente» con cédula verificable (Siempre Contable) frente a fotos de banco de oficina (Praxium, Carbajal).
+- **Lo que evitar:** ventanas de cookies encimadas, formularios largos en la portada, fotos de banco de equipos sonriendo, muros de logotipos y numeración decorativa (Praxium usa 01–04 en el menú).
+
+## 6. Qué significa para la demo
+
+- **Precio por régimen**, con un selector («¿qué haces?» → régimen → iguala mensual con lo que incluye).
+- **Diagnóstico gratuito** corto (régimen, ingresos, si factura, si tiene empleados, si está al corriente) que recomienda plan y avisa de riesgos.
+- **Calendario fiscal** del mes con lo que vence para cada tipo de cliente, y recordatorio simulado.
+- **Portal de cliente** con perfil de ejemplo: semáforo de cumplimiento (declaraciones, 32-D, buzón), «previo de tus impuestos» para aprobar antes del 17, documentos y mensajes. Nunca pide e.firma ni contraseñas reales, y lo dice.
+- **Calculadoras** (RESICO, aguinaldo o finiquito) declaradas como orientativas.
+- **Regularización:** «¿te dejaron de presentar?», con los pasos de autocorrección.
+- **Confianza verificable:** responsable con cédula (ficticia, sin enlace a la SEP con datos inventados), colegio y certificación explicados; secreto profesional; aviso de privacidad con la ley de 2025.
+
+## 7. Preguntas de alcance para Ian
+
+1. **¿Uno o dos despachos?** Como en Taller, podrían ser dos temas: un despacho pequeño con una contadora al frente (personas físicas, RESICO, plataformas, arrendamiento) y una firma mediana con áreas (pymes y personas morales, nómina, defensa fiscal, dictamen). ¿O uno solo?
+2. **¿A quién atiende?** Personas físicas, pymes y personas morales, o ambos.
+3. **Portal de cliente:** ¿se incluye, con un perfil de ejemplo, como Mi garaje en Vértice?
+4. **Precios:** ¿publicados por régimen (lo que recomiendan las fuentes) o solo «cotiza»?
+5. **Servicios extra:** nómina e IMSS, constitución de empresas, defensa ante el SAT, dictamen, facturación. ¿Cuáles sí?
+6. **Herramientas:** calendario fiscal, diagnóstico y calculadoras. ¿Todas, algunas?
+
+## 8. Respuestas de Ian (18/11)
+
+1. **Un solo despacho** que haga todo: personas físicas y pymes o personas morales.
+2. **Precios aproximados** por régimen y la posibilidad de cotizar.
+3. **Todos los servicios posibles:** contabilidad e impuestos, nómina e IMSS, constitución de empresas, defensa ante el SAT, dictamen, facturación y regularización.
+4. **Todas las herramientas:** calendario fiscal, diagnóstico y calculadoras.
+5. **Portal de cliente: solo si de verdad hace falta.** Se investigó aparte (sección 9).
+
+## 9. ¿Un despacho necesita portal de cliente?
+
+**Qué dicen los clientes y los dueños:**
+
+- Una encuesta de Canopy (proveedor de portales) a 1,001 pequeñas empresas de Estados Unidos: el 56 % dijo que un portal en línea es importante y el 63 % dijo que su contador no lo ofrecía ([Business Wire](https://www.businesswire.com/news/home/20211021005035/en)).
+- Lo que más pesa al elegir contador es que conteste rápido y ver la situación sin pedirla (sección 1): el 71 % quiere ver sus números sin esperar reportes y el 79 % quiere herramientas digitales fáciles.
+- Del lado de los contadores: 72 % califica el correo o el teléfono como efectivos para trabajar con clientes, contra 58 % el portal ([Jupid](https://jupid.com/blog/client-portal-for-accountants)).
+
+**Por qué los clientes no lo usan:**
+
+- «Otra contraseña más»: muchos solo quieren mandar el PDF por correo o WhatsApp. Las personas mayores son las que más batallan.
+- El portal no ofrece nada más que bajar documentos, entrar cuesta más pasos que mandar un PDF y nadie le avisa al cliente que vuelva ([TaxScout](https://taxscout.ai/blog/building-client-portal-clients-actually-use)).
+- Uso real: los proveedores reportan de 40 % a más de 80 % de clientes activos; no hay una cifra independiente.
+
+**Qué funciona:** portales simples, **sin inicio de sesión obligatorio** (enlace directo), que explican por qué es más seguro que WhatsApp, que se ofrecen a los clientes nuevos desde el arranque y que **conviven con WhatsApp**: WhatsApp para coordinar y avisar; el portal para la versión oficial de documentos, avances y solicitudes con fecha límite ([Plan-in](https://plan-in.net/mx/tecnologia-para-contadores/comunicacion-centralizada-en-despachos-contables/), [SATFácil](https://www.satfacil.com.mx/blog/portal-clientes-despacho-contable), [MiDespacho](https://blog.midespacho.cloud/software-para-despachos-legales-checklist-y-guia-de-adopcion-en-mexico/)). Casi todas estas fuentes venden portales; no hay estudios independientes.
+
+**Recomendación:** no un portal completo como centro del sitio, sino **un «expediente» ligero**:
+
+- Se abre con un enlace (en la demo, un perfil de ejemplo sin contraseña) y hace solo tres cosas que WhatsApp hace mal: **aprobar el previo de impuestos antes del 17**, **subir lo que el despacho pide con fecha límite** y **ver el semáforo de cumplimiento** (declaraciones, opinión 32-D y buzón tributario).
+- WhatsApp sigue como canal principal de conversación, y el sitio lo dice.
+- Justifica su lugar en la demo porque responde a las dos quejas centrales: «no sé si mi contador presentó» y «me enteré del impuesto el último día».
