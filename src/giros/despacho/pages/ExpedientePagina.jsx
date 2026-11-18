@@ -8,6 +8,7 @@ import {
   SOLICITUDES,
   cargar,
   guardar,
+  mensajesAviso,
   reducir,
   semaforo,
   totalIsr,
@@ -299,6 +300,111 @@ function Documentos({ e }) {
   )
 }
 
+// Recordatorio por WhatsApp (simulado): el cliente elige qué avisos quiere y ve cómo llegarían.
+function Recordatorio({ e, dispatch }) {
+  const [eligiendo, setEligiendo] = useState(false)
+  const [activando, setActivando] = useState(false)
+  const [previo, setPrevio] = useState(true)
+  const [fechas, setFechas] = useState(false)
+  const timer = useRef(null)
+  useEffect(() => () => clearTimeout(timer.current), [])
+  const mensajes = mensajesAviso(e.avisos)
+  return (
+    <section className="d-recordatorio" aria-labelledby="d-rec-titulo">
+      <h2 id="d-rec-titulo">Recordatorio por WhatsApp</h2>
+      <div aria-live="polite">
+        {e.avisos ? (
+          <>
+            <p>
+              Activo. Te escribimos al WhatsApp que tenemos registrado (
+              <span className="d-num">228 ••• •• 19</span>) con el enlace a tu expediente. Así te
+              llegaría:
+            </p>
+            <ul className="d-wa-burbujas" aria-label="Mensajes de ejemplo">
+              {mensajes.map((m) => (
+                <li key={m}>{m}</li>
+              ))}
+            </ul>
+            <p className="d-nota">Simulado: no se envió ningún mensaje.</p>
+            <button
+              type="button"
+              className="d-inline"
+              onClick={() => {
+                setEligiendo(false)
+                dispatch({ type: "avisos", valor: null })
+              }}
+            >
+              Desactivar el recordatorio
+            </button>
+          </>
+        ) : eligiendo ? (
+          <form
+            className="d-rec-form"
+            onSubmit={(ev) => {
+              ev.preventDefault()
+              if (!previo && !fechas) return
+              setActivando(true)
+              timer.current = setTimeout(() => {
+                setActivando(false)
+                setEligiendo(false)
+                dispatch({ type: "avisos", valor: { previo, fechas } })
+              }, 700)
+            }}
+          >
+            <fieldset>
+              <legend>Avísame cuando…</legend>
+              <label className="d-check">
+                <input
+                  type="checkbox"
+                  checked={previo}
+                  onChange={(x) => setPrevio(x.target.checked)}
+                />
+                haya un previo para aprobar
+              </label>
+              <label className="d-check">
+                <input
+                  type="checkbox"
+                  checked={fechas}
+                  onChange={(x) => setFechas(x.target.checked)}
+                />
+                falten tres días para entregar algo que me pidieron
+              </label>
+            </fieldset>
+            {!previo && !fechas && <p className="d-nota">Elige al menos un aviso.</p>}
+            <div className="d-acciones">
+              <button
+                type="submit"
+                className="d-btn d-btn-p"
+                disabled={activando || (!previo && !fechas)}
+              >
+                {activando ? "Activando…" : "Activar el recordatorio"}
+              </button>
+              <button
+                type="button"
+                className="d-btn"
+                disabled={activando}
+                onClick={() => setEligiendo(false)}
+              >
+                Cancelar
+              </button>
+            </div>
+          </form>
+        ) : (
+          <>
+            <p>
+              Si prefieres no entrar a revisar, te avisamos por WhatsApp cuando haya algo que
+              aprobar o entregar. Solo con tu permiso, y lo apagas cuando quieras.
+            </p>
+            <button type="button" className="d-btn" onClick={() => setEligiendo(true)}>
+              Elegir mis avisos
+            </button>
+          </>
+        )}
+      </div>
+    </section>
+  )
+}
+
 // Tu expediente: semáforo, previo para aprobar, lo que el despacho pide y documentos.
 export default function ExpedientePagina({ onWhatsApp }) {
   const [e, dispatch] = useReducer(reducir, undefined, () => cargar(storage()))
@@ -363,6 +469,7 @@ export default function ExpedientePagina({ onWhatsApp }) {
               <Documentos e={e} />
             </div>
           </div>
+          <Recordatorio e={e} dispatch={dispatch} />
           <div className="d-acciones">
             <button type="button" className="d-btn" onClick={onWhatsApp}>
               Escribir a Elena por WhatsApp

@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react"
 import { Link, useSearchParams } from "react-router-dom"
 import { EXTRAS, REGIMENES, findRegimen } from "../data/despacho"
+import AntesDeContratarnos from "../components/AntesDeContratarnos"
 import { estimar, folioCotizacion, telefonoValido } from "../lib/cotizar"
 import { precioTexto } from "../lib/formato"
 
@@ -281,6 +282,8 @@ export default function Precios() {
           </li>
         ))}
       </ul>
+
+      <AntesDeContratarnos />
 
       <section id="cotizar" className="d-cotizar-bloque" aria-labelledby="d-cot-titulo">
         <h2 id="d-cot-titulo">Cotiza tu caso</h2>

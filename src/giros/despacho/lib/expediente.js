@@ -1,6 +1,8 @@
 // «Tu expediente» (perfil de ejemplo de Mariana, RESICO). Sin contraseña y sin servidor: el
 // estado se guarda solo en este navegador. Cifras inventadas pero coherentes con la tabla de
 // RESICO (tasa de 1.5 % para ingresos de hasta $83,333.33 al mes).
+import { precioTexto } from "./formato"
+
 export const EXPEDIENTE_KEY = "cotejo-expediente-v1"
 
 export const PERFIL = {
@@ -68,9 +70,27 @@ export const inicial = () => ({
   duda: "",
   solicitudes: {}, // id → { estado: "recibido" | "no-tengo", archivo? }
   buzon: false,
+  avisos: null, // null (apagado) o { previo: bool, fechas: bool }
 })
 
 const ESTADOS_PREVIO = ["pendiente", "duda", "aprobado", "presentado"]
+
+const avisosValidos = (v) =>
+  v && typeof v === "object" && (v.previo === true || v.fechas === true)
+    ? { previo: v.previo === true, fechas: v.fechas === true }
+    : null
+
+// Mensajes que llegarían por WhatsApp con el recordatorio activo (simulados).
+export function mensajesAviso(avisos) {
+  if (!avisos) return []
+  const nombre = PERFIL.nombre.split(" ")[0]
+  return [
+    avisos.previo &&
+      `Hola, ${nombre}. Tu previo de ${PREVIO.mes} está listo para revisar: ${precioTexto(totalPrevio)} a pagar. Apruébalo antes del ${PREVIO.vence} desde tu expediente.`,
+    avisos.fechas &&
+      `Hola, ${nombre}. Faltan tres días para la fecha límite de «${SOLICITUDES[1].nombre}» (${SOLICITUDES[1].limite}). Puedes subirla desde tu expediente o mandarla por aquí.`,
+  ].filter(Boolean)
+}
 
 export function reducir(e, a) {
   switch (a.type) {
@@ -100,6 +120,11 @@ export function reducir(e, a) {
     }
     case "buzon":
       return { ...e, buzon: true }
+    case "avisos":
+      return {
+        ...e,
+        avisos: avisosValidos(a.valor),
+      }
     case "reiniciar":
       return { ...inicial(), sesion: true }
     default:
@@ -143,6 +168,7 @@ export function cargar(storage) {
       duda: typeof e.duda === "string" ? e.duda : "",
       solicitudes: e.solicitudes && typeof e.solicitudes === "object" ? e.solicitudes : {},
       buzon: e.buzon === true,
+      avisos: avisosValidos(e.avisos),
     }
   } catch {
     return inicial()

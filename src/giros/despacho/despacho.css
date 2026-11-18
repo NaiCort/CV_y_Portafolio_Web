@@ -459,16 +459,6 @@
   align-items: start;
   max-width: 820px;
 }
-.d-monograma {
-  display: grid;
-  place-items: center;
-  width: 92px;
-  height: 92px;
-  border-radius: 50%;
-  background: var(--d-acento);
-  color: #fff;
-  font: 600 1.875rem/1 var(--d-titulo);
-}
 .d-frente > div {
   display: grid;
   gap: 10px;
@@ -1119,7 +1109,8 @@
 }
 .d-previo,
 .d-solicitudes,
-.d-documentos {
+.d-documentos,
+.d-recordatorio {
   display: grid;
   gap: 14px;
   padding: 22px;
@@ -1128,7 +1119,8 @@
 }
 .d-pagina .d-previo h2,
 .d-pagina .d-solicitudes h2,
-.d-pagina .d-documentos h2 {
+.d-pagina .d-documentos h2,
+.d-pagina .d-recordatorio h2 {
   margin: 0;
   font-size: 1.375rem;
 }
@@ -1443,6 +1435,224 @@
   }
   .d-serv {
     padding: 18px 16px;
+  }
+}
+
+/* Recordatorio por WhatsApp */
+.d-recordatorio {
+  margin-block: 22px;
+}
+.d-recordatorio [aria-live] {
+  display: grid;
+  gap: 12px;
+  justify-items: start;
+  max-width: 64ch;
+}
+.d-rec-form {
+  display: grid;
+  gap: 12px;
+}
+.d-rec-form fieldset {
+  border: 0;
+}
+.d-rec-form legend {
+  margin-bottom: 4px;
+  font-weight: 600;
+}
+.d-wa-burbujas {
+  display: grid;
+  gap: 8px;
+  list-style: none;
+}
+.d-wa-burbujas li {
+  max-width: 46ch;
+  padding: 10px 14px;
+  border-radius: 4px 14px 14px 14px;
+  background: #e3efe9;
+  font-size: 0.94rem;
+}
+
+/* Fotos ilustrativas (V4.6.6) */
+.d-retrato {
+  width: 220px;
+}
+.d-retrato img,
+.d-sala img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 14px;
+  background: var(--d-linea);
+}
+.d-retrato figcaption,
+.d-sala figcaption {
+  margin-top: 8px;
+  color: var(--d-suave);
+  font-size: 0.8125rem;
+}
+.d-sala {
+  margin-top: 40px;
+}
+.d-sala img {
+  aspect-ratio: 3 / 1;
+  object-fit: cover;
+  object-position: 50% 60%;
+}
+
+/* Especialidades */
+.d-especialidades {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 40px;
+}
+.d-especialidades > div {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+  gap: 6px 20px;
+  padding: 16px 0;
+  border-top: 1px solid var(--d-linea);
+}
+.d-especialidades dt {
+  display: grid;
+  align-content: start;
+  gap: 2px;
+}
+.d-especialidades dt span,
+.d-especialidades dd {
+  color: var(--d-suave);
+  font-size: 0.9rem;
+}
+
+/* Guías */
+.d-guias {
+  display: grid;
+  gap: 0;
+  max-width: 820px;
+  list-style: none;
+}
+.d-guias li {
+  border-top: 1px solid var(--d-linea);
+}
+.d-guias li:last-child {
+  border-bottom: 1px solid var(--d-linea);
+}
+.d-guias a {
+  display: grid;
+  grid-template-columns: minmax(0, 16rem) minmax(0, 1fr);
+  gap: 4px 24px;
+  padding: 16px 0;
+  text-decoration: none;
+}
+.d-guias span {
+  color: var(--d-suave);
+}
+@media (hover: hover) {
+  .d-guias a:hover b {
+    color: var(--d-acento);
+  }
+}
+.d-guia {
+  display: grid;
+  gap: 14px;
+  max-width: 720px;
+  margin-top: 40px;
+  padding-top: 32px;
+  border-top: 1px solid var(--d-linea);
+  scroll-margin-top: 96px;
+}
+.d-pagina .d-guia h2 {
+  margin: 0;
+}
+.d-guia-meta {
+  color: var(--d-suave);
+}
+.d-guia-parte {
+  display: grid;
+  gap: 8px;
+}
+.d-guia h3 {
+  font: 600 1.125rem/1.3 var(--d-titulo);
+}
+.d-guia .d-btn {
+  justify-self: start;
+}
+
+/* Opiniones de ejemplo */
+.d-opiniones {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 32px;
+  list-style: none;
+}
+.d-opiniones li {
+  display: grid;
+  align-content: space-between;
+  gap: 14px;
+  padding-top: 18px;
+  border-top: 2px solid var(--d-tinta);
+}
+.d-opiniones blockquote p {
+  font: 400 1.125rem/1.45 var(--d-titulo);
+}
+.d-opinion-quien {
+  color: var(--d-suave);
+  font-size: 0.9rem;
+}
+.d-opinion-quien b {
+  color: var(--d-tinta);
+}
+
+/* Antes de contratarnos */
+.d-antes {
+  max-width: 900px;
+}
+.d-antes-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px 40px;
+  margin-top: 16px;
+}
+.d-antes h3 {
+  margin-bottom: 8px;
+  font: 600 1.0625rem var(--d-texto);
+}
+.d-antes ul {
+  display: grid;
+  gap: 8px;
+  list-style: none;
+}
+.d-antes li {
+  display: grid;
+  grid-template-columns: 1.25rem minmax(0, 1fr);
+}
+.d-antes-si li::before {
+  content: "✓";
+  color: var(--d-ok);
+  font-weight: 700;
+}
+.d-antes-no li::before {
+  content: "×";
+  color: var(--d-mal);
+  font-weight: 700;
+}
+
+@media (max-width: 900px) {
+  .d-especialidades,
+  .d-opiniones {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 640px) {
+  .d-retrato {
+    width: min(220px, 70%);
+  }
+  .d-sala img {
+    aspect-ratio: 3 / 2;
+  }
+  .d-especialidades > div,
+  .d-guias a,
+  .d-antes-grid {
+    grid-template-columns: 1fr;
   }
 }
 

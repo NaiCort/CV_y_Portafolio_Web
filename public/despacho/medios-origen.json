@@ -1,0 +1,40 @@
+[
+  {
+    "id": "contadora",
+    "archivo": "/despacho/fotos/contadora-800.webp",
+    "titulo": "Retrato de mujer con saco de rayas",
+    "autor": "No verificado: el sitio de Unsplash no permite consultas automáticas desde este entorno",
+    "licencia": "Licencia de Unsplash (uso libre, sin atribución obligatoria)",
+    "pagina": "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e",
+    "cambios": "Recorte vertical 4:5 y reducción a 800 y 400 px en WebP",
+    "sha256": "cc944931efd1fd08887064ea3fc2e573244c97c66100d94a4d462f9af0c4035d",
+    "ancho": 800,
+    "alto": 1000
+  },
+  {
+    "id": "contadora-400",
+    "archivo": "/despacho/fotos/contadora-400.webp",
+    "sha256": "94e31e9f5342cf51d9c52bc20a6c3ab9bf72f7811cfaef1af5a61172af0c3c7d",
+    "ancho": 400,
+    "alto": 500
+  },
+  {
+    "id": "sala",
+    "archivo": "/despacho/fotos/sala-1280.webp",
+    "titulo": "Sala de juntas con mesa de madera",
+    "autor": "No verificado: el sitio de Unsplash no permite consultas automáticas desde este entorno",
+    "licencia": "Licencia de Unsplash (uso libre, sin atribución obligatoria)",
+    "pagina": "https://images.unsplash.com/photo-1517502884422-41eaead166d4",
+    "cambios": "Recorte 3:2 que deja fuera un cuadro reconocible de otra ciudad; reducida a 1280 y 640 px en WebP",
+    "sha256": "4bdf0e6380441c625d0254a21a686549ef79cb947a1c3f2746e47a31eb4ae9f1",
+    "ancho": 1280,
+    "alto": 853
+  },
+  {
+    "id": "sala-640",
+    "archivo": "/despacho/fotos/sala-640.webp",
+    "sha256": "c62e1c765c1ae8dc30b60eca6126f75ec0ecfe33e80f508b5d1fb3146c8047b6",
+    "ancho": 640,
+    "alto": 427
+  }
+]

@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom"
 import Expediente from "../components/Expediente"
 import Recibo from "../components/Recibo"
+import { ESPECIALIDADES, GUIAS, OPINIONES } from "../data/confianza"
 import { DESPACHO, HERRAMIENTAS, MES } from "../data/despacho"
+import { FOTOS } from "../data/medios"
 import { SERVICIOS_DETALLE } from "../data/servicios"
 
 export default function Inicio({ onWhatsApp }) {
@@ -73,6 +75,26 @@ export default function Inicio({ onWhatsApp }) {
         </ul>
       </section>
 
+      <section id="especialidades" className="d-wrap d-sec" aria-labelledby="d-esp-titulo">
+        <div className="d-sec-cab">
+          <h2 id="d-esp-titulo">Con quién trabajamos más</h2>
+          <p>
+            Atendemos a todos, pero estos casos los vemos cada semana y sabemos dónde se tropiezan.
+          </p>
+        </div>
+        <dl className="d-especialidades">
+          {ESPECIALIDADES.map((x) => (
+            <div key={x.quien}>
+              <dt>
+                <b>{x.quien}</b>
+                <span>{x.ejemplos}</span>
+              </dt>
+              <dd>{x.vemos}</dd>
+            </div>
+          ))}
+        </dl>
+      </section>
+
       <section id="herramientas" className="d-wrap d-sec" aria-labelledby="d-herr-titulo">
         <div className="d-sec-cab">
           <h2 id="d-herr-titulo">Herramientas sin costo</h2>
@@ -98,11 +120,38 @@ export default function Inicio({ onWhatsApp }) {
         </ul>
       </section>
 
+      <section id="guias" className="d-wrap d-sec" aria-labelledby="d-guias-titulo">
+        <div className="d-sec-cab">
+          <h2 id="d-guias-titulo">Guías cortas</h2>
+          <p>Lo que más nos preguntan, en cinco minutos o menos.</p>
+        </div>
+        <ul className="d-guias">
+          {GUIAS.map((g) => (
+            <li key={g.id}>
+              <Link to={`/despacho/guias#${g.id}`}>
+                <b>{g.titulo}</b>
+                <span>{g.resumen}</span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </section>
+
       <section id="equipo" className="d-wrap d-sec" aria-labelledby="d-equipo-titulo">
         <div className="d-frente">
-          <span className="d-monograma" aria-hidden="true">
-            {c.iniciales}
-          </span>
+          <figure className="d-retrato">
+            <img
+              src={FOTOS.contadora.src}
+              srcSet={FOTOS.contadora.srcSet}
+              sizes="(max-width: 640px) 60vw, 240px"
+              width={FOTOS.contadora.ancho}
+              height={FOTOS.contadora.alto}
+              alt={FOTOS.contadora.alt}
+              loading="lazy"
+              decoding="async"
+            />
+            <figcaption>{FOTOS.contadora.pie}</figcaption>
+          </figure>
           <div>
             <h2 id="d-equipo-titulo">Con una contadora al frente</h2>
             <p className="d-frente-nombre">
@@ -120,6 +169,42 @@ export default function Inicio({ onWhatsApp }) {
             </p>
           </div>
         </div>
+        <figure className="d-sala">
+          <img
+            src={FOTOS.sala.src}
+            srcSet={FOTOS.sala.srcSet}
+            sizes="(max-width: 1180px) calc(100vw - 36px), 1120px"
+            width={FOTOS.sala.ancho}
+            height={FOTOS.sala.alto}
+            alt={FOTOS.sala.alt}
+            loading="lazy"
+            decoding="async"
+          />
+          <figcaption>
+            {FOTOS.sala.pie} Atendemos con cita de {DESPACHO.horario.toLowerCase()}.
+          </figcaption>
+        </figure>
+      </section>
+
+      <section id="opiniones" className="d-wrap d-sec" aria-labelledby="d-op-titulo">
+        <div className="d-sec-cab">
+          <h2 id="d-op-titulo">Lo que dicen nuestros clientes</h2>
+          <p>
+            Opiniones inventadas para esta demo; un despacho real enlazaría reseñas verificables.
+          </p>
+        </div>
+        <ul className="d-opiniones">
+          {OPINIONES.map((o) => (
+            <li key={o.quien}>
+              <blockquote>
+                <p>{o.texto}</p>
+              </blockquote>
+              <p className="d-opinion-quien">
+                <b>{o.quien}</b> · {o.giro}
+              </p>
+            </li>
+          ))}
+        </ul>
       </section>
     </>
   )

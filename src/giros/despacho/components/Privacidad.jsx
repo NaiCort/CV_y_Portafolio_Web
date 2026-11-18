@@ -14,7 +14,10 @@ export default function Privacidad({ onCerrar, onBorrar }) {
         </p>
         <h3>Lo que guarda en este navegador</h3>
         <ul>
-          <li>El expediente de ejemplo: lo que aprobaste, tu duda y el nombre de los archivos.</li>
+          <li>
+            El expediente de ejemplo: lo que aprobaste, tu duda, el nombre de los archivos y los
+            avisos por WhatsApp que elegiste.
+          </li>
         </ul>
         <p>
           Las cotizaciones, el diagnóstico y las calculadoras no se guardan: se borran al salir de

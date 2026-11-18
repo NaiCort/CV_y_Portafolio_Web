@@ -15,6 +15,7 @@ import Diagnostico from "./pages/Diagnostico"
 import Calendario from "./pages/Calendario"
 import Calculadoras from "./pages/Calculadoras"
 import ExpedientePagina from "./pages/ExpedientePagina"
+import Guias from "./pages/Guias"
 import Servicios from "./pages/Servicios"
 import Regularizacion from "./pages/Regularizacion"
 import Privacidad from "./components/Privacidad"
@@ -33,6 +34,7 @@ const SECCIONES = [
 const EXTRA_MOVIL = [
   ["/despacho/expediente", "Tu expediente"],
   ["/despacho/regularizacion", "¿Te dejaron de presentar?"],
+  ["/despacho/guias", "Guías cortas"],
   ["como", "Cómo trabajamos"],
   ["equipo", "Quiénes somos"],
 ]
@@ -45,6 +47,7 @@ const TITULOS = {
   "/despacho/expediente": "Tu expediente",
   "/despacho/servicios": "Servicios",
   "/despacho/regularizacion": "¿Te dejaron de presentar?",
+  "/despacho/guias": "Guías cortas",
   "/despacho/creditos": "Créditos",
 }
 const MENSAJES = [
@@ -80,13 +83,18 @@ function Guia() {
         <li>
           «Tu expediente» abre sin contraseña el perfil de ejemplo de Mariana (RESICO): semáforo,
           previo del mes para aprobar o preguntar, documentos que el despacho pide (el archivo no
-          sale del navegador: solo se anota su nombre) y documentos para consultar. Se guarda en
-          este navegador.
+          sale del navegador: solo se anota su nombre), documentos para consultar y un recordatorio
+          por WhatsApp que se activa sin enviar nada. Se guarda en este navegador.
         </li>
         <li>
           Servicios dice qué incluye cada uno, qué se pide y cuánto cuesta. «¿Te dejaron de
           presentar?» explica cómo revisar y corregir declaraciones atrasadas antes de que el SAT
           las pida.
+        </li>
+        <li>
+          Las guías cortas son orientativas, con reglas de 2026. Las opiniones de clientes son
+          inventadas, y las fotos de la contadora y de la sala son ilustrativas, de un banco de
+          imágenes de uso libre: la persona no es Elena.
         </li>
         <li>Llamar y WhatsApp son simulaciones: no se marca ni se envía nada.</li>
       </ul>
@@ -215,6 +223,7 @@ export default function DespachoApp() {
           <Route path="expediente" element={<ExpedientePagina onWhatsApp={whatsapp} />} />
           <Route path="servicios" element={<Servicios />} />
           <Route path="regularizacion" element={<Regularizacion />} />
+          <Route path="guias" element={<Guias />} />
           <Route path="creditos" element={<Creditos />} />
           <Route path="*" element={<Navigate to="/despacho" replace />} />
         </Routes>
@@ -241,6 +250,7 @@ export default function DespachoApp() {
         </div>
         <div className="d-pie-enlaces">
           <Link to="/despacho/regularizacion">¿Te dejaron de presentar?</Link>
+          <Link to="/despacho/guias">Guías cortas</Link>
           <Link to="/despacho/creditos">Créditos</Link>
           <button type="button" className="d-inline" onClick={() => setPrivacidad(true)}>
             Aviso de privacidad
