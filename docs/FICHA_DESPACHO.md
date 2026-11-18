@@ -42,7 +42,13 @@ Regla del acento: un solo petróleo por pantalla para la acción principal; el s
 
 ## Fotografía e ilustración
 
-**Sin fotos.** Los sitios de despachos abusan de fotos de banco de oficinas y equipos sonriendo; Cotejo se apoya en documentos dibujados con HTML (expediente, recibo, previo, calendario). La contadora se presenta con monograma y datos, no con foto, para no presentar a una persona real como ella.
+**Dos fotos ilustrativas, el resto dibujado** (cambio de V4.6.6, a pedido de Ian). Cotejo se apoya en documentos dibujados con HTML (expediente, recibo, previo, calendario). La investigación extra ([INVESTIGACION_DESPACHO_2.md](INVESTIGACION_DESPACHO_2.md), sección 4) mostró que la foto del dueño da más confianza que no tener imagen, e Ian pidió una foto del local y de la contadora con imágenes de uso libre, como en Psicología. Reglas:
+
+- Solo dos: un retrato para «Con una contadora al frente» y la sala de juntas debajo. Nada de fotos de equipos sonriendo ni apretones de manos.
+- Licencia de Unsplash, servidas desde el sitio en WebP, con procedencia y huella en `public/despacho/medios-origen.json`.
+- Cada foto dice en su pie que es ilustrativa; el retrato dice que **la persona no es Elena** ni trabaja en Cotejo. Así no se presenta a una persona real como la contadora inventada.
+- Recorte que deja fuera lo que delate otra ciudad (la sala tenía un cuadro reconocible de otra ciudad).
+- Sin carga en la primera pantalla (`loading="lazy"`), para no mover el LCP.
 
 ## Forma, sombras y densidad
 
@@ -69,18 +75,19 @@ Ninguno de forma estructural. El semáforo de tres colores es función, no adorn
 
 ## Patrones prohibidos
 
-Fotos de banco de oficina o de equipos, apretones de manos, gráficas de barras decorativas que suben, calculadoras y lupas como ilustración, muros de logotipos de clientes, contadores de «clientes satisfechos», menú numerado 01–04, etiqueta sobre el título, tarjetas iguales con ícono arriba, morado e índigo, degradados, emojis, urgencia falsa.
+Más fotos de banco que las dos ilustrativas, fotos de equipos, apretones de manos, gráficas de barras decorativas que suben, calculadoras y lupas como ilustración, muros de logotipos de clientes, contadores de «clientes satisfechos», menú numerado 01–04, etiqueta sobre el título, tarjetas iguales con ícono arriba, morado e índigo, degradados, emojis, urgencia falsa.
 
 ## Páginas previstas
 
 | Página | Ruta | Contenido |
 |---|---|---|
-| Inicio | `/despacho` | Expediente de ejemplo, recibo por régimen, cómo trabajamos, servicios, herramientas, contadora al frente |
-| Precios y cotización (V4.6.1) | `/despacho/precios` | Precios aproximados por régimen y extras; cotizar con un formulario corto |
+| Inicio | `/despacho` | Expediente de ejemplo, recibo por régimen, cómo trabajamos, servicios, con quién trabajamos más (V4.6.6), herramientas, guías (V4.6.6), contadora con foto y sala (V4.6.6), opiniones de ejemplo (V4.6.6) |
+| Precios y cotización (V4.6.1) | `/despacho/precios` | Precios aproximados por régimen y extras; «Antes de contratarnos» (V4.6.6); cotizar con un formulario corto |
 | Servicios (V4.6.4) | `/despacho/servicios` | Cada servicio con qué incluye y qué te pedimos |
 | Diagnóstico (V4.6.2) | `/despacho/diagnostico` | Cinco preguntas: régimen sugerido, riesgos y plan |
 | Calendario fiscal (V4.6.2) | `/despacho/calendario` | Lo que vence este mes según el régimen |
 | Calculadoras (V4.6.2) | `/despacho/calculadoras` | RESICO, aguinaldo y finiquito, orientativas |
 | ¿Te dejaron de presentar? (V4.6.4) | `/despacho/regularizacion` | Revisar acuses, autocorrección y cómo te ayudamos |
-| Tu expediente (V4.6.3) | `/despacho/expediente` | Perfil de ejemplo: semáforo, previo para aprobar, solicitudes con fecha límite |
-| Créditos y privacidad | `/despacho/creditos` | Tipografías; aviso de privacidad con la ley de 2025 y borrado |
+| Tu expediente (V4.6.3) | `/despacho/expediente` | Perfil de ejemplo: semáforo, previo para aprobar, solicitudes con fecha límite; recordatorio por WhatsApp (V4.6.6) |
+| Guías cortas (V4.6.6) | `/despacho/guias` | RESICO, cartas del SAT y primera declaración anual |
+| Créditos y privacidad | `/despacho/creditos` | Fotos y tipografías; aviso de privacidad con la ley de 2025 y borrado |

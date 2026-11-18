@@ -71,3 +71,9 @@
 
 1. ¿Qué hacemos con la imagen: a) monograma, b) retrato dibujado o c) foto del espacio sin personas?
 2. ¿Agrego especialidades, testimonios de ejemplo, guías cortas, «Antes de contratarnos» y el recordatorio? ¿Todos o algunos?
+
+## 7. Respuestas de Ian y qué se hizo (V4.6.6)
+
+1. **Imagen:** Ian prefirió una foto del local y, si se puede, de la contadora, con imágenes de uso libre como en Psicología. Se usaron dos fotos de Unsplash servidas desde el sitio: un retrato y una sala de juntas. Para no presentar a una persona real como Elena, el pie del retrato dice que es ilustrativo y que la persona no es Elena ni trabaja en Cotejo; los créditos enlazan los originales. Riesgo que queda: el autor no se pudo verificar porque Unsplash bloquea las consultas automáticas desde este entorno (su licencia no exige atribución).
+2. **Especialidades, testimonios, guías y «Antes de contratarnos»:** «solo si realmente son buena idea». Los cuatro tienen respaldo en las secciones 1 y 2 (pericia especializada, prueba social, contenido útil y filtrar clientes), así que se hicieron cortos: cuatro especialidades sin quitar servicios, tres opiniones declaradas como inventadas, tres guías en una sola página y dos listas en Precios, antes de la cotización.
+3. **Recordatorio por WhatsApp:** en Tu expediente, con elección de avisos, activación simulada y ejemplo de los mensajes.

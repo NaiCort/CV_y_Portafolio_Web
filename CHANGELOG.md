@@ -1,3 +1,12 @@
+# V4.6.6 · 18 de noviembre de 2026 · Despacho contable, confianza
+
+- Dos fotos ilustrativas de Unsplash servidas desde el sitio: retrato en «Con una contadora al frente» (el pie dice que la persona no es Elena) y la sala de juntas; procedencia en `public/despacho/medios-origen.json` y créditos.
+- Portada: «Con quién trabajamos más», guías cortas y tres opiniones declaradas como inventadas.
+- Añadir `/despacho/guias`: RESICO, cartas del SAT y primera declaración anual.
+- Precios: «Antes de contratarnos», con quién encajamos y con quién no.
+- Tu expediente: recordatorio por WhatsApp simulado, con elección de avisos.
+- Ocho pruebas nuevas; guías, fotos y recordatorio en los recorridos de navegador.
+
 # V4.6.5 · 18 de noviembre de 2026 · cierre de Despacho contable
 
 - La Bienvenida enlaza Despacho contable (Cotejo).
