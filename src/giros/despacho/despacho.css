@@ -189,14 +189,6 @@
 }
 
 /* Portada */
-.d-heroe {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 48px;
-  align-items: center;
-  padding-block: 64px;
-}
-.d-heroe h1,
 .d-pagina h1 {
   max-width: 14ch;
   font: 600 clamp(2.5rem, 5vw, 4.125rem) / 1.04 var(--d-titulo);
@@ -517,7 +509,6 @@
 }
 
 @media (max-width: 900px) {
-  .d-heroe,
   .d-selector {
     grid-template-columns: 1fr;
   }
@@ -547,9 +538,6 @@
 @media (max-width: 640px) {
   .d-wrap {
     padding-inline: 18px;
-  }
-  .d-heroe {
-    padding-block: 36px;
   }
   .d-sec {
     padding-block: 42px;
@@ -1435,6 +1423,217 @@
   }
   .d-serv {
     padding: 18px 16px;
+  }
+}
+
+/* Portada editorial (V4.6.7): libro mayor, panel de Xalapa y consulta */
+.d-portada {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  min-height: min(calc(100svh - 70px), 860px);
+  padding-block: 48px 56px;
+  overflow: hidden;
+}
+.d-libro {
+  position: absolute;
+  inset: 12% 0 auto;
+  width: 100%;
+  height: 58%;
+  -webkit-mask-image: linear-gradient(#000 55%, transparent);
+  mask-image: linear-gradient(#000 55%, transparent);
+}
+.d-portada-texto {
+  position: relative;
+}
+.d-portada h1 {
+  max-width: 11ch;
+  font: 500 clamp(3.4rem, 9.2vw, 9rem) / 0.92 var(--d-titulo);
+  letter-spacing: -0.035em;
+}
+.d-portada h1 span {
+  color: #7d8b8e;
+}
+.d-portada-pie {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 18px 32px;
+  margin-top: 30px;
+}
+.d-portada-pie .d-bajada {
+  max-width: 42ch;
+  margin: 0;
+}
+
+.d-panel-xalapa {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: min(100svh, 900px);
+  padding-block: 96px;
+  overflow: hidden;
+  background: #0d1d22;
+  color: #f4f2ec;
+}
+.d-panel-xalapa img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.32;
+  filter: saturate(0.75);
+}
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .d-panel-xalapa img {
+      animation: d-alejar linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 60%;
+    }
+  }
+}
+@keyframes d-alejar {
+  from {
+    transform: scale(1.25);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+.d-panel-xalapa .d-wrap {
+  position: relative;
+  display: grid;
+  gap: 32px;
+}
+.d-xalapa-contexto {
+  max-width: 28ch;
+  color: #dfe5e3;
+  font: 400 clamp(1.375rem, 2.4vw, 2.25rem) / 1.25 var(--d-titulo);
+}
+.despacho-root .d-panel-xalapa h2 {
+  max-width: 15ch;
+  color: #e7c27d;
+  font: 500 clamp(2.75rem, 6.4vw, 6.5rem) / 0.98 var(--d-titulo);
+  letter-spacing: -0.03em;
+}
+.d-xalapa-pie {
+  position: absolute;
+  bottom: 18px;
+  left: max(32px, calc((100% - 1200px) / 2 + 32px));
+  color: #d5dcdb;
+  font-size: 0.75rem;
+}
+
+.d-consulta {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+  max-width: 1440px;
+  margin-inline: auto;
+}
+.d-consulta-texto {
+  display: grid;
+  align-content: center;
+  gap: 22px;
+  padding: 72px 56px 72px max(32px, calc((100vw - 1200px) / 2 + 32px));
+}
+.d-consulta-texto h2 {
+  max-width: 13ch;
+  font-size: clamp(2.5rem, 4.6vw, 4.5rem);
+  line-height: 0.98;
+}
+.d-consulta-texto p {
+  max-width: 38ch;
+  color: var(--d-suave);
+  font-size: 1.125rem;
+}
+.d-datos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px 28px;
+  padding-top: 20px;
+  border-top: 1px solid var(--d-linea);
+  list-style: none;
+}
+.d-datos li {
+  display: grid;
+  color: var(--d-suave);
+  font-size: 0.875rem;
+}
+.d-datos b {
+  color: var(--d-tinta);
+  font-size: 0.95rem;
+}
+.d-consulta-foto {
+  position: relative;
+  min-height: 640px;
+}
+.d-consulta-img {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+}
+.d-consulta-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 40% 50%;
+}
+.d-consulta-img figcaption {
+  position: absolute;
+  right: 14px;
+  bottom: 10px;
+  color: #fff;
+  font-size: 0.75rem;
+  text-shadow: 0 1px 2px #000a;
+}
+.d-consulta-foto .d-exp {
+  position: absolute;
+  bottom: 48px;
+  left: -64px;
+  width: min(380px, 80%);
+}
+@media (max-width: 900px) {
+  .d-consulta {
+    grid-template-columns: 1fr;
+  }
+  .d-consulta-foto {
+    display: grid;
+    order: -1;
+    min-height: 0;
+  }
+  .d-consulta-img {
+    position: relative;
+    height: 56vh;
+    min-height: 320px;
+  }
+  .d-consulta-foto .d-exp {
+    position: relative;
+    bottom: auto;
+    left: auto;
+    width: auto;
+    margin: -96px 18px 0;
+  }
+  .d-consulta-texto {
+    padding: 40px 18px 56px;
+  }
+}
+@media (max-width: 640px) {
+  /* Llena la pantalla del teléfono (sin la barra de la demo ni la cabecera) para que la foto
+     de Xalapa no asome y cargue en diferido; el relleno de abajo libra la barra de contacto. */
+  .d-portada {
+    min-height: max(560px, calc(100svh - 114px));
+    padding-block: 32px 84px;
+  }
+  .d-libro {
+    inset: 4% 0 auto;
+    height: 34%;
+  }
+  .d-xalapa-pie {
+    left: 18px;
+    right: 18px;
   }
 }
 

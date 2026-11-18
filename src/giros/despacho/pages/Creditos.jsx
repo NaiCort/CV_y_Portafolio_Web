@@ -12,11 +12,25 @@ export default function Creditos() {
       </p>
       <h2>Fotos</h2>
       <p>
-        Dos fotos ilustrativas de Unsplash, con su licencia de uso libre, recortadas y servidas
-        desde este sitio. La persona del retrato no es Elena Murrieta ni trabaja en un despacho, y
-        la sala no está en Xalapa.
+        Servidas desde este sitio. La de Xalapa es real; las demás son ilustrativas, de Unsplash y
+        con su licencia de uso libre: ninguna persona es Elena Murrieta, ni clienta, ni personal de
+        Cotejo, y la sala no está en Xalapa.
       </p>
       <ul className="d-confianza">
+        <li>
+          Techos de Xalapa, de Koffermejia, en dominio público (CC0):{" "}
+          <a href={FOTOS.xalapa.origen} rel="noreferrer" target="_blank">
+            página en Wikimedia Commons
+          </a>
+          .
+        </li>
+        <li>
+          Consulta en la portada:{" "}
+          <a href={FOTOS.consulta.origen} rel="noreferrer" target="_blank">
+            original en Unsplash
+          </a>
+          .
+        </li>
         <li>
           Retrato de la sección «Con una contadora al frente»:{" "}
           <a href={FOTOS.contadora.origen} rel="noreferrer" target="_blank">

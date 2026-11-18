@@ -5,13 +5,14 @@ const go = async (page, base, path) => {
   await page.goto(`${base}${path}`)
   await page.locator("main h1").waitFor()
 }
-// axe mide colores reales: se espera a que terminen fundidos y transiciones.
+// axe mide colores reales: se espera a que terminen fundidos y transiciones. Las animaciones
+// ligadas al desplazamiento (la foto de Xalapa) no terminan nunca y no cambian colores.
 const audit = async (page) => {
   await page.waitForFunction(() =>
     document
       .querySelector(".despacho-root")
       .getAnimations({ subtree: true })
-      .every((a) => a.playState !== "running"),
+      .every((a) => a.playState !== "running" || !(a.timeline instanceof DocumentTimeline)),
   )
   await auditar(page)
 }
@@ -45,6 +46,16 @@ await suite("despacho", async ({ run, base }) => {
           await audit(page)
         }
         await go(page, base, "/despacho")
+        // Portada: libro mayor dibujado, panel de Xalapa y expediente sobre la consulta.
+        assert(await page.locator(".d-portada canvas").evaluate((c) => c.width > 0))
+        await page.locator(".d-panel-xalapa").scrollIntoViewIfNeeded()
+        await page.waitForFunction(() => {
+          const i = document.querySelector(".d-panel-xalapa img")
+          return i.complete && i.naturalWidth > 0
+        })
+        await page.locator(".d-consulta-foto .d-exp").scrollIntoViewIfNeeded()
+        await bounds(page)
+        await audit(page)
         // Recibo por régimen.
         await page.locator(".d-regimenes label", { hasText: "Persona moral" }).click()
         assert.match(await page.locator(".d-recibo-precio").textContent(), /\$3,900/)
@@ -66,7 +77,7 @@ await suite("despacho", async ({ run, base }) => {
         await audit(page)
         // WhatsApp simulado.
         await go(page, base, "/despacho")
-        await button(page.locator(".d-heroe"), "Escribir por WhatsApp").click()
+        await button(page.locator(".d-portada"), "Escribir por WhatsApp").click()
         await dialog(page).waitFor()
         await audit(page)
         await close(page)

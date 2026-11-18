@@ -67,8 +67,9 @@ function Guia() {
       </p>
       <ul className="list-disc pl-5 space-y-3">
         <li>
-          El expediente de la portada es un ejemplo de cómo un cliente vería su situación ante el
-          SAT. «Aprobar el previo» cambia el semáforo; no se envía nada.
+          El libro mayor de la portada se palomea solo; es decorativo. El expediente sobre la foto
+          de la consulta es un ejemplo de cómo un cliente vería su situación ante el SAT. «Aprobar
+          el previo» cambia el semáforo; no se envía nada.
         </li>
         <li>
           Al elegir un régimen, el recibo muestra el precio aproximado y lo que incluye. «Precios»
@@ -93,8 +94,8 @@ function Guia() {
         </li>
         <li>
           Las guías cortas son orientativas, con reglas de 2026. Las opiniones de clientes son
-          inventadas, y las fotos de la contadora y de la sala son ilustrativas, de un banco de
-          imágenes de uso libre: la persona no es Elena.
+          inventadas. La foto de Xalapa es real; las de personas y de la sala son ilustrativas, de
+          un banco de imágenes de uso libre: nadie en ellas es Elena ni cliente de Cotejo.
         </li>
         <li>Llamar y WhatsApp son simulaciones: no se marca ni se envía nada.</li>
       </ul>

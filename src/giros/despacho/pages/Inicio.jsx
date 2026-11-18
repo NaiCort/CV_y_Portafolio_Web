@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom"
 import Expediente from "../components/Expediente"
+import LibroMayor from "../components/LibroMayor"
 import Recibo from "../components/Recibo"
 import { ESPECIALIDADES, GUIAS, OPINIONES } from "../data/confianza"
 import { DESPACHO, HERRAMIENTAS, MES } from "../data/despacho"
@@ -10,25 +11,88 @@ export default function Inicio({ onWhatsApp }) {
   const c = DESPACHO.contadora
   return (
     <>
-      <section className="d-wrap d-heroe" aria-labelledby="d-titulo">
-        <div>
+      <section className="d-portada" aria-labelledby="d-titulo">
+        <LibroMayor />
+        <div className="d-wrap d-portada-texto">
           <h1 id="d-titulo" tabIndex={-1}>
-            Sabes cómo vas con el SAT sin tener que preguntar
+            Que todo cuadre <span>antes del 17.</span>
           </h1>
-          <p className="d-bajada">
-            Despacho contable para personas físicas y empresas en Xalapa. Tu situación en un
-            semáforo, el previo antes del 17 y WhatsApp para todo lo demás.
-          </p>
-          <div className="d-acciones">
-            <Link className="d-btn d-btn-p" to="/despacho/precios#cotizar">
-              Cotizar en 24 horas
-            </Link>
-            <button type="button" className="d-btn" onClick={onWhatsApp}>
-              Escribir por WhatsApp
-            </button>
+          <div className="d-portada-pie">
+            <p className="d-bajada">
+              Despacho contable en Xalapa para personas físicas y empresas. Cada mes revisamos,
+              comparamos y te mostramos el previo antes de presentar nada.
+            </p>
+            <div className="d-acciones">
+              <Link className="d-btn d-btn-p" to="/despacho/precios#cotizar">
+                Cotizar en 24 horas
+              </Link>
+              <button type="button" className="d-btn" onClick={onWhatsApp}>
+                Escribir por WhatsApp
+              </button>
+            </div>
           </div>
         </div>
-        <Expediente />
+      </section>
+
+      <section className="d-panel-xalapa" aria-labelledby="d-xalapa-titulo">
+        <img
+          src={FOTOS.xalapa.src}
+          srcSet={FOTOS.xalapa.srcSet}
+          sizes="100vw"
+          width={FOTOS.xalapa.ancho}
+          height={FOTOS.xalapa.alto}
+          alt={FOTOS.xalapa.alt}
+          loading="lazy"
+          decoding="async"
+        />
+        <div className="d-wrap">
+          <p className="d-xalapa-contexto">
+            Casi siempre, uno se entera de que algo falló cuando llega la carta del SAT, meses
+            después.
+          </p>
+          <h2 id="d-xalapa-titulo">Tus cuentas solo están bien si cada mes cuadran.</h2>
+        </div>
+        <p className="d-xalapa-pie">{FOTOS.xalapa.pie}</p>
+      </section>
+
+      <section className="d-consulta" aria-labelledby="d-consulta-titulo">
+        <div className="d-consulta-texto">
+          <h2 id="d-consulta-titulo">Contadores en Xalapa que te avisan antes</h2>
+          <p>
+            Revisamos cada mes, te mandamos el previo y nada se presenta sin tu visto bueno. Así se
+            ve tu expediente: pruébalo.
+          </p>
+          <ul className="d-datos">
+            <li>
+              <b>18 años</b>
+              <span>al frente, la C.P.C. Elena Murrieta</span>
+            </li>
+            <li>
+              <b>Iguala fija</b>
+              <span>desde $490 al mes, con IVA</span>
+            </li>
+            <li>
+              <b>Sin e.firma</b>
+              <span>nunca te la pedimos</span>
+            </li>
+          </ul>
+        </div>
+        <div className="d-consulta-foto">
+          <figure className="d-consulta-img">
+            <img
+              src={FOTOS.consulta.src}
+              srcSet={FOTOS.consulta.srcSet}
+              sizes="(max-width: 900px) 100vw, 55vw"
+              width={FOTOS.consulta.ancho}
+              height={FOTOS.consulta.alto}
+              alt={FOTOS.consulta.alt}
+              loading="lazy"
+              decoding="async"
+            />
+            <figcaption>{FOTOS.consulta.pie}</figcaption>
+          </figure>
+          <Expediente />
+        </div>
       </section>
 
       <section id="precios" className="d-wrap d-sec" aria-labelledby="d-precios-titulo">

@@ -1,5 +1,43 @@
 [
   {
+    "id": "xalapa",
+    "archivo": "/despacho/fotos/xalapa-1920.webp",
+    "titulo": "Cielo de Xalapa 02.jpg",
+    "autor": "Koffermejia",
+    "licencia": "CC0 (dominio público)",
+    "pagina": "https://commons.wikimedia.org/wiki/File:Cielo_de_Xalapa_02.jpg",
+    "cambios": "Reducida a 1920 y 960 px en WebP",
+    "sha256": "e25777a8c1cfc426f1f1988b61e630486fef48bf32ebc14ce49431faeebd63aa",
+    "ancho": 1920,
+    "alto": 1084
+  },
+  {
+    "id": "xalapa-960",
+    "archivo": "/despacho/fotos/xalapa-960.webp",
+    "sha256": "6badd791b950e473302680a5660269e60b3406024b42806fed8ad7dc9b5fe980",
+    "ancho": 960,
+    "alto": 542
+  },
+  {
+    "id": "consulta",
+    "archivo": "/despacho/fotos/consulta-1280.webp",
+    "titulo": "Dos mujeres conversan en una mesa",
+    "autor": "No verificado: el sitio de Unsplash no permite consultas automáticas desde este entorno",
+    "licencia": "Licencia de Unsplash (uso libre, sin atribución obligatoria)",
+    "pagina": "https://images.unsplash.com/photo-1573496267526-08a69e46a409",
+    "cambios": "Reducida a 1280 y 640 px en WebP",
+    "sha256": "ba5b4008eb7e0dfecfad62e64dc4a17a63ac393a10bed50d59508e6891a6453e",
+    "ancho": 1280,
+    "alto": 855
+  },
+  {
+    "id": "consulta-640",
+    "archivo": "/despacho/fotos/consulta-640.webp",
+    "sha256": "741b900a91d41448309fabd5e680449789a550f0144a07fdb13af6eabda14c0a",
+    "ancho": 640,
+    "alto": 427
+  },
+  {
     "id": "contadora",
     "archivo": "/despacho/fotos/contadora-800.webp",
     "titulo": "Retrato de mujer con saco de rayas",
