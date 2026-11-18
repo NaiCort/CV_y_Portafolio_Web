@@ -53,7 +53,7 @@ await suite("despacho", async ({ run, base }) => {
           const i = document.querySelector(".d-panel-xalapa img")
           return i.complete && i.naturalWidth > 0
         })
-        await page.locator(".d-consulta-foto .d-exp").scrollIntoViewIfNeeded()
+        await page.locator(".d-consulta .d-exp").scrollIntoViewIfNeeded()
         await bounds(page)
         await audit(page)
         // Recibo por régimen.
