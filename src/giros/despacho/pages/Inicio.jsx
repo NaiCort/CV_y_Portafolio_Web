@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom"
 import Expediente from "../components/Expediente"
 import Recibo from "../components/Recibo"
-import { DESPACHO, HERRAMIENTAS, MES, SERVICIOS } from "../data/despacho"
+import { DESPACHO, HERRAMIENTAS, MES } from "../data/despacho"
+import { SERVICIOS_DETALLE } from "../data/servicios"
 
 export default function Inicio({ onWhatsApp }) {
   const c = DESPACHO.contadora
@@ -61,10 +62,12 @@ export default function Inicio({ onWhatsApp }) {
           <p>Para personas físicas y para empresas. Lo que no está en la lista, lo cotizamos.</p>
         </div>
         <ul className="d-servicios">
-          {SERVICIOS.map(([nombre, detalle]) => (
-            <li key={nombre}>
-              <b>{nombre}</b>
-              <span>{detalle}</span>
+          {SERVICIOS_DETALLE.map((x) => (
+            <li key={x.id}>
+              <Link to={`/despacho/servicios#${x.id}`}>
+                <b>{x.nombre}</b>
+                <span>{x.para}</span>
+              </Link>
             </li>
           ))}
         </ul>

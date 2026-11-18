@@ -15,6 +15,10 @@ import Diagnostico from "./pages/Diagnostico"
 import Calendario from "./pages/Calendario"
 import Calculadoras from "./pages/Calculadoras"
 import ExpedientePagina from "./pages/ExpedientePagina"
+import Servicios from "./pages/Servicios"
+import Regularizacion from "./pages/Regularizacion"
+import Privacidad from "./components/Privacidad"
+import { EXPEDIENTE_KEY } from "./lib/expediente"
 import { DESPACHO } from "./data/despacho"
 import "./despacho.css"
 
@@ -23,11 +27,12 @@ const SECCIONES = [
   ["/despacho/diagnostico", "Diagnóstico"],
   ["/despacho/calendario", "Calendario"],
   ["/despacho/calculadoras", "Calculadoras"],
-  ["servicios", "Servicios"],
+  ["/despacho/servicios", "Servicios"],
 ]
 // En el menú del teléfono van además estas secciones.
 const EXTRA_MOVIL = [
   ["/despacho/expediente", "Tu expediente"],
+  ["/despacho/regularizacion", "¿Te dejaron de presentar?"],
   ["como", "Cómo trabajamos"],
   ["equipo", "Quiénes somos"],
 ]
@@ -38,6 +43,8 @@ const TITULOS = {
   "/despacho/calendario": "Calendario fiscal",
   "/despacho/calculadoras": "Calculadoras",
   "/despacho/expediente": "Tu expediente",
+  "/despacho/servicios": "Servicios",
+  "/despacho/regularizacion": "¿Te dejaron de presentar?",
   "/despacho/creditos": "Créditos",
 }
 const MENSAJES = [
@@ -75,6 +82,11 @@ function Guia() {
           previo del mes para aprobar o preguntar, documentos que el despacho pide (el archivo no
           sale del navegador: solo se anota su nombre) y documentos para consultar. Se guarda en
           este navegador.
+        </li>
+        <li>
+          Servicios dice qué incluye cada uno, qué se pide y cuánto cuesta. «¿Te dejaron de
+          presentar?» explica cómo revisar y corregir declaraciones atrasadas antes de que el SAT
+          las pida.
         </li>
         <li>Llamar y WhatsApp son simulaciones: no se marca ni se envía nada.</li>
       </ul>
@@ -114,6 +126,15 @@ export default function DespachoApp() {
   const ruta = pathname.replace(/\/+$/, "")
   const [chat, setChat] = useState(null)
   const [llamada, setLlamada] = useState(false)
+  const [privacidad, setPrivacidad] = useState(false)
+  // Al borrar los datos, las páginas se vuelven a montar para leer el almacenamiento vacío.
+  const [reinicio, setReinicio] = useState(0)
+  const [aviso, setAviso] = useState(null)
+  useEffect(() => {
+    if (!aviso) return undefined
+    const t = setTimeout(() => setAviso(null), 6000)
+    return () => clearTimeout(t)
+  }, [aviso])
   const [menuEn, setMenuEn] = useState(null)
   const menuAbierto = menuEn === pathname + hash
   usePageMetadata(
@@ -184,7 +205,7 @@ export default function DespachoApp() {
           ))}
         </nav>
       </header>
-      <main id="contenido" tabIndex={-1}>
+      <main id="contenido" tabIndex={-1} key={reinicio}>
         <Routes>
           <Route index element={<Inicio onWhatsApp={whatsapp} />} />
           <Route path="precios" element={<Precios />} />
@@ -192,6 +213,8 @@ export default function DespachoApp() {
           <Route path="calendario" element={<Calendario />} />
           <Route path="calculadoras" element={<Calculadoras />} />
           <Route path="expediente" element={<ExpedientePagina onWhatsApp={whatsapp} />} />
+          <Route path="servicios" element={<Servicios />} />
+          <Route path="regularizacion" element={<Regularizacion />} />
           <Route path="creditos" element={<Creditos />} />
           <Route path="*" element={<Navigate to="/despacho" replace />} />
         </Routes>
@@ -213,10 +236,16 @@ export default function DespachoApp() {
           <p>{DESPACHO.horario}</p>
           <p>
             Despacho ficticio creado para una demostración; el expediente de ejemplo se guarda solo
-            en tu navegador.
+            en tu navegador y se borra desde el aviso de privacidad.
           </p>
         </div>
-        <Link to="/despacho/creditos">Créditos</Link>
+        <div className="d-pie-enlaces">
+          <Link to="/despacho/regularizacion">¿Te dejaron de presentar?</Link>
+          <Link to="/despacho/creditos">Créditos</Link>
+          <button type="button" className="d-inline" onClick={() => setPrivacidad(true)}>
+            Aviso de privacidad
+          </button>
+        </div>
       </footer>
       <nav className="d-barra-movil" aria-label="Contacto rápido">
         <button type="button" onClick={() => setLlamada(true)}>
@@ -228,6 +257,31 @@ export default function DespachoApp() {
         <Link to="/despacho/precios#cotizar">Cotizar</Link>
       </nav>
       {llamada && <Llamada onCerrar={() => setLlamada(false)} />}
+      {privacidad && (
+        <Privacidad
+          onCerrar={() => setPrivacidad(false)}
+          onBorrar={() => {
+            try {
+              window.localStorage.removeItem(EXPEDIENTE_KEY)
+            } catch {
+              /* Nada que borrar. */
+            }
+            setReinicio((n) => n + 1)
+            setPrivacidad(false)
+            setAviso("Se borró el expediente de ejemplo.")
+          }}
+        />
+      )}
+      <div className="d-aviso-region" role="status" aria-live="polite">
+        {aviso && (
+          <div className="d-aviso">
+            <span>{aviso}</span>
+            <button type="button" className="d-inline" onClick={() => setAviso(null)}>
+              Cerrar aviso
+            </button>
+          </div>
+        )}
+      </div>
       <WhatsAppPreview
         isOpen={Boolean(chat)}
         onClose={() => setChat(null)}

@@ -99,18 +99,6 @@ export const REGIMENES = [
   },
 ]
 
-export const SERVICIOS = [
-  ["Contabilidad e impuestos", "Personas físicas, RESICO y personas morales"],
-  ["Nómina e IMSS", "Recibos, cuotas obrero-patronales e INFONAVIT"],
-  ["Facturación", "Emisión y revisión de facturas"],
-  ["Constitución de empresas", "Acta, alta en el SAT y primeras obligaciones"],
-  ["Defensa ante el SAT", "Requerimientos, multas y sellos bloqueados"],
-  ["Dictamen y auditoría", "Por contador público inscrito ante el SAT"],
-  ["Regularización", "Declaraciones atrasadas y saldos a favor"],
-  ["Declaración anual", "Personas morales en marzo; físicas en abril"],
-  ["Asesoría y planeación", "Proyección trimestral para no llevarte sorpresas"],
-]
-
 // Cómo se trabaja cada mes, con fechas (no pasos numerados).
 export const MES = [
   ["Del 1 al 5", "Nos mandas lo que falte", "Estados de cuenta y facturas que no estén en el SAT."],

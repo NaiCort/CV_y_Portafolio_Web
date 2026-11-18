@@ -30,19 +30,19 @@ function Campo({ id, etiqueta, error, ayuda, children }) {
 const describir = (id, error, ayuda) =>
   [error && `${id}-error`, ayuda && `${id}-ayuda`].filter(Boolean).join(" ") || undefined
 
-const vacio = (regimen) => ({
+const vacio = (regimen, atrasadas = false) => ({
   regimen,
   facturas: "",
   empleados: "",
   nombre: "",
   telefono: "",
-  atrasadas: false,
+  atrasadas,
   mensaje: "",
 })
 
 // Cotización: datos mínimos, estimación al momento y confirmación simulada con folio.
-function Cotizar({ inicial }) {
-  const [d, setD] = useState(() => vacio(inicial))
+function Cotizar({ inicial, atrasadas }) {
+  const [d, setD] = useState(() => vacio(inicial, atrasadas))
   const [errores, setErrores] = useState({})
   const [estado, setEstado] = useState("formulario")
   const [hecha, setHecha] = useState(null)
@@ -287,7 +287,7 @@ export default function Precios() {
         <p className="d-nota">
           Te contestamos en menos de 24 horas hábiles. Primera llamada sin costo.
         </p>
-        <Cotizar key={inicial} inicial={inicial} />
+        <Cotizar key={inicial} inicial={inicial} atrasadas={params.get("atrasadas") === "1"} />
       </section>
     </section>
   )
