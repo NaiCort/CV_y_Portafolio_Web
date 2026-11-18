@@ -11,19 +11,30 @@ import usePageMetadata from "../../hooks/usePageMetadata"
 import Inicio from "./pages/Inicio"
 import Creditos from "./pages/Creditos"
 import Precios from "./pages/Precios"
+import Diagnostico from "./pages/Diagnostico"
+import Calendario from "./pages/Calendario"
+import Calculadoras from "./pages/Calculadoras"
 import { DESPACHO } from "./data/despacho"
 import "./despacho.css"
 
 const SECCIONES = [
   ["/despacho/precios", "Precios"],
-  ["como", "Cómo trabajamos"],
+  ["/despacho/diagnostico", "Diagnóstico"],
+  ["/despacho/calendario", "Calendario"],
+  ["/despacho/calculadoras", "Calculadoras"],
   ["servicios", "Servicios"],
-  ["herramientas", "Herramientas"],
+]
+// En el menú del teléfono van además estas secciones.
+const EXTRA_MOVIL = [
+  ["como", "Cómo trabajamos"],
   ["equipo", "Quiénes somos"],
 ]
 const TITULOS = {
   "/despacho": "Inicio",
   "/despacho/precios": "Precios y cotización",
+  "/despacho/diagnostico": "Diagnóstico gratuito",
+  "/despacho/calendario": "Calendario fiscal",
+  "/despacho/calculadoras": "Calculadoras",
   "/despacho/creditos": "Créditos",
 }
 const MENSAJES = [
@@ -50,6 +61,11 @@ function Guia() {
           Al elegir un régimen, el recibo muestra el precio aproximado y lo que incluye. «Precios»
           tiene la lista completa, lo que se cobra aparte y una cotización con estimación al
           momento; la solicitud es simulada y no se guarda.
+        </li>
+        <li>
+          Diagnóstico, calendario y calculadoras son orientativos: el diagnóstico sugiere régimen y
+          riesgos con cinco respuestas, el calendario marca las fechas del mes por régimen y las
+          calculadoras usan las tablas y la UMA de 2026. Nada se guarda.
         </li>
         <li>Llamar y WhatsApp son simulaciones: no se marca ni se envía nada.</li>
       </ul>
@@ -147,7 +163,7 @@ export default function DespachoApp() {
           hidden={!menuAbierto}
           onClick={(e) => e.target.closest("a") && setMenuEn(null)}
         >
-          {SECCIONES.map(([id, nombre]) => (
+          {[...SECCIONES, ...EXTRA_MOVIL].map(([id, nombre]) => (
             <EnlaceSeccion key={id} id={id} nombre={nombre} ruta={ruta} />
           ))}
         </nav>
@@ -156,6 +172,9 @@ export default function DespachoApp() {
         <Routes>
           <Route index element={<Inicio onWhatsApp={whatsapp} />} />
           <Route path="precios" element={<Precios />} />
+          <Route path="diagnostico" element={<Diagnostico />} />
+          <Route path="calendario" element={<Calendario />} />
+          <Route path="calculadoras" element={<Calculadoras />} />
           <Route path="creditos" element={<Creditos />} />
           <Route path="*" element={<Navigate to="/despacho" replace />} />
         </Routes>
