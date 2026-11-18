@@ -64,3 +64,33 @@
 4. **Precios:** ¿publicados por régimen (lo que recomiendan las fuentes) o solo «cotiza»?
 5. **Servicios extra:** nómina e IMSS, constitución de empresas, defensa ante el SAT, dictamen, facturación. ¿Cuáles sí?
 6. **Herramientas:** calendario fiscal, diagnóstico y calculadoras. ¿Todas, algunas?
+
+## 8. Respuestas de Ian (18/11)
+
+1. **Un solo despacho** que haga todo: personas físicas y pymes o personas morales.
+2. **Precios aproximados** por régimen y la posibilidad de cotizar.
+3. **Todos los servicios posibles:** contabilidad e impuestos, nómina e IMSS, constitución de empresas, defensa ante el SAT, dictamen, facturación y regularización.
+4. **Todas las herramientas:** calendario fiscal, diagnóstico y calculadoras.
+5. **Portal de cliente: solo si de verdad hace falta.** Se investigó aparte (sección 9).
+
+## 9. ¿Un despacho necesita portal de cliente?
+
+**Qué dicen los clientes y los dueños:**
+
+- Una encuesta de Canopy (proveedor de portales) a 1,001 pequeñas empresas de Estados Unidos: el 56 % dijo que un portal en línea es importante y el 63 % dijo que su contador no lo ofrecía ([Business Wire](https://www.businesswire.com/news/home/20211021005035/en)).
+- Lo que más pesa al elegir contador es que conteste rápido y ver la situación sin pedirla (sección 1): el 71 % quiere ver sus números sin esperar reportes y el 79 % quiere herramientas digitales fáciles.
+- Del lado de los contadores: 72 % califica el correo o el teléfono como efectivos para trabajar con clientes, contra 58 % el portal ([Jupid](https://jupid.com/blog/client-portal-for-accountants)).
+
+**Por qué los clientes no lo usan:**
+
+- «Otra contraseña más»: muchos solo quieren mandar el PDF por correo o WhatsApp. Las personas mayores son las que más batallan.
+- El portal no ofrece nada más que bajar documentos, entrar cuesta más pasos que mandar un PDF y nadie le avisa al cliente que vuelva ([TaxScout](https://taxscout.ai/blog/building-client-portal-clients-actually-use)).
+- Uso real: los proveedores reportan de 40 % a más de 80 % de clientes activos; no hay una cifra independiente.
+
+**Qué funciona:** portales simples, **sin inicio de sesión obligatorio** (enlace directo), que explican por qué es más seguro que WhatsApp, que se ofrecen a los clientes nuevos desde el arranque y que **conviven con WhatsApp**: WhatsApp para coordinar y avisar; el portal para la versión oficial de documentos, avances y solicitudes con fecha límite ([Plan-in](https://plan-in.net/mx/tecnologia-para-contadores/comunicacion-centralizada-en-despachos-contables/), [SATFácil](https://www.satfacil.com.mx/blog/portal-clientes-despacho-contable), [MiDespacho](https://blog.midespacho.cloud/software-para-despachos-legales-checklist-y-guia-de-adopcion-en-mexico/)). Casi todas estas fuentes venden portales; no hay estudios independientes.
+
+**Recomendación:** no un portal completo como centro del sitio, sino **un «expediente» ligero**:
+
+- Se abre con un enlace (en la demo, un perfil de ejemplo sin contraseña) y hace solo tres cosas que WhatsApp hace mal: **aprobar el previo de impuestos antes del 17**, **subir lo que el despacho pide con fecha límite** y **ver el semáforo de cumplimiento** (declaraciones, opinión 32-D y buzón tributario).
+- WhatsApp sigue como canal principal de conversación, y el sitio lo dice.
+- Justifica su lugar en la demo porque responde a las dos quejas centrales: «no sé si mi contador presentó» y «me enteré del impuesto el último día».
