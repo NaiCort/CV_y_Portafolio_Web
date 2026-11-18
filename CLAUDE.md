@@ -2,7 +2,7 @@
 
 Portafolio de demos interactivas de Ian Habid Aldana Martínez, una por giro de negocio.
 La fuente de planificación es el **Documento Maestro** (fuera del repositorio, versión
-vigente: V4.5.6, revisión documental 4 del 16/11/2026; la PARTE XIII tiene el estado actual). Este archivo resume lo que hace falta para trabajar
+vigente: V4.6.5, revisión documental 5 del 18/11/2026; la PARTE XIV tiene el estado actual). Este archivo resume lo que hace falta para trabajar
 en el código sin tenerlo a la mano. Si algo aquí contradice una petición de Ian en la
 conversación, manda lo que Ian diga y luego se actualiza este archivo.
 
