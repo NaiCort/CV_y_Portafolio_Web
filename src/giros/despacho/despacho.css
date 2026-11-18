@@ -1047,6 +1047,197 @@
   }
 }
 
+/* Tu expediente */
+.d-cab .d-cab-cta[aria-current="page"] {
+  border-color: var(--d-tinta);
+}
+.d-exp-acciones a {
+  color: var(--d-acento);
+  font-weight: 600;
+}
+.d-entrar {
+  display: grid;
+  gap: 14px;
+  max-width: 600px;
+  margin-top: 28px;
+  padding: 26px;
+  border-radius: 18px;
+  background: var(--d-hoja);
+}
+.d-pagina .d-entrar h2 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+.d-entrar .d-btn {
+  justify-self: start;
+}
+.d-panel {
+  display: grid;
+  gap: 22px;
+  margin-top: 28px;
+}
+.d-panel-cab {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 18px;
+}
+.d-pagina .d-panel-cab h2 {
+  margin: 0;
+}
+.d-panel-cab h2:focus {
+  outline: none;
+}
+.d-panel-cab span {
+  color: var(--d-suave);
+}
+.d-semaforo-panel {
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+.d-semaforo-panel li {
+  background: var(--d-hoja);
+}
+.d-buzon {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 20px;
+}
+.d-buzon p {
+  max-width: 70ch;
+}
+.d-panel-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 22px;
+  align-items: start;
+}
+.d-panel-col {
+  display: grid;
+  gap: 22px;
+}
+.d-previo,
+.d-solicitudes,
+.d-documentos {
+  display: grid;
+  gap: 14px;
+  padding: 22px;
+  border-radius: 18px;
+  background: var(--d-hoja);
+}
+.d-pagina .d-previo h2,
+.d-pagina .d-solicitudes h2,
+.d-pagina .d-documentos h2 {
+  margin: 0;
+  font-size: 1.375rem;
+}
+.d-previo-cab {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 4px 12px;
+}
+.d-previo-cab span {
+  color: var(--d-ojo-texto);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+.d-previo-total {
+  border-top: 2px solid var(--d-tinta);
+}
+.d-previo-acciones {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 14px;
+}
+.d-duda,
+.d-respuesta {
+  display: grid;
+  gap: 12px;
+  width: 100%;
+}
+.d-respuesta {
+  padding: 14px;
+  border-radius: 12px;
+  background: var(--d-fondo);
+}
+.d-respuesta .d-btn {
+  justify-self: start;
+}
+.d-solicitudes ul,
+.d-documentos ul {
+  list-style: none;
+  border-top: 1px solid var(--d-linea);
+}
+.d-solicitudes li,
+.d-documentos li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px 16px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--d-linea);
+}
+.d-solicitudes li > div:first-child,
+.d-documentos li > div {
+  display: grid;
+  gap: 2px;
+}
+.d-solicitudes li span,
+.d-documentos li span {
+  color: var(--d-suave);
+  font-size: 0.875rem;
+}
+.d-solicitudes .d-limite {
+  color: var(--d-ojo-texto);
+  font-weight: 600;
+}
+.d-solicitudes li.is-lista .d-limite {
+  color: var(--d-suave);
+  font-weight: 400;
+}
+.d-sol-acciones,
+.d-sol-hecha {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 14px;
+}
+.d-subir {
+  position: relative;
+  cursor: pointer;
+}
+.d-subir:has(input:focus-visible) {
+  outline: 3px solid var(--d-acento);
+  outline-offset: 3px;
+}
+.d-sol-hecha span {
+  color: var(--d-ok);
+  font-weight: 600;
+}
+@media (max-width: 1180px) and (min-width: 901px) {
+  .d-tel {
+    display: none;
+  }
+}
+@media (max-width: 900px) {
+  .d-panel-grid {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 640px) {
+  .d-previo,
+  .d-solicitudes,
+  .d-documentos,
+  .d-entrar {
+    padding: 18px 16px;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .despacho-root,
   .despacho-root * {
