@@ -1,7 +1,8 @@
 import { MemoryRouter, Route, Routes } from "react-router-dom"
 import { describe, expect, it } from "vitest"
 import DespachoApp from "../src/giros/despacho/DespachoApp"
-import { REGIMENES, SERVICIOS } from "../src/giros/despacho/data/despacho"
+import { REGIMENES } from "../src/giros/despacho/data/despacho"
+import { SERVICIOS_DETALLE as SERVICIOS } from "../src/giros/despacho/data/servicios"
 import { button, click, render } from "./helpers"
 
 const renderDespacho = (path = "/despacho") =>

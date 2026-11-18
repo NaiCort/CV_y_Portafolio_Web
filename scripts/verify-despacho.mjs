@@ -33,6 +33,8 @@ await suite("despacho", async ({ run, base }) => {
           "/despacho/calendario",
           "/despacho/calculadoras",
           "/despacho/expediente",
+          "/despacho/servicios",
+          "/despacho/regularizacion",
           "/despacho/creditos",
         ]) {
           await go(page, base, path)
@@ -132,7 +134,23 @@ await suite("despacho", async ({ run, base }) => {
         await page.getByRole("button", { name: "Salir" }).click()
         await page.locator(".d-entrar").waitFor()
         await go(page, base, "/despacho")
-        // Menú o navegación, según el ancho.
+        // Regularización: el cálculo responde y lleva a cotizar con atrasadas.
+        await go(page, base, "/despacho/regularizacion")
+        await page.getByLabel("¿Cuántos meses te faltan?").fill("12")
+        assert.match(await page.locator(".d-calc-total").textContent(), /\$5,400/)
+        await page.getByRole("link", { name: "Cotizar mi regularización" }).click()
+        await page.waitForURL(/atrasadas=1/)
+        assert(await page.locator(".d-check input").isChecked())
+        // Aviso de privacidad con borrado.
+        await go(page, base, "/despacho")
+        await page.locator(".d-pie").getByRole("button", { name: "Aviso de privacidad" }).click()
+        await dialog(page).waitFor()
+        await audit(page)
+        await button(dialog(page), "Borrar mis datos de esta demo").click()
+        await button(dialog(page), "Sí, borrar todo").click()
+        await dialog(page).waitFor({ state: "detached" })
+        assert.match(await page.locator(".d-aviso").textContent(), /Se borró/)
+        // Menú o navegación, según el ancho: a la página de servicios y a uno en particular.
         if (width < 900) {
           await page.getByRole("button", { name: "Menú" }).click()
           await page.locator("#d-menu-movil").getByRole("link", { name: "Servicios" }).click()
@@ -141,7 +159,10 @@ await suite("despacho", async ({ run, base }) => {
         } else {
           await page.locator(".d-nav").getByRole("link", { name: "Servicios" }).click()
         }
-        await page.waitForFunction(() => location.hash === "#servicios")
+        await page.waitForURL(/\/despacho\/servicios$/)
+        await page.locator(".d-indice").getByRole("link", { name: "Defensa ante el SAT" }).click()
+        await page.waitForFunction(() => location.hash === "#defensa")
+        await audit(page)
       },
     )
 })
