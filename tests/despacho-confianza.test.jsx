@@ -38,8 +38,9 @@ describe("Fotos ilustrativas", () => {
     }
     for (const [id, f] of Object.entries(FOTOS)) {
       expect(f.src.startsWith("/despacho/fotos/")).toBe(true)
-      // Xalapa es una foto real del lugar; las demás son ilustrativas y lo dicen.
-      expect(f.pie, id).toMatch(id === "xalapa" ? /Wikimedia Commons/ : /ilustrativa/)
+      // Las de Xalapa son fotos reales del lugar; las demás son ilustrativas y lo dicen.
+      const real = ["xalapa", "calle", "cofre"].includes(id)
+      expect(f.pie, id).toMatch(real ? /Wikimedia Commons/ : /ilustrativa/)
     }
   })
 
@@ -146,14 +147,42 @@ describe("Portada editorial", () => {
     expect($(".d-portada canvas").getAttribute("aria-hidden")).toBe("true")
     expect($(".d-panel-xalapa img").getAttribute("src")).toBe(FOTOS.xalapa.src)
     expect($(".d-xalapa-pie").textContent).toContain("Koffermejia")
-    expect($(".d-consulta-foto .d-exp")).toBeTruthy()
+    expect($(".d-consulta .d-exp")).toBeTruthy()
     expect($(".d-consulta-img figcaption").textContent).toContain("ilustrativa")
     expect(document.querySelectorAll(".d-datos li")).toHaveLength(3)
   })
 
-  it("los créditos enlazan las cuatro fotos", async () => {
+  it("los créditos enlazan todas las fotos", async () => {
     await renderDespacho("/despacho/creditos")
     const enlaces = [...document.querySelectorAll(".d-pagina a")].map((a) => a.getAttribute("href"))
     for (const f of Object.values(FOTOS)) expect(enlaces).toContain(f.origen)
+  })
+})
+
+describe("Páginas interiores en libro mayor", () => {
+  it("cada página lleva ruta, título con media frase en gris y un solo h1", async () => {
+    for (const ruta of [
+      "precios",
+      "diagnostico",
+      "calendario",
+      "calculadoras",
+      "expediente",
+      "servicios",
+      "regularizacion",
+      "guias",
+      "creditos",
+    ]) {
+      const { container, unmount } = await renderDespacho(`/despacho/${ruta}`)
+      expect(container.querySelectorAll("h1"), ruta).toHaveLength(1)
+      expect(container.querySelector(".d-cabeza h1 span"), ruta).toBeTruthy()
+      expect(container.querySelector(".d-ruta a").getAttribute("href"), ruta).toBe("/despacho")
+      await unmount()
+    }
+  })
+
+  it("el recordatorio del expediente da crédito a la foto del Cofre", async () => {
+    localStorage.setItem(EXPEDIENTE_KEY, JSON.stringify({ ...inicial(), sesion: true }))
+    await renderDespacho("/despacho/expediente")
+    expect($(".d-rec-pie").textContent).toContain("Koffermejia")
   })
 })

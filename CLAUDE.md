@@ -18,7 +18,7 @@ acciones ficticias del negocio.
 - Se trabaja **una demo a la vez**, en este orden: Psicólogo (cerrada) → Restaurante
   (cerrada en V4.2.5 con **Patio 12**) → Café (cerrada en V4.3.6 con **Ladera**) →
   Gimnasio (cerrada en V4.4.8 con **Brío**) → Taller mecánico (cerrada en V4.5.6 con
-  **Rosales y Vértice**) → Despacho contable (cerrada en V4.6.7 con **Cotejo**) →
+  **Rosales y Vértice**) → Despacho contable (cerrada en V4.6.8 con **Cotejo**) →
   **Revista digital (V4.7, siguiente)**.
 - **Restaurante = solo Patio 12.** No se construyen las sub-categorías (fonda, comida
   rápida, lujo) ni el panel de empleados y precios: ambas ideas quedaron descartadas.
@@ -118,7 +118,7 @@ personas físicas y empresas, con una contadora al frente (inventada) y dos foto
 (retrato y sala; el pie dice que la persona no es Elena). Dirección
 «Expediente»: semáforo de cumplimiento y recibo por régimen; desde V4.6.7, portada editorial (mezcla de
 «Libro mayor» y «Consulta» elegida por Ian): libro mayor animado, panel con foto real de Xalapa y el
-expediente sobre una foto de consulta. Precios aproximados y
+expediente sobre una foto de consulta; desde V4.6.8, el mismo sistema «libro mayor» en todas las páginas. Precios aproximados y
 cotización; todos los servicios y herramientas (diagnóstico, calendario, calculadoras). El
 portal de cliente es un «expediente» ligero sin contraseña (ver la sección 9 de
 `docs/INVESTIGACION_DESPACHO.md`). Páginas: inicio, precios y cotización, diagnóstico,
@@ -147,6 +147,7 @@ No tocar antes de terminar las siete demos.
    sin h2; el banner de demo genera la alerta `region` de axe (buenas prácticas); la marca
    de agua fija se superpone al texto al desplazarse. Revisar los tres para todas las demos.
 7. **Precarga de fuentes en `index.html`** (todas las demos): en red lenta, el cambio de
-   tipografía mueve el texto (CLS 0.146 medido en Créditos de Ladera).
+   tipografía mueve el texto (CLS 0.146 medido en Créditos de Ladera). Modelo ya probado en
+   Cotejo (V4.6.8): tipografías de respaldo con `size-adjust` medido, que bajaron el CLS a 0.002.
 8. Dependencias de desarrollo con avisos moderados de `npm audit` (vitest, minimatch vía
    eslint): actualizar cuando haya versión compatible.

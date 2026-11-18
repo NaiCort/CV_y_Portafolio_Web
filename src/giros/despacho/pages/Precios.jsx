@@ -4,6 +4,7 @@ import { EXTRAS, REGIMENES, findRegimen } from "../data/despacho"
 import AntesDeContratarnos from "../components/AntesDeContratarnos"
 import { estimar, folioCotizacion, telefonoValido } from "../lib/cotizar"
 import { precioTexto } from "../lib/formato"
+import Cabeza from "../components/Cabeza"
 
 const rango = (e) =>
   e.minimo === e.maximo
@@ -242,56 +243,56 @@ export default function Precios() {
   const [params] = useSearchParams()
   const inicial = findRegimen(params.get("regimen")) ? params.get("regimen") : "resico"
   return (
-    <section className="d-wrap d-sec d-pagina" aria-labelledby="d-titulo">
-      <h1 id="d-titulo" tabIndex={-1}>
-        Precios y cotización
-      </h1>
-      <p className="d-bajada">
-        Precios aproximados con IVA. Cambian según cuántas facturas emites y recibes y si tienes
-        empleados; el precio final te lo confirmamos por escrito antes de empezar.
-      </p>
+    <section className="d-pagina" aria-labelledby="d-titulo">
+      <Cabeza
+        ruta={["Precios"]}
+        titulo="Precios claros,"
+        gris="antes de empezar."
+        bajada="Precios aproximados con IVA. Cambian según cuántas facturas emites y recibes y si tienes empleados; el precio final te lo confirmamos por escrito antes de empezar."
+      />
+      <div className="d-wrap d-pagina-cuerpo">
+        <h2>Por régimen</h2>
+        <ul className="d-tabla-precios">
+          {REGIMENES.map((r) => (
+            <li key={r.id}>
+              <div>
+                <b>{r.nombre}</b>
+                <span>{r.para}</span>
+                <span>{r.incluye.join(" · ")}</span>
+              </div>
+              <span className="d-precio d-num">
+                desde {precioTexto(r.precio)} <small>{r.unidad}</small>
+              </span>
+            </li>
+          ))}
+        </ul>
 
-      <h2>Por régimen</h2>
-      <ul className="d-tabla-precios">
-        {REGIMENES.map((r) => (
-          <li key={r.id}>
-            <div>
-              <b>{r.nombre}</b>
-              <span>{r.para}</span>
-              <span>{r.incluye.join(" · ")}</span>
-            </div>
-            <span className="d-precio d-num">
-              desde {precioTexto(r.precio)} <small>{r.unidad}</small>
-            </span>
-          </li>
-        ))}
-      </ul>
+        <h2>Lo que se cobra aparte</h2>
+        <ul className="d-tabla-precios">
+          {EXTRAS.map(([nombre, detalle, precio, unidad]) => (
+            <li key={nombre}>
+              <div>
+                <b>{nombre}</b>
+                <span>{detalle}</span>
+              </div>
+              <span className="d-precio d-num">
+                {unidad === "desde" ? "desde " : ""}
+                {precioTexto(precio)} {unidad !== "desde" && <small>{unidad}</small>}
+              </span>
+            </li>
+          ))}
+        </ul>
 
-      <h2>Lo que se cobra aparte</h2>
-      <ul className="d-tabla-precios">
-        {EXTRAS.map(([nombre, detalle, precio, unidad]) => (
-          <li key={nombre}>
-            <div>
-              <b>{nombre}</b>
-              <span>{detalle}</span>
-            </div>
-            <span className="d-precio d-num">
-              {unidad === "desde" ? "desde " : ""}
-              {precioTexto(precio)} {unidad !== "desde" && <small>{unidad}</small>}
-            </span>
-          </li>
-        ))}
-      </ul>
+        <AntesDeContratarnos />
 
-      <AntesDeContratarnos />
-
-      <section id="cotizar" className="d-cotizar-bloque" aria-labelledby="d-cot-titulo">
-        <h2 id="d-cot-titulo">Cotiza tu caso</h2>
-        <p className="d-nota">
-          Te contestamos en menos de 24 horas hábiles. Primera llamada sin costo.
-        </p>
-        <Cotizar key={inicial} inicial={inicial} atrasadas={params.get("atrasadas") === "1"} />
-      </section>
+        <section id="cotizar" className="d-cotizar-bloque" aria-labelledby="d-cot-titulo">
+          <h2 id="d-cot-titulo">Cotiza tu caso</h2>
+          <p className="d-nota">
+            Te contestamos en menos de 24 horas hábiles. Primera llamada sin costo.
+          </p>
+          <Cotizar key={inicial} inicial={inicial} atrasadas={params.get("atrasadas") === "1"} />
+        </section>
+      </div>
     </section>
   )
 }

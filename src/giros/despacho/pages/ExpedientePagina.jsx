@@ -1,5 +1,6 @@
 import { useEffect, useReducer, useRef, useState } from "react"
 import Modal from "../../../components/shared/Modal"
+import { FOTOS } from "../data/medios"
 import { precioTexto } from "../lib/formato"
 import {
   DOCUMENTOS,
@@ -15,6 +16,7 @@ import {
   totalIva,
   totalPrevio,
 } from "../lib/expediente"
+import Cabeza from "../components/Cabeza"
 
 const NIVEL = { ok: "Al día", ojo: "Atención", mal: "Urgente" }
 const storage = () => {
@@ -401,6 +403,7 @@ function Recordatorio({ e, dispatch }) {
           </>
         )}
       </div>
+      <p className="d-rec-pie">{FOTOS.cofre.pie}</p>
     </section>
   )
 }
@@ -419,74 +422,79 @@ export default function ExpedientePagina({ onWhatsApp }) {
     cabeza.current?.focus()
   }, [e.sesion])
   return (
-    <section className="d-wrap d-sec d-pagina" aria-labelledby="d-titulo">
-      <h1 id="d-titulo" tabIndex={-1}>
-        Tu expediente
-      </h1>
-      <p className="d-bajada">
-        Cómo vas con el SAT, el previo del mes para aprobar y lo que te pedimos, en un solo lugar.
-        Para todo lo demás, WhatsApp.
-      </p>
-      {!e.sesion ? (
-        <Entrar onEntrar={() => dispatch({ type: "entrar" })} />
-      ) : (
-        <div className="d-panel">
-          <div className="d-panel-cab">
-            <h2 ref={cabeza} tabIndex={-1}>
-              Hola, {PERFIL.nombre.split(" ")[0]}
-            </h2>
-            <span>
-              {PERFIL.regimen} · {PERFIL.actividad}
-            </span>
-          </div>
-          <ul className="d-semaforo d-semaforo-panel" aria-label="Tu situación">
-            {semaforo(e).map(([nivel, nombre, detalle]) => (
-              <li key={nombre} className={`d-nivel-${nivel}`}>
-                <i aria-hidden="true" />
-                <b>{nombre}</b>
-                <span>
-                  <span className="d-oculto">{NIVEL[nivel]}: </span>
-                  {detalle}
-                </span>
-              </li>
-            ))}
-          </ul>
-          {!e.buzon && (
-            <div className="d-pide d-buzon">
-              <p>
-                <b>Buzón tributario:</b> el SAT te mandó un código a tu correo. Confírmalo en el
-                portal del SAT; sin eso, tu opinión de cumplimiento sale negativa.
-              </p>
-              <button type="button" className="d-btn" onClick={() => dispatch({ type: "buzon" })}>
-                Ya lo confirmé
+    <section className="d-pagina" aria-labelledby="d-titulo">
+      <Cabeza
+        ruta={["Tu expediente"]}
+        titulo="Tu expediente,"
+        gris="sin preguntar."
+        bajada="Cómo vas con el SAT, el previo del mes para aprobar y lo que te pedimos, en un solo lugar. Para todo lo demás, WhatsApp."
+      />
+      <div className="d-wrap d-pagina-cuerpo">
+        {!e.sesion ? (
+          <Entrar onEntrar={() => dispatch({ type: "entrar" })} />
+        ) : (
+          <div className="d-panel">
+            <div className="d-panel-cab">
+              <h2 ref={cabeza} tabIndex={-1}>
+                Hola, {PERFIL.nombre.split(" ")[0]}
+              </h2>
+              <span>
+                {PERFIL.regimen} · {PERFIL.actividad}
+              </span>
+            </div>
+            <ul className="d-semaforo d-semaforo-panel" aria-label="Tu situación">
+              {semaforo(e).map(([nivel, nombre, detalle]) => (
+                <li key={nombre} className={`d-nivel-${nivel}`}>
+                  <i aria-hidden="true" />
+                  <b>{nombre}</b>
+                  <span>
+                    <span className="d-oculto">{NIVEL[nivel]}: </span>
+                    {detalle}
+                  </span>
+                </li>
+              ))}
+            </ul>
+            {!e.buzon && (
+              <div className="d-pide d-buzon">
+                <p>
+                  <b>Buzón tributario:</b> el SAT te mandó un código a tu correo. Confírmalo en el
+                  portal del SAT; sin eso, tu opinión de cumplimiento sale negativa.
+                </p>
+                <button type="button" className="d-btn" onClick={() => dispatch({ type: "buzon" })}>
+                  Ya lo confirmé
+                </button>
+              </div>
+            )}
+            <div className="d-panel-grid">
+              <Previo e={e} dispatch={dispatch} />
+              <div className="d-panel-col">
+                <Solicitudes e={e} dispatch={dispatch} />
+                <Documentos e={e} />
+              </div>
+            </div>
+            <Recordatorio e={e} dispatch={dispatch} />
+            <div className="d-acciones">
+              <button type="button" className="d-btn" onClick={onWhatsApp}>
+                Escribir a Elena por WhatsApp
+              </button>
+              <button
+                type="button"
+                className="d-inline"
+                onClick={() => dispatch({ type: "reiniciar" })}
+              >
+                Reiniciar el ejemplo
+              </button>
+              <button
+                type="button"
+                className="d-inline"
+                onClick={() => dispatch({ type: "salir" })}
+              >
+                Salir
               </button>
             </div>
-          )}
-          <div className="d-panel-grid">
-            <Previo e={e} dispatch={dispatch} />
-            <div className="d-panel-col">
-              <Solicitudes e={e} dispatch={dispatch} />
-              <Documentos e={e} />
-            </div>
           </div>
-          <Recordatorio e={e} dispatch={dispatch} />
-          <div className="d-acciones">
-            <button type="button" className="d-btn" onClick={onWhatsApp}>
-              Escribir a Elena por WhatsApp
-            </button>
-            <button
-              type="button"
-              className="d-inline"
-              onClick={() => dispatch({ type: "reiniciar" })}
-            >
-              Reiniciar el ejemplo
-            </button>
-            <button type="button" className="d-inline" onClick={() => dispatch({ type: "salir" })}>
-              Salir
-            </button>
-          </div>
-        </div>
-      )}
+        )}
+      </div>
     </section>
   )
 }
