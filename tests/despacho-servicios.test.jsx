@@ -92,3 +92,18 @@ describe("Aviso de privacidad", () => {
     expect($(".d-entrar")).toBeTruthy()
   })
 })
+
+describe("Bienvenida", () => {
+  it("enlaza el despacho contable en el directorio de giros", async () => {
+    const { default: Bienvenida } = await import("../src/pages/Bienvenida")
+    await render(
+      <MemoryRouter>
+        <Bienvenida />
+      </MemoryRouter>,
+    )
+    const enlace = [...document.querySelectorAll("a")].find((a) =>
+      a.textContent.includes("Despacho contable"),
+    )
+    expect(enlace.getAttribute("href")).toBe("/despacho")
+  })
+})

@@ -1,3 +1,9 @@
+# V4.6.5 · 18 de noviembre de 2026 · cierre de Despacho contable
+
+- La Bienvenida enlaza Despacho contable (Cotejo).
+- Pasada final con impeccable en las nueve páginas; Core Web Vitals de laboratorio de 1.76 a 2.04 s de LCP.
+- Recorridos de navegador sobre la compilación de producción (5 de 5) y una prueba nueva.
+
 # V4.6.4 · 18 de noviembre de 2026 · Despacho contable, servicios y regularización
 
 - Añadir `/despacho/servicios`: los nueve servicios con qué incluyen, qué se pide y precio.

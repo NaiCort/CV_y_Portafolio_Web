@@ -2,7 +2,7 @@
 
 Portafolio de demos interactivas de Ian Habid Aldana Martínez, una por giro de negocio.
 La fuente de planificación es el **Documento Maestro** (fuera del repositorio, versión
-vigente: V4.5.6, revisión documental 4 del 16/11/2026; la PARTE XIII tiene el estado actual). Este archivo resume lo que hace falta para trabajar
+vigente: V4.6.5, revisión documental 5 del 18/11/2026; la PARTE XIV tiene el estado actual). Este archivo resume lo que hace falta para trabajar
 en el código sin tenerlo a la mano. Si algo aquí contradice una petición de Ian en la
 conversación, manda lo que Ian diga y luego se actualiza este archivo.
 
@@ -18,7 +18,8 @@ acciones ficticias del negocio.
 - Se trabaja **una demo a la vez**, en este orden: Psicólogo (cerrada) → Restaurante
   (cerrada en V4.2.5 con **Patio 12**) → Café (cerrada en V4.3.6 con **Ladera**) →
   Gimnasio (cerrada en V4.4.8 con **Brío**) → Taller mecánico (cerrada en V4.5.6 con
-  **Rosales y Vértice**) → **Despacho contable (en curso, V4.6)** → Revista digital (V4.7).
+  **Rosales y Vértice**) → Despacho contable (cerrada en V4.6.5 con **Cotejo**) →
+  **Revista digital (V4.7, siguiente)**.
 - **Restaurante = solo Patio 12.** No se construyen las sub-categorías (fonda, comida
   rápida, lujo) ni el panel de empleados y precios: ambas ideas quedaron descartadas.
 - **Café = Ladera**, una sola identidad y un solo local, sin gestión de empleados. Su
@@ -111,12 +112,13 @@ de privacidad. Sin venta de refacciones. Leer `docs/FICHA_TALLER.md` antes de to
 
 ## Estado de Despacho contable
 
-**Despacho = Cotejo**, en curso desde V4.6.0: un solo despacho ficticio en Xalapa para
+**Despacho = Cotejo**, cerrado en V4.6.5 (pendiente del visto bueno de Ian): un solo despacho ficticio en Xalapa para
 personas físicas y empresas, con una contadora al frente (inventada) y sin fotos. Dirección
 «Expediente»: semáforo de cumplimiento y recibo por régimen. Precios aproximados y
 cotización; todos los servicios y herramientas (diagnóstico, calendario, calculadoras). El
 portal de cliente es un «expediente» ligero sin contraseña (ver la sección 9 de
-`docs/INVESTIGACION_DESPACHO.md`). Leer `docs/FICHA_DESPACHO.md` antes de tocar
+`docs/INVESTIGACION_DESPACHO.md`). Páginas: inicio, precios y cotización, diagnóstico,
+calendario, calculadoras, Tu expediente, servicios, regularización y aviso de privacidad. Leer `docs/FICHA_DESPACHO.md` antes de tocar
 `src/giros/despacho/`. Pruebas de navegador en `npm run test:browser:despacho`.
 
 ## Pendientes para la fase de ajustes (V4.8)
