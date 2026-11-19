@@ -1,3 +1,10 @@
+# V4.7.2 · 19 de noviembre de 2026 · Prisma, lectura completa y PDF
+
+- Lectura completa de los N.º 24 y 23 de Prisma: índice, hoja clara con resumen, secciones, tabla, dos figuras con sus datos, referencias, cómo citar (con copiar) y texto grande.
+- Comentarios de la comunidad en cada investigación.
+- PDF real de los dos números, generado desde la página con la hoja de impresión (`npm run pdf:prisma`).
+- Iniciales de los avatares de comentarios corregidas. Dos pruebas nuevas y dos páginas más en el recorrido de navegador.
+
 # V4.7.1 · 19 de noviembre de 2026 · Revista digital, volver a elegir y nada encimado
 
 - Botón «← Revistas» en la cabecera de Rubor y Prisma para regresar a la elección entre las dos.
