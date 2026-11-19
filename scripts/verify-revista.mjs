@@ -43,6 +43,8 @@ await suite("revista", async ({ run, base }) => {
           "/revista/rubor/marcadores",
           "/revista/prisma",
           "/revista/prisma/articulo/andromeda",
+          "/revista/prisma/articulo/adn-no-codificante",
+          "/revista/prisma/articulo/cometa",
           "/revista/prisma/autor/lucia-arrieta",
           "/revista/prisma/marcadores",
         ]) {
