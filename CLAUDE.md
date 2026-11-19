@@ -127,6 +127,17 @@ cortas y aviso de privacidad; en la portada, especialidades y opiniones de ejemp
 contratarnos». Leer `docs/FICHA_DESPACHO.md` antes de tocar
 `src/giros/despacho/`. Pruebas de navegador en `npm run test:browser:despacho`.
 
+## Estado de Revista digital
+
+**Revista = Rubor y Prisma** (V4.7, en construcción): una demo con dos sitios en `/revista`. Rubor,
+moda y celebridades, un solo editor, la portada es siempre el número más reciente y se hojea
+bajando; cabecera semitransparente fija con menú de números; cada número con su paleta (N.º 24
+rojo y N.º 23 azul completos, 22 de archivo). Prisma, ciencia y tecnología en acceso abierto,
+varios autores con perfil, estante de números con panel, imagen desvanecida por número, búsqueda,
+marcadores. Celebridades, autores y cifras ficticios; fotos de Unsplash servidas desde el sitio.
+Leer `docs/FICHA_REVISTA.md` antes de tocar `src/giros/revista/`. Pruebas de navegador en
+`npm run test:browser:revista`.
+
 ## Pendientes para la fase de ajustes (V4.8)
 
 No tocar antes de terminar las siete demos.

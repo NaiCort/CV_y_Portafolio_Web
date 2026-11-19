@@ -1,3 +1,12 @@
+# V4.7.0 · 19 de noviembre de 2026 · Revista digital, base de Rubor y Prisma
+
+- Añadir `/revista`: una demo con dos sitios, Rubor (moda y celebridades) y Prisma (ciencia y tecnología), con entrada para elegir revista.
+- Rubor: la portada es siempre el número más reciente (N.º 24) y se hojea bajando: sumario, carta de la editora, entrevista, anuncio ficticio, reportaje y comentarios. Cabecera semitransparente fija con el menú de los 24 números por fecha; cada número tiene su propia paleta. N.º 24 (rojo) y N.º 23 (azul y dorado) completos; los demás, portada y aviso de archivo.
+- Prisma: estante de 24 números; al elegir uno, su portada crece con resumen, estado, autores enlazados a su perfil y los botones Guardar, Leer y Descargar PDF; cada número con su color e imagen desvanecida. En tendencia, populares por semana, mes o siempre, últimas publicaciones, selección del editor, búsqueda con Ctrl K, ficha de investigación y perfil de autor.
+- Cuenta de ejemplo y marcadores en los dos sitios; comentarios con publicación simulada.
+- Tipografías (Bodoni Moda, Archivo, Newsreader, Space Grotesk) y 112 fotos servidas desde el sitio, con procedencia en `public/revista/medios-origen.json`.
+- La Bienvenida enlaza la revista. 16 pruebas nuevas y `npm run test:browser:revista`.
+
 # V4.6.8 · 18 de noviembre de 2026 · Despacho contable, toda la demo en libro mayor
 
 - El estilo de la portada en toda la demo, según la maqueta aprobada por Ian: encabezado con título grande y renglones del libro mayor en las nueve páginas interiores; listas y tablas como libro; papel blanco solo para los objetos; paneles oscuros con foto y frase en ocre; pie oscuro con la frase de la portada.
