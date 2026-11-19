@@ -1,3 +1,10 @@
+# V4.7.1 · 19 de noviembre de 2026 · Revista digital, volver a elegir y nada encimado
+
+- Botón «← Revistas» en la cabecera de Rubor y Prisma para regresar a la elección entre las dos.
+- Portada de Rubor reacomodada en flujo: ya no se enciman la fecha y el titular, la cabecera y «Alfombra roja», ni el código de barras y el pie de foto, en PC ni en celular.
+- Prisma: «En tendencia» se acomoda al ancho y ya no se pisa a 1024 px.
+- La marca de agua de la demo ya no tapa el código de barras. Una prueba nueva.
+
 # V4.7.0 · 19 de noviembre de 2026 · Revista digital, base de Rubor y Prisma
 
 - Añadir `/revista`: una demo con dos sitios, Rubor (moda y celebridades) y Prisma (ciencia y tecnología), con entrada para elegir revista.
