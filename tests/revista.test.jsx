@@ -119,6 +119,15 @@ describe("Entrada", () => {
     const enlace = $$("a").find((a) => a.textContent.includes("Revista digital"))
     expect(enlace.getAttribute("href")).toBe("/revista")
   })
+
+  it("las dos revistas tienen un botón para volver a elegir", async () => {
+    for (const ruta of ["/revista/rubor", "/revista/prisma"]) {
+      const { unmount } = await renderRevista(ruta)
+      const volver = $('header a[aria-label="Volver a elegir revista"]')
+      expect(volver.getAttribute("href"), ruta).toBe("/revista")
+      await unmount()
+    }
+  })
 })
 
 describe("Rubor", () => {
@@ -209,12 +218,35 @@ describe("Prisma", () => {
     await click(button("☆ Guardar", $(".pr-sel")))
     expect(JSON.parse(localStorage.getItem(MARCADORES_KEY)).prisma).toEqual(["andromeda"])
     expect($(".pr-cab").textContent).toContain("Marcadores (1)")
-    await click(button("↓ Descargar PDF", $(".pr-sel")))
-    expect($(".pr-sel .pr-aviso").textContent).toContain("siguiente entrega")
+    const pdf = $$(".pr-sel a").find((a) => a.textContent.includes("Descargar PDF"))
+    expect(pdf.getAttribute("href")).toBe("/revista/prisma/pdf/prisma-24-andromeda.pdf")
+    expect(pdf.hasAttribute("download")).toBe(true)
+    expect(existsSync(publico(pdf.getAttribute("href")))).toBe(true)
     const antes = $$(".pr-pop li a").map((a) => a.textContent)
     await click(button("Siempre"))
     expect(button("Siempre").getAttribute("aria-pressed")).toBe("true")
     expect($$(".pr-pop li a").map((a) => a.textContent)).not.toEqual(antes)
+  })
+
+  it("lee completo el N.º 24: índice, figuras con datos, cita y comentarios", async () => {
+    await renderRevista("/revista/prisma/articulo/andromeda")
+    expect($$("h1")).toHaveLength(1)
+    const indice = $$('nav[aria-label="En este artículo"] a').map((a) => a.getAttribute("href"))
+    for (const destino of indice)
+      expect(document.getElementById(destino.slice(1)), destino).toBeTruthy()
+    expect($$(".pr-fig svg[role=img]")).toHaveLength(2)
+    expect($$(".pr-fig-datos table")).toHaveLength(2)
+    expect($(".pr-citar").textContent).toContain("Arrieta, L., Ibarra, T. y Montes, R. (2026)")
+    await click(button("Texto grande"))
+    expect($(".pr-hoja").classList.contains("pr-hoja-g")).toBe(true)
+    expect($$(".pr-com-av").map((x) => x.textContent)).toEqual(["MU", "LA", "CA"])
+  })
+
+  it("un número de archivo solo muestra su resumen y avisa del PDF", async () => {
+    await renderRevista("/revista/prisma/articulo/cometa")
+    expect($(".pr-hoja")).toBeNull()
+    await click(button("↓ Descargar PDF"))
+    expect($(".pr-aviso").textContent).toContain("Solo los números 24 y 23")
   })
 
   it("busca con Ctrl K por autor", async () => {

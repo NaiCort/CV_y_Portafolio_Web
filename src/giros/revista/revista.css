@@ -161,3 +161,14 @@
     transition-duration: 1ms !important;
   }
 }
+@media print {
+  html,
+  body,
+  .revista-root {
+    padding-top: 0 !important;
+    background: #fff !important;
+  }
+  .revista-root > :not(.pr-root, .rb-root) {
+    display: none !important;
+  }
+}

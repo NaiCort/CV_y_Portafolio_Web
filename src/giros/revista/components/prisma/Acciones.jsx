@@ -26,19 +26,26 @@ export default function Acciones({ articulo: a, leer = true }) {
             Leer en el sitio
           </Link>
         )}
-        <button
-          type="button"
-          className="pr-bt pr-bt-s"
-          onClick={() =>
-            setAviso(
-              a.completo
-                ? "El PDF de este número llega en la siguiente entrega de esta demo."
-                : "Solo los números 24 y 23 tienen texto completo y PDF en esta demo.",
-            )
-          }
-        >
-          ↓ Descargar PDF
-        </button>
+        {a.completo ? (
+          <a
+            className="pr-bt pr-bt-s"
+            href={`/revista/prisma/pdf/prisma-${a.n}-${a.id}.pdf`}
+            download
+            onClick={() => setAviso("Descargando el PDF del N.º " + a.n + ".")}
+          >
+            ↓ Descargar PDF
+          </a>
+        ) : (
+          <button
+            type="button"
+            className="pr-bt pr-bt-s"
+            onClick={() =>
+              setAviso("Solo los números 24 y 23 tienen texto completo y PDF en esta demo.")
+            }
+          >
+            ↓ Descargar PDF
+          </button>
+        )}
       </div>
       <p className="pr-aviso" role="status">
         {aviso}

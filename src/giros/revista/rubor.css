@@ -58,6 +58,19 @@
   backdrop-filter: blur(14px) saturate(140%);
   color: #fff;
 }
+.rb-volver {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  padding-right: 18px;
+  border-right: 1px solid rgba(255, 255, 255, 0.22);
+  font: 600 0.8125rem var(--rb-texto);
+  font-stretch: 75%;
+  letter-spacing: 0.14em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
 .rb-marca {
   font: 600 1.375rem var(--rb-titulo);
   letter-spacing: 0.32em;
@@ -197,11 +210,12 @@
   gap: 12px;
 }
 
-/* Portada */
+/* Portada: fondo, disco y figura van en capas absolutas; los textos van en flujo, de arriba
+   abajo, para que no se encimen en ninguna proporción de pantalla. */
 .rb-portada {
   position: relative;
-  height: calc(100svh - 44px);
-  min-height: 680px;
+  display: flex;
+  min-height: max(620px, calc(100svh - 44px));
   overflow: hidden;
   background: radial-gradient(
     60vw 70vh at 50% 62%,
@@ -215,30 +229,19 @@
   position: absolute;
   inset: 64px 0 0;
   z-index: 1;
-  background: linear-gradient(90deg, transparent calc(33.3% - 1px), rgba(255, 255, 255, 0.07) 0) 0
+  background: linear-gradient(90deg, transparent calc(100% - 1px), rgba(255, 255, 255, 0.07) 0) 0
     0 / 33.4% 100%;
 }
 .rb-disco {
   position: absolute;
   z-index: 1;
   left: 50%;
-  top: 52%;
-  width: 62vh;
-  height: 62vh;
+  bottom: 6%;
+  width: min(62vh, 46vw);
+  aspect-ratio: 1;
   border-radius: 50%;
   background: var(--rb-acento);
-  transform: translate(-50%, -38%);
-}
-.rb-mast {
-  position: absolute;
-  z-index: 2;
-  top: 62px;
-  left: 0;
-  right: 0;
-  text-align: center;
-  font: 500 25.5vw/0.8 var(--rb-titulo);
-  letter-spacing: -0.01em;
-  color: #fff;
+  transform: translateX(-50%);
 }
 .rb-recorte {
   position: absolute;
@@ -246,29 +249,56 @@
   left: 50%;
   bottom: 0;
   width: auto;
-  height: 94%;
+  height: calc(100% - 110px);
+  max-width: 46vw;
+  object-fit: contain;
+  object-position: 50% 100%;
   transform: translateX(-50%);
   filter: drop-shadow(-18px 0 34px var(--rb-brillo));
 }
+/* Sin z-index propio: así la cabecera queda detrás de la figura y los textos delante. */
+.rb-port-cont {
+  position: relative;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 64px 36px 60px;
+}
+.rb-mast {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  font: 500 min(25vw, 34vh) / 0.8 var(--rb-titulo);
+  letter-spacing: -0.01em;
+  color: #fff;
+}
 .rb-numfecha {
-  position: absolute;
+  position: relative;
   z-index: 4;
-  left: 36px;
-  top: calc(62px + 19.5vw);
+  margin-top: 14px;
   font: 700 0.8125rem var(--rb-texto);
   font-stretch: 75%;
   letter-spacing: 0.24em;
   text-transform: uppercase;
 }
-.rb-lin {
-  position: absolute;
+.rb-port-lineas {
+  position: relative;
   z-index: 4;
   display: grid;
+  flex: 1;
+  grid-template-columns: minmax(0, 340px) 1fr minmax(0, 300px);
+  align-items: end;
+  gap: 24px;
+  padding-top: 24px;
+}
+.rb-lin {
+  display: grid;
   gap: 10px;
+  text-shadow: 0 1px 18px color-mix(in srgb, var(--rb-noche) 70%, transparent);
 }
 .rb-lin small {
   display: block;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
   color: var(--rb-acento-texto);
   font: 700 0.75rem var(--rb-texto);
   font-stretch: 75%;
@@ -277,41 +307,48 @@
 }
 .rb-lin b {
   display: block;
-  font: 700 2.625rem/1 var(--rb-texto);
+  font: 700 clamp(1.75rem, 4.6vh, 2.625rem) / 1 var(--rb-texto);
   font-stretch: 72%;
   text-transform: uppercase;
 }
 .rb-lin em {
   display: block;
-  font: italic 500 1.375rem/1.15 var(--rb-titulo);
+  font: italic 500 clamp(1.0625rem, 2.6vh, 1.375rem) / 1.2 var(--rb-titulo);
 }
 .rb-r {
   color: var(--rb-acento-texto);
 }
 .rb-l1 {
-  left: 36px;
-  top: 38vh;
-  width: 330px;
+  grid-column: 1;
 }
 .rb-l2 {
-  right: 36px;
-  top: 40vh;
-  width: 300px;
-  gap: 26px;
+  grid-column: 3;
+  gap: 22px;
   text-align: right;
 }
+.rb-l2 p {
+  display: grid;
+  gap: 6px;
+}
 .rb-cifra {
-  margin-top: 22px;
+  display: grid;
+  gap: 4px;
+  margin-top: 14px;
 }
 .rb-cifra span {
-  display: block;
-  font: 500 6rem/0.9 var(--rb-titulo);
+  font: 500 clamp(3.5rem, 10vh, 6rem) / 0.9 var(--rb-titulo);
+}
+.rb-port-pie {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px 24px;
+  margin-top: 22px;
 }
 .rb-codigo {
-  position: absolute;
-  z-index: 5;
-  left: 32px;
-  bottom: 28px;
   display: flex;
   align-items: flex-end;
   gap: 2px;
@@ -330,12 +367,7 @@
   width: 3px;
 }
 .rb-baja {
-  position: absolute;
-  z-index: 5;
-  left: 50%;
-  bottom: 18px;
   padding: 10px;
-  transform: translateX(-50%);
   font: 600 0.75rem var(--rb-texto);
   font-stretch: 75%;
   letter-spacing: 0.3em;
@@ -343,33 +375,16 @@
   text-transform: uppercase;
 }
 .rb-pie-foto {
-  position: absolute;
-  z-index: 5;
-  right: 28px;
-  bottom: 14px;
   max-width: 34ch;
   font-size: 0.75rem;
   text-align: right;
-  opacity: 0.85;
+  opacity: 0.9;
 }
 .rb-portada-foto {
   position: absolute;
   inset: 0;
   z-index: 1;
 }
-.rb-portada-foto::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(90deg, color-mix(in srgb, var(--rb-noche) 78%, transparent), transparent 55%),
-    linear-gradient(0deg, color-mix(in srgb, var(--rb-noche) 85%, transparent), transparent 45%),
-    linear-gradient(180deg, color-mix(in srgb, var(--rb-noche) 55%, transparent), transparent 35%);
-}
-.rb-portada-archivo .rb-mast {
-  color: color-mix(in srgb, #fff 92%, var(--rb-acento));
-}
-
 /* Fotos viradas al color del número */
 .rb-tinte {
   overflow: hidden;
@@ -911,8 +926,15 @@
 }
 @media (max-width: 640px) {
   .rb-cab {
-    gap: 14px;
-    padding: 0 16px;
+    gap: 12px;
+    padding: 0 12px;
+  }
+  .rb-volver {
+    padding-right: 10px;
+    font-size: 0;
+  }
+  .rb-volver span {
+    font-size: 1.125rem;
   }
   .rb-marca,
   .rb-solo-ancho {
@@ -929,57 +951,44 @@
     right: 8px;
     width: auto;
   }
+  .rb-port-cont {
+    padding: 72px 16px 56px;
+  }
   .rb-mast {
-    top: 70px;
-    font-size: 26.5vw;
+    font-size: 26vw;
   }
   .rb-disco {
-    width: 44vh;
-    height: 44vh;
+    bottom: 24%;
+    width: 78vw;
   }
   .rb-recorte {
-    height: 82%;
-  }
-  .rb-numfecha {
-    left: 16px;
-    top: calc(70px + 22vw);
-    font-size: 0.6875rem;
+    height: 72%;
+    max-width: 100%;
   }
   .rb-portada::after {
     content: "";
     position: absolute;
     inset: auto 0 0;
     z-index: 3;
-    height: 50%;
-    background: linear-gradient(transparent, color-mix(in srgb, var(--rb-noche) 88%, transparent));
+    height: 55%;
+    background: linear-gradient(
+      transparent,
+      color-mix(in srgb, var(--rb-noche) 92%, transparent) 45%
+    );
   }
-  .rb-l1 {
-    left: 16px;
-    right: 16px;
-    top: auto;
-    bottom: 104px;
-    width: auto;
+  .rb-port-lineas {
+    grid-template-columns: 1fr;
   }
   .rb-l2,
   .rb-cifra,
   .rb-baja {
     display: none;
   }
-  .rb-lin b {
-    font-size: 1.875rem;
-  }
-  .rb-codigo {
-    left: 16px;
-    bottom: 40px;
-  }
   .rb-codigo i {
-    height: 28px;
+    height: 26px;
   }
   .rb-pie-foto {
-    right: 16px;
-    left: auto;
-    bottom: 12px;
-    max-width: 55%;
+    flex: 1 1 140px;
   }
   .rb-perfil {
     grid-template-columns: 1fr;

@@ -105,6 +105,9 @@ export default function RuborSitio() {
   return (
     <div className="rb-root" style={estilo}>
       <header className="rb-cab">
+        <Link className="rb-volver" to="/revista" aria-label="Volver a elegir revista">
+          <span aria-hidden="true">←</span> Revistas
+        </Link>
         <Link className="rb-marca" to="/revista/rubor" aria-label="Rubor, número actual">
           RUBOR
         </Link>
