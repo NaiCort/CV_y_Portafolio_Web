@@ -63,7 +63,6 @@ function Portada({ numero }) {
           <Foto clave={numero.foto} sizes="100vw" posicion="50% 25%" />
         </div>
       )}
-      {titulo}
       {numero.completo && (
         <img
           className="rb-recorte"
@@ -76,44 +75,52 @@ function Portada({ numero }) {
           fetchPriority="high"
         />
       )}
-      <p className="rb-numfecha">
-        N.º {numero.n} · {fechaNumero(numero)}
-        {numero.precio ? ` · ${numero.precio}` : ""}
-      </p>
-      <div className="rb-lin rb-l1">
-        <small>Portada</small>
-        <b>
-          {p.protagonista[0]} <span className="rb-r">{p.protagonista.slice(1).join(" ")}</span>
-        </b>
-        {p.frase ? <em>{p.frase}</em> : <em>«{numero.tema}»</em>}
-        {p.cifra && (
-          <p className="rb-cifra">
-            <span>{p.cifra[0]}</span>
-            <b>{p.cifra[1]}</b>
-            <em>{p.cifra[2]}</em>
-          </p>
-        )}
-      </div>
-      {p.derecha && (
-        <div className="rb-lin rb-l2">
-          {p.derecha.map(([et, t, b]) => (
-            <p key={t}>
-              <small>{et}</small>
-              <b>{t}</b>
-              <em>{b}</em>
-            </p>
-          ))}
+      {/* El contenido va en flujo, de arriba abajo: nada se encima en ningún tamaño. */}
+      <div className="rb-port-cont">
+        {titulo}
+        <p className="rb-numfecha">
+          N.º {numero.n} · {fechaNumero(numero)}
+          {numero.precio ? ` · ${numero.precio}` : ""}
+        </p>
+        <div className="rb-port-lineas">
+          <div className="rb-lin rb-l1">
+            <small>Portada</small>
+            <b>
+              {p.protagonista[0]} <span className="rb-r">{p.protagonista.slice(1).join(" ")}</span>
+            </b>
+            {p.frase ? <em>{p.frase}</em> : <em>«{numero.tema}»</em>}
+            {p.cifra && (
+              <p className="rb-cifra">
+                <span>{p.cifra[0]}</span>
+                <b>{p.cifra[1]}</b>
+                <em>{p.cifra[2]}</em>
+              </p>
+            )}
+          </div>
+          {p.derecha && (
+            <div className="rb-lin rb-l2">
+              {p.derecha.map(([et, t, b]) => (
+                <p key={t}>
+                  <small>{et}</small>
+                  <b>{t}</b>
+                  <em>{b}</em>
+                </p>
+              ))}
+            </div>
+          )}
         </div>
-      )}
-      <Codigo />
-      {numero.completo && (
-        <a className="rb-baja" href="#sumario">
-          Baja para hojear ↓
-        </a>
-      )}
-      <p className="rb-pie-foto">
-        Foto ilustrativa (Unsplash). {p.persona} es un personaje ficticio.
-      </p>
+        <div className="rb-port-pie">
+          <Codigo />
+          {numero.completo && (
+            <a className="rb-baja" href="#sumario">
+              Baja para hojear ↓
+            </a>
+          )}
+          <p className="rb-pie-foto">
+            Foto ilustrativa (Unsplash). {p.persona} es un personaje ficticio.
+          </p>
+        </div>
+      </div>
     </section>
   )
 }

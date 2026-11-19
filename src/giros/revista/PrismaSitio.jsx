@@ -45,6 +45,9 @@ export default function PrismaSitio() {
     <div className="pr-root">
       <header className="pr-cab">
         <div className="pr-w pr-cab-in">
+          <Link className="pr-volver" to="/revista" aria-label="Volver a elegir revista">
+            <span aria-hidden="true">←</span> Revistas
+          </Link>
           <Link className="pr-marca" to="/revista/prisma" aria-label="Prisma, inicio">
             <svg viewBox="0 0 32 28" width="28" height="24" aria-hidden="true">
               <path d="M16 2 30 26H2Z" fill="none" stroke="currentColor" strokeWidth="2.4" />

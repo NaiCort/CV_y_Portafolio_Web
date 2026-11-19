@@ -80,6 +80,18 @@
   gap: 20px;
   height: 66px;
 }
+.pr-volver {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  padding-right: 16px;
+  border-right: 1px solid var(--pr-lin);
+  color: var(--pr-ce);
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+}
 .pr-marca {
   display: flex;
   align-items: center;
@@ -443,7 +455,7 @@
 }
 .pr-tend {
   display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(128px, 1fr));
   gap: 14px;
 }
 .pr-tend li {
@@ -891,6 +903,16 @@
   }
 }
 @media (max-width: 640px) {
+  .pr-volver {
+    padding-right: 8px;
+    font-size: 0;
+  }
+  .pr-volver span {
+    font-size: 1.125rem;
+  }
+  .pr-cab-in {
+    gap: 10px;
+  }
   .pr-busca {
     font-size: 0;
   }

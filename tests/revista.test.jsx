@@ -119,6 +119,15 @@ describe("Entrada", () => {
     const enlace = $$("a").find((a) => a.textContent.includes("Revista digital"))
     expect(enlace.getAttribute("href")).toBe("/revista")
   })
+
+  it("las dos revistas tienen un botón para volver a elegir", async () => {
+    for (const ruta of ["/revista/rubor", "/revista/prisma"]) {
+      const { unmount } = await renderRevista(ruta)
+      const volver = $('header a[aria-label="Volver a elegir revista"]')
+      expect(volver.getAttribute("href"), ruta).toBe("/revista")
+      await unmount()
+    }
+  })
 })
 
 describe("Rubor", () => {
