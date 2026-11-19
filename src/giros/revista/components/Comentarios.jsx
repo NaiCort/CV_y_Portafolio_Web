@@ -15,6 +15,12 @@ const almacen = () => {
   }
 }
 
+// Dos iniciales de las palabras con mayúscula: «Club de Astronomía Cerro Azul» da «CA».
+const iniciales = (nombre) => {
+  const p = nombre.split(" ").filter((x) => /^\p{Lu}/u.test(x))
+  return (p.length > 2 ? [p[0], p.at(-1)] : p).map((x) => x[0]).join("")
+}
+
 // Comentarios de una pieza: los de ejemplo y los tuyos (cuenta de ejemplo). Publicar es
 // simulado: se guarda solo en este navegador.
 export default function Comentarios({ clave, ejemplos, usuario, prefijo, titulo = "Comentarios" }) {
@@ -55,10 +61,7 @@ export default function Comentarios({ clave, ejemplos, usuario, prefijo, titulo 
         {ejemplos.map(([nombre, cuando, t]) => (
           <li key={nombre + t}>
             <span className={p("com-av")} aria-hidden="true">
-              {nombre
-                .split(" ")
-                .map((x) => x[0])
-                .join("")}
+              {iniciales(nombre)}
             </span>
             <div>
               <p className={p("com-cab")}>
