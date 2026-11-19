@@ -1,0 +1,163 @@
+/* Revista digital: tipografías y entrada. Ficha: docs/FICHA_REVISTA.md. */
+@font-face {
+  font-family: "Rubor Titulo";
+  src: url("/revista/fuentes/bodoni-moda-latin-opsz-normal.woff2") format("woff2-variations");
+  font-weight: 400 900;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Rubor Titulo";
+  font-style: italic;
+  src: url("/revista/fuentes/bodoni-moda-latin-opsz-italic.woff2") format("woff2-variations");
+  font-weight: 400 900;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Rubor Texto";
+  src: url("/revista/fuentes/archivo-latin-wdth-normal.woff2") format("woff2-variations");
+  font-weight: 100 900;
+  font-stretch: 62% 125%;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Prisma Titulo";
+  src: url("/revista/fuentes/newsreader-latin-opsz-normal.woff2") format("woff2-variations");
+  font-weight: 200 800;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Prisma Titulo";
+  font-style: italic;
+  src: url("/revista/fuentes/newsreader-latin-opsz-italic.woff2") format("woff2-variations");
+  font-weight: 200 800;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Prisma Texto";
+  src: url("/revista/fuentes/space-grotesk-latin-wght-normal.woff2") format("woff2-variations");
+  font-weight: 300 700;
+  font-display: swap;
+}
+
+.revista-root {
+  min-height: 100vh;
+  padding-top: 44px;
+  overflow-x: clip;
+  background: #0a0204;
+}
+.revista-root *,
+.revista-root *::before,
+.revista-root *::after {
+  box-sizing: border-box;
+}
+.rv-oculto {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Entrada: dos puertas */
+.rv-entrada {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: calc(100vh - 44px);
+}
+.rv-puerta {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  padding: 48px;
+  color: #fff;
+  text-decoration: none;
+}
+.rv-puerta img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 300ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.rv-puerta-rubor {
+  background: radial-gradient(70% 70% at 50% 55%, #7a0614, #0a0204 80%);
+}
+.rv-puerta-rubor img {
+  object-fit: contain;
+  object-position: 50% 100%;
+  top: 6%;
+  height: 94%;
+}
+.rv-puerta-prisma {
+  background: #0a0c10;
+}
+.rv-puerta-prisma img {
+  opacity: 0.55;
+  -webkit-mask-image: linear-gradient(#000 30%, transparent 95%);
+  mask-image: linear-gradient(#000 30%, transparent 95%);
+}
+@media (hover: hover) {
+  .rv-puerta:hover img {
+    transform: scale(1.03);
+  }
+}
+.rv-puerta-texto {
+  position: relative;
+  display: grid;
+  gap: 8px;
+  max-width: 30ch;
+}
+.rv-puerta-texto b {
+  font:
+    500 clamp(3.5rem, 8vw, 7rem) / 0.9 "Rubor Titulo",
+    Georgia,
+    serif;
+  letter-spacing: 0.06em;
+}
+.rv-puerta-prisma .rv-puerta-texto b {
+  font-family: "Prisma Titulo", Georgia, serif;
+  letter-spacing: -0.01em;
+}
+.rv-puerta-texto span {
+  font:
+    600 0.8125rem "Rubor Texto",
+    Arial,
+    sans-serif;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+.rv-puerta-prisma .rv-puerta-texto span {
+  color: #f2b33d;
+}
+.rv-puerta-texto em {
+  font:
+    400 1.0625rem/1.45 "Rubor Texto",
+    Arial,
+    sans-serif;
+  font-style: normal;
+  color: #e6dcd8;
+}
+.rv-puerta:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: -6px;
+}
+@media (max-width: 760px) {
+  .rv-entrada {
+    grid-template-columns: 1fr;
+  }
+  .rv-puerta {
+    min-height: 70vh;
+    padding: 28px 18px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .revista-root *,
+  .revista-root *::before,
+  .revista-root *::after {
+    animation-duration: 1ms !important;
+    transition-duration: 1ms !important;
+  }
+}

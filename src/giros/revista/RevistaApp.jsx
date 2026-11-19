@@ -1,0 +1,49 @@
+import { Navigate, Route, Routes } from "react-router-dom"
+import DemoBanner from "../../components/shared/DemoBanner"
+import WaterMark from "../../components/WaterMark"
+import Entrada from "./pages/Entrada"
+import RuborSitio from "./RuborSitio"
+import PrismaSitio from "./PrismaSitio"
+import "./revista.css"
+
+function Guia() {
+  return (
+    <div className="space-y-4 text-sm leading-relaxed text-slate-300">
+      <p>
+        Revista digital: dos revistas ficticias sobre la misma base. Rubor (moda y celebridades)
+        tiene un solo editor y su portada es siempre el número más reciente; Prisma (ciencia y
+        tecnología) es de acceso abierto y publica investigaciones de varios autores.
+      </p>
+      <ul className="list-disc pl-5 space-y-3">
+        <li>
+          Rubor: baja para hojear el número. «Números» abre el archivo por fecha; cada número tiene
+          su propia paleta. Solo el N.º 24 y el N.º 23 están completos.
+        </li>
+        <li>
+          Prisma: elige un número en el estante para ver su resumen y sus autores. «Buscar» (o Ctrl
+          K) busca por título, área o autor.
+        </li>
+        <li>
+          Los marcadores y los comentarios se guardan solo en este navegador. Las personas, marcas,
+          autores, cifras, DOI e ISSN son inventados; las fotos son de Unsplash y cada una lo dice.
+        </li>
+      </ul>
+      <p>“Contactar” y “Hablemos” abren los canales reales de Ian para consultar un proyecto.</p>
+    </div>
+  )
+}
+
+export default function RevistaApp() {
+  return (
+    <div className="revista-root">
+      <DemoBanner guide={<Guia />} />
+      <Routes>
+        <Route index element={<Entrada />} />
+        <Route path="rubor/*" element={<RuborSitio />} />
+        <Route path="prisma/*" element={<PrismaSitio />} />
+        <Route path="*" element={<Navigate to="/revista" replace />} />
+      </Routes>
+      <WaterMark />
+    </div>
+  )
+}
