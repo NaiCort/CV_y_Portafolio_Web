@@ -76,10 +76,10 @@ const GIROS = [
     available: true,
   },
   {
-    path: null,
+    path: "/revista",
     name: "Revista digital",
-    desc: "Una identidad editorial completa, no solo un blog.",
-    available: false,
+    desc: "Rubor y Prisma: una revista de moda para hojear y una de ciencia en acceso abierto.",
+    available: true,
   },
 ]
 

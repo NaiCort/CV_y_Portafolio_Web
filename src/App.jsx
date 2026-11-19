@@ -13,6 +13,7 @@ const CafeApp = lazy(() => import("./giros/cafe/CafeApp"))
 const GimnasioApp = lazy(() => import("./giros/gimnasio/GimnasioApp"))
 const TallerApp = lazy(() => import("./giros/taller/TallerApp"))
 const DespachoApp = lazy(() => import("./giros/despacho/DespachoApp"))
+const RevistaApp = lazy(() => import("./giros/revista/RevistaApp"))
 
 function RouteLoading() {
   return (
@@ -44,6 +45,7 @@ export default function App() {
                 <Route path="/gimnasio/*" element={<GimnasioApp />} />
                 <Route path="/taller/*" element={<TallerApp />} />
                 <Route path="/despacho/*" element={<DespachoApp />} />
+                <Route path="/revista/*" element={<RevistaApp />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </Suspense>
