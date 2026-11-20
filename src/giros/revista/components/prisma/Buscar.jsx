@@ -26,8 +26,11 @@ export default function Buscar({ onCerrar }) {
       <p className="pr-buscar-cuenta" role="status">
         {q.trim() ? `${res.length} ${res.length === 1 ? "resultado" : "resultados"}` : ""}
       </p>
+      {q.trim() && res.length === 0 && (
+        <p>No hay coincidencias. Prueba otro título, área o autor.</p>
+      )}
       <ul className="pr-buscar-lista">
-        {res.slice(0, 8).map((a) => (
+        {res.map((a) => (
           <li key={a.id}>
             <Link to={`/revista/prisma/articulo/${a.id}`} onClick={onCerrar}>
               <b>{a.titulo}</b>

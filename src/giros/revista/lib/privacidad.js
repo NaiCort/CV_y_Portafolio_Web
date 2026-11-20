@@ -1,0 +1,15 @@
+import { borrarMarcadores, reiniciarCache } from "./marcadores"
+
+export function borrarDatosRevista() {
+  borrarMarcadores()
+  let persistente = true
+  try {
+    for (const k of Object.keys(window.localStorage))
+      if (k.startsWith("revista-")) window.localStorage.removeItem(k)
+    window.localStorage.setItem("revista-reset", String(Date.now()))
+  } catch {
+    persistente = false
+  }
+  reiniciarCache()
+  return persistente
+}

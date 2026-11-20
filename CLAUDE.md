@@ -19,7 +19,7 @@ acciones ficticias del negocio.
   (cerrada en V4.2.5 con **Patio 12**) → Café (cerrada en V4.3.6 con **Ladera**) →
   Gimnasio (cerrada en V4.4.8 con **Brío**) → Taller mecánico (cerrada en V4.5.6 con
   **Rosales y Vértice**) → Despacho contable (cerrada en V4.6.8 con **Cotejo**) →
-  **Revista digital (V4.7, siguiente)**.
+  **Revista digital (V4.7, en construcción)**.
 - **Restaurante = solo Patio 12.** No se construyen las sub-categorías (fonda, comida
   rápida, lujo) ni el panel de empleados y precios: ambas ideas quedaron descartadas.
 - **Café = Ladera**, una sola identidad y un solo local, sin gestión de empleados. Su
@@ -129,12 +129,16 @@ contratarnos». Leer `docs/FICHA_DESPACHO.md` antes de tocar
 
 ## Estado de Revista digital
 
-**Revista = Rubor y Prisma** (V4.7, en construcción): una demo con dos sitios en `/revista`. Rubor,
+**Revista = Rubor, Prisma y Umbral** (V4.7, en construcción): una demo con dos sitios en `/revista`. Rubor,
 moda y celebridades, un solo editor, la portada es siempre el número más reciente y se hojea
 bajando; cabecera semitransparente fija con menú de números; cada número con su paleta (N.º 24
 rojo y N.º 23 azul completos, 22 de archivo). Prisma, ciencia y tecnología en acceso abierto,
 varios autores con perfil, estante de números con panel, imagen desvanecida por número, búsqueda,
 marcadores. Celebridades, autores y cifras ficticios; fotos de Unsplash servidas desde el sitio.
+Umbral, nombre aprobado por Ian, incorpora dos dossiers de fotografía y diseño, perfil de
+creador y guardados (V4.7.3). La autorización de Ian del 19/11/2026 permite implementar
+la ampliación; Revista sigue abierta. Marcadores por elemento con migración de v1, búsqueda
+completa, foco de lectura y privacidad con borrado están en la primera entrega.
 Leer `docs/FICHA_REVISTA.md` antes de tocar `src/giros/revista/`. Pruebas de navegador en
 `npm run test:browser:revista`.
 
