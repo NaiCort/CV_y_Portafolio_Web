@@ -28,7 +28,5 @@ No hay backend, cuentas o pagos reales. Las otras demos permanecen sin cambios.
 
 ## Verificación y publicación
 
-Consultar [VALIDACION_V4.7.3.md](VALIDACION_V4.7.3.md). La primera entrega está en la rama local
-`codex/revista-umbral`. GitHub rechazó la escritura con 403: no se creó PR ni se publicó la rama.
-Se facilita un parche aplicable sobre V4.7.2. Producción sigue en la versión existente hasta
-completar el flujo de revisión establecido; no se da Revista por aprobada o cerrada.
+Consultar [VALIDACION_V4.7.3.md](VALIDACION_V4.7.3.md). La rama se publicó en GitHub y el
+[PR #48](https://github.com/NaiCort/Multiples_Demos/pull/48) está abierto para revisión.

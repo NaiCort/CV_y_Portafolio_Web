@@ -19,10 +19,7 @@ accesible explícito del botón de guardar y espera de la lista tras navegar a g
 
 ## Publicación
 
-La entrega se conserva en la rama local `codex/revista-umbral`. La publicación remota está
-bloqueada: tanto `git push` como la integración de GitHub respondieron 403. La integración
-indicó `Resource not accessible by integration`. No se ha creado PR ni desplegado esta versión.
-Se entrega también un parche con los commits para aplicarlo sobre `2db37ce` (V4.7.2).
+Rama publicada en GitHub. [PR #48](https://github.com/NaiCort/Multiples_Demos/pull/48) abierto para revisión.
 
 ## Límites
 
