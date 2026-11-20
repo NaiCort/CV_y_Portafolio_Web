@@ -85,13 +85,14 @@ describe("Marcadores y comentarios guardados", () => {
     alternar("rubor", 23)
     alternar("prisma", "andromeda")
     alternar("rubor", 12)
-    expect(leerMarcadores()).toEqual({ rubor: [12, 23], prisma: ["andromeda"] })
+    expect(leerMarcadores()).toEqual({ rubor: [12, 23], prisma: ["andromeda"], umbral: [] })
     alternar("rubor", 23)
     expect(leerMarcadores().rubor).toEqual([12])
+    localStorage.clear()
     localStorage.setItem(MARCADORES_KEY, JSON.stringify({ rubor: ["x", 4], prisma: [3, "ok"] }))
-    expect(leerMarcadores()).toEqual({ rubor: [4], prisma: ["ok"] })
+    expect(leerMarcadores()).toEqual({ rubor: [4], prisma: ["ok"], umbral: [] })
     localStorage.setItem(MARCADORES_KEY, "{roto")
-    expect(leerMarcadores()).toEqual({ rubor: [], prisma: [] })
+    expect(leerMarcadores()).toEqual({ rubor: [], prisma: [], umbral: [] })
   })
 
   it("agrega y quita comentarios propios", () => {
@@ -105,11 +106,11 @@ describe("Marcadores y comentarios guardados", () => {
 })
 
 describe("Entrada", () => {
-  it("lleva a las dos revistas y la Bienvenida la enlaza", async () => {
+  it("lleva a las tres revistas y la Bienvenida la enlaza", async () => {
     await renderRevista("/revista")
     expect($$("h1")).toHaveLength(1)
     const destinos = $$(".rv-puerta").map((a) => a.getAttribute("href"))
-    expect(destinos).toEqual(["/revista/rubor", "/revista/prisma"])
+    expect(destinos).toEqual(["/revista/rubor", "/revista/prisma", "/revista/umbral"])
     const { default: Bienvenida } = await import("../src/pages/Bienvenida")
     await render(
       <MemoryRouter>
@@ -121,7 +122,7 @@ describe("Entrada", () => {
   })
 
   it("las dos revistas tienen un botón para volver a elegir", async () => {
-    for (const ruta of ["/revista/rubor", "/revista/prisma"]) {
+    for (const ruta of ["/revista/rubor", "/revista/prisma", "/revista/umbral"]) {
       const { unmount } = await renderRevista(ruta)
       const volver = $('header a[aria-label="Volver a elegir revista"]')
       expect(volver.getAttribute("href"), ruta).toBe("/revista")
@@ -169,7 +170,7 @@ describe("Rubor", () => {
     await renderRevista("/revista/rubor/numero/23")
     await click(button("☆ Guardar número"))
     expect(button("★ Guardado en marcadores").getAttribute("aria-pressed")).toBe("true")
-    expect(JSON.parse(localStorage.getItem(MARCADORES_KEY)).rubor).toEqual([23])
+    expect(leerMarcadores().rubor).toEqual([23])
     await renderRevista("/revista/rubor/marcadores")
     const cuenta = $$(".rb-cuenta").at(-1)
     expect(cuenta.textContent).toContain("Ana Ruiz")
@@ -216,7 +217,7 @@ describe("Prisma", () => {
   it("guarda, avisa del PDF y cambia el periodo de populares", async () => {
     await renderRevista("/revista/prisma")
     await click(button("☆ Guardar", $(".pr-sel")))
-    expect(JSON.parse(localStorage.getItem(MARCADORES_KEY)).prisma).toEqual(["andromeda"])
+    expect(leerMarcadores().prisma).toEqual(["andromeda"])
     expect($(".pr-cab").textContent).toContain("Marcadores (1)")
     const pdf = $$(".pr-sel a").find((a) => a.textContent.includes("Descargar PDF"))
     expect(pdf.getAttribute("href")).toBe("/revista/prisma/pdf/prisma-24-andromeda.pdf")

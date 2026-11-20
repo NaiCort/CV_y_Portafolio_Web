@@ -28,13 +28,13 @@ const recorrer = (page) =>
 await suite("revista", async ({ run, base }) => {
   for (const width of [320, 390, 768, 1024, 1440])
     await run(
-      `Recorrido de Rubor y Prisma · ${width}px`,
+      `Recorrido de Rubor, Prisma y Umbral · ${width}px`,
       {
         viewport: { width, height: 900 },
         ...(width < 640 ? { isMobile: true, hasTouch: true } : {}),
         reducedMotion: width === 1440 ? "no-preference" : "reduce",
       },
-      async ({ page }) => {
+      async ({ page, context }) => {
         for (const path of [
           "/revista",
           "/revista/rubor",
@@ -47,6 +47,12 @@ await suite("revista", async ({ run, base }) => {
           "/revista/prisma/articulo/cometa",
           "/revista/prisma/autor/lucia-arrieta",
           "/revista/prisma/marcadores",
+          "/revista/umbral",
+          "/revista/umbral/dossier/entre-lineas",
+          "/revista/umbral/dossier/otra-perspectiva",
+          "/revista/umbral/creador/nicolas-vera",
+          "/revista/umbral/guardados",
+          "/revista/umbral/creditos",
         ]) {
           await go(page, base, path)
           await recorrer(page)
@@ -96,6 +102,8 @@ await suite("revista", async ({ run, base }) => {
         await audit(page)
         await page.locator(".pr-busca").click()
         await dialog(page).waitFor()
+        await page.locator("#pr-q").fill("a")
+        assert.equal(await page.locator(".pr-buscar-lista a").count(), 24)
         await page.locator("#pr-q").fill("cometa")
         await page.locator(".pr-buscar-lista a").first().waitFor()
         await audit(page)
@@ -104,6 +112,62 @@ await suite("revista", async ({ run, base }) => {
         await page.waitForURL(/autor\/sofia-lara$/)
         await go(page, base, "/revista/prisma/marcadores")
         await page.locator(".pr-rej li").first().waitFor()
+        await audit(page)
+
+        // El foco acompaña a la nueva lectura, en lugar de quedarse al final.
+        await go(page, base, "/revista/prisma/articulo/andromeda")
+        await page.locator(".pr-sig a").focus()
+        await page.keyboard.press("Enter")
+        await page.waitForURL(/adn-no-codificante$/)
+        await page.waitForFunction(
+          () => document.activeElement === document.querySelector("main h1"),
+        )
+
+        // Umbral: relato, proceso, disciplina y guardados.
+        await go(page, base, "/revista/umbral/dossier/entre-lineas")
+        await page.getByRole("button", { name: "Ver proceso", exact: true }).click()
+        assert.equal(await page.locator(".um-proceso li").count(), 4)
+        await audit(page)
+        await page
+          .getByRole("button", { name: "Guardar dossier: Entre líneas", exact: true })
+          .click()
+        await page.getByRole("link", { name: "Guardados (1)", exact: true }).click()
+        await page.locator(".um-lista > li").first().waitFor()
+        assert.equal(await page.locator(".um-lista > li").count(), 1)
+        await go(page, base, "/revista/umbral")
+        await page.locator(".um-indice select").selectOption("Diseño")
+        assert.equal(await page.locator(".um-lista > li").count(), 1)
+        await audit(page)
+
+        // Dos pestañas escriben elementos diferentes sin perder ninguno.
+        if (width === 390) {
+          const otra = await context.newPage()
+          await go(page, base, "/revista/prisma/articulo/andromeda")
+          await go(otra, base, "/revista/prisma/articulo/adn-no-codificante")
+          await page.getByRole("button", { name: "☆ Guardar", exact: true }).click()
+          await otra.getByRole("button", { name: "☆ Guardar", exact: true }).click()
+          await page.waitForFunction(() =>
+            document.querySelector(".pr-cab").textContent.includes("Marcadores (3)"),
+          )
+          await otra.close()
+          await page.reload()
+          await page.getByRole("button", { name: "★ Guardado", exact: true }).waitFor()
+        }
+
+        // Privacidad: solo elimina el ámbito de Revista, también en la vista actual.
+        await go(page, base, "/revista/umbral/guardados")
+        await page.evaluate(() => localStorage.setItem("qa-otra-demo", "conservar"))
+        await page
+          .getByRole("button", { name: "Privacidad y datos de Revista", exact: true })
+          .click()
+        await audit(page)
+        await page.getByRole("button", { name: "Borrar los datos de Revista", exact: true }).click()
+        await page
+          .getByText("Aquí aparecerán los dossiers que guardes.", { exact: false })
+          .waitFor()
+        assert.equal(await page.locator(".um-lista > li").count(), 0)
+        assert.equal(await page.evaluate(() => localStorage.getItem("qa-otra-demo")), "conservar")
+        await bounds(page)
         await audit(page)
       },
     )
