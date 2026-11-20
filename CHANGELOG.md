@@ -1,5 +1,15 @@
 # V4.7.2 · 19 de noviembre de 2026 · Prisma, lectura completa y PDF
 
+## V4.7.3 · Umbral y base compartida de Revista
+
+- Tercera publicación, Umbral: portada editorial, dos dossiers, proceso creativo, creador de ejemplo, filtros y guardados.
+- Entrada con tres publicaciones; créditos y privacidad con borrado exclusivo de Revista.
+- Marcadores por elemento: migración sin pérdida de v1 y sincronización entre pestañas.
+- Búsqueda de Prisma sin truncamiento y foco al navegar entre lecturas.
+- Pruebas ampliadas de regresión, accesibilidad y recorridos de las tres revistas.
+- Primera entrega de la ampliación: siguen pendientes suscripción de Rubor, publicación y áreas de Prisma, música y refinamiento editorial.
+
+
 - Lectura completa de los N.º 24 y 23 de Prisma: índice, hoja clara con resumen, secciones, tabla, dos figuras con sus datos, referencias, cómo citar (con copiar) y texto grande.
 - Comentarios de la comunidad en cada investigación.
 - PDF real de los dos números, generado desde la página con la hoja de impresión (`npm run pdf:prisma`).
