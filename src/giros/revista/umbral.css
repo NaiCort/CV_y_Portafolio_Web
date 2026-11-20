@@ -59,51 +59,6 @@
   margin: auto;
   padding-bottom: 64px;
 }
-.um-portada {
-  display: grid;
-  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
-  min-height: min(780px, 90svh);
-}
-.um-portada-imagen {
-  position: relative;
-  overflow: hidden;
-  background: #163c35;
-}
-.um-portada-imagen > img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: grayscale(1);
-  opacity: 0.85;
-}
-.um-recorte {
-  position: absolute;
-  inset: auto 20px 16px;
-  color: #fff;
-  font:
-    800 clamp(4rem, 9.5vw, 10rem)/0.8 "Rubor Texto",
-    Arial,
-    sans-serif;
-  font-stretch: condensed;
-  letter-spacing: -0.07em;
-  mix-blend-mode: screen;
-  pointer-events: none;
-}
-.um-portada-texto {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  padding: clamp(24px, 4vw, 64px);
-  gap: 22px;
-}
-.um-portada h1 {
-  font:
-    800 clamp(4rem, 8.5vw, 9rem)/0.85 "Rubor Texto",
-    Arial,
-    sans-serif;
-  letter-spacing: -0.07em;
-}
 .um-entrada {
   font:
     400 clamp(1.75rem, 3.4vw, 3.5rem)/1.15 "Prisma Titulo",
@@ -336,19 +291,6 @@
     gap: 12px;
     font-size: 0.9375rem;
   }
-  .um-portada {
-    grid-template-columns: 1fr;
-    min-height: 0;
-  }
-  .um-portada-imagen {
-    height: 400px;
-  }
-  .um-recorte {
-    font-size: 6rem;
-  }
-  .um-portada-texto {
-    padding-block: 32px;
-  }
   .um-lista > li > a {
     grid-template-columns: 1fr;
   }
@@ -377,37 +319,126 @@
     max-height: 500px;
   }
 }
-/* Apertura de revista: una cabecera monumental organiza toda la composición. */
+
 .um-portada {
-  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
-  grid-template-rows: auto minmax(0, 1fr);
-  min-height: 0;
-  padding: 36px clamp(18px, 4vw, 64px) 0;
-  column-gap: 32px;
+  background: #181c1b;
+  color: #faf6ec;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: center;
+  padding: clamp(20px, 4vw, 64px);
+  gap: 5vw;
 }
-.um-portada .um-masthead {
-  grid-column: 1 / -1;
-  font-size: clamp(5rem, 21vw, 22rem);
-  line-height: 0.8;
-  letter-spacing: -0.075em;
-  margin-bottom: 24px;
+.um-cartel {
+  position: relative;
+  aspect-ratio: 2/3;
+  width: 100%;
+  max-width: 510px;
+  justify-self: center;
+  isolation: isolate;
+  overflow: hidden;
+  container-type: inline-size;
+  background: #171b1a;
 }
-.um-portada-imagen {
-  grid-row: 2;
-  grid-column: 2;
-  min-width: 0;
-  min-height: 0;
-  height: min(65svh, 650px);
-}
-.um-portada-imagen > img {
+.um-cartel img {
+  width: 100%;
+  height: 100%;
   position: absolute;
   inset: 0;
-  object-position: center 22%;
+  object-fit: fill;
+  filter: grayscale(1);
+}
+.um-cartel > img {
+  opacity: 0.48;
+}
+.um-letras {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font:
+    800 35cqw/0.91 "Rubor Texto",
+    Arial,
+    sans-serif;
+  letter-spacing: -0.085em;
+  color: #fff6df;
+}
+.um-letras span:last-child {
+  align-self: flex-end;
+  color: #ffd09a;
+}
+.um-silueta {
+  position: absolute;
+  inset: 0;
+  clip-path: polygon(
+    46% 16%,
+    50% 15%,
+    56% 16%,
+    59% 18%,
+    56% 25%,
+    63% 28%,
+    67% 49%,
+    66% 55%,
+    60% 56%,
+    58% 52%,
+    56% 73%,
+    57% 85%,
+    54% 87%,
+    50% 86%,
+    49% 81%,
+    45% 84%,
+    42% 83%,
+    43% 77%,
+    40% 66%,
+    38% 53%,
+    36% 51%,
+    34% 55%,
+    30% 55%,
+    31% 51%,
+    34% 50%,
+    36% 36%,
+    39% 29%,
+    46% 26%,
+    47% 23%,
+    45% 21%
+  );
 }
 .um-portada-texto {
-  grid-row: 2;
   grid-column: 1;
-  padding: 24px 0 40px;
+  grid-row: 1;
+}
+.um-cartel {
+  grid-column: 2;
+  grid-row: 1;
+}
+.um-portada h1 {
+  font:
+    800 clamp(4rem, 8vw, 9rem)/1 "Rubor Texto",
+    Arial,
+    sans-serif;
+  letter-spacing: -0.08em;
+  padding-bottom: 0.18em;
+  border-bottom: 1px solid #828883;
+}
+.um-disciplina {
+  margin: 1rem 0 2rem;
+  color: #ffd09a;
+}
+.um-portada h2 {
+  font:
+    400 clamp(2.5rem, 5vw, 5rem)/1.05 "Prisma Titulo",
+    Georgia,
+    serif;
+  margin-bottom: 1rem;
+}
+.um-portada .um-principal {
+  margin-block: 1.4rem;
+  background: #faf6ec;
+  color: #171b1a;
+}
+.um-portada .um-nota {
+  color: #ced2cb;
 }
 .um-lista img {
   object-position: center 30%;
@@ -415,19 +446,17 @@
 @media (max-width: 640px) {
   .um-portada {
     grid-template-columns: 1fr;
-    padding: 24px 18px 0;
+    gap: 18px;
   }
-  .um-portada .um-masthead {
-    font-size: 21vw;
-    margin-bottom: 18px;
-  }
-  .um-portada-imagen {
-    grid-row: 2;
-    grid-column: 1;
-    height: 400px;
-  }
+  .um-cartel,
   .um-portada-texto {
-    grid-row: 3;
     grid-column: 1;
+    grid-row: auto;
+  }
+  .um-portada h1 {
+    font-size: 3rem;
+  }
+  .um-disciplina {
+    margin-bottom: 1rem;
   }
 }
