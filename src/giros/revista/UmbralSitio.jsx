@@ -93,23 +93,27 @@ function Inicio() {
   return (
     <main id="um-contenido" className="um-main">
       <section className="um-portada" aria-labelledby="um-titulo">
-        <h1 id="um-titulo" className="um-masthead">
-          Umbral
-        </h1>
-        <div className="um-portada-imagen">
-          <Imagen src={d.foto} alt="Retrato ilustrativo para el ensayo Entre líneas" eager />
-          <span className="um-recorte" aria-hidden="true">
-            Entre
-            <br />
-            líneas
-          </span>
+        <div className="um-cartel">
+          <Imagen
+            src={d.foto}
+            alt="Un fotógrafo camina por la calle con la cámara en la mano."
+            eager
+          />
+          <div className="um-letras" aria-hidden="true">
+            <span>Entre</span>
+            <span>líneas</span>
+          </div>
+          <div className="um-silueta" aria-hidden="true">
+            <Imagen src={d.foto} alt="" eager />
+          </div>
         </div>
         <div className="um-portada-texto">
-          <p className="um-entrada">Historias que empiezan en la mirada.</p>
-          <p>
-            Una imagen puede abrir una conversación. Dos dossiers para descubrir cómo se construye
-            un relato visual.
+          <h1 id="um-titulo">Umbral</h1>
+          <p className="um-disciplina">
+            {d.disciplina} / {d.autor}
           </p>
+          <h2>Entre líneas</h2>
+          <p>{d.entradilla}</p>
           <Link className="um-boton um-principal" to={`/revista/umbral/dossier/${d.id}`}>
             Leer Entre líneas
           </Link>
