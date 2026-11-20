@@ -1,3 +1,4 @@
+import AperturaLineas, { ArteLineas } from "./components/EntreLineas"
 import { useState } from "react"
 import { Link, Navigate, Route, Routes, useParams } from "react-router-dom"
 import useFavicon from "../../hooks/useFavicon"
@@ -100,22 +101,7 @@ function Cartel({ d, eager = false, mini = false }) {
         </span>
       </div>
     )
-  return (
-    <div className="um-cartel">
-      <Imagen
-        src={src}
-        alt="Un fotógrafo camina por la calle con la cámara en la mano."
-        eager={eager}
-      />
-      <div className="um-letras" aria-hidden="true">
-        <span>Entre</span>
-        <span>líneas</span>
-      </div>
-      <div className="um-silueta" aria-hidden="true">
-        <Imagen src={src} alt="" eager={eager} />
-      </div>
-    </div>
-  )
+  return <ArteLineas src={src} />
 }
 const etapas = ["Original", "Encuadre", "Composición final"]
 function Comparador({ d }) {
@@ -164,23 +150,7 @@ function Inicio() {
   )
   return (
     <main id="um-contenido" className="um-main">
-      <section className="um-portada" aria-labelledby="um-titulo">
-        <Cartel d={d} eager />
-        <div className="um-portada-texto">
-          <h1 id="um-titulo">Umbral</h1>
-          <p className="um-disciplina">
-            {d.disciplina} / {d.autor}
-          </p>
-          <h2>Entre líneas</h2>
-          <p>{d.entradilla}</p>
-          <Link className="um-boton um-principal" to={`/revista/umbral/dossier/${d.id}`}>
-            Leer Entre líneas
-          </Link>
-          <p className="um-nota">
-            Publicación ficticia. Relatos y creador de ejemplo; fotografías ilustrativas.
-          </p>
-        </div>
-      </section>
+      <AperturaLineas d={d} inicio />
       <Indice />
       <section className="um-estudio">
         <h2>Antes de la imagen final</h2>
@@ -204,25 +174,39 @@ function Dossier() {
   if (!d) return <Navigate to="/revista/umbral" replace />
   return (
     <main id="um-contenido" className="um-main" style={{ "--um-acento": d.color }}>
-      <header className="um-apertura">
-        <nav aria-label="Ruta">
-          <Link to="/revista/umbral">Umbral</Link> / {d.disciplina}
-        </nav>
-        <h1>{d.titulo}</h1>
-        <p className="um-entrada">{d.entradilla}</p>
-        <p>
-          Por <Link to="/revista/umbral/creador/nicolas-vera">{d.autor}</Link> · Relato ficticio
-        </p>
-        <Guardar d={d} />
-      </header>
-      <figure className="um-foto-abierta">
-        <Cartel d={d} eager />
-        <figcaption>
-          Fotografía ilustrativa de Unsplash; la persona no es el creador ni un protagonista real
-          del relato. <Link to="/revista/umbral/creditos">Ver procedencia</Link>.
-        </figcaption>
-      </figure>
-      <section className="um-lectura" aria-label="Lectura del dossier">
+      {d.id === "entre-lineas" ? (
+        <>
+          <AperturaLineas d={d}>
+            <Guardar d={d} />
+          </AperturaLineas>
+          <p className="um-fuente">
+            Relato ficticio · Fotografía ilustrativa de Unsplash ·{" "}
+            <Link to="/revista/umbral/creditos">Ver procedencia</Link>
+          </p>
+        </>
+      ) : (
+        <>
+          <header className="um-apertura">
+            <nav aria-label="Ruta">
+              <Link to="/revista/umbral">Umbral</Link> / {d.disciplina}
+            </nav>
+            <h1>{d.titulo}</h1>
+            <p className="um-entrada">{d.entradilla}</p>
+            <p>
+              Por <Link to="/revista/umbral/creador/nicolas-vera">{d.autor}</Link> · Relato ficticio
+            </p>
+            <Guardar d={d} />
+          </header>
+          <figure className="um-foto-abierta">
+            <Cartel d={d} eager />
+            <figcaption>
+              Fotografía ilustrativa de Unsplash; la persona no es el creador ni un protagonista
+              real del relato. <Link to="/revista/umbral/creditos">Ver procedencia</Link>.
+            </figcaption>
+          </figure>
+        </>
+      )}
+      <section id="relato" className="um-lectura" aria-label="Lectura del dossier">
         <div className="um-modos" role="group" aria-label="Vista del dossier">
           <button type="button" aria-pressed={!proceso} onClick={() => setProceso(false)}>
             Leer historia

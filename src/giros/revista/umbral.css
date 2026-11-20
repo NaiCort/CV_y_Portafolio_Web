@@ -534,3 +534,96 @@
 .um-comparador .um-modos {
   flex-wrap: wrap;
 }
+.um-pliego,
+.um-arte {
+  background: #10100f;
+  color: #f7f1df;
+}
+.um-pliego {
+  padding: clamp(18px, 3vw, 48px);
+}
+.um-arte svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.um-arte .um-paisaje {
+  display: none;
+}
+.um-arte-amplia {
+  max-width: 1080px;
+  margin: auto;
+}
+.um-lista .um-arte {
+  width: 100%;
+  max-width: 230px;
+}
+.um-folio,
+.um-colofon {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  border-block-end: 1px solid #716956;
+  padding-bottom: 0.6rem;
+}
+.um-folio {
+  font:
+    600 0.9rem/1.4 "Rubor Texto",
+    Arial,
+    sans-serif;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.um-folio h1,
+.um-folio a {
+  font:
+    italic 2rem/1 Georgia,
+    serif;
+  letter-spacing: -0.06em;
+  text-transform: none;
+}
+.um-colofon {
+  border-block: 1px solid #716956;
+  padding-block: 1rem;
+}
+.um-colofon h1,
+.um-colofon h2 {
+  font:
+    italic clamp(2rem, 4vw, 4rem)/1 Georgia,
+    serif;
+}
+.um-colofon p {
+  max-width: 32ch;
+}
+.um-pliego .um-abrir,
+.um-pliego .um-boton {
+  background: #efd4aa;
+  color: #211d17;
+  padding: 0.8rem 1rem;
+}
+.um-fuente {
+  padding: 1rem 4vw;
+  font-size: 0.9rem;
+}
+@media (min-width: 701px) {
+  .um-arte-amplia .um-paisaje {
+    display: block;
+    max-height: 68svh;
+  }
+  .um-arte-amplia .um-vertical {
+    display: none;
+  }
+}
+@media (max-width: 700px) {
+  .um-colofon {
+    flex-wrap: wrap;
+  }
+  .um-colofon p {
+    order: 1;
+    max-width: none;
+  }
+  .um-arte-amplia svg {
+    max-height: 61svh;
+  }
+}
