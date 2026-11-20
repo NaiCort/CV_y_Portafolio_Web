@@ -1,4 +1,30 @@
-# Ficha de identidad · Revista digital: Rubor y Prisma (V4.7)
+# Ficha de identidad · Revista digital: Rubor, Prisma y Umbral (V4.7)
+
+## Ampliación aprobada: Umbral (V4.7.3)
+
+Ian aprobó el nombre Umbral y autorizó comenzar la implementación el 19/11/2026.
+Es la tercera publicación de `/revista`: fotografía, diseño y cultura visual. Primera
+entrega: portada, dos dossiers completos, perfil del creador de ejemplo y guardados.
+No hay pagos ni cuentas reales. Rubor y Prisma siguen en construcción.
+
+- **Dirección «Fragmentos»:** de las referencias de Ian se toman la tipografía monumental,
+  el retrato, los recortes y el proceso creativo. Se mantiene lectura vertical en móvil.
+- **Paleta:** papel frío `#F0F0EB`, tinta `#171B1A`, bosque `#163C35`, acento cobre
+  oscuro `#894530`. El cobre se reserva a acciones y detalles, nunca al texto de lectura.
+- **Tipografía:** Archivo variable local para titulares condensados y controles; Newsreader
+  local para lectura y citas. Se reutilizan archivos OFL con sus licencias existentes.
+- **Retícula:** portada asimétrica, fotografía en una ventana amplia y título que articula
+  la composición; dossiers con texto de hasta 65ch y secuencias fotográficas. Sin tarjetas
+  de servicios, cifras decorativas ni carrusel automático.
+- **Movimiento:** cambios de estado y fundidos de 200 ms; sin scroll intervenido ni
+  animación necesaria para leer. Foco visible y tamaños que respetan el zoom.
+- **Fotografía:** recursos ya alojados y registrados en `medios-origen.json`, con créditos
+  enlazados por pieza. Las personas y las historias son ilustrativas y ficticias.
+- **Primera entrega común:** privacidad con borrado solo de Revista, búsqueda sin recorte
+  de resultados, foco al navegar y marcadores por elemento para no sobrescribir otra pestaña.
+
+La autorización del usuario amplía la ficha original de dos a tres sitios; las reglas
+y decisiones originales que siguen describen las dos publicaciones existentes.
 
 Guía de identidad y calidad visual v1.1 (Documento Maestro, Parte X). Versión 1: 18 de noviembre de 2026. Una sola demo, «Revista digital», con **dos sitios** sobre la misma base, como los dos talleres: **Rubor** (moda y celebridades) y **Prisma** (ciencia y tecnología). Nombres aprobados por Ian. Direcciones elegidas por Ian:
 

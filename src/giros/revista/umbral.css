@@ -1,0 +1,433 @@
+/* Umbral: Fragmentos. La composición se adapta; el texto siempre conserva su orden. */
+.um-root {
+  --um-papel: #f0f0eb;
+  --um-tinta: #171b1a;
+  --um-acento: #163c35;
+  background: var(--um-papel);
+  color: var(--um-tinta);
+  font:
+    400 1rem/1.6 "Rubor Texto",
+    Arial,
+    sans-serif;
+  scrollbar-color: #163c35 #f0f0eb;
+}
+.um-root ::selection {
+  background: #163c35;
+  color: white;
+}
+.um-root :where(a, button, select):focus-visible {
+  outline: 3px solid #894530;
+  outline-offset: 5px;
+}
+.um-root a {
+  color: inherit;
+  text-underline-offset: 0.22em;
+}
+.um-root :where(h1, h2, h3) {
+  text-wrap: balance;
+}
+.um-root button,
+.um-root select {
+  font: inherit;
+}
+.um-cab {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px 30px;
+  padding: 18px clamp(18px, 4vw, 64px);
+  border-bottom: 1px solid #b8bfba;
+}
+.um-cab a {
+  text-decoration: none;
+}
+.um-cab nav {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.um-marca {
+  font:
+    700 1.75rem "Rubor Texto",
+    Arial,
+    sans-serif;
+  letter-spacing: -0.05em;
+}
+.um-main {
+  max-width: 1600px;
+  margin: auto;
+  padding-bottom: 64px;
+}
+.um-portada {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  min-height: min(780px, 90svh);
+}
+.um-portada-imagen {
+  position: relative;
+  overflow: hidden;
+  background: #163c35;
+}
+.um-portada-imagen > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(1);
+  opacity: 0.85;
+}
+.um-recorte {
+  position: absolute;
+  inset: auto 20px 16px;
+  color: #fff;
+  font:
+    800 clamp(4rem, 9.5vw, 10rem)/0.8 "Rubor Texto",
+    Arial,
+    sans-serif;
+  font-stretch: condensed;
+  letter-spacing: -0.07em;
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+.um-portada-texto {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: clamp(24px, 4vw, 64px);
+  gap: 22px;
+}
+.um-portada h1 {
+  font:
+    800 clamp(4rem, 8.5vw, 9rem)/0.85 "Rubor Texto",
+    Arial,
+    sans-serif;
+  letter-spacing: -0.07em;
+}
+.um-entrada {
+  font:
+    400 clamp(1.75rem, 3.4vw, 3.5rem)/1.15 "Prisma Titulo",
+    Georgia,
+    serif;
+  max-width: 20ch;
+}
+.um-portada-texto > p:not(.um-entrada) {
+  max-width: 44ch;
+}
+.um-nota,
+.um-root figcaption {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: #4d5953;
+}
+.um-boton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 10px 20px;
+  border: 1px solid #163c35;
+  border-radius: 0;
+  background: transparent;
+  color: #163c35;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+.um-root .um-principal,
+.um-boton[aria-pressed="true"] {
+  background: #163c35;
+  color: white;
+}
+.um-indice {
+  padding: clamp(40px, 6vw, 96px) clamp(18px, 4vw, 64px);
+  scroll-margin-top: 64px;
+}
+.um-indice-cab {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.um-root h2 {
+  font:
+    500 clamp(1.75rem, 3.2vw, 3rem)/1.1 "Prisma Titulo",
+    Georgia,
+    serif;
+}
+.um-indice select {
+  padding: 8px;
+  margin-left: 8px;
+  border: 1px solid #87968b;
+  max-width: 100%;
+  background: transparent;
+  color: inherit;
+}
+.um-lista {
+  list-style: none;
+  margin-top: 24px;
+  display: grid;
+  gap: 40px;
+}
+.um-lista > li {
+  border-top: 1px solid #9da89f;
+  padding-top: 24px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  gap: 24px;
+}
+.um-lista > li > a {
+  display: grid;
+  grid-template-columns: minmax(140px, 0.7fr) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(20px, 4vw, 56px);
+  text-decoration: none;
+}
+.um-lista img {
+  display: block;
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+}
+.um-lista h3 {
+  font:
+    700 clamp(2rem, 4vw, 4rem)/1 "Rubor Texto",
+    Arial,
+    sans-serif;
+  letter-spacing: -0.05em;
+  margin: 8px 0 16px;
+}
+.um-lista p {
+  max-width: 40ch;
+  margin-bottom: 20px;
+}
+.um-estudio {
+  background: #163c35;
+  color: #f0f0eb;
+  padding: 64px clamp(18px, 6vw, 96px);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px 64px;
+}
+.um-estudio p {
+  max-width: 50ch;
+}
+.um-estudio a {
+  grid-column: 2;
+}
+.um-apertura {
+  padding: clamp(32px, 6vw, 96px) clamp(18px, 7vw, 112px);
+  display: grid;
+  gap: 24px;
+}
+.um-apertura h1 {
+  font:
+    800 clamp(3rem, 8.5vw, 8rem)/0.92 "Rubor Texto",
+    Arial,
+    sans-serif;
+  letter-spacing: -0.06em;
+}
+.um-apertura > p {
+  max-width: 65ch;
+}
+.um-apertura .um-boton {
+  justify-self: start;
+}
+.um-foto-abierta {
+  padding: 0 clamp(18px, 7vw, 112px);
+}
+.um-foto-abierta img {
+  display: block;
+  width: 100%;
+  max-height: 760px;
+  object-fit: contain;
+  background: #d8ddd6;
+}
+.um-root figcaption {
+  padding-top: 12px;
+}
+.um-lectura {
+  max-width: 800px;
+  margin: 56px auto 0;
+  padding: 0 22px;
+}
+.um-lectura article {
+  display: grid;
+  gap: 40px;
+  font:
+    400 1.25rem/1.75 "Prisma Titulo",
+    Georgia,
+    serif;
+}
+.um-lectura article section p {
+  margin-top: 18px;
+}
+.um-lectura blockquote {
+  margin-top: 32px;
+  font-size: 1.65rem;
+  color: var(--um-acento);
+}
+.um-modos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+.um-modos button {
+  padding: 10px 0;
+  margin-right: 16px;
+  border: 0;
+  border-bottom: 3px solid transparent;
+  background: transparent;
+  cursor: pointer;
+  color: #46564c;
+}
+.um-modos [aria-pressed="true"] {
+  border-color: var(--um-acento);
+  color: var(--um-tinta);
+}
+.um-proceso ol {
+  padding-left: 24px;
+  margin: 24px 0;
+  display: grid;
+  gap: 18px;
+  font-size: 1.125rem;
+}
+.um-lectura figure {
+  margin: 48px 0;
+}
+.um-lectura figure img {
+  width: 100%;
+  height: auto;
+  max-height: 600px;
+  object-fit: contain;
+}
+.um-pie {
+  display: grid;
+  gap: 20px;
+  padding: 48px clamp(18px, 6vw, 96px) 72px;
+  background: #171b1a;
+  color: #f0f0eb;
+}
+.um-pie b {
+  font-size: 3rem;
+  letter-spacing: -0.05em;
+}
+.um-pie p {
+  max-width: 65ch;
+}
+@media (max-width: 900px) {
+  .um-lista > li {
+    grid-template-columns: 1fr;
+  }
+  .um-lista .um-boton {
+    justify-self: start;
+  }
+}
+@media (max-width: 640px) {
+  .um-cab {
+    gap: 12px;
+  }
+  .um-cab nav {
+    width: 100%;
+    justify-content: space-between;
+    gap: 12px;
+    font-size: 0.9375rem;
+  }
+  .um-portada {
+    grid-template-columns: 1fr;
+    min-height: 0;
+  }
+  .um-portada-imagen {
+    height: 400px;
+  }
+  .um-recorte {
+    font-size: 6rem;
+  }
+  .um-portada-texto {
+    padding-block: 32px;
+  }
+  .um-lista > li > a {
+    grid-template-columns: 1fr;
+  }
+  .um-lista img {
+    height: 340px;
+  }
+  .um-estudio {
+    grid-template-columns: 1fr;
+  }
+  .um-estudio a {
+    grid-column: auto;
+  }
+}
+@media print {
+  .um-cab,
+  .um-boton,
+  .um-modos,
+  .um-pie {
+    display: none;
+  }
+  .um-root {
+    background: white;
+    color: black;
+  }
+  .um-root img {
+    max-height: 500px;
+  }
+}
+/* Apertura de revista: una cabecera monumental organiza toda la composición. */
+.um-portada {
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  grid-template-rows: auto minmax(0, 1fr);
+  min-height: 0;
+  padding: 36px clamp(18px, 4vw, 64px) 0;
+  column-gap: 32px;
+}
+.um-portada .um-masthead {
+  grid-column: 1 / -1;
+  font-size: clamp(5rem, 21vw, 22rem);
+  line-height: 0.8;
+  letter-spacing: -0.075em;
+  margin-bottom: 24px;
+}
+.um-portada-imagen {
+  grid-row: 2;
+  grid-column: 2;
+  min-width: 0;
+  min-height: 0;
+  height: min(65svh, 650px);
+}
+.um-portada-imagen > img {
+  position: absolute;
+  inset: 0;
+  object-position: center 22%;
+}
+.um-portada-texto {
+  grid-row: 2;
+  grid-column: 1;
+  padding: 24px 0 40px;
+}
+.um-lista img {
+  object-position: center 30%;
+}
+@media (max-width: 640px) {
+  .um-portada {
+    grid-template-columns: 1fr;
+    padding: 24px 18px 0;
+  }
+  .um-portada .um-masthead {
+    font-size: 21vw;
+    margin-bottom: 18px;
+  }
+  .um-portada-imagen {
+    grid-row: 2;
+    grid-column: 1;
+    height: 400px;
+  }
+  .um-portada-texto {
+    grid-row: 3;
+    grid-column: 1;
+  }
+}

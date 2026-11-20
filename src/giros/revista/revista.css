@@ -168,7 +168,130 @@
     padding-top: 0 !important;
     background: #fff !important;
   }
-  .revista-root > :not(.pr-root, .rb-root) {
+  .revista-root > :not(.pr-root, .rb-root, .um-root, .rv-creditos) {
+    display: none !important;
+  }
+}
+
+/* Tercera publicación y controles comunes: no alteran las otras demos. */
+.rv-entrada {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.rv-puerta {
+  min-height: 640px;
+  padding: clamp(20px, 3vw, 48px);
+}
+.rv-puerta-texto b {
+  font-size: clamp(2.5rem, 5.5vw, 6rem);
+}
+.rv-puerta-umbral {
+  background: #163c35;
+}
+.rv-puerta-umbral img {
+  filter: grayscale(1) brightness(0.4);
+}
+.rv-puerta-umbral .rv-puerta-texto b {
+  font-family: "Rubor Texto", Arial, sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.06em;
+}
+.rv-saltar {
+  position: fixed;
+  left: 16px;
+  top: 50px;
+  z-index: 999;
+  padding: 12px 18px;
+  background: white;
+  color: #171b1a;
+  transform: translateY(-180px);
+}
+.rv-saltar:focus {
+  transform: none;
+}
+.rv-utilidades {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 28px;
+  padding: 24px 24px 64px;
+  background: #171b1a;
+  color: #f0f0eb;
+  font:
+    400 1rem/1.5 "Rubor Texto",
+    Arial,
+    sans-serif;
+}
+.rv-utilidades button,
+.rv-utilidades a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  padding: 10px 0;
+}
+.rv-utilidades p {
+  width: 100%;
+}
+.rv-utilidades :focus-visible,
+.rv-creditos a:focus-visible {
+  outline: 3px solid #e1b482;
+  outline-offset: 4px;
+}
+.rv-privacidad {
+  display: grid;
+  gap: 18px;
+  line-height: 1.6;
+}
+.rv-borrar {
+  background: #fff;
+  color: #171b1a;
+  padding: 12px;
+  border: 1px solid #aaa;
+  cursor: pointer;
+}
+.rv-creditos {
+  background: #f0f0eb;
+  color: #171b1a;
+  padding: 40px max(20px, calc((100% - 900px) / 2));
+  font:
+    400 1rem/1.6 "Rubor Texto",
+    Arial,
+    sans-serif;
+  overflow-wrap: anywhere;
+}
+.rv-creditos h1 {
+  font-size: clamp(2rem, 5vw, 4rem);
+}
+.rv-creditos h2 {
+  font-size: 1.5rem;
+  margin: 32px 0 12px;
+}
+.rv-creditos ul {
+  padding-left: 22px;
+  list-style: disc;
+}
+.rv-creditos li {
+  margin: 12px 0;
+}
+.rv-creditos a {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+@media (max-width: 900px) {
+  .rv-entrada {
+    grid-template-columns: 1fr;
+  }
+  .rv-puerta {
+    min-height: 520px;
+  }
+  .rv-puerta-texto b {
+    font-size: 4rem;
+  }
+}
+@media print {
+  .rv-utilidades,
+  .rv-saltar {
     display: none !important;
   }
 }
