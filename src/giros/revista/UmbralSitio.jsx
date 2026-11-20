@@ -63,7 +63,7 @@ function Indice({ guardados = false }) {
           {lista.map((d) => (
             <li key={d.id}>
               <Link to={`/revista/umbral/dossier/${d.id}`}>
-                <Imagen src={d.mini} alt="Fotografía ilustrativa de este dossier" />
+                <Cartel d={d} mini />
                 <div>
                   <span>{d.disciplina}</span>
                   <h3>{d.titulo}</h3>
@@ -84,6 +84,78 @@ function Indice({ guardados = false }) {
     </section>
   )
 }
+function Cartel({ d, eager = false, mini = false }) {
+  const src = mini ? d.mini : d.foto
+  if (d.id === "otra-perspectiva")
+    return (
+      <div className="um-perspectiva">
+        <Imagen src={src} alt="Retrato de perfil bajo luz de neón" eager={eager} />
+        <div className="um-franja" aria-hidden="true">
+          <Imagen src={src} alt="" eager={eager} />
+        </div>
+        <span aria-hidden="true">
+          Otra
+          <br />
+          perspectiva
+        </span>
+      </div>
+    )
+  return (
+    <div className="um-cartel">
+      <Imagen
+        src={src}
+        alt="Un fotógrafo camina por la calle con la cámara en la mano."
+        eager={eager}
+      />
+      <div className="um-letras" aria-hidden="true">
+        <span>Entre</span>
+        <span>líneas</span>
+      </div>
+      <div className="um-silueta" aria-hidden="true">
+        <Imagen src={src} alt="" eager={eager} />
+      </div>
+    </div>
+  )
+}
+const etapas = ["Original", "Encuadre", "Composición final"]
+function Comparador({ d }) {
+  const [etapa, cambiar] = useState(0)
+  const notas =
+    d.id === "entre-lineas"
+      ? [
+          "La calle rodea al fotógrafo.",
+          "El recorte acerca la mirada al gesto.",
+          "La silueta interrumpe las letras del título.",
+        ]
+      : [
+          "El perfil se distingue bajo la luz de color.",
+          "El recorte concentra la atención en el rostro.",
+          "Una banda diagonal desplaza el perfil y repite su contorno.",
+        ]
+  return (
+    <section className="um-comparador" aria-label="Comparar etapas del cartel">
+      <div className="um-modos" role="group" aria-label="Etapa del cartel">
+        {etapas.map((e, i) => (
+          <button type="button" key={e} aria-pressed={i === etapa} onClick={() => cambiar(i)}>
+            {e}
+          </button>
+        ))}
+      </div>
+      <div className="um-prueba">
+        {etapa === 2 ? (
+          <Cartel d={d} />
+        ) : (
+          <img
+            className={etapa === 1 ? "um-zoom" : ""}
+            src={d.foto}
+            alt={d.id === "entre-lineas" ? "Fotógrafo en la calle" : "Perfil bajo luz de neón"}
+          />
+        )}
+      </div>
+      <p aria-live="polite">{notas[etapa]}</p>
+    </section>
+  )
+}
 function Inicio() {
   const d = DOSSIERS[0]
   usePageMetadata(
@@ -93,20 +165,7 @@ function Inicio() {
   return (
     <main id="um-contenido" className="um-main">
       <section className="um-portada" aria-labelledby="um-titulo">
-        <div className="um-cartel">
-          <Imagen
-            src={d.foto}
-            alt="Un fotógrafo camina por la calle con la cámara en la mano."
-            eager
-          />
-          <div className="um-letras" aria-hidden="true">
-            <span>Entre</span>
-            <span>líneas</span>
-          </div>
-          <div className="um-silueta" aria-hidden="true">
-            <Imagen src={d.foto} alt="" eager />
-          </div>
-        </div>
+        <Cartel d={d} eager />
         <div className="um-portada-texto">
           <h1 id="um-titulo">Umbral</h1>
           <p className="um-disciplina">
@@ -157,7 +216,7 @@ function Dossier() {
         <Guardar d={d} />
       </header>
       <figure className="um-foto-abierta">
-        <Imagen src={d.foto} alt="Fotografía ilustrativa del dossier, mostrada completa" eager />
+        <Cartel d={d} eager />
         <figcaption>
           Fotografía ilustrativa de Unsplash; la persona no es el creador ni un protagonista real
           del relato. <Link to="/revista/umbral/creditos">Ver procedencia</Link>.
@@ -175,6 +234,7 @@ function Dossier() {
         {proceso ? (
           <div className="um-proceso">
             <h2>Cómo se construye esta pieza</h2>
+            <Comparador d={d} />
             <ol>
               {d.proceso.map((p) => (
                 <li key={p}>{p}</li>
