@@ -1,3 +1,7 @@
+## V4.7.4 · Carteles y proceso creativo de Umbral
+
+- Dos portadas editoriales en el índice y los dossiers. Comparación de original, encuadre y composición final.
+
 # V4.7.2 · 19 de noviembre de 2026 · Prisma, lectura completa y PDF
 
 ## V4.7.3 · Umbral y base compartida de Revista

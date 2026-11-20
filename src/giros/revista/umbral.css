@@ -460,3 +460,77 @@
     margin-bottom: 1rem;
   }
 }
+.um-perspectiva {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  width: 100%;
+  max-width: 510px;
+  aspect-ratio: 2/3;
+  background: #241229;
+  container-type: inline-size;
+}
+.um-root .um-perspectiva img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.um-franja {
+  position: absolute;
+  inset: 0;
+  clip-path: polygon(74% 0, 100% 0, 26% 100%, 0 100%);
+  background: #ffaf75;
+}
+.um-perspectiva .um-franja img {
+  transform: translateX(5%) scale(1.08);
+  filter: grayscale(1);
+  mix-blend-mode: luminosity;
+}
+.um-perspectiva > span {
+  position: absolute;
+  inset: auto 0 0;
+  padding: 18% 4% 5%;
+  font:
+    italic 700 16cqw/0.95 Georgia,
+    serif;
+  letter-spacing: -0.065em;
+  color: white;
+  background: linear-gradient(transparent, #241229);
+}
+.um-foto-abierta > div,
+.um-prueba {
+  margin-inline: auto;
+}
+.um-lista .um-cartel,
+.um-lista .um-perspectiva {
+  grid-area: auto;
+  max-width: 230px;
+  justify-self: start;
+}
+.um-root .um-cartel img {
+  height: 100%;
+  object-fit: fill;
+  background: transparent;
+}
+.um-prueba {
+  position: relative;
+  width: min(100%, 420px);
+  aspect-ratio: 2/3;
+  overflow: hidden;
+  background: #171b1a;
+}
+.um-prueba > img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.um-prueba > img.um-zoom {
+  object-fit: cover;
+  transform: scale(1.7);
+  transform-origin: 50% 25%;
+}
+.um-comparador .um-modos {
+  flex-wrap: wrap;
+}
