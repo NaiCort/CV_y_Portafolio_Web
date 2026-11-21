@@ -38,7 +38,7 @@ function Imagen({ src, alt, className = "", eager = false }) {
     />
   )
 }
-function Indice({ guardados = false }) {
+function Indice({ guardados = false, sumario = false }) {
   const [disciplina, setDisciplina] = useState("Todas")
   const [ids] = useMarcadores("umbral")
   const lista = DOSSIERS.filter(
@@ -46,9 +46,15 @@ function Indice({ guardados = false }) {
       (!guardados || ids.includes(d.id)) && (disciplina === "Todas" || d.disciplina === disciplina),
   )
   return (
-    <section className="um-indice" id="dossiers" aria-labelledby="um-indice-titulo">
+    <section
+      className={sumario ? "um-indice um-sumario" : "um-indice"}
+      id="dossiers"
+      aria-labelledby="um-indice-titulo"
+    >
       <div className="um-indice-cab">
-        <h2 id="um-indice-titulo">{guardados ? "Tus guardados" : "Dossiers abiertos"}</h2>
+        <h2 id="um-indice-titulo">
+          {guardados ? "Tus guardados" : sumario ? "Sumario" : "Dossiers abiertos"}
+        </h2>
         <label>
           Disciplina{" "}
           <select value={disciplina} onChange={(e) => setDisciplina(e.target.value)}>
@@ -64,9 +70,18 @@ function Indice({ guardados = false }) {
       {lista.length ? (
         <ul className="um-lista">
           {lista.map((d) => (
-            <li key={d.id}>
+            <li key={d.id} data-dossier={d.id}>
               <Link to={`/revista/umbral/dossier/${d.id}`}>
-                <Cartel d={d} mini />
+                {sumario ? (
+                  <div className="um-vineta" aria-hidden="true">
+                    <img src={d.mini} alt="" loading="lazy" decoding="async" />
+                    <span>
+                      <img src={d.mini} alt="" loading="lazy" decoding="async" />
+                    </span>
+                  </div>
+                ) : (
+                  <Cartel d={d} mini />
+                )}
                 <div>
                   <span>{d.disciplina}</span>
                   <h3>{d.titulo}</h3>
@@ -153,7 +168,7 @@ function Inicio() {
   return (
     <main id="um-contenido" className="um-main">
       <AperturaLineas d={d} inicio />
-      <Indice />
+      <Indice sumario />
       <section className="um-estudio">
         <h2>Antes de la imagen final</h2>
         <p>

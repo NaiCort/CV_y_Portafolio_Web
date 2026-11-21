@@ -1,3 +1,7 @@
+## V4.7.11 · Sumario de Umbral
+
+- Dos entradas a sangre con recortes específicos, filtro de disciplina y guardado desde el sumario.
+
 ## V4.7.10 · Entre líneas, del espacio al detalle
 
 - Apertura en díptico a ancho de escritorio, título con Archivo local y tres pliegos con encuadres de calle, gesto y cámara.
