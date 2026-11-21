@@ -56,6 +56,7 @@ La versión en inglés (Sitio Profesional, sección 25) va después del CV en es
 - Cabecera exclusiva de celular con la lista de demos desplegable y el botón al cotizador.
 
 **Decisiones de Ian (21/11/2026):**
+- Este proyecto es la **versión 1 del CV y portafolio web**. Al terminarlo solo se actualiza para añadir experiencia y conocimientos. Un CV o portafolio futuro sería la v2, con su propio código y repositorio, y este quedaría como la v1.
 - Foto: por ahora una imagen provisional. Ian dará la suya.
 - PDF: solo el CV de noviembre (`public/cv/`). El visual se publica cuando Ian lo actualice.
 - Demos próximas: ninguna por ahora. El catálogo ya admite el estado para el futuro.
