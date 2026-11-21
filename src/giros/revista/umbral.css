@@ -37,7 +37,8 @@
   flex-wrap: wrap;
   gap: 12px 30px;
   padding: 18px clamp(18px, 4vw, 64px);
-  border-bottom: 1px solid #b8bfba;
+  background: #10100f;
+  color: #f7f1df;
 }
 .um-cab a {
   text-decoration: none;
@@ -55,9 +56,8 @@
   letter-spacing: -0.05em;
 }
 .um-main {
-  max-width: 1600px;
-  margin: auto;
-  padding-bottom: 64px;
+  width: 100%;
+  margin: 0;
 }
 .um-entrada {
   font:
@@ -191,7 +191,7 @@
   justify-self: start;
 }
 .um-foto-abierta {
-  padding: 0 clamp(18px, 7vw, 112px);
+  margin: 0;
 }
 .um-foto-abierta img {
   display: block;
@@ -204,9 +204,11 @@
   padding-top: 12px;
 }
 .um-lectura {
-  max-width: 800px;
-  margin: 56px auto 0;
-  padding: 0 22px;
+  padding-block: clamp(32px, 6vw, 96px);
+}
+.um-lectura > :not(figure) {
+  width: min(100% - 36px, 756px);
+  margin-inline: auto;
 }
 .um-lectura article {
   display: grid;
@@ -540,7 +542,7 @@
   color: #f7f1df;
 }
 .um-pliego {
-  padding: clamp(18px, 3vw, 48px);
+  padding: 0;
 }
 .um-arte svg {
   width: 100%;
@@ -551,8 +553,7 @@
   display: none;
 }
 .um-arte-amplia {
-  max-width: 1080px;
-  margin: auto;
+  width: 100%;
 }
 .um-lista .um-arte {
   width: 100%;
@@ -564,8 +565,7 @@
   justify-content: space-between;
   align-items: center;
   gap: 1rem;
-  border-block-end: 1px solid #716956;
-  padding-bottom: 0.6rem;
+  padding: 0.75rem clamp(18px, 4vw, 64px);
 }
 .um-folio {
   font:
@@ -584,7 +584,6 @@
   text-transform: none;
 }
 .um-colofon {
-  border-block: 1px solid #716956;
   padding-block: 1rem;
 }
 .um-colofon h1,
@@ -609,7 +608,6 @@
 @media (min-width: 701px) {
   .um-arte-amplia .um-paisaje {
     display: block;
-    max-height: 68svh;
   }
   .um-arte-amplia .um-vertical {
     display: none;
@@ -623,7 +621,40 @@
     order: 1;
     max-width: none;
   }
-  .um-arte-amplia svg {
-    max-height: 61svh;
-  }
+}
+
+.um-foto-abierta > .um-perspectiva {
+  max-width: none;
+  aspect-ratio: auto;
+  height: clamp(440px, 84svh, 960px);
+}
+.um-foto-abierta .um-perspectiva img {
+  max-height: none;
+  object-position: center 35%;
+}
+.um-foto-abierta .um-perspectiva > span {
+  font-size: clamp(3rem, 10vw, 9rem);
+}
+.um-lectura > figure {
+  margin-inline: 0;
+}
+.um-lectura > figure > img {
+  display: block;
+  max-height: none;
+  height: clamp(420px, 82svh, 960px);
+  object-fit: cover;
+  object-position: center 32%;
+}
+.um-foto-abierta figcaption,
+.um-lectura > figure figcaption {
+  padding-inline: clamp(18px, 4vw, 64px);
+}
+.um-estudio,
+.um-indice {
+  min-height: 75svh;
+  align-content: center;
+}
+html:has(.um-root) {
+  scrollbar-gutter: auto;
+  background: #10100f;
 }
