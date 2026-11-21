@@ -185,7 +185,7 @@
   font-size: clamp(2.5rem, 5.5vw, 6rem);
 }
 .rv-puerta-umbral {
-  background: #163c35;
+  background: #0d0d0e;
 }
 .rv-puerta-umbral img {
   filter: grayscale(1) brightness(0.4);
@@ -295,36 +295,148 @@
     display: none !important;
   }
 }
+/* Música: bocina transparente fija abajo a la derecha; el volumen se despliega hacia arriba. */
 .rv-musica {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  flex-wrap: wrap;
-  gap: 0.4rem 1rem;
-  padding: 0.35rem clamp(12px, 3vw, 40px);
-  background: #17191c;
-  color: #faf8f4;
-  font:
-    0.875rem/1.4 system-ui,
-    sans-serif;
+  --rv-vidrio: rgb(14 14 16 / 34%);
+  --rv-borde: rgb(255 255 255 / 42%);
+  position: fixed;
+  right: max(16px, env(safe-area-inset-right));
+  bottom: max(16px, env(safe-area-inset-bottom));
+  z-index: 40;
+  display: grid;
+  justify-items: center;
+  color: #fff;
 }
-.rv-musica button {
-  padding: 0.45rem 0.6rem;
-  text-decoration: underline;
-  text-underline-offset: 0.2em;
+.rv-bocina {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  padding: 0;
+  border: 1px solid var(--rv-borde);
+  border-radius: 50%;
+  background: var(--rv-vidrio);
+  -webkit-backdrop-filter: blur(10px) saturate(1.2);
+  backdrop-filter: blur(10px) saturate(1.2);
+  color: inherit;
+  cursor: pointer;
+  box-shadow: 0 6px 22px -10px rgb(0 0 0 / 70%);
+  transition:
+    background 200ms ease-out,
+    transform 200ms ease-out;
 }
-.rv-musica label {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
+.rv-bocina:hover {
+  background: rgb(14 14 16 / 50%);
 }
-.rv-musica input {
-  width: 6rem;
-  accent-color: #efc26e;
+.rv-bocina:active {
+  transform: scale(0.95);
+}
+.rv-onda {
+  animation: rv-onda 1.8s ease-in-out infinite;
+}
+.rv-onda-2 {
+  animation-delay: 0.3s;
+}
+@keyframes rv-onda {
+  50% {
+    opacity: 0.35;
+  }
+}
+/* El volumen vive encima de la bocina, dentro de la misma caja: el cursor puede subir del botón
+   a la barra sin que se cierre. */
+.rv-volumen {
+  position: absolute;
+  bottom: 100%;
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 150px;
+  padding-bottom: 10px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px) scale(0.95);
+  transform-origin: bottom center;
+  transition:
+    opacity 200ms ease-out,
+    transform 220ms ease-out,
+    visibility 0s linear 220ms;
+}
+.rv-volumen::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 10px;
+  border: 1px solid var(--rv-borde);
+  border-radius: 23px;
+  background: var(--rv-vidrio);
+  -webkit-backdrop-filter: blur(10px) saturate(1.2);
+  backdrop-filter: blur(10px) saturate(1.2);
+}
+.rv-musica[data-abierto] .rv-volumen {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition:
+    opacity 200ms ease-out,
+    transform 220ms ease-out,
+    visibility 0s;
+}
+.rv-volumen input {
+  position: relative;
+  width: 22px;
+  height: 112px;
+  margin: 0;
+  writing-mode: vertical-lr;
+  direction: rtl;
+  background: transparent;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.rv-volumen input::-webkit-slider-runnable-track {
+  width: 4px;
+  border-radius: 2px;
+  background: linear-gradient(to top, #fff var(--v), rgb(255 255 255 / 30%) var(--v));
+}
+.rv-volumen input::-moz-range-track {
+  width: 4px;
+  border-radius: 2px;
+  background: rgb(255 255 255 / 30%);
+}
+.rv-volumen input::-moz-range-progress {
+  width: 4px;
+  border-radius: 2px;
+  background: #fff;
+}
+.rv-volumen input::-webkit-slider-thumb {
+  width: 14px;
+  height: 14px;
+  margin-left: -5px;
+  border: 0;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 6px rgb(0 0 0 / 50%);
+  -webkit-appearance: none;
+  appearance: none;
+}
+.rv-volumen input::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border: 0;
+  border-radius: 50%;
+  background: #fff;
 }
 .rv-musica :focus-visible {
-  outline: 2px solid #efc26e;
-  outline-offset: 2px;
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .rv-onda {
+    animation: none;
+  }
+  .rv-volumen,
+  .rv-musica[data-abierto] .rv-volumen {
+    transform: none;
+  }
 }
 @media print {
   .rv-musica {

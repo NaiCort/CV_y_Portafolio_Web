@@ -1,4 +1,11 @@
-Lectura · 24 segundos.
-Pieza sintetizada para la demo Revista mediante ondas sinusoidales, sin grabaciones ni muestras externas.
-Dedicación al dominio público CC0 1.0 Universal, en la medida permitida por la ley.
-Texto legal: https://creativecommons.org/publicdomain/zero/1.0/legalcode
+Música de Revista: una pista por revista, de Kevin MacLeod (incompetech.com).
+Licencia: Creative Commons Atribución 3.0 (CC BY 3.0). https://creativecommons.org/licenses/by/3.0/
+
+rubor-night-on-the-docks.mp3 · «Night on the Docks - Sax», Kevin MacLeod.
+  Original: https://commons.wikimedia.org/wiki/File:Night_on_the_Docks_-_Sax_(ISRC_USUAN1100137).mp3
+prisma-clean-soul.mp3 · «Clean Soul», Kevin MacLeod.
+  Original: https://commons.wikimedia.org/wiki/File:Clean_Soul_(ISRC_USUAN1300033).mp3
+umbral-dreamer.mp3 · «Dreamer», Kevin MacLeod.
+  Original: https://commons.wikimedia.org/wiki/File:Dreamer_(ISRC_USUAN1600043).mp3
+
+Cambios: recodificadas a MP3 de 112 kb/s, sin metadatos, con entrada de 2 segundos.
