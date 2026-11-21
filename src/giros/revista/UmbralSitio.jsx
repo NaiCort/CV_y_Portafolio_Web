@@ -1,3 +1,4 @@
+import { InteriorLineas } from "./components/InteriorLineas"
 import { Escena, InteriorPerspectiva } from "./components/PliegosPerspectiva"
 import AperturaLineas, { ArteLineas } from "./components/EntreLineas"
 import { useState } from "react"
@@ -216,15 +217,7 @@ function Dossier() {
         ) : d.id === "otra-perspectiva" ? (
           <InteriorPerspectiva d={d} />
         ) : (
-          <article>
-            {d.capitulos.map((s) => (
-              <section key={s.titulo}>
-                <h2>{s.titulo}</h2>
-                <p>{s.texto}</p>
-                {s.cita && <blockquote>{s.cita}</blockquote>}
-              </section>
-            ))}
-          </article>
+          <InteriorLineas d={d} />
         )}
         <figure>
           <Imagen

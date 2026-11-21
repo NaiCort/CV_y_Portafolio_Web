@@ -1,3 +1,4 @@
+import "./interior-lineas.css"
 import { useId } from "react"
 import { Link } from "react-router-dom"
 
@@ -8,7 +9,7 @@ const figura =
 function Lamina({ src, ancha }) {
   const id = useId().replaceAll(":", "")
   const w = ancha ? 480 : 213
-  const x = (w - 213) / 2
+  const x = 0
   return (
     <svg
       className={ancha ? "um-paisaje" : "um-vertical"}
@@ -17,7 +18,13 @@ function Lamina({ src, ancha }) {
       focusable="false"
     >
       <defs>
-        <image id={id + "foto"} href={src} width="213" height="320" preserveAspectRatio="none" />
+        <image
+          id={id + "foto"}
+          href={src}
+          width="213"
+          height="320"
+          preserveAspectRatio="xMidYMid slice"
+        />
         <clipPath id={id + "persona"}>
           <path d={figura} />
         </clipPath>
@@ -25,13 +32,13 @@ function Lamina({ src, ancha }) {
           {["ENTRE", "LÍNEAS"].map((t, i) => (
             <text
               key={t}
-              x="4"
-              y={i === 0 ? 146 : 261}
-              fontSize="152"
-              fontWeight="900"
-              fontFamily="Arial Black, Arial, sans-serif"
-              textLength={w - 8}
-              lengthAdjust="spacingAndGlyphs"
+              x="106.5"
+              textAnchor="middle"
+              y={i === 0 ? 135 : 208}
+              fontSize={i === 0 ? 61 : 54}
+              fontWeight="800"
+              fontFamily="Rubor Texto, Arial, sans-serif"
+              letterSpacing="-2"
             >
               {t}
             </text>
@@ -39,24 +46,20 @@ function Lamina({ src, ancha }) {
         </clipPath>
       </defs>
       <g clipPath={`url(#${id}letra)`}>
-        {ancha && (
-          <>
-            <svg width={x} height="320" viewBox="0 0 60 320" preserveAspectRatio="none">
-              <use href={"#" + id + "foto"} />
-            </svg>
-            <svg
-              x={x + 213}
-              width={x}
-              height="320"
-              viewBox="150 0 63 320"
-              preserveAspectRatio="none"
-            >
-              <use href={"#" + id + "foto"} />
-            </svg>
-          </>
-        )}
         <use href={"#" + id + "foto"} x={x} />
       </g>
+      {ancha && (
+        <svg
+          x="218"
+          y="40"
+          width="257"
+          height="228"
+          viewBox="40 140 95 84"
+          preserveAspectRatio="xMidYMid slice"
+        >
+          <use href={"#" + id + "foto"} />
+        </svg>
+      )}
       <g transform={`translate(${x} 0)`}>
         <use href={"#" + id + "foto"} clipPath={`url(#${id}persona)`} />
       </g>
