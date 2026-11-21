@@ -1,3 +1,4 @@
+import { verificarMusica } from "./revista-musica.mjs"
 import { verificarEnvio } from "./prisma-envio.mjs"
 import assert from "node:assert/strict"
 import { suite, audit as auditar, bounds, dialog, close } from "./restaurant-browser.mjs"
@@ -156,6 +157,7 @@ await suite("revista", async ({ run, base }) => {
           const aislado = await context.browser().newContext({ viewport: { width, height: 900 } })
           try {
             await verificarEnvio(await aislado.newPage(), base)
+            await verificarMusica(await aislado.newPage(), base)
           } finally {
             await aislado.close()
           }

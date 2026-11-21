@@ -1,3 +1,7 @@
+## V4.7.8 · Música ambiental de Revista
+
+- Audio local opcional con volumen, preferencia de reproducción, créditos y borrado desde privacidad.
+
 ## V4.7.7 · Prisma: publicación simulada y exploración por área
 
 - Perfil con seguimiento de envíos, preimpresiones locales, filtros de las 14 áreas y explicación del acceso abierto.

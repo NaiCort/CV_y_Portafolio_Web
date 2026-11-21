@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { Navigate, Route, Routes } from "react-router-dom"
 import DemoBanner from "../../components/shared/DemoBanner"
 import WaterMark from "../../components/WaterMark"
+import Musica from "./components/Musica"
 import Entrada from "./pages/Entrada"
 import UmbralSitio from "./UmbralSitio"
 import PosicionLectura from "./components/PosicionLectura"
@@ -59,6 +60,7 @@ export default function RevistaApp() {
         Saltar al contenido de la revista
       </a>
       <PosicionLectura />
+      <Musica key={`musica-${sesion}`} />
       <Routes key={sesion}>
         <Route index element={<Entrada />} />
         <Route path=":sitio/creditos" element={<Creditos />} />
