@@ -129,16 +129,22 @@ contratarnos». Leer `docs/FICHA_DESPACHO.md` antes de tocar
 
 ## Estado de Revista digital
 
-**Revista = Rubor, Prisma y Umbral** (V4.7, en construcción): una demo con dos sitios en `/revista`. Rubor,
-moda y celebridades, un solo editor, la portada es siempre el número más reciente y se hojea
-bajando; cabecera semitransparente fija con menú de números; cada número con su paleta (N.º 24
-rojo y N.º 23 azul completos, 22 de archivo). Prisma, ciencia y tecnología en acceso abierto,
-varios autores con perfil, estante de números con panel, imagen desvanecida por número, búsqueda,
-marcadores. Celebridades, autores y cifras ficticios; fotos de Unsplash servidas desde el sitio.
-Umbral, nombre aprobado por Ian, incorpora dos dossiers de fotografía y diseño, perfil de
-creador y guardados (V4.7.3). La autorización de Ian del 19/11/2026 permite implementar
-la ampliación; Revista sigue abierta. Marcadores por elemento con migración de v1, búsqueda
-completa, foco de lectura y privacidad con borrado están en la primera entrega.
+**Revista = Rubor, Prisma y Umbral** (V4.7, en construcción): una demo con tres sitios en `/revista`.
+- **Rubor**, moda y celebridades: un solo editor; la portada es siempre el número más reciente y se
+  hojea bajando; cabecera semitransparente fija con menú de números; cada número con su paleta.
+  Cuenta con suscripción simulada, secciones y «Detrás de cámaras» (V4.7.6).
+- **Prisma**, ciencia y tecnología en acceso abierto: varios autores con perfil, estante de números,
+  lectura completa y PDF de los N.º 24 y 23, publicar, áreas y sostenimiento (V4.7.7).
+- **Umbral**, fotografía y diseño: dos dossiers. Decisión de Ian (21/11/2026): **rehacer Umbral
+  desde cero** con las técnicas de sus cuatro referencias (palabra vertical, letras con foto
+  dentro y persona recortada encima, rebanadas diagonales, tiras), fondo alternado oscuro y
+  claro, caligráfica permitida, hasta WebGL. Se pueden simular más dossiers sin completarlos.
+- **Reglas de Ian para toda la revista:** cada sección representa una o dos páginas de revista; nada
+  interrumpe esa lógica (sin avisos o créditos sueltos entre pliegos: van en el pie de foto o
+  en el colofón). **Todas** las páginas con el mismo nivel de detalle que la portada (también
+  se aplicará después a las demás demos). Música: una pista por revista, con una bocina
+  transparente abajo a la derecha (silenciada al inicio) y volumen vertical al pasar el cursor;
+  nada de barras extra arriba: solo el aviso de demo y la cabecera de cada revista.
 Leer `docs/FICHA_REVISTA.md` antes de tocar `src/giros/revista/`. Pruebas de navegador en
 `npm run test:browser:revista`.
 

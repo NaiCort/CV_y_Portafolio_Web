@@ -1,38 +1,42 @@
-## V4.7.11 · Sumario de Umbral
+# V4.7.12 · 21 de noviembre de 2026 · Revista digital, correcciones
+
+- Contraste de la cita y del pie de foto en el interior de «Entre líneas» (el recorrido de navegador fallaba en `main`).
+- El título que recibe el foco al cambiar de página ya no muestra un recuadro.
+- CHANGELOG ordenado: V4.7.3 a V4.7.11 con su fecha y en su lugar.
+
+# V4.7.11 · 20 de noviembre de 2026 · Sumario de Umbral
 
 - Dos entradas a sangre con recortes específicos, filtro de disciplina y guardado desde el sumario.
 
-## V4.7.10 · Entre líneas, del espacio al detalle
+# V4.7.10 · 20 de noviembre de 2026 · Entre líneas, del espacio al detalle
 
 - Apertura en díptico a ancho de escritorio, título con Archivo local y tres pliegos con encuadres de calle, gesto y cámara.
 
-## V4.7.9 · Otra perspectiva en tres pliegos
+# V4.7.9 · 20 de noviembre de 2026 · Otra perspectiva en tres pliegos
 
 - Escena completa, díptico de encuadres y hoja de contactos interactiva con variantes para móvil.
 
-## V4.7.8 · Música ambiental de Revista
+# V4.7.8 · 20 de noviembre de 2026 · Música ambiental de Revista
 
 - Audio local opcional con volumen, preferencia de reproducción, créditos y borrado desde privacidad.
 
-## V4.7.7 · Prisma: publicación simulada y exploración por área
+# V4.7.7 · 20 de noviembre de 2026 · Prisma: publicación simulada y exploración por área
 
 - Perfil con seguimiento de envíos, preimpresiones locales, filtros de las 14 áreas y explicación del acceso abierto.
 
-## V4.7.6 · Rubor: suscripción, secciones y sesión editorial
+# V4.7.6 · 20 de noviembre de 2026 · Rubor: suscripción, secciones y sesión editorial
 
 - Cuenta local con renovación simulada, cancelación y acceso a 22 notas de archivo. Cuatro secciones y detrás de cámaras del número actual.
 
-## V4.7.5 · Apertura de Entre líneas
+# V4.7.5 · 20 de noviembre de 2026 · Apertura de Entre líneas
 
 - Composición horizontal y vertical con fotografía dentro del título y figura en primer plano.
 
-## V4.7.4 · Carteles y proceso creativo de Umbral
+# V4.7.4 · 19 de noviembre de 2026 · Carteles y proceso creativo de Umbral
 
 - Dos portadas editoriales en el índice y los dossiers. Comparación de original, encuadre y composición final.
 
-# V4.7.2 · 19 de noviembre de 2026 · Prisma, lectura completa y PDF
-
-## V4.7.3 · Umbral y base compartida de Revista
+# V4.7.3 · 19 de noviembre de 2026 · Umbral y base compartida de Revista
 
 - Tercera publicación, Umbral: portada editorial, dos dossiers, proceso creativo, creador de ejemplo, filtros y guardados.
 - Entrada con tres publicaciones; créditos y privacidad con borrado exclusivo de Revista.
@@ -41,6 +45,7 @@
 - Pruebas ampliadas de regresión, accesibilidad y recorridos de las tres revistas.
 - Primera entrega de la ampliación: siguen pendientes suscripción de Rubor, publicación y áreas de Prisma, música y refinamiento editorial.
 
+# V4.7.2 · 19 de noviembre de 2026 · Prisma, lectura completa y PDF
 
 - Lectura completa de los N.º 24 y 23 de Prisma: índice, hoja clara con resumen, secciones, tabla, dos figuras con sus datos, referencias, cómo citar (con copiar) y texto grande.
 - Comentarios de la comunidad en cada investigación.
