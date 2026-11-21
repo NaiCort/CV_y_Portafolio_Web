@@ -295,3 +295,39 @@
     display: none !important;
   }
 }
+.rv-musica {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 0.4rem 1rem;
+  padding: 0.35rem clamp(12px, 3vw, 40px);
+  background: #17191c;
+  color: #faf8f4;
+  font:
+    0.875rem/1.4 system-ui,
+    sans-serif;
+}
+.rv-musica button {
+  padding: 0.45rem 0.6rem;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+.rv-musica label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.rv-musica input {
+  width: 6rem;
+  accent-color: #efc26e;
+}
+.rv-musica :focus-visible {
+  outline: 2px solid #efc26e;
+  outline-offset: 2px;
+}
+@media print {
+  .rv-musica {
+    display: none;
+  }
+}

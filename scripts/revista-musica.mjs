@@ -1,0 +1,28 @@
+import assert from "node:assert/strict"
+
+export async function verificarMusica(page, base) {
+  await page.goto(base + "/revista/rubor")
+  const audio = page.locator(".rv-musica audio")
+  await page.getByRole("button", { name: "Activar música" }).waitFor()
+  assert(await audio.evaluate((a) => a.paused))
+  await page.getByRole("button", { name: "Activar música" }).click()
+  await page.getByRole("button", { name: "Pausar música" }).waitFor()
+  await page.getByRole("slider", { name: "Volumen" }).fill("62")
+  await page.reload()
+  await page.getByRole("slider", { name: "Volumen" }).waitFor()
+  assert.equal(await page.getByRole("slider", { name: "Volumen" }).inputValue(), "62")
+  if (await audio.evaluate((a) => a.paused))
+    await page.getByRole("button", { name: "Activar música" }).click()
+  await page.getByRole("button", { name: "Pausar música" }).click()
+  await page.reload()
+  await page.getByRole("button", { name: "Activar música" }).waitFor()
+  assert(await audio.evaluate((a) => a.paused))
+  await page.getByRole("button", { name: "Activar música" }).click()
+  await page.getByRole("button", { name: "Pausar música" }).waitFor()
+  await page.getByRole("button", { name: "Privacidad y datos de Revista" }).click()
+  await page.getByRole("button", { name: "Borrar los datos de Revista" }).click()
+  await page.getByRole("button", { name: "Activar música" }).waitFor()
+  assert(await audio.evaluate((a) => a.paused))
+  assert.equal(await page.getByRole("slider", { name: "Volumen" }).inputValue(), "30")
+  assert.equal(await page.evaluate(() => localStorage.getItem("revista-musica-v1")), null)
+}

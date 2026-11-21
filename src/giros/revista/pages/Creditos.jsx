@@ -70,8 +70,9 @@ export default function Creditos() {
       <section>
         <h2>Música</h2>
         <p>
-          Esta entrega no reproduce audio. La música, sus controles y su licencia se incorporarán en
-          una entrega posterior.
+          «Lectura» es una pieza ambiental sintetizada para Revista, sin muestras externas.
+          <a href="/revista/audio/lectura.mp3"> Escuchar el archivo local</a> ·{" "}
+          <a href="/revista/audio/LICENCIA.txt">Licencia CC0 1.0</a>.
         </p>
       </section>
     </main>

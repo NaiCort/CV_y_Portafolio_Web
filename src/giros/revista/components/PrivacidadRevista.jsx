@@ -35,8 +35,8 @@ export default function PrivacidadRevista({ onBorrar }) {
             </p>
             <p>
               El botón siguiente borra los datos de las tres revistas y reinicia su estado visible.
-              No borra datos de las otras demos. También borra la suscripción simulada de Rubor
-              guardada en este navegador.
+              No borra datos de las otras demos. También restablece la música y el volumen y borra
+              la suscripción simulada de Rubor guardada en este navegador.
             </p>
             <button
               type="button"
