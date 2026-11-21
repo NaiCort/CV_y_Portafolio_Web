@@ -6,6 +6,7 @@ import usePageMetadata from "../../hooks/usePageMetadata"
 import { findArticulo, findAutor, USUARIO } from "./data/prisma"
 import { useMarcadores } from "./lib/marcadores"
 import Buscar from "./components/prisma/Buscar"
+import { Areas, Perfil, Preimpresion, Publicar, Sostenimiento } from "./pages/prisma/Editorial"
 import Inicio from "./pages/prisma/Inicio"
 import Articulo from "./pages/prisma/Articulo"
 import Autor from "./pages/prisma/Autor"
@@ -18,7 +19,15 @@ function titulo(pathname) {
   const aut = pathname.match(/\/autor\/([^/]+)/)
   if (aut) return findAutor(aut[1])?.nombre ?? "Autor"
   if (pathname.endsWith("/marcadores")) return "Marcadores"
-  return "Inicio"
+  if (pathname.includes("/preimpresion/")) return "Preimpresión"
+  return (
+    {
+      areas: "Explorar por área",
+      perfil: "Mi perfil",
+      publicar: "Publicar una investigación",
+      sostenimiento: "Cómo se sostiene Prisma",
+    }[pathname.split("/").pop()] ?? "Inicio"
+  )
 }
 
 export default function PrismaSitio() {
@@ -73,14 +82,25 @@ export default function PrismaSitio() {
           </Link>
           <Link
             className="pr-av"
-            to="/revista/prisma/marcadores"
+            to="/revista/prisma/perfil"
             aria-label={`Cuenta de ejemplo: ${USUARIO.nombre}`}
           >
             {USUARIO.iniciales}
           </Link>
         </div>
       </header>
+      <nav className="pr-enlaces pr-w" aria-label="Publicación científica">
+        <Link to="/revista/prisma/areas">Explorar por área</Link>
+        <Link to="/revista/prisma/publicar">Publicar</Link>
+        <Link to="/revista/prisma/perfil">Mis envíos</Link>
+        <Link to="/revista/prisma/sostenimiento">Cómo se sostiene Prisma</Link>
+      </nav>
       <Routes>
+        <Route path="areas" element={<Areas />} />
+        <Route path="publicar" element={<Publicar />} />
+        <Route path="perfil" element={<Perfil />} />
+        <Route path="preimpresion/:id" element={<Preimpresion />} />
+        <Route path="sostenimiento" element={<Sostenimiento />} />
         <Route index element={<Inicio />} />
         <Route path="articulo/:id" element={<Articulo />} />
         <Route path="autor/:id" element={<Autor />} />

@@ -1351,3 +1351,56 @@
     break-inside: avoid;
   }
 }
+.pr-enlaces,
+.pr-disciplinas {
+  display: flex;
+  gap: 0.8rem 1.4rem;
+  flex-wrap: wrap;
+  padding-block: 1rem;
+}
+.pr-enlaces a,
+.pr-editorial a {
+  color: var(--pr-az2);
+  text-decoration: underline;
+}
+.pr-editorial {
+  padding-block: clamp(32px, 6vw, 90px);
+  display: grid;
+  gap: 1.2rem;
+  overflow-wrap: anywhere;
+}
+.pr-editorial h1 {
+  font: 600 clamp(2.2rem, 5vw, 4.5rem)/1.1 var(--pr-titulo);
+}
+.pr-editorial form,
+.pr-editorial label {
+  display: grid;
+  gap: 0.5rem;
+  max-width: 65ch;
+}
+.pr-editorial form {
+  gap: 1.25rem;
+}
+.pr-editorial li {
+  padding-block: 1rem;
+  border-top: 1px solid var(--pr-lin);
+}
+.pr-editorial :is(input, textarea, select, button) {
+  max-width: 100%;
+  min-width: 0;
+  padding: 0.65rem;
+  background: var(--pr-pan);
+  color: var(--pr-tx);
+  border: 1px solid var(--pr-ce);
+}
+.pr-editorial button {
+  cursor: pointer;
+}
+.pr-editorial button[aria-pressed="true"],
+.pr-editorial form button {
+  background: var(--pr-am);
+  color: #15120a;
+}
+.pr-editorial p {
+  max-width: 70ch;
+}

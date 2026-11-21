@@ -23,9 +23,10 @@ export default function PrivacidadRevista({ onBorrar }) {
               cuentas reales ni pagos y tus acciones no se publican en un servidor.
             </p>
             <p>
-              Los marcadores y comentarios propios se guardan en este navegador hasta que los
-              borres. Las preferencias y funciones futuras de Revista usarán este mismo ámbito de
-              borrado. En un dispositivo compartido, otra persona podría ver lo guardado.
+              Los envíos simulados de Prisma (incluido el nombre del archivo), marcadores y
+              comentarios propios se guardan en este navegador hasta que los borres. Las
+              preferencias y funciones futuras de Revista usarán este mismo ámbito de borrado. En un
+              dispositivo compartido, otra persona podría ver lo guardado.
             </p>
             <p>
               Las imágenes y tipografías se sirven desde este sitio. El alojamiento recibe las
