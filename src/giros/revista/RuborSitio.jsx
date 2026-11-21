@@ -4,6 +4,9 @@ import ComercialCTA from "../../components/shared/ComercialCTA"
 import useFavicon from "../../hooks/useFavicon"
 import usePageMetadata from "../../hooks/usePageMetadata"
 import { ACTUAL, LECTORA, NUMEROS, PALETAS, fechaNumero, findNumero, foto } from "./data/rubor"
+import Cuenta from "./pages/rubor/Cuenta"
+import { CLAVE_PLAN, leerPlan } from "./lib/suscripcion"
+import { Secciones, Sesion } from "./pages/rubor/Secciones"
 import Numero from "./pages/rubor/Numero"
 import MarcadoresRubor from "./pages/rubor/Marcadores"
 import { useMarcadores } from "./lib/marcadores"
@@ -82,12 +85,26 @@ function MenuNumeros({ actual }) {
 export default function RuborSitio() {
   useFavicon("/favicons/rubor.svg")
   const { pathname } = useLocation()
+  const [plan, actualizar] = useState(leerPlan)
+  useEffect(() => {
+    const cambio = (e) => {
+      if (e.key === CLAVE_PLAN || e.key === null) actualizar(leerPlan())
+    }
+    window.addEventListener("storage", cambio)
+    return () => window.removeEventListener("storage", cambio)
+  }, [])
   const numero = numeroDeRuta(pathname)
   const pal = PALETAS[numero.paleta]
   const [guardados] = useMarcadores("rubor")
   const enMarcadores = pathname.endsWith("/marcadores")
+  const tituloPagina = {
+    cuenta: "Cuenta de ejemplo",
+    secciones: "Secciones",
+    sesion: "Detrás de cámaras",
+    marcadores: "Marcadores",
+  }[pathname.split("/").pop()]
   usePageMetadata(
-    `${enMarcadores ? "Marcadores" : `N.º ${numero.n}, ${fechaNumero(numero).toLowerCase()}`} — Rubor, revista de moda · Demo de Ian Aldana Martínez`,
+    `${tituloPagina ?? `N.º ${numero.n}, ${fechaNumero(numero).toLowerCase()}`} — Rubor, revista de moda · Demo de Ian Aldana Martínez`,
     "Rubor, revista ficticia de moda y celebridades: el número del mes completo para hojear, archivo de números y marcadores. Portafolio de Ian Aldana Martínez.",
   )
   const estilo = {
@@ -113,11 +130,12 @@ export default function RuborSitio() {
         </Link>
         <nav className="rb-nav" aria-label="Rubor">
           <MenuNumeros actual={numero} />
-          {!enMarcadores && (
-            <a className="rb-solo-ancho" href="#sumario">
-              En este número
-            </a>
-          )}
+          {!enMarcadores &&
+            !["cuenta", "secciones", "sesion"].includes(pathname.split("/").pop()) && (
+              <a className="rb-solo-ancho" href="#sumario">
+                En este número
+              </a>
+            )}
         </nav>
         <div className="rb-cab-der">
           <Link to="/revista/rubor/marcadores" aria-current={enMarcadores ? "page" : undefined}>
@@ -125,7 +143,7 @@ export default function RuborSitio() {
           </Link>
           <Link
             className="rb-av"
-            to="/revista/rubor/marcadores"
+            to="/revista/rubor/cuenta"
             aria-label={`Cuenta de ejemplo: ${LECTORA.nombre}`}
           >
             {LECTORA.iniciales}
@@ -134,7 +152,10 @@ export default function RuborSitio() {
       </header>
       <Routes>
         <Route index element={<Numero numero={ACTUAL} />} />
-        <Route path="numero/:n" element={<NumeroRuta />} />
+        <Route path="numero/:n" element={<NumeroRuta plan={plan} />} />
+        <Route path="secciones" element={<Secciones />} />
+        <Route path="sesion" element={<Sesion />} />
+        <Route path="cuenta" element={<Cuenta plan={plan} actualizar={actualizar} />} />
         <Route path="marcadores" element={<MarcadoresRubor />} />
         <Route path="*" element={<Navigate to="/revista/rubor" replace />} />
       </Routes>
@@ -154,6 +175,10 @@ export default function RuborSitio() {
           ficticio). Un solo editor; las personas fotografiadas no son las personas que nombramos.
         </div>
         <div>
+          <Link to="/revista/rubor/secciones">Secciones de Rubor</Link> ·{" "}
+          <Link to="/revista/rubor/sesion">Detrás de cámaras</Link> ·{" "}
+          <Link to="/revista/rubor/cuenta">Mi suscripción</Link>
+          <br />
           Reserva de derechos al uso exclusivo e ISSN: de ejemplo, no tramitados.
           <br />
           <Link to="/revista/prisma">Ir a Prisma, la otra revista de esta demo</Link> ·{" "}
@@ -164,9 +189,9 @@ export default function RuborSitio() {
   )
 }
 
-function NumeroRuta() {
+function NumeroRuta({ plan }) {
   const { n } = useParams()
   const numero = findNumero(n)
   if (!numero || numero.n === ACTUAL.n) return <Navigate to="/revista/rubor" replace />
-  return <Numero key={numero.n} numero={numero} />
+  return <Numero key={numero.n} numero={numero} plan={plan} />
 }
