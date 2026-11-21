@@ -1,3 +1,9 @@
+# V4.7.17 · 21 de noviembre de 2026 · PDF accesibles, carga y tipografías
+
+- PDF de Prisma etiquetados, en español y con índice navegable.
+- Tipografías de respaldo con medida (ancho y altura) para las cuatro fuentes: el CLS bajó a 0.000–0.043 en las páginas medidas.
+- Umbral y Rubor cargan más rápido: fotos del tamaño que ocupan, prioridad para la figura principal y entrada de la portada sin transparencia.
+
 # V4.7.16 · 21 de noviembre de 2026 · Opcionales y movimiento
 
 - Umbral suena con la Gymnopédie n.º 1 (Satie, por Kevin MacLeod).
