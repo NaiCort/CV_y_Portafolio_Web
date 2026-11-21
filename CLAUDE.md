@@ -20,7 +20,12 @@ acciones ficticias del negocio.
   Gimnasio (cerrada en V4.4.8 con **Brío**) → Taller mecánico (cerrada en V4.5.6 con
   **Rosales y Vértice**) → Despacho contable (cerrada en V4.6.8 con **Cotejo**) →
   **Revista digital (cerrada en V4.7.21 con Rubor, Prisma y Umbral)**. Las siete demos están
-  terminadas; sigue la **fase de ajustes V4.8**.
+  terminadas; sigue la **fase de ajustes V4.8**, cuyo plan está en `docs/PLAN_V4.8.md`
+  (leerlo antes de trabajar): V4.8.0 preparación (hecha) → V4.8.1–V4.8.5 CV web y portafolio
+  en `/` → cotizador base → demos en orden (Psicólogo V4.8.10, Patio 12 V4.8.20, Ladera
+  V4.8.30, Brío V4.8.40, Taller V4.8.50, Cotejo V4.8.60), cada una conectada al cotizador →
+  ajuste final del cotizador. Catálogo de demos en `src/data/demos.js` y datos del CV en
+  `src/data/cv.js`.
 - **Restaurante = solo Patio 12.** No se construyen las sub-categorías (fonda, comida
   rápida, lujo) ni el panel de empleados y precios: ambas ideas quedaron descartadas.
 - **Café = Ladera**, una sola identidad y un solo local, sin gestión de empleados. Su
@@ -52,8 +57,11 @@ npm test
 npm run build
 ```
 
-Las pruebas de navegador (`npm run test:browser:*`) se corren al cerrar una versión.
-Chromium y Playwright ya están instalados en el entorno de nube.
+Las pruebas de navegador (`npm run test:browser:*`) se corren al cerrar una versión, con
+`DEMO_START_PREVIEW=1` (levantan su propio `vite preview`; `test:browser` de Psicólogo
+necesita un servidor en el puerto 5173). Herramientas de la pasada final:
+`npm run audit:encimados -- /ruta1,/ruta2` y `npm run audit:cwv -- /ruta` (contra
+`vite preview` en 4173). Chromium y Playwright ya están instalados en el entorno de nube.
 
 ## Diseño: Guía de identidad y calidad visual v1.1
 
@@ -158,10 +166,9 @@ Leer `docs/FICHA_REVISTA.md` antes de tocar `src/giros/revista/`. Pruebas de nav
 
 ## Pendientes para la fase de ajustes (V4.8)
 
-No tocar antes de terminar las siete demos.
+Se resuelven dentro de la entrega de cada demo (ver `docs/PLAN_V4.8.md`).
 
-1. **FloatingTimer / RestaurantProvider:** conservar el estado guardado, pero mostrar el
-   contador solo dentro de `/restaurante/*` (decidido el 12/11/2026).
+1. ~~FloatingTimer solo dentro de `/restaurante/*`~~ (hecho en V4.8.0).
 2. **Bienvenida:** bajar de 5–6 patrones a 2 como máximo (etiqueta sobre el título,
    "*Ian*" en serif cursiva, numeración 01–06, manchas de luz, monoespaciada decorativa).
    Actualizar después la publicación de LinkedIn. Pasar el catálogo de giros a un archivo
@@ -171,10 +178,9 @@ No tocar antes de terminar las siete demos.
    temas (unas 700 líneas cada uno) para consolidar componentes duplicados.
 4. **Patio 12:** quitar la etiqueta en mayúsculas sobre el título en Inicio y Carta.
 5. Fichas de identidad a posteriori de los cuatro temas de Psicólogo y de Patio 12.
-6. **Componentes compartidos:** la llamada comercial (`ComercialCTA`) lleva una etiqueta
-   en mayúsculas sobre el título, una tarjeta centrada y un h3 que salta de nivel en páginas
-   sin h2; el banner de demo genera la alerta `region` de axe (buenas prácticas); la marca
-   de agua fija se superpone al texto al desplazarse. Revisar los tres para todas las demos.
+6. ~~Componentes compartidos (llamada comercial, banner, marca de agua)~~ (hecho en V4.8.0:
+   `ComercialCTA` con h2 y sin etiqueta ni tarjeta; banner y autoría como `aside` con nombre;
+   la marca de agua pasó a cerrar la página en vez de flotar).
 7. **Precarga de fuentes en `index.html`** (todas las demos): en red lenta, el cambio de
    tipografía mueve el texto (CLS 0.146 medido en Créditos de Ladera). Modelo ya probado en
    Cotejo (V4.6.8): tipografías de respaldo con `size-adjust` medido, que bajaron el CLS a 0.002.
