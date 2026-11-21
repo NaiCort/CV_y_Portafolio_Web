@@ -11,7 +11,7 @@ Acordado con Ian el 21 de noviembre de 2026, con el Sitio Profesional Integral V
 2. **V4.8.1 a V4.8.5, CV web y portafolio en `/`:**
    1. ficha de identidad y maquetas (2 o 3 direcciones, escritorio y celular) para que Ian elija (hecho);
    2. escritorio y celular, construidos juntos porque comparten el mismo código (hecho);
-   3. detalle visual con las referencias que dé Ian;
+   3. detalle visual: las cuatro ideas «ahora» de `docs/IDEAS_CV.md` (índice con sección activa, línea de tiempo a escala, transición de la demo y cuadrícula que responde al cursor); las demás quedan ahí con sus requisitos;
    4. PDF y buscadores;
    5. pasada final, cierre y Documento Maestro.
 3. **Cotizador, primera versión.** Va antes de las demos para que cada una se conecte «desde ya». Tiene página propia.
