@@ -28,7 +28,8 @@ export default function DemoBanner({ guide }) {
   const [panel, setPanel] = useState(null)
   return (
     <>
-      <div
+      <aside
+        aria-label="Aviso de demo"
         className="fixed top-0 left-0 right-0 z-[60] h-11 flex items-center px-2 sm:px-5 gap-1"
         style={{ backgroundColor: "#111318", fontFamily: "system-ui, sans-serif" }}
       >
@@ -70,7 +71,7 @@ export default function DemoBanner({ guide }) {
             <span className="sm:hidden">Contactar</span>
           </button>
         </div>
-      </div>
+      </aside>
       {panel === "about" && (
         <Modal title="Cómo funciona esta demo" onClose={() => setPanel(null)}>
           {guide || <OnboardingGuide />}

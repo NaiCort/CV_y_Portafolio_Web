@@ -5,6 +5,7 @@ import { ArrowUpRight } from "lucide-react"
 import useFavicon from "../hooks/useFavicon"
 import usePageMetadata from "../hooks/usePageMetadata"
 import useRouteFocus from "../hooks/useRouteFocus"
+import { DEMOS, disponible } from "../data/demos"
 
 // Pantalla de bienvenida (Fase 3 del Documento Maestro): puerta de entrada al
 // sistema completo de demos. No es un giro — es la identidad propia de Ian como
@@ -38,50 +39,13 @@ function getGreeting() {
   return "Buenas noches"
 }
 
-const GIROS = [
-  {
-    path: "/psicologo",
-    name: "Psicólogo",
-    desc: "Consultas, citas y un primer acercamiento sin fricción.",
-    available: true,
-  },
-  {
-    path: "/restaurante",
-    name: "Restaurante",
-    desc: "Patio 12: carta, pedido y reserva de mesa simulados.",
-    available: true,
-  },
-  {
-    path: "/cafe",
-    name: "Café",
-    desc: "Ladera: café de altura, pedido para recoger y recetas en casa.",
-    available: true,
-  },
-  {
-    path: "/gimnasio",
-    name: "Gimnasio",
-    desc: "Brío: cinco sucursales, clases con reserva, área de socio y tienda.",
-    available: true,
-  },
-  {
-    path: "/taller",
-    name: "Taller mecánico",
-    desc: "Rosales y Vértice: testigos del tablero, presupuesto por partida y citas.",
-    available: true,
-  },
-  {
-    path: "/despacho",
-    name: "Despacho contable",
-    desc: "Cotejo: tu expediente con semáforo, precios por régimen y herramientas fiscales.",
-    available: true,
-  },
-  {
-    path: "/revista",
-    name: "Revista digital",
-    desc: "Rubor y Prisma: una revista de moda para hojear y una de ciencia en acceso abierto.",
-    available: true,
-  },
-]
+// El catálogo vive en src/data/demos.js (fuente única para el portafolio y el cotizador).
+const GIROS = DEMOS.map((d) => ({
+  path: d.ruta,
+  name: d.giro,
+  desc: `${d.nombre}: ${d.resumen.charAt(0).toLowerCase()}${d.resumen.slice(1)}`,
+  available: disponible(d),
+}))
 
 function AmbientBackground() {
   const reduced = useReducedMotion()

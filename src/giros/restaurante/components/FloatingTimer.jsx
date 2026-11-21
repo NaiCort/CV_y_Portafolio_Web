@@ -44,12 +44,16 @@ export default function FloatingTimer() {
     drag = useRef(null)
   const { visit, order, widget } = state
   const waiting = visit?.stage === "waiting"
+  // El estado se conserva en toda la app, pero el contador solo se muestra dentro del
+  // restaurante (decidido el 12/11/2026).
+  const enRestaurante = pathname === "/restaurante" || pathname.startsWith("/restaurante/")
   const active =
+    enRestaurante &&
     !!visit &&
     (visit.mode === "dine" || !!order) &&
     order?.status !== "completed" &&
     pathname !== "/restaurante/seguimiento"
-  const compact = widget.compact || !pathname.startsWith("/restaurante")
+  const compact = widget.compact
   const deadline = waiting ? visit.deadline : order?.deadline
   const seconds = remainingSeconds(deadline, now)
   const label = waiting
@@ -59,7 +63,7 @@ export default function FloatingTimer() {
       : visit?.mode === "dine"
         ? `Mesa ${visit.table} lista`
         : "Tu visita al patio"
-  const bottomReserve = pathname === "/psicologo" ? 130 : 58
+  const bottomReserve = 58
   const top = view.top + Math.min(148, view.height * 0.28),
     left = view.left + 12
   const rangeX = Math.max(0, view.width - Math.min(size.width, view.width - 24) - 24)

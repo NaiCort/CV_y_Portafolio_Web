@@ -1,3 +1,13 @@
+# V4.8.0 · 21 de noviembre de 2026 · Preparación de la fase de ajustes
+
+- Plan de V4.8 en `docs/PLAN_V4.8.md`: CV web y portafolio, cotizador base, demos en orden y ajuste final del cotizador.
+- Catálogo de demos como datos (`src/data/demos.js`), con identificadores estables, estados, variantes y funciones; la portada ya lo usa.
+- Datos del CV (`src/data/cv.js`) que unen el CV de noviembre y el CV visual, y el PDF de noviembre en `/cv/`.
+- El contador del restaurante solo aparece dentro de `/restaurante`; la visita se conserva fuera.
+- La llamada comercial de todas las demos ya no lleva etiqueta sobre el título ni tarjeta centrada, y su título es h2.
+- La marca de agua deja de tapar el texto: ahora cierra cada página y lleva al portafolio. El banner y la autoría son regiones con nombre.
+- Herramientas de la pasada final en el repositorio: `npm run audit:encimados` y `npm run audit:cwv`.
+
 # V4.7.21 · 21 de noviembre de 2026 · Umbral, márgenes de página
 
 - Espacio bajo la cabecera corrida en todas las páginas de Umbral (el acento de «COLOFÓN» tocaba la línea): el reinicio de márgenes ya no anula los de cada clase.
