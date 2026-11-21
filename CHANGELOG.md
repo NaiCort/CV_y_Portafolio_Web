@@ -1,3 +1,16 @@
+# V4.7.14 · 21 de noviembre de 2026 · Umbral desde cero
+
+- Umbral rehecho como revista de carteles: motor de carteles por capas con cuatro variantes («Entre líneas» con letras como ventana y persona recortada encima en 2.5D; «Otra perspectiva» con rebanadas diagonales que se deslizan al bajar; «Agua» con palabra vertical y reflejos en WebGL; «Crear» con tiras, serif detrás de la persona y sombra de ventana).
+- Despiece 3D y proceso: el cartel se separa en capas y cada capa se apaga y enciende.
+- Cada sección es un pliego de una o dos páginas, con cabecera corrida, folio y lomo; nada suelto entre pliegos (créditos en el colofón y en los pies de foto).
+- Cuatro números de archivo simulados con su lámina; diez fotos propias de Pexels con recortes; caligráfica Mrs Saint Delafield escrita como trazo; favicon y llamada comercial propios.
+- Ficha nueva `docs/FICHA_UMBRAL.md`. Pruebas de despiece, capas y láminas.
+
+# V4.7.13 · 21 de noviembre de 2026 · Bocina y música por revista
+
+- Bocina transparente abajo a la derecha, en silencio al llegar; volumen vertical que aparece al pasar el cursor con la música encendida. Se quitó la barra de música de arriba.
+- Una pista por revista (Kevin MacLeod, CC BY 3.0): Rubor «Night on the Docks (Sax)», Prisma «Clean Soul», Umbral «Dreamer». Créditos y registro de procedencia.
+
 # V4.7.12 · 21 de noviembre de 2026 · Revista digital, correcciones
 
 - Contraste de la cita y del pie de foto en el interior de «Entre líneas» (el recorrido de navegador fallaba en `main`).

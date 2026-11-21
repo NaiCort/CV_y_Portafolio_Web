@@ -135,10 +135,10 @@ contratarnos». Leer `docs/FICHA_DESPACHO.md` antes de tocar
   Cuenta con suscripción simulada, secciones y «Detrás de cámaras» (V4.7.6).
 - **Prisma**, ciencia y tecnología en acceso abierto: varios autores con perfil, estante de números,
   lectura completa y PDF de los N.º 24 y 23, publicar, áreas y sostenimiento (V4.7.7).
-- **Umbral**, fotografía y diseño: dos dossiers. Decisión de Ian (21/11/2026): **rehacer Umbral
-  desde cero** con las técnicas de sus cuatro referencias (palabra vertical, letras con foto
-  dentro y persona recortada encima, rebanadas diagonales, tiras), fondo alternado oscuro y
-  claro, caligráfica permitida, hasta WebGL. Se pueden simular más dossiers sin completarlos.
+- **Umbral**, fotografía y diseño: rehecho desde cero en V4.7.14 como revista de carteles
+  (ficha en `docs/FICHA_UMBRAL.md`): motor de carteles por capas con despiece 3D, dos dossiers
+  completos («Entre líneas» y «Otra perspectiva») y cuatro números de archivo con su lámina;
+  fotos de Pexels con recortes (rembg) en `public/revista/umbral/`.
 - **Reglas de Ian para toda la revista:** cada sección representa una o dos páginas de revista; nada
   interrumpe esa lógica (sin avisos o créditos sueltos entre pliegos: van en el pie de foto o
   en el colofón). **Todas** las páginas con el mismo nivel de detalle que la portada (también
