@@ -30,7 +30,7 @@
   width: 100%;
   height: min(75svh, 800px);
 }
-.el-interior figcaption {
+.um-root .el-interior figcaption {
   color: inherit;
   padding: 1rem;
 }
@@ -66,6 +66,7 @@
   background: #252221;
   color: #fff9eb;
 }
+.um-lectura .el-cierre blockquote,
 .el-cierre blockquote {
   color: #f0c894;
   font:
