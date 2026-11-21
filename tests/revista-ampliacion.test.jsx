@@ -167,7 +167,7 @@ describe("Búsqueda, privacidad y créditos", () => {
     await abrir("/revista/umbral/creditos")
     expect(document.querySelector("h1").textContent).toBe("Créditos de Umbral")
     expect(document.querySelector("main").textContent).toContain("ficticios")
-    expect(document.querySelectorAll('a[href^="/revista/fuentes/LICENSE-"]')).toHaveLength(5)
+    expect(document.querySelectorAll('a[href^="/revista/fuentes/LICENSE-"]')).toHaveLength(4)
     expect(document.querySelector('a[href="/revista/audio/LICENCIA.txt"]').textContent).toContain(
       "CC BY",
     )

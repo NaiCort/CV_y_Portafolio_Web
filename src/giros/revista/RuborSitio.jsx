@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react"
 import { Link, Navigate, Route, Routes, useLocation, useParams } from "react-router-dom"
 import ComercialCTA from "../../components/shared/ComercialCTA"
 import useFavicon from "../../hooks/useFavicon"
+import Creditos from "./pages/Creditos"
 import usePageMetadata from "../../hooks/usePageMetadata"
 import { ACTUAL, LECTORA, NUMEROS, PALETAS, fechaNumero, findNumero, foto } from "./data/rubor"
 import Cuenta from "./pages/rubor/Cuenta"
@@ -157,6 +158,7 @@ export default function RuborSitio() {
         <Route path="sesion" element={<Sesion />} />
         <Route path="cuenta" element={<Cuenta plan={plan} actualizar={actualizar} />} />
         <Route path="marcadores" element={<MarcadoresRubor />} />
+        <Route path="creditos" element={<Creditos sitio="rubor" />} />
         <Route path="*" element={<Navigate to="/revista/rubor" replace />} />
       </Routes>
       <ComercialCTA

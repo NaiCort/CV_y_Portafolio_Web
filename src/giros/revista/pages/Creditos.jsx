@@ -1,87 +1,138 @@
-import { Link, Navigate, useParams } from "react-router-dom"
+import { Link } from "react-router-dom"
 import usePageMetadata from "../../../hooks/usePageMetadata"
 import { FOTOGRAFIAS } from "../data/creditos"
+import { foto as fotoRubor } from "../data/rubor"
+import { ARTICULOS, foto as fotoPrisma } from "../data/prisma"
 import { FOTOS_UMBRAL, fotoUmbral } from "../data/umbral"
 import { PISTAS } from "../data/musica"
 
-export default function Creditos() {
-  const { sitio } = useParams()
-  const nombre = { rubor: "Rubor", prisma: "Prisma", umbral: "Umbral" }[sitio]
+// Créditos y colofón de cada revista, dentro de su propio sitio (con su cabecera, sus colores y
+// su música). Hoja de contactos con la procedencia de cada foto, muestras de las tipografías y
+// la pista de fondo.
+const NOMBRE = { rubor: "Rubor", prisma: "Prisma", umbral: "Umbral" }
+const TIPOS = {
+  rubor: [
+    ["bodoni-moda", "Bodoni Moda", "Rubor Titulo", "Titulares y portada"],
+    ["archivo", "Archivo", "Rubor Texto", "Textos, etiquetas y botones"],
+  ],
+  prisma: [
+    ["newsreader", "Newsreader", "Prisma Titulo", "Títulos y lectura larga"],
+    ["space-grotesk", "Space Grotesk", "Prisma Texto", "Interfaz, datos y etiquetas"],
+  ],
+  umbral: [
+    ["archivo", "Archivo", "Umbral Titulo", "Palabras de cartel y anotaciones"],
+    ["bodoni-moda", "Bodoni Moda", "Umbral Serif", "«Crear» y citas"],
+    ["newsreader", "Newsreader", "Umbral Texto", "Lectura de los dossiers"],
+    ["mrs-saint-delafield", "Mrs Saint Delafield", "Umbral Firma", "Una palabra a mano por pliego"],
+  ],
+}
+
+const claveDe = (url) => url.match(/photo-(\d+)-/)?.[1].slice(-6)
+const CLAVES_PRISMA = new Set(ARTICULOS.map((a) => a.foto))
+
+function fotosDe(sitio) {
+  if (sitio === "umbral")
+    return FOTOS_UMBRAL.map(([clave, id, descripcion]) => ({
+      src: fotoUmbral(clave, 800),
+      titulo: descripcion,
+      autor: "Pexels",
+      licencia: "Licencia de Pexels (uso libre)",
+      pagina: `https://www.pexels.com/photo/${id}/`,
+      local: fotoUmbral(clave),
+    }))
+  return FOTOGRAFIAS.map((f) => ({ ...f, clave: claveDe(f.pagina) }))
+    .filter((f) => (sitio === "rubor" ? !CLAVES_PRISMA.has(f.clave) : CLAVES_PRISMA.has(f.clave)))
+    .map((f) => ({
+      ...f,
+      src: sitio === "rubor" ? fotoRubor(f.clave, 600) : fotoPrisma(f.clave, 480),
+      titulo: `Unsplash · ${f.clave}`,
+      autor: "Autor no verificado",
+      local: sitio === "rubor" ? fotoRubor(f.clave) : fotoPrisma(f.clave),
+    }))
+}
+
+export default function Creditos({ sitio }) {
+  const nombre = NOMBRE[sitio]
   usePageMetadata(
-    `Créditos — ${nombre ?? "Revista"} · Demo de Ian Aldana Martínez`,
-    "Procedencia de las fotografías y licencias de las fuentes de Revista.",
+    `Créditos — ${nombre} · Demo de Ian Aldana Martínez`,
+    "Procedencia de las fotografías, tipografías y música de la revista.",
   )
-  if (!nombre) return <Navigate to="/revista" replace />
+  const fotos = fotosDe(sitio)
+  const pista = PISTAS[sitio]
   return (
-    <main className="rv-creditos">
-      <Link to={`/revista/${sitio}`}>Volver a {nombre}</Link>
-      <h1>Créditos de {nombre}</h1>
-      <p>
-        Los nombres, historias y creadores son ficticios. Las personas fotografiadas no son los
-        personajes descritos. Los recursos se sirven desde el sitio; sus originales se enlazan a
-        continuación.
-      </p>
-      {sitio === "umbral" && (
-        <section>
-          <h2>Fotografías de Umbral</h2>
-          <p>
-            Fotografías de Pexels con su licencia (uso libre, sin atribución obligatoria; se
-            acreditan igual). Los recortes de las personas se hicieron para esta demo.
-          </p>
-          <ul>
-            {FOTOS_UMBRAL.map(([clave, id, descripcion]) => (
-              <li key={clave}>
-                <a href={`https://www.pexels.com/photo/${id}/`}>{descripcion}</a> (Pexels, n.º {id})
-                · <a href={fotoUmbral(clave)}>archivo local</a>
+    <main className={`rv-creditos rv-creditos-${sitio}`}>
+      <header className="rv-cred-cab">
+        <p className="rv-cred-sobre">Colofón · {nombre}</p>
+        <h1>Créditos de {nombre}</h1>
+        <p>
+          Los nombres, historias, autores y creadores son ficticios. Las personas fotografiadas no
+          son los personajes descritos. Fotos, tipografías y música se sirven desde este sitio; sus
+          originales se enlazan aquí.
+        </p>
+      </header>
+
+      <section className="rv-cred-bloque" aria-labelledby="rv-cred-fotos">
+        <h2 id="rv-cred-fotos">
+          Fotografías <small>{fotos.length}</small>
+        </h2>
+        <ul className="rv-cred-hoja">
+          {fotos.map((f, i) => (
+            <li key={f.pagina} style={{ "--i": Math.min(i, 20) }}>
+              <a href={f.pagina}>
+                <img src={f.src} alt="" loading="lazy" width="300" height="400" />
+                <span>{f.titulo}</span>
+              </a>
+              <small>
+                {f.autor} · {f.licencia} · <a href={f.local}>archivo local</a>
+              </small>
+            </li>
+          ))}
+        </ul>
+        <p className="rv-cred-nota">
+          Autores de Unsplash sin verificar: el sitio no permite consultas automáticas desde el
+          entorno donde se hizo esta demo, y su licencia no exige atribución.{" "}
+          <a href="/revista/medios-origen.json">Registro completo con huellas y transformaciones</a>
+          .
+        </p>
+      </section>
+
+      <div className="rv-cred-dos">
+        <section className="rv-cred-bloque" aria-labelledby="rv-cred-tipos">
+          <h2 id="rv-cred-tipos">Tipografías</h2>
+          <ul className="rv-cred-tipos">
+            {TIPOS[sitio].map(([archivo, n, familia, uso]) => (
+              <li key={archivo}>
+                <span className="rv-cred-muestra" style={{ fontFamily: `"${familia}"` }}>
+                  {n}
+                </span>
+                <small>
+                  {uso} · <a href={`/revista/fuentes/LICENSE-${archivo}.txt`}>Licencia OFL</a>
+                </small>
               </li>
             ))}
           </ul>
         </section>
-      )}
-      <section>
-        <h2>Tipografías locales</h2>
-        <p>
-          Rubor: Bodoni Moda y Archivo. Prisma: Newsreader y Space Grotesk. Umbral: Archivo, Bodoni
-          Moda, Newsreader y Mrs Saint Delafield.
-        </p>
-        <ul>
-          {["archivo", "bodoni-moda", "newsreader", "space-grotesk", "mrs-saint-delafield"].map(
-            (f) => (
-              <li key={f}>
-                <a href={`/revista/fuentes/LICENSE-${f}.txt`}>Licencia OFL de {f}</a>
-              </li>
-            ),
-          )}
-        </ul>
-      </section>
-      <section>
-        <h2>Registro de fotografías</h2>
-        <p>
-          Este registro reúne los originales de las imágenes reutilizadas por las publicaciones. Los
-          autores que no pudieron verificarse se identifican como tales; no se atribuyen a los
-          personajes de la demo.
-        </p>
-        <a href="/revista/medios-origen.json">Ver registro completo, archivos y transformaciones</a>
-        <ul>
-          {FOTOGRAFIAS.map((f) => (
-            <li key={f.pagina}>
-              <a href={f.pagina}>{f.titulo}</a>
-              <p>
-                {f.autor}. {f.licencia}.
-              </p>
-            </li>
-          ))}
-        </ul>
-      </section>
-      <section>
-        <h2>Música</h2>
-        <p>
-          «{PISTAS[sitio].titulo}», de {PISTAS[sitio].autor} (incompetech.com).{" "}
-          {PISTAS[sitio].porque} <a href={PISTAS[sitio].src}>Escuchar el archivo local</a> ·{" "}
-          <a href={PISTAS[sitio].origen}>Original en Wikimedia Commons</a> ·{" "}
-          <a href="/revista/audio/LICENCIA.txt">Licencia {PISTAS[sitio].licencia} y créditos</a>.
-        </p>
-      </section>
+        <section className="rv-cred-bloque" aria-labelledby="rv-cred-musica">
+          <h2 id="rv-cred-musica">Música</h2>
+          <p className="rv-cred-pista">«{pista.titulo}»</p>
+          <p>
+            {pista.autor} (incompetech.com). {pista.porque}
+          </p>
+          <p>
+            <a href={pista.src}>Escuchar el archivo local</a> ·{" "}
+            <a href={pista.origen}>Original en Wikimedia Commons</a> ·{" "}
+            <a href="/revista/audio/LICENCIA.txt">Licencia {pista.licencia} y créditos</a>
+          </p>
+          <p className="rv-cred-nota">
+            Suena solo si tocas la bocina de abajo a la derecha; al llegar, la revista está en
+            silencio.
+          </p>
+        </section>
+      </div>
+
+      <p className="rv-cred-volver">
+        <Link to={`/revista/${sitio}`}>Volver a {nombre}</Link>
+      </p>
     </main>
   )
 }

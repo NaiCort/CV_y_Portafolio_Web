@@ -7,7 +7,6 @@ import Entrada from "./pages/Entrada"
 import UmbralSitio from "./UmbralSitio"
 import PosicionLectura from "./components/PosicionLectura"
 import PrivacidadRevista from "./components/PrivacidadRevista"
-import Creditos from "./pages/Creditos"
 import { reiniciarCache } from "./lib/marcadores"
 import RuborSitio from "./RuborSitio"
 import PrismaSitio from "./PrismaSitio"
@@ -65,7 +64,6 @@ export default function RevistaApp() {
       {sitio && <Musica key={`${sitio}-${sesion}`} sitio={sitio} />}
       <Routes key={sesion}>
         <Route index element={<Entrada />} />
-        <Route path=":sitio/creditos" element={<Creditos />} />
         <Route path="umbral/*" element={<UmbralSitio />} />
         <Route path="rubor/*" element={<RuborSitio />} />
         <Route path="prisma/*" element={<PrismaSitio />} />

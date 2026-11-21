@@ -2,6 +2,7 @@ import { useState } from "react"
 import { Link, Navigate, Route, Routes, useLocation, useParams } from "react-router-dom"
 import ComercialCTA from "../../components/shared/ComercialCTA"
 import useFavicon from "../../hooks/useFavicon"
+import Creditos from "./pages/Creditos"
 import usePageMetadata from "../../hooks/usePageMetadata"
 import Cartel from "./components/umbral/Cartel"
 import { Barras, Caligrafia, Registro } from "./components/umbral/Adornos"
@@ -588,6 +589,7 @@ export default function UmbralSitio() {
         <Route path="lamina/:id" element={<Lamina />} />
         <Route path={`creador/${CREADOR.id}`} element={<Creador />} />
         <Route path="guardados" element={<Guardados />} />
+        <Route path="creditos" element={<Creditos sitio="umbral" />} />
         <Route path="*" element={<Navigate to="/revista/umbral" replace />} />
       </Routes>
       <ComercialCTA

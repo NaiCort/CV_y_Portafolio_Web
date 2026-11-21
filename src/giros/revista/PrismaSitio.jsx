@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { Link, Navigate, Route, Routes, useLocation } from "react-router-dom"
 import ComercialCTA from "../../components/shared/ComercialCTA"
 import useFavicon from "../../hooks/useFavicon"
+import Creditos from "./pages/Creditos"
 import usePageMetadata from "../../hooks/usePageMetadata"
 import { findArticulo, findAutor, USUARIO } from "./data/prisma"
 import { useMarcadores } from "./lib/marcadores"
@@ -68,6 +69,18 @@ export default function PrismaSitio() {
             <Link to="/revista/prisma" aria-current={inicio ? "page" : undefined}>
               Inicio
             </Link>
+            <Link
+              to="/revista/prisma/areas"
+              aria-current={pathname.endsWith("/areas") ? "page" : undefined}
+            >
+              Áreas
+            </Link>
+            <Link
+              to="/revista/prisma/publicar"
+              aria-current={pathname.endsWith("/publicar") ? "page" : undefined}
+            >
+              Publicar
+            </Link>
           </nav>
           <button type="button" className="pr-busca" onClick={() => setBuscando(true)}>
             <span aria-hidden="true">⌕</span> Buscar investigaciones, autores o áreas
@@ -89,12 +102,6 @@ export default function PrismaSitio() {
           </Link>
         </div>
       </header>
-      <nav className="pr-enlaces pr-w" aria-label="Publicación científica">
-        <Link to="/revista/prisma/areas">Explorar por área</Link>
-        <Link to="/revista/prisma/publicar">Publicar</Link>
-        <Link to="/revista/prisma/perfil">Mis envíos</Link>
-        <Link to="/revista/prisma/sostenimiento">Cómo se sostiene Prisma</Link>
-      </nav>
       <Routes>
         <Route path="areas" element={<Areas />} />
         <Route path="publicar" element={<Publicar />} />
@@ -105,6 +112,7 @@ export default function PrismaSitio() {
         <Route path="articulo/:id" element={<Articulo />} />
         <Route path="autor/:id" element={<Autor />} />
         <Route path="marcadores" element={<MarcadoresPrisma />} />
+        <Route path="creditos" element={<Creditos sitio="prisma" />} />
         <Route path="*" element={<Navigate to="/revista/prisma" replace />} />
       </Routes>
       <ComercialCTA
@@ -121,6 +129,12 @@ export default function PrismaSitio() {
           <p>
             <b>Prisma</b> · Revista ficticia de ciencia y tecnología en acceso abierto. Autores,
             instituciones, DOI, ORCID, ISSN y cifras son de ejemplo.
+          </p>
+          <p>
+            <Link to="/revista/prisma/areas">Explorar por área</Link> ·{" "}
+            <Link to="/revista/prisma/publicar">Publicar</Link> ·{" "}
+            <Link to="/revista/prisma/perfil">Mis envíos</Link> ·{" "}
+            <Link to="/revista/prisma/sostenimiento">Cómo se sostiene Prisma</Link>
           </p>
           <p>
             <Link to="/revista/rubor">Ir a Rubor, la otra revista de esta demo</Link> ·{" "}
