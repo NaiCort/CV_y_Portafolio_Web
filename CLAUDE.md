@@ -129,22 +129,28 @@ contratarnos». Leer `docs/FICHA_DESPACHO.md` antes de tocar
 
 ## Estado de Revista digital
 
-**Revista = Rubor, Prisma y Umbral** (V4.7, en construcción): una demo con tres sitios en `/revista`.
+**Revista = Rubor, Prisma y Umbral** (V4.7, lista para cierre en V4.7.18, pendiente del visto bueno de Ian
+en el teléfono y de la actualización del Documento Maestro): una demo con tres sitios en `/revista`.
 - **Rubor**, moda y celebridades: un solo editor; la portada es siempre el número más reciente y se
   hojea bajando; cabecera semitransparente fija con menú de números; cada número con su paleta.
-  Cuenta con suscripción simulada, secciones y «Detrás de cámaras» (V4.7.6).
+  Cupón de suscripción y carnet de lectora, índice por sección y «Detrás de cámaras» como hoja de
+  contactos (V4.7.15).
 - **Prisma**, ciencia y tecnología en acceso abierto: varios autores con perfil, estante de números,
-  lectura completa y PDF de los N.º 24 y 23, publicar, áreas y sostenimiento (V4.7.7).
+  lectura completa y PDF etiquetados de los N.º 24 y 23, manuscrito para publicar, recorrido de envíos,
+  áreas como tabla periódica y sostenimiento (V4.7.15 y V4.7.17).
 - **Umbral**, fotografía y diseño: rehecho desde cero en V4.7.14 como revista de carteles
   (ficha en `docs/FICHA_UMBRAL.md`): motor de carteles por capas con despiece 3D, dos dossiers
-  completos («Entre líneas» y «Otra perspectiva») y cuatro números de archivo con su lámina;
+  completos («Entre líneas» y «Otra perspectiva»), «Agua» (N.º 06) completo y tres láminas de archivo;
   fotos de Pexels con recortes (rembg) en `public/revista/umbral/`.
 - **Reglas de Ian para toda la revista:** cada sección representa una o dos páginas de revista; nada
   interrumpe esa lógica (sin avisos o créditos sueltos entre pliegos: van en el pie de foto o
   en el colofón). **Todas** las páginas con el mismo nivel de detalle que la portada (también
   se aplicará después a las demás demos). Música: una pista por revista, con una bocina
   transparente abajo a la derecha (silenciada al inicio) y volumen vertical al pasar el cursor;
-  nada de barras extra arriba: solo el aviso de demo y la cabecera de cada revista.
+  nada de barras extra arriba: solo el aviso de demo y la cabecera de cada revista. Pistas: Rubor
+  «Night on the Docks», Prisma «Clean Soul», Umbral «Gymnopédie n.º 1» (Kevin MacLeod, CC BY 3.0).
+- **Oficio ya resuelto:** tipografías de respaldo con medida (ancho y altura) en `revista.css`;
+  créditos dentro de cada sitio; detector de textos encimados y `impeccable` sin hallazgos propios.
 Leer `docs/FICHA_REVISTA.md` antes de tocar `src/giros/revista/`. Pruebas de navegador en
 `npm run test:browser:revista`.
 
