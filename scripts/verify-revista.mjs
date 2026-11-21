@@ -141,6 +141,17 @@ await suite("revista", async ({ run, base }) => {
 
         // Dos pestañas escriben elementos diferentes sin perder ninguno.
         if (width === 390) {
+          await go(page, base, "/revista/rubor/numero/12")
+          await page.getByRole("link", { name: "Suscribirme para leer la nota de archivo" }).click()
+          await page.getByRole("radio", { name: /Plan anual/ }).check()
+          await page.getByRole("button", { name: "Confirmar suscripción simulada" }).click()
+          await page.getByRole("link", { name: "Leer el N.º 12" }).click()
+          await page.reload()
+          await page.getByRole("heading", { name: /Notas de la editora/ }).waitFor()
+          await go(page, base, "/revista/rubor/cuenta")
+          await page.getByRole("button", { name: "Cancelar suscripción" }).click()
+          await go(page, base, "/revista/rubor/numero/12")
+          await page.getByRole("link", { name: /Suscribirme/ }).waitFor()
           const otra = await context.newPage()
           await go(page, base, "/revista/prisma/articulo/andromeda")
           await go(otra, base, "/revista/prisma/articulo/adn-no-codificante")

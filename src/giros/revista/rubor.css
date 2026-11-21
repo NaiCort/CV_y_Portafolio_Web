@@ -994,3 +994,22 @@
     grid-template-columns: 1fr;
   }
 }
+main.rb-archivo h1 {
+  font: 500 clamp(2.6rem, 6vw, 6rem)/1 var(--rb-titulo);
+}
+.rb-archivo form,
+.rb-archivo article {
+  max-width: 62ch;
+  display: grid;
+  gap: 1rem;
+}
+.rb-archivo form button {
+  justify-self: start;
+}
+.rb-archivo figure img {
+  width: min(100%, 600px);
+  height: auto;
+}
+.rb-archivo li + li {
+  margin-top: 0.6rem;
+}

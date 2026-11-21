@@ -1,3 +1,4 @@
+import { notasRubor } from "../../data/notasRubor"
 import { Link } from "react-router-dom"
 import Comentarios from "../../components/Comentarios"
 import { ACTUAL, EDITORA, LECTORA, NUMEROS, fechaNumero, foto, fotoSrcSet } from "../../data/rubor"
@@ -133,7 +134,7 @@ function Folio({ numero, pagina, lado = "d" }) {
   )
 }
 
-function Archivo({ numero }) {
+function Archivo({ numero, plan }) {
   const anteriores = NUMEROS.filter((x) => x.n !== numero.n).slice(0, 3)
   return (
     <section id="sumario" className="rb-archivo" aria-labelledby="rb-archivo-titulo">
@@ -141,9 +142,21 @@ function Archivo({ numero }) {
         Número de <span>archivo</span>
       </h2>
       <p>
-        «{numero.tema}», {fechaNumero(numero).toLowerCase()}. Los números anteriores completos son
-        para suscriptores. En esta demo solo el N.º 24 y el N.º 23 se pueden hojear completos.
+        «{numero.tema}», {fechaNumero(numero)}. En acceso libre, solo el N.º 24 y el N.º 23 tienen
+        edición completa.
       </p>
+      {plan ? (
+        <article>
+          <h3>Notas de la editora · {numero.tema}</h3>
+          <p>{notasRubor[numero.n - 1]}</p>
+        </article>
+      ) : (
+        <p>
+          <Link className="rb-boton" to={`/revista/rubor/cuenta?numero=${numero.n}`}>
+            Suscribirme para leer la nota de archivo
+          </Link>
+        </p>
+      )}
       <div className="rb-acciones">
         <Guardar numero={numero} />
         <Link className="rb-boton rb-boton-on" to="/revista/rubor">
@@ -182,12 +195,12 @@ function Anteriores({ lista }) {
   )
 }
 
-export default function Numero({ numero }) {
+export default function Numero({ numero, plan }) {
   if (!numero.completo)
     return (
       <main>
         <Portada numero={numero} />
-        <Archivo numero={numero} />
+        <Archivo numero={numero} plan={plan} />
       </main>
     )
   const { sumario, carta, entrevista: e, anuncio, reportaje: r } = numero
@@ -216,6 +229,15 @@ export default function Numero({ numero }) {
               </li>
             ))}
           </ol>
+          <nav aria-label="Más de Rubor">
+            <Link to="/revista/rubor/secciones">Explorar secciones</Link>
+            {numero.n === ACTUAL.n && (
+              <>
+                {" "}
+                · <Link to="/revista/rubor/sesion">Detrás de cámaras</Link>
+              </>
+            )}
+          </nav>
           <Guardar numero={numero} />
         </div>
         <Folio numero={numero} pagina={3} />

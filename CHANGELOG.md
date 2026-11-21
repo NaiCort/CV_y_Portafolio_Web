@@ -1,3 +1,7 @@
+## V4.7.6 · Rubor: suscripción, secciones y sesión editorial
+
+- Cuenta local con renovación simulada, cancelación y acceso a 22 notas de archivo. Cuatro secciones y detrás de cámaras del número actual.
+
 ## V4.7.5 · Apertura de Entre líneas
 
 - Composición horizontal y vertical con fotografía dentro del título y figura en primer plano.
