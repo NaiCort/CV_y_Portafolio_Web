@@ -1,3 +1,29 @@
+# V4.7.18 · 21 de noviembre de 2026 · Pasada final de diseño
+
+- Sin textos encimados en las 27 páginas de Revista (páginas de Rubor bajo la cabecera, cursivas y cierre de Umbral).
+- Menos patrones vigilados: sin etiquetas sobre los títulos de las páginas nuevas, sin franja de color en el manuscrito; contraste de textos de ejemplo y símbolos.
+- Barras de desplazamiento con el tono de cada revista.
+- Documentos de V4.7.5 a V4.7.11 completados.
+
+# V4.7.17 · 21 de noviembre de 2026 · PDF accesibles, carga y tipografías
+
+- PDF de Prisma etiquetados, en español y con índice navegable.
+- Tipografías de respaldo con medida (ancho y altura) para las cuatro fuentes: el CLS bajó a 0.000–0.043 en las páginas medidas.
+- Umbral y Rubor cargan más rápido: fotos del tamaño que ocupan, prioridad para la figura principal y entrada de la portada sin transparencia.
+
+# V4.7.16 · 21 de noviembre de 2026 · Opcionales y movimiento
+
+- Umbral suena con la Gymnopédie n.º 1 (Satie, por Kevin MacLeod).
+- «Agua» (N.º 06) como dossier completo, con gota de texto envolvente y dos fotos nuevas.
+- Barra de avance de lectura, páginas que entran al bajar, entrada de la portada de Rubor y transiciones entre páginas.
+- Franja legal de privacidad y créditos con el tono de cada revista.
+
+# V4.7.15 · 21 de noviembre de 2026 · Rubor y Prisma, todas las páginas
+
+- Rubor: cupón de suscripción recortable y carnet de lectora; índice por sección en pliego; «Detrás de cámaras» como hoja de contactos con lápiz graso, hoja de llamado y equipo.
+- Prisma: manuscrito para publicar con guía, recorrido animado de cada envío, áreas como tabla periódica, sostenimiento con reparto del gasto y preguntas; preimpresión con diseño de ficha. Sin la fila de enlaces bajo la cabecera.
+- Créditos dentro de cada revista, con hoja de contactos, muestras de tipografía y música.
+
 # V4.7.14 · 21 de noviembre de 2026 · Umbral desde cero
 
 - Umbral rehecho como revista de carteles: motor de carteles por capas con cuatro variantes («Entre líneas» con letras como ventana y persona recortada encima en 2.5D; «Otra perspectiva» con rebanadas diagonales que se deslizan al bajar; «Agua» con palabra vertical y reflejos en WebGL; «Crear» con tiras, serif detrás de la persona y sombra de ventana).

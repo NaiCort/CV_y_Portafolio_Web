@@ -3,7 +3,7 @@
 // el creador ni personajes reales. Ficha: docs/FICHA_UMBRAL.md.
 export const fotoUmbral = (clave, ancho = 1600) => `/revista/umbral/${clave}-${ancho}.webp`
 export const srcSetUmbral = (clave) =>
-  `${fotoUmbral(clave, 800)} 800w, ${fotoUmbral(clave, 1600)} 1600w`
+  `${fotoUmbral(clave, 800)} 800w, ${fotoUmbral(clave, 1200)} 1200w, ${fotoUmbral(clave, 1600)} 1600w`
 
 export const CREADOR = {
   id: "nicolas-vera",
@@ -153,22 +153,80 @@ export const DOSSIERS = [
     ],
   },
 ]
-export const findDossier = (id) => DOSSIERS.find((d) => d.id === id)
+// Dossiers que se pueden leer completos: los del N.º 07 y los de archivo marcados como completos.
+export const LEIBLES = () => [...DOSSIERS, ...ARCHIVO.filter((n) => n.completo)]
+export const findDossier = (id) => LEIBLES().find((d) => d.id === id)
 
 // Números de archivo: solo su lámina de portada existe en esta demo.
 export const ARCHIVO = [
   {
     id: "agua",
     numero: 6,
+    pagina: 8,
     titulo: "Agua",
     cartel: "vertical",
     tono: "noche",
     disciplina: "Fotografía",
+    autor: CREADOR.nombre,
     foto: "agua",
     recorte: "agua",
     mes: "Octubre 2026",
     alt: "Una mujer con la mitad del rostro fuera del agua de un lago, al atardecer.",
     lema: "La luz cambia lo que toca, pero no lo que es.",
+    // Número de archivo con su dossier completo (los demás solo conservan la lámina).
+    completo: true,
+    // En vez de la silueta, una gota: el texto la rodea en círculo.
+    gota: "agua-color",
+    entradilla:
+      "Fotografiar el agua es fotografiar la luz que pasa por ella. Un dossier sobre superficies que no se quedan quietas y rostros que aparecen a medias.",
+    capitulos: [
+      {
+        titulo: "La línea del agua",
+        texto: [
+          "La primera decisión fue la altura de la cámara: justo en la línea del agua. Desde ahí, la mitad del rostro está en el aire y la otra mitad en el reflejo, y el ojo no sabe cuál es la verdadera.",
+          "Nicolás esperó la última media hora de luz. El lago estaba quieto, pero no del todo: cada respiración de la modelo movía la superficie y deshacía el reflejo, así que la toma buena duró menos de un segundo.",
+          "En el cartel, la palabra «Agua» se escribe de abajo hacia arriba y con el color del papel. Así, la letra no tapa la foto: parece que el papel se mete en ella.",
+        ],
+      },
+      {
+        titulo: "Cáusticas",
+        texto: [
+          "Cuando la luz atraviesa una superficie con ondas, se concentra en líneas brillantes que se mueven: se llaman cáusticas. Son las redes de luz del fondo de una alberca.",
+          "En la versión de pantalla del cartel, esas líneas se dibujan en vivo, con un programa que corre en la tarjeta de video. No son una foto: nunca se repiten igual.",
+        ],
+        cita: "El agua no se fotografía: se fotografía lo que hace con la luz.",
+      },
+      {
+        titulo: "Tres maneras de mojarse",
+        texto: [
+          "El mismo tema admite tres tratamientos. El reflejo partido del lago, el rostro bajo luces de color y la luz que se rompe en arcoíris sobre la piel.",
+          "Ninguno necesita agua de verdad en el último caso: un prisma, un vaso o una botella frente al sol hacen el mismo trabajo. La fotografía es, otra vez, una manera de ordenar la luz.",
+        ],
+      },
+    ],
+    proceso: [
+      [
+        "fondo",
+        "La foto y la luz",
+        "La toma del lago y, encima, las cáusticas que se dibujan en vivo.",
+      ],
+      [
+        "letras",
+        "El papel que muerde",
+        "Un panel del color del papel y la palabra vertical del mismo color.",
+      ],
+      [
+        "recorte",
+        "El rostro al frente",
+        "El rostro recortado pasa por encima para dar profundidad.",
+      ],
+      ["notas", "La columna", "Lema, fecha, tipo de cartel y código de barras, de lado."],
+    ],
+    recortes: [
+      ["El lago", "agua", "50% 55%", 1],
+      ["Luz de color", "agua-color", "45% 50%", 1.2],
+      ["Arcoíris", "agua-luz", "50% 45%", 1.2],
+    ],
   },
   {
     id: "crear",
@@ -220,6 +278,8 @@ export const FOTOS_UMBRAL = [
   ["sentada", "19101379", "Mujer sentada en un muro"],
   ["ventana", "11304227", "Sombra de ventana en la pared"],
   ["agua", "3139857", "Mujer en el agua de un lago"],
+  ["agua-color", "20405733", "Rostro bajo el agua con luz de color"],
+  ["agua-luz", "3431494", "Rostro con reflejos de luz en arcoíris"],
   ["noche", "19295553", "Calle de noche con farolas"],
   ["cruce", "5276003", "Cruce al atardecer"],
 ]

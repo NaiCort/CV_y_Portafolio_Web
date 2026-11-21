@@ -114,6 +114,16 @@ describe("Umbral", () => {
     expect(cartel.hasAttribute("data-despiece")).toBe(false)
     expect(cartel.getAttribute("role")).toBe("img")
   })
+  it("«Agua», del archivo, se lee completo y se puede guardar", async () => {
+    await abrir("/revista/umbral/dossier/agua")
+    expect(document.querySelector("h1").textContent).toBe("Agua")
+    expect(document.querySelectorAll(".um-lectura .um-pliego")).toHaveLength(3)
+    expect(document.querySelector(".um-gota")).toBeTruthy()
+    await click(button("Guardar dossier: Agua"))
+    expect(leerMarcadores().umbral).toEqual(["agua"])
+    await click(button("Ver proceso"))
+    expect(document.querySelectorAll(".um-pasos li")).toHaveLength(4)
+  })
   it("los números de archivo tienen su lámina y fotos locales", async () => {
     for (const n of ARCHIVO) expect(existsSync(`public${fotoUmbral(n.foto)}`), n.id).toBe(true)
     await abrir("/revista/umbral/lamina/agua")
@@ -167,7 +177,7 @@ describe("Búsqueda, privacidad y créditos", () => {
     await abrir("/revista/umbral/creditos")
     expect(document.querySelector("h1").textContent).toBe("Créditos de Umbral")
     expect(document.querySelector("main").textContent).toContain("ficticios")
-    expect(document.querySelectorAll('a[href^="/revista/fuentes/LICENSE-"]')).toHaveLength(5)
+    expect(document.querySelectorAll('a[href^="/revista/fuentes/LICENSE-"]')).toHaveLength(4)
     expect(document.querySelector('a[href="/revista/audio/LICENCIA.txt"]').textContent).toContain(
       "CC BY",
     )

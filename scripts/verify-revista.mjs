@@ -9,11 +9,11 @@ const go = async (page, base, path) => {
 }
 // axe mide colores reales: se espera a que terminen fundidos y animaciones. Las ligadas al
 // desplazamiento (Umbral) y las infinitas (ondas de la bocina) no terminan nunca: se ignoran.
+// document.getAnimations() incluye las de las transiciones entre páginas (View Transitions).
 const audit = async (page) => {
   await page.waitForFunction(() =>
     document
-      .querySelector(".revista-root")
-      .getAnimations({ subtree: true })
+      .getAnimations()
       .filter(
         (a) =>
           a.timeline instanceof DocumentTimeline &&
@@ -49,7 +49,16 @@ await suite("revista", async ({ run, base }) => {
           "/revista/rubor/numero/23",
           "/revista/rubor/numero/12",
           "/revista/rubor/marcadores",
+          "/revista/rubor/cuenta",
+          "/revista/rubor/secciones",
+          "/revista/rubor/sesion",
+          "/revista/rubor/creditos",
           "/revista/prisma",
+          "/revista/prisma/publicar",
+          "/revista/prisma/perfil",
+          "/revista/prisma/areas",
+          "/revista/prisma/sostenimiento",
+          "/revista/prisma/creditos",
           "/revista/prisma/articulo/andromeda",
           "/revista/prisma/articulo/adn-no-codificante",
           "/revista/prisma/articulo/cometa",
@@ -58,6 +67,8 @@ await suite("revista", async ({ run, base }) => {
           "/revista/umbral",
           "/revista/umbral/dossier/entre-lineas",
           "/revista/umbral/dossier/otra-perspectiva",
+          "/revista/umbral/dossier/agua",
+          "/revista/umbral/lamina/crear",
           "/revista/umbral/creador/nicolas-vera",
           "/revista/umbral/guardados",
           "/revista/umbral/creditos",
@@ -194,6 +205,9 @@ await suite("revista", async ({ run, base }) => {
         assert.equal(await page.locator(".um-lista > li").count(), 0)
         assert.equal(await page.evaluate(() => localStorage.getItem("qa-otra-demo")), "conservar")
         await bounds(page)
+        // Al borrar, la revista se vuelve a montar y la llamada comercial repite su aparición con
+        // framer-motion (0.6 s), que no aparece en getAnimations().
+        await page.waitForTimeout(800)
         await audit(page)
       },
     )

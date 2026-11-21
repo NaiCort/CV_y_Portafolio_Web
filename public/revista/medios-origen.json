@@ -1676,13 +1676,13 @@
   "cambios": "Recodificada a MP3 de 112 kb/s, sin metadatos, con entrada de 2 segundos"
  },
  {
-  "archivo": "/revista/audio/umbral-dreamer.mp3",
-  "sha256": "de9b7f992ced5cab958674e04f4032aab3193d892a5546e53817e6bca852fb95",
-  "id": "audio-umbral-dreamer",
-  "titulo": "Dreamer",
-  "autor": "Kevin MacLeod (incompetech.com)",
+  "archivo": "/revista/audio/umbral-gymnopedie-1.mp3",
+  "sha256": "912158d6b53af8396f79840238daf5d15f153a8608b97041c3c77d79f6b0c6b8",
+  "id": "audio-umbral-gymnopedie-1",
+  "titulo": "Gymnopédie No. 1",
+  "autor": "Erik Satie; arreglo e interpretación de Kevin MacLeod (incompetech.com)",
   "licencia": "CC BY 3.0",
-  "pagina": "https://commons.wikimedia.org/wiki/File:Dreamer_(ISRC_USUAN1600043).mp3",
+  "pagina": "https://commons.wikimedia.org/wiki/File:Gymnopedie_No._1_(ISRC_USUAN1100787).mp3",
   "cambios": "Recodificada a MP3 de 112 kb/s, sin metadatos, con entrada de 2 segundos"
  }
 ]

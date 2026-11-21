@@ -34,6 +34,12 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: "Umbral Firma";
+  src: url("/revista/fuentes/mrs-saint-delafield-latin-400-normal.woff2") format("woff2");
+  font-display: swap;
+}
+
 .um-root {
   --papel: #efebe3;
   --tinta: #141414;
@@ -41,9 +47,9 @@
   --mesa: #1b1b1c;
   --ambar: #d9a35b;
   --oxido: #8c3b22;
-  --titulo: "Umbral Titulo", "Arial Narrow", Arial, sans-serif;
-  --texto: "Umbral Texto", Georgia, serif;
-  --serif: "Umbral Serif", "Bodoni 72", Didot, Georgia, serif;
+  --titulo: "Umbral Titulo", "Rv Archivo Cartel", "Rv Archivo Cartel N", Arial, sans-serif;
+  --texto: "Umbral Texto", "Rv Newsreader", "Rv Newsreader N", Georgia, serif;
+  --serif: "Umbral Serif", "Rv Bodoni", "Rv Bodoni N", Georgia, serif;
   --alto: max(520px, min(calc(100svh - 150px), 980px));
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   min-height: 100vh;
@@ -131,6 +137,7 @@
 /* Pliegos y páginas */
 .um-main {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 32px;
   padding: 32px 0 48px;
 }
@@ -237,6 +244,7 @@
   text-transform: uppercase;
 }
 .um-titulo-dossier {
+  overflow-wrap: anywhere;
   margin: 10px 0 28px;
   font: 900 clamp(4rem, 8.2vw, 8.5rem)/0.8 var(--titulo);
   font-stretch: 62%;
@@ -252,7 +260,8 @@
   text-wrap: balance;
 }
 .um-cierre .um-titulo-pagina {
-  line-height: 1;
+  margin-bottom: 36px;
+  line-height: 1.1;
 }
 .um-titulo-pagina a {
   text-decoration-thickness: 3px;
@@ -540,6 +549,7 @@
 /* Lectura */
 .um-lectura {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 32px;
 }
 .um-columnas {
@@ -594,6 +604,22 @@
   margin: -10px calc(clamp(28px, 4.5vw, 76px) * -1) 10px 22px;
   shape-image-threshold: 0.35;
   shape-margin: 16px;
+}
+.um-gota {
+  float: right;
+  width: min(46%, 300px);
+  aspect-ratio: 1;
+  margin: 6px 0 16px 24px;
+  border-radius: 50%;
+  object-fit: cover;
+  shape-outside: circle(50%);
+  shape-margin: 18px;
+  animation: um-gota 6s ease-in-out infinite alternate;
+}
+@keyframes um-gota {
+  to {
+    border-radius: 46% 54% 52% 48% / 52% 46% 54% 48%;
+  }
 }
 .um-pagina-cita {
   display: grid;
@@ -1166,6 +1192,13 @@
 .um-capa:has(.um-causticas[data-webgl]) .um-a-reflejo {
   display: none;
 }
+.um-a-recorte {
+  position: absolute;
+  inset: 0 0 0 26%;
+}
+.um-a-recorte img {
+  object-position: 47% 50%;
+}
 .um-a-panel {
   position: absolute;
   top: 0;
@@ -1387,6 +1420,9 @@
 
 /* Teléfono y tableta: las páginas se apilan, cada cartel ocupa el ancho. */
 @media (max-width: 899px) {
+  .um-v-letras {
+    background-image: linear-gradient(rgb(0 0 0 / 0%), rgb(0 0 0 / 0%)), var(--foto-chica);
+  }
   .um-cab {
     gap: 12px;
   }
@@ -1490,6 +1526,9 @@
   .um-capa,
   .um-anteriores img {
     transition: opacity 200ms linear;
+  }
+  .um-gota {
+    animation: none;
   }
   .um-caligrafia path,
   .um-caligrafia.um-escrita path {

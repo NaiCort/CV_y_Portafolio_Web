@@ -9,7 +9,11 @@ export default function PrivacidadRevista({ onBorrar }) {
   const { pathname } = useLocation()
   const sitio = ["rubor", "prisma", "umbral"].find((s) => pathname.startsWith(`/revista/${s}`))
   return (
-    <div className="rv-utilidades">
+    <div className={`rv-utilidades rv-util-${sitio ?? "entrada"}`}>
+      <span className="rv-util-marca" aria-hidden="true">
+        {sitio ? { rubor: "Rubor", prisma: "Prisma", umbral: "Umbral" }[sitio] : "Revista"} · demo
+        de portafolio
+      </span>
       <button type="button" onClick={() => setAbierto(true)}>
         Privacidad y datos de Revista
       </button>
