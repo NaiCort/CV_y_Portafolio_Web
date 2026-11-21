@@ -17,6 +17,7 @@ Entorno: Node 22 y Chromium de Playwright, con la compilación de producción se
   - en escritorio la página no se desplaza entera, cada columna sí;
   - en celular, Esc cierra el desplegable, «Ver las 7 demos» lo abre y elegir una demo navega y lo cierra;
   - el PDF responde como `application/pdf`.
+- **`npm run test:browser:cafe` y `test:browser:gimnasio`:** 5 de 5 escenarios cada una. Ambas visitan `/` y encuentran un solo enlace a su demo.
 - **`npm run audit:encimados` en `/` y `/cotizador`:** 7 tamaños, sin casos.
 - **`npm run audit:cwv`** (teléfono, CPU 4× y red lenta):
   - `/`: LCP 1.92 s y CLS 0.000;
@@ -31,4 +32,3 @@ Entorno: Node 22 y Chromium de Playwright, con la compilación de producción se
 ## No comprobado
 
 - Teléfono de Ian: queda a su revisión en la vista previa.
-- Las pruebas de navegador de Café y Gimnasio visitan `/` y esperan un solo enlace a su demo. La lista única lo cumple (comprobado en las pruebas del CV), pero esas dos suites no se volvieron a correr.
