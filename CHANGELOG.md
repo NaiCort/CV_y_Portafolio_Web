@@ -1,3 +1,7 @@
+## V4.7.5 · Apertura de Entre líneas
+
+- Composición horizontal y vertical con fotografía dentro del título y figura en primer plano.
+
 ## V4.7.4 · Carteles y proceso creativo de Umbral
 
 - Dos portadas editoriales en el índice y los dossiers. Comparación de original, encuadre y composición final.
