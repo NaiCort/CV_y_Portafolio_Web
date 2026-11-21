@@ -1,7 +1,8 @@
 import { Link, Navigate, useParams } from "react-router-dom"
 import usePageMetadata from "../../../hooks/usePageMetadata"
 import { FOTOGRAFIAS } from "../data/creditos"
-import { DOSSIERS } from "../data/umbral"
+import { FOTOS_UMBRAL, fotoUmbral } from "../data/umbral"
+import { PISTAS } from "../data/musica"
 
 export default function Creditos() {
   const { sitio } = useParams()
@@ -22,13 +23,16 @@ export default function Creditos() {
       </p>
       {sitio === "umbral" && (
         <section>
-          <h2>Imágenes de los dossiers</h2>
+          <h2>Fotografías de Umbral</h2>
+          <p>
+            Fotografías de Pexels con su licencia (uso libre, sin atribución obligatoria; se
+            acreditan igual). Los recortes de las personas se hicieron para esta demo.
+          </p>
           <ul>
-            {DOSSIERS.map((d) => (
-              <li key={d.id}>
-                <b>{d.titulo}</b>: <a href={d.foto}>fotografía principal alojada</a> y{" "}
-                <a href={d.detalle}>segunda fotografía alojada</a>. Procedencia en el registro
-                enlazado debajo.
+            {FOTOS_UMBRAL.map(([clave, id, descripcion]) => (
+              <li key={clave}>
+                <a href={`https://www.pexels.com/photo/${id}/`}>{descripcion}</a> (Pexels, n.º {id})
+                · <a href={fotoUmbral(clave)}>archivo local</a>
               </li>
             ))}
           </ul>
@@ -37,15 +41,17 @@ export default function Creditos() {
       <section>
         <h2>Tipografías locales</h2>
         <p>
-          Rubor: Bodoni Moda y Archivo. Prisma: Newsreader y Space Grotesk. Umbral: Archivo y
-          Newsreader.
+          Rubor: Bodoni Moda y Archivo. Prisma: Newsreader y Space Grotesk. Umbral: Archivo, Bodoni
+          Moda, Newsreader y Mrs Saint Delafield.
         </p>
         <ul>
-          {["archivo", "bodoni-moda", "newsreader", "space-grotesk"].map((f) => (
-            <li key={f}>
-              <a href={`/revista/fuentes/LICENSE-${f}.txt`}>Licencia OFL de {f}</a>
-            </li>
-          ))}
+          {["archivo", "bodoni-moda", "newsreader", "space-grotesk", "mrs-saint-delafield"].map(
+            (f) => (
+              <li key={f}>
+                <a href={`/revista/fuentes/LICENSE-${f}.txt`}>Licencia OFL de {f}</a>
+              </li>
+            ),
+          )}
         </ul>
       </section>
       <section>
@@ -70,9 +76,10 @@ export default function Creditos() {
       <section>
         <h2>Música</h2>
         <p>
-          «Lectura» es una pieza ambiental sintetizada para Revista, sin muestras externas.
-          <a href="/revista/audio/lectura.mp3"> Escuchar el archivo local</a> ·{" "}
-          <a href="/revista/audio/LICENCIA.txt">Licencia CC0 1.0</a>.
+          «{PISTAS[sitio].titulo}», de {PISTAS[sitio].autor} (incompetech.com).{" "}
+          {PISTAS[sitio].porque} <a href={PISTAS[sitio].src}>Escuchar el archivo local</a> ·{" "}
+          <a href={PISTAS[sitio].origen}>Original en Wikimedia Commons</a> ·{" "}
+          <a href="/revista/audio/LICENCIA.txt">Licencia {PISTAS[sitio].licencia} y créditos</a>.
         </p>
       </section>
     </main>

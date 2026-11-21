@@ -1,783 +1,1506 @@
-/* Umbral: Fragmentos. La composición se adapta; el texto siempre conserva su orden. */
+/* Umbral: revista de carteles (docs/FICHA_UMBRAL.md). Cada sección es un pliego de una o dos
+   páginas; cada cartel, una pila de capas dentro de un contenedor con proporción fija. */
+@font-face {
+  font-family: "Umbral Titulo";
+  src: url("/revista/fuentes/archivo-latin-wdth-normal.woff2") format("woff2-variations");
+  font-weight: 100 900;
+  font-stretch: 62% 125%;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Umbral Texto";
+  src: url("/revista/fuentes/newsreader-latin-opsz-normal.woff2") format("woff2-variations");
+  font-weight: 200 800;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Umbral Texto";
+  font-style: italic;
+  src: url("/revista/fuentes/newsreader-latin-opsz-italic.woff2") format("woff2-variations");
+  font-weight: 200 800;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Umbral Serif";
+  src: url("/revista/fuentes/bodoni-moda-latin-opsz-normal.woff2") format("woff2-variations");
+  font-weight: 400 900;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Umbral Serif";
+  font-style: italic;
+  src: url("/revista/fuentes/bodoni-moda-latin-opsz-italic.woff2") format("woff2-variations");
+  font-weight: 400 900;
+  font-display: swap;
+}
+
 .um-root {
-  --um-papel: #f0f0eb;
-  --um-tinta: #171b1a;
-  --um-acento: #163c35;
-  background: var(--um-papel);
-  color: var(--um-tinta);
-  font:
-    400 1rem/1.6 "Rubor Texto",
-    Arial,
-    sans-serif;
-  scrollbar-color: #163c35 #f0f0eb;
+  --papel: #efebe3;
+  --tinta: #141414;
+  --noche: #0d0d0e;
+  --mesa: #1b1b1c;
+  --ambar: #d9a35b;
+  --oxido: #8c3b22;
+  --titulo: "Umbral Titulo", "Arial Narrow", Arial, sans-serif;
+  --texto: "Umbral Texto", Georgia, serif;
+  --serif: "Umbral Serif", "Bodoni 72", Didot, Georgia, serif;
+  --alto: max(520px, min(calc(100svh - 150px), 980px));
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  min-height: 100vh;
+  background: var(--mesa);
+  color: var(--tinta);
+  font: 400 1rem/1.5 var(--texto);
+}
+.um-root :is(h1, h2, h3, p, ul, ol, dl, dd, figure, blockquote) {
+  margin: 0;
+}
+.um-root :is(ul, ol) {
+  padding: 0;
+  list-style: none;
+}
+.um-root :is(p, li, dd) {
+  text-wrap: pretty;
 }
 .um-root ::selection {
-  background: #163c35;
-  color: white;
-}
-.um-root :where(a, button, select):focus-visible {
-  outline: 3px solid #894530;
-  outline-offset: 5px;
+  background: var(--ambar);
+  color: var(--tinta);
 }
 .um-root a {
   color: inherit;
-  text-underline-offset: 0.22em;
 }
-.um-root :where(h1, h2, h3) {
-  text-wrap: balance;
+.um-root :is(p, dd, figcaption, h2) a {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
 }
-.um-root button,
-.um-root select {
-  font: inherit;
+.um-root :focus-visible {
+  outline: 2px solid var(--ambar);
+  outline-offset: 3px;
 }
+
+/* Cabecera de la revista */
 .um-cab {
+  position: sticky;
+  top: 44px;
+  z-index: 30;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 12px 30px;
-  padding: 18px clamp(18px, 4vw, 64px);
-  background: #10100f;
-  color: #f7f1df;
+  gap: 24px;
+  height: 56px;
+  padding: 0 clamp(14px, 3vw, 32px);
+  border-bottom: 1px solid rgb(255 255 255 / 12%);
+  background: rgb(13 13 14 / 86%);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  color: var(--papel);
 }
 .um-cab a {
   text-decoration: none;
 }
-.um-cab nav {
-  display: flex;
-  gap: 24px;
-  flex-wrap: wrap;
+.um-volver,
+.um-cab nav a {
+  font: 600 0.75rem var(--titulo);
+  font-stretch: 118%;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
 }
 .um-marca {
-  font:
-    700 1.75rem "Rubor Texto",
-    Arial,
-    sans-serif;
-  letter-spacing: -0.05em;
+  margin: 0 auto;
+  font: 900 1.75rem/1 var(--titulo);
+  font-stretch: 62%;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
 }
+.um-cab nav {
+  display: flex;
+  gap: 22px;
+}
+.um-cab nav a {
+  padding: 8px 0;
+  border-bottom: 2px solid transparent;
+}
+.um-cab nav a[aria-current="page"] {
+  border-color: var(--ambar);
+}
+@media (hover: hover) {
+  .um-cab nav a:hover {
+    color: var(--ambar);
+  }
+}
+
+/* Pliegos y páginas */
 .um-main {
-  width: 100%;
+  display: grid;
+  gap: 32px;
+  padding: 32px 0 48px;
+}
+.um-pliego {
+  position: relative;
+  display: flex;
+  width: min(100% - 48px, 1560px);
+  margin: 0 auto;
+  box-shadow: 0 40px 70px -40px rgb(0 0 0 / 90%);
+}
+.um-pagina {
+  position: relative;
+  flex: 1 1 0;
+  min-width: 0;
+  min-height: var(--alto);
+}
+/* El lomo: sombra donde las dos páginas se juntan. */
+.um-pliego > .um-pagina:not(:last-child)::after,
+.um-pliego > .um-pagina + .um-pagina::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 8;
+  width: 48px;
+  pointer-events: none;
+}
+.um-pliego > .um-pagina:not(:last-child)::after {
+  right: 0;
+  background: linear-gradient(to left, rgb(0 0 0 / 30%), transparent);
+}
+.um-pliego > .um-pagina + .um-pagina::before {
+  left: 0;
+  background: linear-gradient(to right, rgb(0 0 0 / 18%), transparent);
+}
+.um-pagina-cartel {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
   margin: 0;
+  background: var(--noche);
 }
-.um-entrada {
-  font:
-    400 clamp(1.75rem, 3.4vw, 3.5rem)/1.15 "Prisma Titulo",
-    Georgia,
-    serif;
-  max-width: 20ch;
+.um-pagina-cartel .um-cartel {
+  width: auto;
+  height: var(--alto);
 }
-.um-portada-texto > p:not(.um-entrada) {
-  max-width: 44ch;
+.um-pagina-texto {
+  display: flex;
+  flex-direction: column;
+  padding: 44px clamp(28px, 4.5vw, 76px) 72px;
+  background: var(--papel);
 }
-.um-nota,
-.um-root figcaption {
-  font-size: 0.875rem;
-  line-height: 1.5;
-  color: #4d5953;
+.um-tono-noche.um-pagina-texto,
+.um-pagina.um-tono-noche {
+  background: var(--noche);
+  color: var(--papel);
+}
+.um-pliego-titulo {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 0;
+  color: #b8b2a8;
+  font: 600 0.6875rem var(--titulo);
+  font-stretch: 118%;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+}
+.um-corrida {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 40px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid currentColor;
+  font: 600 0.6875rem var(--titulo);
+  font-stretch: 118%;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+.um-corrida a {
+  text-decoration: none;
+}
+.um-folio {
+  position: absolute;
+  bottom: 24px;
+  font: 600 0.625rem var(--titulo);
+  font-stretch: 118%;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: 0.75;
+}
+.um-folio-i {
+  left: clamp(28px, 4.5vw, 76px);
+}
+.um-folio-d {
+  right: clamp(28px, 4.5vw, 76px);
+}
+
+/* Tipografía de página */
+.um-cabecera-revista {
+  font: 900 clamp(5rem, 10vw, 10rem)/0.78 var(--titulo);
+  font-stretch: 62%;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+}
+.um-titulo-dossier {
+  margin: 10px 0 28px;
+  font: 900 clamp(4rem, 8.2vw, 8.5rem)/0.8 var(--titulo);
+  font-stretch: 62%;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+.um-titulo-pagina {
+  max-width: 15ch;
+  margin-bottom: 28px;
+  font: 900 clamp(2.5rem, 4.4vw, 4.5rem)/0.86 var(--titulo);
+  font-stretch: 62%;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+.um-cierre .um-titulo-pagina {
+  line-height: 1;
+}
+.um-titulo-pagina a {
+  text-decoration-thickness: 3px;
+  text-underline-offset: 6px;
+}
+.um-sobre {
+  color: var(--oxido);
+  font: 700 0.6875rem var(--titulo);
+  font-stretch: 118%;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+.um-tono-noche .um-sobre {
+  color: var(--ambar);
+}
+.um-lema {
+  max-width: 46ch;
+  margin: 20px 0 34px;
+  font: 400 1.125rem/1.55 var(--texto);
+}
+.um-entradilla {
+  max-width: 34ch;
+  font: 400 clamp(1.25rem, 1.7vw, 1.625rem)/1.4 var(--texto);
+}
+.um-firma {
+  margin-top: 18px;
+  font: italic 400 1.0625rem var(--texto);
+}
+.um-credito,
+.um-nota-pagina {
+  margin-top: auto;
+  padding-top: 28px;
+  font: 400 0.8125rem/1.5 var(--texto);
+  opacity: 0.8;
+}
+.um-acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 34px 0 10px;
 }
 .um-boton {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 44px;
-  padding: 10px 20px;
-  border: 1px solid #163c35;
-  border-radius: 0;
+  min-height: 46px;
+  padding: 0 20px;
+  border: 1px solid currentColor;
   background: transparent;
-  color: #163c35;
-  font-weight: 600;
+  color: inherit;
+  font: 700 0.6875rem/1.2 var(--titulo);
+  font-stretch: 118%;
+  letter-spacing: 0.16em;
+  text-align: center;
   text-decoration: none;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    background 200ms ease-out,
+    color 200ms ease-out;
+}
+.um-boton[aria-pressed="true"] {
+  background: var(--tinta);
+  color: var(--papel);
+}
+.um-boton-claro {
+  border-color: rgb(239 235 227 / 70%);
+  background: rgb(13 13 14 / 62%);
+  color: var(--papel);
+}
+.um-boton-claro[aria-pressed="true"] {
+  background: var(--papel);
+  color: var(--tinta);
+}
+.um-modos {
+  display: inline-flex;
+  border: 1px solid currentColor;
+}
+.um-modos button {
+  min-height: 44px;
+  padding: 0 18px;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: 700 0.6875rem var(--titulo);
+  font-stretch: 118%;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
   cursor: pointer;
 }
-.um-root .um-principal,
-.um-boton[aria-pressed="true"] {
-  background: #163c35;
-  color: white;
+.um-modos button[aria-pressed="true"] {
+  background: var(--tinta);
+  color: var(--papel);
 }
+@media (hover: hover) {
+  .um-boton:hover:not([aria-pressed="true"]),
+  .um-modos button:hover:not([aria-pressed="true"]) {
+    background: rgb(20 20 20 / 8%);
+  }
+  .um-boton-claro:hover:not([aria-pressed="true"]) {
+    background: rgb(13 13 14 / 85%);
+  }
+}
+
+/* Sumario */
 .um-indice {
-  padding: clamp(40px, 6vw, 96px) clamp(18px, 4vw, 64px);
-  scroll-margin-top: 64px;
+  display: grid;
+  gap: 4px;
 }
 .um-indice-cab {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 24px;
   flex-wrap: wrap;
+  align-items: end;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid currentColor;
 }
-.um-root h2 {
-  font:
-    500 clamp(1.75rem, 3.2vw, 3rem)/1.1 "Prisma Titulo",
-    Georgia,
-    serif;
+.um-indice-cab h2 {
+  font: 800 0.75rem var(--titulo);
+  font-stretch: 118%;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
 }
-.um-indice select {
-  padding: 8px;
-  margin-left: 8px;
-  border: 1px solid #87968b;
-  max-width: 100%;
+.um-indice-cab label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font: 600 0.6875rem var(--titulo);
+  font-stretch: 118%;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+.um-indice-cab select {
+  min-height: 40px;
+  padding: 0 10px;
+  border: 1px solid currentColor;
+  border-radius: 0;
   background: transparent;
   color: inherit;
+  font: 500 0.9375rem var(--texto);
 }
-.um-lista {
-  list-style: none;
-  margin-top: 24px;
+.um-lista li {
   display: grid;
-  gap: 40px;
+  grid-template-columns: 40px 104px minmax(0, 1fr);
+  gap: 20px;
+  padding: 22px 0;
+  border-bottom: 1px solid rgb(20 20 20 / 18%);
 }
-.um-lista > li {
-  border-top: 1px solid #9da89f;
-  padding-top: 24px;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  align-items: end;
-  gap: 24px;
+.um-lista-pag {
+  font: 900 2rem/0.9 var(--titulo);
+  font-stretch: 62%;
 }
-.um-lista > li > a {
-  display: grid;
-  grid-template-columns: minmax(140px, 0.7fr) minmax(0, 1fr);
-  align-items: center;
-  gap: clamp(20px, 4vw, 56px);
-  text-decoration: none;
-}
-.um-lista img {
-  display: block;
-  width: 100%;
-  height: 300px;
+.um-lista-mini {
+  width: 104px;
+  height: 138px;
   object-fit: cover;
+  filter: grayscale(1) contrast(1.1);
+}
+.um-lista li > div {
+  display: grid;
+  align-content: start;
+  justify-items: start;
+  gap: 8px;
 }
 .um-lista h3 {
-  font:
-    700 clamp(2rem, 4vw, 4rem)/1 "Rubor Texto",
-    Arial,
-    sans-serif;
-  letter-spacing: -0.05em;
-  margin: 8px 0 16px;
+  font: 900 clamp(2rem, 3vw, 2.875rem)/0.88 var(--titulo);
+  font-stretch: 62%;
+  text-transform: uppercase;
 }
-.um-lista p {
-  max-width: 40ch;
-  margin-bottom: 20px;
+.um-lista h3 a {
+  text-decoration: none;
 }
-.um-estudio {
-  background: #163c35;
-  color: #f0f0eb;
-  padding: 64px clamp(18px, 6vw, 96px);
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px 64px;
+@media (hover: hover) {
+  .um-lista h3 a:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+  }
 }
-.um-estudio p {
-  max-width: 50ch;
+.um-lista p:not(.um-sobre) {
+  max-width: 46ch;
+  font: 400 1rem/1.5 var(--texto);
 }
-.um-estudio a {
-  grid-column: 2;
+.um-vacio {
+  padding: 28px 0;
+  font: italic 400 1.25rem/1.5 var(--texto);
 }
-.um-apertura {
-  padding: clamp(32px, 6vw, 96px) clamp(18px, 7vw, 112px);
-  display: grid;
-  gap: 24px;
-}
-.um-apertura h1 {
-  font:
-    800 clamp(3rem, 8.5vw, 8rem)/0.92 "Rubor Texto",
-    Arial,
-    sans-serif;
-  letter-spacing: -0.06em;
-}
-.um-apertura > p {
-  max-width: 65ch;
-}
-.um-apertura .um-boton {
-  justify-self: start;
-}
-.um-foto-abierta {
-  margin: 0;
-}
-.um-foto-abierta img {
+
+/* Archivo y colofón */
+.um-cartel-enlace {
   display: block;
+  text-decoration: none;
+}
+/* En «Del archivo» el pie va debajo de la lámina, nunca encima. */
+.um-pagina-cartel:has(.um-pie-lamina) {
+  grid-template-rows: auto auto;
+  align-content: start;
+}
+.um-pagina-cartel:has(.um-pie-lamina) .um-cartel {
+  height: calc(var(--alto) - 44px);
+}
+.um-pie-lamina {
+  align-self: stretch;
   width: 100%;
-  max-height: 760px;
-  object-fit: contain;
-  background: #d8ddd6;
+  min-height: 44px;
+  padding: 12px 18px;
+  background: rgb(13 13 14 / 82%);
+  color: var(--papel);
+  font: 600 0.6875rem/1.5 var(--titulo);
+  font-stretch: 118%;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
 }
-.um-root figcaption {
-  padding-top: 12px;
+.um-pie-lamina a {
+  color: var(--ambar);
 }
-.um-lectura {
-  padding-block: clamp(32px, 6vw, 96px);
-}
-.um-lectura > :not(figure) {
-  width: min(100% - 36px, 756px);
-  margin-inline: auto;
-}
-.um-lectura article {
+.um-anteriores {
   display: grid;
-  gap: 40px;
-  font:
-    400 1.25rem/1.75 "Prisma Titulo",
-    Georgia,
-    serif;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 26px 22px;
 }
-.um-lectura article section p {
-  margin-top: 18px;
+.um-anteriores a {
+  display: grid;
+  gap: 10px;
+  text-decoration: none;
 }
-.um-lectura blockquote {
-  margin-top: 32px;
-  font-size: 1.65rem;
-  color: var(--um-acento);
+.um-anteriores img {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  filter: grayscale(0.4);
+  transition: filter 300ms var(--ease);
 }
-.um-modos {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-bottom: 32px;
+@media (hover: hover) {
+  .um-anteriores a:hover img {
+    filter: none;
+  }
 }
-.um-modos button {
-  padding: 10px 0;
-  margin-right: 16px;
-  border: 0;
-  border-bottom: 3px solid transparent;
-  background: transparent;
-  cursor: pointer;
-  color: #46564c;
+.um-anteriores b {
+  margin-right: 6px;
+  color: var(--ambar);
 }
-.um-modos [aria-pressed="true"] {
-  border-color: var(--um-acento);
-  color: var(--um-tinta);
+.um-anteriores span {
+  font: 800 1.25rem/1.05 var(--titulo);
+  font-stretch: 70%;
+  text-transform: uppercase;
 }
-.um-proceso ol {
-  padding-left: 24px;
-  margin: 24px 0;
+.um-anteriores small {
+  display: block;
+  margin-top: 4px;
+  font: 500 0.6875rem var(--titulo);
+  font-stretch: 118%;
+  letter-spacing: 0.18em;
+}
+.um-colofon {
   display: grid;
   gap: 18px;
-  font-size: 1.125rem;
 }
-.um-lectura figure {
-  margin: 48px 0;
+.um-colofon div {
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgb(20 20 20 / 18%);
 }
-.um-lectura figure img {
+.um-colofon dt {
+  margin-bottom: 4px;
+  font: 700 0.6875rem var(--titulo);
+  font-stretch: 118%;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+.um-colofon dd {
+  font: 400 1.0625rem/1.5 var(--texto);
+}
+.um-root .um-colofon-firma,
+.um-root .um-nombre-firma {
+  position: static;
+  display: block;
+  width: 220px;
+  margin-top: 34px;
+  color: var(--oxido);
+}
+.um-colofon-barras {
+  margin-top: 26px;
+}
+
+/* Lectura */
+.um-lectura {
+  display: grid;
+  gap: 32px;
+}
+.um-columnas {
+  columns: 2 22ch;
+  column-gap: 40px;
+  font: 400 1.125rem/1.65 var(--texto);
+}
+.um-columnas p + p {
+  margin-top: 1em;
+}
+.um-capitular > p:first-child::first-letter {
+  float: left;
+  margin: 8px 12px 0 0;
+  color: var(--oxido);
+  font: 900 5.4em/0.76 var(--titulo);
+  font-stretch: 62%;
+}
+.um-pagina-foto {
+  margin: 0;
+  background: #000;
+}
+.um-pagina-foto img {
+  position: absolute;
+  inset: 0;
   width: 100%;
-  height: auto;
-  max-height: 600px;
-  object-fit: contain;
+  height: 100%;
+  object-fit: cover;
 }
+.um-pagina-foto figcaption {
+  position: absolute;
+  bottom: 18px;
+  left: 18px;
+  z-index: 9;
+  max-width: 34ch;
+  padding: 8px 12px;
+  background: rgb(13 13 14 / 78%);
+  color: var(--papel);
+  font: 500 0.75rem/1.4 var(--texto);
+}
+.um-pagina-silueta {
+  display: block;
+  overflow: hidden;
+}
+.um-pagina-silueta > p {
+  margin-top: 1em;
+  font: 400 1.125rem/1.65 var(--texto);
+}
+.um-silueta {
+  float: right;
+  width: 52%;
+  height: auto;
+  margin: -10px calc(clamp(28px, 4.5vw, 76px) * -1) 10px 22px;
+  shape-image-threshold: 0.35;
+  shape-margin: 16px;
+}
+.um-pagina-cita {
+  display: grid;
+  place-items: center;
+  padding: 72px clamp(28px, 5vw, 80px);
+}
+.um-pagina-cita blockquote {
+  display: grid;
+  gap: 26px;
+}
+.um-pagina-cita blockquote p {
+  max-width: 13ch;
+  font: italic 400 clamp(2.4rem, 4.4vw, 4.6rem)/1.04 var(--serif);
+}
+.um-pagina-cita footer {
+  color: var(--ambar);
+  font: 700 0.75rem var(--titulo);
+  font-stretch: 118%;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+.um-root .um-cierre-reg {
+  position: absolute;
+  right: clamp(28px, 4.5vw, 76px);
+  bottom: 64px;
+  width: 44px;
+  color: var(--ambar);
+}
+.um-apertura .um-sobre,
+.um-pagina-texto > .um-sobre:first-of-type {
+  margin-top: 6px;
+}
+.um-pliego-triple {
+  flex-direction: column;
+  background: var(--papel);
+}
+.um-triple {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  padding: 8px 8px 0;
+}
+.um-triple figure {
+  display: grid;
+  gap: 8px;
+}
+.um-triple figure > span {
+  display: block;
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+}
+.um-triple img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.um-triple figcaption {
+  font: 700 0.6875rem var(--titulo);
+  font-stretch: 118%;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+.um-pagina-ancha {
+  min-height: auto;
+}
+.um-pagina-ancha .um-columnas {
+  columns: 3 22ch;
+}
+
+/* Proceso */
+.um-pasos {
+  display: grid;
+  margin-bottom: 18px;
+}
+.um-pasos li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 18px;
+  padding: 18px 0;
+  border-top: 1px solid rgb(20 20 20 / 20%);
+}
+.um-pasos h3 {
+  font: 800 1.25rem/1.1 var(--titulo);
+  font-stretch: 85%;
+  text-transform: uppercase;
+}
+.um-pasos p {
+  margin-top: 4px;
+  font: 400 1rem/1.5 var(--texto);
+}
+.um-interruptor {
+  min-width: 118px;
+  min-height: 44px;
+  padding: 0 14px;
+  border: 1px solid currentColor;
+  background: transparent;
+  color: inherit;
+  font: 700 0.6875rem var(--titulo);
+  font-stretch: 118%;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.um-interruptor[aria-pressed="true"] {
+  background: var(--tinta);
+  color: var(--papel);
+}
+.um-despiece-boton {
+  position: absolute;
+  bottom: 22px;
+  left: 50%;
+  z-index: 9;
+  translate: -50% 0;
+}
+
+/* Creador y guardados */
+.um-pagina-nombre {
+  display: grid;
+  place-items: center;
+  padding: 48px 32px;
+  text-align: center;
+}
+.um-pagina-nombre :is(p, h1) {
+  display: grid;
+  font: 900 clamp(4.5rem, 11vw, 11rem)/0.8 var(--titulo);
+  font-stretch: 62%;
+  text-transform: uppercase;
+}
+.um-pagina-nombre h1 span:nth-child(2) {
+  color: transparent;
+  -webkit-text-stroke: 2px var(--papel);
+}
+.um-root .um-nombre-firma {
+  width: min(320px, 70%);
+  margin: 10px auto 0;
+  color: var(--ambar);
+}
+
+/* Pie de Umbral */
 .um-pie {
   display: grid;
-  gap: 20px;
-  padding: 48px clamp(18px, 6vw, 96px) 72px;
-  background: #171b1a;
-  color: #f0f0eb;
+  justify-items: start;
+  gap: 10px;
+  padding: 40px clamp(20px, 5vw, 64px) 56px;
+  background: var(--noche);
+  color: var(--papel);
 }
 .um-pie b {
-  font-size: 3rem;
-  letter-spacing: -0.05em;
+  font: 900 2rem/1 var(--titulo);
+  font-stretch: 62%;
+  text-transform: uppercase;
 }
 .um-pie p {
-  max-width: 65ch;
+  max-width: 60ch;
+  font: 400 0.9375rem/1.5 var(--texto);
 }
-@media (max-width: 900px) {
-  .um-lista > li {
-    grid-template-columns: 1fr;
+
+/* ===== Motor de carteles ===== */
+.um-cartel {
+  position: relative;
+  width: 100%;
+  aspect-ratio: var(--prop, 3 / 4);
+  overflow: hidden;
+  container-type: inline-size;
+  background: var(--noche);
+  isolation: isolate;
+}
+.um-pila,
+.um-capa {
+  position: absolute;
+  inset: 0;
+}
+.um-pila {
+  transform-style: preserve-3d;
+  transition: transform 600ms var(--ease);
+}
+.um-capa {
+  transform-style: preserve-3d;
+  transition:
+    transform 600ms var(--ease),
+    opacity 250ms ease-out;
+}
+.um-capa[data-oculta] {
+  opacity: 0;
+}
+.um-capa img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.um-capa > img.um-recorte,
+.um-recorte {
+  pointer-events: none;
+}
+/* Despiece: las capas se separan en profundidad, como un archivo de diseño desarmado. */
+.um-cartel[data-despiece] {
+  overflow: visible;
+  perspective: 1800px;
+  background: transparent;
+}
+.um-cartel[data-despiece] .um-pila {
+  transform: rotateX(54deg) rotateZ(-30deg) scale(0.6);
+}
+.um-cartel[data-despiece] .um-capa {
+  outline: 1px solid rgb(239 235 227 / 55%);
+  transform: translateZ(calc(var(--z) * 12cqw));
+}
+.um-cartel[data-despiece] .um-capa::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgb(239 235 227 / 5%);
+}
+
+/* Anotaciones de cartel */
+.um-n {
+  position: absolute;
+  font: 600 max(7px, 1.7cqw) / 1.55 var(--titulo);
+  font-stretch: 118%;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+.um-n em {
+  font-style: normal;
+}
+.um-caligrafia {
+  position: absolute;
+  overflow: visible;
+}
+.um-caligrafia path {
+  fill: currentColor;
+  fill-opacity: 0;
+  stroke: currentColor;
+  stroke-width: 7;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+.um-caligrafia.um-escrita path {
+  animation: um-escribe 2.8s var(--ease) 0.2s forwards;
+}
+@keyframes um-escribe {
+  72% {
+    fill-opacity: 0;
+    stroke-dashoffset: 0;
   }
-  .um-lista .um-boton {
-    justify-self: start;
+  100% {
+    fill-opacity: 1;
+    stroke-dashoffset: 0;
   }
 }
-@media (max-width: 640px) {
+.um-barras {
+  display: grid;
+  gap: 4px;
+}
+.um-barras svg {
+  width: 100%;
+  height: 2.6em;
+  fill: currentColor;
+}
+.um-barras span {
+  font: 700 0.6875rem var(--titulo);
+  font-stretch: 118%;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+.um-mira,
+.um-registro {
+  position: absolute;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.2;
+}
+.um-estrella {
+  fill: currentColor;
+}
+.um-papel {
+  position: absolute;
+  inset: 0;
+  background-color: var(--papel);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .11 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+}
+
+/* Cartel «Entre líneas»: letras como ventana y persona encima, con 2.5D. */
+.um-c-ventana .um-n {
+  color: var(--papel);
+}
+.um-c-ventana .um-n em {
+  color: var(--ambar);
+}
+.um-v-tenue {
+  opacity: 0.12;
+  filter: blur(6px);
+}
+.um-v-letras {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 6cqw;
+  background-image: linear-gradient(rgb(0 0 0 / 22%), rgb(0 0 0 / 22%)), var(--foto);
+  background-position:
+    center,
+    calc(50% + var(--px, 0) * -4%) calc(50% + var(--py, 0) * -3%);
+  background-size: auto, cover;
+  color: transparent;
+  font: 900 31cqw/0.8 var(--titulo);
+  font-stretch: 62%;
+  letter-spacing: -0.012em;
+  text-transform: uppercase;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+.um-capa-recorte .um-recorte {
+  transform: translate(calc(var(--px, 0) * 1.4cqw), calc(var(--py, 0) * 0.9cqw));
+}
+/* En «Entre líneas» la foto se ajusta a lo alto (no a lo ancho): la persona queda más chica y
+   las letras dominan. Letras y recorte comparten exactamente la misma caja. */
+.um-c-ventana .um-capa-recorte .um-recorte,
+.um-c-ventana .um-v-tenue {
+  object-fit: contain;
+  object-position: 50% 100%;
+}
+.um-c-ventana .um-capa-notas {
+  transform: translate(calc(var(--px, 0) * -0.6cqw), calc(var(--py, 0) * -0.4cqw));
+}
+.um-v-n1 {
+  top: 5cqw;
+  left: 5cqw;
+}
+.um-v-n2 {
+  top: 5cqw;
+  right: 5cqw;
+  text-align: right;
+}
+.um-v-n3 {
+  top: 50%;
+  left: 5cqw;
+}
+.um-v-n4 {
+  top: 60%;
+  right: 5cqw;
+}
+.um-v-n5 {
+  bottom: 5cqw;
+  left: 5cqw;
+}
+.um-v-n5 span {
+  display: block;
+  width: fit-content;
+  margin-bottom: 1.2cqw;
+  padding: 0.6cqw 1.6cqw;
+  border: 1px solid var(--ambar);
+  color: var(--ambar);
+}
+.um-v-firma {
+  right: 4cqw;
+  bottom: 3cqw;
+  width: 34cqw;
+  color: var(--ambar);
+}
+
+/* Cartel «Otra perspectiva»: rebanadas diagonales sobre papel. */
+.um-c-diagonal {
+  background: var(--papel);
+  color: var(--tinta);
+}
+.um-reb {
+  position: absolute;
+  top: var(--y);
+  left: var(--x);
+  width: var(--w);
+  height: var(--h);
+  overflow: hidden;
+}
+.um-reb img {
+  filter: grayscale(1) contrast(1.12);
+}
+.um-astilla {
+  position: absolute;
+  background: #b7afa2;
+}
+.um-astilla-1 {
+  top: 18%;
+  left: 73%;
+  width: 9%;
+  height: 34%;
+  clip-path: polygon(80% 0, 100% 0, 20% 100%, 0 100%);
+  opacity: 0.6;
+}
+.um-astilla-2 {
+  top: 58%;
+  left: 52%;
+  width: 14%;
+  height: 30%;
+  clip-path: polygon(86% 0, 100% 0, 14% 100%, 0 100%);
+  background: var(--tinta);
+  opacity: 0.8;
+}
+.um-d-recorte {
+  position: absolute;
+  top: 6%;
+  left: 40%;
+  width: 44%;
+  height: 76%;
+}
+.um-d-recorte img {
+  object-position: 50% 30%;
+  filter: contrast(1.12);
+}
+.um-d-titulo {
+  position: absolute;
+  top: 14cqw;
+  left: 5cqw;
+  display: grid;
+  font: 900 11.5cqw/0.86 var(--titulo);
+  font-stretch: 62%;
+  text-transform: uppercase;
+}
+.um-d-ruido {
+  top: 44cqw;
+  left: 11cqw;
+  width: 36cqw;
+  color: #6d4a2c;
+  transform: rotate(-8deg);
+}
+.um-d-n1 {
+  top: 5cqw;
+  left: 5cqw;
+}
+.um-d-n1 b {
+  font-size: 1.4em;
+  letter-spacing: 0.32em;
+}
+.um-d-n2 {
+  top: 5cqw;
+  left: 36cqw;
+}
+.um-d-n3 {
+  top: 5cqw;
+  right: 5cqw;
+  width: 20cqw;
+}
+.um-d-n3 .um-barras {
+  margin-top: 1.4cqw;
+}
+.um-d-n4 {
+  top: 50%;
+  right: 3cqw;
+  line-height: 1.3;
+  text-align: right;
+}
+.um-d-n4 b {
+  display: block;
+  font: 900 4.2cqw/0.9 var(--titulo);
+  font-stretch: 62%;
+  letter-spacing: 0;
+}
+.um-d-mira {
+  top: 70%;
+  right: 4cqw;
+  width: 7cqw;
+}
+.um-d-n5 {
+  top: 63%;
+  left: 5cqw;
+}
+.um-d-nota {
+  position: absolute;
+  bottom: 13cqw;
+  left: 6cqw;
+  padding: 2.4cqw 3cqw;
+  background: #d9cdb6;
+  box-shadow: 0 1.4cqw 2.6cqw -1.2cqw rgb(0 0 0 / 50%);
+  font: 600 max(7px, 1.8cqw) / 1.6 var(--titulo);
+  font-stretch: 118%;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  transform: rotate(-7deg);
+}
+.um-d-n6 {
+  right: 5cqw;
+  bottom: 3.4cqw;
+  left: 5cqw;
+  padding-top: 1.4cqw;
+  border-top: 1px solid currentColor;
+}
+.um-d-reg1 {
+  top: 2cqw;
+  right: 2cqw;
+  width: 3cqw;
+}
+.um-d-reg2 {
+  bottom: 9cqw;
+  left: 2cqw;
+  width: 3cqw;
+}
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .um-reb,
+    .um-astilla {
+      animation: um-desliza linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 42%;
+    }
+    .um-reb-0 {
+      --dx: -6cqw;
+      --dy: 10cqw;
+    }
+    .um-reb-1 {
+      --dx: 4cqw;
+      --dy: -7cqw;
+    }
+    .um-reb-2 {
+      --dx: 8cqw;
+      --dy: -12cqw;
+    }
+    .um-reb-3 {
+      --dx: -9cqw;
+      --dy: 14cqw;
+    }
+    .um-astilla {
+      --dx: 10cqw;
+      --dy: -16cqw;
+    }
+  }
+}
+@keyframes um-desliza {
+  from {
+    opacity: 0.2;
+    translate: var(--dx, 0) var(--dy, 0);
+  }
+}
+
+/* Cartel «Agua»: palabra vertical del color del papel y reflejos de agua. */
+.um-c-vertical {
+  background: var(--noche);
+  color: var(--tinta);
+}
+.um-a-foto,
+.um-a-reflejo,
+.um-causticas {
+  position: absolute;
+  top: 0;
+  left: 26%;
+  width: 74%;
+  height: 100%;
+}
+.um-capa .um-a-foto {
+  inset: 0 0 0 26%;
+  width: 74%;
+  object-position: 47% 50%;
+}
+.um-a-reflejo {
+  background:
+    radial-gradient(40% 8% at 30% 30%, rgb(255 236 200 / 28%), transparent 70%),
+    radial-gradient(30% 6% at 70% 62%, rgb(255 236 200 / 22%), transparent 70%),
+    radial-gradient(50% 7% at 45% 80%, rgb(255 236 200 / 18%), transparent 70%);
+  mix-blend-mode: screen;
+}
+.um-causticas {
+  mix-blend-mode: screen;
+  opacity: 0.6;
+  pointer-events: none;
+}
+.um-capa:has(.um-causticas[data-webgl]) .um-a-reflejo {
+  display: none;
+}
+.um-a-panel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 26%;
+  height: 100%;
+  background: var(--papel);
+}
+.um-a-palabra {
+  position: absolute;
+  top: 0;
+  left: 13%;
+  height: 100%;
+  color: var(--papel);
+  font: 900 44cqw/0.78 var(--titulo);
+  font-stretch: 62%;
+  letter-spacing: -0.02em;
+  text-align: center;
+  text-transform: uppercase;
+  transform: rotate(180deg);
+  writing-mode: vertical-rl;
+}
+.um-a-columna {
+  position: absolute;
+  top: 4cqw;
+  bottom: 4cqw;
+  left: 2.5cqw;
+  display: grid;
+  grid-template-rows: 1fr auto auto auto;
+  justify-items: center;
+  gap: 4cqw;
+  width: 15cqw;
+}
+.um-a-columna > p {
+  transform: rotate(180deg);
+  writing-mode: vertical-rl;
+}
+.um-a-lema {
+  max-height: 100%;
+  font: 700 max(7px, 2.1cqw) / 1.35 var(--titulo);
+  font-stretch: 100%;
+}
+.um-a-fecha,
+.um-a-tipo {
+  padding-left: 2cqw;
+  border-left: 2px solid currentColor;
+  font: 800 max(8px, 3.2cqw) / 1 var(--titulo);
+  font-stretch: 75%;
+  text-transform: uppercase;
+}
+.um-a-tipo {
+  font-size: max(7px, 2.2cqw);
+  letter-spacing: 0.1em;
+}
+.um-a-barras {
+  width: 12cqw;
+}
+
+/* Cartel «Crear»: tiras de la misma foto, serif detrás de la persona y sombra de ventana. */
+.um-c-tiras {
+  background: #e3d9ca;
+  color: #2a2520;
+}
+.um-papel-calido {
+  background-color: #e3d9ca;
+}
+.um-capa .um-t-luz {
+  mix-blend-mode: multiply;
+  opacity: 0.6;
+}
+.um-tira {
+  position: absolute;
+  top: calc(var(--y) * 1%);
+  left: calc(var(--x) * 1%);
+  width: calc(var(--w) * 1%);
+  height: calc(var(--h) * 1%);
+  overflow: hidden;
+  box-shadow: 0 2cqw 4cqw -2cqw rgb(0 0 0 / 50%);
+}
+.um-capa .um-tira img {
+  top: calc(var(--y) / var(--h) * -100% + var(--m));
+  left: calc(var(--x) / var(--w) * -100%);
+  width: calc(100 / var(--w) * 100%);
+  height: calc(100 / var(--h) * 100%);
+  filter: grayscale(0.65) sepia(0.18) brightness(0.78) contrast(1.08);
+}
+.um-t-palabra {
+  position: absolute;
+  top: 27%;
+  left: 0;
+  width: 100%;
+  color: #ede6da;
+  font: 400 28.5cqw/1 var(--serif);
+  letter-spacing: -0.03em;
+  text-align: center;
+  text-transform: uppercase;
+  mix-blend-mode: difference;
+}
+.um-capa .um-t-recorte {
+  filter: grayscale(0.65) sepia(0.18) brightness(0.78) contrast(1.08);
+}
+.um-t-marca {
+  top: 4.5cqw;
+  left: 5cqw;
+  display: flex;
+  align-items: center;
+  gap: 2cqw;
+}
+.um-t-marca b {
+  font: 400 max(10px, 3.4cqw) / 1 var(--serif);
+  letter-spacing: 0.3em;
+}
+.um-t-marca svg {
+  width: 4.4cqw;
+}
+.um-t-n1 {
+  top: 6cqw;
+  right: 5cqw;
+}
+.um-t-n2 {
+  top: 22%;
+  left: 5cqw;
+}
+.um-t-n3 {
+  top: 22%;
+  right: 5cqw;
+}
+.um-t-ideas {
+  position: absolute;
+  top: 60%;
+  right: 18%;
+  left: 20%;
+  padding: 1.4cqw 0;
+  border-top: 1px solid rgb(239 235 227 / 70%);
+  border-bottom: 1px solid rgb(239 235 227 / 70%);
+  color: var(--papel);
+  font: 400 max(8px, 3.4cqw) / 1.3 var(--serif);
+  letter-spacing: 0.5em;
+  text-align: center;
+  text-transform: uppercase;
+}
+.um-t-n4 {
+  top: 54%;
+  left: 5cqw;
+}
+.um-t-n5 {
+  top: 60%;
+  right: 5cqw;
+}
+.um-t-n6 {
+  bottom: 22%;
+  left: 5cqw;
+}
+.um-t-n6 small,
+.um-t-n6 b {
+  display: block;
+}
+.um-t-n6 b {
+  font: 400 max(12px, 4.6cqw) / 1 var(--serif);
+  letter-spacing: 0;
+}
+.um-t-barras {
+  position: absolute;
+  bottom: 5cqw;
+  left: 5cqw;
+  width: 19cqw;
+}
+.um-t-firma {
+  right: 1cqw;
+  bottom: 16cqw;
+  width: 30cqw;
+  color: #3a332c;
+  transform: rotate(-64deg);
+}
+.um-t-estrella {
+  position: absolute;
+  right: 6cqw;
+  bottom: 5cqw;
+  width: 3.6cqw;
+}
+.um-t-n7 {
+  bottom: 5.5cqw;
+  left: 34%;
+  width: 34%;
+  text-align: center;
+}
+
+/* Cartel simple (archivo) */
+.um-s-foto {
+  filter: saturate(0.7);
+}
+.um-capa-notas:has(.um-s-titulo)::before {
+  content: "";
+  position: absolute;
+  inset: 40% 0 0;
+  background: linear-gradient(transparent, rgb(13 13 14 / 88%));
+}
+.um-s-titulo {
+  position: absolute;
+  right: 5cqw;
+  bottom: 12cqw;
+  left: 5cqw;
+  color: var(--papel);
+  font: 900 13cqw/0.82 var(--titulo);
+  font-stretch: 62%;
+  text-transform: uppercase;
+}
+.um-s-n1 {
+  top: 5cqw;
+  left: 5cqw;
+  color: var(--papel);
+}
+.um-s-n2 {
+  right: 5cqw;
+  bottom: 5cqw;
+  left: 5cqw;
+  color: var(--papel);
+}
+
+/* Teléfono y tableta: las páginas se apilan, cada cartel ocupa el ancho. */
+@media (max-width: 899px) {
   .um-cab {
     gap: 12px;
   }
+  .um-volver {
+    font-size: 0;
+  }
+  .um-volver span {
+    font-size: 1.125rem;
+  }
+  .um-marca {
+    margin: 0;
+    font-size: 1.5rem;
+  }
   .um-cab nav {
+    gap: 14px;
+    margin-left: auto;
+  }
+  .um-cab nav a {
+    font-size: 0.6875rem;
+    letter-spacing: 0.1em;
+  }
+  .um-main,
+  .um-lectura {
+    gap: 0;
+    padding-top: 0;
+  }
+  .um-pliego {
+    flex-direction: column;
     width: 100%;
-    justify-content: space-between;
-    gap: 12px;
-    font-size: 0.9375rem;
+    box-shadow: none;
   }
-  .um-lista > li > a {
-    grid-template-columns: 1fr;
+  .um-pagina {
+    flex: 0 0 auto;
+    min-height: 0;
   }
-  .um-lista img {
-    height: 340px;
+  .um-pliego > .um-pagina:not(:last-child)::after,
+  .um-pliego > .um-pagina + .um-pagina::before {
+    display: none;
   }
-  .um-estudio {
-    grid-template-columns: 1fr;
+  .um-pagina-cartel {
+    display: block;
+    place-items: normal;
   }
-  .um-estudio a {
-    grid-column: auto;
+  .um-pagina-cartel .um-cartel {
+    width: 100%;
+    height: auto;
+  }
+  .um-cab nav a:first-child {
+    display: none;
+  }
+  .um-cab nav a {
+    white-space: nowrap;
+  }
+  .um-pagina-texto {
+    padding: 34px 20px 72px;
+  }
+  .um-pliego-titulo {
+    position: static;
+    padding: 28px 20px 10px;
+    background: var(--mesa);
+  }
+  .um-pagina-foto {
+    aspect-ratio: 2 / 3;
+  }
+  .um-columnas,
+  .um-pagina-ancha .um-columnas {
+    columns: 1;
+  }
+  .um-lista li {
+    grid-template-columns: 28px 72px minmax(0, 1fr);
+    gap: 14px;
+  }
+  .um-lista-mini {
+    width: 72px;
+    height: 96px;
+  }
+  .um-silueta {
+    margin-right: -20px;
+  }
+  .um-folio-i {
+    left: 20px;
+  }
+  .um-folio-d {
+    right: 20px;
+  }
+  .um-pagina-nombre {
+    min-height: 60svh;
+  }
+}
+@media (max-width: 380px) {
+  .um-cab nav {
+    gap: 10px;
+  }
+  .um-cab nav a {
+    letter-spacing: 0.04em;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .um-pila,
+  .um-capa,
+  .um-anteriores img {
+    transition: opacity 200ms linear;
+  }
+  .um-caligrafia path,
+  .um-caligrafia.um-escrita path {
+    animation: none;
+    fill-opacity: 1;
+    stroke: none;
   }
 }
 @media print {
   .um-cab,
-  .um-boton,
-  .um-modos,
   .um-pie {
     display: none;
-  }
-  .um-root {
-    background: white;
-    color: black;
-  }
-  .um-root img {
-    max-height: 500px;
-  }
-}
-
-.um-portada {
-  background: #181c1b;
-  color: #faf6ec;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  align-items: center;
-  padding: clamp(20px, 4vw, 64px);
-  gap: 5vw;
-}
-.um-cartel {
-  position: relative;
-  aspect-ratio: 2/3;
-  width: 100%;
-  max-width: 510px;
-  justify-self: center;
-  isolation: isolate;
-  overflow: hidden;
-  container-type: inline-size;
-  background: #171b1a;
-}
-.um-cartel img {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  inset: 0;
-  object-fit: fill;
-  filter: grayscale(1);
-}
-.um-cartel > img {
-  opacity: 0.48;
-}
-.um-letras {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  font:
-    800 35cqw/0.91 "Rubor Texto",
-    Arial,
-    sans-serif;
-  letter-spacing: -0.085em;
-  color: #fff6df;
-}
-.um-letras span:last-child {
-  align-self: flex-end;
-  color: #ffd09a;
-}
-.um-silueta {
-  position: absolute;
-  inset: 0;
-  clip-path: polygon(
-    46% 16%,
-    50% 15%,
-    56% 16%,
-    59% 18%,
-    56% 25%,
-    63% 28%,
-    67% 49%,
-    66% 55%,
-    60% 56%,
-    58% 52%,
-    56% 73%,
-    57% 85%,
-    54% 87%,
-    50% 86%,
-    49% 81%,
-    45% 84%,
-    42% 83%,
-    43% 77%,
-    40% 66%,
-    38% 53%,
-    36% 51%,
-    34% 55%,
-    30% 55%,
-    31% 51%,
-    34% 50%,
-    36% 36%,
-    39% 29%,
-    46% 26%,
-    47% 23%,
-    45% 21%
-  );
-}
-.um-portada-texto {
-  grid-column: 1;
-  grid-row: 1;
-}
-.um-cartel {
-  grid-column: 2;
-  grid-row: 1;
-}
-.um-portada h1 {
-  font:
-    800 clamp(4rem, 8vw, 9rem)/1 "Rubor Texto",
-    Arial,
-    sans-serif;
-  letter-spacing: -0.08em;
-  padding-bottom: 0.18em;
-  border-bottom: 1px solid #828883;
-}
-.um-disciplina {
-  margin: 1rem 0 2rem;
-  color: #ffd09a;
-}
-.um-portada h2 {
-  font:
-    400 clamp(2.5rem, 5vw, 5rem)/1.05 "Prisma Titulo",
-    Georgia,
-    serif;
-  margin-bottom: 1rem;
-}
-.um-portada .um-principal {
-  margin-block: 1.4rem;
-  background: #faf6ec;
-  color: #171b1a;
-}
-.um-portada .um-nota {
-  color: #ced2cb;
-}
-.um-lista img {
-  object-position: center 30%;
-}
-@media (max-width: 640px) {
-  .um-portada {
-    grid-template-columns: 1fr;
-    gap: 18px;
-  }
-  .um-cartel,
-  .um-portada-texto {
-    grid-column: 1;
-    grid-row: auto;
-  }
-  .um-portada h1 {
-    font-size: 3rem;
-  }
-  .um-disciplina {
-    margin-bottom: 1rem;
-  }
-}
-.um-perspectiva {
-  position: relative;
-  isolation: isolate;
-  overflow: hidden;
-  width: 100%;
-  max-width: 510px;
-  aspect-ratio: 2/3;
-  background: #241229;
-  container-type: inline-size;
-}
-.um-root .um-perspectiva img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-.um-franja {
-  position: absolute;
-  inset: 0;
-  clip-path: polygon(74% 0, 100% 0, 26% 100%, 0 100%);
-  background: #ffaf75;
-}
-.um-perspectiva .um-franja img {
-  transform: translateX(5%) scale(1.08);
-  filter: grayscale(1);
-  mix-blend-mode: luminosity;
-}
-.um-perspectiva > span {
-  position: absolute;
-  inset: auto 0 0;
-  padding: 18% 4% 5%;
-  font:
-    italic 700 16cqw/0.95 Georgia,
-    serif;
-  letter-spacing: -0.065em;
-  color: white;
-  background: linear-gradient(transparent, #241229);
-}
-.um-foto-abierta > div,
-.um-prueba {
-  margin-inline: auto;
-}
-.um-lista .um-cartel,
-.um-lista .um-perspectiva {
-  grid-area: auto;
-  max-width: 230px;
-  justify-self: start;
-}
-.um-root .um-cartel img {
-  height: 100%;
-  object-fit: fill;
-  background: transparent;
-}
-.um-prueba {
-  position: relative;
-  width: min(100%, 420px);
-  aspect-ratio: 2/3;
-  overflow: hidden;
-  background: #171b1a;
-}
-.um-prueba > img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-.um-prueba > img.um-zoom {
-  object-fit: cover;
-  transform: scale(1.7);
-  transform-origin: 50% 25%;
-}
-.um-comparador .um-modos {
-  flex-wrap: wrap;
-}
-.um-pliego,
-.um-arte {
-  background: #10100f;
-  color: #f7f1df;
-}
-.um-pliego {
-  padding: 0;
-}
-.um-arte svg {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-.um-arte .um-paisaje {
-  display: none;
-}
-.um-arte-amplia {
-  width: 100%;
-}
-.um-lista .um-arte {
-  width: 100%;
-  max-width: 230px;
-}
-.um-folio,
-.um-colofon {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 1rem;
-  padding: 0.75rem clamp(18px, 4vw, 64px);
-}
-.um-folio {
-  font:
-    600 0.9rem/1.4 "Rubor Texto",
-    Arial,
-    sans-serif;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-.um-folio h1,
-.um-folio a {
-  font:
-    italic 2rem/1 Georgia,
-    serif;
-  letter-spacing: -0.06em;
-  text-transform: none;
-}
-.um-colofon {
-  padding-block: 1rem;
-}
-.um-colofon h1,
-.um-colofon h2 {
-  font:
-    italic clamp(2rem, 4vw, 4rem)/1 Georgia,
-    serif;
-}
-.um-colofon p {
-  max-width: 32ch;
-}
-.um-pliego .um-abrir,
-.um-pliego .um-boton {
-  background: #efd4aa;
-  color: #211d17;
-  padding: 0.8rem 1rem;
-}
-.um-fuente {
-  padding: 1rem 4vw;
-  font-size: 0.9rem;
-}
-@media (min-width: 701px) {
-  .um-arte-amplia .um-paisaje {
-    display: block;
-  }
-  .um-arte-amplia .um-vertical {
-    display: none;
-  }
-}
-@media (max-width: 700px) {
-  .um-colofon {
-    flex-wrap: wrap;
-  }
-  .um-colofon p {
-    order: 1;
-    max-width: none;
-  }
-}
-
-.um-foto-abierta > .um-perspectiva {
-  max-width: none;
-  aspect-ratio: auto;
-  height: clamp(440px, 84svh, 960px);
-}
-.um-foto-abierta .um-perspectiva img {
-  max-height: none;
-  object-position: center 35%;
-}
-.um-foto-abierta .um-perspectiva > span {
-  font-size: clamp(3rem, 10vw, 9rem);
-}
-.um-lectura > figure {
-  margin-inline: 0;
-}
-.um-lectura > figure > img {
-  display: block;
-  max-height: none;
-  height: clamp(420px, 82svh, 960px);
-  object-fit: cover;
-  object-position: center 32%;
-}
-.um-foto-abierta figcaption,
-.um-lectura > figure figcaption {
-  padding-inline: clamp(18px, 4vw, 64px);
-}
-.um-estudio,
-.um-indice {
-  min-height: 75svh;
-  align-content: center;
-}
-html:has(.um-root) {
-  scrollbar-gutter: auto;
-  background: #10100f;
-}
-
-/* Doble página del sumario. Los recortes acompañan al título HTML de cada enlace. */
-.um-sumario {
-  padding: 0;
-  background: #ede6d7;
-  color: #241f1c;
-}
-.um-sumario .um-indice-cab {
-  padding: clamp(28px, 4vw, 64px) 4vw 0;
-}
-.um-sumario .um-indice-cab h2 {
-  font-size: clamp(3.5rem, 8vw, 8rem);
-  letter-spacing: -0.065em;
-}
-.um-sumario > [role="status"] {
-  padding: 0 4vw 1.2rem;
-}
-.um-sumario .um-lista {
-  margin: 0;
-  grid-template-columns: 1fr 1fr;
-  gap: 0;
-}
-.um-sumario .um-lista > li {
-  display: flex;
-  align-items: stretch;
-  flex-direction: column;
-  gap: 0;
-  border: 0;
-  padding: 0;
-  background: #142d29;
-  color: #fff4dc;
-}
-.um-sumario .um-lista > li[data-dossier="otra-perspectiva"] {
-  background: #eadcda;
-  color: #36202d;
-}
-.um-sumario .um-lista > li > a {
-  display: block;
-}
-.um-sumario .um-vineta {
-  height: clamp(250px, 32vw, 520px);
-  position: relative;
-  overflow: hidden;
-  background: #151719;
-}
-.um-sumario .um-vineta img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: 50% 23%;
-}
-.um-sumario .um-vineta > img {
-  width: 70%;
-  filter: grayscale(1);
-}
-.um-sumario .um-vineta span {
-  position: absolute;
-  inset: 0 0 0 70%;
-  overflow: hidden;
-  border-left: 3px solid #edcb89;
-}
-.um-sumario .um-vineta span img {
-  transform: scale(2.5);
-  transform-origin: 32% 55%;
-  object-position: 32% 58%;
-}
-.um-sumario [data-dossier="otra-perspectiva"] .um-vineta > img {
-  width: 100%;
-  filter: none;
-  object-position: 50% 22%;
-}
-.um-sumario [data-dossier="otra-perspectiva"] .um-vineta span {
-  inset: 0;
-  border: 0;
-  clip-path: polygon(0 0, 34% 0, 13% 100%, 0 100%);
-}
-.um-sumario [data-dossier="otra-perspectiva"] .um-vineta span img {
-  transform: scale(1.25);
-  object-position: 50% 22%;
-  filter: grayscale(1);
-}
-.um-sumario .um-lista a > div:last-child {
-  padding: 1.5rem 4vw 0.75rem;
-}
-.um-sumario .um-lista h3 {
-  font:
-    500 clamp(2.8rem, 5.5vw, 6rem)/1 "Prisma Titulo",
-    Georgia,
-    serif;
-  letter-spacing: -0.055em;
-}
-.um-sumario .um-lista a > div:last-child > span:last-child {
-  text-decoration: underline;
-  text-underline-offset: 0.3em;
-}
-.um-sumario .um-lista .um-boton {
-  align-self: flex-start;
-  margin: auto 4vw 2rem;
-  background: transparent;
-  color: inherit;
-  border-color: currentColor;
-}
-.um-sumario .um-lista > li:only-child {
-  grid-column: 1/-1;
-}
-@media (min-width: 701px) {
-  .um-sumario .um-lista > li:only-child > a {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0;
-  }
-  .um-sumario .um-lista > li:only-child .um-boton {
-    margin: 1rem 4vw 2rem;
-  }
-}
-@media (max-width: 700px) {
-  .um-sumario .um-lista {
-    grid-template-columns: 1fr;
-  }
-  .um-sumario .um-vineta {
-    height: clamp(210px, 67vw, 360px);
   }
 }
