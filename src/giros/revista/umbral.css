@@ -47,9 +47,9 @@
   --mesa: #1b1b1c;
   --ambar: #d9a35b;
   --oxido: #8c3b22;
-  --titulo: "Umbral Titulo", "Arial Narrow", Arial, sans-serif;
-  --texto: "Umbral Texto", Georgia, serif;
-  --serif: "Umbral Serif", "Bodoni 72", Didot, Georgia, serif;
+  --titulo: "Umbral Titulo", "Rv Archivo Cartel", "Rv Archivo Cartel N", Arial, sans-serif;
+  --texto: "Umbral Texto", "Rv Newsreader", "Rv Newsreader N", Georgia, serif;
+  --serif: "Umbral Serif", "Rv Bodoni", "Rv Bodoni N", Georgia, serif;
   --alto: max(520px, min(calc(100svh - 150px), 980px));
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   min-height: 100vh;
@@ -137,6 +137,7 @@
 /* Pliegos y páginas */
 .um-main {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 32px;
   padding: 32px 0 48px;
 }
@@ -243,6 +244,7 @@
   text-transform: uppercase;
 }
 .um-titulo-dossier {
+  overflow-wrap: anywhere;
   margin: 10px 0 28px;
   font: 900 clamp(4rem, 8.2vw, 8.5rem)/0.8 var(--titulo);
   font-stretch: 62%;
@@ -546,6 +548,7 @@
 /* Lectura */
 .um-lectura {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 32px;
 }
 .um-columnas {
@@ -1416,6 +1419,9 @@
 
 /* Teléfono y tableta: las páginas se apilan, cada cartel ocupa el ancho. */
 @media (max-width: 899px) {
+  .um-v-letras {
+    background-image: linear-gradient(rgb(0 0 0 / 0%), rgb(0 0 0 / 0%)), var(--foto-chica);
+  }
   .um-cab {
     gap: 12px;
   }

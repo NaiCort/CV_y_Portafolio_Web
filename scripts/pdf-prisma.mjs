@@ -27,6 +27,10 @@ for (const [n, id] of numeros) {
     format: "Letter",
     margin: { top: "18mm", bottom: "18mm", left: "18mm", right: "18mm" },
     printBackground: true,
+    // PDF accesible: estructura etiquetada (títulos, párrafos, tablas, figuras) e índice
+    // navegable a partir de los encabezados de la página.
+    tagged: true,
+    outline: true,
     displayHeaderFooter: true,
     headerTemplate: "<span></span>",
     footerTemplate: `<div style="width:100%;font:8px Arial;color:#666;text-align:center">Prisma · N.º ${n} · contenido ficticio de una demo · <span class="pageNumber"></span>/<span class="totalPages"></span></div>`,

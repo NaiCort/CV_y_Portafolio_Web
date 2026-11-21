@@ -9,8 +9,8 @@
   --pr-az: #3d8bff;
   --pr-az2: #6ea8ff;
   --pr-ok: #8fd19e;
-  --pr-titulo: "Prisma Titulo", Georgia, serif;
-  --pr-texto: "Prisma Texto", Arial, sans-serif;
+  --pr-titulo: "Prisma Titulo", "Rv Newsreader", "Rv Newsreader N", Georgia, serif;
+  --pr-texto: "Prisma Texto", "Rv Space", "Rv Space N", Arial, sans-serif;
   --pr-ease: cubic-bezier(0.22, 1, 0.36, 1);
   position: relative;
   min-height: 100vh;

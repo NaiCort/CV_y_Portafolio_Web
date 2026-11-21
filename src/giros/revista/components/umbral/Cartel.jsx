@@ -43,15 +43,16 @@ function Foto({
   )
 }
 
-function Recorte({ clave, eager, className = "" }) {
+function Recorte({ clave, eager, sizes = "(max-width: 700px) 100vw, 50vw", className = "" }) {
   return (
     <img
       className={`um-recorte ${className}`}
       src={fotoUmbral(`${clave}-recorte`)}
-      srcSet={`${fotoUmbral(`${clave}-recorte`, 800)} 800w, ${fotoUmbral(`${clave}-recorte`)} 1600w`}
-      sizes="(max-width: 700px) 100vw, 50vw"
+      srcSet={srcSetUmbral(`${clave}-recorte`)}
+      sizes={sizes}
       alt=""
       loading={eager ? "eager" : "lazy"}
+      fetchPriority={eager ? "high" : undefined}
       decoding="async"
     />
   )
@@ -64,7 +65,13 @@ function Ventana({ d, eager, ocultas }) {
         <Foto clave={d.foto} eager={eager} className="um-v-tenue" />
       </Capa>
       <Capa nombre="letras" z={1} ocultas={ocultas}>
-        <p className="um-v-letras" style={{ "--foto": `url(${fotoUmbral(d.foto)})` }}>
+        <p
+          className="um-v-letras"
+          style={{
+            "--foto": `url(${fotoUmbral(d.foto, 1200)})`,
+            "--foto-chica": `url(${fotoUmbral(d.foto, 800)})`,
+          }}
+        >
           <span>Entre</span>
           <span>las</span>
           <span>líneas</span>
@@ -140,7 +147,12 @@ function Diagonal({ d, eager, ocultas }) {
               clipPath: clip,
             }}
           >
-            <Foto clave={clave} eager={eager && i === 1} posicion={pos} />
+            <Foto
+              clave={clave}
+              eager={eager && i === 1}
+              posicion={pos}
+              sizes={`(max-width: 900px) ${w}vw, ${Math.round(w * 6)}px`}
+            />
           </span>
         ))}
         <span className="um-astilla um-astilla-1" />
@@ -148,7 +160,7 @@ function Diagonal({ d, eager, ocultas }) {
       </Capa>
       <Capa nombre="recorte" z={2} ocultas={ocultas}>
         <span className="um-d-recorte">
-          <Recorte clave={d.recorte} eager={eager} />
+          <Recorte clave={d.recorte} eager={eager} sizes="(max-width: 900px) 44vw, 270px" />
         </span>
       </Capa>
       <Capa nombre="notas" z={3} ocultas={ocultas} className="um-notas">

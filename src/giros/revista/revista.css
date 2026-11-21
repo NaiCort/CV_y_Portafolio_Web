@@ -1,3 +1,105 @@
+/* Respaldos con la medida de cada tipografía (V4.7.17): mientras llega la fuente web, el
+   texto ocupa casi lo mismo y la página no salta. Ancho medido a 100 px en Chromium contra
+   Liberation (métricas de Times y Arial) y DejaVu (aproximación de Noto en Android). */
+@font-face {
+  font-family: "Rv Bodoni";
+  src: local("Times New Roman"), local("Liberation Serif"), local("Tinos");
+  size-adjust: 112.8%;
+  ascent-override: 99.7%;
+  descent-override: 35.5%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: "Rv Bodoni N";
+  src: local("Noto Serif"), local("DejaVu Serif");
+  size-adjust: 89.3%;
+  ascent-override: 126%;
+  descent-override: 44.8%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: "Rv Newsreader";
+  src: local("Times New Roman"), local("Liberation Serif"), local("Tinos");
+  size-adjust: 109.4%;
+  ascent-override: 67.2%;
+  descent-override: 24.2%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: "Rv Newsreader N";
+  src: local("Noto Serif"), local("DejaVu Serif");
+  size-adjust: 86.6%;
+  ascent-override: 84.9%;
+  descent-override: 30.6%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: "Rv Archivo";
+  src: local("Arial"), local("Liberation Sans"), local("Arimo");
+  size-adjust: 86.2%;
+  ascent-override: 101.9%;
+  descent-override: 24.4%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: "Rv Archivo N";
+  src: local("Noto Sans"), local("Roboto"), local("DejaVu Sans");
+  size-adjust: 76.6%;
+  ascent-override: 114.6%;
+  descent-override: 27.4%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: "Rv Archivo Cartel";
+  src: local("Arial"), local("Liberation Sans"), local("Arimo");
+  size-adjust: 72.1%;
+  ascent-override: 121.8%;
+  descent-override: 29.1%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: "Rv Archivo Cartel N";
+  src: local("Noto Sans"), local("Roboto"), local("DejaVu Sans");
+  size-adjust: 60.7%;
+  ascent-override: 144.6%;
+  descent-override: 34.6%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: "Rv Space";
+  src: local("Arial"), local("Liberation Sans"), local("Arimo");
+  size-adjust: 107.2%;
+  ascent-override: 91.8%;
+  descent-override: 27.2%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: "Rv Space N";
+  src: local("Noto Sans"), local("Roboto"), local("DejaVu Sans");
+  size-adjust: 95.2%;
+  ascent-override: 103.4%;
+  descent-override: 30.7%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: "Rv Space";
+  font-weight: 600 700;
+  src:
+    local("Arial Bold"), local("Arial-BoldMT"), local("Liberation Sans Bold"), local("Arimo Bold");
+  size-adjust: 101.2%;
+  ascent-override: 97.2%;
+  descent-override: 28.9%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: "Rv Space N";
+  font-weight: 600 700;
+  src: local("Noto Sans Bold"), local("Roboto Bold"), local("DejaVu Sans Bold");
+  size-adjust: 84.6%;
+  ascent-override: 116.3%;
+  descent-override: 34.5%;
+  line-gap-override: 0%;
+}
 /* Revista digital: tipografías y entrada. Ficha: docs/FICHA_REVISTA.md. */
 @font-face {
   font-family: "Rubor Titulo";

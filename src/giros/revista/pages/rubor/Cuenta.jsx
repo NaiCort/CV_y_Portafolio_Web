@@ -205,7 +205,7 @@ export default function Cuenta({ plan, actualizar }) {
         <img
           src={foto("777550")}
           srcSet={fotoSrcSet("777550")}
-          sizes="(max-width: 900px) 100vw, 50vw"
+          sizes="(max-width: 900px) 46vw, 50vw"
           alt=""
           fetchPriority="high"
         />

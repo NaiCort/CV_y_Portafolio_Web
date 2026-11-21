@@ -3,7 +3,7 @@
 // el creador ni personajes reales. Ficha: docs/FICHA_UMBRAL.md.
 export const fotoUmbral = (clave, ancho = 1600) => `/revista/umbral/${clave}-${ancho}.webp`
 export const srcSetUmbral = (clave) =>
-  `${fotoUmbral(clave, 800)} 800w, ${fotoUmbral(clave, 1600)} 1600w`
+  `${fotoUmbral(clave, 800)} 800w, ${fotoUmbral(clave, 1200)} 1200w, ${fotoUmbral(clave, 1600)} 1600w`
 
 export const CREADOR = {
   id: "nicolas-vera",

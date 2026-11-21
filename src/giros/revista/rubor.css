@@ -1,8 +1,8 @@
 /* Rubor: moda y celebridades. Cada número fija sus colores en .rb-root (ver RuborSitio). */
 .rb-root {
   --rb-crema: #f4e7e2;
-  --rb-titulo: "Rubor Titulo", Georgia, serif;
-  --rb-texto: "Rubor Texto", Arial, sans-serif;
+  --rb-titulo: "Rubor Titulo", "Rv Bodoni", "Rv Bodoni N", Georgia, serif;
+  --rb-texto: "Rubor Texto", "Rv Archivo", "Rv Archivo N", Arial, sans-serif;
   --rb-ease: cubic-bezier(0.22, 1, 0.36, 1);
   background: var(--rb-noche);
   color: var(--rb-crema);
@@ -1692,16 +1692,16 @@ main.rb-archivo h1 {
     animation: rb-entra 600ms 500ms var(--rb-ease) both;
   }
 }
+/* Sin transparencia: la figura es el elemento principal de la carga (LCP) y debe pintarse
+   desde el primer cuadro. La cabecera se revela de arriba abajo, sin mover el texto. */
 @keyframes rb-mast {
   from {
-    opacity: 0;
-    letter-spacing: 0.35em;
+    clip-path: inset(0 0 100% 0);
   }
 }
 @keyframes rb-figura {
   from {
-    opacity: 0;
-    translate: 0 6%;
+    translate: 0 4%;
   }
 }
 @keyframes rb-disco {
