@@ -62,7 +62,7 @@ function Ventana({ d, eager, ocultas }) {
   return (
     <>
       <Capa nombre="fondo" z={0} ocultas={ocultas}>
-        <Foto clave={d.foto} eager={eager} className="um-v-tenue" />
+        <Foto clave={d.foto} sizes="(max-width: 900px) 30vw, 300px" className="um-v-tenue" />
       </Capa>
       <Capa nombre="letras" z={1} ocultas={ocultas}>
         <p
