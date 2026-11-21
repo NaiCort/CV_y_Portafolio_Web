@@ -1,3 +1,17 @@
+# V4.8.2 · 21 de noviembre de 2026 · CV web y portafolio
+
+- La portada es ahora el CV web y portafolio:
+  - **Escritorio:** identidad y contacto a la izquierda, el CV al centro y las demos a la derecha, cada columna con su propio desplazamiento.
+  - **Celular:** una sola lectura, con cabecera propia; las demos se abren desde el botón «Demos» y no se repiten al final.
+- Botón «CV en texto (PDF)» con el CV de noviembre; el CV visual aparece como «pronto».
+- Cotizador provisional en `/cotizador`: reconoce la demo de origen (`?demo=<id>`) y, mientras se construye, ofrece la cotización por WhatsApp o correo.
+- Tipografías servidas desde el sitio, con respaldos medidos: la página no salta al cargar (CLS 0.000).
+
+# V4.8.1 · 21 de noviembre de 2026 · Ficha y maquetas del CV
+
+- Tres maquetas (Esquema, Neblina y Prensa). Ian aprobó la distribución y eligió combinar Neblina con Esquema como diseño visual inicial.
+- Ficha de identidad en `docs/FICHA_CV.md`.
+
 # V4.8.0 · 21 de noviembre de 2026 · Preparación de la fase de ajustes
 
 - Plan de V4.8 en `docs/PLAN_V4.8.md`: CV web y portafolio, cotizador base, demos en orden y ajuste final del cotizador.

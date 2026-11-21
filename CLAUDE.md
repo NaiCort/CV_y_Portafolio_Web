@@ -25,7 +25,9 @@ acciones ficticias del negocio.
   en `/` → cotizador base → demos en orden (Psicólogo V4.8.10, Patio 12 V4.8.20, Ladera
   V4.8.30, Brío V4.8.40, Taller V4.8.50, Cotejo V4.8.60), cada una conectada al cotizador →
   ajuste final del cotizador. Catálogo de demos en `src/data/demos.js` y datos del CV en
-  `src/data/cv.js`.
+  `src/data/cv.js`. El CV vive en `src/pages/Bienvenida.jsx` y `src/pages/cv.css`, con
+  su ficha en `docs/FICHA_CV.md` (leerla antes de tocarlo) y pruebas de navegador en
+  `npm run test:browser:cv`; el cotizador provisional está en `src/pages/Cotizador.jsx`.
 - **Restaurante = solo Patio 12.** No se construyen las sub-categorías (fonda, comida
   rápida, lujo) ni el panel de empleados y precios: ambas ideas quedaron descartadas.
 - **Café = Ladera**, una sola identidad y un solo local, sin gestión de empleados. Su
