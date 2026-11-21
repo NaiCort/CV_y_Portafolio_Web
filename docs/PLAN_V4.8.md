@@ -60,6 +60,9 @@ La versión en inglés (Sitio Profesional, sección 25) va después del CV en es
 - PDF: solo el CV de noviembre (`public/cv/`). El visual se publica cuando Ian lo actualice.
 - Demos próximas: ninguna por ahora. El catálogo ya admite el estado para el futuro.
 - Cotizador: antes, durante y después de las demos.
+- Maquetas (21/11/2026): Ian aprobó la distribución.
+  - En celular, la lista de demos aparece **solo** en el desplegable de la cabecera, nunca repetida al final.
+  - El acabado visual se ve simple: se enriquece al trabajar los detalles.
 
 ## Fuentes de datos
 

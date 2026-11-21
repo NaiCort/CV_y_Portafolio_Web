@@ -14,7 +14,7 @@ Entorno: Node 22 y Chromium de Playwright, con la compilación de producción se
   - Psicólogo: 16 combinaciones y 2 recorridos.
   - Patio 12: 12 escenarios. El escenario del contador se actualizó: al volver al portafolio el contador desaparece, la visita sigue guardada y el contador regresa con la ruta del restaurante.
   - Ladera, Brío, Rosales y Vértice, y Cotejo: 5 de 5 escenarios cada una.
-  - Revista: en curso al escribir este documento. Se anota el resultado al terminar.
+  - Revista: 5 de 5 escenarios (320 a 1440 px).
 - **Capturas a 390 y 1280 px del final de las 10 rutas de demo:**
   - la franja de autoría cierra la página sin tapar el texto;
   - la llamada comercial se ve en todas;
