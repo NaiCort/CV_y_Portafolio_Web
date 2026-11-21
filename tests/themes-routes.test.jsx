@@ -58,8 +58,8 @@ describe("Integración de los cuatro temas", () => {
     await render(<App />)
     expect(document.querySelector("h1").textContent).toBe("Esta página no existe")
     await click(document.querySelector('a[href="/"]'))
-    expect(document.querySelector("h1").textContent).toContain("Soy")
-    expect(document.title).toContain("Portafolio")
+    expect(document.querySelector("h1").textContent).toBe("Ian Habid Aldana Martínez")
+    expect(document.title).toContain("CV y portafolio")
   })
 
   it("el indicador de Inicio se recupera al volver arriba", async () => {

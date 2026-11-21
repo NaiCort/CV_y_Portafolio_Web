@@ -1,7 +1,7 @@
 {
   "name": "multiples-demos",
   "private": true,
-  "version": "4.8.0",
+  "version": "4.8.2",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -22,6 +22,7 @@
     "test:browser:taller": "node scripts/verify-taller.mjs",
     "test:browser:despacho": "node scripts/verify-despacho.mjs",
     "test:browser:revista": "node scripts/verify-revista.mjs",
+    "test:browser:cv": "node scripts/verify-cv.mjs",
     "audit:encimados": "node scripts/encimados.mjs",
     "audit:cwv": "node scripts/cwv.mjs",
     "pdf:prisma": "node scripts/pdf-prisma.mjs"

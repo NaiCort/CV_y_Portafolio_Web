@@ -18,18 +18,32 @@ export const PERSONA = {
 export const CONTACTO = [
   {
     id: "telefono",
+    campo: "teléfono",
     etiqueta: "Teléfono y WhatsApp",
     texto: "+52 228 162 8345",
     url: `https://wa.me/${WHATSAPP_NUMBER}`,
   },
   {
     id: "correo",
+    campo: "correo",
     etiqueta: "Correo",
     texto: "ian.martinez2610@gmail.com",
     url: "mailto:ian.martinez2610@gmail.com",
   },
-  { id: "linkedin", etiqueta: "LinkedIn", texto: "in/ian-almarti", url: LINKEDIN_URL },
-  { id: "github", etiqueta: "GitHub", texto: "NaiCort", url: "https://github.com/NaiCort" },
+  {
+    id: "linkedin",
+    campo: "linkedin",
+    etiqueta: "LinkedIn",
+    texto: "in/ian-almarti",
+    url: LINKEDIN_URL,
+  },
+  {
+    id: "github",
+    campo: "github",
+    etiqueta: "GitHub",
+    texto: "NaiCort",
+    url: "https://github.com/NaiCort",
+  },
 ]
 
 export const DOCUMENTOS = [

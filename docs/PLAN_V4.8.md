@@ -9,9 +9,9 @@ Acordado con Ian el 21 de noviembre de 2026, con el Sitio Profesional Integral V
    - componentes compartidos y contador del restaurante;
    - herramientas de medición.
 2. **V4.8.1 a V4.8.5, CV web y portafolio en `/`:**
-   1. ficha de identidad y maquetas (2 o 3 direcciones, escritorio y celular) para que Ian elija;
-   2. escritorio;
-   3. celular;
+   1. ficha de identidad y maquetas (2 o 3 direcciones, escritorio y celular) para que Ian elija (hecho);
+   2. escritorio y celular, construidos juntos porque comparten el mismo código (hecho);
+   3. detalle visual con las referencias que dé Ian;
    4. PDF y buscadores;
    5. pasada final, cierre y Documento Maestro.
 3. **Cotizador, primera versión.** Va antes de las demos para que cada una se conecte «desde ya». Tiene página propia.
@@ -63,6 +63,7 @@ La versión en inglés (Sitio Profesional, sección 25) va después del CV en es
 - Maquetas (21/11/2026): Ian aprobó la distribución.
   - En celular, la lista de demos aparece **solo** en el desplegable de la cabecera, nunca repetida al final.
   - El acabado visual se ve simple: se enriquece al trabajar los detalles.
+- Dirección visual inicial (21/11/2026): combinación de Neblina y Esquema (`docs/FICHA_CV.md`). Ian dará más adelante ejemplos visuales para imitarlos o crear una versión propia.
 
 ## Fuentes de datos
 
