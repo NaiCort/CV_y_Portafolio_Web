@@ -1,3 +1,7 @@
+## V4.7.7 · Prisma: publicación simulada y exploración por área
+
+- Perfil con seguimiento de envíos, preimpresiones locales, filtros de las 14 áreas y explicación del acceso abierto.
+
 ## V4.7.6 · Rubor: suscripción, secciones y sesión editorial
 
 - Cuenta local con renovación simulada, cancelación y acceso a 22 notas de archivo. Cuatro secciones y detrás de cámaras del número actual.
