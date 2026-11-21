@@ -1,3 +1,10 @@
+# V4.7.16 · 21 de noviembre de 2026 · Opcionales y movimiento
+
+- Umbral suena con la Gymnopédie n.º 1 (Satie, por Kevin MacLeod).
+- «Agua» (N.º 06) como dossier completo, con gota de texto envolvente y dos fotos nuevas.
+- Barra de avance de lectura, páginas que entran al bajar, entrada de la portada de Rubor y transiciones entre páginas.
+- Franja legal de privacidad y créditos con el tono de cada revista.
+
 # V4.7.15 · 21 de noviembre de 2026 · Rubor y Prisma, todas las páginas
 
 - Rubor: cupón de suscripción recortable y carnet de lectora; índice por sección en pliego; «Detrás de cámaras» como hoja de contactos con lápiz graso, hoja de llamado y equipo.
