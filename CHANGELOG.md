@@ -1,3 +1,7 @@
+## V4.7.10 · Entre líneas, del espacio al detalle
+
+- Apertura en díptico a ancho de escritorio, título con Archivo local y tres pliegos con encuadres de calle, gesto y cámara.
+
 ## V4.7.9 · Otra perspectiva en tres pliegos
 
 - Escena completa, díptico de encuadres y hoja de contactos interactiva con variantes para móvil.
