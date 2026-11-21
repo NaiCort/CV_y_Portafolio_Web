@@ -11,6 +11,7 @@ import {
   CREADOR,
   DOSSIERS,
   FOTOS_UMBRAL,
+  LEIBLES,
   findArchivo,
   findDossier,
   fotoUmbral,
@@ -56,7 +57,7 @@ function Guardar({ d, claro = false }) {
 function Indice({ guardados = false, filtro = true }) {
   const [disciplina, setDisciplina] = useState("Todas")
   const [ids] = useMarcadores("umbral")
-  const lista = DOSSIERS.filter(
+  const lista = (guardados || !filtro ? LEIBLES() : DOSSIERS).filter(
     (d) =>
       (!guardados || ids.includes(d.id)) && (disciplina === "Todas" || d.disciplina === disciplina),
   )
@@ -96,7 +97,9 @@ function Indice({ guardados = false, filtro = true }) {
               <div>
                 <p className="um-sobre">{d.disciplina}</p>
                 <h3>
-                  <Link to={`/revista/umbral/dossier/${d.id}`}>{d.titulo}</Link>
+                  <Link viewTransition to={`/revista/umbral/dossier/${d.id}`}>
+                    {d.titulo}
+                  </Link>
                 </h3>
                 <p>{d.entradilla}</p>
                 <Guardar d={d} />
@@ -124,7 +127,11 @@ function Inicio() {
     <main className="um-main">
       <section className="um-pliego" aria-labelledby="um-titulo">
         <div className="um-pagina um-pagina-cartel um-tono-noche">
-          <Link to={`/revista/umbral/dossier/${portada.id}`} className="um-cartel-enlace">
+          <Link
+            to={`/revista/umbral/dossier/${portada.id}`}
+            viewTransition
+            className="um-cartel-enlace"
+          >
             <Cartel d={portada} eager />
             <span className="rv-oculto">Leer el dossier «{portada.titulo}»</span>
           </Link>
@@ -149,12 +156,20 @@ function Inicio() {
         </h2>
         {ARCHIVO.slice(0, 2).map((n) => (
           <figure key={n.id} className={`um-pagina um-pagina-cartel um-tono-${n.tono}`}>
-            <Link to={`/revista/umbral/lamina/${n.id}`} className="um-cartel-enlace">
+            <Link
+              to={`/revista/umbral/${n.completo ? "dossier" : "lamina"}/${n.id}`}
+              viewTransition
+              className="um-cartel-enlace"
+            >
               <Cartel d={n} />
             </Link>
             <figcaption className="um-pie-lamina">
               <b>N.º {String(n.numero).padStart(2, "0")}</b> · {n.mes} ·{" "}
-              <Link to={`/revista/umbral/lamina/${n.id}`}>{n.titulo}: ver la lámina</Link>
+              {n.completo ? (
+                <Link to={`/revista/umbral/dossier/${n.id}`}>{n.titulo}: leer el dossier</Link>
+              ) : (
+                <Link to={`/revista/umbral/lamina/${n.id}`}>{n.titulo}: ver la lámina</Link>
+              )}
             </figcaption>
           </figure>
         ))}
@@ -213,7 +228,9 @@ function Inicio() {
             </div>
             <div>
               <dt>Música</dt>
-              <dd>«Dreamer», de Kevin MacLeod (incompetech.com), CC BY 3.0</dd>
+              <dd>
+                «Gymnopédie n.º 1», Erik Satie, por Kevin MacLeod (incompetech.com), CC BY 3.0
+              </dd>
             </div>
           </dl>
           <Caligrafia palabra="despacio" className="um-colofon-firma" />
@@ -311,13 +328,24 @@ function Historia({ d }) {
       <section className="um-pliego" aria-labelledby="um-c2">
         <article className="um-pagina um-pagina-texto um-tono-papel um-pagina-silueta">
           <Corrida izquierda={d.titulo} derecha={c2.titulo} />
-          <img
-            className="um-silueta"
-            src={fotoUmbral(`${d.recorte}-recorte`, 800)}
-            alt=""
-            loading="lazy"
-            style={{ shapeOutside: `url(${fotoUmbral(`${d.recorte}-recorte`, 800)})` }}
-          />
+          {d.gota ? (
+            <img
+              className="um-gota"
+              src={fotoUmbral(d.gota, 800)}
+              alt=""
+              loading="lazy"
+              width="800"
+              height="800"
+            />
+          ) : (
+            <img
+              className="um-silueta"
+              src={fotoUmbral(`${d.recorte}-recorte`, 800)}
+              alt=""
+              loading="lazy"
+              style={{ shapeOutside: `url(${fotoUmbral(`${d.recorte}-recorte`, 800)})` }}
+            />
+          )}
           <h2 id="um-c2" className="um-titulo-pagina">
             {c2.titulo}
           </h2>
@@ -378,7 +406,9 @@ function Dossier() {
     d?.entradilla ?? "Dossier ficticio de Umbral.",
   )
   if (!d) return <Navigate to="/revista/umbral" replace />
-  const otro = DOSSIERS.find((x) => x.id !== d.id)
+  const leibles = LEIBLES()
+  const otro = leibles[(leibles.findIndex((x) => x.id === d.id) + 1) % leibles.length]
+  const num = String(d.numero).padStart(2, "0")
   const credito = FOTOS_UMBRAL.find(([k]) => k === d.foto)
   return (
     <main className="um-main">
@@ -389,7 +419,7 @@ function Dossier() {
         <div className="um-pagina um-pagina-texto um-tono-papel">
           <Corrida
             izquierda={<Link to="/revista/umbral">Umbral</Link>}
-            derecha={`N.º 07 · ${d.disciplina} · p. ${d.pagina}`}
+            derecha={`N.º ${num} · ${d.disciplina} · p. ${d.pagina}`}
           />
           <p className="um-sobre">{d.disciplina}</p>
           <h1 id="um-dossier-titulo" className="um-titulo-dossier">
@@ -423,7 +453,11 @@ function Dossier() {
 
       <section className="um-pliego um-cierre" aria-labelledby="um-sigue">
         <div className={`um-pagina um-pagina-cartel um-tono-${otro.tono}`}>
-          <Link to={`/revista/umbral/dossier/${otro.id}`} className="um-cartel-enlace">
+          <Link
+            to={`/revista/umbral/dossier/${otro.id}`}
+            viewTransition
+            className="um-cartel-enlace"
+          >
             <Cartel d={otro} />
           </Link>
         </div>

@@ -22,7 +22,7 @@ export default function Acciones({ articulo: a, leer = true }) {
           {si ? "★ Guardado" : "☆ Guardar"}
         </button>
         {leer && (
-          <Link className="pr-bt pr-bt-p" to={`/revista/prisma/articulo/${a.id}`}>
+          <Link viewTransition className="pr-bt pr-bt-p" to={`/revista/prisma/articulo/${a.id}`}>
             Leer en el sitio
           </Link>
         )}

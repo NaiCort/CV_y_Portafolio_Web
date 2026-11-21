@@ -208,30 +208,69 @@
 .rv-saltar:focus {
   transform: none;
 }
+/* Línea legal al pie de cada revista: privacidad y créditos, con el tono del sitio. */
 .rv-utilidades {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px 28px;
-  padding: 24px 24px 64px;
-  background: #171b1a;
-  color: #f0f0eb;
+  align-items: center;
+  gap: 6px 28px;
+  padding: 18px clamp(16px, 4vw, 48px) 88px;
+  border-top: 1px solid rgb(255 255 255 / 12%);
+  background: #0d0d0e;
+  color: #e9e4dc;
   font:
-    400 1rem/1.5 "Rubor Texto",
+    600 0.75rem/1.5 "Rubor Texto",
     Arial,
     sans-serif;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.rv-util-rubor {
+  background: #0a0204;
+}
+.rv-util-prisma {
+  background: #0a0c10;
+  font-family: "Prisma Texto", Arial, sans-serif;
+  letter-spacing: 0.06em;
+}
+.rv-util-umbral {
+  background: #0d0d0e;
+  font-family: "Umbral Titulo", Arial, sans-serif;
+  font-stretch: 118%;
+}
+.rv-util-marca {
+  margin-right: auto;
+  opacity: 0.7;
 }
 .rv-utilidades button,
 .rv-utilidades a {
-  color: inherit;
-  text-decoration: underline;
-  text-underline-offset: 0.2em;
-  background: transparent;
+  min-height: 44px;
+  padding: 0;
   border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.35em;
   cursor: pointer;
-  padding: 10px 0;
+}
+@media (hover: hover) {
+  .rv-utilidades button:hover,
+  .rv-utilidades a:hover {
+    color: #fff;
+    text-decoration-thickness: 2px;
+  }
 }
 .rv-utilidades p {
   width: 100%;
+  text-transform: none;
+  letter-spacing: 0;
+}
+.rv-utilidades p:empty {
+  display: none;
 }
 .rv-utilidades :focus-visible,
 .rv-creditos a:focus-visible {
@@ -610,4 +649,87 @@
    título no es un control, así que no se le dibuja recuadro. */
 .revista-root [tabindex="-1"]:focus {
   outline: none;
+}
+
+/* ===== Movimiento compartido de Revista ===== */
+/* Avance de lectura: una línea fina bajo el aviso de demo, ligada al desplazamiento. */
+.rv-progreso {
+  display: none;
+}
+@supports (animation-timeline: scroll()) {
+  .rv-progreso {
+    position: fixed;
+    top: 44px;
+    right: 0;
+    left: 0;
+    z-index: 45;
+    display: block;
+    height: 3px;
+    background: #d9a35b;
+    pointer-events: none;
+    transform-origin: 0 50%;
+    animation: rv-avance linear both;
+    animation-timeline: scroll(root);
+  }
+  .rv-progreso-rubor {
+    background: #ff4259;
+  }
+  .rv-progreso-prisma {
+    background: linear-gradient(90deg, #f2b33d, #3d8bff);
+  }
+}
+@keyframes rv-avance {
+  from {
+    transform: scaleX(0);
+  }
+}
+
+/* Páginas que entran al bajar: solo escala y posición (sin transparencia, para que el
+   contraste siempre se mida sobre el color final). */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .rb-pag,
+    .rb-pliego,
+    .um-pliego,
+    .pr-hoja > section,
+    .pr-caja,
+    .pr-envios li {
+      animation: rv-entra-pagina linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 55%;
+    }
+  }
+}
+@keyframes rv-entra-pagina {
+  from {
+    scale: 0.96;
+    translate: 0 28px;
+  }
+}
+
+/* Transición entre páginas (View Transitions): fundido corto con un leve acercamiento. */
+@media (prefers-reduced-motion: no-preference) {
+  ::view-transition-old(root) {
+    animation: rv-vt-sale 220ms ease-out both;
+  }
+  ::view-transition-new(root) {
+    animation: rv-vt-entra 280ms ease-out both;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 1ms;
+  }
+}
+@keyframes rv-vt-sale {
+  to {
+    opacity: 0;
+  }
+}
+@keyframes rv-vt-entra {
+  from {
+    opacity: 0;
+    scale: 0.98;
+  }
 }

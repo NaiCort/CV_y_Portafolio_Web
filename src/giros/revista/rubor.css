@@ -1675,3 +1675,38 @@ main.rb-archivo h1 {
 .rb-sec-botones button {
   color: color-mix(in srgb, var(--rb-crema) 88%, transparent);
 }
+
+/* Entrada de la portada: la cabecera se cierra desde muy espaciada y la figura sube. */
+@media (prefers-reduced-motion: no-preference) {
+  .rb-mast {
+    animation: rb-mast 1100ms var(--rb-ease) both;
+  }
+  .rb-recorte {
+    animation: rb-figura 1000ms 200ms var(--rb-ease) both;
+  }
+  .rb-disco {
+    animation: rb-disco 1400ms var(--rb-ease) both;
+  }
+  .rb-port-lineas,
+  .rb-numfecha {
+    animation: rb-entra 600ms 500ms var(--rb-ease) both;
+  }
+}
+@keyframes rb-mast {
+  from {
+    opacity: 0;
+    letter-spacing: 0.35em;
+  }
+}
+@keyframes rb-figura {
+  from {
+    opacity: 0;
+    translate: 0 6%;
+  }
+}
+@keyframes rb-disco {
+  from {
+    opacity: 0;
+    scale: 0.7;
+  }
+}

@@ -61,6 +61,7 @@ export default function RevistaApp() {
         Saltar al contenido de la revista
       </a>
       <PosicionLectura />
+      {sitio && <span className={`rv-progreso rv-progreso-${sitio}`} aria-hidden="true" />}
       {sitio && <Musica key={`${sitio}-${sesion}`} sitio={sitio} />}
       <Routes key={sesion}>
         <Route index element={<Entrada />} />

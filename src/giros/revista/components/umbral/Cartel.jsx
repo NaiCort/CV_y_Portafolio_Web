@@ -211,7 +211,12 @@ function Vertical({ d, eager, ocultas }) {
         <span className="um-a-panel" />
         <p className="um-a-palabra">Agua</p>
       </Capa>
-      <Capa nombre="notas" z={2} ocultas={ocultas} className="um-notas">
+      <Capa nombre="recorte" z={2} ocultas={ocultas}>
+        <span className="um-a-recorte">
+          <Recorte clave={d.recorte} eager={eager} />
+        </span>
+      </Capa>
+      <Capa nombre="notas" z={3} ocultas={ocultas} className="um-notas">
         <div className="um-a-columna">
           <p className="um-a-lema">{d.lema}</p>
           <p className="um-a-fecha">

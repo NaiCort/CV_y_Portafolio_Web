@@ -64,6 +64,7 @@ function MenuNumeros({ actual }) {
             {NUMEROS.map((x) => (
               <li key={x.n}>
                 <Link
+                  viewTransition
                   to={x.n === ACTUAL.n ? "/revista/rubor" : `/revista/rubor/numero/${x.n}`}
                   aria-current={x.n === actual.n ? "page" : undefined}
                   style={{ "--muestra": PALETAS[x.paleta].acento }}

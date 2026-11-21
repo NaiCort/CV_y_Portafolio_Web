@@ -601,6 +601,22 @@
   shape-image-threshold: 0.35;
   shape-margin: 16px;
 }
+.um-gota {
+  float: right;
+  width: min(46%, 300px);
+  aspect-ratio: 1;
+  margin: 6px 0 16px 24px;
+  border-radius: 50%;
+  object-fit: cover;
+  shape-outside: circle(50%);
+  shape-margin: 18px;
+  animation: um-gota 6s ease-in-out infinite alternate;
+}
+@keyframes um-gota {
+  to {
+    border-radius: 46% 54% 52% 48% / 52% 46% 54% 48%;
+  }
+}
 .um-pagina-cita {
   display: grid;
   place-items: center;
@@ -1172,6 +1188,13 @@
 .um-capa:has(.um-causticas[data-webgl]) .um-a-reflejo {
   display: none;
 }
+.um-a-recorte {
+  position: absolute;
+  inset: 0 0 0 26%;
+}
+.um-a-recorte img {
+  object-position: 47% 50%;
+}
 .um-a-panel {
   position: absolute;
   top: 0;
@@ -1496,6 +1519,9 @@
   .um-capa,
   .um-anteriores img {
     transition: opacity 200ms linear;
+  }
+  .um-gota {
+    animation: none;
   }
   .um-caligrafia path,
   .um-caligrafia.um-escrita path {
