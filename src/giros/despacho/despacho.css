@@ -745,9 +745,6 @@
     background: var(--d-acento);
     color: #fff;
   }
-  .despacho-root .demo-watermark {
-    bottom: calc(60px + env(safe-area-inset-bottom, 0px));
-  }
   .d-pie {
     padding-bottom: 150px;
   }

@@ -30,58 +30,58 @@ export default function ComercialCTA({
       style={{ backgroundColor, scrollMarginTop: 140 }}
     >
       <motion.div
-        initial={reduced ? false : { opacity: 0, y: 16 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={reduced ? false : { opacity: 0, scale: 0.97 }}
+        whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true, margin: "-80px" }}
-        transition={reduced ? { duration: 0, delay: 0, repeat: 0 } : { duration: 0.6 }}
-        className="max-w-3xl mx-auto text-center p-8 sm:p-10"
-        style={{
-          backgroundColor: "rgba(255,255,255,0.04)",
-          border: "1px solid rgba(255,255,255,0.12)",
-          borderRadius: radius,
-        }}
+        transition={
+          reduced ? { duration: 0, delay: 0, repeat: 0 } : { duration: 0.26, ease: "easeOut" }
+        }
+        className="max-w-5xl mx-auto grid gap-6 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-end pt-8"
+        style={{ borderTop: "1px solid rgba(255,255,255,0.28)" }}
       >
-        <p
-          className="text-xs font-medium uppercase mb-3"
-          style={{ color: "#ffffff", fontFamily, letterSpacing: "0.1em" }}
-        >
-          Sobre esta demo
-        </p>
-        <h3
-          className="mb-4"
-          style={{
-            fontFamily: headingFontFamily || fontFamily,
-            color: textColor,
-            fontSize: "clamp(1.3rem, 2.5vw, 1.7rem)",
-            lineHeight: 1.4,
-          }}
-        >
-          ¿Te gustaría adaptar una experiencia así a tu negocio?
-        </h3>
-        <p
-          className="mb-7"
-          style={{ fontFamily, color: "rgba(255,255,255,0.85)", fontSize: 14.5, lineHeight: 1.7 }}
-        >
-          Puedo personalizar el estilo, el contenido y los flujos de contacto de un sitio como este
-          para tu propio negocio. Este demo es un ejemplo real de lo que puedo construir.
-        </p>
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-          <a
-            href={whatsappUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 px-6 py-3 text-sm font-medium transition-opacity hover:opacity-90"
+        <div>
+          <h2
+            className="mb-3"
             style={{
-              backgroundColor: accent,
-              color: contrastingText(accent),
-              fontFamily,
-              borderRadius: radius > 20 ? 999 : radius,
+              fontFamily: headingFontFamily || fontFamily,
+              color: textColor,
+              fontSize: "clamp(1.35rem, 2.6vw, 1.8rem)",
+              lineHeight: 1.3,
+              textWrap: "balance",
             }}
           >
-            Hablemos
-            <ArrowRight size={16} />
-          </a>
+            ¿Te gustaría un sitio así para tu negocio?
+          </h2>
+          <p
+            style={{
+              fontFamily,
+              color: "rgba(255,255,255,0.85)",
+              fontSize: 15,
+              lineHeight: 1.7,
+              maxWidth: "60ch",
+            }}
+          >
+            Esta demo es un ejemplo de lo que puedo construir. Adapto el estilo, el contenido y los
+            flujos de contacto a tu {giro === "psicólogo" ? "consulta" : "negocio"}. Este botón sí
+            es real: abre WhatsApp conmigo.
+          </p>
         </div>
+        <a
+          href={whatsappUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center justify-center gap-2 px-6 py-3 text-sm font-medium transition-opacity hover:opacity-90 justify-self-start"
+          style={{
+            backgroundColor: accent,
+            color: contrastingText(accent),
+            fontFamily,
+            borderRadius: radius > 20 ? 999 : radius,
+            minHeight: 48,
+          }}
+        >
+          Hablemos
+          <ArrowRight size={16} aria-hidden="true" />
+        </a>
       </motion.div>
     </section>
   )

@@ -2247,9 +2247,6 @@ html[data-taller-tema="vertice"] .t-modal {
   .taller-root .demo-theme-switcher {
     bottom: calc(64px + env(safe-area-inset-bottom, 0px));
   }
-  .taller-root .demo-watermark {
-    bottom: calc(60px + env(safe-area-inset-bottom, 0px));
-  }
   .t-pie {
     padding-bottom: 150px;
   }

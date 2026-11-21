@@ -86,9 +86,6 @@ button:disabled {
 .demo-theme-switcher {
   bottom: calc(1.9rem + env(safe-area-inset-bottom, 0px));
 }
-.demo-watermark {
-  bottom: calc(0.25rem + env(safe-area-inset-bottom, 0px));
-}
 .demo-contact-form[hidden] {
   display: none;
 }
