@@ -1,3 +1,7 @@
+# V4.7.19 · 21 de noviembre de 2026 · Umbral, sumario en celular
+
+- En celular, el texto y el botón de cada entrada del sumario pasan debajo del título y la miniatura; el título se ajusta al ancho sin partir palabras.
+
 # V4.7.18 · 21 de noviembre de 2026 · Pasada final de diseño
 
 - Sin textos encimados en las 27 páginas de Revista (páginas de Rubor bajo la cabecera, cursivas y cierre de Umbral).
