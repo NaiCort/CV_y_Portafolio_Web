@@ -149,6 +149,8 @@ en el teléfono y de la actualización del Documento Maestro): una demo con tres
   transparente abajo a la derecha (silenciada al inicio) y volumen vertical al pasar el cursor;
   nada de barras extra arriba: solo el aviso de demo y la cabecera de cada revista. Pistas: Rubor
   «Night on the Docks», Prisma «Clean Soul», Umbral «Gymnopédie n.º 1» (Kevin MacLeod, CC BY 3.0).
+- **Navegadores:** Ian no tiene dispositivos Apple ni usa Safari o Firefox por ahora (21/11/2026); la
+  revisión es en su teléfono Android (Chrome o Edge). Safari, Firefox e iOS no son pendientes.
 - **Oficio ya resuelto:** tipografías de respaldo con medida (ancho y altura) en `revista.css`;
   créditos dentro de cada sitio; detector de textos encimados y `impeccable` sin hallazgos propios.
 Leer `docs/FICHA_REVISTA.md` antes de tocar `src/giros/revista/`. Pruebas de navegador en

@@ -1,3 +1,8 @@
+# V4.7.20 · 21 de noviembre de 2026 · Carga de Prisma y Umbral
+
+- Prisma carga en 2.4 s (antes 3.0): fondo del número con prioridad alta y portaditas del tamaño que ocupan.
+- Umbral: el fondo tenue del cartel pide una versión chica.
+
 # V4.7.19 · 21 de noviembre de 2026 · Umbral, sumario en celular
 
 - En celular, el texto y el botón de cada entrada del sumario pasan debajo del título y la miniatura; el título se ajusta al ancho sin partir palabras.
