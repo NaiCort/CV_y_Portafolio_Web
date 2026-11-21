@@ -1,3 +1,10 @@
+# V4.7.18 · 21 de noviembre de 2026 · Pasada final de diseño
+
+- Sin textos encimados en las 27 páginas de Revista (páginas de Rubor bajo la cabecera, cursivas y cierre de Umbral).
+- Menos patrones vigilados: sin etiquetas sobre los títulos de las páginas nuevas, sin franja de color en el manuscrito; contraste de textos de ejemplo y símbolos.
+- Barras de desplazamiento con el tono de cada revista.
+- Documentos de V4.7.5 a V4.7.11 completados.
+
 # V4.7.17 · 21 de noviembre de 2026 · PDF accesibles, carga y tipografías
 
 - PDF de Prisma etiquetados, en español y con índice navegable.
