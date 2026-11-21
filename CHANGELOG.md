@@ -1,3 +1,7 @@
+## V4.7.9 · Otra perspectiva en tres pliegos
+
+- Escena completa, díptico de encuadres y hoja de contactos interactiva con variantes para móvil.
+
 ## V4.7.8 · Música ambiental de Revista
 
 - Audio local opcional con volumen, preferencia de reproducción, créditos y borrado desde privacidad.

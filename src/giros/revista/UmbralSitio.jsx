@@ -1,3 +1,4 @@
+import { Escena, InteriorPerspectiva } from "./components/PliegosPerspectiva"
 import AperturaLineas, { ArteLineas } from "./components/EntreLineas"
 import { useState } from "react"
 import { Link, Navigate, Route, Routes, useParams } from "react-router-dom"
@@ -185,26 +186,9 @@ function Dossier() {
           </p>
         </>
       ) : (
-        <>
-          <header className="um-apertura">
-            <nav aria-label="Ruta">
-              <Link to="/revista/umbral">Umbral</Link> / {d.disciplina}
-            </nav>
-            <h1>{d.titulo}</h1>
-            <p className="um-entrada">{d.entradilla}</p>
-            <p>
-              Por <Link to="/revista/umbral/creador/nicolas-vera">{d.autor}</Link> · Relato ficticio
-            </p>
-            <Guardar d={d} />
-          </header>
-          <figure className="um-foto-abierta">
-            <Cartel d={d} eager />
-            <figcaption>
-              Fotografía ilustrativa de Unsplash; la persona no es el creador ni un protagonista
-              real del relato. <Link to="/revista/umbral/creditos">Ver procedencia</Link>.
-            </figcaption>
-          </figure>
-        </>
+        <Escena d={d}>
+          <Guardar d={d} />
+        </Escena>
       )}
       <section id="relato" className="um-lectura" aria-label="Lectura del dossier">
         <div className="um-modos" role="group" aria-label="Vista del dossier">
@@ -229,6 +213,8 @@ function Dossier() {
               fotografías originales.
             </p>
           </div>
+        ) : d.id === "otra-perspectiva" ? (
+          <InteriorPerspectiva d={d} />
         ) : (
           <article>
             {d.capitulos.map((s) => (
