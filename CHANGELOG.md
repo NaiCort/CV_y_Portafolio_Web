@@ -1,3 +1,7 @@
+# V4.7.21 · 21 de noviembre de 2026 · Umbral, márgenes de página
+
+- Espacio bajo la cabecera corrida en todas las páginas de Umbral (el acento de «COLOFÓN» tocaba la línea): el reinicio de márgenes ya no anula los de cada clase.
+
 # V4.7.20 · 21 de noviembre de 2026 · Carga de Prisma y Umbral
 
 - Prisma carga en 2.4 s (antes 3.0): fondo del número con prioridad alta y portaditas del tamaño que ocupan.

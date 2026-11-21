@@ -57,10 +57,11 @@
   color: var(--tinta);
   font: 400 1rem/1.5 var(--texto);
 }
-.um-root :is(h1, h2, h3, p, ul, ol, dl, dd, figure, blockquote) {
+/* Reinicio con especificidad mínima (:where): así los márgenes de cada clase sí se aplican. */
+:where(.um-root) :where(h1, h2, h3, p, ul, ol, dl, dd, figure, blockquote) {
   margin: 0;
 }
-.um-root :is(ul, ol) {
+:where(.um-root) :where(ul, ol) {
   padding: 0;
   list-style: none;
 }
