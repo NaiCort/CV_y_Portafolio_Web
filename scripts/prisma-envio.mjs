@@ -4,13 +4,11 @@ export async function verificarEnvio(page, base) {
   await page.getByLabel("Título", { exact: true }).fill("Seguimiento de lluvia urbana")
   await page.getByLabel("Área", { exact: true }).selectOption("datos")
   await page.getByLabel("Resumen", { exact: true }).fill("Comparación ficticia de mediciones.")
-  await page
-    .getByLabel("Archivo PDF")
-    .setInputFiles({
-      name: "muestra.pdf",
-      mimeType: "application/pdf",
-      buffer: Buffer.from("%PDF-1.4"),
-    })
+  await page.getByLabel("Archivo PDF").setInputFiles({
+    name: "muestra.pdf",
+    mimeType: "application/pdf",
+    buffer: Buffer.from("%PDF-1.4"),
+  })
   await page.getByRole("button", { name: "Enviar investigación" }).click()
   await page.getByText("Enviado", { exact: true }).waitFor()
   await page.reload()
