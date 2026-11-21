@@ -74,7 +74,17 @@ export default function Inicio() {
       </section>
 
       <div className="pr-selbg" style={{ "--c": a.color }} aria-hidden="true">
-        <img src={foto(a.foto)} alt="" key={a.id} fetchPriority="low" decoding="async" />
+        {/* Fondo desvanecido: es lo más grande de la pantalla (el elemento de la carga). En
+            celular basta la versión de 480 px, porque se ve tenue y difuminado. */}
+        <img
+          src={foto(a.foto)}
+          srcSet={`${foto(a.foto, 480)} 480w, ${foto(a.foto, 1000)} 1000w`}
+          sizes="(max-width: 900px) 160px, 60vw"
+          alt=""
+          key={a.id}
+          fetchPriority="high"
+          decoding="async"
+        />
       </div>
       <section className="pr-w pr-sel" aria-labelledby="pr-sel-titulo" aria-live="polite">
         <Portada articulo={a} grande sizes="(max-width: 900px) 240px, 330px" carga="eager" />
@@ -109,7 +119,7 @@ export default function Inicio() {
               {tendencia.map((x) => (
                 <li key={x.id}>
                   <Link to={`/revista/prisma/articulo/${x.id}`}>
-                    <Portada articulo={x} sizes="160px" />
+                    <Portada articulo={x} sizes="140px" />
                     <b>{x.titulo}</b>
                   </Link>
                   <span>{nombresAutores(x).join(" y ")}</span>
