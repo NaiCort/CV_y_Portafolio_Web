@@ -2,7 +2,7 @@
 
 Portafolio de demos interactivas de Ian Habid Aldana Martínez, una por giro de negocio.
 La fuente de planificación es el **Documento Maestro** (fuera del repositorio, versión
-vigente: V4.6.8, revisión documental 6 del 18/11/2026; la PARTE XV tiene el estado actual; la versión V4.7 se hace al cerrar Revista, antes de V4.8). Este archivo resume lo que hace falta para trabajar
+vigente: V4.7.21, revisión documental 7 del 21/11/2026; la PARTE XVI tiene el estado actual). Este archivo resume lo que hace falta para trabajar
 en el código sin tenerlo a la mano. Si algo aquí contradice una petición de Ian en la
 conversación, manda lo que Ian diga y luego se actualiza este archivo.
 
@@ -19,7 +19,8 @@ acciones ficticias del negocio.
   (cerrada en V4.2.5 con **Patio 12**) → Café (cerrada en V4.3.6 con **Ladera**) →
   Gimnasio (cerrada en V4.4.8 con **Brío**) → Taller mecánico (cerrada en V4.5.6 con
   **Rosales y Vértice**) → Despacho contable (cerrada en V4.6.8 con **Cotejo**) →
-  **Revista digital (V4.7, en construcción)**.
+  **Revista digital (cerrada en V4.7.21 con Rubor, Prisma y Umbral)**. Las siete demos están
+  terminadas; sigue la **fase de ajustes V4.8**.
 - **Restaurante = solo Patio 12.** No se construyen las sub-categorías (fonda, comida
   rápida, lujo) ni el panel de empleados y precios: ambas ideas quedaron descartadas.
 - **Café = Ladera**, una sola identidad y un solo local, sin gestión de empleados. Su
@@ -129,8 +130,7 @@ contratarnos». Leer `docs/FICHA_DESPACHO.md` antes de tocar
 
 ## Estado de Revista digital
 
-**Revista = Rubor, Prisma y Umbral** (V4.7, lista para cierre en V4.7.18, pendiente del visto bueno de Ian
-en el teléfono y de la actualización del Documento Maestro): una demo con tres sitios en `/revista`.
+**Revista = Rubor, Prisma y Umbral**, cerrada en V4.7.21 con el visto bueno de Ian (21/11/2026) y en producción: una demo con tres sitios en `/revista`.
 - **Rubor**, moda y celebridades: un solo editor; la portada es siempre el número más reciente y se
   hojea bajando; cabecera semitransparente fija con menú de números; cada número con su paleta.
   Cupón de suscripción y carnet de lectora, índice por sección y «Detrás de cámaras» como hoja de
