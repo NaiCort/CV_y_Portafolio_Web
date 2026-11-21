@@ -421,7 +421,6 @@ function Dossier() {
             izquierda={<Link to="/revista/umbral">Umbral</Link>}
             derecha={`N.º ${num} · ${d.disciplina} · p. ${d.pagina}`}
           />
-          <p className="um-sobre">{d.disciplina}</p>
           <h1 id="um-dossier-titulo" className="um-titulo-dossier">
             {d.titulo}
           </h1>
@@ -504,7 +503,6 @@ function Lamina() {
             izquierda={<Link to="/revista/umbral">Umbral · Archivo</Link>}
             derecha={`N.º ${String(n.numero).padStart(2, "0")} · ${n.mes}`}
           />
-          <p className="um-sobre">{n.disciplina}</p>
           <h1 id="um-lamina-titulo" className="um-titulo-dossier">
             {n.titulo}
           </h1>

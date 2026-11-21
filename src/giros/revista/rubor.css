@@ -1710,3 +1710,31 @@ main.rb-archivo h1 {
     scale: 0.7;
   }
 }
+/* La cabecera de Rubor flota sobre la portada (margen inferior de −64 px): las demás páginas
+   reservan ese alto arriba para que nada quede debajo. */
+.rb-pagina {
+  padding-top: calc(64px + clamp(24px, 4vw, 56px));
+}
+.rb-cuenta-foto {
+  padding-top: 0;
+}
+.rb-root .rv-creditos-rubor {
+  padding-top: calc(64px + clamp(28px, 5vw, 64px));
+}
+/* Bodoni en cursiva sale de su renglón: más interlínea para que no toque lo de alrededor. */
+.rb-root :is(.rb-cuenta-portada h1, .rb-contactos h1, .rb-llamado h2, .rb-equipo h2) {
+  line-height: 1.04;
+}
+.rb-dia {
+  margin-top: 34px;
+}
+.rb-root :is(.rb-cuenta-portada h1, .rb-contactos h1, .rb-llamado h2) span {
+  display: inline-block;
+}
+.rb-cuenta-nota {
+  font-size: 0.875rem;
+  opacity: 0.9;
+}
+.rb-lupa figcaption small {
+  letter-spacing: 0;
+}

@@ -145,15 +145,13 @@ export function Sesion() {
     <main className="rb-sesion">
       <section className="rb-pliego" aria-labelledby="rb-sesion-titulo">
         <div className="rb-pagina rb-contactos">
-          <p className="rb-sobre">
-            Detrás de cámaras · Sesión del N.º {ACTUAL.n}, {ACTUAL.tema.toLowerCase()}
-          </p>
           <h1 id="rb-sesion-titulo">
             La hoja de <span>contactos</span>
           </h1>
           <p className="rb-sesion-bajada">
-            Nueve tomas de un solo día. Marcamos con lápiz graso la que llegó a la portada de la
-            entrevista; toca cualquiera para ver por qué se quedó o se fue.
+            Detrás de cámaras de la sesión del N.º {ACTUAL.n}, «{ACTUAL.tema}». Nueve tomas de un
+            solo día. Marcamos con lápiz graso la que llegó a la portada de la entrevista; toca
+            cualquiera para ver por qué se quedó o se fue.
           </p>
           <ol className="rb-tira-contactos">
             {CONTACTOS.map(([clave, texto], i) => (

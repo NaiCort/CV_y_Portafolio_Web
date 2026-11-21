@@ -1431,16 +1431,9 @@
     0 30px 60px -30px rgb(0 0 0 / 80%),
     0 0 0 1px rgb(0 0 0 / 4%);
 }
-.pr-manuscrito::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  left: 0;
-  height: 6px;
-  border-radius: 8px 8px 0 0;
-  background: var(--c);
-  transition: background 300ms ease-out;
+.pr-manuscrito :is(input, textarea)::placeholder {
+  color: #6b6f75;
+  opacity: 1;
 }
 .pr-manuscrito-cab {
   display: flex;
@@ -1453,7 +1446,7 @@
   text-transform: uppercase;
 }
 .pr-manuscrito-cab span:last-child {
-  color: var(--c);
+  color: color-mix(in srgb, var(--c) 70%, #000);
   font: 700 1.25rem var(--pr-titulo);
   letter-spacing: 0;
 }

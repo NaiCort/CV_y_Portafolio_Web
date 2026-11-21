@@ -210,10 +210,10 @@ export default function Cuenta({ plan, actualizar }) {
           fetchPriority="high"
         />
         <div className="rb-cuenta-portada">
-          <p className="rb-sobre">Suscripción · Cuenta de ejemplo</p>
           <h1 id="rb-cuenta-titulo">
             Todo el <span>archivo</span>, cada mes
           </h1>
+          <p className="rb-cuenta-nota">Suscripción simulada · Cuenta de ejemplo de Ana Ruiz</p>
           <ul>
             <li>Los 22 números de archivo con sus notas de la editora.</li>
             <li>El número del mes, completo, el día que sale.</li>

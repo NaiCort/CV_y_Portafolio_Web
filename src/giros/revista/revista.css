@@ -835,3 +835,24 @@
     scale: 0.98;
   }
 }
+
+/* Barras de desplazamiento con el tono de cada revista (la del documento y las internas). */
+html:has(.rb-root) {
+  scrollbar-color: #7a0614 #0a0204;
+}
+html:has(.pr-root) {
+  scrollbar-color: #3a3f47 #0a0c10;
+}
+html:has(.um-root) {
+  scrollbar-color: #8c3b22 #1b1b1c;
+}
+html:has(.rv-entrada) {
+  scrollbar-color: #4a4a4a #0d0d0e;
+}
+.rb-numeros,
+.rb-tira-contactos {
+  scrollbar-color: var(--rb-acento) transparent;
+}
+.um-root :is(.pr-tabla-desliz, .um-triple) {
+  scrollbar-color: var(--oxido) transparent;
+}

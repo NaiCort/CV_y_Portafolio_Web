@@ -260,7 +260,8 @@
   text-wrap: balance;
 }
 .um-cierre .um-titulo-pagina {
-  line-height: 1;
+  margin-bottom: 36px;
+  line-height: 1.1;
 }
 .um-titulo-pagina a {
   text-decoration-thickness: 3px;
