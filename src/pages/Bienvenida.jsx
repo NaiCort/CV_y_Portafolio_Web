@@ -1,280 +1,338 @@
-import { useState, useEffect } from "react"
+import { useEffect, useRef, useState } from "react"
 import { Link } from "react-router-dom"
-import { motion, useReducedMotion } from "framer-motion"
-import { ArrowUpRight } from "lucide-react"
 import useFavicon from "../hooks/useFavicon"
 import usePageMetadata from "../hooks/usePageMetadata"
 import useRouteFocus from "../hooks/useRouteFocus"
-import { DEMOS, disponible } from "../data/demos"
+import { DEMOS, ESTADOS, disponible } from "../data/demos"
+import {
+  CERTIFICACIONES,
+  CONTACTO,
+  CV_VERSION,
+  DOCUMENTOS,
+  EDUCACION,
+  EXPERIENCIA,
+  HABILIDADES,
+  IDIOMAS,
+  PERSONA,
+  PROYECTOS,
+  RESUMEN,
+} from "../data/cv"
+import "./cv.css"
 
-// Pantalla de bienvenida (Fase 3 del Documento Maestro): puerta de entrada al
-// sistema completo de demos. No es un giro — es la identidad propia de Ian como
-// portafolio. El selector de temas, la marca de agua y el banner de demo NO
-// viven aquí; son exclusivos de cada demo individual (ver PsicologoApp.jsx).
-//
-// Dirección visual: un "directorio" (como el tablero de una recepción), no una
-// cuadrícula de tarjetas con íconos — evita el patrón por default de "elige tu
-// plan". El acento latón/dorado evoca una placa grabada, distinto del combo
-// crema+terracota y del negro+verde-ácido documentados como genéricos en la
-// Parte IV, sección 15 del Documento Maestro.
+// Página principal: CV web y portafolio (V4.8, ficha en docs/FICHA_CV.md).
+// Escritorio: identidad a la izquierda, CV al centro y demos a la derecha, cada columna con su
+// propio desplazamiento. Celular: una sola lectura con cabecera propia; la lista de demos existe
+// una sola vez y en el celular se abre desde la cabecera (decisión de Ian, 21/11/2026).
 
-const FONT_URL =
-  "https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=IBM+Plex+Sans:wght@300;400;500&family=IBM+Plex+Mono:wght@400;500&display=swap"
-
-function useFonts() {
-  useEffect(() => {
-    if (document.getElementById("font-bienvenida")) return
-    const link = document.createElement("link")
-    link.id = "font-bienvenida"
-    link.rel = "stylesheet"
-    link.href = FONT_URL
-    document.head.appendChild(link)
-  }, [])
-}
-
-function getGreeting() {
-  const hour = new Date().getHours()
-  if (hour < 12) return "Buenos días"
-  if (hour < 19) return "Buenas tardes"
-  return "Buenas noches"
-}
-
-// El catálogo vive en src/data/demos.js (fuente única para el portafolio y el cotizador).
-const GIROS = DEMOS.map((d) => ({
-  path: d.ruta,
-  name: d.giro,
-  desc: `${d.nombre}: ${d.resumen.charAt(0).toLowerCase()}${d.resumen.slice(1)}`,
-  available: disponible(d),
-}))
-
-function AmbientBackground() {
-  const reduced = useReducedMotion()
+function Foto() {
+  // Provisional hasta que Ian entregue su fotografía.
   return (
-    <div className="fixed inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
-      <motion.div
-        className="absolute rounded-full"
-        style={{
-          width: 560,
-          height: 560,
-          top: "-10%",
-          left: "-8%",
-          background: "radial-gradient(circle, rgba(201,162,39,0.14) 0%, transparent 70%)",
-        }}
-        animate={{ x: [0, 40, 0], y: [0, 30, 0] }}
-        transition={
-          reduced
-            ? { duration: 0, delay: 0, repeat: 0 }
-            : { repeat: Infinity, duration: 26, ease: "easeInOut" }
-        }
-      />
-      <motion.div
-        className="absolute rounded-full"
-        style={{
-          width: 480,
-          height: 480,
-          bottom: "-12%",
-          right: "-6%",
-          background: "radial-gradient(circle, rgba(201,162,39,0.09) 0%, transparent 70%)",
-        }}
-        animate={{ x: [0, -30, 0], y: [0, -24, 0] }}
-        transition={
-          reduced
-            ? { duration: 0, delay: 0, repeat: 0 }
-            : { repeat: Infinity, duration: 32, ease: "easeInOut", delay: 2 }
-        }
-      />
+    <figure className="cv-foto">
+      <svg viewBox="0 0 120 120" role="img" aria-label="Espacio para la fotografía de Ian">
+        <rect width="120" height="120" fill="currentColor" opacity=".14" />
+        <circle cx="60" cy="48" r="21" fill="currentColor" opacity=".32" />
+        <path d="M18 120c5-27 22-40 42-40s37 13 42 40z" fill="currentColor" opacity=".32" />
+      </svg>
+      <figcaption>Foto provisional</figcaption>
+    </figure>
+  )
+}
+
+function Documentos() {
+  return (
+    <div className="cv-docs">
+      {DOCUMENTOS.map((d) =>
+        d.disponible ? (
+          <a
+            key={d.id}
+            className="cv-boton cv-boton-lleno"
+            href={d.url}
+            target="_blank"
+            rel="noopener"
+          >
+            {d.etiqueta}
+          </a>
+        ) : (
+          <span key={d.id} className="cv-boton cv-boton-pronto" aria-disabled="true">
+            {d.etiqueta.replace(" (PDF)", "")} · pronto
+          </span>
+        ),
+      )}
     </div>
   )
 }
 
+function Entrada({ periodo, titulo, lugar, puntos = [], stack, url, actual }) {
+  return (
+    <article className="cv-entrada" data-actual={actual ? "" : undefined}>
+      <p className="cv-periodo">{periodo}</p>
+      <div className="cv-entrada-texto">
+        <h3>{titulo}</h3>
+        {lugar && <p className="cv-lugar">{lugar}</p>}
+        {puntos.length > 0 && (
+          <ul>
+            {puntos.map((p) => (
+              <li key={p}>{p}</li>
+            ))}
+          </ul>
+        )}
+        {stack && <p className="cv-stack">{stack.join(" · ")}</p>}
+        {url && (
+          <a className="cv-enlace" href={url} target="_blank" rel="noopener">
+            {url.replace(/^https?:\/\//, "").replace(/\/$/, "")}
+            <span aria-hidden="true"> ↗</span>
+          </a>
+        )}
+      </div>
+    </article>
+  )
+}
+
+function ListaDemos({ alElegir }) {
+  return (
+    <ul className="cv-demos">
+      {DEMOS.map((d) => {
+        const contenido = (
+          <>
+            <span className="cv-tono" style={{ "--tono": d.color }} aria-hidden="true" />
+            <span className="cv-demo-cabeza">
+              <b>{d.nombre}</b>
+              <span className="cv-estado" data-estado={d.estado}>
+                {ESTADOS[d.estado]}
+              </span>
+            </span>
+            <span className="cv-demo-giro">
+              {d.giro}. {d.resumen}
+            </span>
+            {d.variantes.length > 0 && (
+              <span className="cv-demo-variantes">
+                {d.variantes.length} {d.id === "revista" ? "sitios" : "temas"}:{" "}
+                {d.variantes.map((v) => v.nombre).join(", ")}
+              </span>
+            )}
+            <code className="cv-demo-id">id: {d.id}</code>
+          </>
+        )
+        return (
+          <li key={d.id}>
+            {disponible(d) ? (
+              <Link to={d.ruta} className="cv-demo" onClick={alElegir}>
+                {contenido}
+              </Link>
+            ) : (
+              <div className="cv-demo" aria-disabled="true">
+                {contenido}
+              </div>
+            )}
+          </li>
+        )
+      })}
+    </ul>
+  )
+}
+
 export default function Bienvenida() {
-  const reduced = useReducedMotion()
-  useFonts()
+  usePageMetadata(
+    `${PERSONA.nombre} · CV y portafolio`,
+    "Ingeniero en Sistemas Computacionales en Xalapa: SQL, PostgreSQL y backend. CV, proyectos y siete demos interactivas por giro de negocio.",
+  )
   useFavicon("/favicon.svg")
   useRouteFocus()
-  usePageMetadata(
-    "Ian Aldana Martínez — Portafolio de demos interactivas",
-    "Catálogo de prototipos interactivos por tipo de negocio, hechos por Ian Aldana Martínez.",
-  )
-  const [greeting] = useState(getGreeting)
+  const [abierto, setAbierto] = useState(false)
+  const boton = useRef(null)
 
-  const C = {
-    bg: "#0F1418",
-    panel: "#171E24",
-    gold: "#C9A227",
-    text: "#EDE8DE",
-    muted: "#8B939A",
-    line: "rgba(237,232,222,0.1)",
+  useEffect(() => {
+    if (!abierto) return
+    const cerrar = (e) => {
+      if (e.key === "Escape") {
+        setAbierto(false)
+        boton.current?.focus()
+      }
+    }
+    document.addEventListener("keydown", cerrar)
+    return () => document.removeEventListener("keydown", cerrar)
+  }, [abierto])
+
+  const verDemos = (e) => {
+    // En celular la lista vive en el desplegable; en escritorio basta con el ancla.
+    if (window.matchMedia?.("(max-width: 899px)").matches) {
+      e.preventDefault()
+      setAbierto(true)
+    }
   }
 
   return (
-    <div className="relative min-h-screen overflow-hidden" style={{ backgroundColor: C.bg }}>
-      <a className="skip-link" href="#contenido">
-        Saltar al contenido
-      </a>
-      <AmbientBackground />
-
-      <main
-        id="contenido"
-        tabIndex={-1}
-        className="relative z-10 max-w-2xl mx-auto px-6 py-20 sm:py-28"
-      >
-        <motion.p
-          initial={reduced ? false : { opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={reduced ? { duration: 0, delay: 0, repeat: 0 } : { duration: 0.6 }}
-          className="text-xs uppercase mb-4"
-          style={{ fontFamily: "IBM Plex Mono, monospace", color: C.gold, letterSpacing: "0.14em" }}
+    <div className="cv-root" data-demos={abierto ? "abierto" : undefined}>
+      <header className="cv-barra">
+        <span className="cv-barra-nombre">Ian Aldana</span>
+        <button
+          ref={boton}
+          type="button"
+          className="cv-barra-boton"
+          aria-expanded={abierto}
+          aria-controls="demos"
+          onClick={() => setAbierto((v) => !v)}
         >
-          Portafolio interactivo
-        </motion.p>
+          Demos <span aria-hidden="true">{abierto ? "▴" : "▾"}</span>
+        </button>
+        <Link to="/cotizador" className="cv-barra-boton cv-barra-cotizar">
+          Cotizar
+        </Link>
+      </header>
 
-        <motion.h1
-          initial={reduced ? false : { opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={
-            reduced ? { duration: 0, delay: 0, repeat: 0 } : { duration: 0.7, delay: 0.1 }
-          }
-          style={{
-            fontFamily: "Newsreader, serif",
-            color: C.text,
-            fontSize: "clamp(2.2rem, 5vw, 3.2rem)",
-            lineHeight: 1.15,
-          }}
-          className="mb-4"
-        >
-          {greeting}. Soy <em style={{ fontStyle: "italic", color: C.gold }}>Ian</em>.
-        </motion.h1>
-
-        <motion.p
-          initial={reduced ? false : { opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={
-            reduced ? { duration: 0, delay: 0, repeat: 0 } : { duration: 0.6, delay: 0.2 }
-          }
-          style={{
-            fontFamily: "IBM Plex Sans, sans-serif",
-            color: C.muted,
-            fontSize: 15,
-            lineHeight: 1.7,
-          }}
-          className="mb-16 max-w-md"
-        >
-          Este es un catálogo de prototipos interactivos de alta fidelidad, cada uno pensado para un
-          tipo de negocio distinto. Elige un giro para ver la demo completa.
-        </motion.p>
-
-        <div style={{ borderTop: `1px solid ${C.line}` }}>
-          {GIROS.map((giro, i) => {
-            const RowInner = (
-              <>
-                <div className="flex items-center gap-5 flex-1 min-w-0">
-                  <span
-                    className="text-xs shrink-0"
-                    style={{
-                      fontFamily: "IBM Plex Mono, monospace",
-                      color: giro.available ? C.gold : C.muted,
-                    }}
-                  >
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <div className="min-w-0">
-                    <p
-                      style={{
-                        fontFamily: "Newsreader, serif",
-                        color: giro.available ? C.text : C.muted,
-                        fontSize: 20,
-                      }}
-                    >
-                      {giro.name}
-                    </p>
-                    <p
-                      className="mt-0.5 truncate sm:whitespace-normal"
-                      style={{
-                        fontFamily: "IBM Plex Sans, sans-serif",
-                        color: C.muted,
-                        fontSize: 12.5,
-                        opacity: 1,
-                      }}
-                    >
-                      {giro.desc}
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-2 shrink-0 ml-4">
-                  {giro.available ? (
-                    <>
-                      <span
-                        className="hidden sm:inline text-xs"
-                        style={{ fontFamily: "IBM Plex Mono, monospace", color: C.gold }}
-                      >
-                        Disponible
-                      </span>
-                      <ArrowUpRight size={16} style={{ color: C.gold }} />
-                    </>
-                  ) : (
-                    <span
-                      className="text-[10px] uppercase px-2 py-1"
-                      style={{
-                        fontFamily: "IBM Plex Mono, monospace",
-                        color: C.muted,
-                        border: `1px solid ${C.line}`,
-                        letterSpacing: "0.08em",
-                      }}
-                    >
-                      Próximamente
-                    </span>
-                  )}
-                </div>
-              </>
-            )
-
-            const rowStyle = { borderBottom: `1px solid ${C.line}` }
-
-            return (
-              <motion.div
-                key={giro.name}
-                initial={reduced ? false : { opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={
-                  reduced
-                    ? { duration: 0, delay: 0, repeat: 0 }
-                    : { duration: 0.5, delay: 0.3 + i * 0.06 }
-                }
-              >
-                {giro.available ? (
-                  <Link
-                    to={giro.path}
-                    className="group flex items-center justify-between py-5 transition-colors duration-200"
-                    style={rowStyle}
-                  >
-                    {RowInner}
-                  </Link>
-                ) : (
-                  <div
-                    className="flex items-center justify-between py-5 cursor-default"
-                    style={rowStyle}
-                  >
-                    {RowInner}
-                  </div>
-                )}
-              </motion.div>
-            )
-          })}
+      <aside className="cv-izq" aria-label="Identidad y contacto">
+        <div className="cv-identidad">
+          <Foto />
+          <div className="cv-nombre-bloque">
+            <h1 className="cv-nombre">{PERSONA.nombre}</h1>
+            <p className="cv-titulo">{PERSONA.titulo}</p>
+            <ul className="cv-enfoque" aria-label="Enfoque">
+              {PERSONA.enfoque.map((e) => (
+                <li key={e}>{e}</li>
+              ))}
+            </ul>
+          </div>
+          <Documentos />
         </div>
 
-        <motion.p
-          initial={reduced ? false : { opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={
-            reduced ? { duration: 0, delay: 0, repeat: 0 } : { duration: 0.6, delay: 0.9 }
-          }
-          className="mt-10 text-xs"
-          style={{ fontFamily: "IBM Plex Mono, monospace", color: C.muted }}
-        >
-          Xalapa, Veracruz, México · ian.martinez2610@gmail.com
-        </motion.p>
+        <div className="cv-datos">
+          <section aria-labelledby="cv-contacto">
+            <h2 id="cv-contacto">Contacto</h2>
+            <dl className="cv-tabla">
+              {CONTACTO.map((c) => (
+                <div key={c.id}>
+                  <dt>{c.campo}</dt>
+                  <dd>
+                    <a href={c.url} target="_blank" rel="noopener">
+                      {c.texto}
+                    </a>
+                  </dd>
+                </div>
+              ))}
+              <div>
+                <dt>ciudad</dt>
+                <dd>{PERSONA.ciudad}</dd>
+              </div>
+            </dl>
+          </section>
+          <section aria-labelledby="cv-idiomas">
+            <h2 id="cv-idiomas">Idiomas</h2>
+            <dl className="cv-tabla">
+              {IDIOMAS.map((i) => (
+                <div key={i.idioma}>
+                  <dt>{i.idioma.toLowerCase()}</dt>
+                  <dd>{i.nivel}</dd>
+                </div>
+              ))}
+            </dl>
+          </section>
+          <section aria-labelledby="cv-habilidades" className="cv-habilidades">
+            <h2 id="cv-habilidades">Habilidades</h2>
+            {HABILIDADES.map((h) => (
+              <div key={h.grupo}>
+                <h3>{h.grupo}</h3>
+                <ul>
+                  {h.items.map((i) => (
+                    <li key={i}>{i}</li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </section>
+        </div>
+      </aside>
+
+      <main id="contenido" tabIndex={-1} className="cv-centro">
+        <section className="cv-seccion" style={{ "--i": 0 }} aria-labelledby="cv-resumen">
+          <h2 id="cv-resumen">Resumen</h2>
+          <p className="cv-resumen">{RESUMEN}</p>
+        </section>
+        <section className="cv-seccion" style={{ "--i": 1 }} aria-labelledby="cv-proyectos">
+          <h2 id="cv-proyectos">Proyectos</h2>
+          {PROYECTOS.map((p, i) => (
+            <div key={p.id} className="cv-proyecto">
+              <Entrada
+                periodo={p.periodo}
+                titulo={p.nombre}
+                lugar={p.tipo}
+                puntos={p.puntos}
+                stack={p.stack}
+                url={p.url}
+                actual={i === 0}
+              />
+              {p.enlaceInterno && (
+                <a className="cv-enlace cv-ver-demos" href={p.enlaceInterno} onClick={verDemos}>
+                  Ver las {DEMOS.length} demos
+                </a>
+              )}
+            </div>
+          ))}
+        </section>
+        <section className="cv-seccion" style={{ "--i": 2 }} aria-labelledby="cv-experiencia">
+          <h2 id="cv-experiencia">Experiencia</h2>
+          {EXPERIENCIA.map((e) => (
+            <Entrada
+              key={e.id}
+              periodo={e.periodo}
+              titulo={e.puesto}
+              lugar={`${e.lugar} · ${e.ciudad}`}
+              puntos={e.puntos}
+            />
+          ))}
+        </section>
+        <section className="cv-seccion" style={{ "--i": 3 }} aria-labelledby="cv-educacion">
+          <h2 id="cv-educacion">Educación</h2>
+          {EDUCACION.map((e) => (
+            <Entrada
+              key={e.id}
+              periodo={e.periodo}
+              titulo={e.titulo}
+              lugar={e.lugar}
+              puntos={[e.nota]}
+              actual={e.id === "maestria"}
+            />
+          ))}
+        </section>
+        <section className="cv-seccion" style={{ "--i": 4 }} aria-labelledby="cv-certificaciones">
+          <h2 id="cv-certificaciones">Certificaciones</h2>
+          {CERTIFICACIONES.map((c) => (
+            <Entrada
+              key={c.id}
+              periodo={`${c.anio} · ${c.horas} h`}
+              titulo={c.titulo}
+              lugar={c.lugar}
+            />
+          ))}
+        </section>
+        <p className="cv-pie">
+          CV actualizado en {CV_VERSION.etiqueta.toLowerCase()}. Los datos coinciden con el PDF y
+          con LinkedIn.
+        </p>
       </main>
+
+      <aside id="demos" className="cv-der" aria-labelledby="cv-demos-titulo">
+        <h2 id="cv-demos-titulo">Demos</h2>
+        <p className="cv-der-nota">
+          Sitios de ejemplo, uno por giro de negocio. Los negocios son ficticios; todo lo que se
+          puede tocar funciona.
+        </p>
+        <ListaDemos alElegir={() => setAbierto(false)} />
+        <div className="cv-cotizar">
+          <p className="cv-cotizar-titulo">¿Quieres un sitio así?</p>
+          <p>Parte de una demo y ajusta las funciones a tu negocio.</p>
+          <Link to="/cotizador" className="cv-boton cv-boton-lleno">
+            Cotizar un sitio
+          </Link>
+        </div>
+      </aside>
+      {abierto && (
+        <button
+          type="button"
+          className="cv-velo"
+          aria-label="Cerrar la lista de demos"
+          onClick={() => setAbierto(false)}
+        />
+      )}
     </div>
   )
 }

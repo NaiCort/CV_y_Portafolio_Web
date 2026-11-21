@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom"
 import { MotionConfig } from "framer-motion"
 import Bienvenida from "./pages/Bienvenida"
 import NotFound from "./pages/NotFound"
+import Cotizador from "./pages/Cotizador"
 import RestaurantProvider from "./giros/restaurante/state/RestaurantProvider"
 import FloatingTimer from "./giros/restaurante/components/FloatingTimer"
 import RouteErrorBoundary from "./components/shared/RouteErrorBoundary"
@@ -39,6 +40,7 @@ export default function App() {
             <Suspense fallback={<RouteLoading />}>
               <Routes>
                 <Route path="/" element={<Bienvenida />} />
+                <Route path="/cotizador" element={<Cotizador />} />
                 <Route path="/psicologo" element={<PsicologoApp />} />
                 <Route path="/restaurante/*" element={<RestauranteApp />} />
                 <Route path="/cafe/*" element={<CafeApp />} />

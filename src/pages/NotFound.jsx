@@ -15,7 +15,7 @@ export default function NotFound() {
       <p className="text-sm">404</p>
       <h1 className="text-3xl">Esta página no existe</h1>
       <p>Puedes seguir explorando las demos disponibles.</p>
-      <Link to="/">Volver al portafolio</Link>
+      <Link to="/">Volver al CV y portafolio</Link>
     </main>
   )
 }

@@ -8,6 +8,7 @@
 // - desarrollo: incorporada al plan pero sin concluir; se muestra sin prometer una demo completa.
 // - proximamente: ficha sin experiencia publicada; nunca se presenta como funcional.
 // - mantenimiento: publicada, con ajustes en curso; se avisa si algo no está disponible.
+// `color` es el tono propio de cada demo: solo se usa en la muestra de la lista del portafolio.
 
 export const ESTADOS = {
   disponible: "Disponible",
@@ -19,6 +20,7 @@ export const ESTADOS = {
 export const DEMOS = [
   {
     id: "psicologo",
+    color: "#7A8C6E",
     giro: "Psicólogo",
     nombre: "Consultorio de psicología",
     ruta: "/psicologo",
@@ -35,6 +37,7 @@ export const DEMOS = [
   },
   {
     id: "patio-12",
+    color: "#203B2E",
     giro: "Restaurante",
     nombre: "Patio 12",
     ruta: "/restaurante",
@@ -46,6 +49,7 @@ export const DEMOS = [
   },
   {
     id: "ladera",
+    color: "#6B4430",
     giro: "Café",
     nombre: "Ladera",
     ruta: "/cafe",
@@ -57,6 +61,7 @@ export const DEMOS = [
   },
   {
     id: "brio",
+    color: "#3A55D0",
     giro: "Gimnasio",
     nombre: "Brío",
     ruta: "/gimnasio",
@@ -71,6 +76,7 @@ export const DEMOS = [
   },
   {
     id: "taller",
+    color: "#E2574C",
     giro: "Taller mecánico",
     nombre: "Rosales y Vértice",
     ruta: "/taller",
@@ -85,6 +91,7 @@ export const DEMOS = [
   },
   {
     id: "cotejo",
+    color: "#2F5D50",
     giro: "Despacho contable",
     nombre: "Cotejo",
     ruta: "/despacho",
@@ -96,6 +103,7 @@ export const DEMOS = [
   },
   {
     id: "revista",
+    color: "#B01E3C",
     giro: "Revista digital",
     nombre: "Rubor, Prisma y Umbral",
     ruta: "/revista",
