@@ -1,4 +1,4 @@
-import { DOSSIERS } from "../data/umbral"
+import { fotoUmbral } from "../data/umbral"
 import { Link } from "react-router-dom"
 import useFavicon from "../../../hooks/useFavicon"
 import usePageMetadata from "../../../hooks/usePageMetadata"
@@ -37,11 +37,11 @@ export default function Entrada() {
         </span>
       </Link>
       <Link to="/revista/umbral" className="rv-puerta rv-puerta-umbral">
-        <img src={DOSSIERS[0].foto} alt="" width={1200} height={1600} />
+        <img src={fotoUmbral("calle", 800)} alt="" width={800} height={1200} />
         <span className="rv-puerta-texto">
           <b>Umbral</b>
           <span>Fotografía, diseño y cultura visual</span>
-          <em>Historias para mirar dos veces. Dossiers, creadores y proceso creativo.</em>
+          <em>Una revista de carteles: cada dossier se desarma capa por capa.</em>
         </span>
       </Link>
     </main>

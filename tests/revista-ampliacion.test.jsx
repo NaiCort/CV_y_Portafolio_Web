@@ -2,7 +2,7 @@ import { existsSync } from "node:fs"
 import { MemoryRouter, Route, Routes } from "react-router-dom"
 import { beforeEach, describe, expect, it, vi } from "vitest"
 import RevistaApp from "../src/giros/revista/RevistaApp"
-import { DOSSIERS } from "../src/giros/revista/data/umbral"
+import { ARCHIVO, DOSSIERS, fotoUmbral } from "../src/giros/revista/data/umbral"
 import { buscar } from "../src/giros/revista/data/prisma"
 import {
   alternar,
@@ -79,7 +79,8 @@ describe("Umbral", () => {
     for (const d of DOSSIERS) {
       expect(d.capitulos.length).toBeGreaterThanOrEqual(3)
       expect(d.proceso.length).toBeGreaterThanOrEqual(4)
-      for (const f of [d.foto, d.mini, d.detalle]) expect(existsSync(`public${f}`), f).toBe(true)
+      for (const f of [fotoUmbral(d.foto), fotoUmbral(`${d.recorte}-recorte`, 800)])
+        expect(existsSync(`public${f}`), f).toBe(true)
     }
   })
   it("la entrada ofrece las tres publicaciones y no una puerta sin destino", async () => {
@@ -94,11 +95,30 @@ describe("Umbral", () => {
     await click(button("Ver proceso"))
     expect(document.querySelector(".um-proceso ol").children).toHaveLength(4)
     await click(button("Leer historia"))
-    expect(document.querySelectorAll(".um-lectura article section")).toHaveLength(3)
+    expect(document.querySelectorAll(".um-lectura .um-pliego")).toHaveLength(3)
     await click(button("Guardar dossier: Entre líneas"))
     expect(leerMarcadores().umbral).toEqual(["entre-lineas"])
     await click(button("Quitar de guardados: Entre líneas"))
     expect(leerMarcadores().umbral).toEqual([])
+  })
+  it("el proceso apaga capas del cartel y lo separa en 3D", async () => {
+    await abrir("/revista/umbral/dossier/otra-perspectiva")
+    await click(button("Ver proceso"))
+    const cartel = document.querySelector(".um-proceso .um-cartel")
+    expect(cartel.hasAttribute("data-despiece")).toBe(true)
+    const interruptor = document.querySelector(".um-pasos li:nth-child(2) .um-interruptor")
+    await click(interruptor)
+    expect(interruptor.getAttribute("aria-pressed")).toBe("false")
+    expect(cartel.querySelector('[data-capa="rebanadas"]').hasAttribute("data-oculta")).toBe(true)
+    await click(button("Juntar las capas"))
+    expect(cartel.hasAttribute("data-despiece")).toBe(false)
+    expect(cartel.getAttribute("role")).toBe("img")
+  })
+  it("los números de archivo tienen su lámina y fotos locales", async () => {
+    for (const n of ARCHIVO) expect(existsSync(`public${fotoUmbral(n.foto)}`), n.id).toBe(true)
+    await abrir("/revista/umbral/lamina/agua")
+    expect(document.querySelector("h1").textContent).toBe("Agua")
+    expect(document.querySelector(".um-c-vertical")).toBeTruthy()
   })
   it("filtra disciplinas, ofrece un estado vacío y permite restablecerlo", async () => {
     const anterior = await abrir("/revista/umbral/guardados")
@@ -147,9 +167,9 @@ describe("Búsqueda, privacidad y créditos", () => {
     await abrir("/revista/umbral/creditos")
     expect(document.querySelector("h1").textContent).toBe("Créditos de Umbral")
     expect(document.querySelector("main").textContent).toContain("ficticios")
-    expect(document.querySelectorAll('a[href^="/revista/fuentes/LICENSE-"]')).toHaveLength(4)
+    expect(document.querySelectorAll('a[href^="/revista/fuentes/LICENSE-"]')).toHaveLength(5)
     expect(document.querySelector('a[href="/revista/audio/LICENCIA.txt"]').textContent).toContain(
-      "CC0",
+      "CC BY",
     )
   })
 })

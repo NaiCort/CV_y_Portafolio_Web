@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { Navigate, Route, Routes } from "react-router-dom"
+import { Navigate, Route, Routes, useLocation } from "react-router-dom"
 import DemoBanner from "../../components/shared/DemoBanner"
 import WaterMark from "../../components/WaterMark"
 import Musica from "./components/Musica"
@@ -42,6 +42,8 @@ function Guia() {
 }
 
 export default function RevistaApp() {
+  const { pathname } = useLocation()
+  const sitio = ["rubor", "prisma", "umbral"].find((s) => pathname.startsWith(`/revista/${s}`))
   const [sesion, setSesion] = useState(0)
   useEffect(() => {
     const cambio = (e) => {
@@ -60,7 +62,7 @@ export default function RevistaApp() {
         Saltar al contenido de la revista
       </a>
       <PosicionLectura />
-      <Musica key={`musica-${sesion}`} />
+      {sitio && <Musica key={`${sitio}-${sesion}`} sitio={sitio} />}
       <Routes key={sesion}>
         <Route index element={<Entrada />} />
         <Route path=":sitio/creditos" element={<Creditos />} />

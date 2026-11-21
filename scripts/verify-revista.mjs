@@ -7,12 +7,18 @@ const go = async (page, base, path) => {
   await page.goto(`${base}${path}`)
   await page.locator("h1").first().waitFor({ state: "attached" })
 }
-// axe mide colores reales: se espera a que terminen fundidos y animaciones.
+// axe mide colores reales: se espera a que terminen fundidos y animaciones. Las ligadas al
+// desplazamiento (Umbral) y las infinitas (ondas de la bocina) no terminan nunca: se ignoran.
 const audit = async (page) => {
   await page.waitForFunction(() =>
     document
       .querySelector(".revista-root")
       .getAnimations({ subtree: true })
+      .filter(
+        (a) =>
+          a.timeline instanceof DocumentTimeline &&
+          Number.isFinite(a.effect?.getComputedTiming().endTime),
+      )
       .every((a) => a.playState !== "running"),
   )
   await auditar(page)
