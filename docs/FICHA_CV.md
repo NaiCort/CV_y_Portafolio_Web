@@ -1,6 +1,6 @@
 # Ficha de identidad · CV web y portafolio
 
-V4.8.1, 21 de noviembre de 2026. Es la dirección inicial: una combinación de las maquetas «Neblina» y «Esquema» elegida por Ian. Es provisional en lo visual, porque Ian dará referencias para enriquecerla. La estructura sí está aprobada.
+V4.8.1, 21 de noviembre de 2026. Ficha de la **v1 del CV y portafolio web** (después de terminarla, solo se actualiza el contenido). Es la dirección inicial: una combinación de las maquetas «Neblina» y «Esquema» elegida por Ian. Es provisional en lo visual, porque Ian dará referencias para enriquecerla. La estructura sí está aprobada.
 
 ## Idea
 
