@@ -1,3 +1,9 @@
+# V4.7.15 · 21 de noviembre de 2026 · Rubor y Prisma, todas las páginas
+
+- Rubor: cupón de suscripción recortable y carnet de lectora; índice por sección en pliego; «Detrás de cámaras» como hoja de contactos con lápiz graso, hoja de llamado y equipo.
+- Prisma: manuscrito para publicar con guía, recorrido animado de cada envío, áreas como tabla periódica, sostenimiento con reparto del gasto y preguntas; preimpresión con diseño de ficha. Sin la fila de enlaces bajo la cabecera.
+- Créditos dentro de cada revista, con hoja de contactos, muestras de tipografía y música.
+
 # V4.7.14 · 21 de noviembre de 2026 · Umbral desde cero
 
 - Umbral rehecho como revista de carteles: motor de carteles por capas con cuatro variantes («Entre líneas» con letras como ventana y persona recortada encima en 2.5D; «Otra perspectiva» con rebanadas diagonales que se deslizan al bajar; «Agua» con palabra vertical y reflejos en WebGL; «Crear» con tiras, serif detrás de la persona y sombra de ventana).
