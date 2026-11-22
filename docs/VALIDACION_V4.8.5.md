@@ -14,6 +14,7 @@ Entorno: Node 22 y Chromium de Playwright, con la compilación de producción se
 - **Otras comprobaciones:**
   - `finder.pdf` responde con 200 y `application/pdf`;
   - `npm run audit:encimados -- /`: sin casos.
+- **Ancho sin franja:** el CV mide 1440 de 1440 px y 1999 de 1999 px, y el fondo de `html` es `rgb(21, 17, 15)`. En `/cafe`, `scrollbar-gutter` sigue en `stable`.
 - **Capturas:** Proyectos con el nombre nuevo, y Certificaciones con la tarjeta iluminada y el índice en «Certificaciones».
 
 ## No comprobado

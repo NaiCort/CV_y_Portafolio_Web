@@ -27,6 +27,10 @@
 - **Índice:**
   - al llegar al final de la columna central se marca «Certificaciones», que antes se quedaba en «Educación» porque la última sección nunca llega a la franja superior;
   - además, la sección elegida en el índice queda marcada mientras dura el desplazamiento.
+- **Franja blanca a la derecha en escritorio** (tercera observación de Ian):
+  - la causa era `scrollbar-gutter: stable` en `html` (`src/index.css`), que reserva el canal de la barra de la página para que las demos no salten; en el CV la página no se desplaza, así que el canal quedaba vacío y con el fondo blanco por defecto;
+  - `cv.css` lo desactiva solo donde hay `.cv-root` (CV y cotizador), con `html:has(.cv-root)`, y pinta el fondo de la página en carbón;
+  - las demos conservan el canal.
 - **Plan:**
   - PDF y buscadores pasan a V4.8.6, y el cierre a V4.8.7;
   - la cuadrícula tipo Excel de V4.8.3 queda anotada para Cotejo (V4.8.60).

@@ -6,6 +6,7 @@
 - Cada certificación abre su PDF.
 - Se quitó la línea de tiempo: repetía lo que ya dicen las entradas y no tenía los meses para ser exacta.
 - El índice marca «Certificaciones» al llegar al final, y la sección elegida mientras dura el desplazamiento.
+- Sin franja blanca a la derecha en escritorio: el CV ya no reserva el canal de la barra de desplazamiento de la página.
 
 # V4.8.4 · 22 de noviembre de 2026 · Dirección «Brasa»
 
