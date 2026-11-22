@@ -18,7 +18,7 @@ import {
   RESUMEN,
 } from "../data/cv"
 import { precargar } from "../rutasDemo"
-import { Indice, LineaDeTiempo } from "./CvPiezas"
+import { Indice } from "./CvPiezas"
 import { useSeccionActiva } from "./cvSecciones"
 import "./cv.css"
 
@@ -80,13 +80,18 @@ function Flecha() {
 
 // Entrada del CV: fecha a la izquierda y relato a la derecha. Si tiene enlace, toda la tarjeta
 // responde al cursor (el enlace se extiende con ::after) y las hermanas se atenúan.
-function Entrada({ periodo, titulo, lugar, puntos = [], stack, url, extra }) {
+function Entrada({ periodo, titulo, lugar, puntos = [], stack, url }) {
   return (
     <li className="cv-item">
       <p className="cv-periodo">{periodo}</p>
       <div className="cv-item-texto">
         <h3>
-          {url ? (
+          {url === "/" ? (
+            <Link className="cv-item-enlace" to="/">
+              {titulo}
+              <Flecha />
+            </Link>
+          ) : url ? (
             <a className="cv-item-enlace" href={url} target="_blank" rel="noopener">
               {titulo}
               <Flecha />
@@ -111,7 +116,6 @@ function Entrada({ periodo, titulo, lugar, puntos = [], stack, url, extra }) {
             ))}
           </ul>
         )}
-        {extra}
       </div>
     </li>
   )
@@ -186,7 +190,7 @@ export default function Bienvenida() {
   const boton = useRef(null)
   const centro = useRef(null)
   const navigate = useNavigate()
-  const activa = useSeccionActiva(centro)
+  const [activa, marcarSeccion] = useSeccionActiva(centro)
 
   // Transición de la demo: su miniatura se cubre con el color de la demo, que crece hasta llenar la pantalla y la demo entra
   // con un fundido (View Transitions). Sin soporte o con movimiento reducido, navega directo.
@@ -215,6 +219,7 @@ export default function Bienvenida() {
   const irASeccion = (e, id) => {
     e.preventDefault()
     const destino = document.getElementById(id)
+    marcarSeccion(id)
     centro.current?.scrollTo({
       top: destino.closest("section").offsetTop - 40,
       behavior: window.matchMedia?.("(prefers-reduced-motion: reduce)").matches
@@ -242,14 +247,6 @@ export default function Bienvenida() {
     document.addEventListener("keydown", cerrar)
     return () => document.removeEventListener("keydown", cerrar)
   }, [abierto])
-
-  const verDemos = (e) => {
-    // En celular la lista vive en el desplegable; en escritorio basta con el ancla.
-    if (window.matchMedia?.("(max-width: 899px)").matches) {
-      e.preventDefault()
-      setAbierto(true)
-    }
-  }
 
   return (
     <div
@@ -348,13 +345,7 @@ export default function Bienvenida() {
           </h2>
           <p className="cv-resumen">{RESUMEN}</p>
         </section>
-        <section className="cv-seccion" style={{ "--i": 1 }} aria-labelledby="cv-trayectoria">
-          <h2 id="cv-trayectoria" tabIndex={-1}>
-            Trayectoria
-          </h2>
-          <LineaDeTiempo />
-        </section>
-        <section className="cv-seccion" style={{ "--i": 2 }} aria-labelledby="cv-proyectos">
+        <section className="cv-seccion" style={{ "--i": 1 }} aria-labelledby="cv-proyectos">
           <h2 id="cv-proyectos" tabIndex={-1}>
             Proyectos
           </h2>
@@ -368,18 +359,11 @@ export default function Bienvenida() {
                 puntos={p.puntos}
                 stack={p.stack}
                 url={p.url}
-                extra={
-                  p.enlaceInterno && (
-                    <a className="cv-ver-demos" href={p.enlaceInterno} onClick={verDemos}>
-                      Ver las {DEMOS.length} demos
-                    </a>
-                  )
-                }
               />
             ))}
           </ol>
         </section>
-        <section className="cv-seccion" style={{ "--i": 3 }} aria-labelledby="cv-experiencia">
+        <section className="cv-seccion" style={{ "--i": 2 }} aria-labelledby="cv-experiencia">
           <h2 id="cv-experiencia" tabIndex={-1}>
             Experiencia
           </h2>
@@ -395,7 +379,7 @@ export default function Bienvenida() {
             ))}
           </ol>
         </section>
-        <section className="cv-seccion" style={{ "--i": 4 }} aria-labelledby="cv-educacion">
+        <section className="cv-seccion" style={{ "--i": 3 }} aria-labelledby="cv-educacion">
           <h2 id="cv-educacion" tabIndex={-1}>
             Educación
           </h2>
@@ -411,7 +395,7 @@ export default function Bienvenida() {
             ))}
           </ol>
         </section>
-        <section className="cv-seccion" style={{ "--i": 5 }} aria-labelledby="cv-certificaciones">
+        <section className="cv-seccion" style={{ "--i": 4 }} aria-labelledby="cv-certificaciones">
           <h2 id="cv-certificaciones" tabIndex={-1}>
             Certificaciones
           </h2>
@@ -422,6 +406,7 @@ export default function Bienvenida() {
                 periodo={`${c.anio} · ${c.horas} h`}
                 titulo={c.titulo}
                 lugar={c.lugar}
+                url={c.pdf}
               />
             ))}
           </ol>

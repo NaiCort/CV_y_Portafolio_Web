@@ -27,7 +27,6 @@ describe("V4.8: CV web y portafolio", () => {
     )
     expect(secciones).toEqual([
       "Resumen",
-      "Trayectoria",
       "Proyectos",
       "Experiencia",
       "Educación",
@@ -71,12 +70,11 @@ describe("V4.8.3: foto, índice, línea de tiempo y transición", () => {
     expect(img.getAttribute("srcset")).toContain("ian-1024.webp 1024w")
   })
 
-  it("el índice enlaza las seis secciones y marca la primera", async () => {
+  it("el índice enlaza las cinco secciones y marca la primera", async () => {
     const { container } = await montar()
     const enlaces = [...container.querySelectorAll(".cv-indice a")]
     expect(enlaces.map((a) => a.getAttribute("href"))).toEqual([
       "#cv-resumen",
-      "#cv-trayectoria",
       "#cv-proyectos",
       "#cv-experiencia",
       "#cv-educacion",
@@ -85,21 +83,41 @@ describe("V4.8.3: foto, índice, línea de tiempo y transición", () => {
     expect(enlaces[0].getAttribute("aria-current")).toBe("true")
   })
 
-  it("la línea de tiempo dibuja ocho filas sin pasar de hoy", async () => {
+  it("cada certificación enlaza a su PDF", async () => {
     const { container } = await montar()
-    const filas = [...container.querySelectorAll(".cv-linea li")]
-    expect(filas).toHaveLength(8)
-    for (const f of filas) {
-      const barra = f.querySelector(".cv-linea-barra")
-      expect(parseFloat(barra.style.getPropertyValue("--b"))).toBeLessThanOrEqual(100)
-      expect(parseFloat(barra.style.getPropertyValue("--a"))).toBeGreaterThanOrEqual(0)
-    }
-    const enCurso = filas.filter((f) => f.hasAttribute("data-en-curso"))
-    expect(enCurso.map((f) => f.querySelector(".cv-linea-nombre").firstChild.textContent)).toEqual([
-      "Maestría en Ingeniería",
-      "Múltiples Demos",
+    const enlaces = [...container.querySelectorAll('[aria-labelledby="cv-certificaciones"] a')].map(
+      (a) => a.getAttribute("href"),
+    )
+    expect(enlaces).toEqual([
+      "/cv/certificados/visualizador-de-big-data.pdf",
+      "/cv/certificados/finder.pdf",
+      "/cv/certificados/curador-de-datos.pdf",
     ])
-    expect(container.querySelector(".cv-linea figcaption").textContent).toContain("agosto de 2028")
+  })
+
+  it("el proyecto de este sitio lleva a la misma página y no repite las demos", async () => {
+    const { container } = await montar()
+    const propio = [...container.querySelectorAll(".cv-item-enlace")].find((a) =>
+      a.textContent.includes("CV y portafolio web"),
+    )
+    expect(propio.getAttribute("href")).toBe("/")
+    expect(propio.getAttribute("target")).toBeNull()
+    expect(container.textContent).not.toMatch(/Ver las \d demos/)
+    expect(container.querySelector(".cv-linea")).toBeNull()
+  })
+
+  it("la experiencia está completa (CV de noviembre más lo del CV visual)", async () => {
+    const { container } = await montar()
+    const texto = container.querySelector('[aria-labelledby="cv-experiencia"]').textContent
+    for (const frase of [
+      "vistas, CTEs y reglas de negocio",
+      "Desarrollo de módulos web para la gestión de personal",
+      "tablas, búsqueda y carga",
+      "Gestión de entregables remotos",
+      "control de calidad básico",
+      "Validación de calificaciones con regex y CAST seguro",
+    ])
+      expect(texto).toContain(frase)
   })
 
   it("abrir una demo navega a su ruta (sin View Transitions, directo)", async () => {

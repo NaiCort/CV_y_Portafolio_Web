@@ -5,7 +5,14 @@
 ## Ahora (V4.8.3, hechas el 22/11/2026)
 
 1. **Índice con la sección activa** (referencia: Brittany Chiang). Se lee en la columna pino: «Resumen · Proyectos · Experiencia · Educación · Certificaciones», con una línea que crece en la sección que se lee y se encoge en las demás. Va solo en escritorio y usa `IntersectionObserver` sobre la columna central. Al pasar sobre una demo, las demás se atenúan.
-2. **Línea de tiempo a escala** (Visual Cinnamon). Va desde el primer dato del CV (Mecatrónica, 2018) hasta hoy, con estudios, trabajos y proyectos como barras con sus fechas reales. Lo que sigue en curso (maestría, Múltiples Demos) llega al borde de «hoy» con un final abierto, y el egreso esperado (agosto de 2028) va como texto, no como barra dibujada hacia el futuro. Se dibuja en SVG con los datos de `cv.js`, sin porcentajes ni cifras inventadas.
+2. **Línea de tiempo a escala** (Visual Cinnamon). **Quitada en V4.8.5** a petición de Ian:
+   - repetía las fechas de las entradas;
+   - sin los meses exactos dibujaba de más (Mecatrónica parecía llegar a 2023);
+   - con 8 filas no muestra nada que la lista no diga.
+
+   Vuelve a tener sentido con una trayectoria larga y fechas exactas. El código queda en git (V4.8.3).
+
+   Descripción original: Va desde el primer dato del CV (Mecatrónica, 2018) hasta hoy, con estudios, trabajos y proyectos como barras con sus fechas reales. Lo que sigue en curso (maestría, Múltiples Demos) llega al borde de «hoy» con un final abierto, y el egreso esperado (agosto de 2028) va como texto, no como barra dibujada hacia el futuro. Se dibuja en SVG con los datos de `cv.js`, sin porcentajes ni cifras inventadas.
 3. **Transición de la demo** (Dennis Snellenberg, con View Transitions como en la Revista). Al abrir una demo, su muestra de color se expande hasta llenar la pantalla y da paso a la portada de la demo. Con movimiento reducido, solo hay fundido.
 4. **Cuadrícula que responde al cursor**. La cuadrícula de Esquema se marca bajo el cursor, en lugar de un resplandor. Solo en escritorio, con `pointermove` y una variable CSS; sin JavaScript en el celular.
 
