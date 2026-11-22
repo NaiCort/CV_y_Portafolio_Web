@@ -79,6 +79,14 @@ html:has(.cv-root) {
   scrollbar-gutter: auto;
   background: #15110f;
 }
+/* Segunda protección: en escritorio el CV ocupa exactamente la ventana, así que la página no
+   puede desplazarse ni mostrar su barra (las tres columnas conservan las suyas). */
+@media (min-width: 900px) {
+  html:has(.cv-root:not(.cv-cotizador)),
+  html:has(.cv-root:not(.cv-cotizador)) body {
+    overflow: hidden;
+  }
+}
 
 /* ===== Dirección «Brasa» (V4.8.4, ficha en docs/FICHA_CV.md) =====
    Paleta tomada de la foto de Ian: fondo carbón cálido (su playera), texto arena y un acento
