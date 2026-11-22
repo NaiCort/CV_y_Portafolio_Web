@@ -46,6 +46,21 @@ await suite("cv", async ({ run, base }) => {
           assert(alto <= 901, "La página entera no se desplaza")
           await page.locator("main").evaluate((m) => m.scrollTo(0, m.scrollHeight))
           await page.getByText("CV actualizado en").waitFor()
+          // Índice: marca la sección que se lee y lleva a ella.
+          await page.locator('.cv-indice a[href="#cv-trayectoria"]').click()
+          await page.waitForFunction(
+            () =>
+              document.querySelector(".cv-indice a[aria-current]")?.getAttribute("href") ===
+              "#cv-trayectoria",
+          )
+          await page.locator(".cv-linea").waitFor()
+          await audit(page)
+          // Transición de la demo (con movimiento a 1440 px; directa con movimiento reducido).
+          await page.locator('#demos a[href="/cafe"]').click()
+          await page.waitForURL(`${base}/cafe`)
+          await page.locator("h1").first().waitFor()
+          await page.goBack()
+          await page.locator(".cv-nombre").waitFor()
         } else {
           const demos = button(page, "Demos")
           await demos.click()
