@@ -25,13 +25,7 @@ describe("V4.8: CV web y portafolio", () => {
     const secciones = [...container.querySelectorAll("main .cv-seccion > h2")].map(
       (h) => h.textContent,
     )
-    expect(secciones).toEqual([
-      "Resumen",
-      "Proyectos",
-      "Experiencia",
-      "Educación",
-      "Certificaciones",
-    ])
+    expect(secciones).toEqual(["Resumen", "Experiencia", "Educación", "Certificaciones"])
     for (const e of EXPERIENCIA) expect(container.textContent).toContain(e.puesto)
   })
 
@@ -70,12 +64,11 @@ describe("V4.8.3: foto, índice, línea de tiempo y transición", () => {
     expect(img.getAttribute("srcset")).toContain("ian-1024.webp 1024w")
   })
 
-  it("el índice enlaza las cinco secciones y marca la primera", async () => {
+  it("el índice enlaza las cuatro secciones y marca la primera", async () => {
     const { container } = await montar()
     const enlaces = [...container.querySelectorAll(".cv-indice a")]
     expect(enlaces.map((a) => a.getAttribute("href"))).toEqual([
       "#cv-resumen",
-      "#cv-proyectos",
       "#cv-experiencia",
       "#cv-educacion",
       "#cv-certificaciones",
@@ -108,7 +101,9 @@ describe("V4.8.3: foto, índice, línea de tiempo y transición", () => {
 
   it("la experiencia está completa (CV de noviembre más lo del CV visual)", async () => {
     const { container } = await montar()
-    const texto = container.querySelector('[aria-labelledby="cv-experiencia"]').textContent
+    const seccion = container.querySelector('[aria-labelledby="cv-experiencia"]')
+    expect(seccion.querySelectorAll(".cv-lista > .cv-item")).toHaveLength(5)
+    const texto = seccion.textContent
     for (const frase of [
       "vistas, CTEs y reglas de negocio",
       "Desarrollo de módulos web para la gestión de personal",
