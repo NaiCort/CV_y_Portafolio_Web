@@ -7,14 +7,15 @@ import Cotizador from "./pages/Cotizador"
 import RestaurantProvider from "./giros/restaurante/state/RestaurantProvider"
 import FloatingTimer from "./giros/restaurante/components/FloatingTimer"
 import RouteErrorBoundary from "./components/shared/RouteErrorBoundary"
+import { CARGAS } from "./rutasDemo"
 
-const PsicologoApp = lazy(() => import("./giros/psicologo/PsicologoApp"))
-const RestauranteApp = lazy(() => import("./giros/restaurante/RestauranteApp"))
-const CafeApp = lazy(() => import("./giros/cafe/CafeApp"))
-const GimnasioApp = lazy(() => import("./giros/gimnasio/GimnasioApp"))
-const TallerApp = lazy(() => import("./giros/taller/TallerApp"))
-const DespachoApp = lazy(() => import("./giros/despacho/DespachoApp"))
-const RevistaApp = lazy(() => import("./giros/revista/RevistaApp"))
+const PsicologoApp = lazy(CARGAS["/psicologo"])
+const RestauranteApp = lazy(CARGAS["/restaurante"])
+const CafeApp = lazy(CARGAS["/cafe"])
+const GimnasioApp = lazy(CARGAS["/gimnasio"])
+const TallerApp = lazy(CARGAS["/taller"])
+const DespachoApp = lazy(CARGAS["/despacho"])
+const RevistaApp = lazy(CARGAS["/revista"])
 
 function RouteLoading() {
   return (
