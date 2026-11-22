@@ -10,6 +10,9 @@
   - la descripción aclara que es esta misma página y que las demos se abren desde la sección «Demos»;
   - sigue siendo un enlace (con flecha) y lleva a la misma página, sin abrir otra pestaña;
   - el identificador interno (`multiples-demos`) no cambia.
+- **Experiencia con sus cinco entradas** (segunda observación de Ian):
+  - como en el CV de noviembre, «Experiencia» reúne este sitio, Rincón de Imágenes, Servicio Social, Prácticas y Freelance, en ese orden;
+  - la sección «Proyectos», que separaba los dos primeros, desaparece, y el índice queda en Resumen, Experiencia, Educación y Certificaciones.
 - **Experiencia completa:**
   - el texto del CV de noviembre en cada punto, sin resumir, más lo que solo traía el CV visual (vistas, módulos web y conexión con la base de datos, tablas, búsqueda y carga, versionado y documentación técnica, entregables remotos y control de calidad básico);
   - los puestos usan los nombres del CV de noviembre (Servicio Social · Analista de Datos / Desarrollo Web);
