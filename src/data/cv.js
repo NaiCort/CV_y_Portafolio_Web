@@ -6,6 +6,8 @@
 
 import { LINKEDIN_URL, WHATSAPP_NUMBER } from "../components/shared/contactInfo"
 
+// `fechas`: [inicio, fin] en "AAAA-MM" o solo "AAAA" cuando no se conoce el mes; fin null = en
+// curso. Las usa la línea de tiempo; el texto visible sigue siendo `periodo`.
 export const CV_VERSION = { fecha: "2026-11", etiqueta: "Noviembre de 2026" }
 
 export const PERSONA = {
@@ -109,6 +111,7 @@ export const IDIOMAS = [
 export const PROYECTOS = [
   {
     id: "multiples-demos",
+    fechas: ["2026-08", null],
     nombre: "Múltiples Demos",
     tipo: "Proyecto independiente",
     periodo: "Agosto 2026 – actualidad",
@@ -131,6 +134,7 @@ export const PROYECTOS = [
   },
   {
     id: "rincon-de-imagenes",
+    fechas: ["2026-06", "2026-06"],
     nombre: "Rincón de Imágenes",
     tipo: "Proyecto independiente",
     periodo: "Junio 2026",
@@ -145,6 +149,7 @@ export const PROYECTOS = [
 export const EXPERIENCIA = [
   {
     id: "servicio-social",
+    fechas: ["2025-09", "2026-03"],
     puesto: "Servicio Social · Analista de Datos y Backend",
     lugar: "CECyTEV",
     ciudad: "Xalapa, Ver.",
@@ -159,6 +164,7 @@ export const EXPERIENCIA = [
   },
   {
     id: "practicas",
+    fechas: ["2025-05", "2025-06"],
     puesto: "Prácticas Profesionales · Full-Stack Jr",
     lugar: "CECyTEV, Dirección Administrativa (RRHH)",
     ciudad: "Xalapa, Ver.",
@@ -171,6 +177,7 @@ export const EXPERIENCIA = [
   },
   {
     id: "fiverr",
+    fechas: ["2021-06", "2026-02"],
     puesto: "Freelance · Asistencia virtual y traducción español-inglés",
     lugar: "Fiverr",
     ciudad: "Remoto",
@@ -186,6 +193,7 @@ export const EXPERIENCIA = [
 export const EDUCACION = [
   {
     id: "maestria",
+    fechas: ["2026", null],
     titulo: "Maestría en Ingeniería",
     lugar: "Universidad Martí",
     periodo: "2026 – 2028",
@@ -193,6 +201,7 @@ export const EDUCACION = [
   },
   {
     id: "isc",
+    fechas: ["2022", "2026"],
     titulo: "Ingeniería en Sistemas Computacionales",
     lugar: "IVES, Xalapa",
     periodo: "2022 – 2026",
@@ -200,6 +209,7 @@ export const EDUCACION = [
   },
   {
     id: "mecatronica",
+    fechas: ["2018", "2022"],
     titulo: "Ingeniería Mecatrónica (no concluida)",
     lugar: "TecNM, ITSX",
     periodo: "2018 – 2022",
@@ -224,3 +234,10 @@ export const CERTIFICACIONES = [
     horas: 30,
   },
 ]
+
+// Filas de la línea de tiempo (de lo más antiguo a lo más reciente), con su tipo.
+export const TRAYECTORIA = [
+  ...EDUCACION.map((e) => ({ ...e, nombre: e.titulo, tipo: "estudio" })),
+  ...EXPERIENCIA.map((e) => ({ ...e, nombre: e.puesto.split(" · ")[0], tipo: "trabajo" })),
+  ...PROYECTOS.map((p) => ({ ...p, tipo: "proyecto" })),
+].sort((a, b) => a.fechas[0].localeCompare(b.fechas[0]))

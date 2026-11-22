@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import useFavicon from "../hooks/useFavicon"
 import usePageMetadata from "../hooks/usePageMetadata"
 import useRouteFocus from "../hooks/useRouteFocus"
@@ -17,6 +17,9 @@ import {
   PROYECTOS,
   RESUMEN,
 } from "../data/cv"
+import { precargar } from "../rutasDemo"
+import { Indice, LineaDeTiempo } from "./CvPiezas"
+import { useSeccionActiva } from "./cvSecciones"
 import "./cv.css"
 
 // Página principal: CV web y portafolio (V4.8, ficha en docs/FICHA_CV.md).
@@ -25,15 +28,19 @@ import "./cv.css"
 // una sola vez y en el celular se abre desde la cabecera (decisión de Ian, 21/11/2026).
 
 function Foto() {
-  // Provisional hasta que Ian entregue su fotografía.
+  // Foto provisional que Ian eligió (22/11/2026) mientras consigue una más profesional.
   return (
     <figure className="cv-foto">
-      <svg viewBox="0 0 120 120" role="img" aria-label="Espacio para la fotografía de Ian">
-        <rect width="120" height="120" fill="currentColor" opacity=".14" />
-        <circle cx="60" cy="48" r="21" fill="currentColor" opacity=".32" />
-        <path d="M18 120c5-27 22-40 42-40s37 13 42 40z" fill="currentColor" opacity=".32" />
-      </svg>
-      <figcaption>Foto provisional</figcaption>
+      <img
+        src="/cv/ian-640.webp"
+        srcSet="/cv/ian-360.webp 360w, /cv/ian-640.webp 640w, /cv/ian-1024.webp 1024w"
+        sizes="(max-width: 899px) 100vw, 260px"
+        width="640"
+        height="800"
+        alt={`Retrato de ${PERSONA.nombre}`}
+        fetchPriority="high"
+        decoding="async"
+      />
     </figure>
   )
 }
@@ -116,7 +123,13 @@ function ListaDemos({ alElegir }) {
         return (
           <li key={d.id}>
             {disponible(d) ? (
-              <Link to={d.ruta} className="cv-demo" onClick={alElegir}>
+              <Link
+                to={d.ruta}
+                className="cv-demo"
+                onClick={(e) => alElegir(e, d)}
+                onPointerEnter={() => precargar(d.ruta)}
+                onFocus={() => precargar(d.ruta)}
+              >
                 {contenido}
               </Link>
             ) : (
@@ -139,7 +152,56 @@ export default function Bienvenida() {
   useFavicon("/favicon.svg")
   useRouteFocus()
   const [abierto, setAbierto] = useState(false)
+  const [salida, setSalida] = useState(null)
   const boton = useRef(null)
+  const centro = useRef(null)
+  const navigate = useNavigate()
+  const activa = useSeccionActiva(centro)
+
+  // Transición de la demo: su muestra de color crece hasta llenar la pantalla y la demo entra
+  // con un fundido (View Transitions). Sin soporte o con movimiento reducido, navega directo.
+  const abrirDemo = (e, d) => {
+    setAbierto(false)
+    if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return
+    e.preventDefault()
+    const reducido = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches
+    if (reducido || !document.startViewTransition) {
+      navigate(d.ruta)
+      return
+    }
+    const r = e.currentTarget.querySelector(".cv-tono").getBoundingClientRect()
+    setSalida({
+      color: d.color,
+      t: r.top,
+      r: innerWidth - r.right,
+      b: innerHeight - r.bottom,
+      l: r.left,
+    })
+    Promise.all([precargar(d.ruta), new Promise((ok) => setTimeout(ok, 300))]).then(() =>
+      navigate(d.ruta, { viewTransition: true }),
+    )
+  }
+
+  const irASeccion = (e, id) => {
+    e.preventDefault()
+    const destino = document.getElementById(id)
+    centro.current?.scrollTo({
+      top: destino.closest("section").offsetTop - 40,
+      behavior: window.matchMedia?.("(prefers-reduced-motion: reduce)").matches
+        ? "instant"
+        : "smooth",
+    })
+    destino.focus({ preventScroll: true })
+  }
+
+  // Cuadrícula que responde al cursor (solo con puntero fino).
+  const moverRejilla = (e) => {
+    if (e.pointerType !== "mouse") return
+    const caja = e.currentTarget.getBoundingClientRect()
+    const raiz = e.currentTarget.parentElement
+    raiz.style.setProperty("--px", `${e.clientX - caja.left}px`)
+    raiz.style.setProperty("--py", `${e.clientY - caja.top}px`)
+  }
 
   useEffect(() => {
     if (!abierto) return
@@ -195,6 +257,8 @@ export default function Bienvenida() {
           <Documentos />
         </div>
 
+        <Indice activa={activa} onIr={irASeccion} />
+
         <div className="cv-datos">
           <section aria-labelledby="cv-contacto">
             <h2 id="cv-contacto">Contacto</h2>
@@ -242,13 +306,30 @@ export default function Bienvenida() {
         </div>
       </aside>
 
-      <main id="contenido" tabIndex={-1} className="cv-centro">
+      <div className="cv-rejilla" aria-hidden="true" />
+      <main
+        id="contenido"
+        ref={centro}
+        tabIndex={-1}
+        className="cv-centro"
+        onPointerMove={moverRejilla}
+      >
         <section className="cv-seccion" style={{ "--i": 0 }} aria-labelledby="cv-resumen">
-          <h2 id="cv-resumen">Resumen</h2>
+          <h2 id="cv-resumen" tabIndex={-1}>
+            Resumen
+          </h2>
           <p className="cv-resumen">{RESUMEN}</p>
         </section>
-        <section className="cv-seccion" style={{ "--i": 1 }} aria-labelledby="cv-proyectos">
-          <h2 id="cv-proyectos">Proyectos</h2>
+        <section className="cv-seccion" style={{ "--i": 1 }} aria-labelledby="cv-trayectoria">
+          <h2 id="cv-trayectoria" tabIndex={-1}>
+            Trayectoria
+          </h2>
+          <LineaDeTiempo />
+        </section>
+        <section className="cv-seccion" style={{ "--i": 2 }} aria-labelledby="cv-proyectos">
+          <h2 id="cv-proyectos" tabIndex={-1}>
+            Proyectos
+          </h2>
           {PROYECTOS.map((p, i) => (
             <div key={p.id} className="cv-proyecto">
               <Entrada
@@ -268,8 +349,10 @@ export default function Bienvenida() {
             </div>
           ))}
         </section>
-        <section className="cv-seccion" style={{ "--i": 2 }} aria-labelledby="cv-experiencia">
-          <h2 id="cv-experiencia">Experiencia</h2>
+        <section className="cv-seccion" style={{ "--i": 3 }} aria-labelledby="cv-experiencia">
+          <h2 id="cv-experiencia" tabIndex={-1}>
+            Experiencia
+          </h2>
           {EXPERIENCIA.map((e) => (
             <Entrada
               key={e.id}
@@ -280,8 +363,10 @@ export default function Bienvenida() {
             />
           ))}
         </section>
-        <section className="cv-seccion" style={{ "--i": 3 }} aria-labelledby="cv-educacion">
-          <h2 id="cv-educacion">Educación</h2>
+        <section className="cv-seccion" style={{ "--i": 4 }} aria-labelledby="cv-educacion">
+          <h2 id="cv-educacion" tabIndex={-1}>
+            Educación
+          </h2>
           {EDUCACION.map((e) => (
             <Entrada
               key={e.id}
@@ -293,8 +378,10 @@ export default function Bienvenida() {
             />
           ))}
         </section>
-        <section className="cv-seccion" style={{ "--i": 4 }} aria-labelledby="cv-certificaciones">
-          <h2 id="cv-certificaciones">Certificaciones</h2>
+        <section className="cv-seccion" style={{ "--i": 5 }} aria-labelledby="cv-certificaciones">
+          <h2 id="cv-certificaciones" tabIndex={-1}>
+            Certificaciones
+          </h2>
           {CERTIFICACIONES.map((c) => (
             <Entrada
               key={c.id}
@@ -316,7 +403,7 @@ export default function Bienvenida() {
           Sitios de ejemplo, uno por giro de negocio. Los negocios son ficticios; todo lo que se
           puede tocar funciona.
         </p>
-        <ListaDemos alElegir={() => setAbierto(false)} />
+        <ListaDemos alElegir={abrirDemo} />
         <div className="cv-cotizar">
           <p className="cv-cotizar-titulo">¿Quieres un sitio así?</p>
           <p>Parte de una demo y ajusta las funciones a tu negocio.</p>
@@ -325,6 +412,19 @@ export default function Bienvenida() {
           </Link>
         </div>
       </aside>
+      {salida && (
+        <div
+          className="cv-salida"
+          aria-hidden="true"
+          style={{
+            "--tono": salida.color,
+            "--t": `${salida.t}px`,
+            "--r": `${salida.r}px`,
+            "--b": `${salida.b}px`,
+            "--l": `${salida.l}px`,
+          }}
+        />
+      )}
       {abierto && (
         <button
           type="button"

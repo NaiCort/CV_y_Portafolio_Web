@@ -161,22 +161,16 @@
   gap: 20px;
 }
 .cv-foto {
-  position: relative;
-  color: var(--sobre-pino);
   background: var(--pino-2);
-  aspect-ratio: 1;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
 }
-.cv-foto svg {
+.cv-foto img {
   display: block;
   width: 100%;
   height: 100%;
-}
-.cv-foto figcaption {
-  position: absolute;
-  left: 10px;
-  bottom: 8px;
-  font: 500 11px/1.2 var(--f-mono);
-  color: var(--sobre-pino-2);
+  object-fit: cover;
+  object-position: 50% 20%;
 }
 .cv-nombre-bloque {
   display: grid;
@@ -588,12 +582,10 @@ a.cv-demo:hover b {
     gap: 18px;
   }
   .cv-foto {
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 1;
   }
-  .cv-foto svg {
-    width: auto;
-    height: 100%;
-    margin: 0 auto;
+  .cv-indice {
+    display: none;
   }
   .cv-nombre-bloque,
   .cv-identidad .cv-docs {
@@ -716,4 +708,248 @@ a.cv-demo:hover b {
   padding: 10px 14px;
   background: var(--superficie);
   justify-self: start;
+}
+
+/* ---------- V4.8.3: índice, línea de tiempo, transición y cuadrícula ---------- */
+.cv-oculto {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+.cv-seccion > h2:focus {
+  outline: none;
+}
+.cv-indice ol {
+  display: grid;
+  gap: 2px;
+}
+.cv-indice a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 32px;
+  font: 500 12.5px/1 var(--f-mono);
+  color: var(--sobre-pino-2);
+  text-decoration: none;
+  transition: color 0.2s ease-out;
+}
+.cv-indice a::before {
+  content: "";
+  width: 22px;
+  height: 1px;
+  background: currentColor;
+  transition: width 0.24s ease-out;
+}
+.cv-indice a:hover,
+.cv-indice a[aria-current] {
+  color: var(--sobre-pino);
+}
+.cv-indice a[aria-current]::before {
+  width: 56px;
+  background: var(--liquen);
+}
+
+/* Línea de tiempo a escala: filas de nombre y pista; el eje marca los años y «hoy». */
+.cv-linea {
+  display: grid;
+  gap: 10px;
+  --col-nombre: 230px;
+}
+.cv-linea ol {
+  display: grid;
+  gap: 6px;
+}
+.cv-linea li,
+.cv-linea-eje {
+  display: grid;
+  grid-template-columns: var(--col-nombre) minmax(0, 1fr);
+  gap: 14px;
+  align-items: center;
+}
+.cv-linea-eje {
+  position: relative;
+  height: 18px;
+  font: 400 11.5px/1 var(--f-mono);
+  color: var(--tinta-2);
+  font-variant-numeric: tabular-nums;
+}
+.cv-linea-eje span {
+  position: absolute;
+  left: calc(var(--col-nombre) + 14px + (100% - var(--col-nombre) - 14px) * var(--x, 0));
+  transform: translateX(-50%);
+}
+.cv-linea-eje .cv-linea-hoy {
+  transform: translateX(-100%);
+  color: var(--barro);
+}
+.cv-linea-nombre {
+  font: 500 13.5px/1.25 var(--f-display);
+  text-align: right;
+}
+.cv-linea-pista {
+  position: relative;
+  height: 14px;
+  background-image: linear-gradient(90deg, var(--filete) 1px, transparent 1px);
+  background-size: var(--paso) 100%;
+}
+.cv-linea-barra {
+  position: absolute;
+  top: 2px;
+  bottom: 2px;
+  left: var(--a);
+  right: calc(100% - var(--b));
+  min-width: 4px;
+  background: var(--color-barra);
+}
+.cv-linea li[data-tipo="estudio"],
+.cv-clave[data-tipo="estudio"] {
+  --color-barra: var(--pino);
+}
+.cv-linea li[data-tipo="trabajo"],
+.cv-clave[data-tipo="trabajo"] {
+  --color-barra: #7d8c84;
+}
+.cv-linea li[data-tipo="proyecto"],
+.cv-clave[data-tipo="proyecto"] {
+  --color-barra: repeating-linear-gradient(135deg, var(--tinta) 0 2px, transparent 2px 5px);
+}
+.cv-linea li[data-tipo="proyecto"] .cv-linea-barra,
+.cv-clave[data-tipo="proyecto"]::before {
+  box-shadow: inset 0 0 0 1.5px var(--tinta);
+}
+.cv-linea li[data-en-curso] .cv-linea-barra {
+  -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 18px), transparent);
+  mask-image: linear-gradient(90deg, #000 calc(100% - 18px), transparent);
+}
+.cv-linea figcaption {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  font-size: 14px;
+  color: var(--tinta-2);
+  padding-top: 6px;
+}
+.cv-clave {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font: 500 13px/1.3 var(--f-display);
+  color: var(--tinta);
+}
+.cv-clave::before {
+  content: "";
+  width: 18px;
+  height: 8px;
+  background: var(--color-barra);
+}
+
+@media (max-width: 899px) {
+  .cv-linea {
+    --col-nombre: 0px;
+  }
+  .cv-linea li {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 3px;
+  }
+  .cv-linea-eje {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .cv-linea-eje span {
+    left: calc(100% * var(--x, 0));
+  }
+  .cv-linea-eje [data-impar],
+  .cv-linea-eje [data-cerca] {
+    display: none;
+  }
+  .cv-linea-eje span:first-child {
+    transform: none;
+  }
+  .cv-linea-nombre {
+    text-align: left;
+  }
+  .cv-linea ol {
+    gap: 9px;
+  }
+}
+
+/* Al pasar sobre una demo, las demás se atenúan. */
+@media (hover: hover) {
+  .cv-demos:hover li:not(:hover) .cv-demo {
+    opacity: 0.55;
+  }
+}
+.cv-demo {
+  transition: opacity 0.2s ease-out;
+}
+
+/* Transición de la demo: la muestra de color crece hasta llenar la pantalla. */
+.cv-salida {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: var(--tono);
+  clip-path: inset(0);
+  animation: cv-salida 0.3s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+@keyframes cv-salida {
+  from {
+    clip-path: inset(var(--t) var(--r) var(--b) var(--l));
+  }
+}
+
+/* Cuadrícula que responde al cursor: una capa detrás de la columna central con la cuadrícula
+   base y, encima, la misma cuadrícula más marcada solo alrededor del puntero. */
+.cv-rejilla {
+  display: none;
+}
+@media (min-width: 900px) {
+  .cv-izq {
+    grid-column: 1;
+    grid-row: 1;
+  }
+  .cv-rejilla,
+  .cv-centro {
+    grid-column: 2;
+    grid-row: 1;
+  }
+  .cv-der {
+    grid-column: 3;
+    grid-row: 1;
+  }
+  .cv-rejilla {
+    display: block;
+    position: relative;
+    background-color: var(--niebla);
+    background-image:
+      linear-gradient(#1d2a250a 1px, transparent 1px),
+      linear-gradient(90deg, #1d2a250a 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+  .cv-rejilla::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(#1d2a2547 1px, transparent 1px),
+      linear-gradient(90deg, #1d2a2547 1px, transparent 1px);
+    background-size: 24px 24px;
+    -webkit-mask-image: radial-gradient(
+      170px circle at var(--px, -999px) var(--py, -999px),
+      #000,
+      transparent
+    );
+    mask-image: radial-gradient(
+      170px circle at var(--px, -999px) var(--py, -999px),
+      #000,
+      transparent
+    );
+  }
+  .cv-root .cv-centro {
+    position: relative;
+    z-index: 1;
+    background: transparent;
+  }
 }
