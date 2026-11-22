@@ -6,8 +6,6 @@
 
 import { LINKEDIN_URL, WHATSAPP_NUMBER } from "../components/shared/contactInfo"
 
-// `fechas`: [inicio, fin] en "AAAA-MM" o solo "AAAA" cuando no se conoce el mes; fin null = en
-// curso. Las usa la línea de tiempo; el texto visible sigue siendo `periodo`.
 export const CV_VERSION = { fecha: "2026-11", etiqueta: "Noviembre de 2026" }
 
 export const PERSONA = {
@@ -108,17 +106,17 @@ export const IDIOMAS = [
 ]
 
 // Proyectos propios: van antes de la experiencia porque son lo más reciente y lo verificable.
+// El primero es este mismo sitio (antes «Múltiples Demos»; Ian pidió el cambio el 22/11/2026):
+// su enlace lleva a la misma página, por si alguien lo elige de todos modos.
 export const PROYECTOS = [
   {
     id: "multiples-demos",
-    fechas: ["2026-08", null],
-    nombre: "Múltiples Demos",
-    tipo: "Proyecto independiente",
+    nombre: "CV y portafolio web",
+    tipo: "Proyecto independiente · el sitio que estás viendo",
     periodo: "Agosto 2026 – actualidad",
-    url: "https://multiples-demos.vercel.app/",
-    enlaceInterno: "#demos",
+    url: "/",
     puntos: [
-      "Siete sitios demostrativos por giro de negocio, con identidades propias y simulaciones funcionales: reservas, pedidos con precio en tiempo real, presupuestos, áreas de cliente y vista previa de WhatsApp.",
+      "Esta misma página: mi CV y siete demos interactivas, una por giro de negocio, que se abren desde la sección «Demos». Cada demo tiene identidad visual propia y simulaciones funcionales: reservas, pedidos con precio en tiempo real, presupuestos, áreas de cliente y vista previa de WhatsApp.",
       "Pruebas unitarias con Vitest y de navegador con Playwright y axe (WCAG 2.2 AA) en cada entrega.",
     ],
     stack: [
@@ -134,58 +132,58 @@ export const PROYECTOS = [
   },
   {
     id: "rincon-de-imagenes",
-    fechas: ["2026-06", "2026-06"],
     nombre: "Rincón de Imágenes",
-    tipo: "Proyecto independiente",
+    tipo: "Proyecto independiente (Astro)",
     periodo: "Junio 2026",
     url: "https://rincondeimagenes.com",
     puntos: [
-      "Sitio publicado para un negocio de artesanías y escultura: catálogo digital e integración con WhatsApp, Instagram y Google Maps.",
+      "Sitio web publicado para un negocio de artesanías y escultura: catálogo digital, integración con WhatsApp, Instagram y Google Maps.",
     ],
     stack: ["Astro", "HTML, CSS y JS", "Git y GitHub"],
   },
 ]
 
+// Experiencia completa: el texto del CV de noviembre, con lo que solo trae el CV visual (vistas,
+// módulos web, tablas y carga, entregables y control de calidad) integrado sin repetir.
 export const EXPERIENCIA = [
   {
     id: "servicio-social",
-    fechas: ["2025-09", "2026-03"],
-    puesto: "Servicio Social · Analista de Datos y Backend",
+    puesto: "Servicio Social · Analista de Datos / Desarrollo Web",
     lugar: "CECyTEV",
     ciudad: "Xalapa, Ver.",
     periodo: "Septiembre 2025 – marzo 2026",
     puntos: [
-      "Diseño y unificación de consultas para el historial académico en PostgreSQL, con promedios por materia y periodo mediante CTEs y reglas de negocio.",
-      "Limpieza y normalización: carga de CSV irregular a staging, estandarización de teléfonos, CCT y fechas, y dataset final consistente.",
-      "Motor de documentos en Django: DOCX con docxtpl, conversión a PDF y validación de plantillas y variables.",
-      "Página en Django para consultar directorios: modelos reflejados, búsqueda, paginación y plantillas Bootstrap.",
+      "Diseño y unificación de consultas para el historial académico en PostgreSQL, incluyendo el cálculo de promedios por materia y periodo con vistas, CTEs y reglas de negocio.",
+      "Limpieza y normalización de datos: carga de CSV irregular a staging, estandarización de teléfonos, CCT y fechas, y generación de un dataset final consistente.",
+      "Motor de generación de documentos en Django: DOCX con docxtpl y conversión a PDF, con validación de plantillas y variables.",
+      "Página web en Django para consulta de directorios: modelos reflejados, búsqueda, paginación y plantillas Bootstrap.",
       "Validación de calificaciones con regex y CAST seguro.",
     ],
   },
   {
     id: "practicas",
-    fechas: ["2025-05", "2025-06"],
     puesto: "Prácticas Profesionales · Full-Stack Jr",
-    lugar: "CECyTEV, Dirección Administrativa (RRHH)",
+    lugar: "CECyTEV, Dirección Administrativa / RRHH",
     ciudad: "Xalapa, Ver.",
     periodo: "Mayo – junio 2025",
     puntos: [
-      "Arquitectura de un sistema de control de movimientos de personal y planteles.",
-      "API REST con Node y Express; frontend en Angular con Bootstrap y DataTables; roles y permisos.",
-      "Despliegue en un servidor de pruebas con documentación en Git.",
+      "Diseño de la arquitectura de un sistema de control de movimientos de personal y planteles.",
+      "Desarrollo de módulos web para la gestión de personal y conexión con la base de datos.",
+      "API REST con Node y Express; frontend en Angular con Bootstrap y DataTables (tablas, búsqueda y carga); roles y permisos.",
+      "Despliegue a un servidor de pruebas, con versionado y documentación técnica en Git.",
     ],
   },
   {
     id: "fiverr",
-    fechas: ["2021-06", "2026-02"],
-    puesto: "Freelance · Asistencia virtual y traducción español-inglés",
+    puesto: "Freelance · Asistencia virtual / Traducción español-inglés",
     lugar: "Fiverr",
     ciudad: "Remoto",
     periodo: "Junio 2021 – febrero 2026",
     puntos: [
-      "Traducción español-inglés para clientes internacionales.",
-      "Gestión de agendas, planeación de viajes y búsqueda de información; seguimiento de entregables y tiempos con cada cliente.",
-      "Normalización y organización de documentos y hojas de cálculo en Excel.",
+      "Traducción de textos español-inglés para clientes internacionales.",
+      "Gestión de agendas, planeación de viajes y búsqueda de información en línea.",
+      "Gestión de entregables remotos con clientes: seguimiento, comunicación y cumplimiento de tiempos.",
+      "Normalización, organización y actualización de documentos y hojas de cálculo en Excel, con control de calidad básico.",
     ],
   },
 ]
@@ -193,7 +191,6 @@ export const EXPERIENCIA = [
 export const EDUCACION = [
   {
     id: "maestria",
-    fechas: ["2026", null],
     titulo: "Maestría en Ingeniería",
     lugar: "Universidad Martí",
     periodo: "2026 – 2028",
@@ -201,7 +198,6 @@ export const EDUCACION = [
   },
   {
     id: "isc",
-    fechas: ["2022", "2026"],
     titulo: "Ingeniería en Sistemas Computacionales",
     lugar: "IVES, Xalapa",
     periodo: "2022 – 2026",
@@ -209,7 +205,6 @@ export const EDUCACION = [
   },
   {
     id: "mecatronica",
-    fechas: ["2018", "2022"],
     titulo: "Ingeniería Mecatrónica (no concluida)",
     lugar: "TecNM, ITSX",
     periodo: "2018 – 2022",
@@ -217,6 +212,7 @@ export const EDUCACION = [
   },
 ]
 
+// Cada certificación enlaza a su PDF (verificable con el folio y el código QR del documento).
 export const CERTIFICACIONES = [
   {
     id: "big-data",
@@ -224,20 +220,22 @@ export const CERTIFICACIONES = [
     lugar: "Fundación Carlos Slim",
     anio: 2025,
     horas: 74,
+    pdf: "/cv/certificados/visualizador-de-big-data.pdf",
   },
-  { id: "finder", titulo: "Finder", lugar: "Fundación Carlos Slim", anio: 2026, horas: 26 },
+  {
+    id: "finder",
+    titulo: "Finder",
+    lugar: "Fundación Carlos Slim",
+    anio: 2026,
+    horas: 26,
+    pdf: "/cv/certificados/finder.pdf",
+  },
   {
     id: "curador",
     titulo: "Curador de Datos",
     lugar: "Fundación Carlos Slim",
     anio: 2026,
     horas: 30,
+    pdf: "/cv/certificados/curador-de-datos.pdf",
   },
 ]
-
-// Filas de la línea de tiempo (de lo más antiguo a lo más reciente), con su tipo.
-export const TRAYECTORIA = [
-  ...EDUCACION.map((e) => ({ ...e, nombre: e.titulo, tipo: "estudio" })),
-  ...EXPERIENCIA.map((e) => ({ ...e, nombre: e.puesto.split(" · ")[0], tipo: "trabajo" })),
-  ...PROYECTOS.map((p) => ({ ...p, tipo: "proyecto" })),
-].sort((a, b) => a.fechas[0].localeCompare(b.fechas[0]))
