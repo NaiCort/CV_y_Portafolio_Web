@@ -42,7 +42,7 @@ export default function Cotizador() {
           </p>
           <div className="cv-docs">
             <a
-              className="cv-boton cv-boton-lleno"
+              className="cv-boton cv-boton-acento"
               href={buildWhatsAppUrl(mensaje)}
               target="_blank"
               rel="noopener"

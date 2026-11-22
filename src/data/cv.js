@@ -20,28 +20,28 @@ export const PERSONA = {
 export const CONTACTO = [
   {
     id: "telefono",
-    campo: "teléfono",
+    campo: "Teléfono",
     etiqueta: "Teléfono y WhatsApp",
     texto: "+52 228 162 8345",
     url: `https://wa.me/${WHATSAPP_NUMBER}`,
   },
   {
     id: "correo",
-    campo: "correo",
+    campo: "Correo",
     etiqueta: "Correo",
     texto: "ian.martinez2610@gmail.com",
     url: "mailto:ian.martinez2610@gmail.com",
   },
   {
     id: "linkedin",
-    campo: "linkedin",
+    campo: "LinkedIn",
     etiqueta: "LinkedIn",
     texto: "in/ian-almarti",
     url: LINKEDIN_URL,
   },
   {
     id: "github",
-    campo: "github",
+    campo: "GitHub",
     etiqueta: "GitHub",
     texto: "NaiCort",
     url: "https://github.com/NaiCort",
