@@ -46,14 +46,22 @@ await suite("cv", async ({ run, base }) => {
           assert(alto <= 901, "La página entera no se desplaza")
           await page.locator("main").evaluate((m) => m.scrollTo(0, m.scrollHeight))
           await page.getByText("CV actualizado en").waitFor()
-          // Índice: marca la sección que se lee y lleva a ella.
-          await page.locator('.cv-indice a[href="#cv-trayectoria"]').click()
+          // Índice: marca la sección elegida, también la última (que no llega arriba).
+          for (const id of ["cv-certificaciones", "cv-educacion", "cv-certificaciones"]) {
+            await page.locator(`.cv-indice a[href="#${id}"]`).click()
+            await page.waitForTimeout(1500)
+            assert.equal(
+              await page.locator(".cv-indice a[aria-current]").getAttribute("href"),
+              `#${id}`,
+              `Índice en ${id}`,
+            )
+          }
+          await page.locator("main").evaluate((m) => m.scrollTo(0, 0))
           await page.waitForFunction(
             () =>
               document.querySelector(".cv-indice a[aria-current]")?.getAttribute("href") ===
-              "#cv-trayectoria",
+              "#cv-resumen",
           )
-          await page.locator(".cv-linea").waitFor()
           await audit(page)
           // Transición de la demo (con movimiento a 1440 px; directa con movimiento reducido).
           await page.locator('#demos a[href="/cafe"]').click()
@@ -70,8 +78,7 @@ await suite("cv", async ({ run, base }) => {
           await audit(page)
           await page.keyboard.press("Escape")
           await page.locator("#demos").waitFor({ state: "hidden" })
-          // «Ver las 7 demos» del CV abre el mismo desplegable.
-          await page.getByRole("link", { name: "Ver las 7 demos" }).click()
+          await button(page, "Demos").click()
           await page.locator("#demos").waitFor()
           await page.locator('#demos a[href="/cafe"]').click()
           await page.waitForURL(`${base}/cafe`)
