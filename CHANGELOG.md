@@ -1,3 +1,11 @@
+# V4.8.4 · 22 de noviembre de 2026 · Dirección «Brasa»
+
+- Nuevo diseño del CV con la paleta de la foto de Ian: fondo carbón, texto arena y acento brasa. Toma la estructura de la referencia que eligió Ian y conserva las tres columnas.
+- Botones transparentes: el contorno aparece al pasar el cursor. En pantallas táctiles queda un contorno tenue.
+- Tarjetas del CV que se iluminan bajo el cursor y atenúan a las demás; etiquetas de tecnología en píldoras; flechas en los enlaces.
+- Las demos se muestran con una miniatura real de su portada.
+- Reflector cálido que sigue al mouse, enlace «Saltar al CV» y títulos de sección fijos en el celular.
+
 # V4.8.3 · 22 de noviembre de 2026 · Foto, índice, trayectoria y transición
 
 - Foto de Ian en el CV (provisional, elegida por él), servida desde el sitio en tres tamaños.

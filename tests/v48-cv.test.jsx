@@ -36,11 +36,11 @@ describe("V4.8: CV web y portafolio", () => {
     for (const e of EXPERIENCIA) expect(container.textContent).toContain(e.puesto)
   })
 
-  it("lista cada demo una sola vez, con su identificador", async () => {
+  it("lista cada demo una sola vez, con su miniatura", async () => {
     const { container } = await montar()
     for (const d of DEMOS) {
       expect(container.querySelectorAll(`a[href="${d.ruta}"]`), d.id).toHaveLength(1)
-      expect(container.textContent).toContain(`id: ${d.id}`)
+      expect(container.querySelector(`img[src="/cv/demos/${d.id}.webp"]`), d.id).toBeTruthy()
     }
   })
 

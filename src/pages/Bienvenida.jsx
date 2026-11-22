@@ -52,7 +52,7 @@ function Documentos() {
         d.disponible ? (
           <a
             key={d.id}
-            className="cv-boton cv-boton-lleno"
+            className="cv-boton cv-boton-acento"
             href={d.url}
             target="_blank"
             rel="noopener"
@@ -69,29 +69,51 @@ function Documentos() {
   )
 }
 
-function Entrada({ periodo, titulo, lugar, puntos = [], stack, url, actual }) {
+// Flecha de enlace externo: se desplaza en diagonal al pasar el cursor o enfocar.
+function Flecha() {
   return (
-    <article className="cv-entrada" data-actual={actual ? "" : undefined}>
+    <svg className="cv-flecha" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+      <path d="M5.22 14.78a.75.75 0 0 0 1.06 0l7.22-7.22v5.69a.75.75 0 0 0 1.5 0v-7.5a.75.75 0 0 0-.75-.75h-7.5a.75.75 0 0 0 0 1.5h5.69l-7.22 7.22a.75.75 0 0 0 0 1.06Z" />
+    </svg>
+  )
+}
+
+// Entrada del CV: fecha a la izquierda y relato a la derecha. Si tiene enlace, toda la tarjeta
+// responde al cursor (el enlace se extiende con ::after) y las hermanas se atenúan.
+function Entrada({ periodo, titulo, lugar, puntos = [], stack, url, extra }) {
+  return (
+    <li className="cv-item">
       <p className="cv-periodo">{periodo}</p>
-      <div className="cv-entrada-texto">
-        <h3>{titulo}</h3>
+      <div className="cv-item-texto">
+        <h3>
+          {url ? (
+            <a className="cv-item-enlace" href={url} target="_blank" rel="noopener">
+              {titulo}
+              <Flecha />
+              <span className="cv-oculto"> (se abre en otra pestaña)</span>
+            </a>
+          ) : (
+            titulo
+          )}
+        </h3>
         {lugar && <p className="cv-lugar">{lugar}</p>}
         {puntos.length > 0 && (
-          <ul>
+          <ul className="cv-puntos">
             {puntos.map((p) => (
               <li key={p}>{p}</li>
             ))}
           </ul>
         )}
-        {stack && <p className="cv-stack">{stack.join(" · ")}</p>}
-        {url && (
-          <a className="cv-enlace" href={url} target="_blank" rel="noopener">
-            {url.replace(/^https?:\/\//, "").replace(/\/$/, "")}
-            <span aria-hidden="true"> ↗</span>
-          </a>
+        {stack && (
+          <ul className="cv-etiquetas" aria-label="Tecnologías">
+            {stack.map((t) => (
+              <li key={t}>{t}</li>
+            ))}
+          </ul>
         )}
+        {extra}
       </div>
-    </article>
+    </li>
   )
 }
 
@@ -101,7 +123,16 @@ function ListaDemos({ alElegir }) {
       {DEMOS.map((d) => {
         const contenido = (
           <>
-            <span className="cv-tono" style={{ "--tono": d.color }} aria-hidden="true" />
+            <img
+              className="cv-miniatura"
+              src={`/cv/demos/${d.id}.webp`}
+              alt=""
+              width="480"
+              height="270"
+              loading="lazy"
+              decoding="async"
+              style={{ "--tono": d.color }}
+            />
             <span className="cv-demo-cabeza">
               <b>{d.nombre}</b>
               <span className="cv-estado" data-estado={d.estado}>
@@ -117,7 +148,6 @@ function ListaDemos({ alElegir }) {
                 {d.variantes.map((v) => v.nombre).join(", ")}
               </span>
             )}
-            <code className="cv-demo-id">id: {d.id}</code>
           </>
         )
         return (
@@ -158,7 +188,7 @@ export default function Bienvenida() {
   const navigate = useNavigate()
   const activa = useSeccionActiva(centro)
 
-  // Transición de la demo: su muestra de color crece hasta llenar la pantalla y la demo entra
+  // Transición de la demo: su miniatura se cubre con el color de la demo, que crece hasta llenar la pantalla y la demo entra
   // con un fundido (View Transitions). Sin soporte o con movimiento reducido, navega directo.
   const abrirDemo = (e, d) => {
     setAbierto(false)
@@ -169,7 +199,7 @@ export default function Bienvenida() {
       navigate(d.ruta)
       return
     }
-    const r = e.currentTarget.querySelector(".cv-tono").getBoundingClientRect()
+    const r = e.currentTarget.querySelector(".cv-miniatura").getBoundingClientRect()
     setSalida({
       color: d.color,
       t: r.top,
@@ -194,13 +224,11 @@ export default function Bienvenida() {
     destino.focus({ preventScroll: true })
   }
 
-  // Cuadrícula que responde al cursor (solo con puntero fino).
-  const moverRejilla = (e) => {
+  // Reflector cálido que sigue al cursor (solo con mouse; en celular no existe).
+  const moverReflector = (e) => {
     if (e.pointerType !== "mouse") return
-    const caja = e.currentTarget.getBoundingClientRect()
-    const raiz = e.currentTarget.parentElement
-    raiz.style.setProperty("--px", `${e.clientX - caja.left}px`)
-    raiz.style.setProperty("--py", `${e.clientY - caja.top}px`)
+    e.currentTarget.style.setProperty("--px", `${e.clientX}px`)
+    e.currentTarget.style.setProperty("--py", `${e.clientY}px`)
   }
 
   useEffect(() => {
@@ -224,20 +252,27 @@ export default function Bienvenida() {
   }
 
   return (
-    <div className="cv-root" data-demos={abierto ? "abierto" : undefined}>
+    <div
+      className="cv-root"
+      data-demos={abierto ? "abierto" : undefined}
+      onPointerMove={moverReflector}
+    >
+      <a className="cv-saltar" href="#contenido">
+        Saltar al CV
+      </a>
       <header className="cv-barra">
         <span className="cv-barra-nombre">Ian Aldana</span>
         <button
           ref={boton}
           type="button"
-          className="cv-barra-boton"
+          className="cv-boton cv-barra-boton"
           aria-expanded={abierto}
           aria-controls="demos"
           onClick={() => setAbierto((v) => !v)}
         >
           Demos <span aria-hidden="true">{abierto ? "▴" : "▾"}</span>
         </button>
-        <Link to="/cotizador" className="cv-barra-boton cv-barra-cotizar">
+        <Link to="/cotizador" className="cv-boton cv-boton-acento cv-barra-boton">
           Cotizar
         </Link>
       </header>
@@ -274,7 +309,7 @@ export default function Bienvenida() {
                 </div>
               ))}
               <div>
-                <dt>ciudad</dt>
+                <dt>Ciudad</dt>
                 <dd>{PERSONA.ciudad}</dd>
               </div>
             </dl>
@@ -284,7 +319,7 @@ export default function Bienvenida() {
             <dl className="cv-tabla">
               {IDIOMAS.map((i) => (
                 <div key={i.idioma}>
-                  <dt>{i.idioma.toLowerCase()}</dt>
+                  <dt>{i.idioma}</dt>
                   <dd>{i.nivel}</dd>
                 </div>
               ))}
@@ -306,14 +341,7 @@ export default function Bienvenida() {
         </div>
       </aside>
 
-      <div className="cv-rejilla" aria-hidden="true" />
-      <main
-        id="contenido"
-        ref={centro}
-        tabIndex={-1}
-        className="cv-centro"
-        onPointerMove={moverRejilla}
-      >
+      <main id="contenido" ref={centro} tabIndex={-1} className="cv-centro">
         <section className="cv-seccion" style={{ "--i": 0 }} aria-labelledby="cv-resumen">
           <h2 id="cv-resumen" tabIndex={-1}>
             Resumen
@@ -330,66 +358,73 @@ export default function Bienvenida() {
           <h2 id="cv-proyectos" tabIndex={-1}>
             Proyectos
           </h2>
-          {PROYECTOS.map((p, i) => (
-            <div key={p.id} className="cv-proyecto">
+          <ol className="cv-lista">
+            {PROYECTOS.map((p) => (
               <Entrada
+                key={p.id}
                 periodo={p.periodo}
                 titulo={p.nombre}
                 lugar={p.tipo}
                 puntos={p.puntos}
                 stack={p.stack}
                 url={p.url}
-                actual={i === 0}
+                extra={
+                  p.enlaceInterno && (
+                    <a className="cv-ver-demos" href={p.enlaceInterno} onClick={verDemos}>
+                      Ver las {DEMOS.length} demos
+                    </a>
+                  )
+                }
               />
-              {p.enlaceInterno && (
-                <a className="cv-enlace cv-ver-demos" href={p.enlaceInterno} onClick={verDemos}>
-                  Ver las {DEMOS.length} demos
-                </a>
-              )}
-            </div>
-          ))}
+            ))}
+          </ol>
         </section>
         <section className="cv-seccion" style={{ "--i": 3 }} aria-labelledby="cv-experiencia">
           <h2 id="cv-experiencia" tabIndex={-1}>
             Experiencia
           </h2>
-          {EXPERIENCIA.map((e) => (
-            <Entrada
-              key={e.id}
-              periodo={e.periodo}
-              titulo={e.puesto}
-              lugar={`${e.lugar} · ${e.ciudad}`}
-              puntos={e.puntos}
-            />
-          ))}
+          <ol className="cv-lista">
+            {EXPERIENCIA.map((e) => (
+              <Entrada
+                key={e.id}
+                periodo={e.periodo}
+                titulo={e.puesto}
+                lugar={`${e.lugar} · ${e.ciudad}`}
+                puntos={e.puntos}
+              />
+            ))}
+          </ol>
         </section>
         <section className="cv-seccion" style={{ "--i": 4 }} aria-labelledby="cv-educacion">
           <h2 id="cv-educacion" tabIndex={-1}>
             Educación
           </h2>
-          {EDUCACION.map((e) => (
-            <Entrada
-              key={e.id}
-              periodo={e.periodo}
-              titulo={e.titulo}
-              lugar={e.lugar}
-              puntos={[e.nota]}
-              actual={e.id === "maestria"}
-            />
-          ))}
+          <ol className="cv-lista">
+            {EDUCACION.map((e) => (
+              <Entrada
+                key={e.id}
+                periodo={e.periodo}
+                titulo={e.titulo}
+                lugar={e.lugar}
+                puntos={[e.nota]}
+              />
+            ))}
+          </ol>
         </section>
         <section className="cv-seccion" style={{ "--i": 5 }} aria-labelledby="cv-certificaciones">
           <h2 id="cv-certificaciones" tabIndex={-1}>
             Certificaciones
           </h2>
-          {CERTIFICACIONES.map((c) => (
-            <Entrada
-              key={c.id}
-              periodo={`${c.anio} · ${c.horas} h`}
-              titulo={c.titulo}
-              lugar={c.lugar}
-            />
-          ))}
+          <ol className="cv-lista">
+            {CERTIFICACIONES.map((c) => (
+              <Entrada
+                key={c.id}
+                periodo={`${c.anio} · ${c.horas} h`}
+                titulo={c.titulo}
+                lugar={c.lugar}
+              />
+            ))}
+          </ol>
         </section>
         <p className="cv-pie">
           CV actualizado en {CV_VERSION.etiqueta.toLowerCase()}. Los datos coinciden con el PDF y
@@ -407,8 +442,9 @@ export default function Bienvenida() {
         <div className="cv-cotizar">
           <p className="cv-cotizar-titulo">¿Quieres un sitio así?</p>
           <p>Parte de una demo y ajusta las funciones a tu negocio.</p>
-          <Link to="/cotizador" className="cv-boton cv-boton-lleno">
+          <Link to="/cotizador" className="cv-boton cv-boton-acento">
             Cotizar un sitio
+            <Flecha />
           </Link>
         </div>
       </aside>

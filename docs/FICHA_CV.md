@@ -1,85 +1,87 @@
-# Ficha de identidad · CV web y portafolio
+# Ficha de identidad · CV web y portafolio (v1)
 
-V4.8.1, 21 de noviembre de 2026. Ficha de la **v1 del CV y portafolio web** (después de terminarla, solo se actualiza el contenido). Es la dirección inicial: una combinación de las maquetas «Neblina» y «Esquema» elegida por Ian. Es provisional en lo visual, porque Ian dará referencias para enriquecerla. La estructura sí está aprobada.
+Ficha de la **v1 del CV y portafolio web**: al terminarla, solo se actualiza el contenido.
+- **V4.8.1 (21/11/2026):** primera dirección, «Neblina y Esquema».
+- **V4.8.4 (22/11/2026):** Ian la cambió por **«Brasa»**. Tomó como referencia principal el sitio de Brittany Chiang (estructura y comportamiento) y pidió que se conservaran las tres columnas, una paleta acorde a su foto, menos aspecto «cuadrado» y botones transparentes con contorno solo al pasar el cursor.
 
 ## Idea
 
-El CV de un ingeniero de datos de Xalapa.
-- **De Neblina:** el verde pino y el gris niebla de la ciudad, y una serif de lectura para el relato.
-- **De Esquema:** los datos se leen como datos. Hay una tabla de contacto con nombres de campo, una línea de tiempo con nodos cuadrados y el identificador real de cada demo, el mismo que usará el cotizador.
-
-Debe distinguirse de todas las demos y no recurrir a negro con dorado (Sitio Profesional, sección 30.1).
+Un CV oscuro y cálido que sale de la foto de Ian: el carbón de su playera como fondo, la arena de la piel como texto y el naranja del fondo de la foto como brasa. Debe leerse con calma y responder a la mano: las tarjetas se iluminan bajo el cursor, las demás se atenúan y un reflector tenue sigue al puntero.
 
 ## Paleta
 
 | Papel | Color | Uso |
 | --- | --- | --- |
-| Dominante oscuro: pino | `#213A33` | Columna de identidad, cabecera del celular, recuadro del cotizador |
-| Fondo: niebla | `#E9ECE8` | Fondo general; columna central con cuadrícula de 24 px al 4 % |
-| Superficie | `#DFE4DF` | Columna de demos |
-| Tinta | `#1D2A25` | Texto |
-| Texto secundario | `#4E5C56` | Fechas, notas |
-| Filete | `#C4CCC6` | Líneas y bordes |
-| Acento: barro | `#A94A22` | **Solo** la acción principal (PDF del CV, Cotizar) y el nodo de la entrada actual |
-| Liquen | `#D8C25A` | Rótulos de campo **sobre pino**; nunca sobre fondo claro |
+| Fondo: carbón | `#15110F` | Toda la página; las columnas se separan con filetes, no con fondos |
+| Fondo de tarjeta | `#1F1916` | Tarjeta bajo el cursor |
+| Texto principal: arena | `#EFE6DD` | Nombre, títulos y valores |
+| Texto de lectura | `#BCAEA2` | Relato del CV |
+| Texto secundario | `#A29385` | Fechas, rótulos y notas |
+| Filete | `#352B25` | Separación de columnas, contornos tenues |
+| Acento: brasa | `#F2803F` | Acción principal (PDF, Cotizar), sección activa del índice, «hoy» de la línea de tiempo y proyectos en la línea de tiempo |
+| Brasa clara | `#FFB37F` | Texto de etiquetas y estado; acción principal al pasar el cursor |
 
-Cada demo tiene además su propio tono (`color` en `src/data/demos.js`). Ese tono solo aparece en la muestra de la lista de demos.
+**Regla del acento:** la brasa marca lo que se puede hacer o lo que está activo; nunca se usa como fondo de bloques grandes. Las etiquetas usan la brasa al 12 % de fondo con texto en brasa clara.
 
 ## Tipografía
 
-- **Bricolage Grotesque** (variable, 400–800): nombre, títulos de sección y nombres de demos.
-- **Source Serif 4** (variable): el relato del CV (resumen, puntos de experiencia y descripciones).
-- **JetBrains Mono** (variable): **solo datos verdaderos**, como fechas, nombres de campo, identificadores y stack. No se usa como adorno.
+Se conservan las tres de la primera dirección, servidas desde `public/cv/fuentes/` con respaldos medidos:
+- **Bricolage Grotesque:** nombre, títulos, botones, rótulos y etiquetas.
+- **Source Serif 4:** el relato.
+- **JetBrains Mono:** queda disponible, pero ya no se usa en la página.
 
-Las tres se sirven desde `public/cv/fuentes/` con sus licencias OFL. Cada una tiene respaldo local con medida (`size-adjust` y métricas verticales), según el modelo de la Revista.
+Los rótulos de sección van en mayúsculas pequeñas con espaciado de 0.12 em.
 
 ## Forma
 
-- **Radios:** 0. Las piezas son tablas y filetes; solo los botones de la cabecera del celular llevan 2 px.
-- **Sombras:** ninguna. La separación se logra con color de fondo y filetes.
-- **Densidad:** media. El CV se lee como documento, con unos 62 caracteres por línea al centro.
+- **Radios:**
+  - píldora (999 px) en botones, etiquetas y estados;
+  - 14 px en tarjetas;
+  - 18 px en foto y recuadro del cotizador;
+  - 8 px en miniaturas.
+- **Botones:** figura **totalmente transparente**; el contorno aparece al pasar el cursor o enfocar.
+  - Sobre fondo oscuro, el contorno es claro (arena al 55 %). La acción principal toma la brasa clara.
+  - En pantallas táctiles (sin «pasar encima») hay un contorno tenue permanente para que se reconozcan como botones.
+- **Sombras:** solo un brillo interior de 1 px en la tarjeta activa.
+- **Densidad:** media, con 44 rem de ancho de lectura al centro.
 
 ## Movimiento
 
-- **Al cargar:** cada sección del centro aparece desde escala 0.97 y opacidad 0, en 260 ms con ease-out y 40 ms de escalón entre secciones. Motivo: el CV «se arma» como una consulta que devuelve filas.
-- **Desplegable de demos en el celular:** escala 0.97 a 1 en 220 ms.
-- **Fila de demo al pasar o enfocar:** la muestra de color se ensancha de 6 a 12 px.
-- **Movimiento reducido:** solo fundido, sin escala.
+- **Reflector:** brasa al 9 % en un círculo de 600 px que sigue al mouse. Va detrás del contenido y no existe en pantallas táctiles.
+- **Tarjeta bajo el cursor:** fondo más claro en 240 ms; las hermanas bajan al 50 %.
+- **Flechas de enlace:** se mueven 2 px en diagonal al pasar el cursor.
+- **Índice:** la línea crece de 32 a 64 px; la activa es brasa.
+- **Entrada de secciones:** desde escala 0.97 en 260 ms, con 40 ms de escalón.
+- **Transición a una demo:** su color crece desde la miniatura en 300 ms y la demo entra con View Transitions.
+- **Movimiento reducido:** solo fundidos.
 
 ## Anclas visuales
 
-1. La tabla de contacto en la columna pino: rótulo de campo en mono liquen y valor en blanco.
-2. La línea de tiempo: filete vertical con nodo cuadrado por entrada. La fecha va en mono a la izquierda y el relato en serif a la derecha.
-3. La lista de demos: muestra de color de cada demo, nombre, giro, temas, estado e identificador.
+1. La foto de Ian, con esquinas redondeadas, arriba de la columna izquierda (portada en el celular).
+2. Las tarjetas del CV (fecha a la izquierda, relato a la derecha) que se iluminan y atenúan a sus hermanas.
+3. La lista de demos con su miniatura real (capturas en `public/cv/demos/`).
 
-## Piezas de V4.8.3
+## Patrones vigilados en uso
 
-- **Foto:** la que Ian dio el 22/11/2026, provisional mientras consigue una más profesional. Va recortada a 4:5 en escritorio y a 1:1 en celular. Su fondo naranja dialoga con el barro.
-- **Índice:** líneas de 22 px en la columna pino; la sección activa crece a 56 px en liquen.
-- **Línea de tiempo:** estudios en pino, trabajo en gris verdoso (`#7D8C84`) y proyectos en rayado de tinta con contorno. Lo que sigue en curso se desvanece en el borde de «hoy».
-- **Transición de la demo:** la muestra de color crece con `clip-path` en 300 ms y la demo entra con View Transitions.
-- **Cuadrícula:** capa detrás de la columna central; la cuadrícula se marca en un círculo de 170 px alrededor del cursor, solo con puntero fino.
+Reflector que sigue al cursor (una mancha de luz tenue). Es el único que se acepta en esta pantalla, porque es parte de la referencia que pidió Ian.
 
 ## Prohibido aquí
 
 - Etiquetas sobre los títulos y numeración decorativa.
-- Degradados, brillos y vidrio.
+- Degradados de color y vidrio.
 - Tarjetas con sombra y tarjetas dentro de tarjetas.
-- Todo centrado e íconos de Lucide repetidos.
-- Emojis y Title Case.
-- Inter, morado e índigo.
-- Mono como adorno.
+- Botones rellenos de color.
+- Emojis, Title Case, Inter, morado e índigo.
 
 ## Estructura (aprobada)
 
-- **Escritorio (900 px o más):** tres columnas, cada una con desplazamiento propio.
-  - Identidad: foto, nombre, título, PDF, contacto, idiomas y habilidades.
-  - CV: resumen, proyectos, experiencia, educación y certificaciones.
+- **Escritorio (900 px o más):** tres columnas con desplazamiento propio.
+  - Identidad: foto, nombre, título, enfoque, PDF, índice, contacto, idiomas y habilidades.
+  - CV: resumen, trayectoria, proyectos, experiencia, educación y certificaciones.
   - Demos y cotizador.
 - **Celular:** cabecera fija con «Demos» (desplegable) y «Cotizar». La lectura sigue este orden:
-  1. foto, nombre, título y PDF;
-  2. resumen;
-  3. proyectos, experiencia, educación y certificaciones;
-  4. contacto, idiomas y habilidades.
+  1. foto, nombre y PDF;
+  2. CV, con los títulos de sección fijos al bajar;
+  3. contacto, idiomas y habilidades.
 
-  La lista de demos existe una sola vez: en escritorio es la columna derecha y en el celular, el desplegable. No se repite al final (decisión de Ian).
+  La lista de demos existe una sola vez.
