@@ -8,12 +8,13 @@ Acordado con Ian el 21 de noviembre de 2026, con el Sitio Profesional Integral V
    - catálogo de demos y datos del CV como archivos;
    - componentes compartidos y contador del restaurante;
    - herramientas de medición.
-2. **V4.8.1 a V4.8.5, CV web y portafolio en `/`:**
+2. **V4.8.1 a V4.8.6, CV web y portafolio en `/`:**
    1. ficha de identidad y maquetas (2 o 3 direcciones, escritorio y celular) para que Ian elija (hecho);
    2. escritorio y celular, construidos juntos porque comparten el mismo código (hecho);
    3. detalle visual: las cuatro ideas «ahora» de `docs/IDEAS_CV.md` (índice con sección activa, línea de tiempo a escala, transición de la demo y cuadrícula que responde al cursor); las demás quedan ahí con sus requisitos;
-   4. PDF y buscadores;
-   5. pasada final, cierre y Documento Maestro.
+   4. dirección «Brasa» (Ian cambió el diseño el 22/11/2026, ver `FICHA_CV.md`);
+   5. PDF y buscadores;
+   6. pasada final, cierre y Documento Maestro.
 3. **Cotizador, primera versión.** Va antes de las demos para que cada una se conecte «desde ya». Tiene página propia.
 4. **Demos en orden de creación**, cada una con sus subversiones:
    - Psicólogo (V4.8.10);
