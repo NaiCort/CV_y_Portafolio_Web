@@ -8,13 +8,14 @@ Acordado con Ian el 21 de noviembre de 2026, con el Sitio Profesional Integral V
    - catálogo de demos y datos del CV como archivos;
    - componentes compartidos y contador del restaurante;
    - herramientas de medición.
-2. **V4.8.1 a V4.8.6, CV web y portafolio en `/`:**
+2. **V4.8.1 a V4.8.7, CV web y portafolio en `/`:**
    1. ficha de identidad y maquetas (2 o 3 direcciones, escritorio y celular) para que Ian elija (hecho);
    2. escritorio y celular, construidos juntos porque comparten el mismo código (hecho);
    3. detalle visual: las cuatro ideas «ahora» de `docs/IDEAS_CV.md` (índice con sección activa, línea de tiempo a escala, transición de la demo y cuadrícula que responde al cursor); las demás quedan ahí con sus requisitos;
    4. dirección «Brasa» (Ian cambió el diseño el 22/11/2026, ver `FICHA_CV.md`);
-   5. PDF y buscadores;
-   6. pasada final, cierre y Documento Maestro.
+   5. correcciones del CV (experiencia completa, certificados, sin línea de tiempo);
+   6. PDF y buscadores;
+   7. pasada final, cierre y Documento Maestro.
 3. **Cotizador, primera versión.** Va antes de las demos para que cada una se conecte «desde ya». Tiene página propia.
 4. **Demos en orden de creación**, cada una con sus subversiones:
    - Psicólogo (V4.8.10);
@@ -22,7 +23,7 @@ Acordado con Ian el 21 de noviembre de 2026, con el Sitio Profesional Integral V
    - Ladera (V4.8.30);
    - Brío (V4.8.40);
    - Rosales y Vértice (V4.8.50);
-   - Cotejo (V4.8.60).
+   - Cotejo (V4.8.60). Idea de Ian (22/11/2026): llevar a Cotejo el fondo de cuadrícula que tuvo el CV en V4.8.3 (parecido a una hoja de Excel), que encaja con la contabilidad.
 
    Cada demo recibe su botón «Contratar un sitio como este» con su identificador estable, y el cotizador se ajusta con ella.
 5. **Cotizador, ajuste final:** revisión de conjunto y lo que se considere pertinente al terminar las demos.
