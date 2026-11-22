@@ -30,6 +30,8 @@
 - **Franja blanca a la derecha en escritorio** (tercera observación de Ian):
   - la causa era `scrollbar-gutter: stable` en `html` (`src/index.css`), que reserva el canal de la barra de la página para que las demos no salten; en el CV la página no se desplaza, así que el canal quedaba vacío y con el fondo blanco por defecto;
   - `cv.css` lo desactiva solo donde hay `.cv-root` (CV y cotizador), con `html:has(.cv-root)`, y pinta el fondo de la página en carbón;
+  - además, en escritorio (900 px o más), `html` y `body` no se desplazan en el CV, porque este ocupa exactamente la ventana; así no puede aparecer ninguna barra de página;
+  - la captura de Ian del 21/11/2026 era de producción (`main`), donde esta corrección todavía no está;
   - las demos conservan el canal.
 - **Plan:**
   - PDF y buscadores pasan a V4.8.6, y el cierre a V4.8.7;
