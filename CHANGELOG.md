@@ -1,3 +1,11 @@
+# V4.8.3 · 22 de noviembre de 2026 · Foto, índice, trayectoria y transición
+
+- Foto de Ian en el CV (provisional, elegida por él), servida desde el sitio en tres tamaños.
+- Índice en la columna izquierda que marca la sección que se está leyendo.
+- Nueva sección «Trayectoria»: línea de tiempo a escala de 2018 a hoy, con estudios, trabajo y proyectos.
+- Al abrir una demo, su color crece hasta llenar la pantalla y la demo entra con un fundido. La demo se precarga al pasar el cursor.
+- Al pasar sobre una demo, las demás se atenúan. La cuadrícula del CV se marca alrededor del cursor.
+
 # V4.8.2 · 21 de noviembre de 2026 · CV web y portafolio
 
 - La portada es ahora el CV web y portafolio:

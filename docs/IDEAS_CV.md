@@ -2,7 +2,7 @@
 
 21 de noviembre de 2026. Salen de `INVESTIGACION_CV.md`. Ian decidió que pueden entrar todas, pero no al mismo tiempo. Las que lucen solo con una trayectoria más larga se guardan aquí con sus requisitos, para retomarlas cuando se cumplan.
 
-## Ahora (V4.8.3)
+## Ahora (V4.8.3, hechas el 22/11/2026)
 
 1. **Índice con la sección activa** (referencia: Brittany Chiang). Se lee en la columna pino: «Resumen · Proyectos · Experiencia · Educación · Certificaciones», con una línea que crece en la sección que se lee y se encoge en las demás. Va solo en escritorio y usa `IntersectionObserver` sobre la columna central. Al pasar sobre una demo, las demás se atenúan.
 2. **Línea de tiempo a escala** (Visual Cinnamon). Va desde el primer dato del CV (Mecatrónica, 2018) hasta hoy, con estudios, trabajos y proyectos como barras con sus fechas reales. Lo que sigue en curso (maestría, Múltiples Demos) llega al borde de «hoy» con un final abierto, y el egreso esperado (agosto de 2028) va como texto, no como barra dibujada hacia el futuro. Se dibuja en SVG con los datos de `cv.js`, sin porcentajes ni cifras inventadas.

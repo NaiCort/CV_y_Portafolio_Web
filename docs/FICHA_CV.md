@@ -52,6 +52,14 @@ Las tres se sirven desde `public/cv/fuentes/` con sus licencias OFL. Cada una ti
 2. La línea de tiempo: filete vertical con nodo cuadrado por entrada. La fecha va en mono a la izquierda y el relato en serif a la derecha.
 3. La lista de demos: muestra de color de cada demo, nombre, giro, temas, estado e identificador.
 
+## Piezas de V4.8.3
+
+- **Foto:** la que Ian dio el 22/11/2026, provisional mientras consigue una más profesional. Va recortada a 4:5 en escritorio y a 1:1 en celular. Su fondo naranja dialoga con el barro.
+- **Índice:** líneas de 22 px en la columna pino; la sección activa crece a 56 px en liquen.
+- **Línea de tiempo:** estudios en pino, trabajo en gris verdoso (`#7D8C84`) y proyectos en rayado de tinta con contorno. Lo que sigue en curso se desvanece en el borde de «hoy».
+- **Transición de la demo:** la muestra de color crece con `clip-path` en 300 ms y la demo entra con View Transitions.
+- **Cuadrícula:** capa detrás de la columna central; la cuadrícula se marca en un círculo de 170 px alrededor del cursor, solo con puntero fino.
+
 ## Prohibido aquí
 
 - Etiquetas sobre los títulos y numeración decorativa.
