@@ -1,11 +1,12 @@
 # V4.8.5 · 22 de noviembre de 2026 · Correcciones del CV
 
-- Experiencia completa: el texto del CV de noviembre con lo que solo traía el CV visual.
+- Experiencia completa, como en el CV de noviembre: las cinco entradas en su orden (este sitio, Rincón de Imágenes, Servicio Social, Prácticas y Freelance), con lo que solo traía el CV visual. Desaparece la sección «Proyectos», que las separaba.
 - «Múltiples Demos» pasa a llamarse «CV y portafolio web» en el CV: es el sitio que se está viendo, y su enlace lleva a la misma página.
 - Se quitó «Ver las 7 demos»: las demos ya están a la vista.
 - Cada certificación abre su PDF.
 - Se quitó la línea de tiempo: repetía lo que ya dicen las entradas y no tenía los meses para ser exacta.
 - El índice marca «Certificaciones» al llegar al final, y la sección elegida mientras dura el desplazamiento.
+- Sin franja blanca a la derecha en escritorio: el CV ya no reserva el canal de la barra de desplazamiento de la página.
 
 # V4.8.4 · 22 de noviembre de 2026 · Dirección «Brasa»
 

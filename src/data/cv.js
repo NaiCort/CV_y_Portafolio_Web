@@ -105,14 +105,15 @@ export const IDIOMAS = [
   { idioma: "Inglés", nivel: "Intermedio" },
 ]
 
-// Proyectos propios: van antes de la experiencia porque son lo más reciente y lo verificable.
-// El primero es este mismo sitio (antes «Múltiples Demos»; Ian pidió el cambio el 22/11/2026):
-// su enlace lleva a la misma página, por si alguien lo elige de todos modos.
-export const PROYECTOS = [
+// Experiencia completa, con las cinco entradas del CV de noviembre y en su orden (Ian,
+// 22/11/2026): los dos proyectos propios y los tres trabajos, con lo que solo trae el CV visual
+// (vistas, módulos web, tablas y carga, entregables y control de calidad) integrado sin repetir.
+// La primera es este mismo sitio (antes «Múltiples Demos»): su enlace lleva a la misma página.
+export const EXPERIENCIA = [
   {
     id: "multiples-demos",
-    nombre: "CV y portafolio web",
-    tipo: "Proyecto independiente · el sitio que estás viendo",
+    puesto: "CV y portafolio web",
+    lugar: "Proyecto independiente · el sitio que estás viendo",
     periodo: "Agosto 2026 – actualidad",
     url: "/",
     puntos: [
@@ -132,8 +133,8 @@ export const PROYECTOS = [
   },
   {
     id: "rincon-de-imagenes",
-    nombre: "Rincón de Imágenes",
-    tipo: "Proyecto independiente (Astro)",
+    puesto: "Rincón de Imágenes",
+    lugar: "Proyecto independiente (Astro)",
     periodo: "Junio 2026",
     url: "https://rincondeimagenes.com",
     puntos: [
@@ -141,16 +142,10 @@ export const PROYECTOS = [
     ],
     stack: ["Astro", "HTML, CSS y JS", "Git y GitHub"],
   },
-]
-
-// Experiencia completa: el texto del CV de noviembre, con lo que solo trae el CV visual (vistas,
-// módulos web, tablas y carga, entregables y control de calidad) integrado sin repetir.
-export const EXPERIENCIA = [
   {
     id: "servicio-social",
     puesto: "Servicio Social · Analista de Datos / Desarrollo Web",
-    lugar: "CECyTEV",
-    ciudad: "Xalapa, Ver.",
+    lugar: "CECyTEV · Xalapa, Ver.",
     periodo: "Septiembre 2025 – marzo 2026",
     puntos: [
       "Diseño y unificación de consultas para el historial académico en PostgreSQL, incluyendo el cálculo de promedios por materia y periodo con vistas, CTEs y reglas de negocio.",
@@ -163,8 +158,7 @@ export const EXPERIENCIA = [
   {
     id: "practicas",
     puesto: "Prácticas Profesionales · Full-Stack Jr",
-    lugar: "CECyTEV, Dirección Administrativa / RRHH",
-    ciudad: "Xalapa, Ver.",
+    lugar: "CECyTEV, Dirección Administrativa / RRHH · Xalapa, Ver.",
     periodo: "Mayo – junio 2025",
     puntos: [
       "Diseño de la arquitectura de un sistema de control de movimientos de personal y planteles.",
@@ -176,8 +170,7 @@ export const EXPERIENCIA = [
   {
     id: "fiverr",
     puesto: "Freelance · Asistencia virtual / Traducción español-inglés",
-    lugar: "Fiverr",
-    ciudad: "Remoto",
+    lugar: "Fiverr · remoto",
     periodo: "Junio 2021 – febrero 2026",
     puntos: [
       "Traducción de textos español-inglés para clientes internacionales.",

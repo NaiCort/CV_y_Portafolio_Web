@@ -71,6 +71,23 @@
   line-gap-override: 0%;
 }
 
+/* El sitio reserva el canal de la barra de desplazamiento de la página (index.css) para que las
+   demos no salten. En el CV la página no se desplaza en escritorio (cada columna tiene la suya),
+   así que ese canal quedaba como una franja blanca a la derecha: aquí no se reserva y el fondo
+   de la página es el carbón del CV. */
+html:has(.cv-root) {
+  scrollbar-gutter: auto;
+  background: #15110f;
+}
+/* Segunda protección: en escritorio el CV ocupa exactamente la ventana, así que la página no
+   puede desplazarse ni mostrar su barra (las tres columnas conservan las suyas). */
+@media (min-width: 900px) {
+  html:has(.cv-root:not(.cv-cotizador)),
+  html:has(.cv-root:not(.cv-cotizador)) body {
+    overflow: hidden;
+  }
+}
+
 /* ===== Dirección «Brasa» (V4.8.4, ficha en docs/FICHA_CV.md) =====
    Paleta tomada de la foto de Ian: fondo carbón cálido (su playera), texto arena y un acento
    brasa (el naranja del fondo de la foto). Estructura y comportamiento inspirados en el sitio de
