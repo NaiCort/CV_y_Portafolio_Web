@@ -16,7 +16,7 @@
     - **Proyectos:** «CV y portafolio web»;
     - **Experiencia:** Rincón de Imágenes (sitio para un negocio local en funcionamiento, hecho como proyecto escolar), Servicio Social, Prácticas y Freelance;
   - el índice queda en Resumen, Proyectos, Experiencia, Educación y Certificaciones;
-  - Ian actualizará el PDF del CV con el mismo orden.
+  - Ian actualizó el PDF del CV con el mismo orden (23/11/2026); se sirve en la misma ruta, `/cv/cv-ian-aldana-noviembre-2026.pdf`.
 - **Experiencia completa:**
   - el texto del CV de noviembre en cada punto, sin resumir, más lo que solo traía el CV visual (vistas, módulos web y conexión con la base de datos, tablas, búsqueda y carga, versionado y documentación técnica, entregables remotos y control de calidad básico);
   - los puestos usan los nombres del CV de noviembre (Servicio Social · Analista de Datos / Desarrollo Web);
