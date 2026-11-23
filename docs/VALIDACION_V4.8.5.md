@@ -5,8 +5,9 @@ Entorno: Node 22 y Chromium de Playwright, con la compilación de producción se
 - **Revisiones automáticas:**
   - ESLint, Prettier y compilación sin errores.
   - **340 pruebas unitarias**. Nuevas o cambiadas:
-    - el índice tiene cuatro secciones;
-    - «Experiencia» muestra 5 entradas;
+    - el índice tiene cinco secciones;
+    - «Proyectos» muestra 1 entrada (este sitio);
+    - «Experiencia» muestra 4 entradas, con Rincón de Imágenes.
     - cada certificación enlaza a su PDF;
     - el proyecto propio lleva a `/` sin pestaña nueva, sin «Ver las N demos» y sin línea de tiempo;
     - la experiencia contiene las frases que venían solo del CV visual.

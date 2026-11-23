@@ -3,6 +3,7 @@ import { useCallback, useEffect, useRef, useState } from "react"
 // Secciones del CV y la que se está leyendo (índice de la columna pino, V4.8.3).
 export const SECCIONES = [
   ["cv-resumen", "Resumen"],
+  ["cv-proyectos", "Proyectos"],
   ["cv-experiencia", "Experiencia"],
   ["cv-educacion", "Educación"],
   ["cv-certificaciones", "Certificaciones"],

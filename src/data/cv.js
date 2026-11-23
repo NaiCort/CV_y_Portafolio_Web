@@ -105,11 +105,10 @@ export const IDIOMAS = [
   { idioma: "Inglés", nivel: "Intermedio" },
 ]
 
-// Experiencia completa, con las cinco entradas del CV de noviembre y en su orden (Ian,
-// 22/11/2026): los dos proyectos propios y los tres trabajos, con lo que solo trae el CV visual
-// (vistas, módulos web, tablas y carga, entregables y control de calidad) integrado sin repetir.
-// La primera es este mismo sitio (antes «Múltiples Demos»): su enlace lleva a la misma página.
-export const EXPERIENCIA = [
+// Proyectos propios (Ian, 23/11/2026): van antes de la experiencia porque son lo más reciente y
+// lo verificable. El primero es este mismo sitio (antes «Múltiples Demos»): su enlace lleva a la
+// misma página, por si alguien lo elige de todos modos.
+export const PROYECTOS = [
   {
     id: "multiples-demos",
     puesto: "CV y portafolio web",
@@ -131,10 +130,17 @@ export const EXPERIENCIA = [
       "Playwright",
     ],
   },
+]
+
+// Experiencia: trabajo para otros (un negocio real, una institución y clientes), con el texto del
+// CV de noviembre y lo que solo trae el CV visual (vistas, módulos web, tablas y carga,
+// entregables y control de calidad) integrado sin repetir. Rincón de Imágenes va aquí porque es
+// un sitio para un negocio local en funcionamiento, hecho como proyecto escolar.
+export const EXPERIENCIA = [
   {
     id: "rincon-de-imagenes",
     puesto: "Rincón de Imágenes",
-    lugar: "Proyecto independiente (Astro)",
+    lugar: "Sitio para un negocio local en funcionamiento · proyecto escolar (Astro)",
     periodo: "Junio 2026",
     url: "https://rincondeimagenes.com",
     puntos: [

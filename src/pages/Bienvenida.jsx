@@ -14,6 +14,7 @@ import {
   HABILIDADES,
   IDIOMAS,
   PERSONA,
+  PROYECTOS,
   RESUMEN,
 } from "../data/cv"
 import { precargar } from "../rutasDemo"
@@ -344,7 +345,25 @@ export default function Bienvenida() {
           </h2>
           <p className="cv-resumen">{RESUMEN}</p>
         </section>
-        <section className="cv-seccion" style={{ "--i": 1 }} aria-labelledby="cv-experiencia">
+        <section className="cv-seccion" style={{ "--i": 1 }} aria-labelledby="cv-proyectos">
+          <h2 id="cv-proyectos" tabIndex={-1}>
+            Proyectos
+          </h2>
+          <ol className="cv-lista">
+            {PROYECTOS.map((p) => (
+              <Entrada
+                key={p.id}
+                periodo={p.periodo}
+                titulo={p.puesto}
+                lugar={p.lugar}
+                puntos={p.puntos}
+                stack={p.stack}
+                url={p.url}
+              />
+            ))}
+          </ol>
+        </section>
+        <section className="cv-seccion" style={{ "--i": 2 }} aria-labelledby="cv-experiencia">
           <h2 id="cv-experiencia" tabIndex={-1}>
             Experiencia
           </h2>
@@ -362,7 +381,7 @@ export default function Bienvenida() {
             ))}
           </ol>
         </section>
-        <section className="cv-seccion" style={{ "--i": 2 }} aria-labelledby="cv-educacion">
+        <section className="cv-seccion" style={{ "--i": 3 }} aria-labelledby="cv-educacion">
           <h2 id="cv-educacion" tabIndex={-1}>
             Educación
           </h2>
@@ -378,7 +397,7 @@ export default function Bienvenida() {
             ))}
           </ol>
         </section>
-        <section className="cv-seccion" style={{ "--i": 3 }} aria-labelledby="cv-certificaciones">
+        <section className="cv-seccion" style={{ "--i": 4 }} aria-labelledby="cv-certificaciones">
           <h2 id="cv-certificaciones" tabIndex={-1}>
             Certificaciones
           </h2>
