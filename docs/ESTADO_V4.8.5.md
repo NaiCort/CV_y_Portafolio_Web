@@ -16,7 +16,14 @@
     - **Proyectos:** «CV y portafolio web»;
     - **Experiencia:** Rincón de Imágenes (sitio para un negocio local en funcionamiento, hecho como proyecto escolar), Servicio Social, Prácticas y Freelance;
   - el índice queda en Resumen, Proyectos, Experiencia, Educación y Certificaciones;
-  - Ian actualizó el PDF del CV con el mismo orden (23/11/2026); se sirve en la misma ruta, `/cv/cv-ian-aldana-noviembre-2026.pdf`.
+  - Ian actualizó el PDF del CV con el mismo orden y la experiencia completa (23/11/2026, segunda versión); se sirve en la misma ruta, `/cv/cv-ian-aldana-noviembre-2026.pdf`;
+  - donde el PDF y el sitio chocan, manda el PDF: Rincón de Imágenes es «Proyecto independiente (Astro)» y Prácticas va sin «Full-Stack Jr». El sitio conserva detalles que suman, como «tablas, búsqueda y carga» y «control de calidad básico»;
+  - el PDF no aclara que el proyecto es este sitio (se entrega fuera del sitio); el sitio sí.
+- **Notas innecesarias quitadas del CV** (Ian, 23/11/2026):
+  - «CV actualizado en noviembre de 2026. Los datos coinciden con el PDF y con LinkedIn.»;
+  - la nota bajo «Demos» («Sitios de ejemplo… todo lo que se puede tocar funciona»).
+
+  En las demos, los avisos que pide el principio rector (aviso de demo, autoría y «datos de ejemplo») se quedan; las aclaraciones repetidas o no pedidas se revisan página por página al rehacer cada demo (V4.8.10 en adelante).
 - **Experiencia completa:**
   - el texto del CV de noviembre en cada punto, sin resumir, más lo que solo traía el CV visual (vistas, módulos web y conexión con la base de datos, tablas, búsqueda y carga, versionado y documentación técnica, entregables remotos y control de calidad básico);
   - los puestos usan los nombres del CV de noviembre (Servicio Social · Analista de Datos / Desarrollo Web);
