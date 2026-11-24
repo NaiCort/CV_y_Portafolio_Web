@@ -19,6 +19,17 @@
   - Ian actualizó el PDF del CV con el mismo orden y la experiencia completa (23/11/2026, segunda versión); se sirve en la misma ruta, `/cv/cv-ian-aldana-noviembre-2026.pdf`;
   - donde el PDF y el sitio chocan, manda el PDF: Rincón de Imágenes es «Proyecto independiente (Astro)» y Prácticas va sin «Full-Stack Jr». El sitio conserva detalles que suman, como «tablas, búsqueda y carga» y «control de calidad básico»;
   - el PDF no aclara que el proyecto es este sitio (se entrega fuera del sitio); el sitio sí.
+- **Rincón de Imágenes ampliado** (24/11/2026):
+  - se clonó `NaiCort/rincon-de-imagenes` (solo lectura) y se revisó su código;
+  - el texto nuevo describe lo que de verdad tiene el sitio:
+    - catálogo generado desde carpetas (26 obras, 3 categorías);
+    - script `sharp` de TIFF a WebP (8 fotos, de 75.5 MB a 1.96 MB, medido en el repositorio);
+    - WhatsApp con mensajes prellenados, redes y mapa;
+    - SEO y Open Graph;
+    - dominio y despliegue en Cloudflare (los hizo Ian);
+    - fotografía del local y del escultor (las de las piezas las dio el dueño);
+  - Ian lo puso en el PDF (cuarta versión, con la fecha «Mayo 2026 — Actualidad», según el historial del repositorio) y el sitio usa el mismo texto y la misma fecha;
+  - no se publican cifras de Lighthouse: varían en cada medición y caducan con cada cambio.
 - **Notas innecesarias quitadas del CV** (Ian, 23/11/2026):
   - «CV actualizado en noviembre de 2026. Los datos coinciden con el PDF y con LinkedIn.»;
   - la nota bajo «Demos» («Sitios de ejemplo… todo lo que se puede tocar funciona»).

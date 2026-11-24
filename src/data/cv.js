@@ -136,18 +136,22 @@ export const PROYECTOS = [
 // Experiencia: trabajo para otros (un negocio real, una institución y clientes), con el texto del
 // CV de noviembre y lo que solo trae el CV visual (vistas, módulos web, tablas y carga,
 // entregables y control de calidad) integrado sin repetir. Rincón de Imágenes va aquí porque es
-// un sitio para un negocio local en funcionamiento (Ian prefiere presentarlo como independiente).
+// un sitio para un negocio local en funcionamiento; su texto sale de la revisión del repositorio
+// NaiCort/rincon-de-imagenes (24/11/2026).
 export const EXPERIENCIA = [
   {
     id: "rincon-de-imagenes",
     puesto: "Rincón de Imágenes",
-    lugar: "Proyecto independiente (Astro)",
-    periodo: "Junio 2026",
+    lugar: "Desarrollo Web (Astro)",
+    periodo: "Mayo 2026 – actualidad",
     url: "https://rincondeimagenes.com",
     puntos: [
-      "Sitio web publicado para un negocio de artesanías y escultura en funcionamiento: catálogo digital, integración con WhatsApp, Instagram y Google Maps.",
+      "Sitio web publicado para el espacio de exhibición y venta de un escultor en Xalapa: semblanza, trayectoria y prensa, catálogo de obras y contacto; fotografía del local y del escultor.",
+      "Catálogo de 26 obras en 3 categorías generado automáticamente desde carpetas de imágenes al compilar; las piezas nuevas se agregan sin modificar código.",
+      "Conversión de fotografías TIFF a WebP con un script en Node.js (sharp), de 75.5 MB a 1.96 MB; diseño responsivo y animaciones que respetan la preferencia de movimiento reducido.",
+      "Contacto por WhatsApp con mensajes prellenados, Instagram, Facebook y Google Maps; metadatos SEO y Open Graph; dominio propio y despliegue en Cloudflare; mantenimiento según las necesidades del negocio.",
     ],
-    stack: ["Astro", "HTML, CSS y JS", "Git y GitHub"],
+    stack: ["Astro", "JavaScript", "Node.js (sharp)", "HTML y CSS", "Git y GitHub", "Cloudflare"],
   },
   {
     id: "servicio-social",
