@@ -2,7 +2,8 @@
 
 - Experiencia completa, con el texto del CV de noviembre y lo que solo traía el CV visual.
 - Orden final (decisión de Ian, 23/11/2026): «Proyectos» con este sitio, y «Experiencia» con Rincón de Imágenes (sitio para un negocio local en funcionamiento, hecho como proyecto escolar), Servicio Social, Prácticas y Freelance.
-- PDF del CV actualizado por Ian, con Proyectos y Experiencia en el mismo orden.
+- PDF del CV actualizado por Ian (segunda versión), con Proyectos y Experiencia en el mismo orden. El sitio usa sus mismas etiquetas: Rincón de Imágenes como proyecto independiente, y Prácticas sin «Full-Stack Jr».
+- Se quitaron del CV dos notas innecesarias: «CV actualizado…» y la aclaración bajo «Demos».
 - «Múltiples Demos» pasa a llamarse «CV y portafolio web» en el CV: es el sitio que se está viendo, y su enlace lleva a la misma página.
 - Se quitó «Ver las 7 demos»: las demos ya están a la vista.
 - Cada certificación abre su PDF.

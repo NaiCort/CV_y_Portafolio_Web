@@ -25,7 +25,7 @@ Acordado con Ian el 21 de noviembre de 2026, con el Sitio Profesional Integral V
    - Rosales y Vértice (V4.8.50);
    - Cotejo (V4.8.60). Idea de Ian (22/11/2026): llevar a Cotejo el fondo de cuadrícula que tuvo el CV en V4.8.3 (parecido a una hoja de Excel), que encaja con la contabilidad.
 
-   Cada demo recibe su botón «Contratar un sitio como este» con su identificador estable, y el cotizador se ajusta con ella.
+   En cada demo se quitan las aclaraciones repetidas o no pedidas (decisión de Ian del 23/11/2026), conservando los avisos de simulación que pide el principio rector. Cada demo recibe su botón «Contratar un sitio como este» con su identificador estable, y el cotizador se ajusta con ella.
 5. **Cotizador, ajuste final:** revisión de conjunto y lo que se considere pertinente al terminar las demos.
 
 La versión en inglés (Sitio Profesional, sección 25) va después del CV en español. Su número se decide al llegar.

@@ -7,7 +7,6 @@ import { DEMOS, ESTADOS, disponible } from "../data/demos"
 import {
   CERTIFICACIONES,
   CONTACTO,
-  CV_VERSION,
   DOCUMENTOS,
   EDUCACION,
   EXPERIENCIA,
@@ -413,18 +412,10 @@ export default function Bienvenida() {
             ))}
           </ol>
         </section>
-        <p className="cv-pie">
-          CV actualizado en {CV_VERSION.etiqueta.toLowerCase()}. Los datos coinciden con el PDF y
-          con LinkedIn.
-        </p>
       </main>
 
       <aside id="demos" className="cv-der" aria-labelledby="cv-demos-titulo">
         <h2 id="cv-demos-titulo">Demos</h2>
-        <p className="cv-der-nota">
-          Sitios de ejemplo, uno por giro de negocio. Los negocios son ficticios; todo lo que se
-          puede tocar funciona.
-        </p>
         <ListaDemos alElegir={abrirDemo} />
         <div className="cv-cotizar">
           <p className="cv-cotizar-titulo">¿Quieres un sitio así?</p>

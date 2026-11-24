@@ -45,7 +45,7 @@ await suite("cv", async ({ run, base }) => {
           const alto = await page.evaluate(() => document.documentElement.scrollHeight)
           assert(alto <= 901, "La página entera no se desplaza")
           await page.locator("main").evaluate((m) => m.scrollTo(0, m.scrollHeight))
-          await page.getByText("CV actualizado en").waitFor()
+          await page.locator('[aria-labelledby="cv-certificaciones"]').waitFor()
           // Índice: marca la sección elegida, también la última (que no llega arriba).
           for (const id of ["cv-certificaciones", "cv-educacion", "cv-certificaciones"]) {
             await page.locator(`.cv-indice a[href="#${id}"]`).click()

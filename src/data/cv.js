@@ -1,6 +1,7 @@
 // Datos del CV web (Sitio Profesional Integral V1.4, sección 5). Fuente: CV de noviembre de 2026,
 // que manda cuando difiere del CV visual V2; del V2 se toman los roles por puesto, los cursos
-// relevantes de Mecatrónica y el seguimiento de entregables en Fiverr. El CV web, el PDF y
+// relevantes de Mecatrónica y el seguimiento de entregables en Fiverr. Donde el PDF y esto chocan
+// (nombres, etiquetas), manda el PDF; el sitio puede dar más detalle. El CV web, el PDF y
 // LinkedIn deben decir lo mismo: un cambio aquí se replica en los otros dos.
 // Las claves de texto están pensadas para añadir el inglés (sección 25) sin cambiar la forma.
 
@@ -135,16 +136,16 @@ export const PROYECTOS = [
 // Experiencia: trabajo para otros (un negocio real, una institución y clientes), con el texto del
 // CV de noviembre y lo que solo trae el CV visual (vistas, módulos web, tablas y carga,
 // entregables y control de calidad) integrado sin repetir. Rincón de Imágenes va aquí porque es
-// un sitio para un negocio local en funcionamiento, hecho como proyecto escolar.
+// un sitio para un negocio local en funcionamiento (Ian prefiere presentarlo como independiente).
 export const EXPERIENCIA = [
   {
     id: "rincon-de-imagenes",
     puesto: "Rincón de Imágenes",
-    lugar: "Sitio para un negocio local en funcionamiento · proyecto escolar (Astro)",
+    lugar: "Proyecto independiente (Astro)",
     periodo: "Junio 2026",
     url: "https://rincondeimagenes.com",
     puntos: [
-      "Sitio web publicado para un negocio de artesanías y escultura: catálogo digital, integración con WhatsApp, Instagram y Google Maps.",
+      "Sitio web publicado para un negocio de artesanías y escultura en funcionamiento: catálogo digital, integración con WhatsApp, Instagram y Google Maps.",
     ],
     stack: ["Astro", "HTML, CSS y JS", "Git y GitHub"],
   },
@@ -163,7 +164,7 @@ export const EXPERIENCIA = [
   },
   {
     id: "practicas",
-    puesto: "Prácticas Profesionales · Full-Stack Jr",
+    puesto: "Prácticas Profesionales",
     lugar: "CECyTEV, Dirección Administrativa / RRHH · Xalapa, Ver.",
     periodo: "Mayo – junio 2025",
     puntos: [

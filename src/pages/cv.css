@@ -484,11 +484,6 @@ a:focus-visible > .cv-flecha {
   gap: 6px;
   margin-top: 6px;
 }
-.cv-pie {
-  font-size: 14px;
-  color: var(--texto-3);
-  max-width: 44rem;
-}
 /* La tarjeta bajo el cursor se ilumina y sus hermanas se atenúan (solo con mouse). */
 @media (hover: hover) and (min-width: 900px) {
   .cv-item:hover {
@@ -512,9 +507,6 @@ a:focus-visible > .cv-flecha {
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--texto);
-}
-.cv-der-nota {
-  font-size: 14.5px;
 }
 .cv-demos {
   display: grid;
