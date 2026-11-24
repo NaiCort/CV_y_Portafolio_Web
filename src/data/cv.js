@@ -143,7 +143,7 @@ export const EXPERIENCIA = [
     id: "rincon-de-imagenes",
     puesto: "Rincón de Imágenes",
     lugar: "Desarrollo Web (Astro)",
-    periodo: "Junio 2026 – actualidad",
+    periodo: "Mayo 2026 – actualidad",
     url: "https://rincondeimagenes.com",
     puntos: [
       "Sitio web publicado para el espacio de exhibición y venta de un escultor en Xalapa: semblanza, trayectoria y prensa, catálogo de obras y contacto; fotografía del local y del escultor.",

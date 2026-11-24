@@ -28,7 +28,7 @@
     - SEO y Open Graph;
     - dominio y despliegue en Cloudflare (los hizo Ian);
     - fotografía del local y del escultor (las de las piezas las dio el dueño);
-  - Ian lo puso en la tercera versión del PDF y el sitio usa el mismo texto;
+  - Ian lo puso en el PDF (cuarta versión, con la fecha «Mayo 2026 — Actualidad», según el historial del repositorio) y el sitio usa el mismo texto y la misma fecha;
   - no se publican cifras de Lighthouse: varían en cada medición y caducan con cada cambio.
 - **Notas innecesarias quitadas del CV** (Ian, 23/11/2026):
   - «CV actualizado en noviembre de 2026. Los datos coinciden con el PDF y con LinkedIn.»;
