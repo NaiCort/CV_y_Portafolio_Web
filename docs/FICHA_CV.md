@@ -18,17 +18,16 @@ Un CV oscuro y cálido que sale de la foto de Ian: el carbón de su playera como
 | Texto de lectura | `#BCAEA2` | Relato del CV |
 | Texto secundario | `#A29385` | Fechas, rótulos y notas |
 | Filete | `#352B25` | Separación de columnas, contornos tenues |
-| Acento: brasa | `#F2803F` | Acción principal (PDF, Cotizar), sección activa del índice, «hoy» de la línea de tiempo y proyectos en la línea de tiempo |
+| Acento: brasa | `#F2803F` | Acción principal (PDF, Cotizar) y sección activa del índice |
 | Brasa clara | `#FFB37F` | Texto de etiquetas y estado; acción principal al pasar el cursor |
 
 **Regla del acento:** la brasa marca lo que se puede hacer o lo que está activo; nunca se usa como fondo de bloques grandes. Las etiquetas usan la brasa al 12 % de fondo con texto en brasa clara.
 
 ## Tipografía
 
-Se conservan las tres de la primera dirección, servidas desde `public/cv/fuentes/` con respaldos medidos:
+Dos tipografías, servidas desde `public/cv/fuentes/` con respaldos medidos:
 - **Bricolage Grotesque:** nombre, títulos, botones, rótulos y etiquetas.
 - **Source Serif 4:** el relato.
-- **JetBrains Mono:** queda disponible, pero ya no se usa en la página.
 
 Los rótulos de sección van en mayúsculas pequeñas con espaciado de 0.12 em.
 
@@ -77,7 +76,7 @@ Reflector que sigue al cursor (una mancha de luz tenue). Es el único que se ace
 
 - **Escritorio (900 px o más):** tres columnas con desplazamiento propio.
   - Identidad: foto, nombre, título, enfoque, PDF, índice, contacto, idiomas y habilidades.
-  - CV: resumen, trayectoria, proyectos, experiencia, educación y certificaciones.
+  - CV: resumen, proyectos, experiencia, educación y certificaciones (la línea de tiempo se quitó en V4.8.5).
   - Demos y cotizador.
 - **Celular:** cabecera fija con «Demos» (desplegable) y «Cotizar». La lectura sigue este orden:
   1. foto, nombre y PDF;
