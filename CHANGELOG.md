@@ -1,3 +1,14 @@
+# V4.9.4 · 25 de noviembre de 2026 · Precios con investigación
+
+- Investigación de precios junior, intermedio y senior en México, el resto de América y Europa, por tipo de sitio, por función, IA, extras, mantenimiento y urgencia (`docs/INVESTIGACION_PRECIOS.md`).
+- Niveles de tarifa en los datos. Se cotiza como junior (400 MXN, 30 USD y 28 EUR por hora); el intermedio queda listo para cuando haya tres proyectos reales con testimonio.
+- Las funciones de IA ya tienen precio: asistente de WhatsApp, asistente de preguntas, documentos automáticos y lectura de facturas. Se añade el diagnóstico de automatización. Cada una dice qué costos de terceros van aparte.
+- Ajustes según el mercado:
+  - más horas en cuentas de usuario, cobro en línea, panel de administración y reservas;
+  - redacción de textos por página;
+  - entrega exprés del +60 % al +75 %.
+- El precio «completo» de cada tipo ya no suma la IA ni los extras de contenido.
+
 # V4.9.3 · 25 de noviembre de 2026 · Plan mensual y sugerencias de tipo
 
 - Forma de pago a elegir:
