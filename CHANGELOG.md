@@ -8,6 +8,7 @@
 - Entrega prioritaria o exprés y planes de mantenimiento.
 - La solicitud sale por WhatsApp o correo con el folio, el detalle y la configuración en un enlace; pregunta si se necesita factura y para quién. El sitio no guarda datos.
 - Precios propuestos del Sitio Profesional, en `src/data/catalogo.js`; se deciden al terminar el cotizador.
+- Corrección tras la revisión de Ian: regresar con el botón del navegador desde una demo de ejemplo vuelve a «Elige tipo» a la misma altura (antes saltaba a «Ajusta» como si ya se hubiera elegido). Cada paso es una entrada del historial.
 
 # V4.8.7 · 25 de noviembre de 2026 · Pasada final y cierre del CV
 
