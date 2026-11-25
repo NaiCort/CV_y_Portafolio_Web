@@ -39,7 +39,7 @@
 - Revisar en Google Search Console que la portada se indexe, cuando Ian quiera darla de alta.
 - V4.8.7: pasada final, cierre y Documento Maestro.
 - Después:
-  - cotizador base;
-  - demos (V4.8.10 en adelante);
+  - cotizador base (V4.9);
+  - demos (V4.10);
   - versión en inglés;
   - LinkedIn.

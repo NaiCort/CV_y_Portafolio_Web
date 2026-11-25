@@ -23,12 +23,12 @@ acciones ficticias del negocio.
   Gimnasio (cerrada en V4.4.8 con **Brío**) → Taller mecánico (cerrada en V4.5.6 con
   **Rosales y Vértice**) → Despacho contable (cerrada en V4.6.8 con **Cotejo**) →
   **Revista digital (cerrada en V4.7.21 con Rubor, Prisma y Umbral)**. Las siete demos están
-  terminadas; sigue la **fase de ajustes V4.8**, cuyo plan está en `docs/PLAN_V4.8.md`
+  terminadas; sigue la **fase de ajustes V4.8 a V4.11**, cuyo plan está en `docs/PLAN_V4.8.md`
   (leerlo antes de trabajar): V4.8.0 preparación (hecha) → V4.8.1–V4.8.7 CV web y portafolio (la portada
   se prerenderiza al compilar con `scripts/prerender.mjs`; las demás rutas usan `dist/app.html`)
-  en `/` → cotizador base → demos en orden (Psicólogo V4.8.10, que se queda como landing de una página, Patio 12 V4.8.20, Ladera
-  V4.8.30, Brío V4.8.40, Taller V4.8.50, Cotejo V4.8.60), cada una conectada al cotizador →
-  ajuste final del cotizador. Catálogo de demos en `src/data/demos.js` y datos del CV en
+  en `/` → **V4.9** cotizador base → **V4.10** demos en orden (Psicólogo V4.10.10, que se queda como landing de una página, Patio 12 V4.10.20, Ladera
+  V4.10.30, Brío V4.10.40, Taller V4.10.50, Cotejo V4.10.60), cada una conectada al cotizador →
+  **V4.11** ajuste final del cotizador (cada etapa con su versión menor, decisión de Ian del 25/11/2026). Catálogo de demos en `src/data/demos.js` y datos del CV en
   `src/data/cv.js`. El CV vive en `src/pages/Bienvenida.jsx` y `src/pages/cv.css`, con
   su ficha en `docs/FICHA_CV.md` (dirección «Brasa»; leerla antes de tocarlo) y pruebas de navegador en
   `npm run test:browser:cv`; el cotizador provisional está en `src/pages/Cotizador.jsx`.
