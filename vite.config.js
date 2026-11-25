@@ -3,6 +3,7 @@ import react from "@vitejs/plugin-react"
 import tailwindcss from "@tailwindcss/vite"
 import fs from "node:fs"
 import path from "node:path"
+import process from "node:process"
 
 // Convierte un `source` de vercel.json («/(.*)», «/assets/(.*)») en una expresión regular: los
 // grupos entre paréntesis se copian tal cual y el resto se toma como texto literal. Basta para los

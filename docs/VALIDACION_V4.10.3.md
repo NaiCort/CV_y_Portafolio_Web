@@ -4,7 +4,7 @@
 
 ## Comandos y resultados
 
-- **`npm run lint` y `npm run format:check`:** sin errores.
+- **`npm run lint` y `npm run format:check`:** sin errores después de la corrección de abajo («Corrección tras la revisión de GitHub»).
 - **`npm test`:** 400 pruebas en 45 archivos, todas aprobadas. Incluye `tests/v4103-handbook.test.jsx`, nueva, con cinco pruebas:
   - encabezados de seguridad;
   - política de contenido sin scripts en línea ni `eval`, con OpenFreeMap como único origen externo;
@@ -80,6 +80,24 @@ Con la carga diferida, el cotizador y el aviso mostraban un instante «Cargando 
 | G5 Accesibilidad manual | No ejecutado | TalkBack y teclado completo en el teléfono de Ian |
 | G6 Rendimiento | Aprobado | Presupuesto aprobado; LCP de 1.24 a 2.08 s y CLS de 0.000 a 0.091 en cuatro rutas (`RENDIMIENTO.md`) |
 | G7 Publicación | No ejecutado | Ian integra; comprobación posterior en `DESPLIEGUE.md` |
+
+## Corrección tras la revisión de GitHub
+
+La revisión automática del pull request (paso ESLint) falló con `vite.config.js 36:22 error 'process' is not defined (no-undef)`.
+
+- **Qué pasó:** `vite.config.js` usaba `process.env.CSP_ESTRICTA` sin importar `process`. Ese archivo se revisa con las variables globales del navegador, donde `process` no existe.
+- **Por qué no se vio aquí:** las comprobaciones locales pasaron la salida de `npm run lint` por `tail`, y el código de salida que quedó fue el de `tail`, no el de ESLint. El error se reprodujo al correr `npm run lint` solo.
+- **Corrección:** `import process from "node:process"` en `vite.config.js`.
+- **Verificación:** los seis pasos de la revisión de GitHub se repitieron uno por uno, leyendo el código de salida de cada comando, y todos terminaron en 0:
+  - lint;
+  - formato;
+  - pruebas;
+  - compilación;
+  - presupuesto;
+  - auditoría de producción.
+
+  La vista previa con `CSP_ESTRICTA=1` siguió enviando las dos políticas, y la suite del CV pasó en 390 px.
+- **Cambio de práctica:** desde ahora, las comprobaciones locales leen el código de salida de cada comando, sin tuberías que lo oculten.
 
 ## No comprobado
 
