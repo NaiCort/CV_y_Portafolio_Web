@@ -3,13 +3,14 @@ import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom"
 import { MotionConfig } from "framer-motion"
 import Bienvenida from "./pages/Bienvenida"
 import NotFound from "./pages/NotFound"
-import Cotizador from "./pages/Cotizador"
 import RestaurantProvider from "./giros/restaurante/state/RestaurantProvider"
 import FloatingTimer from "./giros/restaurante/components/FloatingTimer"
 import RouteErrorBoundary from "./components/shared/RouteErrorBoundary"
 import VolverCotizador from "./components/shared/VolverCotizador"
 import { CARGAS } from "./rutasDemo"
 
+const Cotizador = lazy(CARGAS["/cotizador"])
+const Privacidad = lazy(CARGAS["/privacidad"])
 const PsicologoApp = lazy(CARGAS["/psicologo"])
 const RestauranteApp = lazy(CARGAS["/restaurante"])
 const CafeApp = lazy(CARGAS["/cafe"])
@@ -44,6 +45,7 @@ export default function App() {
               <Routes>
                 <Route path="/" element={<Bienvenida />} />
                 <Route path="/cotizador" element={<Cotizador />} />
+                <Route path="/privacidad" element={<Privacidad />} />
                 <Route path="/psicologo" element={<PsicologoApp />} />
                 <Route path="/restaurante/*" element={<RestauranteApp />} />
                 <Route path="/cafe/*" element={<CafeApp />} />

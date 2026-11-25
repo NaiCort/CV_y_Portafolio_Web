@@ -1,0 +1,90 @@
+/* Aviso de privacidad (V4.10.3): misma paleta y tipografías que el CV (dirección «Brasa»,
+   docs/FICHA_CV.md), en una sola columna de lectura. */
+.priv-root {
+  --fondo: #15110f;
+  --texto: #efe6dd;
+  --texto-2: #bcaea2;
+  --filete: #352b25;
+  --brasa: #f2803f;
+  --brasa-2: #ffb37f;
+  --f-display: "Cv Bricolage", "Cv Bricolage A", "Cv Bricolage N", system-ui, sans-serif;
+  --f-serif: "Cv Serif", "Cv Serif A", "Cv Serif N", Georgia, serif;
+  min-height: 100vh;
+  min-height: 100dvh;
+  background: var(--fondo);
+  color: var(--texto-2);
+  font: 400 17px/1.65 var(--f-serif);
+  color-scheme: dark;
+}
+.priv-root ::selection {
+  background: var(--brasa);
+  color: var(--fondo);
+}
+.priv-root :where(h1, h2, p, ul) {
+  margin: 0;
+}
+.priv-root :where(p, li) {
+  text-wrap: pretty;
+}
+.priv-root a {
+  color: var(--texto);
+  text-decoration: underline;
+  text-decoration-color: var(--brasa);
+  text-underline-offset: 4px;
+}
+.priv-root a:hover {
+  color: var(--brasa-2);
+}
+.priv-root :focus-visible {
+  outline: 2px solid var(--brasa);
+  outline-offset: 3px;
+}
+.priv-root [tabindex="-1"]:focus {
+  outline: none;
+}
+.priv-cabecera {
+  max-width: 44rem;
+  margin: 0 auto;
+  padding: 24px 20px 0;
+}
+.priv-volver {
+  font: 500 15px/1.5 var(--f-display);
+}
+.priv-main {
+  max-width: 44rem;
+  margin: 0 auto;
+  padding: 32px 20px 96px;
+}
+.priv-main h1 {
+  color: var(--texto);
+  font: 700 clamp(2rem, 5vw, 2.75rem) / 1.1 var(--f-display);
+  letter-spacing: -0.02em;
+}
+.priv-fecha {
+  margin-top: 8px;
+  font: 500 14px/1.5 var(--f-display);
+}
+.priv-main section {
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 1px solid var(--filete);
+}
+.priv-main h2 {
+  margin-bottom: 12px;
+  color: var(--texto);
+  font: 700 20px/1.3 var(--f-display);
+}
+.priv-main p + p,
+.priv-main p + ul,
+.priv-main ul + p {
+  margin-top: 12px;
+}
+.priv-main ul {
+  display: grid;
+  gap: 8px;
+  padding-left: 1.2em;
+}
+.priv-main strong {
+  color: var(--texto);
+  font-weight: 600;
+}

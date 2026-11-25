@@ -1107,7 +1107,9 @@ function PasoEnvia({ config, resultado, folio }) {
             <textarea rows="4" {...campo("comentarios")} />
           </label>
           <p className="cot-mini">
-            Tus datos solo viajan en el mensaje que tú envías; este sitio no los guarda.
+            Tus datos solo viajan en el mensaje que tú envías; este sitio no los guarda. Uso tu
+            nombre y lo que me escribas solo para responderte y preparar tu propuesta. Más detalle
+            en el <Link to="/privacidad">aviso de privacidad</Link>.
           </p>
           <div className="cot-acciones">
             <button

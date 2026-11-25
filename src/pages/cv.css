@@ -271,6 +271,17 @@ a:focus-visible > .cv-flecha {
   display: grid;
   gap: 30px;
 }
+.cv-legal {
+  font: 500 13px/1.5 var(--f-display);
+}
+.cv-legal a {
+  color: var(--texto-2);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.cv-legal a:hover {
+  color: var(--texto);
+}
 .cv-datos h2 {
   font: 700 12px/1 var(--f-display);
   letter-spacing: 0.12em;
