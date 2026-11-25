@@ -6,6 +6,7 @@ import { createRequire } from "node:module"
 import { chromium } from "playwright"
 
 const require = createRequire(import.meta.url)
+const axeFuente = await fs.readFile(require.resolve("axe-core/axe.min.js"), "utf8")
 export const dialog = (page) => page.getByRole("dialog")
 export const button = (scope, name) => scope.getByRole("button", { name, exact: true })
 export const close = async (page) => {
@@ -28,7 +29,9 @@ export async function audit(page) {
       return opacity === 0 || opacity >= 0.999
     }),
   )
-  await page.addScriptTag({ path: require.resolve("axe-core/axe.min.js") })
+  // axe se evalúa por el canal de depuración del navegador, no como <script> en línea: así la
+  // política de contenido del sitio (que bloquea scripts en línea) sigue activa en las pruebas.
+  if (!(await page.evaluate(() => Boolean(window.axe)))) await page.evaluate(axeFuente)
   const violations = await page.evaluate(async () =>
     (
       await window.axe.run(document, {
@@ -159,6 +162,11 @@ export async function suite(name, execute) {
         brokenLocal = []
       page.setDefaultTimeout(12_000)
       page.on("pageerror", (error) => errors.push(error.message))
+      // V4.10.3: cualquier aviso de la política de contenido (aplicada o «solo en reporte», ver
+      // vercel.json y docs/SEGURIDAD.md) cuenta como error de la prueba.
+      page.on("console", (mensaje) => {
+        if (/Content.Security.Policy/i.test(mensaje.text())) errors.push(mensaje.text())
+      })
       page.on("request", (request) => {
         if (["POST", "PUT", "PATCH", "DELETE"].includes(request.method()))
           submissions.push(request.url())

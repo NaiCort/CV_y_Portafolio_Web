@@ -18,6 +18,10 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
+      # V4.10.3 (puerta G4 del Digital Development Handbook): ninguna vulnerabilidad alta en lo que
+      # llega al sitio publicado. Las de herramientas de desarrollo se revisan aparte (docs/SEGURIDAD.md).
+      - name: Dependencias de produccion
+        run: npm audit --omit=dev --audit-level=high
       - name: ESLint
         run: npm run lint
       - name: Formato
@@ -26,3 +30,6 @@ jobs:
         run: npm test
       - name: Compilacion
         run: npm run build
+      # V4.10.3 (regla GEN-011): presupuesto de rendimiento de docs/RENDIMIENTO.md.
+      - name: Presupuesto de rendimiento
+        run: npm run audit:presupuesto
