@@ -80,8 +80,7 @@ export function seleccionBase(categoria) {
     const e = f.estados[categoria]
     if (e === "N" || e === "I") sel[f.id] = 1
   }
-  // En Personalizado se parte de una sola página (la estructura más pequeña).
-  if (categoria === "personalizado") sel["una-pagina"] = 1
+  // En Personalizado no viene nada marcado: se construye desde cero (decisión de Ian, 25/11/2026).
   return sel
 }
 
@@ -252,9 +251,15 @@ export function calcular(config) {
   const u = urgencias.find((x) => x.id === config.urgencia && x.disponible) ?? urgencias[0]
   const recargo = Math.round(proyecto * u.recargo)
   const lanzamiento = -Math.round((proyecto + recargo) * PARAMETROS.lanzamiento)
-  const neto = proyecto + recargo + lanzamiento
+  // El primer mes del plan de mantenimiento entra en el total y en el desglose (pedido de Ian,
+  // 25/11/2026); los siguientes se pagan cada mes. El lanzamiento no se aplica al mantenimiento.
+  const planElegido = MANTENIMIENTO.find((p) => p.id === config.plan) ?? MANTENIMIENTO[0]
+  const primerMes = planElegido.precio[config.moneda]
+  const pagoUnicoNeto = proyecto + recargo + lanzamiento
+  const neto = pagoUnicoNeto + primerMes
   const iva = m.iva ? Math.round(neto * PARAMETROS.iva) : 0
   const total = neto + iva
+  const pagoUnico = m.iva ? Math.round(pagoUnicoNeto * (1 + PARAMETROS.iva)) : pagoUnicoNeto
   const dias = (h) => Math.max(1, Math.ceil((h / PARAMETROS.horasPorDia) * u.plazo))
   const plan = MANTENIMIENTO.find((p) => p.id === config.plan) ?? MANTENIMIENTO[0]
   const mensualidadNeta = plan.precio[config.moneda]
@@ -273,7 +278,9 @@ export function calcular(config) {
     neto,
     iva,
     total,
-    anticipo: Math.round(total * PARAMETROS.anticipo),
+    primerMes,
+    pagoUnico,
+    anticipo: Math.round(pagoUnico * PARAMETROS.anticipo),
     horas: [Math.round(hMin), Math.round(hMax)],
     dias: [dias(hMin), dias(hMax)],
     plan,
@@ -294,6 +301,12 @@ export function rangoCategoria(categoria, moneda) {
     if (r.config) cfg = r.config
   }
   return { desde: desde.total, completo: calcular(cfg).total }
+}
+
+// «2 días hábiles» o «de 3 a 5 días hábiles».
+export function textoPlazo([a, b]) {
+  if (a === b) return `${a} ${a === 1 ? "día hábil" : "días hábiles"}`
+  return `de ${a} a ${b} días hábiles`
 }
 
 // --- Moneda, folio y dirección ---
