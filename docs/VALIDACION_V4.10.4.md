@@ -19,7 +19,15 @@
   | Suite | Resultado |
   | --- | --- |
   | CV y cotizador | 5 de 5 |
-  | Psicólogo, Patio 12, Ladera, Brío, Taller, Cotejo y Revista | En curso |
+  | Psicólogo | 16 de 16 |
+  | Patio 12 | 12 de 12 |
+  | Ladera | 5 de 5 |
+  | Brío | 5 de 5 |
+  | Rosales y Vértice | 5 de 5 |
+  | Cotejo | 5 de 5 |
+  | Revista | 5 de 5 |
+
+  En total, 58 de 58 escenarios, cada uno con axe, desbordes, ningún envío real y ningún aviso de la política.
 
 ## Puertas del handbook (G0 a G7)
 
@@ -29,8 +37,8 @@
 | G1 Arquitectura | Aprobado | Sin cambios de datos ni de rutas; solo el encabezado |
 | G2 Diseño | No aplica | Sin cambios visuales |
 | G3 Implementación | Aprobado | Lint, formato, 401 pruebas, compilación y presupuesto |
-| G4 Seguridad | Aprobado en la vista previa local; no ejecutado en producción | Política aplicada sin avisos en 23 rutas y en las suites ya terminadas |
-| G5 Accesibilidad automatizada | En curso | axe en las suites |
+| G4 Seguridad | Aprobado en la vista previa local; no ejecutado en producción | Política aplicada sin avisos en 23 rutas y en las ocho suites (58 escenarios) |
+| G5 Accesibilidad automatizada | Aprobado | axe en los 58 escenarios |
 | G5 Accesibilidad manual | No ejecutado | TalkBack y teclado en el teléfono de Ian |
 | G6 Rendimiento | Aprobado | Presupuesto sin cambios; la política no añade descargas |
 | G7 Publicación | No ejecutado | Ian integra. Después, consola del sitio publicado en InPrivate (`DESPLIEGUE.md`) |
