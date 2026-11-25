@@ -124,4 +124,44 @@ describe("V4.9: cotizador", () => {
     await click(empresa)
     expect(container.textContent).toContain("retenciones")
   })
+
+  it("al llegar sin elegir nada, ninguna tarjeta está resaltada y la nota pide elegir", async () => {
+    const { container } = await montar("/cotizador?moneda=MXN")
+    expect(container.querySelector(".cot-tipo.on")).toBeNull()
+    expect(container.querySelector(".cot-vacia").textContent).toMatch(/Elige un tipo de sitio/)
+    expect(container.querySelector(".cot-total")).toBeNull()
+    expect(container.querySelector(".cot-barra").hidden).toBe(true)
+  })
+
+  it("Personalizado empieza sin funciones marcadas", async () => {
+    const { container } = await montar("/cotizador?moneda=MXN")
+    await click(button("Continuar con personalizado"))
+    const marcadas = [...container.querySelectorAll(".cot-fun > input")].filter((i) => i.checked)
+    expect(marcadas).toHaveLength(0)
+    expect(container.querySelector(".cot-renglones").textContent).toContain(
+      "Ajuste al proyecto mínimo",
+    )
+  })
+
+  it("elegir una estructura que choca con otra lo explica sin decir que dependía de ella", async () => {
+    const { container } = await montar("/cotizador?tipo=personalizado&f=paginas&moneda=MXN")
+    await click(casilla(container, "Una sola página con secciones"))
+    const aviso = container.querySelector(".cot-aviso").textContent
+    expect(aviso).toContain("no puede ir junto con ella")
+    expect(aviso).not.toContain("dependía")
+  })
+
+  it("el mantenimiento elegido entra en el desglose y en el total", async () => {
+    const { container } = await montar("/cotizador?demo=psicologo&moneda=MXN")
+    const antes = total(container)
+    const basico = [...container.querySelectorAll('input[name="plan"]')].find(
+      (i) => i.value === "basico",
+    )
+    await click(basico)
+    expect(container.querySelector(".cot-renglones").textContent).toContain(
+      "Mantenimiento Básico, primer mes",
+    )
+    expect(total(container)).not.toBe(antes)
+    expect(container.textContent).toContain("Después, mantenimiento Básico")
+  })
 })

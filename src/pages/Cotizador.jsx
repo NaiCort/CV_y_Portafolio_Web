@@ -32,6 +32,7 @@ import {
   motivoBloqueo,
   precioFuncion,
   rangoCategoria,
+  textoPlazo,
 } from "../lib/cotizacion"
 import { CORREO, FACTURA, enviarSolicitud, formatoDinero, textoSolicitud } from "../lib/solicitud"
 import "./cv.css"
@@ -73,7 +74,11 @@ function textoCambio({ quitadas, agregadas }, accion) {
   if (otrasAgregadas.length)
     partes.push(`También se añadió ${nombres(otrasAgregadas)}, que hace falta.`)
   if (otrasQuitadas.length)
-    partes.push(`También se quitó ${nombres(otrasQuitadas)}, que dependía de ello.`)
+    partes.push(
+      accion === "quitar"
+        ? `También se quitó ${nombres(otrasQuitadas)}, que dependía de ello.`
+        : `Se quitó ${nombres(otrasQuitadas)}, que no puede ir junto con ella.`,
+    )
   return partes.join(" ")
 }
 
@@ -89,6 +94,8 @@ export default function Cotizador() {
     monedaGuardada() ??
     monedaPorIdioma(typeof navigator === "undefined" ? "es-MX" : navigator.language)
   const [config, setConfig] = useState(() => deParametros(params, monedaInicial))
+  // Al llegar sin demo ni tipo, nada está elegido: ninguna tarjeta resaltada y la nota vacía.
+  const [elegido, setElegido] = useState(() => Boolean(config.demo || params.get("tipo")))
   // El paso vive en la dirección: cada paso es una entrada del historial, así que el botón de
   // regresar del navegador vuelve al paso anterior (y de una demo de ejemplo, a «Elige tipo»).
   const paso = PASOS.some(([id]) => id === params.get("paso"))
@@ -163,8 +170,25 @@ export default function Cotizador() {
   }
 
   const elegirCategoria = (categoria, siguiente) => {
-    if (categoria === config.categoria) {
+    const yaElegido = elegido || paso !== "tipo"
+    setElegido(true)
+    if (yaElegido && categoria === config.categoria) {
       if (siguiente) irA(siguiente, config)
+      return
+    }
+    // En «Elige tipo», cada tarjeta es un punto de partida: se empieza desde la base de ese tipo
+    // (en Personalizado, sin nada marcado). En «Ajusta», cambiar de tipo conserva lo compatible.
+    if (paso === "tipo") {
+      const nueva = configInicial({ categoria, moneda: config.moneda })
+      if (yaElegido)
+        setAviso({
+          texto: `Empiezas ${categoria === "personalizado" ? "un proyecto personalizado desde cero" : `desde la base de ${categoriaPorId(categoria).nombre.toLowerCase()}`}.`,
+          antes: config,
+        })
+      else setAviso(null)
+      setTachadas([])
+      setConfig(nueva)
+      if (siguiente) irA(siguiente, nueva)
       return
     }
     const r = cambiarCategoria({ ...config, demo: null, version: null, variante: null }, categoria)
@@ -211,6 +235,7 @@ export default function Cotizador() {
   }
 
   const partirDeDemo = (demo, version = "recomendada") => {
+    setElegido(true)
     setAviso(null)
     setTachadas([])
     const nueva = configInicial({ demo, version, moneda: config.moneda })
@@ -219,6 +244,7 @@ export default function Cotizador() {
   }
 
   const ordenPaso = PASOS.findIndex(([id]) => id === paso)
+  const hayEleccion = elegido || paso !== "tipo"
 
   return (
     <div className="cv-root cv-cotizador cot">
@@ -261,7 +287,12 @@ export default function Cotizador() {
         <main id="contenido" ref={centro} tabIndex={-1} className="cot-centro">
           {aviso && <Aviso aviso={aviso} onDeshacer={deshacer} onCerrar={() => setAviso(null)} />}
           {paso === "tipo" && (
-            <PasoTipo config={config} onElegir={elegirCategoria} onDemo={partirDeDemo} />
+            <PasoTipo
+              config={config}
+              hayEleccion={hayEleccion}
+              onElegir={elegirCategoria}
+              onDemo={partirDeDemo}
+            />
           )}
           {paso === "ajusta" && (
             <PasoAjusta
@@ -293,6 +324,7 @@ export default function Cotizador() {
             resultado={resultado}
             folio={folio}
             tachadas={tachadas}
+            vacia={!hayEleccion}
             paso={paso}
             onMoneda={cambiarMoneda}
             onSiguiente={() => irA(paso === "tipo" ? "ajusta" : "envia")}
@@ -302,13 +334,14 @@ export default function Cotizador() {
       </div>
 
       <p className="cv-oculto" aria-live="polite" aria-atomic="true">
-        {`Total ${MONEDAS[config.moneda].iva ? "con IVA" : "sin impuestos"}: ${formatoDinero(resultado.total, config.moneda)}, de ${resultado.dias[0]} a ${resultado.dias[1]} días hábiles.`}
+        {hayEleccion &&
+          `Total ${MONEDAS[config.moneda].iva ? "con IVA" : "sin impuestos"}: ${formatoDinero(resultado.total, config.moneda)}, ${textoPlazo(resultado.dias)}.`}
       </p>
-      <div className="cot-barra" aria-hidden={notaAbierta}>
+      <div className="cot-barra" aria-hidden={notaAbierta} hidden={!hayEleccion}>
         <div>
           <p className="cot-mini">
             {MONEDAS[config.moneda].iva ? "Total con IVA" : "Total sin impuestos"} ·{" "}
-            {resultado.dias[0]} a {resultado.dias[1]} días
+            {textoPlazo(resultado.dias).replace(" hábiles", "").replace(" hábil", "")}
           </p>
           <p className="cot-barra-total">{formatoDinero(resultado.total, config.moneda)}</p>
         </div>
@@ -425,7 +458,7 @@ function Categorias({ config, onElegir }) {
   )
 }
 
-function PasoTipo({ config, onElegir, onDemo }) {
+function PasoTipo({ config, hayEleccion, onElegir, onDemo }) {
   const disponibles = DEMOS.filter((d) => d.estado === "disponible")
   return (
     <>
@@ -446,7 +479,13 @@ function PasoTipo({ config, onElegir, onDemo }) {
         </h2>
         <div className="cot-tipos">
           {CATEGORIAS.map((c) => (
-            <Tipo key={c.id} categoria={c} config={config} onElegir={onElegir} />
+            <Tipo
+              key={c.id}
+              categoria={c}
+              config={config}
+              elegida={hayEleccion && config.categoria === c.id}
+              onElegir={onElegir}
+            />
           ))}
         </div>
       </section>
@@ -485,12 +524,12 @@ function PasoTipo({ config, onElegir, onDemo }) {
   )
 }
 
-function Tipo({ categoria, config, onElegir }) {
+function Tipo({ categoria, config, elegida, onElegir }) {
   const ejemplo = categoria.ejemplo ? demoPorId(categoria.ejemplo) : null
   const incluye = FUNCIONES.filter((f) => ["N", "I"].includes(f.estados[categoria.id]))
   const rango = rangoCategoria(categoria.id, config.moneda)
   return (
-    <article className={`cot-tipo${config.categoria === categoria.id ? " on" : ""}`}>
+    <article className={`cot-tipo${elegida ? " on" : ""}`}>
       <h3>{categoria.nombre}</h3>
       <p>{categoria.para}</p>
       <p className="cot-tipo-precio">
@@ -700,9 +739,35 @@ function Funcion({ funcion: f, config, moneda, onAlternar, onCantidad }) {
   )
 }
 
-function Nota({ config, resultado: r, folio, tachadas, paso, onMoneda, onSiguiente, onCerrar }) {
+function Nota({
+  config,
+  resultado: r,
+  folio,
+  tachadas,
+  paso,
+  vacia,
+  onMoneda,
+  onSiguiente,
+  onCerrar,
+}) {
   const m = r.moneda
   const conIva = MONEDAS[m].iva
+  if (vacia)
+    return (
+      <div className="cot-nota">
+        <div className="cot-nota-cabeza">
+          <h2>Tu cotización</h2>
+        </div>
+        <p className="cot-mini">
+          Folio <span className="cot-num">{folio}</span>
+        </p>
+        <Monedas config={config} onMoneda={onMoneda} />
+        <p className="cot-vacia">
+          Elige un tipo de sitio o parte de una demo. Aquí verás cada función con su precio, el
+          total y el plazo.
+        </p>
+      </div>
+    )
   return (
     <div className="cot-nota">
       <div className="cot-nota-cabeza">
@@ -714,21 +779,7 @@ function Nota({ config, resultado: r, folio, tachadas, paso, onMoneda, onSiguien
       <p className="cot-mini">
         Folio <span className="cot-num">{folio}</span> · {categoriaPorId(config.categoria).nombre}
       </p>
-      <fieldset className="cot-moneda">
-        <legend className="cv-oculto">Moneda</legend>
-        {Object.keys(MONEDAS).map((id) => (
-          <label key={id} className={config.moneda === id ? "on" : ""}>
-            <input
-              type="radio"
-              name="moneda"
-              value={id}
-              checked={config.moneda === id}
-              onChange={() => onMoneda(id)}
-            />
-            {id}
-          </label>
-        ))}
-      </fieldset>
+      <Monedas config={config} onMoneda={onMoneda} />
       <ul className="cot-renglones">
         {r.lineas.map((l) => (
           <li key={l.id}>
@@ -753,10 +804,12 @@ function Nota({ config, resultado: r, folio, tachadas, paso, onMoneda, onSiguien
               </span>
             </li>
           ))}
-        <li>
-          <span>Ficha de identidad y pasada de calidad</span>
-          <span className="cot-num">{formatoDinero(r.calidad, m).replace(` ${m}`, "")}</span>
-        </li>
+        {r.calidad > 0 && (
+          <li>
+            <span>Ficha de identidad y pasada de calidad</span>
+            <span className="cot-num">{formatoDinero(r.calidad, m).replace(` ${m}`, "")}</span>
+          </li>
+        )}
         {r.minimo > 0 && (
           <li>
             <span>Ajuste al proyecto mínimo</span>
@@ -773,6 +826,12 @@ function Nota({ config, resultado: r, folio, tachadas, paso, onMoneda, onSiguien
           <span>Precio de lanzamiento −{Math.round(PARAMETROS.lanzamiento * 100)} %</span>
           <span className="cot-num">{formatoDinero(r.lanzamiento, m).replace(` ${m}`, "")}</span>
         </li>
+        {r.primerMes > 0 && (
+          <li>
+            <span>Mantenimiento {r.plan.nombre}, primer mes</span>
+            <span className="cot-num">{formatoDinero(r.primerMes, m).replace(` ${m}`, "")}</span>
+          </li>
+        )}
         {conIva && (
           <li>
             <span>IVA {Math.round(PARAMETROS.iva * 100)} %</span>
@@ -785,15 +844,16 @@ function Nota({ config, resultado: r, folio, tachadas, paso, onMoneda, onSiguien
         <span className="cot-total-cifra cot-num">{formatoDinero(r.total, m)}</span>
       </div>
       <p className="cot-mini">
-        De {r.dias[0]} a {r.dias[1]} días hábiles ({r.horas[0]} a {r.horas[1]} h) desde el anticipo
-        y tus materiales. Anticipo del {Math.round(PARAMETROS.anticipo * 100)} %:{" "}
-        {formatoDinero(r.anticipo, m)}.
+        {textoPlazo(r.dias).replace(/^d/, "D")} ({r.horas[0]} a {r.horas[1]} h) desde el anticipo y
+        tus materiales. Anticipo del {Math.round(PARAMETROS.anticipo * 100)} %:{" "}
+        {formatoDinero(r.anticipo, m)}
+        {r.primerMes ? " (sin el mantenimiento)" : ""}.
       </p>
       {r.aparte.length > 0 && <p className="cot-mini">Lo de IA se suma en la propuesta.</p>}
       {r.plan.id !== "ninguno" && (
         <p className="cot-mini">
-          Mantenimiento {r.plan.nombre}: {formatoDinero(r.mensualidad, m)} al mes
-          {conIva ? " con IVA" : ""}, aparte.
+          Después, mantenimiento {r.plan.nombre}: {formatoDinero(r.mensualidad, m)} al mes
+          {conIva ? " con IVA" : ""}.
         </p>
       )}
       {!conIva && <p className="cot-mini">Precio sin impuestos; se confirman en la propuesta.</p>}
@@ -958,5 +1018,25 @@ function PasoEnvia({ config, resultado, folio }) {
         </div>
       )}
     </>
+  )
+}
+
+function Monedas({ config, onMoneda }) {
+  return (
+    <fieldset className="cot-moneda">
+      <legend className="cv-oculto">Moneda</legend>
+      {Object.keys(MONEDAS).map((id) => (
+        <label key={id} className={config.moneda === id ? "on" : ""}>
+          <input
+            type="radio"
+            name="moneda"
+            value={id}
+            checked={config.moneda === id}
+            onChange={() => onMoneda(id)}
+          />
+          {id}
+        </label>
+      ))}
+    </fieldset>
   )
 }
