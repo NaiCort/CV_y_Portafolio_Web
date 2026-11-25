@@ -25,15 +25,15 @@ export const DEMOS = [
     nombre: "Consultorio de psicología",
     ruta: "/psicologo",
     estado: "disponible",
-    version: "V4.1.3",
-    resumen: "Consultas, citas y un primer acercamiento sin fricción, en cuatro estilos.",
+    version: "V4.10.2",
+    resumen:
+      "Landing de una psicóloga: agenda simulada, honorarios claros y ayuda en crisis, en tres estilos.",
     variantes: [
-      { id: "psicologo-calido", nombre: "Cálido", tema: "calido" },
-      { id: "psicologo-minimalista", nombre: "Minimalista", tema: "minimalista" },
-      { id: "psicologo-clinico", nombre: "Clínico", tema: "clinico" },
-      { id: "psicologo-naturaleza", nombre: "Naturaleza", tema: "naturaleza" },
+      { id: "psicologo-sala", nombre: "Sala con luz", tema: "sala" },
+      { id: "psicologo-neblina", nombre: "Neblina", tema: "neblina" },
+      { id: "psicologo-cuaderno", nombre: "Cuaderno", tema: "cuaderno" },
     ],
-    funciones: ["una-pagina", "citas", "whatsapp", "formulario-contacto", "temas"],
+    funciones: ["una-pagina", "citas", "recordatorios", "whatsapp", "formulario", "mapa", "temas"],
   },
   {
     id: "patio-12",

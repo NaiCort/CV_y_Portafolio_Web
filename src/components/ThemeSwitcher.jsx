@@ -1,18 +1,14 @@
 import { useState } from "react"
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion"
 
-const THEMES = {
-  calido: { label: "Cálido", color: "#6B8F71" },
-  minimalista: { label: "Minimalista", color: "#1A1A1A" },
-  clinico: { label: "Clínico", color: "#2C4A7C" },
-  naturaleza: { label: "Naturaleza", color: "#7A9E7E" },
-}
-export default function ThemeSwitcher({ activeTheme, onThemeChange }) {
+// Selector flotante de temas. `themes` es una lista de { id, nombre, color }.
+export default function ThemeSwitcher({ themes, activeTheme, onThemeChange }) {
+  const THEMES = Object.fromEntries(themes.map((t) => [t.id, { label: t.nombre, color: t.color }]))
   const [hovered, setHovered] = useState(null)
   const [focused, setFocused] = useState(null)
   const reduced = useReducedMotion()
   const expanded = !!hovered || !!focused
-  const label = THEMES[focused || hovered || activeTheme]?.label || THEMES.calido.label
+  const label = THEMES[focused || hovered || activeTheme]?.label || themes[0].nombre
   const selectTheme = (theme) => {
     setHovered(null)
     setFocused(null)
