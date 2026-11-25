@@ -89,6 +89,14 @@ Se guardan los tres niveles en `src/data/catalogo.js` (`NIVELES`). El cotizador 
 
 La tarifa junior se mantiene porque está dentro del rango junior de las tres regiones. Con el descuento de lanzamiento, el precio efectivo es de 280 MXN por hora, en la parte baja del rango junior. Ian debe decidir si conserva el descuento del 30 % o lo baja: es lo que más mueve el precio final.
 
+## 8. Decisión de Ian (25/11/2026)
+
+- **Sin etiquetas:** el sitio no dice «junior» ni «senior». Ian se presenta como desarrollador e Ingeniero en Sistemas Computacionales, y en el CV y el PDF «Datos Jr» pasa a «Analista de Datos». Los niveles solo existen en los datos.
+- **Precios:**
+  - los de lista usan la tarifa **intermedia** (550 MXN, 40 USD y 38 EUR por hora);
+  - el **precio de lanzamiento del 30 %** queda como línea visible, con un precio efectivo de unos 385 MXN por hora mientras llegan los primeros tres proyectos con testimonio;
+  - después se quita el descuento y el precio sube sin cambiar la lista.
+
 ## Fuentes
 
 - [Freelance México: tarifas 2026](https://freelancemexico.com.mx/consejos-freelancers/cuanto-cobrar-proyectos-freelance-mexico-2026/)

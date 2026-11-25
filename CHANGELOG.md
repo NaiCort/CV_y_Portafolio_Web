@@ -1,3 +1,8 @@
+# V4.9.5 · 25 de noviembre de 2026 · Sin etiquetas de nivel
+
+- El sitio no dice «junior» ni «senior»: en el CV, «Datos Jr» pasa a «Analista de Datos», igual que en el PDF nuevo de Ian.
+- Los precios de lista usan la tarifa intermedia (550 MXN, 40 USD y 38 EUR por hora; mínimo de 5,000 MXN, 400 USD o 380 EUR). El precio de lanzamiento del 30 % deja el precio efectivo en unos 385 MXN por hora; al terminar el lanzamiento, el precio sube solo.
+
 # V4.9.4 · 25 de noviembre de 2026 · Precios con investigación
 
 - Investigación de precios junior, intermedio y senior en México, el resto de América y Europa, por tipo de sitio, por función, IA, extras, mantenimiento y urgencia (`docs/INVESTIGACION_PRECIOS.md`).
