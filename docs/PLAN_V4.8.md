@@ -1,8 +1,10 @@
-# Plan de la fase V4.8
+# Plan de la fase V4.8 y de las etapas V4.9 a V4.11
 
 Acordado con Ian el 21 de noviembre de 2026, con el Sitio Profesional Integral V1.4, el CV de noviembre de 2026 y el CV visual V2 como fuentes. Este archivo sirve para no perder el plan entre sesiones. Si algo cambia, se corrige aquí y en `CLAUDE.md`.
 
 ## Orden
+
+Cada etapa lleva su propia versión menor (decisión de Ian del 25/11/2026): V4.8 cierra con el CV y portafolio web en V4.8.7; el cotizador base es V4.9; los ajustes de las demos son V4.10, y el ajuste final del cotizador es V4.11. Hasta el 25/11/2026 este plan numeraba las demos como V4.8.10 a V4.8.60; los documentos de V4.8.0 a V4.8.6 conservan esa numeración anterior.
 
 1. **V4.8.0, preparación:**
    - catálogo de demos y datos del CV como archivos;
@@ -16,17 +18,17 @@ Acordado con Ian el 21 de noviembre de 2026, con el Sitio Profesional Integral V
    5. correcciones del CV (experiencia completa, certificados, sin línea de tiempo);
    6. buscadores (hecho en V4.8.6); el PDF lo mantiene Ian en Canva y se sirve tal cual;
    7. pasada final, cierre y Documento Maestro.
-3. **Cotizador, primera versión.** Va antes de las demos para que cada una se conecte «desde ya». Tiene página propia.
-4. **Demos en orden de creación**, cada una con sus subversiones:
-   - Psicólogo (V4.8.10);
-   - Patio 12 (V4.8.20);
-   - Ladera (V4.8.30);
-   - Brío (V4.8.40);
-   - Rosales y Vértice (V4.8.50);
-   - Cotejo (V4.8.60). Idea de Ian (22/11/2026): llevar a Cotejo el fondo de cuadrícula que tuvo el CV en V4.8.3 (parecido a una hoja de Excel), que encaja con la contabilidad.
+3. **V4.9, cotizador, primera versión.** Va antes de las demos para que cada una se conecte «desde ya». Tiene página propia.
+4. **V4.10, demos en orden de creación**, cada una con su bloque de subversiones:
+   - Psicólogo (V4.10.10). Se queda como **landing de una sola página** (decisión de Ian del 25/11/2026), con lo que aplique de la investigación de sitios de psicólogos;
+   - Patio 12 (V4.10.20);
+   - Ladera (V4.10.30);
+   - Brío (V4.10.40);
+   - Rosales y Vértice (V4.10.50);
+   - Cotejo (V4.10.60). Idea de Ian (22/11/2026): llevar a Cotejo el fondo de cuadrícula que tuvo el CV en V4.8.3 (parecido a una hoja de Excel), que encaja con la contabilidad.
 
    En cada demo se quitan las aclaraciones repetidas o no pedidas (decisión de Ian del 23/11/2026), conservando los avisos de simulación que pide el principio rector. Cada demo recibe su botón «Contratar un sitio como este» con su identificador estable, y el cotizador se ajusta con ella.
-5. **Cotizador, ajuste final:** revisión de conjunto y lo que se considere pertinente al terminar las demos.
+5. **V4.11, cotizador, ajuste final:** revisión de conjunto y lo que se considere pertinente al terminar las demos.
 
 La versión en inglés (Sitio Profesional, sección 25) va después del CV en español. Su número se decide al llegar.
 
@@ -60,7 +62,7 @@ La versión en inglés (Sitio Profesional, sección 25) va después del CV en es
 **Decisiones de Ian (21/11/2026):**
 - Este proyecto es la **versión 1 del CV y portafolio web**. Al terminarlo solo se actualiza para añadir experiencia y conocimientos. Un CV o portafolio futuro sería la v2, con su propio código y repositorio, y este quedaría como la v1.
 - Foto: por ahora una imagen provisional. Ian dará la suya.
-- PDF: solo el CV de noviembre (`public/cv/`). El visual se publica cuando Ian lo actualice.
+- PDF: solo el CV de noviembre (`public/cv/`). El visual se publica cuando Ian lo actualice; queda en pausa por decisión suya (25/11/2026) y no es requisito para cerrar el CV.
 - Demos próximas: ninguna por ahora. El catálogo ya admite el estado para el futuro.
 - Cotizador: antes, durante y después de las demos.
 - Maquetas (21/11/2026): Ian aprobó la distribución.

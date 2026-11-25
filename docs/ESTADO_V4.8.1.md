@@ -17,4 +17,4 @@
 ## Implementado, verificado y desplegado
 
 - Implementado: ficha en el repositorio; las maquetas viven fuera de él, como página privada.
-- Desplegado en producción: no.
+- Desplegado en producción: sí (integrado en main por Ian; pull requests 65 a 75, del 21 al 24/11/2026).

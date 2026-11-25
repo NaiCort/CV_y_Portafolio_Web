@@ -30,16 +30,16 @@
 ## Implementado, verificado y desplegado
 
 - Implementado y verificado en pruebas: sí (ver [VALIDACION_V4.8.6.md](VALIDACION_V4.8.6.md)).
-- Desplegado en producción: no; queda en la rama hasta que Ian haga el merge.
+- Desplegado en producción: sí (pull requests 76 a 78, integrados por Ian el 25/11/2026).
 
 ## Pendiente
 
-- **Ian:** cambiar la descripción del repositorio en GitHub (todavía dice «Demos de distintos tipos de páginas web…»).
-- **Ian:** el enlace del proyecto en el PDF del CV todavía es `multiples-demos.vercel.app`. Funciona por la redirección; se puede cambiar en la próxima versión del PDF.
+- ~~**Ian:** cambiar la descripción del repositorio en GitHub~~ (hecho el 25/11/2026: «CV y Portafolio Web con demos interactivas»).
+- ~~**Ian:** el enlace del proyecto en el PDF del CV~~ (hecho el 25/11/2026: el PDF nuevo enlaza a `cv-y-portafolio-web.vercel.app` y ya se sirve en `public/cv/`).
 - Revisar en Google Search Console que la portada se indexe, cuando Ian quiera darla de alta.
 - V4.8.7: pasada final, cierre y Documento Maestro.
 - Después:
-  - cotizador base;
-  - demos (V4.8.10 en adelante);
+  - cotizador base (V4.9);
+  - demos (V4.10);
   - versión en inglés;
   - LinkedIn.
