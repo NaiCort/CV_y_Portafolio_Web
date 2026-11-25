@@ -6,6 +6,7 @@
 - Casi todo viene de agencias y plataformas para terapeutas, y de guías de accesibilidad.
 - Lo único con estudios revisados por pares es el efecto de las imágenes de naturaleza.
 - Las páginas de Awwwards (los sitios premiados de terapia) están bloqueadas en la red de esta sesión: de ellas solo hay nombre, premio y fecha.
+- La ampliación con Refero Styles (diseño visual y estructura) está en `INVESTIGACION_PSICOLOGO_DISENO_2.md`.
 
 ## 1. Principio: diseño para alguien que puede llegar con estrés
 
