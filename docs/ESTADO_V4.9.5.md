@@ -38,7 +38,7 @@ Quedan dentro de los rangos de mercado de la investigación: landing de 8,000 a 
 ## Implementado, verificado y desplegado
 
 - Implementado y verificado en pruebas: sí (ver [VALIDACION_V4.9.5.md](VALIDACION_V4.9.5.md)).
-- Desplegado en producción: no; queda en la rama hasta que Ian revise la vista previa y haga el merge.
+- Desplegado en producción: sí (integrado en main por Ian; pull requests 81 a 87, 25/11/2026).
 
 ## Pendiente
 

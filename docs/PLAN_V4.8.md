@@ -18,7 +18,7 @@ Cada etapa lleva su propia versión menor (decisión de Ian del 25/11/2026): V4.
    5. correcciones del CV (experiencia completa, certificados, sin línea de tiempo);
    6. buscadores (hecho en V4.8.6); el PDF lo mantiene Ian en Canva y se sirve tal cual;
    7. pasada final, cierre y Documento Maestro.
-3. **V4.9, cotizador, primera versión.** Va antes de las demos para que cada una se conecte «desde ya». Tiene página propia.
+3. **V4.9, cotizador, primera versión** (cerrada en V4.9.5 el 25/11/2026; Documento Maestro V4.9.5, PARTE XVIII). Va antes de las demos para que cada una se conecte «desde ya». Tiene página propia.
 
    Decisiones de Ian (25/11/2026), sobre las secciones 7 a 9 y 18 a 26 del Sitio Profesional V1.4:
    - **Ruta:** se queda `/cotizador`.

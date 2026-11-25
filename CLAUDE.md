@@ -5,7 +5,7 @@ negocio) y un cotizador. Repositorio renombrado de `Multiples_Demos` a
 `CV_y_Portafolio_Web` el 24/11/2026; sitio en https://cv-y-portafolio-web.vercel.app (el dominio
 anterior, multiples-demos.vercel.app, redirige).
 La fuente de planificación es el **Documento Maestro** (fuera del repositorio, versión
-vigente: V4.8.7, revisión documental 8 del 25/11/2026; la PARTE XVII tiene el estado actual). Este archivo resume lo que hace falta para trabajar
+vigente: V4.9.5, revisión documental 9 del 25/11/2026; la PARTE XVIII tiene el estado actual). Este archivo resume lo que hace falta para trabajar
 en el código sin tenerlo a la mano. Si algo aquí contradice una petición de Ian en la
 conversación, manda lo que Ian diga y luego se actualiza este archivo.
 
@@ -26,7 +26,7 @@ acciones ficticias del negocio.
   terminadas; sigue la **fase de ajustes V4.8 a V4.11**, cuyo plan está en `docs/PLAN_V4.8.md`
   (leerlo antes de trabajar): V4.8.0 preparación (hecha) → V4.8.1–V4.8.7 CV web y portafolio (cerrado en V4.8.7; la portada
   se prerenderiza al compilar con `scripts/prerender.mjs`; las demás rutas usan `dist/app.html`)
-  en `/` → **V4.9** cotizador base → **V4.10** demos en orden (Psicólogo V4.10.10, que se queda como landing de una página, Patio 12 V4.10.20, Ladera
+  en `/` → **V4.9** cotizador base (cerrado en V4.9.5) → **V4.10** demos en orden (Psicólogo V4.10.10, que se queda como landing de una página, Patio 12 V4.10.20, Ladera
   V4.10.30, Brío V4.10.40, Taller V4.10.50, Cotejo V4.10.60), cada una conectada al cotizador →
   **V4.11** ajuste final del cotizador (cada etapa con su versión menor, decisión de Ian del 25/11/2026). Catálogo de demos en `src/data/demos.js` y datos del CV en
   `src/data/cv.js`. El CV vive en `src/pages/Bienvenida.jsx` y `src/pages/cv.css`, con
