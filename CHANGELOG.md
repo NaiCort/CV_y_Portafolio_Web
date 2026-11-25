@@ -1,3 +1,14 @@
+# V4.9.0 · 25 de noviembre de 2026 · Cotizador
+
+- El cotizador sustituye a la página provisional en `/cotizador` y es también la página de servicios: «Elige tipo → Ajusta → Envía», en tres columnas como el CV.
+- Cuatro tipos de sitio (Personalizado, Landing, Varias páginas y Tienda o sistema) con su precio «desde» y «completo», qué incluye y una demo de ejemplo.
+- Desde una demo (`?demo=<id>`, también sus variantes) se parte de su versión esencial, recomendada o completa.
+- Catálogo de 41 funciones con sus reglas: lo que no se puede quitar dice por qué; lo que depende de otra función se va con ella y se avisa con «Deshacer»; lo que no cabe en un tipo pide confirmar el cambio.
+- Nota a la derecha con folio, una línea por función, la que se quita tachada, ficha y pasada de calidad, mínimo, urgencia, precio de lanzamiento e IVA; total con IVA en pesos y sin impuestos en dólares y euros; plazo en días hábiles (8 horas al día), anticipo y mensualidad aparte. En el celular, barra fija con el total y detalle a pantalla completa.
+- Entrega prioritaria o exprés y planes de mantenimiento.
+- La solicitud sale por WhatsApp o correo con el folio, el detalle y la configuración en un enlace; pregunta si se necesita factura y para quién. El sitio no guarda datos.
+- Precios propuestos del Sitio Profesional, en `src/data/catalogo.js`; se deciden al terminar el cotizador.
+
 # V4.8.7 · 25 de noviembre de 2026 · Pasada final y cierre del CV
 
 - Con el teclado, la portada empieza en «Saltar al CV»: antes el foco caía en la columna central y se saltaba el PDF, el índice y el contacto. Al navegar dentro del sitio, el foco sigue llevándose al contenido.

@@ -37,7 +37,9 @@ for (const [width, height] of TAMANOS)
           r.height > 2 &&
           st.visibility !== "hidden" &&
           st.display !== "none" &&
-          !e.closest("[aria-hidden=true]")
+          !e.closest("[aria-hidden=true]") &&
+          // Lo que está dentro de un <details> cerrado no se ve aunque tenga medidas (V4.9).
+          e.checkVisibility?.() !== false
         )
       })
       // Solo hojas: elementos que no contienen a otro de la lista.

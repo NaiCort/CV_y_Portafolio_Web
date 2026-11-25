@@ -1,7 +1,7 @@
 import assert from "node:assert/strict"
 import { suite, audit as auditar, bounds, button } from "./restaurant-browser.mjs"
 
-// CV web y portafolio (V4.8) y cotizador provisional.
+// CV web y portafolio (V4.8) y cotizador (V4.9).
 const audit = async (page) => {
   await page.waitForFunction(() =>
     document
@@ -100,11 +100,47 @@ await suite("cv", async ({ run, base }) => {
         assert.equal(pdf.status(), 200)
         assert.equal(pdf.headers()["content-type"], "application/pdf")
 
-        await go(page, base, "/cotizador?demo=brio-distrito")
-        await page.getByText("Brío (Distrito)").waitFor()
+        // V4.9: cotizador. Desde una variante, con la nota y el total; quitar, deshacer y enviar.
+        await go(page, base, "/cotizador?demo=brio-distrito&moneda=MXN")
+        await page.getByText("Brío (Distrito)").first().waitFor()
+        assert.equal(await page.locator("h1").count(), 1)
         await bounds(page)
         await audit(page)
-        await page.getByRole("link", { name: "Volver al CV y las demos" }).click()
+        const total = () => page.locator(".cot-total-cifra").textContent()
+        const barra = page.locator(".cot-barra")
+        assert.equal(await barra.isVisible(), !escritorio, "Barra del total solo en el celular")
+        const antes = await total()
+        await page.getByLabel("Reservas con disponibilidad").click()
+        await page.locator(".cot-aviso").getByText("Quitaste").waitFor()
+        assert.notEqual(await total(), antes, "El total cambia al quitar")
+        await page.getByRole("button", { name: "Deshacer" }).click()
+        assert.equal(await total(), antes, "Deshacer devuelve el total")
+        if (!escritorio) {
+          await barra.getByRole("button", { name: "Ver detalle" }).click()
+          await page.locator(".cot-der.abierta .cot-total-cifra").waitFor()
+          await bounds(page)
+          await audit(page)
+          await page.getByRole("button", { name: "Cerrar detalle" }).click()
+        }
+        await go(page, base, "/cotizador?demo=ladera&moneda=MXN&paso=envia")
+        await audit(page)
+        await page.locator("#cot-nombre").fill("Prueba")
+        // La red del entorno no llega a WhatsApp: se captura la dirección en vez de abrirla.
+        await page.evaluate(() => {
+          window.__abiertas = []
+          window.open = (url) => window.__abiertas.push(url) && null
+        })
+        await page.getByRole("button", { name: "Enviar por WhatsApp" }).click()
+        const abierta = await page.evaluate(() => window.__abiertas[0])
+        assert.match(
+          decodeURIComponent(abierta),
+          /^https:\/\/wa\.me\/.*cotización C-\d{6}-/s,
+          "Folio",
+        )
+        await page.locator(".cot-listo").waitFor()
+        await go(page, base, "/cotizador")
+        await audit(page)
+        await page.getByRole("link", { name: "Ian Aldana · CV y demos" }).click()
         await page.locator(".cv-nombre").waitFor()
         assert.deepEqual(errores, [], "Sin errores de hidratación")
         return { width }

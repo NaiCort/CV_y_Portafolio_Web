@@ -141,17 +141,18 @@ describe("V4.8.3: foto, índice, línea de tiempo y transición", () => {
   })
 })
 
-describe("V4.8: cotizador provisional", () => {
-  it("reconoce la demo de origen por su identificador", async () => {
+// V4.9: el cotizador provisional se convirtió en el cotizador; sus pruebas siguen aquí para
+// conservar lo que se pedía desde V4.8 (reconocer la demo de origen por su identificador).
+describe("V4.8 y V4.9: cotizador desde una demo", () => {
+  it("reconoce la demo de origen y su variante por su identificador", async () => {
     const { container } = await montar("/cotizador?demo=vertice")
-    expect(container.querySelector("h1").textContent).toBe("Cotizar un sitio")
-    expect(container.textContent).toContain("Rosales y Vértice (Vértice)")
-    const wa = container.querySelector('a[href^="https://wa.me/"]')
-    expect(decodeURIComponent(wa.getAttribute("href"))).toContain("(vertice)")
+    expect(container.querySelector("h1").textContent).toBe(
+      "Un sitio como la demo Rosales y Vértice (Vértice)",
+    )
   })
 
-  it("sin demo, ofrece la cotización desde cero", async () => {
+  it("sin una demo válida, empieza por elegir el tipo de sitio", async () => {
     const { container } = await montar("/cotizador?demo=no-existe")
-    expect(container.textContent).not.toContain("Partirías de la demo")
+    expect(container.querySelector("h1").textContent).toBe("Cotiza tu sitio")
   })
 })

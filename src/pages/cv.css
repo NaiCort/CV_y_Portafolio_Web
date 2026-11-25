@@ -802,48 +802,10 @@ a.cv-demo:hover b {
   }
 }
 
-/* ---------- Cotizador provisional ---------- */
+/* ---------- Cotizador (V4.9): sus estilos viven en cotizador.css ---------- */
 .cv-cotizador {
   display: block;
   height: auto;
   min-height: 100vh;
   overflow: visible;
-}
-.cv-cotizador .cv-centro {
-  min-height: 100vh;
-  padding: clamp(40px, 8vw, 96px) max(16px, env(safe-area-inset-right, 0px)) 72px
-    max(16px, env(safe-area-inset-left, 0px));
-  overflow: visible;
-  justify-items: center;
-  border: 0;
-}
-.cv-cotizador .cv-seccion {
-  width: 100%;
-}
-.cv-cot-titulo {
-  font: 800 clamp(36px, 7vw, 56px) / 1 var(--f-display);
-  letter-spacing: -0.02em;
-  color: var(--texto);
-}
-.cv-cot-base {
-  font: 500 16px/1.4 var(--f-display);
-  padding: 12px 16px;
-  border-radius: 12px;
-  background: var(--fondo-2);
-  justify-self: start;
-}
-.cv-cotizador .cv-docs {
-  margin-left: 0;
-}
-@media (hover: hover) {
-  .cv-cotizador .cv-docs {
-    margin-left: -18px;
-  }
-}
-.cv-cotizador .cv-enlace {
-  font: 600 14.5px/1.4 var(--f-display);
-  color: var(--texto);
-  text-decoration: underline;
-  text-decoration-color: var(--brasa);
-  text-underline-offset: 4px;
 }
