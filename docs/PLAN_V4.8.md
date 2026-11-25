@@ -30,7 +30,10 @@ Cada etapa lleva su propia versión menor (decisión de Ian del 25/11/2026): V4.
 4. **V4.10, demos en orden de creación**, con subversiones consecutivas (V4.10.1, V4.10.2…):
    - Psicólogo, desde V4.10.1. Las subversiones de V4.10 van en orden (V4.10.1, V4.10.2…), sin bloques de diez por demo (corrección de Ian, 25/11/2026); cada demo sigue donde terminó la anterior. Se queda como **landing de una sola página** y **se reconstruye desde cero** (decisión de Ian, 25/11/2026):
      - V4.10.1: ficha a posteriori de los cuatro temas actuales (`docs/FICHA_PSICOLOGO.md`) e investigación de cómo debe ser el sitio de un psicólogo (`docs/INVESTIGACION_PSICOLOGO_2.md`);
-     - después, ficha nueva y maquetas, y la reconstrucción.
+     - investigación de diseño visual (`docs/INVESTIGACION_PSICOLOGO_DISENO.md`);
+     - después, ficha nueva y maquetas (tres direcciones para elegir dos), y la reconstrucción.
+
+     Decisión de Ian (25/11/2026): **dos temas bien resueltos, con diseños que pueden ser muy distintos**.
 
      Decisiones de Ian (25/11/2026):
      - los testimonios se reemplazan por formación, supervisión y un enlace a reseñas públicas simuladas;
