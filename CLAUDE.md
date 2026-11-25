@@ -1,7 +1,7 @@
 # CV_y_Portafolio_Web: reglas para Claude
 
 CV web y portafolio de Ian Habid Aldana Martínez, con siete demos interactivas (una por giro de
-negocio) y un cotizador provisional. Repositorio renombrado de `Multiples_Demos` a
+negocio) y un cotizador. Repositorio renombrado de `Multiples_Demos` a
 `CV_y_Portafolio_Web` el 24/11/2026; sitio en https://cv-y-portafolio-web.vercel.app (el dominio
 anterior, multiples-demos.vercel.app, redirige).
 La fuente de planificación es el **Documento Maestro** (fuera del repositorio, versión
@@ -31,7 +31,7 @@ acciones ficticias del negocio.
   **V4.11** ajuste final del cotizador (cada etapa con su versión menor, decisión de Ian del 25/11/2026). Catálogo de demos en `src/data/demos.js` y datos del CV en
   `src/data/cv.js`. El CV vive en `src/pages/Bienvenida.jsx` y `src/pages/cv.css`, con
   su ficha en `docs/FICHA_CV.md` (dirección «Brasa»; leerla antes de tocarlo) y pruebas de navegador en
-  `npm run test:browser:cv`; el cotizador provisional está en `src/pages/Cotizador.jsx`.
+  `npm run test:browser:cv`; el cotizador (V4.9.0) está en `src/pages/Cotizador.jsx`, con su catálogo en `src/data/catalogo.js`, el cálculo en `src/lib/cotizacion.js` y el envío en `src/lib/solicitud.js` (ficha en `docs/FICHA_COTIZADOR.md`).
 - **Restaurante = solo Patio 12.** No se construyen las sub-categorías (fonda, comida
   rápida, lujo) ni el panel de empleados y precios: ambas ideas quedaron descartadas.
 - **Café = Ladera**, una sola identidad y un solo local, sin gestión de empleados. Su
