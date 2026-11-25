@@ -14,7 +14,7 @@ Acordado con Ian el 21 de noviembre de 2026, con el Sitio Profesional Integral V
    3. detalle visual: las cuatro ideas «ahora» de `docs/IDEAS_CV.md` (índice con sección activa, línea de tiempo a escala, transición de la demo y cuadrícula que responde al cursor); las demás quedan ahí con sus requisitos;
    4. dirección «Brasa» (Ian cambió el diseño el 22/11/2026, ver `FICHA_CV.md`);
    5. correcciones del CV (experiencia completa, certificados, sin línea de tiempo);
-   6. PDF y buscadores;
+   6. buscadores (hecho en V4.8.6); el PDF lo mantiene Ian en Canva y se sirve tal cual;
    7. pasada final, cierre y Documento Maestro.
 3. **Cotizador, primera versión.** Va antes de las demos para que cada una se conecte «desde ya». Tiene página propia.
 4. **Demos en orden de creación**, cada una con sus subversiones:

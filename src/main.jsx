@@ -1,10 +1,15 @@
 import { StrictMode } from "react"
-import { createRoot } from "react-dom/client"
+import { createRoot, hydrateRoot } from "react-dom/client"
 import "./index.css"
 import App from "./App.jsx"
 
-createRoot(document.getElementById("root")).render(
+// La portada llega prerenderizada (scripts/prerender.mjs): React reutiliza ese HTML en lugar de
+// volver a dibujarlo. Las demás rutas llegan vacías (dist/app.html) y se dibujan desde cero.
+const raiz = document.getElementById("root")
+const app = (
   <StrictMode>
     <App />
-  </StrictMode>,
+  </StrictMode>
 )
+if (raiz.hasChildNodes()) hydrateRoot(raiz, app)
+else createRoot(raiz).render(app)

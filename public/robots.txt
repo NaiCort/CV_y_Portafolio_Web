@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://cv-y-portafolio-web.vercel.app/sitemap.xml

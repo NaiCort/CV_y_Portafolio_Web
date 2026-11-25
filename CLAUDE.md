@@ -1,6 +1,9 @@
-# Multiples_Demos: reglas para Claude
+# CV_y_Portafolio_Web: reglas para Claude
 
-Portafolio de demos interactivas de Ian Habid Aldana Martínez, una por giro de negocio.
+CV web y portafolio de Ian Habid Aldana Martínez, con siete demos interactivas (una por giro de
+negocio) y un cotizador provisional. Repositorio renombrado de `Multiples_Demos` a
+`CV_y_Portafolio_Web` el 24/11/2026; sitio en https://cv-y-portafolio-web.vercel.app (el dominio
+anterior, multiples-demos.vercel.app, redirige).
 La fuente de planificación es el **Documento Maestro** (fuera del repositorio, versión
 vigente: V4.7.21, revisión documental 7 del 21/11/2026; la PARTE XVI tiene el estado actual). Este archivo resume lo que hace falta para trabajar
 en el código sin tenerlo a la mano. Si algo aquí contradice una petición de Ian en la
@@ -21,7 +24,8 @@ acciones ficticias del negocio.
   **Rosales y Vértice**) → Despacho contable (cerrada en V4.6.8 con **Cotejo**) →
   **Revista digital (cerrada en V4.7.21 con Rubor, Prisma y Umbral)**. Las siete demos están
   terminadas; sigue la **fase de ajustes V4.8**, cuyo plan está en `docs/PLAN_V4.8.md`
-  (leerlo antes de trabajar): V4.8.0 preparación (hecha) → V4.8.1–V4.8.7 CV web y portafolio
+  (leerlo antes de trabajar): V4.8.0 preparación (hecha) → V4.8.1–V4.8.7 CV web y portafolio (la portada
+  se prerenderiza al compilar con `scripts/prerender.mjs`; las demás rutas usan `dist/app.html`)
   en `/` → cotizador base → demos en orden (Psicólogo V4.8.10, Patio 12 V4.8.20, Ladera
   V4.8.30, Brío V4.8.40, Taller V4.8.50, Cotejo V4.8.60), cada una conectada al cotizador →
   ajuste final del cotizador. Catálogo de demos en `src/data/demos.js` y datos del CV en
