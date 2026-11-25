@@ -9,6 +9,24 @@ vigente: V4.9.5, revisión documental 9 del 25/11/2026; la PARTE XVIII tiene el 
 en el código sin tenerlo a la mano. Si algo aquí contradice una petición de Ian en la
 conversación, manda lo que Ian diga y luego se actualiza este archivo.
 
+## Metodología: Digital Development Handbook
+
+Desde V4.10.3, el proyecto adopta el **Digital Development Handbook** (repositorio
+`NaiCort/Digital-Development-Handbook-Claude`, versión 1.1.0), y el portafolio completo es su
+**demo piloto** (`examples/cv-y-portafolio-web/` en ese repositorio). El repositorio
+`Digital-Development-Handbook-GPT` no se toca. Leer `docs/HANDBOOK.md` (adopción, perfiles,
+equivalencias de plantillas y estado de cada regla GEN) y `docs/README.md` (índice de `docs/`).
+- **Modo de cada pedido:** investigar, proponer, implementar o revisar. En los modos investigar
+  y revisar no se cambia nada.
+- **Decisiones** en `docs/DECISIONES.md` (DEC-…), con fecha, estado y fuente.
+- **Requisitos y pruebas** en `docs/TRAZABILIDAD.md`.
+- **Documentos de operación:** `docs/SEGURIDAD.md`, `docs/RENDIMIENTO.md`,
+  `docs/DESPLIEGUE.md` y `docs/LICENCIAS.md`.
+- **Cada `VALIDACION_V*.md`** termina con la tabla de puertas G0 a G7 (aprobado, fallido,
+  bloqueado, no ejecutado o no aplica, con evidencia).
+- **Si el handbook contradice este archivo**, manda este archivo; y sobre ambos, lo que Ian
+  diga en la conversación.
+
 ## Principio rector
 
 "Funcionalidad simulada no significa funcionalidad falsa." Todo control visible responde;
@@ -61,10 +79,14 @@ npm run lint
 npm run format:check
 npm test
 npm run build
+npm run audit:presupuesto
 ```
 
 Las pruebas de navegador (`npm run test:browser:*`) se corren al cerrar una versión, con
-`DEMO_START_PREVIEW=1` (levantan su propio `vite preview`). Herramientas de la pasada final:
+`DEMO_START_PREVIEW=1` (levantan su propio `vite preview`). La vista previa aplica los mismos
+encabezados que Vercel (`vercel.json`). Con `CSP_ESTRICTA=1`, la política de contenido que en
+producción va «solo en reporte» se aplica de verdad, y cualquier aviso de esa política hace fallar
+la suite. Herramientas de la pasada final:
 `npm run audit:encimados -- /ruta1,/ruta2` y `npm run audit:cwv -- /ruta` (contra
 `vite preview` en 4173). Chromium y Playwright ya están instalados en el entorno de nube.
 
@@ -198,5 +220,6 @@ Se resuelven dentro de la entrega de cada demo (ver `docs/PLAN_V4.8.md`).
 7. **Precarga de fuentes en `index.html`** (todas las demos; Psicólogo ya tiene respaldos medidos desde V4.10.2): en red lenta, el cambio de
    tipografía mueve el texto (CLS 0.146 medido en Créditos de Ladera). Modelo ya probado en
    Cotejo (V4.6.8): tipografías de respaldo con `size-adjust` medido, que bajaron el CLS a 0.002.
-8. Dependencias de desarrollo con avisos moderados de `npm audit` (vitest, minimatch vía
-   eslint): actualizar cuando haya versión compatible.
+8. Dependencias: en V4.10.3 se actualizaron vite, vitest, undici y zod, y Tailwind pasó a
+   `devDependencies`; producción queda sin avisos. Quedan 3 moderados de `minimatch` dentro de
+   ESLint, sin versión compatible: actualizar cuando la haya.

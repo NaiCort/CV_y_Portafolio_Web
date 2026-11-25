@@ -1,0 +1,150 @@
+{
+  "demo": "Psicólogo (V4.10.2)",
+  "nota": "Fotos ilustrativas de banco: ninguna persona ni lugar es real de la demo. Para un cliente real se sustituyen por fotos propias.",
+  "medios": [
+    {
+      "nombre": "retrato",
+      "uso": "Retrato ilustrativo de la psicóloga (no es Valeria Romero)",
+      "origen": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2",
+      "autor": "No identificado en la descarga",
+      "licencia": "Licencia de Unsplash",
+      "licencia_url": "https://unsplash.com/license",
+      "descargada": "2026-11-25",
+      "proceso": "Redimensionada con Pillow (LANCZOS) y convertida a WebP con calidad 72, sin recortes ni retoques.",
+      "archivos": [
+        {
+          "archivo": "/psicologo/fotos/retrato-500.webp",
+          "ancho": 500,
+          "alto": 749,
+          "sha256": "a1ad3c43660fce115f71f7634b3056b4800c9e6b2352612099eb08db0ec094bb"
+        },
+        {
+          "archivo": "/psicologo/fotos/retrato-900.webp",
+          "ancho": 900,
+          "alto": 1348,
+          "sha256": "088bc030967cd9aa13815d7f4deefb73eaaad64f02f4ea49ac326b9664621c70"
+        }
+      ]
+    },
+    {
+      "nombre": "sala",
+      "uso": "Sala luminosa con sillones y plantas",
+      "origen": "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0",
+      "autor": "No identificado en la descarga",
+      "licencia": "Licencia de Unsplash",
+      "licencia_url": "https://unsplash.com/license",
+      "descargada": "2026-11-25",
+      "proceso": "Redimensionada con Pillow (LANCZOS) y convertida a WebP con calidad 72, sin recortes ni retoques.",
+      "archivos": [
+        {
+          "archivo": "/psicologo/fotos/sala-1400.webp",
+          "ancho": 1400,
+          "alto": 1050,
+          "sha256": "2f577a22dca1cfa4a64a3a7c736781335b69b0c0a0f2220f9d008dde0c54a2e0"
+        },
+        {
+          "archivo": "/psicologo/fotos/sala-800.webp",
+          "ancho": 800,
+          "alto": 600,
+          "sha256": "8c617cbe66071c0dde7c47818f369d4eb9abe46c43325b8add5009960263d764"
+        }
+      ]
+    },
+    {
+      "nombre": "bosque-niebla",
+      "uso": "Bosque con niebla (portada de Neblina)",
+      "origen": "https://images.unsplash.com/photo-1448375240586-882707db888b",
+      "autor": "No identificado en la descarga",
+      "licencia": "Licencia de Unsplash",
+      "licencia_url": "https://unsplash.com/license",
+      "descargada": "2026-11-25",
+      "proceso": "Redimensionada con Pillow (LANCZOS) y convertida a WebP con calidad 72, sin recortes ni retoques.",
+      "archivos": [
+        {
+          "archivo": "/psicologo/fotos/bosque-niebla-1000.webp",
+          "ancho": 1000,
+          "alto": 666,
+          "sha256": "6ad3e85d6858904f423c1657c059033bad285f2a5ffd151304ebce041a066d6a"
+        },
+        {
+          "archivo": "/psicologo/fotos/bosque-niebla-2000.webp",
+          "ancho": 2000,
+          "alto": 1333,
+          "sha256": "2d884733cd541045096f73407ed6334829f8f5f7812c41f688392e21a861a967"
+        }
+      ]
+    },
+    {
+      "nombre": "montana-niebla",
+      "uso": "Montañas con niebla (pausa de Neblina)",
+      "origen": "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05",
+      "autor": "No identificado en la descarga",
+      "licencia": "Licencia de Unsplash",
+      "licencia_url": "https://unsplash.com/license",
+      "descargada": "2026-11-25",
+      "proceso": "Redimensionada con Pillow (LANCZOS) y convertida a WebP con calidad 72, sin recortes ni retoques.",
+      "archivos": [
+        {
+          "archivo": "/psicologo/fotos/montana-niebla-1600.webp",
+          "ancho": 1600,
+          "alto": 954,
+          "sha256": "045c9cdf0516619d5612ce877551f03bbb1f3e678eba525ee0336fee585af4d2"
+        },
+        {
+          "archivo": "/psicologo/fotos/montana-niebla-800.webp",
+          "ancho": 800,
+          "alto": 477,
+          "sha256": "fe42ff110394935778c119fdfd0d05103c5c04ebe622816fa82be604044353cb"
+        }
+      ]
+    },
+    {
+      "nombre": "muro-salvia",
+      "uso": "Muro verde salvia con lámpara (fondo de «Respira conmigo» en Neblina)",
+      "origen": "https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85",
+      "autor": "No identificado en la descarga",
+      "licencia": "Licencia de Unsplash",
+      "licencia_url": "https://unsplash.com/license",
+      "descargada": "2026-11-25",
+      "proceso": "Redimensionada con Pillow (LANCZOS) y convertida a WebP con calidad 72, sin recortes ni retoques.",
+      "archivos": [
+        {
+          "archivo": "/psicologo/fotos/muro-salvia-1200.webp",
+          "ancho": 1200,
+          "alto": 803,
+          "sha256": "455af9ae31dd227d55949db3041de81eb1ef0a2397dc85cdb9361140a3b88bd1"
+        },
+        {
+          "archivo": "/psicologo/fotos/muro-salvia-700.webp",
+          "ancho": 700,
+          "alto": 469,
+          "sha256": "aac627774be1d614d2bd06430dfd6528dfdec8a7f17c6d1f4a3efe4b596421b0"
+        }
+      ]
+    },
+    {
+      "nombre": "cuaderno",
+      "uso": "Libreta con pluma y lentes (Cuaderno)",
+      "origen": "https://images.unsplash.com/photo-1517842645767-c639042777db",
+      "autor": "No identificado en la descarga",
+      "licencia": "Licencia de Unsplash",
+      "licencia_url": "https://unsplash.com/license",
+      "descargada": "2026-11-25",
+      "proceso": "Redimensionada con Pillow (LANCZOS) y convertida a WebP con calidad 72, sin recortes ni retoques.",
+      "archivos": [
+        {
+          "archivo": "/psicologo/fotos/cuaderno-1200.webp",
+          "ancho": 1200,
+          "alto": 800,
+          "sha256": "f6ae075a462f23735cfe4d71c128e8a3303fac5f54495d9d79e30f98632e01fd"
+        },
+        {
+          "archivo": "/psicologo/fotos/cuaderno-700.webp",
+          "ancho": 700,
+          "alto": 466,
+          "sha256": "925dbbc2b4b8a981cd1a233fd0778654d6d00cead2499a7bd3b50107f5794bcd"
+        }
+      ]
+    }
+  ]
+}

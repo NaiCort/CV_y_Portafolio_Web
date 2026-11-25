@@ -170,6 +170,16 @@ await suite("cv", async ({ run, base }) => {
         await go(page, base, "/cotizador")
         await page.getByRole("link", { name: "Ian Aldana · CV y demos" }).click()
         await page.locator(".cv-nombre").waitFor()
+        // V4.10.3: aviso de privacidad del sitio, enlazado desde el CV y el cotizador.
+        await page.goto(`${base}/privacidad`)
+        await page.getByRole("heading", { level: 1, name: "Aviso de privacidad" }).waitFor()
+        assert.match(await page.title(), /Aviso de privacidad/)
+        assert.match(await page.locator("main").textContent(), /ARCO/)
+        await bounds(page)
+        await audit(page)
+        await page.getByRole("link", { name: "Volver al CV y portafolio" }).click()
+        await page.locator(".cv-nombre").waitFor()
+        assert.equal(await page.locator('a[href="/privacidad"]').count(), 1, "Enlace en el CV")
         assert.deepEqual(errores, [], "Sin errores de hidratación")
         return { width }
       },

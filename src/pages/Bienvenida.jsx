@@ -268,7 +268,12 @@ export default function Bienvenida() {
         >
           Demos <span aria-hidden="true">{abierto ? "▴" : "▾"}</span>
         </button>
-        <Link to="/cotizador" className="cv-boton cv-boton-acento cv-barra-boton">
+        <Link
+          to="/cotizador"
+          className="cv-boton cv-boton-acento cv-barra-boton"
+          onPointerEnter={() => precargar("/cotizador")}
+          onFocus={() => precargar("/cotizador")}
+        >
           Cotizar
         </Link>
       </header>
@@ -334,6 +339,9 @@ export default function Bienvenida() {
               </div>
             ))}
           </section>
+          <p className="cv-legal">
+            <Link to="/privacidad">Aviso de privacidad</Link>
+          </p>
         </div>
       </aside>
 
@@ -420,7 +428,12 @@ export default function Bienvenida() {
         <div className="cv-cotizar">
           <p className="cv-cotizar-titulo">¿Quieres un sitio así?</p>
           <p>Parte de una demo y ajusta las funciones a tu negocio.</p>
-          <Link to="/cotizador" className="cv-boton cv-boton-acento">
+          <Link
+            to="/cotizador"
+            className="cv-boton cv-boton-acento"
+            onPointerEnter={() => precargar("/cotizador")}
+            onFocus={() => precargar("/cotizador")}
+          >
             Cotizar un sitio
             <Flecha />
           </Link>

@@ -40,13 +40,37 @@ Cada etapa lleva su propia versión menor (decisión de Ian del 25/11/2026): V4.
      - los testimonios se reemplazan por formación, supervisión y un enlace a reseñas públicas simuladas;
      - no hay autoevaluación (PHQ-9 ni GAD-7);
      - se agregan «Instituciones y colegas» y «Recursos»;
-   - Patio 12;
+   - V4.10.3, adopción del Digital Development Handbook (pedido de Ian del 25/11/2026; `docs/HANDBOOK.md`). El portafolio completo es la demo piloto del handbook y adopta su contenido:
+     - encabezados de seguridad;
+     - aviso de privacidad del sitio;
+     - presupuesto de rendimiento;
+     - dependencias al día;
+     - registro de decisiones, trazabilidad, seguridad, despliegue y licencias.
+
+     El número es la propuesta DEC-019 de `docs/DECISIONES.md`.
+   - Patio 12, desde V4.10.4;
    - Ladera;
    - Brío;
    - Rosales y Vértice;
    - Cotejo. Idea de Ian (22/11/2026): llevar a Cotejo el fondo de cuadrícula que tuvo el CV en V4.8.3 (parecido a una hoja de Excel), que encaja con la contabilidad.
 
    En cada demo se quitan las aclaraciones repetidas o no pedidas (decisión de Ian del 23/11/2026), conservando los avisos de simulación que pide el principio rector. Cada demo recibe su botón «Contratar un sitio como este» con su identificador estable, y el cotizador se ajusta con ella.
+
+   **Lista fija de cada entrega de V4.10** (desde V4.10.3, con el handbook):
+   1. Ficha de identidad (a posteriori si falta), con referencias de Refero cuando ayuden (`docs/INVESTIGACION_PSICOLOGO_DISENO_2.md`).
+   2. Aviso de privacidad de ejemplo, si la demo pide datos.
+   3. «Cotiza un sitio como este» con el identificador de la demo o del tema (`ComercialCTA`, prop `cotizar`), con pruebas del contacto real y del enlace (`docs/TRAZABILIDAD.md`, RF-002 y RF-003).
+   4. Fuentes de respaldo medidas (pendiente 7), con Psicólogo como modelo.
+   5. Si tiene mapa, el motor compartido en lugar de su copia.
+   6. Colores, espacios y radios como variables.
+   7. Metadatos propios por ruta.
+   8. Sin aclaraciones repetidas (DEC-005).
+   9. Su matriz en `docs/TRAZABILIDAD.md` y, en `VALIDACION`, la tabla de puertas G0 a G7.
+
+   Patio 12, además:
+   - sacar su estado del paquete principal (DEC-021);
+   - quitar la etiqueta en mayúsculas sobre el título (pendiente 4);
+   - escribir su ficha (pendiente 5).
 5. **V4.11, cotizador, ajuste final:** revisión de conjunto y lo que se considere pertinente al terminar las demos.
 
 La versión en inglés (Sitio Profesional, sección 25) va después del CV en español. Su número se decide al llegar.
@@ -98,8 +122,8 @@ La versión en inglés (Sitio Profesional, sección 25) va después del CV en es
 
 1. Ficha y maqueta antes de construir.
 2. Pruebas unitarias y de navegador con axe.
-3. `npm run audit:encimados` y `npm run audit:cwv`.
-4. Documentos `ESTADO` y `VALIDACION`.
+3. `npm run audit:encimados`, `npm run audit:cwv` y `npm run audit:presupuesto`.
+4. Documentos `ESTADO` y `VALIDACION`; la validación termina con la tabla de puertas G0 a G7 (`docs/HANDBOOK.md`).
 5. Revisión de Ian en su teléfono Android (Chrome o Edge).
 6. Documento Maestro solo al cerrar cada etapa.
 
