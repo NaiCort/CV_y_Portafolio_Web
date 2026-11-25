@@ -26,8 +26,8 @@ acciones ficticias del negocio.
   terminadas; sigue la **fase de ajustes V4.8 a V4.11**, cuyo plan está en `docs/PLAN_V4.8.md`
   (leerlo antes de trabajar): V4.8.0 preparación (hecha) → V4.8.1–V4.8.7 CV web y portafolio (cerrado en V4.8.7; la portada
   se prerenderiza al compilar con `scripts/prerender.mjs`; las demás rutas usan `dist/app.html`)
-  en `/` → **V4.9** cotizador base (cerrado en V4.9.5) → **V4.10** demos en orden (Psicólogo V4.10.10, que se queda como landing de una página, Patio 12 V4.10.20, Ladera
-  V4.10.30, Brío V4.10.40, Taller V4.10.50, Cotejo V4.10.60), cada una conectada al cotizador →
+  en `/` → **V4.9** cotizador base (cerrado en V4.9.5) → **V4.10** demos en orden (Psicólogo, que se reconstruye desde cero como landing de una página, Patio 12, Ladera,
+  Brío, Taller y Cotejo), con subversiones consecutivas V4.10.1, V4.10.2…, cada una conectada al cotizador →
   **V4.11** ajuste final del cotizador (cada etapa con su versión menor, decisión de Ian del 25/11/2026). Catálogo de demos en `src/data/demos.js` y datos del CV en
   `src/data/cv.js`. El CV vive en `src/pages/Bienvenida.jsx` y `src/pages/cv.css`, con
   su ficha en `docs/FICHA_CV.md` (dirección «Brasa»; leerla antes de tocarlo) y pruebas de navegador en
@@ -177,7 +177,7 @@ Se resuelven dentro de la entrega de cada demo (ver `docs/PLAN_V4.8.md`).
 1. ~~FloatingTimer solo dentro de `/restaurante/*`~~ (hecho en V4.8.0).
 2. ~~**Bienvenida:** bajar patrones y pasar el catálogo a datos~~ (hecho en V4.8: la portada es el CV
    web, con un solo patrón vigilado, y el catálogo vive en `src/data/demos.js`). LinkedIn va al final.
-3. **Psicólogo (landing de una página; investigación en `docs/INVESTIGACION_PSICOLOGO.md`):** servir sus fotos desde el sitio en vez de images.unsplash.com, por
+3. **Psicólogo (se reconstruye desde cero como landing; investigación en `docs/INVESTIGACION_PSICOLOGO.md` y `docs/INVESTIGACION_PSICOLOGO_2.md`):** servir sus fotos desde el sitio en vez de images.unsplash.com, por
    etapas y no todo a la vez; revisar Inter en el tema Cálido; auditoría de los cuatro
    temas (unas 700 líneas cada uno) para consolidar componentes duplicados.
 4. **Patio 12:** quitar la etiqueta en mayúsculas sobre el título en Inicio y Carta.

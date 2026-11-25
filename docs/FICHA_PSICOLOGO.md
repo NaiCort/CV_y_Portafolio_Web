@@ -1,11 +1,11 @@
-# Ficha de identidad · Psicólogo (a posteriori, V4.10.10)
+# Ficha de identidad · Psicólogo (a posteriori, V4.10.1)
 
-25 de noviembre de 2026. La demo se hizo antes de la Guía de identidad v1.1, así que esta ficha llega a posteriori: describe lo que hay y fija la dirección de cada tema para V4.10.11 a V4.10.15. Investigación en `INVESTIGACION_PSICOLOGO.md`.
+25 de noviembre de 2026. La demo se hizo antes de la Guía de identidad v1.1, así que esta ficha llega a posteriori: describe lo que hay y fija la dirección de cada tema. Queda como registro de la demo anterior: Ian decidió reconstruirla desde cero (25/11/2026), y la ficha nueva saldrá de `INVESTIGACION_PSICOLOGO_2.md`. Investigación en `INVESTIGACION_PSICOLOGO.md`.
 
 ## Lo común a los cuatro temas
 
-- **Una sola landing** (decisión de Ian, 25/11/2026) para una psicóloga ficticia en Xalapa, Valeria Romero, con el mismo contenido en los cuatro temas. Desde V4.10.11, ese contenido vive en un solo archivo y los temas solo cambian la «piel».
-- **Orden de la página** (desde V4.10.13):
+- **Una sola landing** (decisión de Ian, 25/11/2026) para una psicóloga ficticia en Xalapa, Valeria Romero, con el mismo contenido en los cuatro temas. En la reconstrucción, ese contenido vive en un solo archivo y los temas solo cambian la «piel».
+- **Orden de la página** (propuesta):
   1. portada;
   2. ¿te identificas?, con los motivos de consulta;
   3. sobre mí, con la cédula verificable;
@@ -26,7 +26,7 @@
   - testimonios de pacientes (norma 5.05 de la APA);
   - pedir el motivo de consulta en detalle en el formulario (datos sensibles, LFPDPPP 2025);
   - autoevaluaciones clínicas (decisión de Ian).
-- **Fotos:** las de hoy son de Unsplash. Desde V4.10.12 se sirven desde el sitio en WebP, con la persona declarada como ilustrativa.
+- **Fotos:** las de hoy son de Unsplash. En la reconstrucción se sirven desde el sitio en WebP, con la persona declarada como ilustrativa.
 - **Movimiento:** ease-out de 200 a 300 ms, entradas desde escala 0.95 y, con movimiento reducido, solo fundido. Cada tema tiene un gesto propio; no se repite «aparecer hacia arriba» en todo.
 
 ## Cálido
@@ -39,7 +39,7 @@
   - neutro: `#5C5C5C`.
 - **Tipografías:**
   - títulos: Playfair Display;
-  - texto: Inter (vigilado). **Cambia a Figtree** en V4.10.12: humanista, redonda y legible, y ningún otro tema la usa.
+  - texto: Inter (vigilado). **Cambia a Figtree** en la reconstrucción: humanista, redonda y legible, y ningún otro tema la usa.
 - **Forma:** píldoras (999 px) en botones, 24 px en tarjetas y la foto en círculo con sombra terracota.
 - **Movimiento:** «FadeRise» (aparecer subiendo) y un contador de años. **Cambia a** entradas desde escala 0.95 con fundido, y el contador solo en «Sobre mí».
 - **Anclas:** la foto en círculo sobre crema, el grano de papel muy tenue y las viñetas de hoja.
