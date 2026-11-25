@@ -1,4 +1,4 @@
-/* CV web y portafolio (ficha en docs/FICHA_CV.md): combinación de «Neblina» y «Esquema». */
+/* CV web y portafolio (ficha en docs/FICHA_CV.md): dirección «Brasa». */
 
 @font-face {
   font-family: "Cv Bricolage";
@@ -12,15 +12,9 @@
   font-weight: 200 900;
   font-display: swap;
 }
-@font-face {
-  font-family: "Cv Mono";
-  src: url("/cv/fuentes/jetbrains-mono-latin-wght-normal.woff2") format("woff2-variations");
-  font-weight: 100 800;
-  font-display: swap;
-}
 /* Respaldos con la medida de cada tipografía (como en la Revista, V4.7.17): mientras llega la
    fuente web, el texto ocupa casi lo mismo y la página no salta. Ancho medido a 100 px en
-   Chromium contra Liberation (métricas de Arial, Times y Courier) y DejaVu (aproximación de Noto
+   Chromium contra Liberation (métricas de Arial y Times) y DejaVu (aproximación de Noto
    en Android); alturas de las métricas de cada fuente. */
 @font-face {
   font-family: "Cv Bricolage A";
@@ -52,22 +46,6 @@
   size-adjust: 78.1%;
   ascent-override: 132.7%;
   descent-override: 42.9%;
-  line-gap-override: 0%;
-}
-@font-face {
-  font-family: "Cv Mono A";
-  src: local("Courier New"), local("Liberation Mono"), local("Cousine");
-  size-adjust: 100%;
-  ascent-override: 102%;
-  descent-override: 30%;
-  line-gap-override: 0%;
-}
-@font-face {
-  font-family: "Cv Mono N";
-  src: local("Droid Sans Mono"), local("Noto Sans Mono"), local("DejaVu Sans Mono");
-  size-adjust: 99.7%;
-  ascent-override: 102.3%;
-  descent-override: 30.1%;
   line-gap-override: 0%;
 }
 
@@ -107,7 +85,6 @@ html:has(.cv-root) {
   --contorno: #efe6dd8c;
   --f-display: "Cv Bricolage", "Cv Bricolage A", "Cv Bricolage N", system-ui, sans-serif;
   --f-serif: "Cv Serif", "Cv Serif A", "Cv Serif N", Georgia, serif;
-  --f-mono: "Cv Mono", "Cv Mono A", "Cv Mono N", ui-monospace, monospace;
   position: relative;
   isolation: isolate;
   background: var(--fondo);
@@ -127,6 +104,10 @@ html:has(.cv-root) {
 .cv-root :where(ul, ol) {
   list-style: none;
   padding: 0;
+}
+/* Pasada final (V4.8.7): sin palabras solas en la última línea de los párrafos y viñetas. */
+.cv-root :where(p, li, dd) {
+  text-wrap: pretty;
 }
 .cv-root a {
   color: inherit;
