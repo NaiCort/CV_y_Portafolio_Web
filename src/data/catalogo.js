@@ -42,9 +42,11 @@ export const FORMAS_DE_PAGO = [
   },
 ]
 
-// Niveles de tarifa (docs/INVESTIGACION_PRECIOS.md, sección 7). El cotizador usa NIVEL_ACTUAL; se
-// pasa a «intermedio» tras 3 a 5 proyectos reales con testimonio (sección 22.1). «senior» es solo
-// referencia del mercado para más adelante.
+// Niveles de tarifa (docs/INVESTIGACION_PRECIOS.md, sección 7). Son internos: el sitio nunca dice
+// «junior» ni «senior» (decisión de Ian, 25/11/2026). Desde V4.9.5 los precios de lista usan la tarifa
+// intermedia y el «precio de lanzamiento» (PARAMETROS.lanzamiento, 30 %) deja el precio efectivo en
+// unos 385 MXN por hora mientras llegan los primeros 3 proyectos con testimonio; después se quita el
+// descuento y el precio sube solo. «senior» es solo referencia del mercado para más adelante.
 export const NIVELES = {
   junior: {
     nombre: "Junior",
@@ -62,7 +64,7 @@ export const NIVELES = {
     minimo: { MXN: 10000, USD: 800, EUR: 750 },
   },
 }
-export const NIVEL_ACTUAL = "junior"
+export const NIVEL_ACTUAL = "intermedio"
 
 const nivel = NIVELES[NIVEL_ACTUAL]
 export const MONEDAS = {

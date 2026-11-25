@@ -145,7 +145,7 @@ describe("V4.9: precio y plazo", () => {
     const c = configInicial({ categoria: "personalizado" })
     expect(Object.keys(c.sel)).toEqual([])
     const r = calcular(c)
-    expect(r.funciones + r.calidad + r.minimo).toBe(3500)
+    expect(r.funciones + r.calidad + r.minimo).toBe(MONEDAS.MXN.minimo)
   })
 
   it("el primer mes de mantenimiento entra en el desglose y el total, sin descuento de lanzamiento", () => {
@@ -188,9 +188,11 @@ describe("V4.9: precio y plazo", () => {
     expect(Object.keys(c.sel)).toEqual(["whatsapp"])
     const r = calcular(c)
     expect(r.minimo).toBeGreaterThan(0)
-    expect(r.funciones + r.calidad + r.minimo).toBe(3500)
+    expect(r.funciones + r.calidad + r.minimo).toBe(MONEDAS.MXN.minimo)
     c = { ...c, moneda: "USD" }
-    expect(calcular(c).funciones + calcular(c).calidad + calcular(c).minimo).toBe(300)
+    expect(calcular(c).funciones + calcular(c).calidad + calcular(c).minimo).toBe(
+      MONEDAS.USD.minimo,
+    )
   })
 
   it("el plazo usa 8 horas por día hábil y la urgencia lo acorta con recargo", () => {
@@ -215,14 +217,16 @@ describe("V4.9: precio y plazo", () => {
     const c = alternar(configInicial({ categoria: "landing" }), "ia-whatsapp").config
     const r = calcular(c)
     expect(r.aparte).toEqual([])
-    expect(r.lineas.find((l) => l.id === "ia-whatsapp").precio).toBe(10000)
+    // 25 h promedio × 550 MXN (tarifa de lista intermedia, V4.9.5), redondeado a 100.
+    expect(r.lineas.find((l) => l.id === "ia-whatsapp").precio).toBe(13800)
     expect(funcionPorId("ia-whatsapp").aparteNota).toMatch(/WhatsApp/)
     expect(funcionPorId("ia-diagnostico").horas).toEqual([3, 5])
   })
 
-  it("los niveles de tarifa: junior hoy, intermedio y senior como referencia", () => {
-    expect(NIVEL_ACTUAL).toBe("junior")
-    expect(MONEDAS.MXN.tarifa).toBe(NIVELES.junior.tarifa.MXN)
+  it("los niveles de tarifa: lista intermedia hoy, senior como referencia", () => {
+    // V4.9.5: lista a tarifa intermedia, con el precio de lanzamiento del 30 % (decisión de Ian).
+    expect(NIVEL_ACTUAL).toBe("intermedio")
+    expect(MONEDAS.MXN.tarifa).toBe(NIVELES[NIVEL_ACTUAL].tarifa.MXN)
     expect(NIVELES.intermedio.tarifa.MXN).toBeGreaterThan(NIVELES.junior.tarifa.MXN)
     expect(NIVELES.senior.tarifa.USD).toBeGreaterThan(NIVELES.intermedio.tarifa.USD)
   })
