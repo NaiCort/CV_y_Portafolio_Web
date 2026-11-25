@@ -84,9 +84,10 @@ npm run audit:presupuesto
 
 Las pruebas de navegador (`npm run test:browser:*`) se corren al cerrar una versión, con
 `DEMO_START_PREVIEW=1` (levantan su propio `vite preview`). La vista previa aplica los mismos
-encabezados que Vercel (`vercel.json`). Con `CSP_ESTRICTA=1`, la política de contenido que en
-producción va «solo en reporte» se aplica de verdad, y cualquier aviso de esa política hace fallar
-la suite. Herramientas de la pasada final:
+encabezados que Vercel (`vercel.json`), incluida la política de contenido completa (aplicada desde
+V4.10.4), y cualquier aviso de esa política hace fallar la suite. Para probar un cambio de la
+política, se agrega primero «solo en reporte» y se prueba con `CSP_ESTRICTA=1`, que lo aplica de
+verdad en la vista previa. Herramientas de la pasada final:
 `npm run audit:encimados -- /ruta1,/ruta2` y `npm run audit:cwv -- /ruta` (contra
 `vite preview` en 4173). Chromium y Playwright ya están instalados en el entorno de nube.
 

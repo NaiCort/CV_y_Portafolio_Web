@@ -38,8 +38,8 @@ Las decisiones nuevas se agregan al final con el siguiente número; los números
 | DEC-016 | 25/11/2026 | Psicólogo con «Instituciones y colegas» y «Recursos» | ACEPTADA | `PLAN_V4.8.md` | Psicólogo |
 | DEC-017 | 25/11/2026 | `Digital-Development-Handbook-GPT` se queda intacto; `Digital-Development-Handbook-Claude` se llena con el zip de la versión 1.0 | ACEPTADA | Conversación con Ian | Repositorios del handbook |
 | DEC-018 | 25/11/2026 | El portafolio completo es la demo piloto del handbook y adopta su contenido | ACEPTADA | Conversación con Ian | `HANDBOOK.md`; V4.10.3 |
-| DEC-019 | 25/11/2026 | La adopción del handbook toma el siguiente número consecutivo (V4.10.3); Patio 12 empieza en V4.10.4 | PROPUESTA | Esta entrega | Numeración; se corrige si Ian prefiere otra |
-| DEC-020 | 25/11/2026 | Aplicar de verdad la política de contenido completa (hoy va «solo en reporte») cuando la vista previa de Vercel no muestre avisos | PROPUESTA | `SEGURIDAD.md` | `vercel.json` |
+| DEC-019 | 25/11/2026 | La adopción del handbook toma el siguiente número consecutivo (V4.10.3), y la activación de la política de contenido el siguiente (V4.10.4); Patio 12 empieza en V4.10.5 | PROPUESTA | V4.10.3 y V4.10.4 | Numeración; se corrige si Ian prefiere otra |
+| DEC-020 | 25/11/2026 | Aplicar de verdad la política de contenido completa, que en V4.10.3 iba «solo en reporte». Ian revisó la consola del sitio publicado sin avisos de la política y aprobó: «si eso no causa problemas de seguridad entonces adelante» | ACEPTADA | Conversación con Ian; V4.10.4 | `vercel.json` |
 | DEC-021 | 25/11/2026 | Sacar el estado de Patio 12 (`RestaurantProvider` y `FloatingTimer`) del paquete principal en la entrega de Patio 12 | PROPUESTA | `RENDIMIENTO.md` | Portada más ligera |
 | DEC-022 | 25/11/2026 | Prueba de humo automática contra la vista previa de Vercel en cada pull request (puerta G7) | PROPUESTA | `DESPLIEGUE.md` | CI |
 | DEC-023 | 25/11/2026 | Avisos automáticos de dependencias (Dependabot), agrupados una vez al mes | PROPUESTA | `SEGURIDAD.md` | Abre pull requests solo; por eso no se activó sin Ian |

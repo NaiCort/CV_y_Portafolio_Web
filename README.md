@@ -46,7 +46,7 @@ npm run build
 npm run audit:presupuesto
 ```
 
-Las pruebas de navegador van con `DEMO_START_PREVIEW=1 npm run test:browser:cv` (y `:restaurante`, `:cafe`, `:gimnasio`, `:taller`, `:despacho`, `:revista`). La de Psicólogo es `DEMO_START_PREVIEW=1 npm run test:browser`. La vista previa aplica los encabezados de `vercel.json`; con `CSP_ESTRICTA=1` aplica además la política de contenido completa.
+Las pruebas de navegador van con `DEMO_START_PREVIEW=1 npm run test:browser:cv` (y `:restaurante`, `:cafe`, `:gimnasio`, `:taller`, `:despacho`, `:revista`). La de Psicólogo es `DEMO_START_PREVIEW=1 npm run test:browser`. La vista previa aplica los encabezados de `vercel.json`, incluida la política de contenido completa.
 
 ## Documentación
 

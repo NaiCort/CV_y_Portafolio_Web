@@ -1,3 +1,9 @@
+# V4.10.4 · 25 de noviembre de 2026 · Política de contenido aplicada
+
+- La política de contenido completa pasa de «solo en reporte» a aplicada (DEC-020, aprobada por Ian tras revisar la consola del sitio publicado). Queda una sola política, que también incluye `frame-ancestors 'none'`.
+- La documentación de seguridad y despliegue explica cómo actuar si algo legítimo queda bloqueado y cómo probar cambios futuros de la política.
+- V4.10.3 queda marcada como desplegada (pull request #89).
+
 # V4.10.3 · 25 de noviembre de 2026 · Adopción del Digital Development Handbook
 
 - El portafolio completo (CV, demos y cotizador) es la demo piloto de `Digital-Development-Handbook-Claude` 1.1.0, y adopta su contenido (`docs/HANDBOOK.md`).

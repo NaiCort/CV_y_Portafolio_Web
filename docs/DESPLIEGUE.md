@@ -43,12 +43,15 @@ En la vista previa y, después del merge, en producción:
 curl -sI https://cv-y-portafolio-web.vercel.app/ | grep -iE "content-security|x-frame|x-content|referrer|permissions|strict-transport"
 ```
 
-- **Política de contenido:** en la consola del navegador no aparecen avisos de «Content Security Policy». Hasta aplicarla completa (DEC-020) solo informa, no bloquea.
+- **Política de contenido:** está aplicada desde V4.10.4. En la consola del navegador no deben aparecer avisos «Refused to load…» ni «Content Security Policy». Si alguno aparece, algo legítimo quedó bloqueado:
+  1. se agrega su origen a la directiva que nombra el aviso, en `vercel.json`;
+  2. se prueba con las suites;
+  3. mientras tanto, se vuelve a la publicación anterior (ver «Volver atrás»).
+- **Extensiones del navegador:** las extensiones pueden dejar errores propios en la consola, como «Unchecked runtime.lastError». Para descartarlas, la revisión se hace en una ventana InPrivate.
 
 **Automatizar esta comprobación** contra la vista previa en cada pull request es DEC-022. Queda propuesta porque necesita el enlace de la vista previa dentro de GitHub y no se puede probar desde este entorno.
 
 ## Decisiones abiertas
 
 - DEC-009: alojamiento comercial (Vercel Pro o Cloudflare Pages) antes de recibir solicitudes reales.
-- DEC-020: aplicar la política de contenido completa.
 - DEC-022: prueba de humo automática en cada pull request.

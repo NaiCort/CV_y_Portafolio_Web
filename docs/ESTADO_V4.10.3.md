@@ -92,7 +92,7 @@ El ejemplo anterior de Psicólogo queda como historial (SUPERSEDED).
 ## Implementado, verificado y desplegado
 
 - Implementado y verificado en pruebas: sí (ver [VALIDACION_V4.10.3.md](VALIDACION_V4.10.3.md)).
-- Desplegado en producción: no; espera la revisión de Ian.
+- Desplegado en producción: sí. Ian lo integró en `main` (pull request #89, 25/11/2026). Luego revisó la consola del sitio publicado: sin avisos de la política de contenido. El único error venía de una extensión del navegador y desapareció en una ventana InPrivate.
 
 ## Pendiente
 

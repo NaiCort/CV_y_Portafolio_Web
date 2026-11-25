@@ -26,7 +26,7 @@ Las demás demos ya tienen pruebas (`tests/` y `scripts/verify-*.mjs`). Su matri
 | RNF-003 | Sin desborde horizontal de 320 a 1440 px | CSS de cada demo | `bounds()` en todas las suites | Aprobado |
 | RNF-004 | Movimiento reducido respetado | `MotionConfig reducedMotion="user"` y CSS | Suites con `reducedMotion: "reduce"` en cuatro de cinco anchos | Aprobado |
 | RNF-005 | Presupuesto de rendimiento | Carga diferida por ruta | `npm run audit:presupuesto` (CI) | Aprobado |
-| RNF-006 | Encabezados de seguridad y política de contenido | `vercel.json` y su copia en la vista previa (`vite.config.js`) | `tests/v4103-handbook.test.jsx`; las ocho suites con `CSP_ESTRICTA=1` | Aprobado |
+| RNF-006 | Encabezados de seguridad y política de contenido, aplicada desde V4.10.4 | `vercel.json` y su copia en la vista previa (`vite.config.js`) | `tests/v4103-handbook.test.jsx`; las ocho suites con la política aplicada | Aprobado |
 | RNF-007 | El sitio real tiene aviso de privacidad | `src/pages/Privacidad.jsx`, enlazado desde el CV y el cotizador | `v4103-handbook.test.jsx`; `verify-cv.mjs` | Aprobado |
 | RNF-008 | Sin vulnerabilidades altas en dependencias de producción | `package.json` | `npm audit --omit=dev --audit-level=high` (CI) | Aprobado |
 
