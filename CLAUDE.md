@@ -26,7 +26,7 @@ acciones ficticias del negocio.
   terminadas; sigue la **fase de ajustes V4.8**, cuyo plan está en `docs/PLAN_V4.8.md`
   (leerlo antes de trabajar): V4.8.0 preparación (hecha) → V4.8.1–V4.8.7 CV web y portafolio (la portada
   se prerenderiza al compilar con `scripts/prerender.mjs`; las demás rutas usan `dist/app.html`)
-  en `/` → cotizador base → demos en orden (Psicólogo V4.8.10, Patio 12 V4.8.20, Ladera
+  en `/` → cotizador base → demos en orden (Psicólogo V4.8.10, que se queda como landing de una página, Patio 12 V4.8.20, Ladera
   V4.8.30, Brío V4.8.40, Taller V4.8.50, Cotejo V4.8.60), cada una conectada al cotizador →
   ajuste final del cotizador. Catálogo de demos en `src/data/demos.js` y datos del CV en
   `src/data/cv.js`. El CV vive en `src/pages/Bienvenida.jsx` y `src/pages/cv.css`, con

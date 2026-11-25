@@ -18,7 +18,7 @@ Acordado con Ian el 21 de noviembre de 2026, con el Sitio Profesional Integral V
    7. pasada final, cierre y Documento Maestro.
 3. **Cotizador, primera versión.** Va antes de las demos para que cada una se conecte «desde ya». Tiene página propia.
 4. **Demos en orden de creación**, cada una con sus subversiones:
-   - Psicólogo (V4.8.10);
+   - Psicólogo (V4.8.10). Se queda como **landing de una sola página** (decisión de Ian del 25/11/2026), con lo que aplique de la investigación de sitios de psicólogos;
    - Patio 12 (V4.8.20);
    - Ladera (V4.8.30);
    - Brío (V4.8.40);
@@ -60,7 +60,7 @@ La versión en inglés (Sitio Profesional, sección 25) va después del CV en es
 **Decisiones de Ian (21/11/2026):**
 - Este proyecto es la **versión 1 del CV y portafolio web**. Al terminarlo solo se actualiza para añadir experiencia y conocimientos. Un CV o portafolio futuro sería la v2, con su propio código y repositorio, y este quedaría como la v1.
 - Foto: por ahora una imagen provisional. Ian dará la suya.
-- PDF: solo el CV de noviembre (`public/cv/`). El visual se publica cuando Ian lo actualice.
+- PDF: solo el CV de noviembre (`public/cv/`). El visual se publica cuando Ian lo actualice; queda en pausa por decisión suya (25/11/2026) y no es requisito para cerrar el CV.
 - Demos próximas: ninguna por ahora. El catálogo ya admite el estado para el futuro.
 - Cotizador: antes, durante y después de las demos.
 - Maquetas (21/11/2026): Ian aprobó la distribución.
