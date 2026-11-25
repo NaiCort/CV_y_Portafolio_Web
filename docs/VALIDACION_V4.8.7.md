@@ -19,8 +19,9 @@ Entorno: Node 22 y Chromium de Playwright, con la compilación de producción (`
 - **Pruebas de navegador con axe** (`DEMO_START_PREVIEW=1`), todas porque el cambio de foco toca un gancho compartido:
   - CV: 5 de 5.
   - Patio 12: 12 de 12.
-  - Ladera, Brío y Taller: 5 de 5 cada una.
-  - Cotejo, Revista y Psicólogo: en curso.
+  - Ladera, Brío, Taller y Cotejo: 5 de 5 cada una.
+  - Revista: 5 de 5. En la primera tanda el proceso terminó con un error de Node; el mensaje quedó fuera del registro recortado. Al repetirla, sin cambios, pasó completa. Se toma como intermitente.
+  - Psicólogo: 16 combinaciones y 2 recorridos del selector (táctil y teclado), con la portada del CV como punto de partida.
 
 ## No comprobado
 
