@@ -1,56 +1,82 @@
-import { act } from "react"
 import { MemoryRouter } from "react-router-dom"
 import { describe, expect, it } from "vitest"
-import ThemeCalido from "../src/giros/psicologo/themes/ThemeCalido"
-import ThemeMinimalista from "../src/giros/psicologo/themes/ThemeMinimalista"
-import ThemeClinico from "../src/giros/psicologo/themes/ThemeClinico"
-import ThemeNaturaleza from "../src/giros/psicologo/themes/ThemeNaturaleza"
 import PsicologoApp from "../src/giros/psicologo/PsicologoApp"
 import App from "../src/App"
 import { button, click, render } from "./helpers"
 
-describe("Integración de los cuatro temas", () => {
+const montar = (tema) => {
+  if (tema) localStorage.setItem("demo-psicologo-theme", tema)
+  return render(
+    <MemoryRouter>
+      <PsicologoApp />
+    </MemoryRouter>,
+  )
+}
+
+describe("Psicólogo, tres temas (V4.10.2)", () => {
   it.each([
-    ["Cálido", ThemeCalido],
-    ["Minimalista", ThemeMinimalista],
-    ["Clínico", ThemeClinico],
-    ["Naturaleza", ThemeNaturaleza],
-  ])("%s conecta contacto, servicios, menú y privacidad", async (_name, Theme) => {
-    await render(<Theme />)
+    ["sala", "Sala con luz"],
+    ["neblina", "Neblina"],
+    ["cuaderno", "Cuaderno"],
+  ])("%s tiene un h1, la misma estructura y el cotizador con su identificador", async (tema) => {
+    await montar(tema)
+    expect(document.querySelector(`.psi-${tema}`)).not.toBeNull()
+    expect(document.querySelectorAll("h1").length).toBe(1)
     expect(document.querySelectorAll("main").length).toBe(1)
-    expect(document.querySelectorAll('a[href*="521234567890"]').length).toBe(0)
-    expect(document.querySelectorAll("#contacto form input").length).toBe(2)
-    expect(document.querySelector("#resenas").textContent).toContain("Reseñas ficticias")
-    await click(
-      [...document.querySelectorAll("#contacto button")].find((node) =>
-        node.textContent.includes("WhatsApp"),
-      ),
+    expect(document.querySelectorAll('a[href="#"]').length).toBe(0)
+    for (const id of [
+      "inicio",
+      "te-suena",
+      "como-trabajo",
+      "sobre-mi",
+      "honorarios",
+      "primera-sesion",
+      "instituciones",
+      "recursos",
+      "preguntas",
+      "contacto",
+    ])
+      expect(document.getElementById(id), id).not.toBeNull()
+    expect(document.body.textContent).toContain("650 MXN")
+    expect(document.body.textContent).toContain("Cédula profesional 0000000")
+    expect(document.querySelector('.p-crisis a[href="tel:8009112000"]')).not.toBeNull()
+    expect(document.querySelector('a[href^="/cotizador"]').getAttribute("href")).toBe(
+      `/cotizador?demo=psicologo-${tema}`,
     )
-    expect(document.querySelector("dialog").textContent).toContain("WhatsApp de demostración")
-    await click(button("Cerrar ventana"))
-    await click(document.querySelectorAll("#servicios button")[2])
-    expect(document.querySelector("dialog").textContent).toContain("Orientación Psicológica")
-    expect(document.querySelector("dialog").textContent).not.toContain("Presencial")
-    await click(button("Cerrar ventana"))
-    await click(button("Abrir menú"))
-    expect(document.querySelectorAll("dialog a").length).toBe(5)
-    await click(button("Cerrar ventana"))
-    await click(button("Aviso de privacidad"))
-    expect(document.querySelector("dialog").textContent).toContain("Google Fonts")
-    expect(document.querySelector("dialog").textContent).toContain("Unsplash")
+    // Sin texto libre en el contacto: nadie escribe ahí su motivo de consulta.
+    expect(document.querySelectorAll("#contacto textarea").length).toBe(0)
+    // Fotos servidas desde el sitio.
+    for (const img of document.querySelectorAll(".psi img"))
+      expect(img.getAttribute("src")).toMatch(/^\/psicologo\/fotos\//)
   })
 
-  it("se recupera de un tema guardado inválido y permite seleccionar otro", async () => {
-    localStorage.setItem("demo-psicologo-theme", "constructor")
-    await render(
-      <MemoryRouter>
-        <PsicologoApp />
-      </MemoryRouter>,
+  it("abre la agenda en la llamada previa y la reseña pública sin opiniones inventadas", async () => {
+    await montar("sala")
+    await click(button("Agenda una llamada de 15 minutos", document.getElementById("inicio")))
+    expect(document.querySelector("dialog").textContent).toContain("Agenda: Llamada previa")
+    await click(button("Cerrar ventana"))
+    await click(button("Ver opiniones en el perfil público"))
+    expect(document.querySelector("dialog").textContent).toContain(
+      "no muestra opiniones inventadas",
     )
-    expect(button("Tema Cálido").getAttribute("aria-pressed")).toBe("true")
-    await click(button("Tema Naturaleza"))
-    expect(localStorage.getItem("demo-psicologo-theme")).toBe("naturaleza")
-    expect(button("Tema Naturaleza").getAttribute("aria-pressed")).toBe("true")
+    await click(button("Cerrar ventana"))
+    await click(button("Aviso de privacidad"))
+    expect(document.querySelector("dialog").textContent).toContain("ARCO")
+  })
+
+  it("«Pedir información» elige el tema del contacto", async () => {
+    await montar("cuaderno")
+    Element.prototype.scrollIntoView ??= () => {}
+    await click(button("Pedir información"))
+    expect(document.querySelector("#contacto select").value).toBe("Escuela, empresa o colega")
+  })
+
+  it("se recupera de un tema guardado inválido o anterior y permite elegir otro", async () => {
+    await montar("calido")
+    expect(button("Tema Sala con luz").getAttribute("aria-pressed")).toBe("true")
+    await click(button("Tema Neblina"))
+    expect(localStorage.getItem("demo-psicologo-theme")).toBe("neblina")
+    expect(document.querySelector(".psi-neblina")).not.toBeNull()
   })
 
   it("una ruta desconocida muestra una salida funcional al portafolio", async () => {
@@ -60,34 +86,5 @@ describe("Integración de los cuatro temas", () => {
     await click(document.querySelector('a[href="/"]'))
     expect(document.querySelector("h1").textContent).toBe("Ian Habid Aldana Martínez")
     expect(document.title).toContain("CV y portafolio")
-  })
-
-  it("el indicador de Inicio se recupera al volver arriba", async () => {
-    await render(<ThemeCalido />)
-    const sections = ["inicio", "sobre-mi", "servicios", "primera-cita", "contacto"]
-    for (const [index, id] of sections.entries()) {
-      document.getElementById(id).getBoundingClientRect = () => ({
-        top: index * 1000 - window.scrollY,
-      })
-    }
-    Object.defineProperty(window, "scrollY", { configurable: true, value: 1200 })
-    await act(async () => {
-      window.dispatchEvent(new Event("scroll"))
-      await new Promise((resolve) => requestAnimationFrame(resolve))
-    })
-    expect(document.querySelector('nav a[href="#sobre-mi"]').getAttribute("aria-current")).toBe(
-      "location",
-    )
-    Object.defineProperty(window, "scrollY", { configurable: true, value: 0 })
-    await act(async () => {
-      window.dispatchEvent(new Event("scroll"))
-      await new Promise((resolve) => requestAnimationFrame(resolve))
-    })
-    expect(document.querySelector('nav a[href="#inicio"]').getAttribute("aria-current")).toBe(
-      "location",
-    )
-    expect(document.querySelector('nav a[href="#sobre-mi"]').getAttribute("aria-current")).toBe(
-      null,
-    )
   })
 })
