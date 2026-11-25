@@ -7,6 +7,7 @@ import Cotizador from "./pages/Cotizador"
 import RestaurantProvider from "./giros/restaurante/state/RestaurantProvider"
 import FloatingTimer from "./giros/restaurante/components/FloatingTimer"
 import RouteErrorBoundary from "./components/shared/RouteErrorBoundary"
+import VolverCotizador from "./components/shared/VolverCotizador"
 import { CARGAS } from "./rutasDemo"
 
 const PsicologoApp = lazy(CARGAS["/psicologo"])
@@ -37,6 +38,7 @@ export default function App() {
       <MotionConfig reducedMotion="user">
         <RestaurantProvider>
           <RoutePosition />
+          <VolverCotizador />
           <RouteErrorBoundary>
             <Suspense fallback={<RouteLoading />}>
               <Routes>

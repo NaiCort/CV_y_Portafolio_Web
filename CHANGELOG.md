@@ -1,3 +1,10 @@
+# V4.9.1 · 25 de noviembre de 2026 · Vuelve al cotizador
+
+- Botón flotante «Vuelve al cotizador» en la demo a la que se llegó desde el cotizador («Ver un ejemplo» o «Ver la demo»). Desde el CV o con un enlace directo no aparece.
+- En escritorio dice «Vuelve al cotizador»; en el celular es un círculo de 36 px que, al tocarlo, pregunta «¿Volver al cotizador?». Tocar la pregunta regresa y tocar fuera la cierra.
+- Regresa al cotizador en el mismo paso y a la misma altura, aunque se haya navegado dentro de la demo.
+- Se puede arrastrar si estorba (con el teclado, con las flechas) y recuerda dónde se dejó.
+
 # V4.9.0 · 25 de noviembre de 2026 · Cotizador
 
 - El cotizador sustituye a la página provisional en `/cotizador` y es también la página de servicios: «Elige tipo → Ajusta → Envía», en tres columnas como el CV.

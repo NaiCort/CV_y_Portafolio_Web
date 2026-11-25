@@ -1,0 +1,103 @@
+/* Botón flotante «Vuelve al cotizador» (V4.9.1). Neutro para convivir con las siete demos: carbón
+   translúcido y borde brasa, los colores del cotizador. Por defecto, al borde izquierdo a media
+   altura, donde las demos no tienen otros botones flotantes. */
+.volver-cot {
+  position: fixed;
+  z-index: 55;
+  left: 10px;
+  top: 58%;
+  font-family: system-ui, sans-serif;
+  touch-action: none;
+  animation: volver-cot-entra 0.25s ease-out both;
+}
+.volver-cot.movido {
+  /* La posición la pone el arrastre. */
+  right: auto;
+}
+.volver-cot button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 40px;
+  padding: 0 14px 0 10px;
+  border: 1px solid #f2803f99;
+  border-radius: 999px;
+  background: #15110fd9;
+  color: #efe6dd;
+  font:
+    600 13.5px/1 system-ui,
+    sans-serif;
+  cursor: grab;
+  box-shadow: 0 6px 18px #0000004d;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  transition:
+    background-color 0.2s ease-out,
+    border-color 0.2s ease-out;
+}
+.volver-cot button:hover {
+  background: #15110f;
+  border-color: #f2803f;
+}
+.volver-cot button:active {
+  cursor: grabbing;
+}
+.volver-cot button:focus-visible {
+  outline: 2px solid #f2803f;
+  outline-offset: 3px;
+}
+.volver-cot svg {
+  flex-shrink: 0;
+  color: #ffb37f;
+}
+.volver-cot-pregunta {
+  display: none;
+}
+
+/* Celular: un círculo pequeño; al tocarlo, se abre la pregunta. */
+@media (max-width: 639px) {
+  .volver-cot button {
+    width: 36px;
+    min-height: 36px;
+    height: 36px;
+    padding: 0;
+    justify-content: center;
+    gap: 6px;
+    font-size: 13px;
+    transition:
+      width 0.25s ease-out,
+      padding 0.25s ease-out,
+      background-color 0.2s ease-out;
+  }
+  .volver-cot-texto {
+    display: none;
+  }
+  .volver-cot.abierto button {
+    width: auto;
+    padding: 0 14px 0 10px;
+  }
+  .volver-cot.abierto .volver-cot-pregunta {
+    display: inline;
+    white-space: nowrap;
+  }
+}
+
+@keyframes volver-cot-entra {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .volver-cot {
+    animation-name: volver-cot-fundido;
+  }
+  .volver-cot button {
+    transition: none;
+  }
+}
+@keyframes volver-cot-fundido {
+  from {
+    opacity: 0;
+  }
+}
