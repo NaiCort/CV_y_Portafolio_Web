@@ -1,3 +1,20 @@
+# V4.10.3 · 25 de noviembre de 2026 · Adopción del Digital Development Handbook
+
+- El portafolio completo (CV, demos y cotizador) es la demo piloto de `Digital-Development-Handbook-Claude` 1.1.0, y adopta su contenido (`docs/HANDBOOK.md`).
+- **Seguridad:**
+  - encabezados en `vercel.json`: `nosniff`, `DENY`, `Referrer-Policy`, `Permissions-Policy`, HSTS y una política de contenido corta, aplicada; la política completa va «solo en reporte»;
+  - la vista previa local aplica los mismos encabezados, y con `CSP_ESTRICTA=1` también la política completa;
+  - las suites de navegador fallan ante cualquier aviso de esa política.
+- **Aviso de privacidad del sitio** en `/privacidad`, enlazado desde el CV y desde el paso de envío del cotizador.
+- **Rendimiento:**
+  - el cotizador y el aviso se cargan aparte: el trozo principal baja de 113.8 a 83.2 KB comprimidos;
+  - presupuesto de rendimiento (`npm run audit:presupuesto`) en CI.
+- **Dependencias:**
+  - Tailwind pasa a desarrollo;
+  - vite, vitest, undici y zod, actualizados;
+  - producción sin vulnerabilidades, con auditoría en CI.
+- **Documentos nuevos:** decisiones, trazabilidad, seguridad, rendimiento, despliegue, licencias e índice de `docs/`. Además, el registro de fotos de Psicólogo.
+
 # V4.10.2 · 25 de noviembre de 2026 · Psicólogo desde cero, en tres temas
 
 - Psicólogo se reconstruye desde cero como landing de una sola página para Valeria Romero, psicóloga ficticia en Xalapa, con el contenido de la investigación (`docs/INVESTIGACION_PSICOLOGO_2.md`) en un solo archivo de datos.
