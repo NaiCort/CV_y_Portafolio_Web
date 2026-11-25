@@ -13,6 +13,7 @@ import {
   fijarCantidad,
   monedaPorIdioma,
   rangoCategoria,
+  textoPlazo,
 } from "../src/lib/cotizacion"
 
 const marcadas = (c) => Object.keys(c.sel).filter((id) => c.sel[id] > 0)
@@ -89,7 +90,7 @@ describe("V4.9: reglas entre funciones", () => {
   })
 
   it("una sola página y páginas con menú se excluyen en Personalizado", () => {
-    const c = configInicial({ categoria: "personalizado" })
+    const c = alternar(configInicial({ categoria: "personalizado" }), "una-pagina").config
     expect(c.sel["una-pagina"]).toBe(1)
     const r = alternar(c, "paginas")
     expect(r.config.sel.paginas).toBe(1)
@@ -130,6 +131,30 @@ describe("V4.9: reglas entre funciones", () => {
 })
 
 describe("V4.9: precio y plazo", () => {
+  it("Personalizado empieza sin nada marcado y cuesta el proyecto mínimo", () => {
+    const c = configInicial({ categoria: "personalizado" })
+    expect(Object.keys(c.sel)).toEqual([])
+    const r = calcular(c)
+    expect(r.funciones + r.calidad + r.minimo).toBe(3500)
+  })
+
+  it("el primer mes de mantenimiento entra en el desglose y el total, sin descuento de lanzamiento", () => {
+    const c = configInicial({ demo: "psicologo" })
+    const sin = calcular(c)
+    const con = calcular({ ...c, plan: "basico" })
+    expect(con.primerMes).toBe(1200)
+    expect(con.lanzamiento).toBe(sin.lanzamiento)
+    expect(con.total).toBe(sin.total + 1200 + Math.round((sin.neto + 1200) * 0.16) - sin.iva)
+    expect(con.anticipo).toBe(sin.anticipo)
+    expect(con.mensualidad).toBe(1392)
+  })
+
+  it("el plazo se escribe sin repetir el número cuando el rango es de un solo día", () => {
+    expect(textoPlazo([2, 2])).toBe("2 días hábiles")
+    expect(textoPlazo([1, 1])).toBe("1 día hábil")
+    expect(textoPlazo([3, 5])).toBe("de 3 a 5 días hábiles")
+  })
+
   it("en pesos suma funciones, ficha y calidad, lanzamiento e IVA, y el total incluye impuestos", () => {
     const r = calcular(configInicial({ demo: "psicologo", version: "recomendada" }))
     expect(r.moneda).toBe("MXN")
@@ -149,8 +174,7 @@ describe("V4.9: precio y plazo", () => {
   })
 
   it("un proyecto muy pequeño sube al mínimo", () => {
-    let c = alternar(configInicial({ categoria: "personalizado" }), "una-pagina").config
-    c = alternar(c, "whatsapp").config
+    let c = alternar(configInicial({ categoria: "personalizado" }), "whatsapp").config
     expect(Object.keys(c.sel)).toEqual(["whatsapp"])
     const r = calcular(c)
     expect(r.minimo).toBeGreaterThan(0)

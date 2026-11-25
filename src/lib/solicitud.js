@@ -6,7 +6,7 @@
 import { categoriaPorId, funcionPorId, MONEDAS } from "../data/catalogo"
 import { demoPorId } from "../data/demos"
 import { buildWhatsAppUrl } from "../components/shared/contactInfo"
-import { aParametros } from "./cotizacion"
+import { aParametros, textoPlazo } from "./cotizacion"
 
 export const CORREO = "ian.martinez2610@gmail.com"
 
@@ -45,14 +45,18 @@ export function textoSolicitud({ folio, config, resultado, cliente, origen }) {
       `• Entrega ${resultado.urgencia.nombre.toLowerCase()}: ${formatoDinero(resultado.recargo, m)}`,
     )
   partes.push(`• Precio de lanzamiento: ${formatoDinero(resultado.lanzamiento, m)}`)
+  if (resultado.primerMes)
+    partes.push(
+      `• Mantenimiento ${resultado.plan.nombre}, primer mes: ${formatoDinero(resultado.primerMes, m)}`,
+    )
   if (resultado.iva) partes.push(`• IVA: ${formatoDinero(resultado.iva, m)}`)
   partes.push(
     `Total${MONEDAS[m].iva ? " con IVA" : " sin impuestos"}: ${formatoDinero(resultado.total, m)}`,
-    `Plazo: de ${resultado.dias[0]} a ${resultado.dias[1]} días hábiles`,
+    `Plazo: ${textoPlazo(resultado.dias)}`,
   )
   if (resultado.plan.id !== "ninguno")
     partes.push(
-      `Mantenimiento: plan ${resultado.plan.nombre}, ${formatoDinero(resultado.mensualidad, m)} al mes`,
+      `Después, mantenimiento ${resultado.plan.nombre}: ${formatoDinero(resultado.mensualidad, m)} al mes`,
     )
   partes.push("", `Nombre: ${cliente.nombre.trim()}`)
   if (cliente.negocio.trim()) partes.push(`Negocio: ${cliente.negocio.trim()}`)

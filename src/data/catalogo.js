@@ -148,7 +148,7 @@ export const FUNCIONES = [
     nombre: "Una sola página con secciones",
     detalle: "Propuesta, botón de acción, quién eres, dónde y cuándo.",
     horas: [10, 14],
-    estados: est(I, N, null, null),
+    estados: est(O, N, null, null),
     excluye: ["paginas"],
     demos: ["psicologo"],
   },

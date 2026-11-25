@@ -1,3 +1,12 @@
+# V4.9.2 · 25 de noviembre de 2026 · Correcciones del cotizador
+
+Tras la revisión de Ian:
+- Al llegar al cotizador sin elegir nada, ninguna tarjeta está resaltada y la nota pide elegir un tipo o una demo. Las tarjetas se resaltan al pasar el cursor o al enfocarlas.
+- Personalizado empieza sin nada marcado y se construye desde cero; en «Elige tipo», cada tarjeta parte de la base de su tipo.
+- El primer mes del plan de mantenimiento entra en el desglose y en el total (sin descuento de lanzamiento); debajo se indica lo que se paga cada mes después. El anticipo se calcula sin el mantenimiento.
+- El aviso distingue lo que se quita porque dependía de otra función de lo que se quita porque no puede ir junto con la elegida.
+- El plazo dice «2 días hábiles» en lugar de «de 2 a 2 días hábiles».
+
 # V4.9.1 · 25 de noviembre de 2026 · Vuelve al cotizador
 
 - Botón flotante «Vuelve al cotizador» en la demo a la que se llegó desde el cotizador («Ver un ejemplo» o «Ver la demo»). Desde el CV o con un enlace directo no aparece.
