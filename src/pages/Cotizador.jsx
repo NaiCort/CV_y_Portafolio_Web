@@ -4,6 +4,7 @@ import useFavicon from "../hooks/useFavicon"
 import usePageMetadata from "../hooks/usePageMetadata"
 import useRouteFocus from "../hooks/useRouteFocus"
 import Modal from "../components/shared/Modal"
+import { marcarOrigenCotizador } from "../lib/origenCotizador"
 import { DEMOS, demoPorId } from "../data/demos"
 import {
   CATEGORIAS,
@@ -117,7 +118,11 @@ export default function Cotizador() {
   // Al salir (por ejemplo, a una demo de ejemplo) se recuerda dónde ibas; al volver con el botón
   // de regresar, se recupera esa posición en lugar de empezar arriba.
   useEffect(() => {
-    if (tipoNavegacion === "POP") {
+    // Con el botón «Vuelve al cotizador» de una demo, se vuelve a la altura de la que se salió.
+    const volverY = location.state?.volverY
+    if (Number.isFinite(volverY))
+      requestAnimationFrame(() => window.scrollTo({ top: volverY, behavior: "instant" }))
+    else if (tipoNavegacion === "POP") {
       try {
         const guardada = JSON.parse(sessionStorage.getItem(CLAVE_POSICION) ?? "null")
         if (guardada?.clave === location.key)
@@ -134,7 +139,7 @@ export default function Cotizador() {
         /* Sin almacenamiento no se recuerda la posición. */
       }
     }
-  }, [location.key, tipoNavegacion])
+  }, [location.key, location.state, tipoNavegacion])
 
   const aplicar = (r, accion) => {
     if (r.bloqueo) {
@@ -457,7 +462,9 @@ function PasoTipo({ config, onElegir, onDemo }) {
                 <span className="cot-demo-nombre">{d.nombre}</span>
                 <span className="cot-demo-giro">{d.giro}</span>
               </button>
-              <Link to={d.ruta}>Ver la demo</Link>
+              <Link to={d.ruta} onClick={() => marcarOrigenCotizador(d.ruta)}>
+                Ver la demo
+              </Link>
             </li>
           ))}
         </ul>
@@ -519,7 +526,11 @@ function Tipo({ categoria, config, onElegir }) {
           Continuar con {categoria.nombre.toLowerCase()}
         </button>
         {ejemplo && (
-          <Link className="cot-enlace" to={ejemplo.ruta}>
+          <Link
+            className="cot-enlace"
+            to={ejemplo.ruta}
+            onClick={() => marcarOrigenCotizador(ejemplo.ruta)}
+          >
             Ver un ejemplo
           </Link>
         )}
