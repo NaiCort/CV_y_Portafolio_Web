@@ -34,7 +34,7 @@
 ## Implementado, verificado y desplegado
 
 - Implementado y verificado en pruebas: sí (ver [VALIDACION_V4.8.3.md](VALIDACION_V4.8.3.md)).
-- Desplegado en producción: no; queda en la rama hasta que Ian haga el merge.
+- Desplegado en producción: sí (integrado en main por Ian; pull requests 65 a 75, del 21 al 24/11/2026).
 
 ## Pendiente
 

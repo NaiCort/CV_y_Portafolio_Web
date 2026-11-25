@@ -30,7 +30,7 @@
 ## Implementado, verificado y desplegado
 
 - Implementado y verificado en pruebas: sí (ver [VALIDACION_V4.8.6.md](VALIDACION_V4.8.6.md)).
-- Desplegado en producción: no; queda en la rama hasta que Ian haga el merge.
+- Desplegado en producción: sí (pull requests 76 a 78, integrados por Ian el 25/11/2026).
 
 ## Pendiente
 
