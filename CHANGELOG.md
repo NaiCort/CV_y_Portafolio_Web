@@ -1,3 +1,12 @@
+# V4.8.7 · 25 de noviembre de 2026 · Pasada final y cierre del CV
+
+- Con el teclado, la portada empieza en «Saltar al CV»: antes el foco caía en la columna central y se saltaba el PDF, el índice y el contacto. Al navegar dentro del sitio, el foco sigue llevándose al contenido.
+- Sin palabras solas en la última línea de los párrafos y viñetas del CV.
+- Se quitó la tipografía monoespaciada, que ya no se usaba.
+- PDF del CV con el enlace al dominio nuevo.
+- Ficha del CV al día (dos tipografías, sin línea de tiempo) y numeración de las etapas que siguen: V4.9 cotizador, V4.10 demos y V4.11 ajuste final del cotizador.
+- Documento Maestro V4.8.7 (revisión documental 8, PARTE XVII).
+
 # V4.8.6 · 25 de noviembre de 2026 · Buscadores y nombre nuevo
 
 - La portada llega con el CV ya escrito en el HTML: los buscadores la leen sin ejecutar JavaScript y carga más rápido (1.12 s en teléfono con red lenta, antes 1.87 s).

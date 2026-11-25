@@ -5,7 +5,7 @@ negocio) y un cotizador provisional. Repositorio renombrado de `Multiples_Demos`
 `CV_y_Portafolio_Web` el 24/11/2026; sitio en https://cv-y-portafolio-web.vercel.app (el dominio
 anterior, multiples-demos.vercel.app, redirige).
 La fuente de planificación es el **Documento Maestro** (fuera del repositorio, versión
-vigente: V4.7.21, revisión documental 7 del 21/11/2026; la PARTE XVI tiene el estado actual). Este archivo resume lo que hace falta para trabajar
+vigente: V4.8.7, revisión documental 8 del 25/11/2026; la PARTE XVII tiene el estado actual). Este archivo resume lo que hace falta para trabajar
 en el código sin tenerlo a la mano. Si algo aquí contradice una petición de Ian en la
 conversación, manda lo que Ian diga y luego se actualiza este archivo.
 
@@ -24,7 +24,7 @@ acciones ficticias del negocio.
   **Rosales y Vértice**) → Despacho contable (cerrada en V4.6.8 con **Cotejo**) →
   **Revista digital (cerrada en V4.7.21 con Rubor, Prisma y Umbral)**. Las siete demos están
   terminadas; sigue la **fase de ajustes V4.8 a V4.11**, cuyo plan está en `docs/PLAN_V4.8.md`
-  (leerlo antes de trabajar): V4.8.0 preparación (hecha) → V4.8.1–V4.8.7 CV web y portafolio (la portada
+  (leerlo antes de trabajar): V4.8.0 preparación (hecha) → V4.8.1–V4.8.7 CV web y portafolio (cerrado en V4.8.7; la portada
   se prerenderiza al compilar con `scripts/prerender.mjs`; las demás rutas usan `dist/app.html`)
   en `/` → **V4.9** cotizador base → **V4.10** demos en orden (Psicólogo V4.10.10, que se queda como landing de una página, Patio 12 V4.10.20, Ladera
   V4.10.30, Brío V4.10.40, Taller V4.10.50, Cotejo V4.10.60), cada una conectada al cotizador →
@@ -38,8 +38,8 @@ acciones ficticias del negocio.
   ficha está en `docs/FICHA_CAFE.md`; leerla antes de tocar `src/giros/cafe/`.
 - Idea a futuro, sin fecha: una demo de empresa con gestión de empleados.
 - **No se modifican demos ya cerradas** mientras se construyen las demás. Mejoras y
-  correcciones a demos existentes se anotan en "Pendientes para la fase de ajustes" (abajo)
-  y se hacen en V4.8, al terminar las siete. Excepción: un error real en un componente
+  correcciones a demos existentes se anotan en "Pendientes para las demos" (abajo)
+  y se hacen en V4.10, dentro de la entrega de cada demo. Excepción: un error real en un componente
   compartido que rompa algo se corrige de inmediato.
 - Fuera de alcance en todas las demos: backend, cuentas reales, pagos, inventario real.
 
@@ -170,16 +170,14 @@ contratarnos». Leer `docs/FICHA_DESPACHO.md` antes de tocar
 Leer `docs/FICHA_REVISTA.md` antes de tocar `src/giros/revista/`. Pruebas de navegador en
 `npm run test:browser:revista`.
 
-## Pendientes para la fase de ajustes (V4.8)
+## Pendientes para las demos (V4.10)
 
 Se resuelven dentro de la entrega de cada demo (ver `docs/PLAN_V4.8.md`).
 
 1. ~~FloatingTimer solo dentro de `/restaurante/*`~~ (hecho en V4.8.0).
-2. **Bienvenida:** bajar de 5–6 patrones a 2 como máximo (etiqueta sobre el título,
-   "*Ian*" en serif cursiva, numeración 01–06, manchas de luz, monoespaciada decorativa).
-   Actualizar después la publicación de LinkedIn. Pasar el catálogo de giros a un archivo
-   de datos con estados (Disponible, En desarrollo, Próximamente, En mantenimiento).
-3. **Psicólogo:** servir sus fotos desde el sitio en vez de images.unsplash.com, por
+2. ~~**Bienvenida:** bajar patrones y pasar el catálogo a datos~~ (hecho en V4.8: la portada es el CV
+   web, con un solo patrón vigilado, y el catálogo vive en `src/data/demos.js`). LinkedIn va al final.
+3. **Psicólogo (landing de una página; investigación en `docs/INVESTIGACION_PSICOLOGO.md`):** servir sus fotos desde el sitio en vez de images.unsplash.com, por
    etapas y no todo a la vez; revisar Inter en el tema Cálido; auditoría de los cuatro
    temas (unas 700 líneas cada uno) para consolidar componentes duplicados.
 4. **Patio 12:** quitar la etiqueta en mayúsculas sobre el título en Inicio y Carta.
