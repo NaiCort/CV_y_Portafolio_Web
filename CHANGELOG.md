@@ -1,3 +1,10 @@
+# V4.8.6 · 25 de noviembre de 2026 · Buscadores y nombre nuevo
+
+- La portada llega con el CV ya escrito en el HTML: los buscadores la leen sin ejecutar JavaScript y carga más rápido (1.12 s en teléfono con red lenta, antes 1.87 s).
+- Datos estructurados de persona, URL canónica, imagen para redes, `robots.txt` y `sitemap.xml`.
+- Las demos siguen llegando vacías y se dibujan al cargar; React reutiliza el HTML de la portada sin volver a dibujarlo.
+- Nombre nuevo del proyecto (`CV_y_Portafolio_Web`) y dominio `cv-y-portafolio-web.vercel.app`; README nuevo.
+
 # V4.8.5 · 22 de noviembre de 2026 · Correcciones del CV
 
 - Experiencia completa, con el texto del CV de noviembre y lo que solo traía el CV visual.
