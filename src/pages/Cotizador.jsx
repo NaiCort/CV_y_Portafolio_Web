@@ -1,5 +1,5 @@
 import { useEffect, useId, useMemo, useRef, useState } from "react"
-import { Link, useSearchParams } from "react-router-dom"
+import { Link, useLocation, useNavigationType, useSearchParams } from "react-router-dom"
 import useFavicon from "../hooks/useFavicon"
 import usePageMetadata from "../hooks/usePageMetadata"
 import useRouteFocus from "../hooks/useRouteFocus"
@@ -45,6 +45,7 @@ const PASOS = [
   ["envia", "Envía"],
 ]
 const CLAVE_MONEDA = "cotizador-moneda"
+const CLAVE_POSICION = "cotizador-posicion"
 
 function monedaGuardada() {
   try {
@@ -87,13 +88,15 @@ export default function Cotizador() {
     monedaGuardada() ??
     monedaPorIdioma(typeof navigator === "undefined" ? "es-MX" : navigator.language)
   const [config, setConfig] = useState(() => deParametros(params, monedaInicial))
-  const [paso, setPaso] = useState(() =>
-    PASOS.some(([id]) => id === params.get("paso"))
-      ? params.get("paso")
-      : config.demo || params.get("tipo")
-        ? "ajusta"
-        : "tipo",
-  )
+  // El paso vive en la dirección: cada paso es una entrada del historial, así que el botón de
+  // regresar del navegador vuelve al paso anterior (y de una demo de ejemplo, a «Elige tipo»).
+  const paso = PASOS.some(([id]) => id === params.get("paso"))
+    ? params.get("paso")
+    : config.demo || params.get("tipo")
+      ? "ajusta"
+      : "tipo"
+  const location = useLocation()
+  const tipoNavegacion = useNavigationType()
   const [folio] = useState(() => crearFolio())
   const [aviso, setAviso] = useState(null)
   const [tachadas, setTachadas] = useState([])
@@ -102,11 +105,36 @@ export default function Cotizador() {
   const centro = useRef(null)
   const resultado = useMemo(() => calcular(config), [config])
 
+  // Fuera de «Elige tipo», la configuración se guarda en la dirección (sin crear historial). En
+  // «Elige tipo» la dirección queda limpia: todavía no se ha elegido nada.
   useEffect(() => {
+    if (paso === "tipo") return
     const p = aParametros(config)
-    if (paso !== "tipo") p.set("paso", paso)
+    p.set("paso", paso)
     setParams(p, { replace: true, preventScrollReset: true })
   }, [config, paso, setParams])
+
+  // Al salir (por ejemplo, a una demo de ejemplo) se recuerda dónde ibas; al volver con el botón
+  // de regresar, se recupera esa posición en lugar de empezar arriba.
+  useEffect(() => {
+    if (tipoNavegacion === "POP") {
+      try {
+        const guardada = JSON.parse(sessionStorage.getItem(CLAVE_POSICION) ?? "null")
+        if (guardada?.clave === location.key)
+          requestAnimationFrame(() => window.scrollTo({ top: guardada.y, behavior: "instant" }))
+      } catch {
+        /* Sin almacenamiento, se vuelve arriba. */
+      }
+    }
+    const clave = location.key
+    return () => {
+      try {
+        sessionStorage.setItem(CLAVE_POSICION, JSON.stringify({ clave, y: window.scrollY }))
+      } catch {
+        /* Sin almacenamiento no se recuerda la posición. */
+      }
+    }
+  }, [location.key, tipoNavegacion])
 
   const aplicar = (r, accion) => {
     if (r.bloqueo) {
@@ -131,7 +159,7 @@ export default function Cotizador() {
 
   const elegirCategoria = (categoria, siguiente) => {
     if (categoria === config.categoria) {
-      if (siguiente) irA(siguiente)
+      if (siguiente) irA(siguiente, config)
       return
     }
     const r = cambiarCategoria({ ...config, demo: null, version: null, variante: null }, categoria)
@@ -142,7 +170,7 @@ export default function Cotizador() {
     setAviso({ texto: partes.join(" "), antes: config })
     setTachadas(r.quitadas)
     setConfig(r.config)
-    if (siguiente) irA(siguiente)
+    if (siguiente) irA(siguiente, r.config)
   }
 
   const deshacer = () => {
@@ -160,8 +188,13 @@ export default function Cotizador() {
     setConfig({ ...config, moneda })
   }
 
-  const irA = (destino) => {
-    setPaso(destino)
+  const irA = (destino, cfg = config) => {
+    const p = new URLSearchParams()
+    if (destino !== "tipo") {
+      for (const [k, v] of aParametros(cfg)) p.set(k, v)
+      p.set("paso", destino)
+    }
+    setParams(p)
     setNotaAbierta(false)
     setTachadas([])
     requestAnimationFrame(() => {
@@ -175,8 +208,9 @@ export default function Cotizador() {
   const partirDeDemo = (demo, version = "recomendada") => {
     setAviso(null)
     setTachadas([])
-    setConfig(configInicial({ demo, version, moneda: config.moneda }))
-    irA("ajusta")
+    const nueva = configInicial({ demo, version, moneda: config.moneda })
+    setConfig(nueva)
+    irA("ajusta", nueva)
   }
 
   const ordenPaso = PASOS.findIndex(([id]) => id === paso)
@@ -230,7 +264,14 @@ export default function Cotizador() {
               resultado={resultado}
               onAlternar={alternarFuncion}
               onCantidad={(id, n) => setConfig(fijarCantidad(config, id, n))}
-              onVersion={(v) => partirDeDemo(config.demo, v)}
+              onVersion={(version) => {
+                setAviso(null)
+                setTachadas([])
+                setConfig({
+                  ...configInicial({ demo: config.demo, version, moneda: config.moneda }),
+                  variante: config.variante,
+                })
+              }}
               onCambiar={(cambios) => setConfig({ ...config, ...cambios })}
             />
           )}
