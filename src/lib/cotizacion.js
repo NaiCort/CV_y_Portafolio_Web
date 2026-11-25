@@ -294,13 +294,16 @@ export function calcular(config) {
 }
 
 // «Desde» y «completo» de una categoría: solo su núcleo (en Personalizado, el proyecto mínimo) y
-// todo lo que cabe en ella (una unidad de cada función, sin las que chocan con su estructura).
+// todo lo que cabe en ella (una unidad de cada función del sitio, sin IA ni extras de contenido, y
+// sin las que chocan con su estructura).
 export function rangoCategoria(categoria, moneda) {
   const vacia = { categoria, sel: {}, moneda, urgencia: "normal", plan: "ninguno" }
   const desde = calcular(normalizar(vacia))
   let cfg = normalizar({ ...vacia, sel: seleccionBase(categoria) })
   for (const f of FUNCIONES) {
+    // IA y los extras de contenido son servicios aparte: no cuentan en el «completo» del sitio.
     if (!disponible(f, categoria) || cfg.sel[f.id] || f.aparte) continue
+    if (f.grupo === "ia" || f.grupo === "extras") continue
     if ((f.excluye ?? []).some((x) => cfg.sel[x])) continue
     const r = alternar(cfg, f.id)
     if (r.config) cfg = r.config

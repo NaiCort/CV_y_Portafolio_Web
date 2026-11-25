@@ -1,5 +1,13 @@
 import { describe, expect, it } from "vitest"
-import { CATEGORIAS, FUNCIONES, PUNTOS_DE_PARTIDA, funcionPorId } from "../src/data/catalogo"
+import {
+  CATEGORIAS,
+  FUNCIONES,
+  MONEDAS,
+  NIVELES,
+  NIVEL_ACTUAL,
+  PUNTOS_DE_PARTIDA,
+  funcionPorId,
+} from "../src/data/catalogo"
 import { DEMOS } from "../src/data/demos"
 import {
   aParametros,
@@ -203,11 +211,20 @@ describe("V4.9: precio y plazo", () => {
     expect(grande.urgencia.id).toBe("normal")
   })
 
-  it("las funciones de IA no suman un número inventado: se cotizan en la propuesta", () => {
+  it("las funciones de IA tienen precio y dicen qué costos de terceros van aparte", () => {
     const c = alternar(configInicial({ categoria: "landing" }), "ia-whatsapp").config
     const r = calcular(c)
-    expect(r.aparte).toContain("ia-whatsapp")
-    expect(r.lineas.find((l) => l.id === "ia-whatsapp").precio).toBeNull()
+    expect(r.aparte).toEqual([])
+    expect(r.lineas.find((l) => l.id === "ia-whatsapp").precio).toBe(10000)
+    expect(funcionPorId("ia-whatsapp").aparteNota).toMatch(/WhatsApp/)
+    expect(funcionPorId("ia-diagnostico").horas).toEqual([3, 5])
+  })
+
+  it("los niveles de tarifa: junior hoy, intermedio y senior como referencia", () => {
+    expect(NIVEL_ACTUAL).toBe("junior")
+    expect(MONEDAS.MXN.tarifa).toBe(NIVELES.junior.tarifa.MXN)
+    expect(NIVELES.intermedio.tarifa.MXN).toBeGreaterThan(NIVELES.junior.tarifa.MXN)
+    expect(NIVELES.senior.tarifa.USD).toBeGreaterThan(NIVELES.intermedio.tarifa.USD)
   })
 
   it("el sitio en dos idiomas suma un 30 % de las horas", () => {
