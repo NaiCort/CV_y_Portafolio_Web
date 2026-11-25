@@ -1,6 +1,6 @@
 # Investigación: diseño visual del sitio de un psicólogo (V4.10.1)
 
-25 de noviembre de 2026. Pedido de Ian antes de las maquetas: qué diseño visual puede o debe llevar el sitio de un psicólogo (color, tipografía, fotografía, adornos y animaciones). Completa `INVESTIGACION_PSICOLOGO_2.md` (contenido, ley y ética). Decisión de Ian: **dos temas bien resueltos, con diseños que pueden ser muy distintos**.
+25 de noviembre de 2026. Pedido de Ian antes de las maquetas: qué diseño visual puede o debe llevar el sitio de un psicólogo (color, tipografía, fotografía, adornos y animaciones). Completa `INVESTIGACION_PSICOLOGO_2.md` (contenido, ley y ética). Decisión de Ian: **las tres direcciones de la sección 9 se construyen como temas intercambiables**, aunque tengan estructura distinta.
 
 **Sobre las fuentes:**
 - Casi todo viene de agencias y plataformas para terapeutas, y de guías de accesibilidad.
@@ -97,7 +97,7 @@ La guía de diseño informado por el trauma es la base, y conviene a todos los v
 
 ## 9. Tres direcciones para las maquetas
 
-Ian quiere dos temas que puedan ser muy distintos. Propongo maquetar tres para que elija dos:
+Ian decidió construir las tres como temas intercambiables:
 
 | Dirección | Idea | Paleta | Tipografía | Adornos y movimiento |
 | --- | --- | --- | --- | --- |

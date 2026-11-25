@@ -33,7 +33,7 @@ Cada etapa lleva su propia versión menor (decisión de Ian del 25/11/2026): V4.
      - investigación de diseño visual (`docs/INVESTIGACION_PSICOLOGO_DISENO.md`);
      - después, ficha nueva y maquetas (tres direcciones para elegir dos), y la reconstrucción.
 
-     Decisión de Ian (25/11/2026): **dos temas bien resueltos, con diseños que pueden ser muy distintos**.
+     Decisión de Ian (25/11/2026): **tres temas («Sala con luz», «Neblina» y «Cuaderno»), cada uno con su propia estructura si hace falta, intercambiables desde la demo** como los temas actuales (antes había dicho dos).
 
      Decisiones de Ian (25/11/2026):
      - los testimonios se reemplazan por formación, supervisión y un enlace a reseñas públicas simuladas;
