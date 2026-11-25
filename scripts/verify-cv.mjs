@@ -26,6 +26,15 @@ await suite("cv", async ({ run, base }) => {
         reducedMotion: width === 1440 ? "no-preference" : "reduce",
       },
       async ({ page }) => {
+        // V4.8.6: la portada llega prerenderizada; las demás rutas, vacías; sin errores al hidratar.
+        const errores = []
+        page.on("pageerror", (e) => errores.push(e.message))
+        const portada = await (await page.request.get(`${base}/`)).text()
+        assert(portada.includes("Ian Habid Aldana Martínez</h1>"), "CV en el HTML inicial")
+        assert(portada.includes("application/ld+json"), "Datos estructurados")
+        assert(portada.includes('rel="canonical"'), "URL canónica")
+        const demo = await (await page.request.get(`${base}/cafe`)).text()
+        assert(demo.includes('<div id="root"></div>'), "Las demos llegan vacías")
         await go(page, base, "/")
         assert.equal(await page.locator("h1").count(), 1)
         assert.equal(await page.title(), "Ian Habid Aldana Martínez · CV y portafolio")
@@ -97,6 +106,7 @@ await suite("cv", async ({ run, base }) => {
         await audit(page)
         await page.getByRole("link", { name: "Volver al CV y las demos" }).click()
         await page.locator(".cv-nombre").waitFor()
+        assert.deepEqual(errores, [], "Sin errores de hidratación")
         return { width }
       },
     )
