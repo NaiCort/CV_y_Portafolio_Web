@@ -28,7 +28,15 @@ Cada etapa lleva su propia versión menor (decisión de Ian del 25/11/2026): V4.
    - **Alojamiento:** el plan gratuito de Vercel es solo para uso no comercial. Antes de recibir solicitudes reales se decide entre Vercel Pro (20 USD al mes) y Cloudflare Pages. El dominio propio funciona en cualquiera de los dos y se paga aparte.
    - **Calendario:** el de la sección 26 es orientativo.
 4. **V4.10, demos en orden de creación**, cada una con su bloque de subversiones:
-   - Psicólogo (V4.10.10). Se queda como **landing de una sola página** (decisión de Ian del 25/11/2026), con lo que aplique de la investigación de sitios de psicólogos;
+   - Psicólogo (V4.10.10 a V4.10.15). Se queda como **landing de una sola página** (decisión de Ian del 25/11/2026), con lo que aplique de la investigación de sitios de psicólogos. Ficha a posteriori en `docs/FICHA_PSICOLOGO.md`. Plan:
+     - V4.10.10 fichas de los cuatro temas;
+     - V4.10.11 consolidación (contenido único y temas como piel, sin cambios visibles);
+     - V4.10.12 tipografías y fotos servidas desde el sitio (Inter fuera de Cálido);
+     - V4.10.13 contenido de la investigación;
+     - V4.10.14 reserva más completa;
+     - V4.10.15 botón al cotizador, pasada final y cierre.
+
+     Decisiones de Ian (25/11/2026): los testimonios se reemplazan por formación, supervisión y un enlace a reseñas públicas simuladas; no hay autoevaluación (PHQ-9 ni GAD-7); se agregan «Instituciones y colegas» y «Recursos»;
    - Patio 12 (V4.10.20);
    - Ladera (V4.10.30);
    - Brío (V4.10.40);
