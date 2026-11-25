@@ -207,6 +207,18 @@ Redacción de textos, fotografías o imágenes con IA, y diseño de logotipo: ex
 4. **Folio local:** fecha más un código corto, en el mensaje de WhatsApp o correo, con la configuración en la URL para poder recuperarla.
 5. **Sin vista previa:** es la v2 del cotizador (sección 26).
 
+## 8. Respuestas de Ian (25/11/2026)
+
+- **Horas y plazo:** las horas estimadas se usan así mientras no haya tiempos medidos. El plazo se calcula con un máximo de **8 horas al día, solo días hábiles** (parámetro editable en los datos; la sección 21.2 proponía 25 horas facturables a la semana).
+- **Impuestos:**
+  - el cotizador queda listo desde el principio para personas y para empresas, aunque se empiece con negocios pequeños;
+  - siempre se muestra el total con IVA y su desglose;
+  - el último paso pregunta si se necesita factura y si el cliente es persona física o empresa, para que la propuesta incluya las retenciones que correspondan;
+  - el RFC no se pide en el cotizador;
+  - el régimen fiscal lo decide Ian con un contador;
+  - la propuesta anotará las condiciones que suelen pedir las empresas grandes (contrato, alta como proveedor, pago a 30 días o más).
+- **Diseño:** el cotizador usa la dirección «Brasa» del CV. Las animaciones propias se ven en la fase final del cotizador.
+
 ## Fuentes
 
 - [Fiverr: Creating and managing Gig packages](https://help.fiverr.com/hc/en-us/articles/360010559138-Creating-and-managing-Gig-packages)
