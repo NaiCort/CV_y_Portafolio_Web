@@ -408,7 +408,7 @@ export function aParametros(config) {
 }
 
 export function deParametros(params, monedaPorDefecto = "MXN") {
-  // Las variantes (psicologo-calido, vertice, rubor…) se cotizan como su demo y se recuerdan.
+  // Las variantes (psicologo-sala, vertice, rubor…) se cotizan como su demo y se recuerdan.
   const demoParam = params.get("demo") ?? ""
   const encontrada = demoPorId(demoParam)
   const demo = encontrada && PUNTOS_DE_PARTIDA[encontrada.id] ? encontrada.id : null

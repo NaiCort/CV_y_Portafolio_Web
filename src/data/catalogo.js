@@ -236,7 +236,7 @@ export const FUNCIONES = [
     id: "temas",
     grupo: "estructura",
     nombre: "Estilo alterno que el visitante elige",
-    detalle: "Como los cuatro estilos de la demo de Psicólogo; precio por estilo.",
+    detalle: "Como los tres estilos de la demo de Psicólogo; precio por estilo.",
     horas: [8, 12],
     cantidad: 4,
     estados: est(O, O, O, O),
@@ -286,7 +286,7 @@ export const FUNCIONES = [
     detalle: "Mapa, dirección y cómo llegar.",
     horas: [3, 5],
     estados: est(O, I, I, I),
-    demos: ["ladera", "taller", "brio"],
+    demos: ["psicologo", "ladera", "taller", "brio"],
   },
   {
     id: "equipo",
@@ -304,7 +304,7 @@ export const FUNCIONES = [
     detalle: "Costos, horarios, formas de pago y lo que más te preguntan.",
     horas: [2, 4],
     estados: est(O, O, I, I),
-    demos: ["cotejo", "brio"],
+    demos: ["psicologo", "cotejo", "brio"],
   },
   {
     id: "opiniones",
@@ -323,7 +323,7 @@ export const FUNCIONES = [
     horas: [10, 16],
     estados: est(O, null, O, O),
     requiere: ["paginas"],
-    demos: ["revista"],
+    demos: ["psicologo", "revista"],
   },
   {
     id: "documentos",
@@ -504,7 +504,7 @@ export const FUNCIONES = [
     horas: [4, 8],
     estados: est(O, O, O, O),
     requiereAlguna: ["citas", "reservas"],
-    demos: ["cotejo"],
+    demos: ["psicologo", "cotejo"],
   },
   {
     id: "cuentas",

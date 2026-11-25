@@ -5,7 +5,7 @@ negocio) y un cotizador. Repositorio renombrado de `Multiples_Demos` a
 `CV_y_Portafolio_Web` el 24/11/2026; sitio en https://cv-y-portafolio-web.vercel.app (el dominio
 anterior, multiples-demos.vercel.app, redirige).
 La fuente de planificación es el **Documento Maestro** (fuera del repositorio, versión
-vigente: V4.8.7, revisión documental 8 del 25/11/2026; la PARTE XVII tiene el estado actual). Este archivo resume lo que hace falta para trabajar
+vigente: V4.9.5, revisión documental 9 del 25/11/2026; la PARTE XVIII tiene el estado actual). Este archivo resume lo que hace falta para trabajar
 en el código sin tenerlo a la mano. Si algo aquí contradice una petición de Ian en la
 conversación, manda lo que Ian diga y luego se actualiza este archivo.
 
@@ -26,8 +26,8 @@ acciones ficticias del negocio.
   terminadas; sigue la **fase de ajustes V4.8 a V4.11**, cuyo plan está en `docs/PLAN_V4.8.md`
   (leerlo antes de trabajar): V4.8.0 preparación (hecha) → V4.8.1–V4.8.7 CV web y portafolio (cerrado en V4.8.7; la portada
   se prerenderiza al compilar con `scripts/prerender.mjs`; las demás rutas usan `dist/app.html`)
-  en `/` → **V4.9** cotizador base → **V4.10** demos en orden (Psicólogo V4.10.10, que se queda como landing de una página, Patio 12 V4.10.20, Ladera
-  V4.10.30, Brío V4.10.40, Taller V4.10.50, Cotejo V4.10.60), cada una conectada al cotizador →
+  en `/` → **V4.9** cotizador base (cerrado en V4.9.5) → **V4.10** demos en orden (Psicólogo, que se reconstruye desde cero como landing de una página, Patio 12, Ladera,
+  Brío, Taller y Cotejo), con subversiones consecutivas V4.10.1, V4.10.2…, cada una conectada al cotizador →
   **V4.11** ajuste final del cotizador (cada etapa con su versión menor, decisión de Ian del 25/11/2026). Catálogo de demos en `src/data/demos.js` y datos del CV en
   `src/data/cv.js`. El CV vive en `src/pages/Bienvenida.jsx` y `src/pages/cv.css`, con
   su ficha en `docs/FICHA_CV.md` (dirección «Brasa»; leerla antes de tocarlo) y pruebas de navegador en
@@ -64,8 +64,7 @@ npm run build
 ```
 
 Las pruebas de navegador (`npm run test:browser:*`) se corren al cerrar una versión, con
-`DEMO_START_PREVIEW=1` (levantan su propio `vite preview`; `test:browser` de Psicólogo
-necesita un servidor en el puerto 5173). Herramientas de la pasada final:
+`DEMO_START_PREVIEW=1` (levantan su propio `vite preview`). Herramientas de la pasada final:
 `npm run audit:encimados -- /ruta1,/ruta2` y `npm run audit:cwv -- /ruta` (contra
 `vite preview` en 4173). Chromium y Playwright ya están instalados en el entorno de nube.
 
@@ -94,6 +93,18 @@ patrones, temáticar selección, foco, barras de desplazamiento y subrayado, cor
 
 Herramientas instaladas en `.claude/` (ver `.claude/README.md`): frontend-design,
 impeccable, web-design-guidelines y web-quality-skills.
+
+## Estado de Psicólogo
+
+**Psicólogo = Valeria Romero**, reconstruida desde cero en V4.10.2 como landing de una sola página
+con tres temas intercambiables que comparten el contenido de `src/giros/psicologo/data/consultorio.js`:
+«Sala con luz» (bandas y foto en arco), «Neblina» (portada de niebla, gafete y pausas fotográficas) y
+«Cuaderno» (notas al margen, polaroid y lista de libreta). Agenda simulada (llamada previa o primera
+sesión, zona horaria y recordatorio por WhatsApp de ejemplo), «Respira conmigo», ayuda en crisis con
+teléfonos reales, cédula verificable, sin testimonios ni autoevaluaciones ni datos de salud en
+formularios. Cada tema se cotiza con su identificador (`psicologo-sala`, `psicologo-neblina`,
+`psicologo-cuaderno`). Leer `docs/FICHA_PSICOLOGO.md` antes de tocar `src/giros/psicologo/`. Pruebas
+de navegador en `npm run test:browser`. Pendiente del visto bueno de Ian en la vista previa.
 
 ## Estado de Café
 
@@ -177,15 +188,14 @@ Se resuelven dentro de la entrega de cada demo (ver `docs/PLAN_V4.8.md`).
 1. ~~FloatingTimer solo dentro de `/restaurante/*`~~ (hecho en V4.8.0).
 2. ~~**Bienvenida:** bajar patrones y pasar el catálogo a datos~~ (hecho en V4.8: la portada es el CV
    web, con un solo patrón vigilado, y el catálogo vive en `src/data/demos.js`). LinkedIn va al final.
-3. **Psicólogo (landing de una página; investigación en `docs/INVESTIGACION_PSICOLOGO.md`):** servir sus fotos desde el sitio en vez de images.unsplash.com, por
-   etapas y no todo a la vez; revisar Inter en el tema Cálido; auditoría de los cuatro
-   temas (unas 700 líneas cada uno) para consolidar componentes duplicados.
+3. ~~**Psicólogo:** fotos desde el sitio, Inter y consolidación de los temas~~ (hecho en V4.10.2: se
+   reconstruyó desde cero con tres temas sobre un solo contenido).
 4. **Patio 12:** quitar la etiqueta en mayúsculas sobre el título en Inicio y Carta.
-5. Fichas de identidad a posteriori de los cuatro temas de Psicólogo y de Patio 12.
+5. Ficha de identidad a posteriori de Patio 12 (la de Psicólogo se hizo en V4.10.1 y la nueva está en `docs/FICHA_PSICOLOGO.md`).
 6. ~~Componentes compartidos (llamada comercial, banner, marca de agua)~~ (hecho en V4.8.0:
    `ComercialCTA` con h2 y sin etiqueta ni tarjeta; banner y autoría como `aside` con nombre;
    la marca de agua pasó a cerrar la página en vez de flotar).
-7. **Precarga de fuentes en `index.html`** (todas las demos): en red lenta, el cambio de
+7. **Precarga de fuentes en `index.html`** (todas las demos; Psicólogo ya tiene respaldos medidos desde V4.10.2): en red lenta, el cambio de
    tipografía mueve el texto (CLS 0.146 medido en Créditos de Ladera). Modelo ya probado en
    Cotejo (V4.6.8): tipografías de respaldo con `size-adjust` medido, que bajaron el CLS a 0.002.
 8. Dependencias de desarrollo con avisos moderados de `npm audit` (vitest, minimatch vía

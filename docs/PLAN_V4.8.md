@@ -18,7 +18,7 @@ Cada etapa lleva su propia versión menor (decisión de Ian del 25/11/2026): V4.
    5. correcciones del CV (experiencia completa, certificados, sin línea de tiempo);
    6. buscadores (hecho en V4.8.6); el PDF lo mantiene Ian en Canva y se sirve tal cual;
    7. pasada final, cierre y Documento Maestro.
-3. **V4.9, cotizador, primera versión.** Va antes de las demos para que cada una se conecte «desde ya». Tiene página propia.
+3. **V4.9, cotizador, primera versión** (cerrada en V4.9.5 el 25/11/2026; Documento Maestro V4.9.5, PARTE XVIII). Va antes de las demos para que cada una se conecte «desde ya». Tiene página propia.
 
    Decisiones de Ian (25/11/2026), sobre las secciones 7 a 9 y 18 a 26 del Sitio Profesional V1.4:
    - **Ruta:** se queda `/cotizador`.
@@ -27,13 +27,24 @@ Cada etapa lleva su propia versión menor (decisión de Ian del 25/11/2026): V4.
    - **Precios:** los propuestos en la sección 22, en un archivo de datos. Se deciden cuando el cotizador esté terminado.
    - **Alojamiento:** el plan gratuito de Vercel es solo para uso no comercial. Antes de recibir solicitudes reales se decide entre Vercel Pro (20 USD al mes) y Cloudflare Pages. El dominio propio funciona en cualquiera de los dos y se paga aparte.
    - **Calendario:** el de la sección 26 es orientativo.
-4. **V4.10, demos en orden de creación**, cada una con su bloque de subversiones:
-   - Psicólogo (V4.10.10). Se queda como **landing de una sola página** (decisión de Ian del 25/11/2026), con lo que aplique de la investigación de sitios de psicólogos;
-   - Patio 12 (V4.10.20);
-   - Ladera (V4.10.30);
-   - Brío (V4.10.40);
-   - Rosales y Vértice (V4.10.50);
-   - Cotejo (V4.10.60). Idea de Ian (22/11/2026): llevar a Cotejo el fondo de cuadrícula que tuvo el CV en V4.8.3 (parecido a una hoja de Excel), que encaja con la contabilidad.
+4. **V4.10, demos en orden de creación**, con subversiones consecutivas (V4.10.1, V4.10.2…):
+   - Psicólogo, desde V4.10.1. Las subversiones de V4.10 van en orden (V4.10.1, V4.10.2…), sin bloques de diez por demo (corrección de Ian, 25/11/2026); cada demo sigue donde terminó la anterior. Se queda como **landing de una sola página** y **se reconstruye desde cero** (decisión de Ian, 25/11/2026):
+     - V4.10.1: ficha a posteriori de los cuatro temas anteriores (`docs/FICHA_PSICOLOGO_ANTERIOR.md`) e investigación de cómo debe ser el sitio de un psicólogo (`docs/INVESTIGACION_PSICOLOGO_2.md`);
+     - investigación de diseño visual (`docs/INVESTIGACION_PSICOLOGO_DISENO.md`);
+     - ampliación de la investigación de diseño con Refero (`docs/INVESTIGACION_PSICOLOGO_DISENO_2.md`);
+     - V4.10.2: ficha nueva (`docs/FICHA_PSICOLOGO.md`) y reconstrucción con los tres temas.
+
+     Decisión de Ian (25/11/2026): **tres temas («Sala con luz», «Neblina» y «Cuaderno»), cada uno con su propia estructura si hace falta, intercambiables desde la demo** como los temas actuales (antes había dicho dos).
+
+     Decisiones de Ian (25/11/2026):
+     - los testimonios se reemplazan por formación, supervisión y un enlace a reseñas públicas simuladas;
+     - no hay autoevaluación (PHQ-9 ni GAD-7);
+     - se agregan «Instituciones y colegas» y «Recursos»;
+   - Patio 12;
+   - Ladera;
+   - Brío;
+   - Rosales y Vértice;
+   - Cotejo. Idea de Ian (22/11/2026): llevar a Cotejo el fondo de cuadrícula que tuvo el CV en V4.8.3 (parecido a una hoja de Excel), que encaja con la contabilidad.
 
    En cada demo se quitan las aclaraciones repetidas o no pedidas (decisión de Ian del 23/11/2026), conservando los avisos de simulación que pide el principio rector. Cada demo recibe su botón «Contratar un sitio como este» con su identificador estable, y el cotizador se ajusta con ella.
 5. **V4.11, cotizador, ajuste final:** revisión de conjunto y lo que se considere pertinente al terminar las demos.

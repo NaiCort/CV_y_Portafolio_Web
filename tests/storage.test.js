@@ -4,10 +4,10 @@ import { contrastRatio, contrastingText, dialogAccent } from "../src/utils/color
 
 describe("Preferencia de tema y contraste de controles", () => {
   it("recupera un tema válido y descarta valores corruptos", () => {
+    localStorage.setItem(THEME_STORAGE_KEY, "neblina")
+    expect(readTheme()).toBe("neblina")
     localStorage.setItem(THEME_STORAGE_KEY, "clinico")
-    expect(readTheme()).toBe("clinico")
-    localStorage.setItem(THEME_STORAGE_KEY, "constructor")
-    expect(readTheme()).toBe("calido")
+    expect(readTheme()).toBe("sala")
   })
   it("funciona cuando el navegador bloquea el almacenamiento", () => {
     vi.spyOn(Storage.prototype, "getItem").mockImplementation(() => {
@@ -16,8 +16,8 @@ describe("Preferencia de tema y contraste de controles", () => {
     vi.spyOn(Storage.prototype, "setItem").mockImplementation(() => {
       throw new DOMException("Sin cuota", "QuotaExceededError")
     })
-    expect(readTheme()).toBe("calido")
-    expect(() => saveTheme("naturaleza")).not.toThrow()
+    expect(readTheme()).toBe("sala")
+    expect(() => saveTheme("cuaderno")).not.toThrow()
   })
   it.each(["#6B8F71", "#0A0A0A", "#2C4A7C", "#5A8C5A"])(
     "mantiene legibilidad del acento %s en diálogos oscuros",

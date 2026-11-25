@@ -1,5 +1,6 @@
 import { motion, useReducedMotion } from "framer-motion"
 import { ArrowRight } from "lucide-react"
+import { Link } from "react-router-dom"
 import { buildWhatsAppUrl } from "./contactInfo"
 import { contrastingText, dialogAccent } from "../../utils/colors"
 
@@ -16,6 +17,9 @@ export default function ComercialCTA({
   headingFontFamily,
   radius = 12,
   giro = "psicólogo",
+  // Identificador de la demo o de su tema para el cotizador (V4.10): agrega «Cotiza un sitio como
+  // este», que abre el cotizador con esa demo como punto de partida.
+  cotizar,
 }) {
   const reduced = useReducedMotion()
   const accent = dialogAccent(accentColor)
@@ -82,6 +86,15 @@ export default function ComercialCTA({
           Hablemos
           <ArrowRight size={16} aria-hidden="true" />
         </a>
+        {cotizar && (
+          <Link
+            to={`/cotizador?demo=${encodeURIComponent(cotizar)}`}
+            className="sm:col-start-2 justify-self-start text-sm underline underline-offset-4"
+            style={{ color: textColor, fontFamily }}
+          >
+            Cotiza un sitio como este
+          </Link>
+        )}
       </motion.div>
     </section>
   )

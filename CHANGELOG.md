@@ -1,3 +1,24 @@
+# V4.10.2 · 25 de noviembre de 2026 · Psicólogo desde cero, en tres temas
+
+- Psicólogo se reconstruye desde cero como landing de una sola página para Valeria Romero, psicóloga ficticia en Xalapa, con el contenido de la investigación (`docs/INVESTIGACION_PSICOLOGO_2.md`) en un solo archivo de datos.
+- Tres temas intercambiables con su propia estructura (ficha en `docs/FICHA_PSICOLOGO.md`):
+  - **Sala con luz:** por bandas, foto en arco y una banda olivo para la primera sesión;
+  - **Neblina:** portada de niebla, gafete con la cédula, honorarios en tabla y pausas fotográficas;
+  - **Cuaderno:** notas al margen, polaroid con cinta, honorarios como lista de libreta y subrayado de marcatexto.
+- Agenda simulada con los cinco estados: llamada previa o primera sesión, modalidad, zona horaria, horario y contacto, con recordatorio por WhatsApp de ejemplo. No pide datos de salud.
+- «Respira conmigo»: un minuto de respiración que el visitante inicia y detiene.
+- Ayuda en crisis con teléfonos reales; cédula verificable en la SEP; aviso de publicidad y aviso de privacidad con datos sensibles y derechos ARCO; reseñas públicas simuladas sin opiniones inventadas; instituciones y colegas; tres notas de recursos; preguntas frecuentes; contacto sin texto libre, con mapa.
+- Fotos (WebP) y tipografías servidas desde el sitio, con fuentes de respaldo medidas para que el texto no salte.
+- «Cotiza un sitio como este» lleva al cotizador con el identificador del tema (`psicologo-sala`, `psicologo-neblina` o `psicologo-cuaderno`).
+- Se retiran los cuatro temas anteriores y los componentes que solo ellos usaban (reserva, formulario y aviso de privacidad genéricos).
+
+# V4.10.1 · 25 de noviembre de 2026 · Investigación de Psicólogo
+
+- Ficha a posteriori de los cuatro temas anteriores (`docs/FICHA_PSICOLOGO_ANTERIOR.md`).
+- Investigación de contenido, ley, ética, crisis, lenguaje, precios y buscadores (`docs/INVESTIGACION_PSICOLOGO_2.md`).
+- Investigación de diseño visual (`docs/INVESTIGACION_PSICOLOGO_DISENO.md`) y su ampliación con Refero Styles (`docs/INVESTIGACION_PSICOLOGO_DISENO_2.md`); Awwwards no se pudo abrir desde este entorno.
+- Tres maquetas («Sala con luz», «Neblina» y «Cuaderno»), aprobadas por Ian.
+
 # V4.9.5 · 25 de noviembre de 2026 · Sin etiquetas de nivel
 
 - El sitio no dice «junior» ni «senior»: en el CV, «Datos Jr» pasa a «Analista de Datos», igual que en el PDF nuevo de Ian.

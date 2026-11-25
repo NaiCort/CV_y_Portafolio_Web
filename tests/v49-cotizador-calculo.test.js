@@ -272,7 +272,7 @@ describe("V4.9: moneda, folio y dirección", () => {
   })
 
   it("las variantes de una demo llevan a su punto de partida", () => {
-    expect(deParametros(new URLSearchParams("demo=psicologo-calido")).demo).toBe("psicologo")
+    expect(deParametros(new URLSearchParams("demo=psicologo-sala")).demo).toBe("psicologo")
     expect(deParametros(new URLSearchParams("demo=rubor")).demo).toBe("revista")
     expect(deParametros(new URLSearchParams("demo=no-existe")).demo).toBeNull()
   })
