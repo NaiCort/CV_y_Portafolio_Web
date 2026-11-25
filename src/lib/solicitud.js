@@ -64,6 +64,8 @@ export function textoSolicitud({ folio, config, resultado, cliente, origen }) {
     partes.push(
       `Después, mantenimiento ${resultado.plan.nombre}: ${formatoDinero(resultado.mensualidad, m)} al mes`,
     )
+  const terceros = resultado.lineas.map((l) => funcionPorId(l.id).aparteNota).filter(Boolean)
+  if (terceros.length) partes.push(`Aparte: ${terceros.join(" ")}`)
   partes.push("", `Nombre: ${cliente.nombre.trim()}`)
   if (cliente.negocio.trim()) partes.push(`Negocio: ${cliente.negocio.trim()}`)
   partes.push(FACTURA[cliente.factura])

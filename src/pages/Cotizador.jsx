@@ -670,7 +670,8 @@ function PasoAjusta({
             <legend className="cot-rot">{g.nombre}</legend>
             {g.id === "ia" && (
               <p className="cot-nota-grupo">
-                Se cotizan en la propuesta: dependen de tus datos y de la herramienta que ya uses.
+                El precio es por configurarlo y conectarlo con tu negocio. El uso de cada plataforma
+                (IA, WhatsApp, lectura de documentos) lo pagas directo, según cuánto lo uses.
               </p>
             )}
             {funciones.map((f) => (
@@ -791,6 +792,7 @@ function Funcion({ funcion: f, config, moneda, onAlternar, onCantidad, onCategor
         <label htmlFor={id}>{f.nombre}</label>
         <p id={`${id}-d`}>
           {f.detalle}
+          {f.aparteNota && <span className="cot-fun-nota">{f.aparteNota}</span>}
           {bloqueo && <span className="cot-fun-nota">{bloqueo}.</span>}
           {bloqueo &&
             f.estados[config.categoria] === "N" &&
@@ -971,6 +973,11 @@ function Nota({
         )}
       </p>
       {r.aparte.length > 0 && <p className="cot-mini">Lo de IA se suma en la propuesta.</p>}
+      {r.lineas.some((l) => funcionPorId(l.id).aparteNota) && (
+        <p className="cot-mini">
+          Comisiones y uso de plataformas de terceros van aparte; cada función dice cuáles.
+        </p>
+      )}
       {!r.pago && r.plan.id !== "ninguno" && (
         <p className="cot-mini">
           Después, mantenimiento {r.plan.nombre}: {formatoDinero(r.mensualidad, m)} al mes

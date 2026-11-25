@@ -42,24 +42,64 @@ export const FORMAS_DE_PAGO = [
   },
 ]
 
+// Niveles de tarifa (docs/INVESTIGACION_PRECIOS.md, sección 7). Son internos: el sitio nunca dice
+// «junior» ni «senior» (decisión de Ian, 25/11/2026). Desde V4.9.5 los precios de lista usan la tarifa
+// intermedia y el «precio de lanzamiento» (PARAMETROS.lanzamiento, 30 %) deja el precio efectivo en
+// unos 385 MXN por hora mientras llegan los primeros 3 proyectos con testimonio; después se quita el
+// descuento y el precio sube solo. «senior» es solo referencia del mercado para más adelante.
+export const NIVELES = {
+  junior: {
+    nombre: "Junior",
+    tarifa: { MXN: 400, USD: 30, EUR: 28 },
+    minimo: { MXN: 3500, USD: 300, EUR: 280 },
+  },
+  intermedio: {
+    nombre: "Intermedio",
+    tarifa: { MXN: 550, USD: 40, EUR: 38 },
+    minimo: { MXN: 5000, USD: 400, EUR: 380 },
+  },
+  senior: {
+    nombre: "Senior",
+    tarifa: { MXN: 1000, USD: 75, EUR: 70 },
+    minimo: { MXN: 10000, USD: 800, EUR: 750 },
+  },
+}
+export const NIVEL_ACTUAL = "intermedio"
+
+const nivel = NIVELES[NIVEL_ACTUAL]
 export const MONEDAS = {
   MXN: {
     id: "MXN",
     nombre: "Pesos mexicanos",
-    tarifa: 400,
-    minimo: 3500,
+    tarifa: nivel.tarifa.MXN,
+    minimo: nivel.minimo.MXN,
     redondeo: 100,
     iva: true,
   },
-  USD: { id: "USD", nombre: "Dólares", tarifa: 30, minimo: 300, redondeo: 5, iva: false },
-  EUR: { id: "EUR", nombre: "Euros", tarifa: 28, minimo: 280, redondeo: 5, iva: false },
+  USD: {
+    id: "USD",
+    nombre: "Dólares",
+    tarifa: nivel.tarifa.USD,
+    minimo: nivel.minimo.USD,
+    redondeo: 5,
+    iva: false,
+  },
+  EUR: {
+    id: "EUR",
+    nombre: "Euros",
+    tarifa: nivel.tarifa.EUR,
+    minimo: nivel.minimo.EUR,
+    redondeo: 5,
+    iva: false,
+  },
 }
 
-// Entrega urgente (sección 21.3). La exprés solo existe para proyectos pequeños.
+// Entrega urgente (sección 21.3). La exprés solo existe para proyectos pequeños. Recargos según el
+// mercado: 25–50 % lo habitual y 75–100 % los plazos extremos (INVESTIGACION_PRECIOS.md, sección 6).
 export const URGENCIAS = [
   { id: "normal", nombre: "Normal", recargo: 0, plazo: 1 },
   { id: "prioritaria", nombre: "Prioritaria", recargo: 0.3, plazo: 0.5 },
-  { id: "expres", nombre: "Exprés", recargo: 0.6, plazo: 0.25, maxHoras: 40 },
+  { id: "expres", nombre: "Exprés", recargo: 0.75, plazo: 0.25, maxHoras: 40 },
 ]
 
 // Planes de mantenimiento (sección 23.2): mensualidad aparte del pago único.
@@ -153,7 +193,8 @@ export const NUCLEO_GLOBAL = [
 // `datos: true` = recoge datos personales: obliga al aviso de privacidad.
 // `requiere`: todas; `requiereAlguna`: al menos una. `excluye`: no pueden coexistir.
 // `cantidad`: se puede pedir más de una (precio por unidad). `porcentaje`: suma un porcentaje de
-// las horas de las demás funciones. `aparte`: sin número; se cotiza en la propuesta.
+// las horas de las demás funciones. `aparte`: sin número; se cotiza en la propuesta (hoy ninguna).
+// `aparteNota`: costos de terceros que el negocio paga directo (comisiones, uso de plataformas).
 const N = "N"
 const I = "I"
 const O = "O"
@@ -328,7 +369,7 @@ export const FUNCIONES = [
     grupo: "interaccion",
     nombre: "Reservas con disponibilidad",
     detalle: "De mesa, de clase o de espacio, con cupo a la vista.",
-    horas: [10, 14],
+    horas: [12, 18],
     datos: true,
     estados: est(O, O, O, I),
     demos: ["patio-12", "brio"],
@@ -429,7 +470,8 @@ export const FUNCIONES = [
     grupo: "ventas",
     nombre: "Cobro en línea",
     detalle: "Tarjeta u otros medios, con una pasarela de pago.",
-    horas: [10, 16],
+    aparteNota: "La comisión de la pasarela (unos 3 a 6 % por venta) la pagas a ella.",
+    horas: [12, 20],
     estados: est(O, null, null, O),
     requiere: ["carrito"],
   },
@@ -469,7 +511,7 @@ export const FUNCIONES = [
     grupo: "servicio",
     nombre: "Cuentas de usuario",
     detalle: "Registro, inicio de sesión, roles y permisos.",
-    horas: [16, 24],
+    horas: [20, 30],
     datos: true,
     estados: est(O, null, null, O),
     requiere: ["panel"],
@@ -489,34 +531,47 @@ export const FUNCIONES = [
     grupo: "servicio",
     nombre: "Panel de administración",
     detalle: "Base de datos y un panel para gestionar contenido, pedidos o clientes.",
-    horas: [20, 30],
+    horas: [30, 45],
     estados: est(O, null, null, N),
     requiere: ["paginas"],
   },
-  // IA y automatización (sección 20.1): sin horas medidas, se cotizan en la propuesta.
+  // IA y automatización (sección 20.1). Horas según el mercado (INVESTIGACION_PRECIOS.md, sección 4);
+  // el uso de cada plataforma lo paga el negocio directamente y se dice en `aparteNota`.
+  {
+    id: "ia-diagnostico",
+    grupo: "ia",
+    nombre: "Diagnóstico de automatización",
+    detalle:
+      "Una sesión de 60 a 90 minutos y un informe con lo que conviene automatizar en tu negocio y en qué orden.",
+    horas: [3, 5],
+    estados: est(O, O, O, O),
+  },
   {
     id: "ia-whatsapp",
     grupo: "ia",
     nombre: "Asistente de WhatsApp",
     detalle:
       "Responde con tu agenda, catálogo o preguntas frecuentes y pasa a una persona cuando hace falta.",
-    aparte: true,
+    horas: [20, 30],
+    aparteNota:
+      "El uso de la plataforma de IA y los mensajes de WhatsApp (los primeros 1,000 al mes son gratis) los pagas directo.",
     estados: est(O, O, O, O),
   },
   {
     id: "ia-preguntas",
     grupo: "ia",
     nombre: "Asistente de preguntas en el sitio",
-    detalle: "Horarios, precios, ubicación y cómo agendar.",
-    aparte: true,
+    detalle: "Horarios, precios, ubicación y cómo agendar, con lo que tú le enseñes.",
+    horas: [12, 20],
+    aparteNota: "El uso de la IA lo pagas directo; con poco tráfico, unos pocos dólares al mes.",
     estados: est(O, O, O, O),
   },
   {
     id: "ia-documentos",
     grupo: "ia",
     nombre: "Documentos automáticos",
-    detalle: "Cotizaciones, contratos o reportes a partir de un formulario.",
-    aparte: true,
+    detalle: "Cotizaciones, contratos o reportes en Word y PDF a partir de un formulario.",
+    horas: [12, 20],
     estados: est(O, O, O, O),
   },
   {
@@ -524,7 +579,8 @@ export const FUNCIONES = [
     grupo: "ia",
     nombre: "Lectura de facturas o formularios",
     detalle: "De PDF a una hoja de cálculo o base de datos.",
-    aparte: true,
+    horas: [16, 24],
+    aparteNota: "El servicio de lectura cobra por documento (centavos cada uno); lo pagas directo.",
     estados: est(O, O, O, O),
   },
   // Contenido del cliente (sección 23.3): solo si no lo tienes.
@@ -532,8 +588,9 @@ export const FUNCIONES = [
     id: "textos",
     grupo: "extras",
     nombre: "Redacción de textos",
-    detalle: "Si no tienes los textos de tu sitio.",
-    horas: [4, 8],
+    detalle: "Si no tienes los textos de tu sitio; precio por página.",
+    horas: [2, 4],
+    cantidad: 12,
     estados: est(O, O, O, O),
   },
   {

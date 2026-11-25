@@ -12,7 +12,7 @@ export const CV_VERSION = { fecha: "2026-11", etiqueta: "Noviembre de 2026" }
 export const PERSONA = {
   nombre: "Ian Habid Aldana Martínez",
   titulo: "Ingeniero en Sistemas Computacionales",
-  enfoque: ["SQL", "PostgreSQL", "Backend", "Datos Jr"],
+  enfoque: ["SQL", "PostgreSQL", "Backend", "Analista de Datos"],
   ciudad: "Xalapa, Veracruz, México",
 }
 
