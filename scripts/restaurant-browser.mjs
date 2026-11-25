@@ -162,8 +162,9 @@ export async function suite(name, execute) {
         brokenLocal = []
       page.setDefaultTimeout(12_000)
       page.on("pageerror", (error) => errors.push(error.message))
-      // V4.10.3: cualquier aviso de la política de contenido (aplicada o «solo en reporte», ver
-      // vercel.json y docs/SEGURIDAD.md) cuenta como error de la prueba.
+      // V4.10.3: cualquier aviso de la política de contenido cuenta como error de la prueba. Desde
+      // V4.10.4 va aplicada; «solo en reporte» solo al probar un cambio (vercel.json y
+      // docs/SEGURIDAD.md).
       page.on("console", (mensaje) => {
         if (/Content.Security.Policy/i.test(mensaje.text())) errors.push(mensaje.text())
       })
