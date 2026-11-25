@@ -21,7 +21,26 @@ export const PARAMETROS = {
   vigencia: 15,
   // Anticipo del pago único (sección 23.1).
   anticipo: 0.3,
+  // Plan mensual (sección 23.1, propuesto): pago inicial, meses para el saldo y el plan mínimo,
+  // porque la mensualidad incluye hospedaje y mantenimiento. Sin intereses.
+  mensual: { inicial: 0.4, meses: 18, planMinimo: "basico" },
 }
+
+// Formas de pago (sección 23.1).
+export const FORMAS_DE_PAGO = [
+  {
+    id: "unico",
+    nombre: "Pago único",
+    detalle:
+      "30 % al aceptar la propuesta y 70 % al aprobar la entrega. El código es tuyo al pagar.",
+  },
+  {
+    id: "mensual",
+    nombre: "Plan mensual",
+    detalle:
+      "40 % al inicio y el resto en 18 meses, junto con el mantenimiento. El código pasa a ser tuyo al terminar o al liquidar el saldo.",
+  },
+]
 
 export const MONEDAS = {
   MXN: {

@@ -1,3 +1,14 @@
+# V4.9.3 · 25 de noviembre de 2026 · Plan mensual y sugerencias de tipo
+
+- Forma de pago a elegir:
+  - pago único: 30 % al aceptar y 70 % al aprobar la entrega;
+  - plan mensual: 40 % hoy y el saldo en 18 pagos sin intereses, junto con el mantenimiento (al menos el plan Básico).
+
+  La nota muestra el pago de hoy, cada mensualidad y lo que se paga después. El código pasa al cliente al terminar o al liquidar el saldo.
+- En Personalizado, cuando lo elegido ya es una landing, un sitio de varias páginas o una tienda, se sugiere ese tipo sin aplicarlo.
+- En una función que no se puede quitar, «¿No la necesitas? Cambia a…» ofrece el tipo inmediatamente inferior.
+- Títulos de cada tipo como frase («Tu proyecto personalizado», «Tu sitio de varias páginas»).
+
 # V4.9.2 · 25 de noviembre de 2026 · Correcciones del cotizador
 
 Tras la revisión de Ian:

@@ -102,6 +102,7 @@ export function configInicial({ categoria, demo, version = "recomendada", moneda
     moneda: MONEDAS[moneda] ? moneda : "MXN",
     urgencia: "normal",
     plan: "ninguno",
+    pago: "unico",
     demo: punto ? demo : null,
     version: punto ? version : null,
   })
@@ -253,15 +254,18 @@ export function calcular(config) {
   const lanzamiento = -Math.round((proyecto + recargo) * PARAMETROS.lanzamiento)
   // El primer mes del plan de mantenimiento entra en el total y en el desglose (pedido de Ian,
   // 25/11/2026); los siguientes se pagan cada mes. El lanzamiento no se aplica al mantenimiento.
-  const planElegido = MANTENIMIENTO.find((p) => p.id === config.plan) ?? MANTENIMIENTO[0]
-  const primerMes = planElegido.precio[config.moneda]
+  // En el plan mensual, el mantenimiento es obligatorio (al menos el plan mínimo) y se paga cada
+  // mes junto con el saldo, así que no entra como «primer mes» en el total del sitio.
+  const mensual = config.pago === "mensual"
+  const planElegido = planEfectivo(config)
+  const primerMes = mensual ? 0 : planElegido.precio[config.moneda]
   const pagoUnicoNeto = proyecto + recargo + lanzamiento
   const neto = pagoUnicoNeto + primerMes
   const iva = m.iva ? Math.round(neto * PARAMETROS.iva) : 0
   const total = neto + iva
   const pagoUnico = m.iva ? Math.round(pagoUnicoNeto * (1 + PARAMETROS.iva)) : pagoUnicoNeto
   const dias = (h) => Math.max(1, Math.ceil((h / PARAMETROS.horasPorDia) * u.plazo))
-  const plan = MANTENIMIENTO.find((p) => p.id === config.plan) ?? MANTENIMIENTO[0]
+  const plan = planElegido
   const mensualidadNeta = plan.precio[config.moneda]
   const mensualidad = m.iva ? Math.round(mensualidadNeta * (1 + PARAMETROS.iva)) : mensualidadNeta
   return {
@@ -280,6 +284,7 @@ export function calcular(config) {
     total,
     primerMes,
     pagoUnico,
+    pago: mensual ? planMensual(pagoUnico, mensualidad) : null,
     anticipo: Math.round(pagoUnico * PARAMETROS.anticipo),
     horas: [Math.round(hMin), Math.round(hMax)],
     dias: [dias(hMin), dias(hMax)],
@@ -301,6 +306,56 @@ export function rangoCategoria(categoria, moneda) {
     if (r.config) cfg = r.config
   }
   return { desde: desde.total, completo: calcular(cfg).total }
+}
+
+// Plan de mantenimiento que de verdad aplica: en el plan mensual, al menos el mínimo.
+export function planEfectivo(config) {
+  const plan = MANTENIMIENTO.find((p) => p.id === config.plan) ?? MANTENIMIENTO[0]
+  if (config.pago !== "mensual") return plan
+  const minimo = MANTENIMIENTO.findIndex((p) => p.id === PARAMETROS.mensual.planMinimo)
+  return MANTENIMIENTO.indexOf(plan) < minimo ? MANTENIMIENTO[minimo] : plan
+}
+
+// Plan mensual: pago inicial, saldo en meses iguales sin intereses, más el mantenimiento.
+function planMensual(pagoUnico, mensualidad) {
+  const { inicial: parte, meses } = PARAMETROS.mensual
+  const inicial = Math.round(pagoUnico * parte)
+  const saldo = pagoUnico - inicial
+  const cuotaSaldo = Math.round(saldo / meses)
+  return {
+    inicial,
+    saldo,
+    meses,
+    cuotaSaldo,
+    cuota: cuotaSaldo + mensualidad,
+    despues: mensualidad,
+    totalPlazo: inicial + (cuotaSaldo + mensualidad) * meses,
+  }
+}
+
+// En Personalizado: el tipo más pequeño que ya cumple lo elegido (su núcleo está y todo cabe).
+// Se sugiere sin aplicarlo (sección 18.5).
+export function categoriaSugerida(config) {
+  if (config.categoria !== "personalizado") return null
+  const ids = seleccionadas(config.sel)
+  if (!ids.length) return null
+  return (
+    CATEGORIAS.filter((c) => c.id !== "personalizado")
+      .sort((a, b) => a.orden - b.orden)
+      .find((c) => {
+        if (!ids.every((id) => disponible(funcionPorId(id), c.id))) return false
+        const nucleo = FUNCIONES.filter((f) => f.estados[c.id] === "N").every(
+          (f) => config.sel[f.id],
+        )
+        const alguna = NUCLEO_ALGUNA[c.id]
+        return nucleo && (!alguna || alguna.some((id) => config.sel[id]))
+      })?.id ?? null
+  )
+}
+
+// Si el cliente quiere menos que el núcleo de un tipo, se le ofrece el inmediatamente inferior.
+export function categoriaInferior(categoria) {
+  return { tienda: "varias", varias: "landing", landing: "personalizado" }[categoria] ?? null
 }
 
 // «2 días hábiles» o «de 3 a 5 días hábiles».
@@ -345,6 +400,7 @@ export function aParametros(config) {
   p.set("moneda", config.moneda)
   if (config.urgencia !== "normal") p.set("urgencia", config.urgencia)
   if (config.plan !== "ninguno") p.set("plan", config.plan)
+  if (config.pago === "mensual") p.set("pago", "mensual")
   return p
 }
 
@@ -375,6 +431,7 @@ export function deParametros(params, monedaPorDefecto = "MXN") {
   if (URGENCIAS.some((u) => u.id === params.get("urgencia")))
     config.urgencia = params.get("urgencia")
   if (MANTENIMIENTO.some((p) => p.id === params.get("plan"))) config.plan = params.get("plan")
+  if (params.get("pago") === "mensual") config.pago = "mensual"
   if (variante && config.demo) config.variante = variante
   return config
 }

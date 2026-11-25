@@ -8,6 +8,7 @@ import { marcarOrigenCotizador } from "../lib/origenCotizador"
 import { DEMOS, demoPorId } from "../data/demos"
 import {
   CATEGORIAS,
+  FORMAS_DE_PAGO,
   FUNCIONES,
   GRUPOS,
   MANTENIMIENTO,
@@ -33,6 +34,8 @@ import {
   precioFuncion,
   rangoCategoria,
   textoPlazo,
+  categoriaInferior,
+  categoriaSugerida,
 } from "../lib/cotizacion"
 import { CORREO, FACTURA, enviarSolicitud, formatoDinero, textoSolicitud } from "../lib/solicitud"
 import "./cv.css"
@@ -48,6 +51,7 @@ const PASOS = [
 ]
 const CLAVE_MONEDA = "cotizador-moneda"
 const CLAVE_POSICION = "cotizador-posicion"
+const MINIMO_MENSUAL = MANTENIMIENTO.findIndex((p) => p.id === PARAMETROS.mensual.planMinimo)
 
 function monedaGuardada() {
   try {
@@ -61,6 +65,20 @@ const nombres = (ids) => {
   const n = ids.map((id) => `«${funcionPorId(id).nombre}»`)
   return n.length > 1 ? `${n.slice(0, -1).join(", ")} y ${n.at(-1)}` : n[0]
 }
+
+const TITULO_TIPO = {
+  personalizado: "Tu proyecto personalizado",
+  landing: "Tu landing",
+  varias: "Tu sitio de varias páginas",
+  tienda: "Tu tienda o sistema",
+}
+
+const articuloTipo = (id) =>
+  ({
+    landing: "una landing",
+    varias: "un sitio de varias páginas",
+    tienda: "una tienda o sistema",
+  })[id]
 
 function textoCambio({ quitadas, agregadas }, accion) {
   const partes = []
@@ -309,6 +327,7 @@ export default function Cotizador() {
                 })
               }}
               onCambiar={(cambios) => setConfig({ ...config, ...cambios })}
+              onCategoria={elegirCategoria}
             />
           )}
           {paso === "envia" && <PasoEnvia config={config} resultado={resultado} folio={folio} />}
@@ -335,15 +354,25 @@ export default function Cotizador() {
 
       <p className="cv-oculto" aria-live="polite" aria-atomic="true">
         {hayEleccion &&
-          `Total ${MONEDAS[config.moneda].iva ? "con IVA" : "sin impuestos"}: ${formatoDinero(resultado.total, config.moneda)}, ${textoPlazo(resultado.dias)}.`}
+          (resultado.pago
+            ? `Plan mensual: hoy ${formatoDinero(resultado.pago.inicial, config.moneda)} y ${resultado.pago.meses} pagos de ${formatoDinero(resultado.pago.cuota, config.moneda)}, ${textoPlazo(resultado.dias)}.`
+            : `Total ${MONEDAS[config.moneda].iva ? "con IVA" : "sin impuestos"}: ${formatoDinero(resultado.total, config.moneda)}, ${textoPlazo(resultado.dias)}.`)}
       </p>
       <div className="cot-barra" aria-hidden={notaAbierta} hidden={!hayEleccion}>
         <div>
           <p className="cot-mini">
-            {MONEDAS[config.moneda].iva ? "Total con IVA" : "Total sin impuestos"} ·{" "}
-            {textoPlazo(resultado.dias).replace(" hábiles", "").replace(" hábil", "")}
+            {resultado.pago
+              ? "Pago inicial"
+              : MONEDAS[config.moneda].iva
+                ? "Total con IVA"
+                : "Total sin impuestos"}{" "}
+            · {textoPlazo(resultado.dias).replace(" hábiles", "").replace(" hábil", "")}
           </p>
-          <p className="cot-barra-total">{formatoDinero(resultado.total, config.moneda)}</p>
+          <p className="cot-barra-total">
+            {resultado.pago
+              ? formatoDinero(resultado.pago.inicial, config.moneda)
+              : formatoDinero(resultado.total, config.moneda)}
+          </p>
         </div>
         <button
           type="button"
@@ -578,8 +607,17 @@ function Tipo({ categoria, config, elegida, onElegir }) {
   )
 }
 
-function PasoAjusta({ config, resultado, onAlternar, onCantidad, onVersion, onCambiar }) {
+function PasoAjusta({
+  config,
+  resultado,
+  onAlternar,
+  onCantidad,
+  onVersion,
+  onCambiar,
+  onCategoria,
+}) {
   const demo = config.demo ? demoPorId(config.demo) : null
+  const sugerida = categoriaSugerida(config)
   const variante = demo?.variantes.find((v) => v.id === config.variante)
   const cat = categoriaPorId(config.categoria)
   return (
@@ -588,12 +626,14 @@ function PasoAjusta({ config, resultado, onAlternar, onCantidad, onVersion, onCa
         <h1 id="cot-titulo" tabIndex={-1}>
           {demo
             ? `Un sitio como la demo ${demo.nombre}${variante ? ` (${variante.nombre})` : ""}`
-            : `Tu ${cat.nombre.toLowerCase()}`}
+            : TITULO_TIPO[cat.id]}
         </h1>
         <p className="cot-lead">
           {demo
             ? `Parte de la versión ${config.version}. Quita lo que no necesites o añade lo que falte: el precio y el plazo cambian al momento.`
-            : "Marca lo que quieres en tu sitio. Lo que dice «incluido» va siempre en este tipo de sitio."}
+            : cat.id === "personalizado"
+              ? "Aquí no viene nada marcado: elige todo lo que quieres en tu sitio, desde la estructura."
+              : "Marca lo que quieres en tu sitio. Lo que dice «incluido» va siempre en este tipo de sitio."}
         </p>
         {demo && (
           <div className="cot-versiones" role="group" aria-label="Versión de partida">
@@ -610,6 +650,18 @@ function PasoAjusta({ config, resultado, onAlternar, onCantidad, onVersion, onCa
           </div>
         )}
       </header>
+
+      {sugerida && (
+        <div className="cot-sugerencia">
+          <p>
+            Lo que elegiste ya es {articuloTipo(sugerida)}. El precio no cambia; si quieres, trabaja
+            con ese tipo para ver lo que suele incluir.
+          </p>
+          <button type="button" className="cv-boton" onClick={() => onCategoria(sugerida)}>
+            Cambiar a {categoriaPorId(sugerida).nombre.toLowerCase()}
+          </button>
+        </div>
+      )}
 
       {GRUPOS.map((g) => {
         const funciones = FUNCIONES.filter((f) => f.grupo === g.id)
@@ -629,11 +681,31 @@ function PasoAjusta({ config, resultado, onAlternar, onCantidad, onVersion, onCa
                 moneda={resultado.moneda}
                 onAlternar={onAlternar}
                 onCantidad={onCantidad}
+                onCategoria={onCategoria}
               />
             ))}
           </fieldset>
         )
       })}
+
+      <fieldset className="cot-grupo">
+        <legend className="cot-rot">Forma de pago</legend>
+        {FORMAS_DE_PAGO.map((fp) => (
+          <label key={fp.id} className="cot-opcion">
+            <input
+              type="radio"
+              name="pago"
+              value={fp.id}
+              checked={(config.pago ?? "unico") === fp.id}
+              onChange={() => onCambiar({ pago: fp.id })}
+            />
+            <span>
+              <b>{fp.nombre}</b>
+              <span className="cot-opcion-detalle">{fp.detalle}</span>
+            </span>
+          </label>
+        ))}
+      </fieldset>
 
       <fieldset className="cot-grupo">
         <legend className="cot-rot">Entrega</legend>
@@ -660,30 +732,39 @@ function PasoAjusta({ config, resultado, onAlternar, onCantidad, onVersion, onCa
 
       <fieldset className="cot-grupo">
         <legend className="cot-rot">Mantenimiento al mes</legend>
-        {MANTENIMIENTO.map((p) => (
-          <label key={p.id} className="cot-opcion">
-            <input
-              type="radio"
-              name="plan"
-              value={p.id}
-              checked={config.plan === p.id}
-              onChange={() => onCambiar({ plan: p.id })}
-            />
-            <span>
-              <b>{p.nombre}</b>
-              {p.precio[config.moneda]
-                ? ` · ${formatoDinero(p.precio[config.moneda], config.moneda)} + impuestos`
-                : ""}
-              <span className="cot-opcion-detalle">{p.detalle}</span>
-            </span>
-          </label>
-        ))}
+        {resultado.pago && (
+          <p className="cot-nota-grupo">
+            Con el plan mensual, el mantenimiento va incluido: al menos el plan Básico.
+          </p>
+        )}
+        {MANTENIMIENTO.map((p, i) => {
+          const bajo = Boolean(resultado.pago) && i < MINIMO_MENSUAL
+          return (
+            <label key={p.id} className={`cot-opcion${bajo ? " off" : ""}`}>
+              <input
+                type="radio"
+                name="plan"
+                value={p.id}
+                checked={resultado.plan.id === p.id}
+                disabled={bajo}
+                onChange={() => onCambiar({ plan: p.id })}
+              />
+              <span>
+                <b>{p.nombre}</b>
+                {p.precio[config.moneda]
+                  ? ` · ${formatoDinero(p.precio[config.moneda], config.moneda)} + impuestos`
+                  : ""}
+                <span className="cot-opcion-detalle">{p.detalle}</span>
+              </span>
+            </label>
+          )
+        })}
       </fieldset>
     </>
   )
 }
 
-function Funcion({ funcion: f, config, moneda, onAlternar, onCantidad }) {
+function Funcion({ funcion: f, config, moneda, onAlternar, onCantidad, onCategoria }) {
   const id = useId()
   const marcada = Boolean(config.sel[f.id])
   const bloqueo = marcada ? motivoBloqueo(f.id, config) : null
@@ -711,6 +792,18 @@ function Funcion({ funcion: f, config, moneda, onAlternar, onCantidad }) {
         <p id={`${id}-d`}>
           {f.detalle}
           {bloqueo && <span className="cot-fun-nota">{bloqueo}.</span>}
+          {bloqueo &&
+            f.estados[config.categoria] === "N" &&
+            categoriaInferior(config.categoria) && (
+              <button
+                type="button"
+                className="cot-bajar"
+                onClick={() => onCategoria(categoriaInferior(config.categoria))}
+              >
+                ¿No la necesitas? Cambia a{" "}
+                {categoriaPorId(categoriaInferior(config.categoria)).nombre.toLowerCase()}
+              </button>
+            )}
           {!cabe && (
             <span className="cot-fun-nota">
               No cabe en {categoriaPorId(config.categoria).nombre.toLowerCase()}: al marcarla te
@@ -840,17 +933,45 @@ function Nota({
         )}
       </ul>
       <div className="cot-total">
-        <span className="cot-mini">{conIva ? "Total con IVA" : "Total sin impuestos"}</span>
+        <span className="cot-mini">
+          {r.pago ? "Total del sitio" : "Total"}
+          {conIva ? " con IVA" : " sin impuestos"}
+        </span>
         <span className="cot-total-cifra cot-num">{formatoDinero(r.total, m)}</span>
       </div>
+      {r.pago ? (
+        <div className="cot-plan">
+          <p>
+            <span>Hoy</span>
+            <b className="cot-num">{formatoDinero(r.pago.inicial, m)}</b>
+          </p>
+          <p>
+            <span>{r.pago.meses} pagos al mes</span>
+            <b className="cot-num">{formatoDinero(r.pago.cuota, m)}</b>
+          </p>
+          <p className="cot-mini">
+            Cada uno: {formatoDinero(r.pago.cuotaSaldo, m)} del sitio y{" "}
+            {formatoDinero(r.mensualidad, m)} del mantenimiento {r.plan.nombre}.
+          </p>
+          <p className="cot-mini">
+            Después, {formatoDinero(r.pago.despues, m)} al mes. Sin intereses; puedes liquidar el
+            saldo cuando quieras, y el código pasa a ser tuyo al terminar o al liquidarlo.
+          </p>
+        </div>
+      ) : null}
       <p className="cot-mini">
-        {textoPlazo(r.dias).replace(/^d/, "D")} ({r.horas[0]} a {r.horas[1]} h) desde el anticipo y
-        tus materiales. Anticipo del {Math.round(PARAMETROS.anticipo * 100)} %:{" "}
-        {formatoDinero(r.anticipo, m)}
-        {r.primerMes ? " (sin el mantenimiento)" : ""}.
+        {textoPlazo(r.dias).replace(/^d/, "D")} ({r.horas[0]} a {r.horas[1]} h) desde el{" "}
+        {r.pago ? "pago inicial" : "anticipo"} y tus materiales.
+        {!r.pago && (
+          <>
+            {" "}
+            Anticipo del {Math.round(PARAMETROS.anticipo * 100)} %: {formatoDinero(r.anticipo, m)}
+            {r.primerMes ? " (sin el mantenimiento)" : ""}.
+          </>
+        )}
       </p>
       {r.aparte.length > 0 && <p className="cot-mini">Lo de IA se suma en la propuesta.</p>}
-      {r.plan.id !== "ninguno" && (
+      {!r.pago && r.plan.id !== "ninguno" && (
         <p className="cot-mini">
           Después, mantenimiento {r.plan.nombre}: {formatoDinero(r.mensualidad, m)} al mes
           {conIva ? " con IVA" : ""}.

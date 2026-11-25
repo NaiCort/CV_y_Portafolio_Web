@@ -54,7 +54,13 @@ export function textoSolicitud({ folio, config, resultado, cliente, origen }) {
     `Total${MONEDAS[m].iva ? " con IVA" : " sin impuestos"}: ${formatoDinero(resultado.total, m)}`,
     `Plazo: ${textoPlazo(resultado.dias)}`,
   )
-  if (resultado.plan.id !== "ninguno")
+  if (resultado.pago) {
+    const p = resultado.pago
+    partes.push(
+      `Forma de pago: plan mensual. Hoy ${formatoDinero(p.inicial, m)}; luego ${p.meses} pagos de ${formatoDinero(p.cuota, m)} (incluyen el mantenimiento ${resultado.plan.nombre}); después, ${formatoDinero(p.despues, m)} al mes.`,
+    )
+  } else partes.push("Forma de pago: pago único (30 % de anticipo y 70 % al aprobar la entrega).")
+  if (!resultado.pago && resultado.plan.id !== "ninguno")
     partes.push(
       `Después, mantenimiento ${resultado.plan.nombre}: ${formatoDinero(resultado.mensualidad, m)} al mes`,
     )
