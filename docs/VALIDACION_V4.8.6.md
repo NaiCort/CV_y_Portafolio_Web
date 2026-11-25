@@ -21,7 +21,10 @@ Entorno: Node 22 y Chromium de Playwright, con la compilación de producción (`
   - CV: 5 de 5. Ahora también comprueba el HTML inicial de `/` y de `/cafe`, y que no haya errores de hidratación.
   - Patio 12: 12 de 12.
   - Ladera, Brío, Taller y Cotejo: 5 de 5 cada una.
-  - Revista y Psicólogo: ver abajo.
+  - Revista: 5 de 5.
+  - Psicólogo: 16 combinaciones y 2 recorridos del selector.
+    - Sus recorridos del selector volvían a la portada y buscaban el enlace a la demo como en el directorio viejo, previo a V4.8.2; esta suite no se había vuelto a correr desde entonces.
+    - Ahora esperan el CV y, en celular, abren primero el desplegable «Demos».
 
 ## No comprobado
 
