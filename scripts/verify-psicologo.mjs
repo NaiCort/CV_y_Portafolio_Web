@@ -275,7 +275,11 @@ async function verifyThemePreferences(browser) {
       await auditAccessibility(page)
       await closeDialog(page)
       await page.getByRole("link", { name: "Volver al portafolio de demos", exact: true }).click()
-      await page.getByRole("link", { name: /Psicólogo/ }).click()
+      // Desde V4.8.2 la portada es el CV: en celular, la lista de demos se abre desde «Demos».
+      await page.locator(".cv-nombre").waitFor()
+      if (!(await page.locator("#demos").isVisible()))
+        await page.getByRole("button", { name: "Demos", exact: true }).click()
+      await page.locator('#demos a[href="/psicologo"]').click()
       await page.getByRole("heading", { level: 1 }).filter({ hasText: headings[3] }).waitFor()
       assert.deepEqual(errors, [])
       results.push({
