@@ -19,10 +19,11 @@ const TallerApp = lazy(CARGAS["/taller"])
 const DespachoApp = lazy(CARGAS["/despacho"])
 const RevistaApp = lazy(CARGAS["/revista"])
 
+// Mientras llega el código de una ruta perezosa (demos, cotizador y aviso de privacidad).
 function RouteLoading() {
   return (
     <div className="route-message" role="status">
-      Cargando demo…
+      Cargando…
     </div>
   )
 }

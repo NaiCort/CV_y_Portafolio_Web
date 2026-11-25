@@ -40,10 +40,32 @@
   | Brío | 5 de 5 |
   | Rosales y Vértice | 5 de 5 |
   | Cotejo | 5 de 5 |
-  | Revista | PENDIENTE |
+  | Revista | 5 de 5 |
 
   - **Qué comprueba cada suite:** axe, desbordes, ningún envío real y ningún aviso de la política.
   - **Primera corrida:** las ocho fallaron porque axe se inyectaba como script en línea, y la política, con razón, lo bloqueó. Se corrigió en las pruebas (`page.evaluate`); el sitio no cambió.
+  - **Segunda corrida:** Revista falló una vez en 320 px. Al pulsar Enter en «Siguiente lectura», la navegación no llegó en 12 s.
+    - En la captura, el enlace estaba visible y no hubo ningún aviso de la política.
+    - Al repetirla, ese escenario y la suite completa (5 de 5) pasaron.
+    - Se anota como prueba intermitente de Revista, no como fallo del sitio.
+  - **Después de cambiar «Cargando demo…» por «Cargando…»** (ver abajo), la suite del CV se repitió: 5 de 5.
+
+## Core Web Vitals de laboratorio
+
+Con `npm run audit:cwv -- /,/cotizador,/psicologo,/privacidad`, sobre la vista previa: teléfono de 390 px, 4G lenta y CPU 4 veces más lenta.
+
+| Ruta | LCP | CLS |
+| --- | --- | --- |
+| `/` | 1.24 s | 0.000 |
+| `/cotizador` | 1.59 s | 0.019 |
+| `/psicologo` | 2.08 s | 0.000 |
+| `/privacidad` | 1.43 s | 0.091 |
+
+En `/privacidad`, el CLS viene del cambio de tipografía en una página de puro texto: un desplazamiento a los 2.4 s en las secciones y los párrafos. Está dentro de la meta de 0.1.
+
+## Ajuste encontrado al validar
+
+Con la carga diferida, el cotizador y el aviso mostraban un instante «Cargando demo…» al abrirse directo. El texto de espera de `App.jsx` pasa a «Cargando…».
 
 ## Puertas del handbook (G0 a G7)
 
@@ -56,7 +78,7 @@
 | G4 Seguridad | Aprobado en la vista previa local; no ejecutado en producción | Encabezados y política probados con las suites; 0 vulnerabilidades en producción. No se pudo consultar el sitio publicado: la red de este entorno no permite el dominio |
 | G5 Accesibilidad automatizada | Aprobado | axe (WCAG 2.0 a 2.2, A y AA) en todas las suites |
 | G5 Accesibilidad manual | No ejecutado | TalkBack y teclado completo en el teléfono de Ian |
-| G6 Rendimiento | PENDIENTE | Presupuesto aprobado; Core Web Vitals en `RENDIMIENTO.md` |
+| G6 Rendimiento | Aprobado | Presupuesto aprobado; LCP de 1.24 a 2.08 s y CLS de 0.000 a 0.091 en cuatro rutas (`RENDIMIENTO.md`) |
 | G7 Publicación | No ejecutado | Ian integra; comprobación posterior en `DESPLIEGUE.md` |
 
 ## No comprobado
@@ -64,3 +86,4 @@
 - **Sitio publicado:** encabezados y política (red bloqueada en este entorno).
 - **Teléfono de Ian:** vista previa, TalkBack y teclado.
 - **CI en GitHub:** los pasos nuevos (auditoría y presupuesto) corrieron aquí con los mismos comandos, no en GitHub Actions.
+- **Prueba intermitente de Revista:** el paso de teclado «Siguiente lectura» falló una vez de tres. No se corrigió porque Revista está cerrada; queda anotado para cuando se toque.

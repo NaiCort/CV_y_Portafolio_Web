@@ -31,10 +31,14 @@ Es una medición de laboratorio, no de visitantes reales. Para datos de campo ha
 
 | Ruta | LCP | CLS | Elemento principal |
 | --- | --- | --- | --- |
-| `/` | PENDIENTE | | |
-| `/cotizador` | PENDIENTE | | |
-| `/psicologo` | PENDIENTE | | |
-| `/privacidad` | PENDIENTE | | |
+| `/` | 1.24 s | 0.000 | Foto del CV |
+| `/cotizador` | 1.59 s | 0.019 | Párrafo de entrada |
+| `/psicologo` | 2.08 s | 0.000 | Foto de la portada |
+| `/privacidad` | 1.43 s | 0.091 | Lista del aviso |
+
+Las cuatro rutas cumplen las metas.
+
+**`/privacidad` queda cerca del límite de CLS:** al llegar la tipografía Source Serif 4, algunos párrafos cambian de renglón; es una página de puro texto. Mejora posible: precargar esa fuente en esta ruta o aplicar el pendiente 7 de `CLAUDE.md`.
 
 ## Cambios de esta versión
 

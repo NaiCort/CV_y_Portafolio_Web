@@ -52,7 +52,7 @@ Resultado: producción, sin avisos. Desarrollo: 3 moderados de `minimatch` dentr
 
 ### Rendimiento (regla GEN-011)
 
-- El cotizador y el aviso se cargan aparte (`src/rutasDemo.js`). El CV los precarga al pasar el cursor o enfocar su enlace.
+- El cotizador y el aviso se cargan aparte (`src/rutasDemo.js`). El CV los precarga al pasar el cursor o enfocar su enlace. Mientras cargan, el aviso de espera dice «Cargando…» (antes, «Cargando demo…»).
 - El trozo principal bajó de 113.8 a 83.2 KB comprimidos.
 - **Nuevo `npm run audit:presupuesto`** (`scripts/presupuesto.mjs`), que mide sobre la compilación:
   - el JavaScript inicial, en 100.0 KB de 110;

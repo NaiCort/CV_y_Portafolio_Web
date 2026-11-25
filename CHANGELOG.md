@@ -8,6 +8,7 @@
 - **Aviso de privacidad del sitio** en `/privacidad`, enlazado desde el CV y desde el paso de envío del cotizador.
 - **Rendimiento:**
   - el cotizador y el aviso se cargan aparte: el trozo principal baja de 113.8 a 83.2 KB comprimidos;
+  - mientras cargan, el aviso de espera dice «Cargando…» en lugar de «Cargando demo…»;
   - presupuesto de rendimiento (`npm run audit:presupuesto`) en CI.
 - **Dependencias:**
   - Tailwind pasa a desarrollo;
