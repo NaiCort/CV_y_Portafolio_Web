@@ -64,8 +64,7 @@ npm run build
 ```
 
 Las pruebas de navegador (`npm run test:browser:*`) se corren al cerrar una versión, con
-`DEMO_START_PREVIEW=1` (levantan su propio `vite preview`; `test:browser` de Psicólogo
-necesita un servidor en el puerto 5173). Herramientas de la pasada final:
+`DEMO_START_PREVIEW=1` (levantan su propio `vite preview`). Herramientas de la pasada final:
 `npm run audit:encimados -- /ruta1,/ruta2` y `npm run audit:cwv -- /ruta` (contra
 `vite preview` en 4173). Chromium y Playwright ya están instalados en el entorno de nube.
 
@@ -94,6 +93,18 @@ patrones, temáticar selección, foco, barras de desplazamiento y subrayado, cor
 
 Herramientas instaladas en `.claude/` (ver `.claude/README.md`): frontend-design,
 impeccable, web-design-guidelines y web-quality-skills.
+
+## Estado de Psicólogo
+
+**Psicólogo = Valeria Romero**, reconstruida desde cero en V4.10.2 como landing de una sola página
+con tres temas intercambiables que comparten el contenido de `src/giros/psicologo/data/consultorio.js`:
+«Sala con luz» (bandas y foto en arco), «Neblina» (portada de niebla, gafete y pausas fotográficas) y
+«Cuaderno» (notas al margen, polaroid y lista de libreta). Agenda simulada (llamada previa o primera
+sesión, zona horaria y recordatorio por WhatsApp de ejemplo), «Respira conmigo», ayuda en crisis con
+teléfonos reales, cédula verificable, sin testimonios ni autoevaluaciones ni datos de salud en
+formularios. Cada tema se cotiza con su identificador (`psicologo-sala`, `psicologo-neblina`,
+`psicologo-cuaderno`). Leer `docs/FICHA_PSICOLOGO.md` antes de tocar `src/giros/psicologo/`. Pruebas
+de navegador en `npm run test:browser`. Pendiente del visto bueno de Ian en la vista previa.
 
 ## Estado de Café
 
@@ -177,15 +188,14 @@ Se resuelven dentro de la entrega de cada demo (ver `docs/PLAN_V4.8.md`).
 1. ~~FloatingTimer solo dentro de `/restaurante/*`~~ (hecho en V4.8.0).
 2. ~~**Bienvenida:** bajar patrones y pasar el catálogo a datos~~ (hecho en V4.8: la portada es el CV
    web, con un solo patrón vigilado, y el catálogo vive en `src/data/demos.js`). LinkedIn va al final.
-3. **Psicólogo (se reconstruye desde cero como landing; investigación en `docs/INVESTIGACION_PSICOLOGO.md` y `docs/INVESTIGACION_PSICOLOGO_2.md`):** servir sus fotos desde el sitio en vez de images.unsplash.com, por
-   etapas y no todo a la vez; revisar Inter en el tema Cálido; auditoría de los cuatro
-   temas (unas 700 líneas cada uno) para consolidar componentes duplicados.
+3. ~~**Psicólogo:** fotos desde el sitio, Inter y consolidación de los temas~~ (hecho en V4.10.2: se
+   reconstruyó desde cero con tres temas sobre un solo contenido).
 4. **Patio 12:** quitar la etiqueta en mayúsculas sobre el título en Inicio y Carta.
-5. Fichas de identidad a posteriori de los cuatro temas de Psicólogo y de Patio 12.
+5. Ficha de identidad a posteriori de Patio 12 (la de Psicólogo se hizo en V4.10.1 y la nueva está en `docs/FICHA_PSICOLOGO.md`).
 6. ~~Componentes compartidos (llamada comercial, banner, marca de agua)~~ (hecho en V4.8.0:
    `ComercialCTA` con h2 y sin etiqueta ni tarjeta; banner y autoría como `aside` con nombre;
    la marca de agua pasó a cerrar la página en vez de flotar).
-7. **Precarga de fuentes en `index.html`** (todas las demos): en red lenta, el cambio de
+7. **Precarga de fuentes en `index.html`** (todas las demos; Psicólogo ya tiene respaldos medidos desde V4.10.2): en red lenta, el cambio de
    tipografía mueve el texto (CLS 0.146 medido en Créditos de Ladera). Modelo ya probado en
    Cotejo (V4.6.8): tipografías de respaldo con `size-adjust` medido, que bajaron el CLS a 0.002.
 8. Dependencias de desarrollo con avisos moderados de `npm audit` (vitest, minimatch vía
