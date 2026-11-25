@@ -16,6 +16,7 @@ import {
   categoriaPorId,
   funcionPorId,
 } from "../data/catalogo"
+import { demoPorId } from "../data/demos"
 
 export const disponible = (f, cat) => f.estados[cat] != null
 
@@ -318,7 +319,7 @@ export function crearFolio(fecha = new Date(), azar = Math.random) {
 export function aParametros(config) {
   const p = new URLSearchParams()
   if (config.demo) {
-    p.set("demo", config.demo)
+    p.set("demo", config.variante ?? config.demo)
     p.set("version", config.version)
   }
   p.set("tipo", config.categoria)
@@ -335,11 +336,11 @@ export function aParametros(config) {
 }
 
 export function deParametros(params, monedaPorDefecto = "MXN") {
+  // Las variantes (psicologo-calido, vertice, rubor…) se cotizan como su demo y se recuerdan.
   const demoParam = params.get("demo") ?? ""
-  // Las variantes (psicologo-calido, rubor…) se cotizan como su demo.
-  const demo =
-    Object.keys(PUNTOS_DE_PARTIDA).find((d) => demoParam === d || demoParam.startsWith(`${d}-`)) ??
-    (["rubor", "prisma", "umbral"].includes(demoParam) ? "revista" : null)
+  const encontrada = demoPorId(demoParam)
+  const demo = encontrada && PUNTOS_DE_PARTIDA[encontrada.id] ? encontrada.id : null
+  const variante = demo ? (encontrada.variantes.find((v) => v.id === demoParam)?.id ?? null) : null
   const moneda = MONEDAS[params.get("moneda")] ? params.get("moneda") : monedaPorDefecto
   const version = ["esencial", "recomendada", "completa"].includes(params.get("version"))
     ? params.get("version")
@@ -361,5 +362,6 @@ export function deParametros(params, monedaPorDefecto = "MXN") {
   if (URGENCIAS.some((u) => u.id === params.get("urgencia")))
     config.urgencia = params.get("urgencia")
   if (MANTENIMIENTO.some((p) => p.id === params.get("plan"))) config.plan = params.get("plan")
+  if (variante && config.demo) config.variante = variante
   return config
 }
