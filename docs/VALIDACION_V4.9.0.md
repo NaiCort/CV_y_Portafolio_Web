@@ -42,6 +42,19 @@ Entorno: Node 22 y Chromium de Playwright, con la compilación de producción se
   - `/cotizador`: LCP 1.38 s y CLS 0.020;
   - `/cotizador?demo=psicologo`: LCP 1.42 s y CLS 0.022.
 
+## Corrección tras la revisión de Ian (25/11/2026)
+
+- **Problema:** al entrar a «Ver un ejemplo» y regresar con el botón del navegador, el cotizador abría «Ajusta» como si ya se hubiera elegido el tipo.
+- **Causa:** en «Elige tipo» la dirección ya llevaba el tipo y las funciones, y el paso se deducía de ellas.
+- **Además,** el sitio lleva al inicio de la página en cada cambio de ruta.
+- **Corrección:**
+  - el paso va en la dirección y cada paso es una entrada del historial;
+  - en «Elige tipo» la dirección queda limpia;
+  - el cotizador recuerda su posición al salir y la recupera al volver con el botón de regresar.
+- **Comprobado** en `npm run test:browser:cv` (5 de 5):
+  - regresar desde la demo de ejemplo vuelve a «Elige tipo» a la misma altura;
+  - «atrás» desde «Ajusta» vuelve a «Elige tipo».
+
 ## No comprobado
 
 - Teléfono de Ian (vista previa del PR).
