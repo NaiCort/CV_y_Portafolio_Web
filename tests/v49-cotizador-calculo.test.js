@@ -14,6 +14,8 @@ import {
   monedaPorIdioma,
   rangoCategoria,
   textoPlazo,
+  categoriaInferior,
+  categoriaSugerida,
 } from "../src/lib/cotizacion"
 
 const marcadas = (c) => Object.keys(c.sel).filter((id) => c.sel[id] > 0)
@@ -252,5 +254,46 @@ describe("V4.9: moneda, folio y dirección", () => {
     expect(deParametros(new URLSearchParams("demo=psicologo-calido")).demo).toBe("psicologo")
     expect(deParametros(new URLSearchParams("demo=rubor")).demo).toBe("revista")
     expect(deParametros(new URLSearchParams("demo=no-existe")).demo).toBeNull()
+  })
+})
+
+describe("V4.9.3: plan mensual y sugerencias de tipo", () => {
+  it("el plan mensual cobra 40 % hoy y el saldo en 18 meses sin intereses, con al menos el plan Básico", () => {
+    const c = { ...configInicial({ demo: "psicologo" }), pago: "mensual" }
+    const r = calcular(c)
+    expect(r.plan.id).toBe("basico")
+    expect(r.primerMes).toBe(0)
+    expect(r.pago.inicial).toBe(Math.round(r.pagoUnico * 0.4))
+    expect(r.pago.saldo).toBe(r.pagoUnico - r.pago.inicial)
+    expect(r.pago.meses).toBe(18)
+    expect(r.pago.cuota).toBe(Math.round(r.pago.saldo / 18) + r.mensualidad)
+    expect(r.pago.despues).toBe(1392)
+    expect(calcular({ ...c, plan: "estandar" }).plan.id).toBe("estandar")
+  })
+
+  it("el plan mensual viaja en la dirección", () => {
+    const c = { ...configInicial({ demo: "ladera" }), pago: "mensual" }
+    expect(deParametros(aParametros(c)).pago).toBe("mensual")
+  })
+
+  it("en Personalizado sugiere el tipo más pequeño que ya cumple lo elegido", () => {
+    let c = configInicial({ categoria: "personalizado" })
+    expect(categoriaSugerida(c)).toBeNull()
+    c = alternar(c, "una-pagina").config
+    expect(categoriaSugerida(c)).toBe("landing")
+    c = alternar(c, "paginas").config
+    expect(categoriaSugerida(c)).toBe("varias")
+    // Las cuentas traen el panel y el aviso de privacidad: ya es una tienda o sistema.
+    c = alternar(c, "cuentas").config
+    expect(c.sel.panel && c.sel.privacidad).toBeTruthy()
+    expect(categoriaSugerida(c)).toBe("tienda")
+    expect(categoriaSugerida(configInicial({ categoria: "landing" }))).toBeNull()
+  })
+
+  it("el tipo inferior de cada tipo", () => {
+    expect(categoriaInferior("tienda")).toBe("varias")
+    expect(categoriaInferior("varias")).toBe("landing")
+    expect(categoriaInferior("landing")).toBe("personalizado")
+    expect(categoriaInferior("personalizado")).toBeNull()
   })
 })

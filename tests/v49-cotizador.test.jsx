@@ -164,4 +164,27 @@ describe("V4.9: cotizador", () => {
     expect(total(container)).not.toBe(antes)
     expect(container.textContent).toContain("Después, mantenimiento Básico")
   })
+
+  it("con plan mensual, la nota muestra el pago de hoy y las mensualidades", async () => {
+    const { container } = await montar("/cotizador?demo=psicologo&moneda=MXN")
+    const mensual = [...container.querySelectorAll('input[name="pago"]')].find(
+      (i) => i.value === "mensual",
+    )
+    await click(mensual)
+    const plan = container.querySelector(".cot-plan").textContent
+    expect(plan).toContain("Hoy")
+    expect(plan).toContain("18 pagos al mes")
+    const sinPlan = [...container.querySelectorAll('input[name="plan"]')].find(
+      (i) => i.value === "ninguno",
+    )
+    expect(sinPlan.disabled).toBe(true)
+  })
+
+  it("en una función de núcleo ofrece el tipo inferior, y en Personalizado sugiere el tipo", async () => {
+    const { container } = await montar("/cotizador?demo=patio-12&moneda=MXN")
+    await click(button("¿No la necesitas? Cambia a landing"))
+    expect(container.querySelector(".cot-cat.on").textContent).toContain("Landing")
+    const c2 = await montar("/cotizador?tipo=personalizado&f=una-pagina&moneda=MXN")
+    expect(c2.container.querySelector(".cot-sugerencia").textContent).toContain("una landing")
+  })
 })
