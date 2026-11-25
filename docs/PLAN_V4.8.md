@@ -19,6 +19,14 @@ Cada etapa lleva su propia versión menor (decisión de Ian del 25/11/2026): V4.
    6. buscadores (hecho en V4.8.6); el PDF lo mantiene Ian en Canva y se sirve tal cual;
    7. pasada final, cierre y Documento Maestro.
 3. **V4.9, cotizador, primera versión.** Va antes de las demos para que cada una se conecte «desde ya». Tiene página propia.
+
+   Decisiones de Ian (25/11/2026), sobre las secciones 7 a 9 y 18 a 26 del Sitio Profesional V1.4:
+   - **Ruta:** se queda `/cotizador`.
+   - **Servicios y cotizador, una sola página:** quien ve lo que ofrece Ian va calculando su precio al mismo tiempo. «Personalizado» muestra todo el catálogo para elegir; solo se bloquean las funciones que se excluyen entre sí, con aviso.
+   - **Sin servidor en V4.9:** todo se calcula en el navegador y la solicitud sale por WhatsApp o correo con folio y el detalle completo. El envío pasa por una sola función para que después la sustituya el backend real (registro, hoja de cálculo, correos y precio recalculado en el servidor), que se construye al terminar lo demás y no como prueba.
+   - **Precios:** los propuestos en la sección 22, en un archivo de datos. Se deciden cuando el cotizador esté terminado.
+   - **Alojamiento:** el plan gratuito de Vercel es solo para uso no comercial. Antes de recibir solicitudes reales se decide entre Vercel Pro (20 USD al mes) y Cloudflare Pages. El dominio propio funciona en cualquiera de los dos y se paga aparte.
+   - **Calendario:** el de la sección 26 es orientativo.
 4. **V4.10, demos en orden de creación**, cada una con su bloque de subversiones:
    - Psicólogo (V4.10.10). Se queda como **landing de una sola página** (decisión de Ian del 25/11/2026), con lo que aplique de la investigación de sitios de psicólogos;
    - Patio 12 (V4.10.20);
