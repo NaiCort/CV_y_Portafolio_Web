@@ -1,5 +1,5 @@
 import { MemoryRouter } from "react-router-dom"
-import { describe, expect, it } from "vitest"
+import { describe, expect, it, vi } from "vitest"
 import PsicologoApp from "../src/giros/psicologo/PsicologoApp"
 import App from "../src/App"
 import { button, click, render } from "./helpers"
@@ -84,7 +84,10 @@ describe("Psicólogo, tres temas (V4.10.2)", () => {
     await render(<App />)
     expect(document.querySelector("h1").textContent).toBe("Esta página no existe")
     await click(document.querySelector('a[href="/"]'))
-    expect(document.querySelector("h1").textContent).toBe("Ian Habid Aldana Martínez")
+    // Desde V4.10.6 el CV llega en su propio trozo, como las demos.
+    await vi.waitFor(() =>
+      expect(document.querySelector("h1").textContent).toBe("Ian Habid Aldana Martínez"),
+    )
     expect(document.title).toContain("CV y portafolio")
   })
 })

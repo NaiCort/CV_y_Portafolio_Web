@@ -5,10 +5,14 @@ import { precargarPortada as precargarPortadaPsicologo } from "./giros/psicologo
 // El cotizador se separó en V4.10.3: la portada ya no descarga su código (presupuesto de
 // rendimiento, docs/RENDIMIENTO.md).
 export const CARGAS = {
+  // El CV también se carga aparte (V4.10.6, DEC-021): las demos no descargan su código. En la
+  // portada no se nota: llega prerenderizado y dist/index.html precarga su código y su CSS
+  // (scripts/prerender.mjs).
+  "/": () => import("./pages/Bienvenida"),
   "/cotizador": () => import("./pages/Cotizador"),
   "/privacidad": () => import("./pages/Privacidad"),
   "/psicologo": () => import("./giros/psicologo/PsicologoApp"),
-  "/restaurante": () => import("./giros/restaurante/RestauranteApp"),
+  "/restaurante": () => import("./giros/restaurante/RestauranteRuta"),
   "/cafe": () => import("./giros/cafe/CafeApp"),
   "/gimnasio": () => import("./giros/gimnasio/GimnasioApp"),
   "/taller": () => import("./giros/taller/TallerApp"),
