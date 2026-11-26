@@ -16,23 +16,16 @@ export const close = async (page) => {
 export const saved = (page) =>
   page.evaluate(() => JSON.parse(localStorage.getItem("patio12-demo-v1")))
 export async function audit(page) {
-  // V4.10.6: axe mide el contraste con la opacidad de ese momento, así que se espera a que terminen
-  // las animaciones y transiciones finitas de toda la página (las infinitas, como un indicador de
-  // carga, no cuentan). Con el movimiento de Patio 12, axe veía textos a medio aparecer.
-  await page.waitForFunction(
-    () =>
-      document
-        .getAnimations()
-        .every(
-          (a) => a.playState !== "running" || a.effect?.getComputedTiming().iterations === Infinity,
-        ),
-    null,
-    { timeout: 5000 },
-  )
   await page.waitForFunction(() =>
     [
       ...document.querySelectorAll(
-        ".r-page-content, .r-menu-results, .r-gallery-image, .r-cart-count, .r-notice-card",
+        // V4.10.6: también la portada y las secciones que se asientan de Patio 12, porque axe mide el
+        // contraste con la opacidad de ese momento. Solo elementos con nombre: esperar todas las
+        // animaciones de la página no termina en demos con animaciones largas (Ladera, Cotejo y
+        // Revista).
+        ".r-page-content, .r-menu-results, .r-gallery-image, .r-cart-count, .r-notice-card, " +
+          ".r-hero-actions, .r-hero-facts, .r-photo-caption, .r-hero-seal, .r-hero-photo > img, " +
+          "[data-entra]",
       ),
     ].every((el) => el.getAnimations().every((animation) => animation.playState !== "running")),
   )
