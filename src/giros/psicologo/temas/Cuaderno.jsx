@@ -54,7 +54,7 @@ export default function Cuaderno({ onAgendar, onPrivacidad, onPedirInfo, temaCon
             <p className="p-margen">
               aquí empieza todo, con una llamada <span aria-hidden="true">→</span>
             </p>
-            <div className="p-cuerpo">
+            <div className="p-cuerpo p-portada-carga">
               <h1 id="inicio-titulo">
                 {antes}
                 <Subrayado>{marcado}</Subrayado>

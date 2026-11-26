@@ -261,7 +261,12 @@
   transition:
     background-color 200ms ease-out,
     color 200ms ease-out,
-    border-color 200ms ease-out;
+    border-color 200ms ease-out,
+    transform 150ms ease-out;
+}
+/* Al presionar, el botón cede un poco (V4.10.5). */
+.p-btn:active:not(:disabled) {
+  transform: scale(0.97);
 }
 .p-btn-p {
   border-color: var(--p-acento);
@@ -599,6 +604,40 @@
 .psi summary {
   cursor: pointer;
   font-weight: 600;
+  list-style: none;
+}
+.psi summary::-webkit-details-marker {
+  display: none;
+}
+/* Flecha propia que gira al abrir (V4.10.5). */
+.psi summary::before {
+  content: "";
+  display: inline-block;
+  width: 0.42em;
+  height: 0.42em;
+  margin: 0 0.75em 0.14em 0.1em;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(-45deg);
+  transition: transform 200ms ease-out;
+}
+.psi details[open] > summary::before {
+  transform: rotate(45deg);
+}
+/* Apertura suave de preguntas y notas (Chrome y Edge 131 o posterior; los demás abren sin
+   transición). */
+.psi {
+  interpolate-size: allow-keywords;
+}
+.psi details::details-content {
+  block-size: 0;
+  overflow-y: clip;
+  transition:
+    block-size 250ms ease-out,
+    content-visibility 250ms ease-out allow-discrete;
+}
+.psi details[open]::details-content {
+  block-size: auto;
 }
 .p-preguntas {
   max-width: 50em;
@@ -946,9 +985,7 @@
   margin: 1rem 0;
   font-weight: 600;
 }
-.p-respira-cuenta {
-  font-variant-numeric: tabular-nums;
-}
+/* La figura (V4.10.5): un anillo fijo y un disco que respira con el conteo (ver Respira.jsx). */
 .p-respira-figura {
   display: grid;
   place-items: center;
@@ -956,10 +993,42 @@
   height: 220px;
   position: relative;
 }
+.p-respira-anillo {
+  position: absolute;
+  inset: 0;
+  border: 1px solid var(--p-anillo);
+  border-radius: 50%;
+}
+.p-respira-disco {
+  position: absolute;
+  inset: 6%;
+  border-radius: 50%;
+  background: var(--p-disco);
+  opacity: 0;
+  transform: scale(0.04);
+  transition:
+    transform var(--p-dur, 0s) ease-in-out,
+    opacity var(--p-dur, 0s) ease-in-out;
+}
+.p-respira-figura[data-fase="inhala"] .p-respira-disco {
+  opacity: 1;
+  transform: scale(1);
+}
+.p-respira-figura[data-fase="exhala"] .p-respira-disco {
+  opacity: 0.55;
+  transform: scale(0.14);
+}
 .p-respira-centro {
   position: relative;
   z-index: 1;
+  display: grid;
+  justify-items: center;
+  gap: 6px;
   font: 400 1.35rem/1 var(--p-titulo);
+}
+.p-respira-numero {
+  font: 400 2.6rem/1 var(--p-titulo);
+  font-variant-numeric: tabular-nums;
 }
 
 /* ---------- Entradas ---------- */
@@ -978,6 +1047,108 @@
     opacity: 0;
   }
 }
+@keyframes p-entra {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+}
+
+/* ---------- Carga de la portada (V4.10.5) ----------
+   El título y la entrada están quietos desde el primer cuadro: el navegador no da por pintado un
+   elemento que se funde hasta que termina de aparecer, y en Cuaderno la entrada compite con la
+   foto por ser el elemento principal (docs/RENDIMIENTO.md). Botones, nota y cédula entran después,
+   escalonados desde escala 0.95. Por lo mismo, las fotos no cambian de opacidad: cada tema les da
+   su propio gesto (abajo). */
+.p-portada-carga > :not(h1, .p-entrada) {
+  animation: p-entra 300ms ease-out both;
+}
+.p-portada-carga > :nth-child(3) {
+  animation-delay: 70ms;
+}
+.p-portada-carga > :nth-child(4) {
+  animation-delay: 140ms;
+}
+.p-portada-carga > :nth-child(n + 5) {
+  animation-delay: 210ms;
+}
+@keyframes p-asienta {
+  from {
+    transform: scale(1.06);
+  }
+}
+@keyframes p-despeja {
+  from {
+    filter: blur(8px) saturate(0.4);
+  }
+}
+@keyframes p-acomoda {
+  from {
+    transform: rotate(-3deg) scale(0.95);
+  }
+}
+
+/* ---------- Pasos de la agenda (V4.10.5) ---------- */
+.p-agenda-paso,
+.p-procesando {
+  animation: p-entra 240ms ease-out both;
+}
+
+/* ---------- Cambio de tema (V4.10.5, PsicologoApp.jsx) ---------- */
+.psi-velo {
+  position: fixed;
+  inset: 44px 0 0;
+  z-index: 65;
+  display: grid;
+  place-items: center;
+  animation: p-velo-cubre 260ms ease-out both;
+}
+.psi-velo[data-fase="descubre"] {
+  animation: p-velo-descubre 300ms ease-out both;
+}
+.psi-velo-nombre {
+  animation: p-entra 260ms ease-out both;
+}
+.psi-velo[data-fase="descubre"] .psi-velo-nombre {
+  animation: none;
+}
+.psi-velo-sala {
+  background: #f7f4ee;
+  color: #2e3a2c;
+  font:
+    400 clamp(2rem, 5vw, 3rem) / 1 "Psi Fraunces",
+    "Psi Fraunces Respaldo",
+    Georgia,
+    serif;
+}
+.psi-velo-neblina {
+  background: #eef2f3;
+  color: #1c2a36;
+  font:
+    500 clamp(2rem, 5vw, 3rem) / 1 "Psi Instrument",
+    "Psi Instrument Respaldo",
+    system-ui,
+    sans-serif;
+}
+.psi-velo-cuaderno {
+  background: #f6f5f4;
+  color: #2f2f33;
+  font:
+    600 clamp(2rem, 5vw, 3rem) / 1 "Psi Literata",
+    "Psi Literata Respaldo",
+    Georgia,
+    serif;
+}
+@keyframes p-velo-cubre {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes p-velo-descubre {
+  to {
+    opacity: 0;
+  }
+}
 
 /* =================== SALA CON LUZ =================== */
 .psi-sala .p-portada-in {
@@ -991,6 +1162,7 @@
   margin-top: 1.5rem;
 }
 .psi-sala .p-arco img {
+  animation: p-asienta 300ms ease-out both;
   width: 100%;
   aspect-ratio: 4 / 5;
   object-fit: cover;
@@ -1048,28 +1220,9 @@
 .psi-sala .p-banda :focus-visible {
   outline-color: #f8e4d6;
 }
-.psi-sala .p-respira-figura::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border: 1px solid #8f4a2b66;
-  border-radius: 50%;
-  background: #efe8dd;
-}
-.psi-sala .p-respira-figura::after {
-  content: "";
-  position: absolute;
-  inset: 10%;
-  border-radius: 50%;
-  background: #f8e4d6;
-  transform: scale(0.55);
-  transition: transform var(--p-dur, 0.3s) ease-in-out;
-}
-.psi-sala .p-respira-figura[data-fase="inhala"]::after {
-  transform: scale(1);
-}
-.psi-sala .p-respira-figura[data-fase="exhala"]::after {
-  transform: scale(0.55);
+.psi-sala .p-respira-figura {
+  --p-anillo: #8f4a2b66;
+  --p-disco: #eec0a6;
 }
 .psi-sala .p-crisis-numero {
   color: #fff;
@@ -1145,6 +1298,7 @@
   isolation: isolate;
 }
 .psi-neblina .p-portada-foto {
+  animation: p-despeja 300ms ease-out both;
   position: absolute;
   inset: 0;
   z-index: -2;
@@ -1327,27 +1481,11 @@
 .psi-neblina .p-respira-pausa + .p-seccion {
   padding-top: 96px;
 }
-.psi-neblina .p-respira-figura::before,
-.psi-neblina .p-respira-figura::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  border: 1px solid #2f5f6e59;
-  background: #2f5f6e14;
-  transform: scale(0.6);
-  transition: transform var(--p-dur, 0.3s) ease-in-out;
-}
-.psi-neblina .p-respira-figura::after {
-  inset: 18%;
-  background: #2f5f6e1f;
-}
-.psi-neblina .p-respira-figura[data-fase="inhala"]::before,
-.psi-neblina .p-respira-figura[data-fase="inhala"]::after {
-  transform: scale(1);
+.psi-neblina .p-respira-figura {
+  --p-anillo: #2f5f6e66;
+  --p-disco: #c5d9de;
 }
 .psi-neblina .p-respira-centro {
-  color: var(--p-acento);
   font-weight: 500;
 }
 .psi-neblina .p-franja {
@@ -1420,6 +1558,7 @@
   border-top: 1px solid var(--p-linea);
 }
 .psi-cuaderno .p-margen {
+  transition: clip-path 300ms ease-out 150ms;
   padding-right: 20px;
   border-right: 2px solid #c77b6b66;
   color: var(--p-mano);
@@ -1463,10 +1602,14 @@
 .p-entradas .psi-cuaderno [data-entra]:not(.p-visto) .p-subrayado path {
   stroke-dashoffset: 1;
 }
+.p-entradas .psi-cuaderno [data-entra]:not(.p-visto) .p-margen {
+  clip-path: inset(0 100% 0 0);
+}
 .p-entradas .psi-cuaderno [data-entra]:not(.p-visto) {
   transform: none;
 }
 .psi-cuaderno .p-polaroid {
+  animation: p-acomoda 300ms ease-out 120ms both;
   position: relative;
   align-self: start;
   justify-self: center;
@@ -1592,24 +1735,14 @@
   color: var(--p-texto);
 }
 .psi-cuaderno .p-respira-figura {
-  width: 220px;
-  height: 160px;
-  background-image: repeating-linear-gradient(180deg, transparent 0 31px, var(--p-linea) 31px 32px);
+  --p-anillo: #6e521299;
+  --p-disco: #efd089;
 }
-.psi-cuaderno .p-respira-figura::after {
-  content: "";
-  position: absolute;
-  left: 10px;
-  right: 10px;
-  bottom: 12px;
-  height: 3px;
-  border-radius: 2px;
-  background: var(--p-mano);
-  transform: translateY(0);
-  transition: transform var(--p-dur, 0.3s) ease-in-out;
+.psi-cuaderno .p-respira-anillo {
+  border: 1.5px dashed var(--p-anillo);
 }
-.psi-cuaderno .p-respira-figura[data-fase="inhala"]::after {
-  transform: translateY(-120px);
+.psi-cuaderno .p-respira-disco {
+  border-radius: 47% 53% 50% 50% / 52% 48% 52% 48%;
 }
 .psi-cuaderno .p-respira-centro {
   font:
@@ -1814,9 +1947,35 @@
   .p-entradas .psi-cuaderno [data-entra]:not(.p-visto) .p-subrayado path {
     stroke-dashoffset: 0;
   }
-  .p-respira-figura::before,
-  .p-respira-figura::after {
-    transform: none !important;
-    transition: none !important;
+  /* V4.10.5: con movimiento reducido, solo fundidos. */
+  .p-portada-carga > :not(h1, .p-entrada),
+  .p-agenda-paso,
+  .p-procesando,
+  .psi-velo-nombre {
+    animation-name: p-aparece;
+  }
+  .psi-sala .p-arco img,
+  .psi-neblina .p-portada-foto,
+  .psi-cuaderno .p-polaroid {
+    animation: none;
+  }
+  .p-entradas .psi-cuaderno [data-entra]:not(.p-visto) .p-margen {
+    clip-path: none;
+  }
+  .p-btn:active:not(:disabled) {
+    transform: none;
+  }
+  .psi summary::before,
+  .psi details::details-content {
+    transition: none;
+  }
+  /* El disco no cambia de tamaño: se aclara al inhalar y se apaga al exhalar. */
+  .p-respira-disco,
+  .p-respira-figura[data-fase] .p-respira-disco {
+    transform: none;
+    transition: opacity var(--p-dur, 0s) linear;
+  }
+  .p-respira-figura[data-fase="exhala"] .p-respira-disco {
+    opacity: 0.2;
   }
 }

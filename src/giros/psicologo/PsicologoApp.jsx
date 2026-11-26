@@ -1,4 +1,5 @@
-import { useCallback, useEffect, useState } from "react"
+import { useCallback, useEffect, useRef, useState } from "react"
+import { useReducedMotion } from "framer-motion"
 import useRouteFocus from "../../hooks/useRouteFocus"
 import ThemeSwitcher from "../../components/ThemeSwitcher"
 import WaterMark from "../../components/WaterMark"
@@ -84,6 +85,43 @@ function useEntradas(tema) {
   }, [tema])
 }
 
+// Cambio de tema (V4.10.5, pedido de Ian): los tres temas tienen estructura distinta, así que al
+// cambiar, un velo con el color y el nombre del tema nuevo cubre la página, la página vuelve arriba
+// y el tema nuevo aparece desde el inicio. Así no se disparan solas las animaciones de más abajo.
+// Cada paso dura menos de 300 ms. Con movimiento reducido no hay velo: el tema cambia y la página
+// vuelve arriba de inmediato. (En Brío solo cambia la paleta y no hace falta.)
+const CUBRE = 260
+const DESCUBRE = 300
+
+function useCambioDeTema(tema, setTema) {
+  const reducido = useReducedMotion()
+  const [velo, setVelo] = useState(null)
+  const relojes = useRef([])
+  useEffect(() => () => relojes.current.forEach(clearTimeout), [])
+  const subir = () => window.scrollTo({ top: 0, left: 0, behavior: "instant" })
+  const cambiar = useCallback(
+    (nuevo) => {
+      if (!THEME_NAMES.includes(nuevo) || nuevo === tema || velo) return
+      if (reducido) {
+        setTema(nuevo)
+        subir()
+        return
+      }
+      setVelo({ a: nuevo, fase: "cubre" })
+      relojes.current = [
+        setTimeout(() => {
+          subir()
+          setTema(nuevo)
+          setVelo({ a: nuevo, fase: "descubre" })
+        }, CUBRE),
+        setTimeout(() => setVelo(null), CUBRE + DESCUBRE),
+      ]
+    },
+    [tema, setTema, velo, reducido],
+  )
+  return [velo, cambiar]
+}
+
 export default function PsicologoApp() {
   useRouteFocus()
   useFavicon("/favicons/psicologo.svg")
@@ -97,6 +135,7 @@ export default function PsicologoApp() {
   const [temaContacto, setTemaContacto] = useState(null)
   useEffect(() => saveTheme(tema), [tema])
   useEntradas(tema)
+  const [velo, cambiarTema] = useCambioDeTema(tema, setTema)
 
   const agendar = useCallback((tipo = null) => setAgenda({ tipo }), [])
   const pedirInfo = useCallback(() => {
@@ -131,13 +170,12 @@ export default function PsicologoApp() {
         giro="psicólogo"
         cotizar={variante}
       />
-      <ThemeSwitcher
-        themes={TEMAS}
-        activeTheme={tema}
-        onThemeChange={(nuevo) => {
-          if (THEME_NAMES.includes(nuevo)) setTema(nuevo)
-        }}
-      />
+      {velo && (
+        <div className={`psi-velo psi-velo-${velo.a}`} data-fase={velo.fase} aria-hidden="true">
+          <span className="psi-velo-nombre">{TEMAS.find((t) => t.id === velo.a).nombre}</span>
+        </div>
+      )}
+      <ThemeSwitcher themes={TEMAS} activeTheme={velo?.a ?? tema} onThemeChange={cambiarTema} />
       <WaterMark />
       {agenda && <Agenda tema={tema} tipoInicial={agenda.tipo} onClose={() => setAgenda(null)} />}
       {privacidad && <AvisoPrivacidad tema={tema} onClose={() => setPrivacidad(false)} />}

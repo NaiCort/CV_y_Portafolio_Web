@@ -68,7 +68,7 @@ export default function Neblina({ onAgendar, onPrivacidad, onPedirInfo, temaCont
             className="p-portada-foto"
             prioridad
           />
-          <div className="p-wrap p-portada-in">
+          <div className="p-wrap p-portada-in p-portada-carga">
             <h1 id="inicio-titulo">{PORTADA.titulo.neblina}</h1>
             <p className="p-entrada">{PORTADA.texto}</p>
             <div className="p-acciones">
