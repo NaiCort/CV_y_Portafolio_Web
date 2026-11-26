@@ -1,39 +1,22 @@
-import { Map, Marker, NavigationControl, setWorkerUrl } from "maplibre-gl"
-import workerUrl from "maplibre-gl/dist/maplibre-gl-worker.mjs?worker&url"
-import "maplibre-gl/dist/maplibre-gl.css"
+import { Marker } from "maplibre-gl"
+import { crearMapaBase } from "../../../lib/mapaBase"
 import { coveragePolygon, localLabel, routePosition } from "../data/locations"
 
-setWorkerUrl(workerUrl)
+// Motor del mapa de Patio 12 sobre el mapa base compartido (V4.10.6, DEC-028): estilo de color de
+// OpenFreeMap, ya corregido. Aquí van solo las marcas de los locales, sus grupos, la cobertura y el
+// recorrido del reparto.
 export function createDemoMap(
   container,
   { point, route, outside, points = null, onSelectPoint, onReady, onError },
 ) {
-  const map = new Map({
-    container,
-    style: "https://tiles.openfreemap.org/styles/liberty",
+  const { map, quitar } = crearMapaBase(container, {
+    estilo: "color",
     center: point.coordinates,
     zoom: route ? 12.5 : 13,
-    attributionControl: { compact: true },
-    cooperativeGestures: true,
-    locale: {
-      "NavigationControl.ZoomIn": "Acercar",
-      "NavigationControl.ZoomOut": "Alejar",
-      "NavigationControl.ResetBearing": "Orientar al norte",
-      "AttributionControl.ToggleAttribution": "Mostrar atribución",
-      "CooperativeGesturesHandler.WindowsHelpText": "Usa Ctrl y la rueda para acercar el mapa",
-      "CooperativeGesturesHandler.MacHelpText": "Usa ⌘ y la rueda para acercar el mapa",
-      "CooperativeGesturesHandler.MobileHelpText": "Usa dos dedos para mover el mapa",
-    },
+    etiqueta: points
+      ? "Mapa de referencias de locales simulados. Acerca los grupos para ver cada local."
+      : `Mapa de referencia: ${point.name}. Controles de acercar y alejar disponibles.`,
   })
-  map.addControl(new NavigationControl({ showCompass: false }), "top-right")
-  map
-    .getCanvas()
-    .setAttribute(
-      "aria-label",
-      points
-        ? "Mapa de referencias de locales simulados. Acerca los grupos para ver cada local."
-        : `Mapa de referencia: ${point.name}. Controles de acercar y alejar disponibles.`,
-    )
   const marker = (className, label, coordinates) => {
     const element = document.createElement("span")
     element.className = className
@@ -220,8 +203,6 @@ export function createDemoMap(
     map.once("idle", onReady)
   })
   map.on("error", onError)
-  const resize = new ResizeObserver(() => map.resize())
-  resize.observe(container)
   return {
     progress: (fraction) => {
       if (courier && route) courier.setLngLat(routePosition(route, fraction))
@@ -237,9 +218,6 @@ export function createDemoMap(
           duration: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : 450,
         })
     },
-    destroy: () => {
-      resize.disconnect()
-      map.remove()
-    },
+    destroy: quitar,
   }
 }

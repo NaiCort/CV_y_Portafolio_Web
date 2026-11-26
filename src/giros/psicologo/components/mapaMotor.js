@@ -1,25 +1,9 @@
-import {
-  AttributionControl,
-  LngLatBounds,
-  Map,
-  Marker,
-  NavigationControl,
-  setWorkerUrl,
-} from "maplibre-gl"
-import workerUrl from "maplibre-gl/dist/maplibre-gl-worker.mjs?worker&url"
-import "maplibre-gl/dist/maplibre-gl.css"
-import { completarImagenes, corregirEstilo } from "../../../lib/estiloMapa"
+import { LngLatBounds, Marker } from "maplibre-gl"
+import { crearMapaBase } from "../../../lib/mapaBase"
 
-// Motor del mapa del consultorio: MapLibre con OpenFreeMap (sin clave), igual que en Taller, Brío y
-// Patio 12. Se importa en diferido desde Mapa.jsx. Desde V4.10.5, el estilo se corrige antes de
-// aplicarse (src/lib/estiloMapa.js) para que la consola quede sin advertencias.
-setWorkerUrl(workerUrl)
-
-const ESTILOS = {
-  claro: "https://tiles.openfreemap.org/styles/positron",
-  oscuro: "https://tiles.openfreemap.org/styles/dark",
-}
-
+// Motor del mapa del consultorio, sobre el mapa base compartido (src/lib/mapaBase.js, desde
+// V4.10.6): OpenFreeMap sin clave y estilo corregido para que la consola quede sin advertencias.
+// Se importa en diferido desde Mapa.jsx. Aquí van solo las marcas de las sucursales.
 export function crearMapa(
   contenedor,
   { puntos, elegida, estilo, etiqueta, onElegir, onListo, onError },
@@ -28,8 +12,10 @@ export function crearMapa(
   const uno = puntos.length === 1
   const limites = new LngLatBounds()
   puntos.forEach((p) => limites.extend(p.coordenadas))
-  const map = new Map({
-    container: contenedor,
+  const { map, quitar } = crearMapaBase(contenedor, {
+    estilo,
+    etiqueta,
+    atribucion: "bottom-left",
     ...(uno
       ? { center: puntos[0].coordenadas, zoom: 15 }
       : {
@@ -40,27 +26,7 @@ export function crearMapa(
               : { top: 50, bottom: 50, left: 30, right: 120 },
           },
         }),
-    attributionControl: false,
-    cooperativeGestures: true,
-    locale: {
-      "NavigationControl.ZoomIn": "Acercar",
-      "NavigationControl.ZoomOut": "Alejar",
-      "NavigationControl.ResetBearing": "Orientar al norte",
-      "AttributionControl.ToggleAttribution": "Mostrar atribución",
-      "CooperativeGesturesHandler.WindowsHelpText": "Usa Ctrl y la rueda para acercar el mapa",
-      "CooperativeGesturesHandler.MacHelpText": "Usa ⌘ y la rueda para acercar el mapa",
-      "CooperativeGesturesHandler.MobileHelpText": "Usa dos dedos para mover el mapa",
-    },
   })
-  completarImagenes(map)
-  map.setStyle(ESTILOS[estilo], {
-    transformStyle: (_previo, siguiente) => corregirEstilo(siguiente),
-  })
-  map.addControl(new NavigationControl({ showCompass: false }), "top-right")
-  map.addControl(new AttributionControl({ compact: true }), "bottom-left")
-  const observador = new ResizeObserver(() => map.resize())
-  observador.observe(contenedor)
-  map.getCanvas().setAttribute("aria-label", etiqueta)
   const marcas = puntos.map((p) => {
     const boton = document.createElement("button")
     boton.type = "button"
@@ -105,9 +71,6 @@ export function crearMapa(
         duration: quieto ? 0 : 400,
       })
     },
-    destruir: () => {
-      observador.disconnect()
-      map.remove()
-    },
+    destruir: quitar,
   }
 }
