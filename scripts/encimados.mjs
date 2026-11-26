@@ -1,11 +1,13 @@
 // Detector de textos encimados y desbordes horizontales (herramienta de la pasada final).
 // Uso: node scripts/encimados.mjs /ruta1,/ruta2 [selector-excluido]
 // Base: DEMO_BASE_URL (por defecto http://127.0.0.1:4173, la de `vite preview`).
+// DEMO_STORAGE="clave=valor" fija una preferencia antes de cargar, como el tema de una demo (V4.10.5).
 import { chromium } from "playwright"
 
 const BASE = process.env.DEMO_BASE_URL || "http://127.0.0.1:4173"
 const rutas = (process.argv[2] || "/").split(",")
 const excluir = process.argv[3] || ".um-pila"
+const preferencia = process.env.DEMO_STORAGE?.split(/=(.*)/s).slice(0, 2)
 const TAMANOS = [
   [1980, 870],
   [1440, 900],
@@ -21,6 +23,7 @@ let casos = 0
 for (const [width, height] of TAMANOS)
   for (const ruta of rutas) {
     const page = await browser.newPage({ viewport: { width, height }, isMobile: width < 640 })
+    if (preferencia) await page.addInitScript(([k, v]) => localStorage.setItem(k, v), preferencia)
     await page.goto(BASE + ruta)
     await page.waitForTimeout(900)
     const res = await page.evaluate((excluir) => {

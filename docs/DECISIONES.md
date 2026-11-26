@@ -38,12 +38,16 @@ Las decisiones nuevas se agregan al final con el siguiente número; los números
 | DEC-016 | 25/11/2026 | Psicólogo con «Instituciones y colegas» y «Recursos» | ACEPTADA | `PLAN_V4.8.md` | Psicólogo |
 | DEC-017 | 25/11/2026 | `Digital-Development-Handbook-GPT` se queda intacto; `Digital-Development-Handbook-Claude` se llena con el zip de la versión 1.0 | ACEPTADA | Conversación con Ian | Repositorios del handbook |
 | DEC-018 | 25/11/2026 | El portafolio completo es la demo piloto del handbook y adopta su contenido | ACEPTADA | Conversación con Ian | `HANDBOOK.md`; V4.10.3 |
-| DEC-019 | 25/11/2026 | La adopción del handbook toma el siguiente número consecutivo (V4.10.3), y la activación de la política de contenido el siguiente (V4.10.4); Patio 12 empieza en V4.10.5 | PROPUESTA | V4.10.3 y V4.10.4 | Numeración; se corrige si Ian prefiere otra |
+| DEC-019 | 25/11/2026 | Cada entrega toma el siguiente número consecutivo: V4.10.3 (handbook), V4.10.4 (política de contenido) y V4.10.5 (animaciones de Psicólogo); Patio 12 empieza en V4.10.6 | PROPUESTA | V4.10.3 a V4.10.5 | Numeración; se corrige si Ian prefiere otra |
 | DEC-020 | 25/11/2026 | Aplicar de verdad la política de contenido completa, que en V4.10.3 iba «solo en reporte». Ian revisó la consola del sitio publicado sin avisos de la política y aprobó: «si eso no causa problemas de seguridad entonces adelante» | ACEPTADA | Conversación con Ian; V4.10.4 | `vercel.json` |
 | DEC-021 | 25/11/2026 | Sacar el estado de Patio 12 (`RestaurantProvider` y `FloatingTimer`) del paquete principal en la entrega de Patio 12 | PROPUESTA | `RENDIMIENTO.md` | Portada más ligera |
 | DEC-022 | 25/11/2026 | Prueba de humo automática contra la vista previa de Vercel en cada pull request (puerta G7) | PROPUESTA | `DESPLIEGUE.md` | CI |
 | DEC-023 | 25/11/2026 | Avisos automáticos de dependencias (Dependabot), agrupados una vez al mes | PROPUESTA | `SEGURIDAD.md` | Abre pull requests solo; por eso no se activó sin Ian |
 | DEC-024 | 25/11/2026 | Domicilio completo del responsable y revisión legal del aviso de privacidad antes de recibir solicitudes reales | PENDIENTE | `SEGURIDAD.md` | `/privacidad` |
+| DEC-025 | 26/11/2026 | Al cambiar de tema en una demo cuyos temas cambian la estructura (Psicólogo, Taller), la página vuelve arriba con una transición, para que no se disparen solas las animaciones de más abajo. No aplica a Brío, donde solo cambia la paleta | ACEPTADA | Conversación con Ian | Psicólogo en V4.10.5; Taller en su entrega |
+| DEC-026 | 26/11/2026 | La figura de «Respira conmigo» acompaña el conteo: invisible y diminuta antes de empezar, crece al inhalar, casi desaparece al exhalar y se apaga del todo al terminar o detener | ACEPTADA | Conversación con Ian | Psicólogo, V4.10.5 |
+| DEC-027 | 26/11/2026 | Más y mejores animaciones en las demos, empezando por Psicólogo; cada demo las recibe en su entrega de V4.10, dentro de la Guía de identidad (ease-out de 200 a 300 ms, escala 0.95, fundido con movimiento reducido) | ACEPTADA | Conversación con Ian | Lista fija de `PLAN_V4.8.md` |
+| DEC-028 | 26/11/2026 | El estilo de los mapas de OpenFreeMap se corrige antes de aplicarse (`src/lib/estiloMapa.js`), para que la consola quede sin advertencias. Psicólogo ya lo usa; Patio 12, Brío y Taller lo adoptan con el motor compartido en su entrega | ACEPTADA | Revisión de la consola por Ian; V4.10.5 | Mapas |
 
 ## Excepciones a reglas del handbook
 

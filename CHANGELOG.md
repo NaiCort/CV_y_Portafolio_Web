@@ -1,3 +1,17 @@
+# V4.10.5 · 26 de noviembre de 2026 · Psicólogo: cambio de tema, «Respira conmigo» y animaciones
+
+A pedido de Ian, después de revisar el sitio publicado:
+- **Cambio de tema:** como cada tema tiene su estructura, al cambiar aparece un velo con el color y el nombre del tema nuevo. La página vuelve arriba y el tema nuevo empieza desde el inicio, sin que se disparen solas las animaciones de más abajo. Con movimiento reducido, el cambio y la subida son inmediatos.
+- **«Respira conmigo»:** el disco es invisible y diminuto antes de empezar, crece al inhalar, casi desaparece al exhalar y se apaga del todo al terminar o detener. El conteo va en el centro. Con movimiento reducido, se aclara y se oscurece sin cambiar de tamaño.
+- **Más animaciones:**
+  - en la portada, botones, nota y cédula entran escalonados y la foto hace un gesto propio de cada tema (se asienta, se despeja o se acomoda); el título y el párrafo de entrada no se funden, para no retrasar la carga;
+  - preguntas y notas que se abren con suavidad, con una flecha que gira;
+  - pasos de la agenda con transición;
+  - notas al margen de Cuaderno que se escriben al aparecer;
+  - botones que ceden al presionarlos.
+- **Mapa sin advertencias en la consola:** el estilo de OpenFreeMap se corrige antes de aplicarse (`src/lib/estiloMapa.js`), con escudos de carretera sin número y textura faltante. Patio 12, Brío y Taller lo adoptan en su entrega.
+- **Portada de Neblina más rápida:** en un teléfono de pantalla densa, la foto principal aparecía a los 3.9 s (meta: 2.5 s), porque el navegador bajaba la versión de 2000 px (233 KB). Ahora hay una de 1200 px (97 KB), y al entrar directo con Neblina la foto se pide desde el principio: 2.2 s. Sala con luz y Cuaderno quedan entre 1.9 y 2.1 s. Ya pasaba desde V4.10.2: entonces solo se medía el tema por defecto.
+
 # V4.10.4 · 25 de noviembre de 2026 · Política de contenido aplicada
 
 - La política de contenido completa pasa de «solo en reporte» a aplicada (DEC-020, aprobada por Ian tras revisar la consola del sitio publicado). Queda una sola política, que también incluye `frame-ancestors 'none'`.

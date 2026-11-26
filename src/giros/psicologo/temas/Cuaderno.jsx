@@ -1,4 +1,5 @@
 import { CONTACTO_INTRO, PERSONA, PORTADA } from "../data/consultorio"
+import { PORTADAS } from "../portadas"
 import Contacto from "../components/Contacto"
 import Respira from "../components/Respira"
 import {
@@ -54,7 +55,7 @@ export default function Cuaderno({ onAgendar, onPrivacidad, onPedirInfo, temaCon
             <p className="p-margen">
               aquí empieza todo, con una llamada <span aria-hidden="true">→</span>
             </p>
-            <div className="p-cuerpo">
+            <div className="p-cuerpo p-portada-carga">
               <h1 id="inicio-titulo">
                 {antes}
                 <Subrayado>{marcado}</Subrayado>
@@ -78,9 +79,7 @@ export default function Cuaderno({ onAgendar, onPrivacidad, onPedirInfo, temaCon
             </div>
             <figure className="p-polaroid">
               <Foto
-                nombre="retrato"
-                anchos={[500, 900]}
-                sizes="(min-width: 900px) 300px, 240px"
+                {...PORTADAS.cuaderno}
                 alt="Retrato de una mujer sonriente con saco gris, sentada junto a una ventana"
                 prioridad
               />

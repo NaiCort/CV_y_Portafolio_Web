@@ -153,13 +153,74 @@ await suite("psicologo", async ({ run, base }) => {
     async ({ page }) => {
       await page.goto(`${base}/psicologo`)
       await page.locator("main h1").waitFor()
+      // Empieza en Sala con luz; pulsar el tema activo no hace nada.
+      let activo = "sala"
       for (const [tema, nombre] of TEMAS) {
+        // V4.10.5: el cambio de tema vuelve arriba aunque se esté al final de la página.
+        if (tema !== activo)
+          await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight))
         await page.getByRole("button", { name: `Tema ${nombre}` }).click()
         await page.locator(`.psi-${tema}`).waitFor()
+        if (tema !== activo) await page.waitForFunction(() => window.scrollY === 0)
+        activo = tema
         assert.equal(await page.evaluate(() => localStorage.getItem("demo-psicologo-theme")), tema)
       }
       await page.reload()
       await page.locator(".psi-cuaderno").waitFor()
+    },
+  )
+
+  // V4.10.5, con movimiento: velo al cambiar de tema, figura de «Respira conmigo» y mapa sin
+  // advertencias del estilo de OpenFreeMap.
+  await run(
+    "Velo, respiración y mapa",
+    { viewport: { width: 1280, height: 900 }, reducedMotion: "no-preference" },
+    async ({ page }) => {
+      const avisosMapa = []
+      page.on("console", (m) => {
+        if (/Expected value to be of type|could not be loaded/.test(m.text()))
+          avisosMapa.push(m.text())
+      })
+      await page.addInitScript(() => {
+        if (!sessionStorage.getItem("psi-prueba")) {
+          localStorage.setItem("demo-psicologo-theme", "sala")
+          sessionStorage.setItem("psi-prueba", "1")
+        }
+      })
+      await page.goto(`${base}/psicologo`)
+      await page.locator("main h1").waitFor()
+
+      // El mapa del consultorio carga sin advertencias del estilo.
+      await page.locator("#contacto").scrollIntoViewIfNeeded()
+      await page.locator(".p-mapa canvas").waitFor({ timeout: 20_000 })
+      await page.waitForTimeout(3000)
+      assert.deepEqual(avisosMapa, [], "Advertencias del estilo del mapa")
+
+      // Velo con el nombre del tema nuevo y vuelta arriba.
+      await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight))
+      await page.getByRole("button", { name: "Tema Neblina" }).click()
+      await page.locator(".psi-velo", { hasText: "Neblina" }).waitFor()
+      await page.locator(".psi-velo").waitFor({ state: "detached" })
+      assert.equal(await page.evaluate(() => window.scrollY), 0)
+      assert(await page.locator(".psi-neblina").count())
+      await audit(page)
+
+      // «Respira conmigo»: invisible antes, crece al inhalar y se apaga al detener.
+      const disco = async () =>
+        page.locator(".p-respira-disco").evaluate((d) => {
+          const estilo = getComputedStyle(d)
+          return { escala: new DOMMatrix(estilo.transform).a, opacidad: Number(estilo.opacity) }
+        })
+      const respira = page.locator(".p-respira")
+      await respira.scrollIntoViewIfNeeded()
+      assert.equal((await disco()).opacidad, 0, "Invisible antes de empezar")
+      await button(respira, "Empezar").click()
+      await page.waitForTimeout(2000)
+      const inhalando = await disco()
+      assert(inhalando.escala > 0.2 && inhalando.opacidad > 0.2, "Crece al inhalar")
+      await button(respira, "Detener").click()
+      await page.waitForTimeout(1200)
+      assert.equal((await disco()).opacidad, 0, "Se apaga al detener")
     },
   )
 })

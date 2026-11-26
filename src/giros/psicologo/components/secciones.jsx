@@ -11,6 +11,7 @@ import {
   SERVICIOS,
   SOBRE_MI,
 } from "../data/consultorio"
+import { archivoFoto, srcsetFoto } from "../portadas"
 
 // Contenido de cada sección (V4.10.2). Cada tema decide el título, el orden y el contenedor;
 // aquí solo está el cuerpo, con variantes de forma donde la estructura cambia.
@@ -67,12 +68,11 @@ export function Formacion() {
 }
 
 export function Foto({ nombre, anchos, alt = "", className = "", sizes, prioridad = false }) {
-  const [chica, grande] = anchos
   return (
     <img
       className={className}
-      src={`/psicologo/fotos/${nombre}-${chica}.webp`}
-      srcSet={`/psicologo/fotos/${nombre}-${chica}.webp ${chica}w, /psicologo/fotos/${nombre}-${grande}.webp ${grande}w`}
+      src={archivoFoto(nombre, anchos[0])}
+      srcSet={srcsetFoto(nombre, anchos)}
       sizes={sizes}
       alt={alt}
       loading={prioridad ? "eager" : "lazy"}

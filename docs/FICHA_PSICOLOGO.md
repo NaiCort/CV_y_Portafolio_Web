@@ -39,9 +39,15 @@
 - **Fotos y fuentes:**
   - fotos ilustrativas de Unsplash, servidas desde el sitio en WebP; el pie de la foto dice que la persona no es Valeria;
   - fuentes servidas desde `public/psicologo/fuentes/`, con fuentes de respaldo medidas (`size-adjust`).
-- **Movimiento:**
+- **Movimiento** (ampliado en V4.10.5, pedido de Ian):
   - entradas con fundido desde escala 0.95, de 240 ms con ease-out, una vez por sección;
-  - con movimiento reducido, solo fundido;
+  - **portada al cargar:** el título y el párrafo de entrada están quietos desde el primer cuadro; botones, nota y cédula entran escalonados (300 ms, 70 ms entre uno y otro) y la foto hace el gesto de su tema. Esta carga no funde el título, el párrafo ni las fotos: el navegador no da por pintado un elemento que se funde hasta que termina de aparecer, y eso retrasaría la carga del elemento principal (`RENDIMIENTO.md`);
+  - **cambio de tema:** como cada tema tiene su estructura, un velo con el color y el nombre del tema nuevo cubre la página (260 ms), la página vuelve arriba y el velo se retira (300 ms). Así no se disparan solas las animaciones de más abajo. Pulsar el tema activo no hace nada;
+  - **preguntas y notas:** se abren con suavidad (250 ms) y su flecha gira (200 ms);
+  - **agenda:** cada paso entra desde escala 0.95 (240 ms);
+  - **botones:** ceden a escala 0.97 al presionarlos (150 ms);
+  - **«Respira conmigo»:** un anillo fijo y un disco que, antes de empezar, es invisible y diminuto. Al inhalar crece hasta llenar el anillo (4 s); al exhalar se encoge hasta casi desaparecer (6 s); al terminar o detener se encoge del todo y se apaga (0.9 s). Cada tema le da su color y su forma;
+  - **con movimiento reducido:** solo fundidos. No hay velo (el tema cambia y la página sube de inmediato), las fotos no se mueven y el disco de «Respira conmigo» no cambia de tamaño: se aclara y se oscurece al mismo ritmo;
   - nada se mueve solo: lo largo y lento solo existe en «Respira conmigo», a petición.
 - **Llamada comercial real** al final (`ComercialCTA`), con un segundo enlace: «Cotiza un sitio como este», que lleva al cotizador con el identificador del tema.
 - **Prohibido en los tres:**
@@ -82,7 +88,8 @@
   - sin sombras; filete de 1 px `#2E3A2C1F`.
 - **Movimiento:**
   - entradas con fundido desde escala 0.95;
-  - en «Respira conmigo», un círculo que se llena al inhalar (4 s) y se vacía al exhalar (6 s).
+  - al cargar, la foto en arco se asienta (de escala 1.06 a 1, en 300 ms);
+  - en «Respira conmigo», un disco arcilla clara (`#EEC0A6`) dentro de un anillo arcilla.
 - **Densidad:** media y aireada (96 px entre secciones en escritorio, 64 px en celular).
 - **Estructura:** por bandas.
   - **Primero, la portada:** título, texto, acciones y cédula a la izquierda, y el arco a la derecha.
@@ -127,8 +134,9 @@
   - líneas de contorno de 1 px como único adorno.
 - **Movimiento:**
   - cada sección «se despeja» al entrar: fundido y desenfoque de 6 px a 0, en 280 ms;
+  - al cargar, la foto de la portada se despeja: de desenfoque de 8 px y poco color a nítida, en 300 ms;
   - con movimiento reducido, solo fundido;
-  - en «Respira conmigo», anillos de bruma que se abren y se cierran.
+  - en «Respira conmigo», un disco de bruma azul lago (`#C5D9DE`) dentro de un anillo.
 - **Densidad:** baja (amplios márgenes, honorarios en tabla, nada de tarjetas dentro de secciones).
 - **Estructura:** por pausas fotográficas.
   - **Portada a todo el ancho** con la foto de niebla y un velo plano (sin degradado).
@@ -175,8 +183,10 @@
 - **Movimiento:**
   - casi nulo;
   - el subrayado de marcatexto se traza al entrar, en 300 ms;
-  - con movimiento reducido no se traza;
-  - en «Respira conmigo», una línea que sube y baja como un renglón.
+  - las notas al margen «se escriben» de izquierda a derecha al entrar su sección (300 ms);
+  - al cargar, la polaroid se acomoda en su giro de 2° desde escala 0.95 (300 ms);
+  - con movimiento reducido no se traza ni se escribe nada: solo fundidos;
+  - en «Respira conmigo», un disco de marcatexto ocre (`#EFD089`) con borde irregular, dentro de un anillo punteado a lápiz.
 - **Densidad:** alta y de lectura: retícula de impresión.
 - **Estructura:**
   - **Retícula en escritorio:** columna de notas al margen (170 px), filete, columna principal y una tercera columna para la polaroid o la nota.

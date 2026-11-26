@@ -1,16 +1,23 @@
 import { useEffect, useRef, useState } from "react"
 
-// «Respira conmigo» (V4.10.2): un minuto de respiración que el visitante inicia y detiene.
-// Inhalar 4 segundos y exhalar 6, seis veces. Es lo único lento de la página y solo corre a
-// petición; con movimiento reducido, la figura no cambia de tamaño y queda el texto con el conteo.
+// «Respira conmigo» (V4.10.2; figura nueva en V4.10.5, pedido de Ian): un minuto de respiración que
+// el visitante inicia y detiene. Inhalar 4 segundos y exhalar 6, seis veces.
+// La figura acompaña el conteo:
+// - antes de empezar, el disco es invisible y diminuto dentro de su anillo;
+// - al inhalar crece hasta llenar el anillo, y al exhalar se encoge hasta casi desaparecer;
+// - al terminar o detener, se encoge del todo y se apaga.
+// Es lo único lento de la página y solo corre a petición. Con movimiento reducido, el disco no
+// cambia de tamaño: se aclara y se oscurece al mismo ritmo, y el conteo sigue en el centro.
 const FASES = [
   { id: "inhala", texto: "Inhala", segundos: 4 },
   { id: "exhala", texto: "Exhala", segundos: 6 },
 ]
 const CICLOS = 6
+const APAGADO = 0.9
 
 export default function Respira({ titulo = "Respira conmigo, un minuto", children }) {
   const [estado, setEstado] = useState("quieto")
+  const [corrio, setCorrio] = useState(false)
   const [fase, setFase] = useState(0)
   const [ciclo, setCiclo] = useState(0)
   const [segundo, setSegundo] = useState(0)
@@ -20,6 +27,7 @@ export default function Respira({ titulo = "Respira conmigo, un minuto", childre
   const empezar = () => {
     clearInterval(reloj.current)
     setEstado("activo")
+    setCorrio(true)
     setFase(0)
     setCiclo(0)
     setSegundo(0)
@@ -50,34 +58,34 @@ export default function Respira({ titulo = "Respira conmigo, un minuto", childre
 
   const actual = FASES[fase]
   const activo = estado === "activo"
+  // Duración de la transición de la figura: la de la fase en curso; al apagarse, menos de un
+  // segundo; y nada antes de la primera vez, para que no se vea encogerse al cargar la página.
+  const duracion = activo ? actual.segundos : corrio ? APAGADO : 0
   return (
     <div className="p-respira" data-estado={estado}>
       <div
         className="p-respira-figura"
         data-fase={activo ? actual.id : "quieta"}
-        style={{ "--p-dur": `${activo ? actual.segundos : 0.3}s` }}
+        style={{ "--p-dur": `${duracion}s` }}
         aria-hidden="true"
       >
-        <span className="p-respira-centro">{activo ? actual.texto : "Respira"}</span>
+        <span className="p-respira-anillo" />
+        <span className="p-respira-disco" />
+        <span className="p-respira-centro">
+          <span className="p-respira-palabra">{activo ? actual.texto : "Respira"}</span>
+          {activo && <span className="p-respira-numero">{actual.segundos - segundo}</span>}
+        </span>
       </div>
       <div className="p-respira-texto">
         <h2 id="respira-titulo">{titulo}</h2>
         {children}
-        <p className="p-respira-estado">
-          {/* Solo se anuncia el cambio de fase; el conteo de segundos es visual. */}
-          <span role="status">
-            {activo
-              ? `${actual.texto}. Respiración ${ciclo + 1} de ${CICLOS}.`
-              : estado === "terminado"
-                ? "Terminaste el minuto. Puedes repetirlo cuando quieras."
-                : ""}
-          </span>
-          {activo && (
-            <span className="p-respira-cuenta" aria-hidden="true">
-              {" "}
-              {actual.segundos - segundo}
-            </span>
-          )}
+        {/* Solo se anuncia el cambio de fase; el conteo de segundos está en la figura. */}
+        <p className="p-respira-estado" role="status">
+          {activo
+            ? `${actual.texto}. Respiración ${ciclo + 1} de ${CICLOS}.`
+            : estado === "terminado"
+              ? "Terminaste el minuto. Puedes repetirlo cuando quieras."
+              : ""}
         </p>
         <button type="button" className="p-btn p-btn-s" onClick={activo ? detener : empezar}>
           {activo ? "Detener" : estado === "terminado" ? "Repetir" : "Empezar"}

@@ -1,4 +1,5 @@
 import { CONTACTO_INTRO, PORTADA, SOBRE_MI } from "../data/consultorio"
+import { PORTADAS } from "../portadas"
 import Contacto from "../components/Contacto"
 import Respira from "../components/Respira"
 import {
@@ -32,7 +33,7 @@ export default function Sala({ onAgendar, onPrivacidad, onPedirInfo, temaContact
       <main id="contenido" tabIndex={-1}>
         <section id="inicio" className="p-portada" aria-labelledby="inicio-titulo">
           <div className="p-wrap p-portada-in">
-            <div className="p-portada-texto">
+            <div className="p-portada-texto p-portada-carga">
               <h1 id="inicio-titulo">{PORTADA.titulo.sala}</h1>
               <p className="p-entrada">{PORTADA.texto}</p>
               <div className="p-acciones">
@@ -52,9 +53,7 @@ export default function Sala({ onAgendar, onPrivacidad, onPedirInfo, temaContact
             </div>
             <figure className="p-arco">
               <Foto
-                nombre="retrato"
-                anchos={[500, 900]}
-                sizes="(min-width: 900px) 440px, 90vw"
+                {...PORTADAS.sala}
                 alt="Retrato de una mujer sonriente con saco gris, sentada junto a una ventana"
                 prioridad
               />

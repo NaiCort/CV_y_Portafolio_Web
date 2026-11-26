@@ -67,6 +67,14 @@
           "sha256": "6ad3e85d6858904f423c1657c059033bad285f2a5ffd151304ebce041a066d6a"
         },
         {
+          "archivo": "/psicologo/fotos/bosque-niebla-1200.webp",
+          "ancho": 1200,
+          "alto": 800,
+          "sha256": "4be9b71aba3b7c67226582dcd1b5bf9cc81ed81e9017be5059dee6d288a9a3cf",
+          "descargada": "2026-11-26",
+          "nota": "Agregada en V4.10.5 para teléfonos de pantalla densa (antes bajaban la de 2000 px). Misma foto, descargada de nuevo del origen y procesada igual."
+        },
+        {
           "archivo": "/psicologo/fotos/bosque-niebla-2000.webp",
           "ancho": 2000,
           "alto": 1333,
