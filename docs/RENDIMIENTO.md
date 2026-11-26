@@ -41,13 +41,13 @@ Es una medición de laboratorio, no de visitantes reales. Para datos de campo ha
 
 | Página | V4.10.5 | V4.10.6 | CLS | Elemento principal en V4.10.6 |
 | --- | --- | --- | --- | --- |
-| `/` (CV) | 1.24 a 1.28 s | 1.19 a 1.26 s | 0.000 | Foto del CV |
-| `/restaurante` | 1.96 s | 2.19 s | 0.000 | Foto de la pasta |
-| `/restaurante/carta` | 2.01 s | 1.87 s | 0.000 | Título |
-| `/restaurante/locales` | 1.96 s | 1.85 s | 0.000 | Título |
-| `/restaurante/locales/xalapa` | 1.85 s | 1.85 s | 0.001 | Párrafo de entrada |
-| `/restaurante/conocenos` | 4.39 s | 2.24 s | 0.000 | Foto del local |
-| `/restaurante/pedido` | 1.84 s | 1.71 s | 0.000 | Título |
+| `/` (CV) | 1.24 a 1.28 s | 1.19 a 1.27 s | 0.000 | Foto del CV |
+| `/restaurante` | 1.96 s | 2.18 a 2.20 s | 0.000 | Foto de la pasta |
+| `/restaurante/carta` | 2.01 s | 1.87 a 1.97 s | 0.000 | Título |
+| `/restaurante/locales` | 1.96 s | 1.80 a 1.85 s | 0.000 | Título |
+| `/restaurante/locales/xalapa` | 1.85 s | 1.80 a 1.91 s | 0.001 | Párrafo de entrada |
+| `/restaurante/conocenos` | 4.39 s | 2.24 a 2.32 s | 0.000 | Foto del local |
+| `/restaurante/pedido` | 1.84 s | 1.71 a 1.73 s | 0.000 | Título |
 
 Todo cumple las metas. **Inicio** subió porque la portada quedó más corta, sin la etiqueta ni la nota: en el teléfono la foto asoma en la primera pantalla y pasó a ser el elemento principal. Sin precarga tardaba 2.9 s; con ella, 2.2 s.
 
