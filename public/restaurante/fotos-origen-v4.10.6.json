@@ -1,0 +1,401 @@
+{
+  "version": "V4.10.6",
+  "fecha": "2026-11-26",
+  "nota": "Tamaños para pantallas chicas (DEC-021). Las versiones de 480 px salen de la foto ya servida, reducida con Pillow (LANCZOS) y guardada en WebP calidad 72; conservan su origen, autor y licencia de los registros v4.2.x. Las de patio salen del original de Unsplash, con el mismo proceso, y sustituyen a patio.webp.",
+  "licencia": "Licencia de Unsplash",
+  "licencia_url": "https://unsplash.com/license",
+  "archivos": [
+    {
+      "archivo": "/restaurante/agua-480.webp",
+      "derivada_de": "/restaurante/agua.webp",
+      "ancho": 480,
+      "alto": 719,
+      "bytes": 23012,
+      "sha256": "9e793e2a1cba6e663b2c7eacbe975c03d2a429cc9f7a023ac077b204143ab412"
+    },
+    {
+      "archivo": "/restaurante/aguacate-480.webp",
+      "derivada_de": "/restaurante/aguacate.webp",
+      "ancho": 480,
+      "alto": 359,
+      "bytes": 2878,
+      "sha256": "d1820170185562506914d5266bd90eb1bd3aefcbf559fd3ae9f9391b00179206"
+    },
+    {
+      "archivo": "/restaurante/cafe-480.webp",
+      "derivada_de": "/restaurante/cafe.webp",
+      "ancho": 480,
+      "alto": 854,
+      "bytes": 21304,
+      "sha256": "31aa49d8c08f21c7a31530cd6457320e62c0a3b73bd49be319aeb160df6706a2"
+    },
+    {
+      "archivo": "/restaurante/carta/arrachera-480.webp",
+      "derivada_de": "/restaurante/carta/arrachera.webp",
+      "ancho": 480,
+      "alto": 315,
+      "bytes": 33478,
+      "sha256": "03223552789243b6f321f2ba5b32e3b8fdb051aec0fb90ffec88e4f9332d857f"
+    },
+    {
+      "archivo": "/restaurante/carta/brisket-480.webp",
+      "derivada_de": "/restaurante/carta/brisket.webp",
+      "ancho": 480,
+      "alto": 358,
+      "bytes": 30550,
+      "sha256": "08583a4a6b07b3bee3706e6492c3201dc64b9b6d694929811c86e9276a0791d5"
+    },
+    {
+      "archivo": "/restaurante/carta/camaron-480.webp",
+      "derivada_de": "/restaurante/carta/camaron.webp",
+      "ancho": 480,
+      "alto": 360,
+      "bytes": 25858,
+      "sha256": "e4bd0ede8d238e334bd427b190709e1a9545b04f41fb47484cbb0bf71e411c04"
+    },
+    {
+      "archivo": "/restaurante/carta/caprese-480.webp",
+      "derivada_de": "/restaurante/carta/caprese.webp",
+      "ancho": 480,
+      "alto": 489,
+      "bytes": 27342,
+      "sha256": "d5600b606121c3ce0f3e3cabe999817668d28963ccf71c9526d1d4e23b5b351a"
+    },
+    {
+      "archivo": "/restaurante/carta/cerveza-480.webp",
+      "derivada_de": "/restaurante/carta/cerveza.webp",
+      "ancho": 480,
+      "alto": 720,
+      "bytes": 10056,
+      "sha256": "cfeae2b7e5a413041414ae6d96fcf82bdc52d1b583c861c921103de2c66c2314"
+    },
+    {
+      "archivo": "/restaurante/carta/cheesecake-480.webp",
+      "derivada_de": "/restaurante/carta/cheesecake.webp",
+      "ancho": 480,
+      "alto": 320,
+      "bytes": 11162,
+      "sha256": "926e94fae7c1ed51488f84010673d80ce54927e80454488e596d958b88e82920"
+    },
+    {
+      "archivo": "/restaurante/carta/chilaquiles-480.webp",
+      "derivada_de": "/restaurante/carta/chilaquiles.webp",
+      "ancho": 480,
+      "alto": 321,
+      "bytes": 15492,
+      "sha256": "218afff5c1c80f9658765a1a0a8568245d67597e989f489149df131e852425a7"
+    },
+    {
+      "archivo": "/restaurante/carta/chili-480.webp",
+      "derivada_de": "/restaurante/carta/chili.webp",
+      "ancho": 480,
+      "alto": 319,
+      "bytes": 12528,
+      "sha256": "4b81901186b21279a290e40610381a6b71921886d0c626461221e77b1f39705e"
+    },
+    {
+      "archivo": "/restaurante/carta/chipilin-480.webp",
+      "derivada_de": "/restaurante/carta/chipilin.webp",
+      "ancho": 480,
+      "alto": 387,
+      "bytes": 29788,
+      "sha256": "a6572b40c243b02d84b33139748d3b2df4915e1df1bddff58354497405575563"
+    },
+    {
+      "archivo": "/restaurante/carta/chocolate-480.webp",
+      "derivada_de": "/restaurante/carta/chocolate.webp",
+      "ancho": 480,
+      "alto": 361,
+      "bytes": 13454,
+      "sha256": "de3eb55731f07989d8bad8e3be1dd3c2dfb738addb8b19cf46f65179453966b7"
+    },
+    {
+      "archivo": "/restaurante/carta/chowder-480.webp",
+      "derivada_de": "/restaurante/carta/chowder.webp",
+      "ancho": 480,
+      "alto": 384,
+      "bytes": 16646,
+      "sha256": "c3ea6416141bcdbd0830b43d371f699dceaad238a86e24ad258c1d4c2124861c"
+    },
+    {
+      "archivo": "/restaurante/carta/cobb-480.webp",
+      "derivada_de": "/restaurante/carta/cobb.webp",
+      "ancho": 480,
+      "alto": 384,
+      "bytes": 18972,
+      "sha256": "be45c3c684a232f6dc3d95cd42171c90f5ef2aaf2b31bb170cd592d1e5d6993b"
+    },
+    {
+      "archivo": "/restaurante/carta/cochinita-480.webp",
+      "derivada_de": "/restaurante/carta/cochinita.webp",
+      "ancho": 480,
+      "alto": 270,
+      "bytes": 17728,
+      "sha256": "fff9b341560937d97eb863bc142c515d44f61b4506a7ea2d06e46636c6f2cfce"
+    },
+    {
+      "archivo": "/restaurante/carta/costillas-480.webp",
+      "derivada_de": "/restaurante/carta/costillas.webp",
+      "ancho": 480,
+      "alto": 424,
+      "bytes": 32552,
+      "sha256": "4e93f958a16480389d974e172768b2f3ff9ca03612e52748291b4fab2af9cdd3"
+    },
+    {
+      "archivo": "/restaurante/carta/enchiladas-mineras-480.webp",
+      "derivada_de": "/restaurante/carta/enchiladas-mineras.webp",
+      "ancho": 480,
+      "alto": 302,
+      "bytes": 22666,
+      "sha256": "f70aa3ac820c8c7cf1a323123295c88ae98a2ca8f1285fbcee113ae56e1ae611"
+    },
+    {
+      "archivo": "/restaurante/carta/hotcakes-480.webp",
+      "derivada_de": "/restaurante/carta/hotcakes.webp",
+      "ancho": 480,
+      "alto": 320,
+      "bytes": 7754,
+      "sha256": "eaaa2b285aabf3d51fe13a0aadb765f1e8b90973f98174a8771d81242aa00c28"
+    },
+    {
+      "archivo": "/restaurante/carta/huevos-rancheros-480.webp",
+      "derivada_de": "/restaurante/carta/huevos-rancheros.webp",
+      "ancho": 480,
+      "alto": 360,
+      "bytes": 18404,
+      "sha256": "f74edcf187e3a45e24b5413b976d10d195dcc91beb1c3cd53c6bee7f8c938c16"
+    },
+    {
+      "archivo": "/restaurante/carta/machacado-480.webp",
+      "derivada_de": "/restaurante/carta/machacado.webp",
+      "ancho": 480,
+      "alto": 360,
+      "bytes": 14822,
+      "sha256": "a54339b21590efd572d73dc1c8042c9886b72c9637ecef4ba23488671605d2c8"
+    },
+    {
+      "archivo": "/restaurante/carta/margarita-480.webp",
+      "derivada_de": "/restaurante/carta/margarita.webp",
+      "ancho": 480,
+      "alto": 573,
+      "bytes": 19072,
+      "sha256": "005d0eb66965c1eb6e60a5d2b2d3463f52a6138ab14114a3cb914f36c5c78d78"
+    },
+    {
+      "archivo": "/restaurante/carta/mole-480.webp",
+      "derivada_de": "/restaurante/carta/mole.webp",
+      "ancho": 480,
+      "alto": 360,
+      "bytes": 19750,
+      "sha256": "1da8b8af8a17de72fcfd24980ea10cfaf17093cd356f476ccf9bd7353be55bc0"
+    },
+    {
+      "archivo": "/restaurante/carta/nachos-480.webp",
+      "derivada_de": "/restaurante/carta/nachos.webp",
+      "ancho": 480,
+      "alto": 382,
+      "bytes": 19446,
+      "sha256": "dbbdb899a28c463394eea7c30f4b76de6249d725de3a0c2443bf3c3795f4c21f"
+    },
+    {
+      "archivo": "/restaurante/carta/pastor-480.webp",
+      "derivada_de": "/restaurante/carta/pastor.webp",
+      "ancho": 480,
+      "alto": 360,
+      "bytes": 16974,
+      "sha256": "8e9bb5a367e2ee760df3a7513d6dcc881480a064fce4f26b83176acfa750729c"
+    },
+    {
+      "archivo": "/restaurante/carta/picaditas-480.webp",
+      "derivada_de": "/restaurante/carta/picaditas.webp",
+      "ancho": 480,
+      "alto": 648,
+      "bytes": 30294,
+      "sha256": "b537dd1fb3f2c388a2470e58545620431ab9e350da04e7ed1e3cd850bfd6d8f1"
+    },
+    {
+      "archivo": "/restaurante/carta/quesadillas-480.webp",
+      "derivada_de": "/restaurante/carta/quesadillas.webp",
+      "ancho": 480,
+      "alto": 360,
+      "bytes": 5842,
+      "sha256": "94edd2abd8126c83cbc4beafe9b8004dc6ba12632f03d4983ce8478a6e751e8b"
+    },
+    {
+      "archivo": "/restaurante/carta/risotto-480.webp",
+      "derivada_de": "/restaurante/carta/risotto.webp",
+      "ancho": 480,
+      "alto": 360,
+      "bytes": 21282,
+      "sha256": "65d179372e8f7a4d48537db52c3e940e8a43793d412e0b1299fa6c1f54897b6c"
+    },
+    {
+      "archivo": "/restaurante/carta/salmon-480.webp",
+      "derivada_de": "/restaurante/carta/salmon.webp",
+      "ancho": 480,
+      "alto": 640,
+      "bytes": 18018,
+      "sha256": "c4c64662b2592170c9d19297a53cbe5acacb802044a3a8ca7772554bff99b28a"
+    },
+    {
+      "archivo": "/restaurante/carta/tlacoyos-480.webp",
+      "derivada_de": "/restaurante/carta/tlacoyos.webp",
+      "ancho": 480,
+      "alto": 527,
+      "bytes": 37594,
+      "sha256": "77516826f4a7db2f28de0ce32cb231148eef1240f1b2f1152a94e929a3dc3d8a"
+    },
+    {
+      "archivo": "/restaurante/carta/tlayuda-480.webp",
+      "derivada_de": "/restaurante/carta/tlayuda.webp",
+      "ancho": 480,
+      "alto": 360,
+      "bytes": 33834,
+      "sha256": "aaa651521071aff25d0c1019a097ea88cbe3eb3d17fa17a1927d21b9a735c4f2"
+    },
+    {
+      "archivo": "/restaurante/carta/torta-ahogada-480.webp",
+      "derivada_de": "/restaurante/carta/torta-ahogada.webp",
+      "ancho": 480,
+      "alto": 360,
+      "bytes": 16906,
+      "sha256": "c0963bafdf39132b5ef4361443e739ceaf67f2d88f87229ae975d348de4b674c"
+    },
+    {
+      "archivo": "/restaurante/ensalada-2-480.webp",
+      "derivada_de": "/restaurante/ensalada-2.webp",
+      "ancho": 480,
+      "alto": 640,
+      "bytes": 62390,
+      "sha256": "01e11f20c8605e93bde71527446a088141da541667193c10b5e7e836b0531042"
+    },
+    {
+      "archivo": "/restaurante/ensalada-480.webp",
+      "derivada_de": "/restaurante/ensalada.webp",
+      "ancho": 480,
+      "alto": 640,
+      "bytes": 39728,
+      "sha256": "9f130ddba2f572d657ec3809d80b4690f717e509b8db47c56757f2b28a99e6c5"
+    },
+    {
+      "archivo": "/restaurante/flan-480.webp",
+      "derivada_de": "/restaurante/flan.webp",
+      "ancho": 480,
+      "alto": 320,
+      "bytes": 8226,
+      "sha256": "faf9b029541b9ec8c25f93c256a07c95f9f265a5c047a338e29abf3b185b9658"
+    },
+    {
+      "archivo": "/restaurante/hamburguesa-2-480.webp",
+      "derivada_de": "/restaurante/hamburguesa-2.webp",
+      "ancho": 480,
+      "alto": 720,
+      "bytes": 19798,
+      "sha256": "eda0d81b9888510f7ef617b27cef5ad60511456487f15f3f83e169429cac317e"
+    },
+    {
+      "archivo": "/restaurante/hamburguesa-480.webp",
+      "derivada_de": "/restaurante/hamburguesa.webp",
+      "ancho": 480,
+      "alto": 720,
+      "bytes": 18406,
+      "sha256": "1edbc478ad4c87fafbe35e41c099e68826a8cbdd956acb1f2276b86f77a8762f"
+    },
+    {
+      "archivo": "/restaurante/hongos-480.webp",
+      "derivada_de": "/restaurante/hongos.webp",
+      "ancho": 480,
+      "alto": 321,
+      "bytes": 9586,
+      "sha256": "3ff2d1dd1c728e657fac193e043e58ad62dd9b68aebc46c5d6d342318dfc16bd"
+    },
+    {
+      "archivo": "/restaurante/limonada-480.webp",
+      "derivada_de": "/restaurante/limonada.webp",
+      "ancho": 480,
+      "alto": 320,
+      "bytes": 9072,
+      "sha256": "ed4f07181d3728ef5a4617221d58c384e7b44172ddb675b667997f905ebfebc3"
+    },
+    {
+      "archivo": "/restaurante/pasta-480.webp",
+      "derivada_de": "/restaurante/pasta.webp",
+      "ancho": 480,
+      "alto": 320,
+      "bytes": 18734,
+      "sha256": "0603d16e6ae6ea598d94ec7f6c4c4785e52865b787ce717e404a6c8149695833"
+    },
+    {
+      "archivo": "/restaurante/pastel-480.webp",
+      "derivada_de": "/restaurante/pastel.webp",
+      "ancho": 480,
+      "alto": 600,
+      "bytes": 32926,
+      "sha256": "c5c6c8377c0ea8b450a1b06e7f6f292de44aa4b75a97c36545ae98e9c018f736"
+    },
+    {
+      "archivo": "/restaurante/pollo-480.webp",
+      "derivada_de": "/restaurante/pollo.webp",
+      "ancho": 480,
+      "alto": 320,
+      "bytes": 19496,
+      "sha256": "6e7ce6eb8d93c9f691580f5b2721f46591eeb2b87f97883d401f4103dada20ab"
+    },
+    {
+      "archivo": "/restaurante/queso-480.webp",
+      "derivada_de": "/restaurante/queso.webp",
+      "ancho": 480,
+      "alto": 640,
+      "bytes": 87862,
+      "sha256": "45988d617083230a1d39c9c56246b4572bafc560e4b911b45ecfbcd992fac117"
+    },
+    {
+      "archivo": "/restaurante/sopa-480.webp",
+      "derivada_de": "/restaurante/sopa.webp",
+      "ancho": 480,
+      "alto": 678,
+      "bytes": 18546,
+      "sha256": "88f6d0324766a6d44c0fbba36d1abb70cda84b40ee1b1942fb7f6e402aa762c4"
+    },
+    {
+      "archivo": "/restaurante/tacos-480.webp",
+      "derivada_de": "/restaurante/tacos.webp",
+      "ancho": 480,
+      "alto": 320,
+      "bytes": 19360,
+      "sha256": "44ee4d3bda89b1e38ac350d29d691e176f4f54e84e502a3731f26609bf5b333e"
+    },
+    {
+      "archivo": "/restaurante/tocino-480.webp",
+      "derivada_de": "/restaurante/tocino.webp",
+      "ancho": 480,
+      "alto": 640,
+      "bytes": 77222,
+      "sha256": "d8dd6c116a5e5dd055e910ca070b1a86203a9cda3da1868b66b4be179987f427"
+    },
+    {
+      "archivo": "/restaurante/patio-800.webp",
+      "origen": "https://images.unsplash.com/photo-1552566626-52f8b828add9",
+      "ancho": 800,
+      "alto": 533,
+      "bytes": 68242,
+      "sha256": "aae9e1cf9f9499a3be93da437dbd2379ea22942b78fc53ee7ef979d590e1187f"
+    },
+    {
+      "archivo": "/restaurante/patio-1200.webp",
+      "origen": "https://images.unsplash.com/photo-1552566626-52f8b828add9",
+      "ancho": 1200,
+      "alto": 800,
+      "bytes": 135890,
+      "sha256": "c6a256f9f757b1a4539e9c66ebf0a8974ac7e8a27e0c3700c493c8004b4945fd"
+    },
+    {
+      "archivo": "/restaurante/patio-1400.webp",
+      "origen": "https://images.unsplash.com/photo-1552566626-52f8b828add9",
+      "ancho": 1400,
+      "alto": 933,
+      "bytes": 182114,
+      "sha256": "c5f68d5001a8434fa1eac776876c9502c8db37f875f3bc2876ceed24b27b0b24"
+    }
+  ]
+}

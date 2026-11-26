@@ -15,6 +15,7 @@ import {
 } from "../data/order"
 import PhotoGallery from "./PhotoGallery"
 import { COMBO, COMBO_PRODUCTS, PRODUCT_OPTIONS } from "../data/options"
+import { fotoResponsiva } from "../data/fotos"
 export default function ItemPicker({
   product,
   cart,
@@ -179,7 +180,7 @@ export default function ItemPicker({
               {extra.image && (
                 <img
                   className="r-extra-photo"
-                  src={`/restaurante/${extra.image}.webp`}
+                  {...fotoResponsiva(`/restaurante/${extra.image}.webp`, "64px")}
                   loading="lazy"
                   width="64"
                   height="64"
@@ -240,7 +241,7 @@ export default function ItemPicker({
                         className={`r-choice r-choice-photo ${config.combo[key] === option.id ? "is-selected" : ""}`}
                       >
                         <img
-                          src={`/restaurante/${option.image}.webp`}
+                          {...fotoResponsiva(`/restaurante/${option.image}.webp`, "100px")}
                           alt=""
                           width="100"
                           height="75"

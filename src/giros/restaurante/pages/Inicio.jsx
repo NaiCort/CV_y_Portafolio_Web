@@ -8,6 +8,7 @@ import PatioSeal from "../components/PatioSeal"
 import ServiceOptions from "../components/ServiceOptions"
 import LocationCard from "../components/LocationCard"
 import { FOTO_PORTADA } from "../portada"
+import { FOTO_LOCAL, fotoResponsiva, TAMANOS } from "../data/fotos"
 
 export default function Inicio({ onChoose, onMode, onReserve, onLocalOrder, onLocalReserve }) {
   const { state } = useRestaurant()
@@ -117,7 +118,7 @@ export default function Inicio({ onChoose, onMode, onReserve, onLocalOrder, onLo
                 aria-label={`Elegir ${item.name}`}
               >
                 <img
-                  src={item.photos[0].src}
+                  {...fotoResponsiva(item.photos[0].src, TAMANOS.destacado)}
                   width="1000"
                   height="667"
                   loading="lazy"
@@ -169,9 +170,7 @@ export default function Inicio({ onChoose, onMode, onReserve, onLocalOrder, onLo
       <section className="r-place">
         <div className="r-place-photo">
           <img
-            src="/restaurante/patio.webp"
-            width="1400"
-            height="933"
+            {...FOTO_LOCAL}
             loading="lazy"
             alt="Ambientación ilustrativa de un restaurante con mesas y plantas"
           />

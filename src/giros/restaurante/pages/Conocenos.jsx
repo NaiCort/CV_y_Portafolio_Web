@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom"
+import { FOTO_LOCAL } from "../portada"
 import { ArrowUpRight } from "lucide-react"
 
 export default function Conocenos() {
@@ -21,10 +22,9 @@ export default function Conocenos() {
           </p>
         </div>
         <img
-          src="/restaurante/patio.webp"
+          {...FOTO_LOCAL}
+          fetchPriority="high"
           alt="Ambientación ilustrativa de mesas y plantas en un restaurante"
-          width="1400"
-          height="933"
         />
       </section>
       <section className="r-page-section r-about-values" aria-labelledby="values-title">
