@@ -62,7 +62,7 @@ Estado de cada regla de `core/RULES.md` al 25/11/2026:
 | GEN-005 Solución simple | Cumple | Sin servidor ni dependencias nuevas en V4.10.3 |
 | GEN-006 Validar en el servidor | N/A hoy | No hay servidor. Aplica en V4.11 (`SEGURIDAD.md`) |
 | GEN-007 Sin secretos ni datos reales | Cumple | Sin claves en el repositorio; las demos usan datos ficticios |
-| GEN-008 Tratamiento de datos personales | Parcial | Aviso de privacidad en `/privacidad` (V4.10.3); Ian confirma el domicilio y la revisión legal (`DECISIONES.md`, DEC-024). Patio 12 no tiene aviso de ejemplo: va en su entrega |
+| GEN-008 Tratamiento de datos personales | Parcial | Aviso de privacidad en `/privacidad` (V4.10.3); Ian confirma el domicilio y la revisión legal al final de todo (`DECISIONES.md`, DEC-024). Patio 12 tiene aviso de ejemplo desde V4.10.6 |
 | GEN-009 Accesibilidad de flujos esenciales | Cumple | axe en todas las suites de navegador; revisión manual pendiente (`SEGURIDAD.md`) |
 | GEN-010 WCAG 2.2 AA | Parcial | axe con etiquetas `wcag22aa`; faltan TalkBack y teclado completo en el teléfono |
 | GEN-011 Presupuesto de rendimiento | Cumple | `RENDIMIENTO.md` y paso en CI |

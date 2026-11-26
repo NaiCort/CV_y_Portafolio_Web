@@ -1,3 +1,35 @@
+# V4.10.6 · 26 de noviembre de 2026 · Patio 12 en V4.10 y una carga más ligera para todas las demos
+
+- **Decisiones de Ian (26/11/2026):**
+  - numeración aceptada (DEC-019);
+  - aligerar todas las demos (DEC-021);
+  - sin prueba automática de la vista previa ni avisos de dependencias, por ahora (DEC-022 y DEC-023);
+  - domicilio del aviso al final de todo (DEC-024);
+  - el portafolio se queda en Vercel (DEC-009);
+  - para V4.11: hospedaje explicado para el cliente, dominio siempre suyo, plan de mantenimiento y un desplegable en cada opción del cotizador (DEC-029 a DEC-032).
+- **Carga más ligera para todas las demos (DEC-021):**
+  - el estado de Patio 12, su contador flotante y el código del CV ya no se descargan en todas las rutas;
+  - las demos bajan de 100.4 a 76.2 KB de JavaScript inicial y de 8.8 a 5.4 KB de CSS (gzip);
+  - el CV conserva su carga de 1.2 s: su foto se pide primero y su código se precarga desde la portada;
+  - el presupuesto mide la portada y las demás rutas por separado.
+- **Patio 12:**
+  - ficha de identidad a posteriori (`docs/FICHA_RESTAURANTE.md`);
+  - sin etiquetas en mayúsculas sobre los títulos ni numeración decorativa, y las modalidades de Inicio como renglones de carta;
+  - menos aclaraciones repetidas;
+  - aviso de privacidad de ejemplo con borrado de datos;
+  - «Cotiza un sitio como este»;
+  - descripción propia en cada página;
+  - colores, radios y tipografías como variables, con respaldos medidos;
+  - fotos en el tamaño justo: la carta completa baja 887 KB de fotos en el teléfono en lugar de 2.8 MB;
+  - Conócenos carga en 2.3 s en lugar de 4.4 s.
+- **Movimiento de Patio 12, «servir la mesa»:**
+  - el sello «12» se estampa y la foto de portada se asienta;
+  - las secciones se asientan al aparecer;
+  - las fotos se acercan al pasar el cursor;
+  - los botones ceden al presionarlos y los plegables se abren con suavidad.
+- **Mapas:** motor base compartido (`src/lib/mapaBase.js`), con el estilo corregido. Lo usan Patio 12 y Psicólogo; Brío y Taller lo adoptan en su entrega.
+- **Herramientas:** `DEMO_STORAGE` en las auditorías de carga y de textos encimados (de V4.10.5).
+
 # V4.10.5 · 26 de noviembre de 2026 · Psicólogo: cambio de tema, «Respira conmigo» y animaciones
 
 A pedido de Ian, después de revisar el sitio publicado:

@@ -50,8 +50,8 @@ Cada etapa lleva su propia versión menor (decisión de Ian del 25/11/2026): V4.
      La numeración es DEC-019 de `docs/DECISIONES.md`, aprobada por Ian el 26/11/2026.
    - V4.10.4, la política de contenido completa pasa de «solo en reporte» a aplicada (DEC-020, aprobada por Ian el 25/11/2026);
    - V4.10.5, Psicólogo: transición al cambiar de tema con vuelta arriba (DEC-025), figura nueva de «Respira conmigo» (DEC-026), más animaciones (DEC-027) y mapa sin advertencias (DEC-028), a pedido de Ian (26/11/2026); además, la portada de Neblina carga a tiempo (`docs/RENDIMIENTO.md`);
-   - Patio 12, desde V4.10.6;
-   - Ladera;
+   - V4.10.6, Patio 12: ficha a posteriori, patrones, aviso de privacidad, cotizador, fotos y movimiento; además, la carga más ligera para todas las demos (DEC-021) y el mapa base compartido;
+   - Ladera, desde V4.10.7;
    - Brío;
    - Rosales y Vértice;
    - Cotejo. Idea de Ian (22/11/2026): llevar a Cotejo el fondo de cuadrícula que tuvo el CV en V4.8.3 (parecido a una hoja de Excel), que encaja con la contabilidad.
@@ -74,10 +74,12 @@ Cada etapa lleva su propia versión menor (decisión de Ian del 25/11/2026): V4.
    13. Medir la carga (`npm run audit:cwv`) y los textos encimados (`npm run audit:encimados`) en cada tema o variante, no solo en la de entrada. `DEMO_STORAGE="clave=valor"` fija el tema antes de cargar. En V4.10.5, Neblina tardaba 3.9 s y no se había visto porque solo se medía Sala con luz.
    14. Carga más ligera (DEC-021): fotos al tamaño justo, precarga solo donde ayude y tipografías de respaldo con medida (punto 4).
 
-   Patio 12, además:
+   Patio 12, además (hecho en V4.10.6):
    - aligerar el paquete común que descargan todas las rutas (DEC-021): sacar su estado y su contador, mover a su demo lo que solo usa una y bajar el presupuesto;
    - quitar la etiqueta en mayúsculas sobre el título (pendiente 4);
    - escribir su ficha (pendiente 5).
+
+   Desde V4.10.6, el punto 5 de esta lista es el mapa base compartido (`src/lib/mapaBase.js`): cada demo con mapa pone encima solo sus marcas y capas.
 5. **V4.11, cotizador, ajuste final:** revisión de conjunto y lo que se considere pertinente al terminar las demos. Ya decidido (26/11/2026):
    - en «Ajuste», un desplegable por opción en lenguaje sencillo, con el precio a la vista; antes, una maqueta con dos o tres desplegables para aprobar el tono (DEC-032);
    - una pregunta de hospedaje con las opciones explicadas para el cliente, con precios confirmados (DEC-029);

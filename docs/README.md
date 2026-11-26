@@ -22,6 +22,7 @@ Las fichas siguen la Guía de identidad y calidad visual v1.1, que hace de la pl
 - **CV:** [FICHA_CV.md](FICHA_CV.md), con ideas en [IDEAS_CV.md](IDEAS_CV.md).
 - **Cotizador:** [FICHA_COTIZADOR.md](FICHA_COTIZADOR.md).
 - **Psicólogo:** [FICHA_PSICOLOGO.md](FICHA_PSICOLOGO.md); la de los temas anteriores, en [FICHA_PSICOLOGO_ANTERIOR.md](FICHA_PSICOLOGO_ANTERIOR.md).
+- **Patio 12:** [FICHA_RESTAURANTE.md](FICHA_RESTAURANTE.md), escrita a posteriori en V4.10.6.
 - **Ladera:** [FICHA_CAFE.md](FICHA_CAFE.md).
 - **Brío:** [FICHA_GIMNASIO.md](FICHA_GIMNASIO.md).
 - **Rosales y Vértice:** [FICHA_TALLER.md](FICHA_TALLER.md).
@@ -60,6 +61,6 @@ Cada entrega tiene dos documentos:
 | V4.7 | 22 | Revista |
 | V4.8 | 8 | CV y portafolio |
 | V4.9 | 6 | Cotizador |
-| V4.10 | en curso | Demos con el cotizador; V4.10.2, Psicólogo; V4.10.3, adopción del handbook; V4.10.4, política de contenido aplicada; V4.10.5, cambio de tema, «Respira conmigo» y animaciones de Psicólogo |
+| V4.10 | en curso | Demos con el cotizador; V4.10.2, Psicólogo; V4.10.3, adopción del handbook; V4.10.4, política de contenido aplicada; V4.10.5, cambio de tema, «Respira conmigo» y animaciones de Psicólogo; V4.10.6, Patio 12 y una carga más ligera para todas las demos |
 
 El resumen de cada versión está en `CHANGELOG.md`, en la raíz.
