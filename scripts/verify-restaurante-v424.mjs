@@ -31,10 +31,9 @@ await suite("restaurante-v424", async ({ run, base, output }) => {
         await page.goto(`${base}/restaurante`)
         await button(page, "Para llevar").click()
         await page.locator(".r-menu-item").first().waitFor()
-        assert.equal(
-          await motionName(page.locator(".r-page-content")),
-          moving ? "r-page-enter" : "none",
-        )
+        // Desde V4.10.6 las páginas ya no se mueven al entrar: se asientan las secciones de más
+        // abajo al aparecer (docs/FICHA_RESTAURANTE.md).
+        assert.equal(await motionName(page.locator(".r-page-content")), "none")
         assert.equal(await page.evaluate(() => document.activeElement.tagName), "H1")
         await images(page)
         await bounds(page)
@@ -69,7 +68,8 @@ await suite("restaurante-v424", async ({ run, base, output }) => {
         assert(await search.evaluate((el) => el === document.activeElement))
         assert.equal(
           await motionName(page.locator(".r-menu-results")),
-          moving ? "r-results-enter" : "none",
+          // V4.10.6: los resultados aparecen en su lugar en vez de subir (docs/FICHA_RESTAURANTE.md).
+          moving ? "r-aparece" : "none",
         )
         await search.fill("nada de esto existe")
         await page
@@ -107,7 +107,8 @@ await suite("restaurante-v424", async ({ run, base, output }) => {
         )
         assert.equal(
           await motionName(page.locator(".r-notice-card")),
-          moving ? "r-notice-enter" : "none",
+          // V4.10.6: el aviso se asienta desde escala 0.95 en vez de subir.
+          moving ? "r-asienta" : "none",
         )
         const visit = (await saved(page)).visit.id
         await button(page.locator(".r-menu-list"), "Elegir Ensalada del patio").click()

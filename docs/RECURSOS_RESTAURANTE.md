@@ -7,7 +7,7 @@ Las fotografías y fuentes de Patio 12 se sirven desde public/restaurante. El ma
 | pasta.webp | https://images.unsplash.com/photo-1473093295043-cdd812d0e601?auto=format&fit=crop&w=1000&q=82&fm=webp |
 | hamburguesa.webp | https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=1000&q=82&fm=webp |
 | ensalada.webp | https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1000&q=82&fm=webp |
-| patio.webp | https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=1400&q=65&fm=webp |
+| patio-800.webp, patio-1200.webp y patio-1400.webp (desde V4.10.6; sustituyen a patio.webp) | https://images.unsplash.com/photo-1552566626-52f8b828add9, reducida con Pillow y guardada en WebP calidad 72 |
 
 Descargados el 5 de octubre de 2026 bajo la licencia pública de Unsplash: https://unsplash.com/license. La licencia permite incorporar las fotografías al prototipo; no permite venderlas sin modificación significativa ni replicar un servicio competidor de imágenes.
 
@@ -72,3 +72,11 @@ Se incorporan 31 fotografías procedentes de Wikimedia Commons, verificadas indi
 Los créditos se publican en `/restaurante/creditos-fotos.html`, enlazado desde el pie de página del restaurante. Identifican también los cambios técnicos: reducción proporcional de tamaño y conversión a WebP. No se recorta ni se retoca el contenido. Se conserva la licencia correspondiente de las fotografías CC BY-SA; no se afirma propiedad exclusiva sobre ellas ni que su licencia se aplique al código de la colección.
 
 Las fotografías ilustran platos base; no acreditan recetas, ingredientes, alérgenos, autenticidad regional ni porciones nutricionales. Algunas presentan marcas o establecimientos en su procedencia; no se atribuye una relación comercial con Patio 12. Para un cliente real, sustituir por material autorizado del negocio y validar los datos de su carta.
+
+## Tamaños de V4.10.6
+
+Para que el teléfono no baje fotos más grandes de lo que dibuja (DEC-021):
+- **46 fotos de producto** tienen además una versión de 480 px (`-480.webp`), sacada de la foto ya servida: Pillow (LANCZOS), WebP calidad 72. Pesan 1.06 MB en lugar de 4.45 MB, y conservan el origen, el autor y la licencia de los registros v4.2.x.
+- **La foto del local** sale de nuevo del original de Unsplash en 800, 1200 y 1400 px (67, 133 y 178 KB, frente a 432 KB de `patio.webp`).
+
+Registro con la huella de cada archivo: [fotos-origen-v4.10.6.json](../public/restaurante/fotos-origen-v4.10.6.json). El sitio elige el tamaño con `srcset` y `sizes` (`src/giros/restaurante/data/fotos.js`).

@@ -42,7 +42,7 @@ export default function TableReservation({ onClose, pointId = DEFAULT_POINT, onC
       title="Reservar una mesa de ejemplo"
       onClose={onClose}
       className="restaurant-modal"
-      fontFamily="'Patio Sans', sans-serif"
+      fontFamily="var(--r-letra-texto)"
       radius={4}
     >
       <p className="r-demo-note">

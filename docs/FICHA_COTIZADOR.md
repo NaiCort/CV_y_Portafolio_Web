@@ -58,6 +58,20 @@ Lo de «Brasa», más:
 
 Con movimiento reducido, todo cambia sin animación. Las animaciones propias del cotizador se deciden en su fase final (V4.11).
 
+## Decidido para V4.11
+
+- **Desplegable en cada opción de «Ajuste»** (DEC-032), en lenguaje sencillo y siempre con el mismo orden:
+  1. qué es;
+  2. qué gana su negocio;
+  3. un ejemplo en una demo, con enlace;
+  4. qué no incluye;
+  5. «¿lo necesito?».
+
+  El precio queda a la vista sin abrirlo. Antes de construir, una maqueta con dos o tres desplegables escritos para que Ian apruebe el tono.
+- **Hospedaje** (DEC-029): una pregunta con las opciones (Vercel, Cloudflare Pages u hospedaje tradicional), explicadas por lo que le importa al cliente: costo, velocidad, correo y quién lo administra. Los precios se confirman antes de ponerlos.
+- **Dominio** (DEC-030): siempre a nombre del cliente.
+- **Plan de mantenimiento web y correo con dominio propio** (DEC-031): opciones aparte; el correo, solo si el negocio lo necesita.
+
 ## Patrones vigilados
 
 Ninguno nuevo. El reflector del CV no se usa aquí: en una herramienta de trabajo, la luz siguiendo al cursor distrae.

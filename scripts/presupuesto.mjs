@@ -8,9 +8,13 @@ import path from "node:path"
 import zlib from "node:zlib"
 
 // Kilobytes comprimidos (gzip). Al cambiar una cifra, se actualiza docs/RENDIMIENTO.md.
+// Desde V4.10.6 (DEC-021) la portada y las demás rutas se miden aparte: el CV se carga aparte y la
+// portada lo precarga (dist/index.html), así que las demos ya no descargan su código.
 const PRESUPUESTO = {
-  "JavaScript inicial": 110,
-  "CSS inicial": 12,
+  "JavaScript inicial, portada": 94,
+  "JavaScript inicial, demás rutas": 86,
+  "CSS inicial, portada": 12,
+  "CSS inicial, demás rutas": 8,
   "Ruta más pesada (sin el mapa)": 70,
 }
 
@@ -37,12 +41,15 @@ function enlaces(html) {
 }
 
 const medidas = {}
-for (const entrada of ["index.html", "app.html"]) {
+for (const [entrada, nombre] of [
+  ["index.html", "portada"],
+  ["app.html", "demás rutas"],
+]) {
   const { js, css } = enlaces(fs.readFileSync(path.join(dist, entrada), "utf8"))
   const totalJs = kb(js.reduce((s, f) => s + gzip(f), 0))
   const totalCss = kb(css.reduce((s, f) => s + gzip(f), 0))
-  medidas["JavaScript inicial"] = Math.max(medidas["JavaScript inicial"] ?? 0, totalJs)
-  medidas["CSS inicial"] = Math.max(medidas["CSS inicial"] ?? 0, totalCss)
+  medidas[`JavaScript inicial, ${nombre}`] = totalJs
+  medidas[`CSS inicial, ${nombre}`] = totalCss
   console.log(
     `${entrada.padEnd(11)} JS ${totalJs.toFixed(1)} KB · CSS ${totalCss.toFixed(1)} KB (gzip)`,
   )
@@ -66,7 +73,7 @@ for (const [nombre, limite] of Object.entries(PRESUPUESTO)) {
   const ok = valor <= limite
   if (!ok) falla = true
   console.log(
-    `  ${ok ? "PASS" : "FAIL"}  ${nombre.padEnd(30)} ${valor.toFixed(1)} KB de ${limite} KB`,
+    `  ${ok ? "PASS" : "FAIL"}  ${nombre.padEnd(32)} ${valor.toFixed(1)} KB de ${limite} KB`,
   )
 }
 process.exit(falla ? 1 : 0)

@@ -53,7 +53,6 @@ export default function Locales({ onLocalOrder, onLocalReserve }) {
     <section className="r-locations-page r-page-section">
       <div className="r-section-head">
         <div>
-          <p className="r-kicker">NUESTROS LOCALES · DEMOSTRACIÓN</p>
           <h1 tabIndex={-1}>
             Encuentra tu
             <br />
@@ -61,7 +60,7 @@ export default function Locales({ onLocalOrder, onLocalReserve }) {
           </h1>
         </div>
         <p>
-          {POINTS.length} locales simulados en dos países.
+          {POINTS.length} locales en dos países.
           <br />
           Tu selección actual: {localLabel(state.pointId)}.
         </p>
@@ -76,7 +75,6 @@ export default function Locales({ onLocalOrder, onLocalReserve }) {
           aria-label="Países y estados de los locales"
         >
           <div className="r-sidebar-desktop">
-            <p className="r-sidebar-title">UN PATIO CERCA</p>
             <h2>Países y estados</h2>
             <nav className="r-geo-nav" aria-label="Filtrar locales por país y estado">
               <button
@@ -230,7 +228,7 @@ export default function Locales({ onLocalOrder, onLocalReserve }) {
             <div className="r-section-head r-locals-list-head">
               <h2>{heading}.</h2>
               <p role="status">
-                {visible.length} {visible.length === 1 ? "local simulado" : "locales simulados"}
+                {visible.length} {visible.length === 1 ? "local" : "locales"}
               </p>
               {(country || city) && (
                 <button type="button" className="r-text-button" onClick={() => setArea({})}>

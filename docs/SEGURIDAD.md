@@ -98,4 +98,4 @@ Antes de escribir código (perfil SaaS del handbook), se escribe:
 ## Riesgos residuales
 
 - **Encabezados en producción:** no se pudieron comprobar desde este entorno, porque la red no permite el dominio del sitio. Se verifican en la vista previa (ver `DESPLIEGUE.md`).
-- **El aviso de privacidad** espera los datos de DEC-024.
+- **El aviso de privacidad** espera los datos de DEC-024, que Ian deja para el final de todo, después de V4.11.

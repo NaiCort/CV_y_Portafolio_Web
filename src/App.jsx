@@ -1,18 +1,16 @@
 import { lazy, Suspense, useEffect } from "react"
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom"
 import { MotionConfig } from "framer-motion"
-import Bienvenida from "./pages/Bienvenida"
 import NotFound from "./pages/NotFound"
-import RestaurantProvider from "./giros/restaurante/state/RestaurantProvider"
-import FloatingTimer from "./giros/restaurante/components/FloatingTimer"
 import RouteErrorBoundary from "./components/shared/RouteErrorBoundary"
 import VolverCotizador from "./components/shared/VolverCotizador"
 import { CARGAS } from "./rutasDemo"
 
+const Bienvenida = lazy(CARGAS["/"])
 const Cotizador = lazy(CARGAS["/cotizador"])
 const Privacidad = lazy(CARGAS["/privacidad"])
 const PsicologoApp = lazy(CARGAS["/psicologo"])
-const RestauranteApp = lazy(CARGAS["/restaurante"])
+const RestauranteRuta = lazy(CARGAS["/restaurante"])
 const CafeApp = lazy(CARGAS["/cafe"])
 const GimnasioApp = lazy(CARGAS["/gimnasio"])
 const TallerApp = lazy(CARGAS["/taller"])
@@ -38,28 +36,25 @@ export default function App() {
   return (
     <BrowserRouter>
       <MotionConfig reducedMotion="user">
-        <RestaurantProvider>
-          <RoutePosition />
-          <VolverCotizador />
-          <RouteErrorBoundary>
-            <Suspense fallback={<RouteLoading />}>
-              <Routes>
-                <Route path="/" element={<Bienvenida />} />
-                <Route path="/cotizador" element={<Cotizador />} />
-                <Route path="/privacidad" element={<Privacidad />} />
-                <Route path="/psicologo" element={<PsicologoApp />} />
-                <Route path="/restaurante/*" element={<RestauranteApp />} />
-                <Route path="/cafe/*" element={<CafeApp />} />
-                <Route path="/gimnasio/*" element={<GimnasioApp />} />
-                <Route path="/taller/*" element={<TallerApp />} />
-                <Route path="/despacho/*" element={<DespachoApp />} />
-                <Route path="/revista/*" element={<RevistaApp />} />
-                <Route path="*" element={<NotFound />} />
-              </Routes>
-            </Suspense>
-          </RouteErrorBoundary>
-          <FloatingTimer />
-        </RestaurantProvider>
+        <RoutePosition />
+        <VolverCotizador />
+        <RouteErrorBoundary>
+          <Suspense fallback={<RouteLoading />}>
+            <Routes>
+              <Route path="/" element={<Bienvenida />} />
+              <Route path="/cotizador" element={<Cotizador />} />
+              <Route path="/privacidad" element={<Privacidad />} />
+              <Route path="/psicologo" element={<PsicologoApp />} />
+              <Route path="/restaurante/*" element={<RestauranteRuta />} />
+              <Route path="/cafe/*" element={<CafeApp />} />
+              <Route path="/gimnasio/*" element={<GimnasioApp />} />
+              <Route path="/taller/*" element={<TallerApp />} />
+              <Route path="/despacho/*" element={<DespachoApp />} />
+              <Route path="/revista/*" element={<RevistaApp />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </Suspense>
+        </RouteErrorBoundary>
       </MotionConfig>
     </BrowserRouter>
   )

@@ -19,7 +19,13 @@ export async function audit(page) {
   await page.waitForFunction(() =>
     [
       ...document.querySelectorAll(
-        ".r-page-content, .r-menu-results, .r-gallery-image, .r-cart-count, .r-notice-card",
+        // V4.10.6: también la portada y las secciones que se asientan de Patio 12, porque axe mide el
+        // contraste con la opacidad de ese momento. Solo elementos con nombre: esperar todas las
+        // animaciones de la página no termina en demos con animaciones largas (Ladera, Cotejo y
+        // Revista).
+        ".r-page-content, .r-menu-results, .r-gallery-image, .r-cart-count, .r-notice-card, " +
+          ".r-hero-actions, .r-hero-facts, .r-photo-caption, .r-hero-seal, .r-hero-photo > img, " +
+          "[data-entra]",
       ),
     ].every((el) => el.getAnimations().every((animation) => animation.playState !== "running")),
   )

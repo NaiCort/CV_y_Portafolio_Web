@@ -57,4 +57,7 @@ const rutasDeAplicacion = {
 
 export default defineConfig({
   plugins: [react(), tailwindcss(), rutasDeAplicacion],
+  // scripts/prerender.mjs lee el manifiesto para precargar en la portada el código y el CSS del CV
+  // (V4.10.6) y luego lo borra: no se publica.
+  build: { manifest: true },
 })

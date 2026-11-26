@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom"
+import { FOTO_LOCAL } from "../portada"
 import { ArrowUpRight } from "lucide-react"
 
 export default function Conocenos() {
@@ -6,7 +7,6 @@ export default function Conocenos() {
     <>
       <section className="r-about-intro r-page-section">
         <div>
-          <p className="r-kicker">CONÓCENOS</p>
           <h1 tabIndex={-1}>
             Una mesa
             <br />
@@ -22,14 +22,16 @@ export default function Conocenos() {
           </p>
         </div>
         <img
-          src="/restaurante/patio.webp"
+          {...FOTO_LOCAL}
+          fetchPriority="high"
           alt="Ambientación ilustrativa de mesas y plantas en un restaurante"
-          width="1400"
-          height="933"
         />
       </section>
-      <section className="r-page-section r-about-values" aria-labelledby="values-title">
-        <p className="r-kicker">ASÍ IMAGINAMOS EL PATIO</p>
+      <section
+        className="r-page-section r-about-values"
+        aria-labelledby="values-title"
+        data-entra=""
+      >
         <h2 id="values-title">
           La cocina y la mesa,
           <br />
@@ -61,7 +63,7 @@ export default function Conocenos() {
           ))}
         </div>
       </section>
-      <section className="r-page-section r-team" aria-labelledby="team-title">
+      <section className="r-page-section r-team" aria-labelledby="team-title" data-entra="">
         <div className="r-section-head">
           <h2 id="team-title">Detrás del patio.</h2>
           <p>

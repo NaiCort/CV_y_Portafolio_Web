@@ -12,15 +12,51 @@
   font-weight: 400 700;
   font-display: swap;
 }
+/* Respaldos con el ancho medido en Chromium contra Times New Roman y Arial (o sus equivalentes
+   métricos Liberation), para que el texto no salte cuando llega la fuente (V4.10.6, pendiente 7). */
+@font-face {
+  font-family: "Patio Bitter Respaldo";
+  src: local("Times New Roman"), local("Liberation Serif"), local("Tinos");
+  size-adjust: 114.1%;
+}
+@font-face {
+  font-family: "Patio Sans Respaldo";
+  src: local("Arial"), local("Liberation Sans"), local("Arimo");
+  size-adjust: 102.1%;
+}
+
+/* Paleta, radios y tipografía de Patio 12 (V4.10.6, docs/FICHA_RESTAURANTE.md). Van en :root
+   porque los diálogos se abren fuera de .restaurant-root; el prefijo --r- es solo de esta demo.
+   Los colores de una sola vez (fondo de cada tarjeta de local, recibo y trazos del mapa) quedan
+   escritos en su regla. El contador flotante tiene los suyos en timer.css, porque también se abre
+   en una ventana aparte. */
+:root {
+  --r-tinta: #203b2e;
+  --r-tinta-media: #315342;
+  --r-suave: #526155;
+  --r-tenue: #85948a;
+  --r-papel: #ffffff;
+  --r-crema: #fcfaf4;
+  --r-arena: #f4f3eb;
+  --r-salvia: #edf2ec;
+  --r-linea: #d1d8d2;
+  --r-linea-media: #c5cec6;
+  --r-linea-fuerte: #a7b6a9;
+  --r-amarillo: #edd068;
+  --r-amarillo-claro: #fff4d1;
+  --r-oxido: #9c3b26;
+  --r-foco: #1260bc;
+  --r-radio: 4px;
+  --r-radio-chico: 3px;
+  --r-letra-titulo: "Patio Bitter", "Patio Bitter Respaldo", Georgia, serif;
+  --r-letra-texto: "Patio Sans", "Patio Sans Respaldo", sans-serif;
+}
 
 .restaurant-root {
-  --r-ink: #203b2e;
-  --r-yellow: #edd068;
-  --r-muted: #526155;
   padding-top: 44px;
-  background: #fff;
-  color: var(--r-ink);
-  font-family: "Patio Sans", sans-serif;
+  background: var(--r-papel);
+  color: var(--r-tinta);
+  font-family: var(--r-letra-texto);
   font-size: 16px;
   line-height: 1.6;
 }
@@ -29,7 +65,7 @@
 .restaurant-root h3,
 .restaurant-modal h2,
 .restaurant-modal h3 {
-  font-family: "Patio Bitter", Georgia, serif;
+  font-family: var(--r-letra-titulo);
   line-height: 1.15;
   font-weight: 600;
 }
@@ -49,9 +85,9 @@
 }
 .restaurant-root :where(button, a, input):focus-visible,
 .restaurant-modal :where(button, a, input, select):focus-visible {
-  outline: 3px solid #1260bc;
+  outline: 3px solid var(--r-foco);
   outline-offset: 3px;
-  box-shadow: 0 0 0 5px #fff;
+  box-shadow: 0 0 0 5px var(--r-papel);
 }
 .r-sr-only {
   position: absolute;
@@ -71,7 +107,7 @@
   align-items: center;
   gap: 16px;
   padding: 16px clamp(20px, 4vw, 64px);
-  background: var(--r-yellow);
+  background: var(--r-amarillo);
   border-bottom: 1px solid #203b2e35;
   min-height: 88px;
 }
@@ -80,13 +116,13 @@
   align-items: center;
   gap: 10px;
   line-height: 0.95;
-  font-family: "Patio Bitter", Georgia, serif;
+  font-family: var(--r-letra-titulo);
   font-size: 31px;
   letter-spacing: -0.07em;
 }
 .r-brand small {
   display: block;
-  font-family: "Patio Sans", sans-serif;
+  font-family: var(--r-letra-texto);
   font-size: 10px;
   letter-spacing: 0.12em;
   margin-top: 8px;
@@ -124,8 +160,8 @@
   gap: 8px;
   min-height: 46px;
   padding: 4px 11px;
-  border: 1px solid var(--r-ink);
-  border-radius: 3px;
+  border: 1px solid var(--r-tinta);
+  border-radius: var(--r-radio-chico);
   font-size: 14px;
 }
 .r-cart-count {
@@ -133,8 +169,8 @@
   place-items: center;
   min-width: 22px;
   height: 22px;
-  background: var(--r-ink);
-  color: #fff;
+  background: var(--r-tinta);
+  color: var(--r-papel);
   font-size: 12px;
   border-radius: 50%;
 }
@@ -149,7 +185,7 @@
 }
 .r-hero {
   display: grid;
-  background: var(--r-yellow);
+  background: var(--r-amarillo);
 }
 .r-hero-copy {
   padding: 42px 24px 32px;
@@ -162,11 +198,6 @@
 }
 .r-hero h1 em {
   font-style: normal;
-}
-.r-hero-copy > p:first-of-type {
-  max-width: 365px;
-  font-size: 17px;
-  line-height: 1.65;
 }
 .r-hero-actions {
   display: flex;
@@ -182,24 +213,24 @@
   gap: 10px;
   min-height: 50px;
   padding: 12px 21px;
-  border-radius: 3px;
+  border-radius: var(--r-radio-chico);
   font-size: 14px;
   font-weight: 600;
   line-height: 1.5;
   text-align: center;
 }
 .r-button {
-  color: #fff;
-  background: #203b2e;
-  border: 1px solid #203b2e;
+  color: var(--r-papel);
+  background: var(--r-tinta);
+  border: 1px solid var(--r-tinta);
 }
 .r-button:hover:not(:disabled) {
   background: #365441;
 }
 .r-secondary-button {
-  color: #203b2e;
+  color: var(--r-tinta);
   background: transparent;
-  border: 1px solid #203b2e;
+  border: 1px solid var(--r-tinta);
 }
 .r-secondary-button:hover {
   background: #203b2e0d;
@@ -223,11 +254,6 @@
 .r-hero-facts small {
   font-size: 12px;
 }
-.r-hero-note {
-  font-size: 12px;
-  margin-top: 22px;
-  max-width: 370px;
-}
 .r-hero-photo {
   position: relative;
   background: #183325;
@@ -247,13 +273,13 @@
   display: grid;
   gap: 4px;
   padding: 14px 19px;
-  background: #fff;
-  color: #203b2e;
+  background: var(--r-papel);
+  color: var(--r-tinta);
   border-radius: 2px;
   font-size: 12px;
 }
 .r-photo-caption strong {
-  font-family: "Patio Bitter", Georgia, serif;
+  font-family: var(--r-letra-titulo);
   font-size: 20px;
   line-height: 1.2;
 }
@@ -262,13 +288,13 @@
   gap: 24px;
   justify-content: space-around;
   align-items: center;
-  background: #203b2e;
-  color: #fff;
+  background: var(--r-tinta);
+  color: var(--r-papel);
   padding: 20px 24px;
   font-size: 14px;
 }
 .r-intro-strip > span {
-  color: #edd068;
+  color: var(--r-amarillo);
   font-size: 24px;
   line-height: 1;
 }
@@ -289,7 +315,7 @@
 }
 .r-section-head > p {
   font-size: 14px;
-  color: #526155;
+  color: var(--r-suave);
 }
 .r-featured-grid {
   display: grid;
@@ -300,7 +326,7 @@
   position: relative;
   width: 100%;
   overflow: hidden;
-  border-radius: 4px;
+  border-radius: var(--r-radio);
 }
 .r-food-photo img {
   display: block;
@@ -316,11 +342,11 @@
   place-items: center;
   width: 44px;
   height: 44px;
-  background: #edd068;
+  background: var(--r-amarillo);
   border-radius: 50%;
 }
 .r-food-photo:hover > span {
-  background: #fff;
+  background: var(--r-papel);
 }
 .r-food-title {
   display: flex;
@@ -338,7 +364,7 @@
   white-space: nowrap;
 }
 .r-featured-item > p {
-  color: #526155;
+  color: var(--r-suave);
   font-size: 14px;
   max-width: 380px;
 }
@@ -363,13 +389,13 @@
 .r-category-list button {
   padding: 9px 13px;
   min-height: 44px;
-  border-radius: 3px;
+  border-radius: var(--r-radio-chico);
   font-size: 14px;
   transition: none;
 }
 .r-category-list button[aria-pressed="true"] {
-  color: #fff;
-  background: #203b2e;
+  color: var(--r-papel);
+  background: var(--r-tinta);
 }
 .r-category-list button:hover:not([aria-pressed="true"]) {
   background: #eff4ef;
@@ -380,8 +406,8 @@
   gap: 10px;
   min-height: 46px;
   padding: 9px 13px;
-  border: 1px solid #85948a;
-  border-radius: 3px;
+  border: 1px solid var(--r-tenue);
+  border-radius: var(--r-radio-chico);
   min-width: 0;
   width: 100%;
 }
@@ -392,13 +418,13 @@
   font-size: 14px;
 }
 .r-search input::placeholder {
-  color: #526155;
+  color: var(--r-suave);
   opacity: 1;
 }
 .r-menu-count {
   margin: 18px 0 5px;
   font-size: 12px;
-  color: #526155;
+  color: var(--r-suave);
   overflow-wrap: anywhere;
 }
 .r-menu-list {
@@ -411,14 +437,14 @@
   gap: 18px;
   align-items: flex-start;
   padding: 26px 0;
-  border-bottom: 1px solid #d1d8d2;
+  border-bottom: 1px solid var(--r-linea);
 }
 .r-menu-item h3 {
   font-size: 19px;
   margin-bottom: 8px;
 }
 .r-menu-item p {
-  color: #526155;
+  color: var(--r-suave);
   font-size: 13px;
   max-width: 345px;
 }
@@ -426,10 +452,10 @@
   display: inline-block;
   margin-top: 10px;
   font-size: 11px;
-  color: #315342;
+  color: var(--r-tinta-media);
   padding: 1px 8px;
-  background: #edf2ec;
-  border-radius: 3px;
+  background: var(--r-salvia);
+  border-radius: var(--r-radio-chico);
 }
 .r-menu-price {
   display: grid;
@@ -454,7 +480,7 @@
   place-items: center;
   width: 26px;
   height: 26px;
-  border: 1px solid #85948a;
+  border: 1px solid var(--r-tenue);
   border-radius: 50%;
   font-size: 18px;
 }
@@ -466,7 +492,7 @@
   flex-wrap: wrap;
   margin-top: 24px;
   font-size: 12px;
-  color: #526155;
+  color: var(--r-suave);
 }
 .r-menu-foot > p {
   max-width: 550px;
@@ -494,7 +520,7 @@
 }
 .r-place {
   display: grid;
-  background: #edf2ec;
+  background: var(--r-salvia);
 }
 .r-place-photo {
   position: relative;
@@ -511,10 +537,10 @@
   position: absolute;
   left: 20px;
   bottom: 20px;
-  background: #fff;
+  background: var(--r-papel);
   padding: 8px 12px;
   font-size: 12px;
-  color: #203b2e;
+  color: var(--r-tinta);
 }
 .r-place-copy {
   padding: 40px 24px;
@@ -568,12 +594,12 @@
   align-items: center;
   flex-wrap: wrap;
   padding: 28px 24px 76px;
-  background: #203b2e;
-  color: #fff;
+  background: var(--r-tinta);
+  color: var(--r-papel);
   border-top: 1px solid #ffffff38;
 }
 .r-footer > a {
-  font-family: "Patio Bitter", Georgia, serif;
+  font-family: var(--r-letra-titulo);
   font-size: 28px;
   letter-spacing: -0.06em;
   min-height: 44px;
@@ -599,10 +625,10 @@
   gap: 10px;
   padding: 7px 12px;
   box-shadow: 0 6px 24px #203b2e18;
-  background: #fff;
-  color: #203b2e;
-  border: 1px solid #85948a;
-  border-radius: 3px;
+  background: var(--r-papel);
+  color: var(--r-tinta);
+  border: 1px solid var(--r-tenue);
+  border-radius: var(--r-radio-chico);
 }
 .r-announcement button {
   display: grid;
@@ -612,10 +638,10 @@
   flex-shrink: 0;
 }
 .restaurant-modal {
-  background: #fff;
-  color: #203b2e;
-  border: 1px solid #526155;
-  font-family: "Patio Sans", sans-serif;
+  background: var(--r-papel);
+  color: var(--r-tinta);
+  border: 1px solid var(--r-suave);
+  font-family: var(--r-letra-texto);
 }
 .restaurant-modal h2 {
   font-size: 24px;
@@ -630,19 +656,19 @@
 }
 .r-mobile-links > a {
   padding: 12px;
-  border-bottom: 1px solid #d1d8d2;
+  border-bottom: 1px solid var(--r-linea);
   min-height: 48px;
 }
 .r-muted {
-  color: #526155;
+  color: var(--r-suave);
   font-size: 14px;
   line-height: 1.65;
 }
 .r-allergens {
   padding: 16px 0;
   margin-top: 15px;
-  border-top: 1px solid #d1d8d2;
-  border-bottom: 1px solid #d1d8d2;
+  border-top: 1px solid var(--r-linea);
+  border-bottom: 1px solid var(--r-linea);
   font-size: 12px;
   line-height: 1.7;
 }
@@ -661,14 +687,14 @@
   align-items: center;
   gap: 10px;
   padding: 13px 0;
-  border-top: 1px solid #d1d8d2;
+  border-top: 1px solid var(--r-linea);
   font-size: 14px;
 }
 .r-option > input {
   flex-shrink: 0;
   width: 18px;
   height: 18px;
-  accent-color: #203b2e;
+  accent-color: var(--r-tinta);
 }
 .r-option > span {
   flex: 1;
@@ -678,7 +704,7 @@
 }
 .r-option small {
   font-size: 12px;
-  color: #526155;
+  color: var(--r-suave);
 }
 .r-quantity-row {
   display: flex;
@@ -689,8 +715,8 @@
 .r-quantity {
   display: inline-flex;
   align-items: center;
-  border: 1px solid #85948a;
-  border-radius: 3px;
+  border: 1px solid var(--r-tenue);
+  border-radius: var(--r-radio-chico);
 }
 .r-quantity button {
   display: grid;
@@ -706,7 +732,7 @@
 }
 .r-demo-note {
   font-size: 12px;
-  color: #526155;
+  color: var(--r-suave);
   line-height: 1.65;
   margin: 18px 0;
 }
@@ -721,7 +747,7 @@
 }
 .r-progress {
   font-size: 12px;
-  color: #526155;
+  color: var(--r-suave);
   margin-bottom: 22px;
 }
 .r-cart-list {
@@ -731,7 +757,7 @@
 }
 .r-cart-list > li {
   padding: 18px 0;
-  border-bottom: 1px solid #d1d8d2;
+  border-bottom: 1px solid var(--r-linea);
 }
 .r-cart-title {
   display: flex;
@@ -779,11 +805,11 @@
   min-width: 0;
   padding: 12px;
   min-height: 48px;
-  border: 1px solid #85948a;
-  border-radius: 3px;
+  border: 1px solid var(--r-tenue);
+  border-radius: var(--r-radio-chico);
   font-weight: 400;
-  color: #203b2e;
-  background: #fff;
+  color: var(--r-tinta);
+  background: var(--r-papel);
   font-size: 16px;
 }
 .r-price-summary > p {
@@ -795,7 +821,7 @@
   font-size: 14px;
 }
 .r-price-summary > .r-total {
-  border-top: 1px solid #85948a;
+  border-top: 1px solid var(--r-tenue);
   padding-top: 14px;
   margin-top: 14px;
   margin-bottom: 23px;
@@ -809,8 +835,8 @@
   display: grid;
   gap: 4px;
   padding: 15px 10px;
-  border: 1px solid #85948a;
-  border-radius: 3px;
+  border: 1px solid var(--r-tenue);
+  border-radius: var(--r-radio-chico);
   min-height: 73px;
   font-size: 17px;
   transition: none;
@@ -820,14 +846,14 @@
   line-height: 1.4;
 }
 .r-time[aria-pressed="true"] {
-  background: #203b2e;
-  border-color: #203b2e;
-  color: #fff;
+  background: var(--r-tinta);
+  border-color: var(--r-tinta);
+  color: var(--r-papel);
 }
 .r-time:disabled {
   opacity: 1;
-  background: #edf2ec;
-  color: #526155;
+  background: var(--r-salvia);
+  color: var(--r-suave);
   border-style: dashed;
 }
 .r-reservation-summary {
@@ -840,8 +866,8 @@
   width: 54px;
   height: 54px;
   border-radius: 50%;
-  background: #203b2e;
-  color: #fff;
+  background: var(--r-tinta);
+  color: var(--r-papel);
   margin-bottom: 20px;
 }
 .r-result > h3 {
@@ -864,7 +890,7 @@
   justify-content: space-between;
   gap: 12px;
   padding: 9px 0;
-  border-bottom: 1px solid #d1d8d2;
+  border-bottom: 1px solid var(--r-linea);
   font-size: 13px;
 }
 .r-processing {
@@ -875,15 +901,15 @@
   margin: 20px 0 12px;
 }
 .r-processing > p {
-  color: #526155;
+  color: var(--r-suave);
   font-size: 14px;
 }
 .r-spinner {
   display: inline-block;
   width: 38px;
   height: 38px;
-  border: 3px solid #d1d8d2;
-  border-top-color: #203b2e;
+  border: 3px solid var(--r-linea);
+  border-top-color: var(--r-tinta);
   border-radius: 50%;
   animation: r-spin 800ms linear infinite;
 }
@@ -899,26 +925,26 @@
   font-size: 14px;
   line-height: 1.7;
   margin-bottom: 24px;
-  color: #526155;
+  color: var(--r-suave);
 }
 .r-location-plan {
   display: grid;
   gap: 12px;
-  background: #edf2ec;
-  border: 1px solid #85948a;
+  background: var(--r-salvia);
+  border: 1px solid var(--r-tenue);
   padding: 20px;
   margin-top: 22px;
 }
 .r-location-plan > div {
   padding: 24px 15px;
   text-align: center;
-  border: 1px dashed #526155;
-  color: #526155;
+  border: 1px dashed var(--r-suave);
+  color: var(--r-suave);
   font-size: 13px;
 }
 .r-location-plan > p {
   text-align: center;
-  border-block: 1px solid #85948a;
+  border-block: 1px solid var(--r-tenue);
   padding: 9px;
   font-size: 12px;
 }
@@ -930,12 +956,30 @@
 }
 .r-privacy {
   display: grid;
-  gap: 18px;
+  gap: 14px;
   font-size: 14px;
   line-height: 1.7;
 }
-.r-privacy + button {
+.r-privacy h3 {
+  margin-top: 8px;
+  font-size: 1.1rem;
+}
+.r-privacy ul {
+  display: grid;
+  gap: 4px;
+  padding-left: 1.2em;
+  list-style: disc;
+}
+.r-privacy-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
   margin-top: 24px;
+}
+.r-privacy-actions p {
+  flex-basis: 100%;
+  font-size: 14px;
 }
 
 @media (min-width: 640px) {
@@ -1071,8 +1115,8 @@
   flex-wrap: wrap;
   gap: 6px 18px;
   padding: 8px clamp(20px, 4vw, 64px);
-  background: #f4f3eb;
-  border-bottom: 1px solid #d1d8d2;
+  background: var(--r-arena);
+  border-bottom: 1px solid var(--r-linea);
   font-size: 13px;
 }
 .r-service-bar > span {
@@ -1088,7 +1132,7 @@
 }
 .r-storage-note {
   padding: 12px 24px;
-  background: #fff4d1;
+  background: var(--r-amarillo-claro);
   font-size: 13px;
 }
 .r-table-alert {
@@ -1097,8 +1141,8 @@
   flex-wrap: wrap;
   gap: 12px;
   padding: 14px 24px;
-  background: #edf2ec;
-  color: #203b2e;
+  background: var(--r-salvia);
+  color: var(--r-tinta);
   font-size: 14px;
 }
 .r-table-alert .r-text-button {
@@ -1112,12 +1156,12 @@
   min-width: 160px;
 }
 .r-diet-filter select {
-  background: #fff;
+  background: var(--r-papel);
   padding: 10px;
   min-height: 44px;
-  border: 1px solid #85948a;
-  border-radius: 3px;
-  color: #203b2e;
+  border: 1px solid var(--r-tenue);
+  border-radius: var(--r-radio-chico);
+  color: var(--r-tinta);
   font-size: 14px;
 }
 .r-menu-list {
@@ -1168,7 +1212,7 @@
   aspect-ratio: 4/3;
   background: #f1f0e8;
   overflow: hidden;
-  border-radius: 4px;
+  border-radius: var(--r-radio);
   touch-action: pan-y pinch-zoom;
 }
 .r-gallery-frame img {
@@ -1188,11 +1232,11 @@
   display: grid;
   place-items: center;
   background: #fffffff2;
-  color: #203b2e;
+  color: var(--r-tinta);
   min-width: 38px;
   min-height: 38px;
-  border-radius: 3px;
-  border: 1px solid #526155;
+  border-radius: var(--r-radio-chico);
+  border: 1px solid var(--r-suave);
   pointer-events: auto;
 }
 .r-gallery-dots {
@@ -1210,12 +1254,12 @@
 .r-gallery-dots button span {
   width: 6px;
   height: 6px;
-  border: 1px solid #526155;
+  border: 1px solid var(--r-suave);
   border-radius: 50%;
 }
 .r-gallery-dots button[aria-pressed="true"] span {
-  background: #203b2e;
-  border-color: #203b2e;
+  background: var(--r-tinta);
+  border-color: var(--r-tinta);
 }
 .r-gallery-small {
   margin: 0;
@@ -1234,7 +1278,7 @@
 .r-receipt-details {
   margin-block: 22px;
   padding-block: 13px;
-  border-block: 1px solid #d1d8d2;
+  border-block: 1px solid var(--r-linea);
   font-size: 13px;
 }
 .r-nutrition summary,
@@ -1256,7 +1300,7 @@
 }
 .r-nutrition dl > div {
   padding: 10px;
-  background: #f4f3eb;
+  background: var(--r-arena);
 }
 .r-nutrition dd {
   font-weight: 600;
@@ -1268,7 +1312,7 @@
   gap: 10px;
   align-items: center;
   padding: 12px 0;
-  border-top: 1px solid #d1d8d2;
+  border-top: 1px solid var(--r-linea);
   font-size: 14px;
 }
 .r-modifier > span {
@@ -1278,30 +1322,30 @@
 .r-modifier small {
   display: block;
   font-size: 11px;
-  color: #526155;
+  color: var(--r-suave);
 }
 .r-modifier select {
   max-width: 50%;
   padding: 10px 8px;
   min-height: 44px;
-  border: 1px solid #85948a;
-  border-radius: 3px;
-  background: #fff;
+  border: 1px solid var(--r-tenue);
+  border-radius: var(--r-radio-chico);
+  background: var(--r-papel);
   font-size: 13px;
 }
 .r-fixed-ingredient {
   font-size: 13px;
-  border-top: 1px solid #d1d8d2;
+  border-top: 1px solid var(--r-linea);
   padding: 12px 0;
 }
 .r-fixed-ingredient small {
-  color: #526155;
+  color: var(--r-suave);
 }
 .r-extra-photo {
   width: 50px;
   height: 50px;
   object-fit: cover;
-  border-radius: 4px;
+  border-radius: var(--r-radio);
 }
 .r-option:has(.r-extra-photo) {
   flex-wrap: wrap;
@@ -1309,7 +1353,7 @@
 .r-wait-notice {
   padding: 12px;
   margin-bottom: 18px;
-  background: #fff4d1;
+  background: var(--r-amarillo-claro);
   font-size: 13px;
 }
 .r-service-options {
@@ -1321,13 +1365,13 @@
   display: flex;
   align-items: center;
   gap: 16px;
-  border: 1px solid #85948a;
-  border-radius: 4px;
+  border: 1px solid var(--r-tenue);
+  border-radius: var(--r-radio);
   padding: 20px 16px;
   text-align: left;
 }
 .r-service-card:hover {
-  background: #edf2ec;
+  background: var(--r-salvia);
 }
 .r-service-card > svg {
   flex-shrink: 0;
@@ -1337,13 +1381,13 @@
 }
 .r-service-card strong {
   display: block;
-  font-family: "Patio Bitter", Georgia, serif;
+  font-family: var(--r-letra-titulo);
   font-size: 22px;
 }
 .r-service-card small {
   display: block;
   margin-top: 6px;
-  color: #526155;
+  color: var(--r-suave);
   font-size: 12px;
   line-height: 1.7;
 }
@@ -1358,7 +1402,7 @@
   margin-block: 18px;
 }
 .r-table-ready > svg {
-  color: #203b2e;
+  color: var(--r-tinta);
   margin-bottom: 15px;
 }
 .r-table-ready h3 {
@@ -1375,14 +1419,14 @@
   flex-wrap: wrap;
   gap: 8px;
   padding: 12px;
-  background: #f4f3eb;
+  background: var(--r-arena);
   font-size: 14px;
 }
 .r-delivery-summary {
   font-size: 13px;
   line-height: 1.7;
   padding: 14px;
-  background: #edf2ec;
+  background: var(--r-salvia);
   margin-block: 15px;
 }
 .r-delivery-summary small {
@@ -1407,8 +1451,8 @@
 }
 .r-member-card {
   padding: 20px;
-  background: #edf2ec;
-  border: 1px solid #85948a;
+  background: var(--r-salvia);
+  border: 1px solid var(--r-tenue);
   margin: 22px 0;
   font-size: 14px;
 }
@@ -1427,7 +1471,7 @@
   padding: 0;
 }
 .r-history li {
-  border-bottom: 1px solid #d1d8d2;
+  border-bottom: 1px solid var(--r-linea);
   overflow-wrap: anywhere;
 }
 .r-history button {
@@ -1436,20 +1480,20 @@
   font-size: 12px;
 }
 .r-profile-receipt {
-  border-top: 1px solid #d1d8d2;
+  border-top: 1px solid var(--r-linea);
   padding-top: 20px;
   margin-top: 25px;
 }
 .r-mail-preview {
   padding: 15px;
-  background: #f4f3eb;
+  background: var(--r-arena);
   font-size: 13px;
   line-height: 1.7;
   margin-block: 15px;
 }
 .restaurant-root :where(select, summary):focus-visible,
 .restaurant-modal :where(summary):focus-visible {
-  outline: 3px solid #1260bc;
+  outline: 3px solid var(--r-foco);
   outline-offset: 3px;
 }
 .r-button:disabled {
@@ -1477,21 +1521,9 @@
 
 /* Patio 12 · V4.2.2. Papel cálido, tinta verde y un sello de cocina propio. */
 .restaurant-root {
-  background: #fcfaf4;
-  --r-rust: #9c3b26;
+  background: var(--r-crema);
 }
-.r-kicker {
-  font-family: "Patio Sans", sans-serif;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.13em;
-  line-height: 1.6;
-}
-.r-hero-copy > p.r-kicker {
-  margin-bottom: 28px;
-  font-size: 11px;
-}
-.r-hero-copy > p:not(.r-kicker):not(.r-hero-note) {
+.r-hero-copy > p {
   max-width: 365px;
   font-size: 17px;
 }
@@ -1526,7 +1558,7 @@
   letter-spacing: 0.06em;
 }
 .r-seal strong {
-  font-family: "Patio Bitter", Georgia, serif;
+  font-family: var(--r-letra-titulo);
   font-size: 54px;
   font-weight: 600;
   letter-spacing: -0.08em;
@@ -1556,7 +1588,7 @@
 }
 .r-entry-settings {
   padding-block: 10px;
-  border-bottom: 1px solid #d1d8d2;
+  border-bottom: 1px solid var(--r-linea);
   margin-bottom: 8px;
   font-size: 13px;
 }
@@ -1566,24 +1598,14 @@
   min-height: 44px;
 }
 .r-featured {
-  border-bottom: 1px solid #d1d8d2;
+  border-bottom: 1px solid var(--r-linea);
   margin-bottom: 55px;
-}
-.r-food-photo img {
-  transition: transform 350ms ease;
-}
-@media (hover: hover) {
-  .r-food-photo:hover img {
-    transform: scale(1.035);
-  }
 }
 .r-menu-number {
   display: block;
-  font:
-    11px/1.5 "Patio Sans",
-    sans-serif;
+  font: 11px/1.5 var(--r-letra-texto);
   letter-spacing: 0.1em;
-  color: #9c3b26;
+  color: var(--r-oxido);
   margin-bottom: 7px;
 }
 .r-menu-item {
@@ -1595,7 +1617,7 @@
   left: 8px;
   padding: 3px 7px;
   background: #203b2eea;
-  color: #fff;
+  color: var(--r-papel);
   border-radius: 2px;
   font-size: 11px;
   font-variant-numeric: tabular-nums;
@@ -1616,19 +1638,19 @@
   align-items: flex-start;
   gap: 8px;
   padding: 14px 10px;
-  border: 1px solid #85948a;
-  border-radius: 4px;
+  border: 1px solid var(--r-tenue);
+  border-radius: var(--r-radio);
   font-size: 13px;
   cursor: pointer;
   line-height: 1.5;
 }
 .r-choice.is-selected {
-  border-color: #203b2e;
-  background: #edf2ec;
-  box-shadow: inset 0 0 0 1px #203b2e;
+  border-color: var(--r-tinta);
+  background: var(--r-salvia);
+  box-shadow: inset 0 0 0 1px var(--r-tinta);
 }
 .r-choice input {
-  accent-color: #203b2e;
+  accent-color: var(--r-tinta);
   width: 16px;
   height: 16px;
   flex-shrink: 0;
@@ -1638,7 +1660,7 @@
   display: block;
   font-size: 11px;
   margin-top: 5px;
-  color: #526155;
+  color: var(--r-suave);
 }
 .r-choice-photo {
   flex-direction: column;
@@ -1655,14 +1677,14 @@
   padding: 0 10px;
 }
 .r-combo {
-  border: 1px solid #85948a;
+  border: 1px solid var(--r-tenue);
   padding: 16px;
-  border-radius: 4px;
+  border-radius: var(--r-radio);
   margin: 26px 0 14px;
-  background: #fcfaf4;
+  background: var(--r-crema);
 }
 .r-combo > legend {
-  font-family: "Patio Bitter", Georgia, serif;
+  font-family: var(--r-letra-titulo);
   font-size: 21px;
   padding: 0 7px;
 }
@@ -1679,23 +1701,18 @@
   justify-content: space-between;
   align-items: center;
   gap: 14px;
-  border-block: 1px solid #85948a;
+  border-block: 1px solid var(--r-tenue);
   margin-top: 22px;
   padding-block: 16px;
   font-size: 14px;
 }
 .r-config-price > strong {
-  font:
-    26px/1.4 "Patio Bitter",
-    Georgia,
-    serif;
+  font: 26px/1.4 var(--r-letra-titulo);
   white-space: nowrap;
 }
 .r-config-price small {
-  font:
-    11px/1.5 "Patio Sans",
-    sans-serif;
-  color: #526155;
+  font: 11px/1.5 var(--r-letra-texto);
+  color: var(--r-suave);
 }
 .r-tracking-steps {
   list-style: none;
@@ -1712,7 +1729,7 @@
   gap: 9px;
   padding-top: 12px;
   border-top: 2px solid #b6c1b9;
-  color: #526155;
+  color: var(--r-suave);
   font-size: 11px;
   line-height: 1.5;
 }
@@ -1722,16 +1739,16 @@
   display: grid;
   place-items: center;
   border-radius: 50%;
-  border: 1px solid #85948a;
+  border: 1px solid var(--r-tenue);
 }
 .r-tracking-steps .is-done {
-  border-color: #203b2e;
-  color: #203b2e;
+  border-color: var(--r-tinta);
+  color: var(--r-tinta);
 }
 .r-tracking-steps .is-done > span {
-  background: #203b2e;
-  border-color: #203b2e;
-  color: #fff;
+  background: var(--r-tinta);
+  border-color: var(--r-tinta);
+  color: var(--r-papel);
 }
 .r-eta-grid {
   display: grid;
@@ -1752,7 +1769,7 @@
   width: min(60rem, calc(100vw - 2rem));
 }
 .r-location-intro {
-  font-family: "Patio Bitter", Georgia, serif;
+  font-family: var(--r-letra-titulo);
   font-size: clamp(23px, 3vw, 34px);
   line-height: 1.2;
   max-width: 550px;
@@ -1766,7 +1783,7 @@
 .r-point-list {
   display: grid;
   gap: 0;
-  border-top: 1px solid #85948a;
+  border-top: 1px solid var(--r-tenue);
 }
 .r-point-mobile {
   display: none;
@@ -1777,13 +1794,13 @@
   text-align: left;
   align-items: center;
   padding: 13px 10px;
-  border-bottom: 1px solid #d1d8d2;
+  border-bottom: 1px solid var(--r-linea);
   border-left: 3px solid transparent;
   min-height: 68px;
 }
 .r-point-list > button[aria-pressed="true"] {
-  background: #edf2ec;
-  border-left-color: #203b2e;
+  background: var(--r-salvia);
+  border-left-color: var(--r-tinta);
 }
 .r-point-list strong {
   display: block;
@@ -1793,7 +1810,7 @@
 .r-point-list small {
   display: block;
   font-size: 11px;
-  color: #526155;
+  color: var(--r-suave);
 }
 .r-point-list button > svg {
   margin-left: auto;
@@ -1801,25 +1818,25 @@
 }
 .r-point-number {
   font-size: 11px;
-  color: #9c3b26;
+  color: var(--r-oxido);
   font-variant-numeric: tabular-nums;
 }
 .r-point-detail {
   min-width: 0;
   padding: 20px;
-  background: #fcfaf4;
-  border: 1px solid #d1d8d2;
-  border-radius: 4px;
+  background: var(--r-crema);
+  border: 1px solid var(--r-linea);
+  border-radius: var(--r-radio);
 }
 .r-point-detail h3 {
   margin-block: 12px 8px;
   font-size: 27px;
 }
-.r-point-detail > p:not(.r-kicker) {
+.r-point-detail > p {
   font-size: 13px;
 }
 .r-local-time {
-  color: #526155;
+  color: var(--r-suave);
   margin: 8px 0 20px;
   overflow-wrap: anywhere;
   font-size: 11px !important;
@@ -1834,8 +1851,8 @@
   width: 100%;
   min-width: 0;
   background: #e8eddf;
-  border: 1px solid #85948a;
-  border-radius: 4px;
+  border: 1px solid var(--r-tenue);
+  border-radius: var(--r-radio);
   overflow: hidden;
 }
 .r-map-surface > .r-map-canvas {
@@ -1857,7 +1874,7 @@
   background: radial-gradient(circle at 50% 50%, #fff7, #e8eddf);
 }
 .r-map-placeholder strong {
-  font-family: "Patio Bitter", Georgia, serif;
+  font-family: var(--r-letra-titulo);
   font-size: 20px;
 }
 .r-map-placeholder > p {
@@ -1873,14 +1890,14 @@
 .r-map-caption {
   margin-top: 10px;
   font-size: 11px;
-  color: #526155;
+  color: var(--r-suave);
   line-height: 1.6;
 }
 .r-map-credit {
   margin-top: 8px;
   font-size: 10px;
   line-height: 1.6;
-  color: #526155;
+  color: var(--r-suave);
 }
 .r-map-credit a {
   text-decoration: underline;
@@ -1891,27 +1908,25 @@
   place-items: center;
   width: 32px;
   height: 32px;
-  background: #203b2e;
-  border: 2px solid #fff;
+  background: var(--r-tinta);
+  border: 2px solid var(--r-papel);
   border-radius: 50%;
-  color: #fff;
-  font:
-    700 13px/1 "Patio Sans",
-    sans-serif;
+  color: var(--r-papel);
+  font: 700 13px/1 var(--r-letra-texto);
   box-shadow: 0 2px 7px #0004;
 }
 .r-map-destination {
-  background: #9c3b26;
+  background: var(--r-oxido);
 }
 .r-map-courier {
   width: 25px;
   height: 25px;
-  background: #edd068;
-  color: #203b2e;
+  background: var(--r-amarillo);
+  color: var(--r-tinta);
   z-index: 1;
 }
 .r-map-canvas .maplibregl-control-container {
-  font-family: "Patio Sans", sans-serif;
+  font-family: var(--r-letra-texto);
 }
 .r-map-canvas .maplibregl-ctrl-attrib {
   color: #1c2920;
@@ -1927,12 +1942,12 @@
   height: 24px;
 }
 .r-map-canvas .maplibregl-canvas:focus-visible {
-  outline: 3px solid #1260bc;
+  outline: 3px solid var(--r-foco);
   outline-offset: -3px;
 }
 .r-qr-section {
   padding-top: 20px;
-  border-top: 1px solid #85948a;
+  border-top: 1px solid var(--r-tenue);
   margin-top: 30px;
 }
 .r-qr-section > summary {
@@ -1948,7 +1963,7 @@
   overflow-wrap: anywhere;
   font-size: 13px;
   padding: 16px;
-  background: #edf2ec;
+  background: var(--r-salvia);
   margin-block: 15px;
 }
 .r-share-link a {
@@ -2048,19 +2063,24 @@
   font-weight: 600;
   margin-block: 12px 24px;
 }
-.r-page-section .r-kicker,
-.r-carta-page .r-kicker {
-  margin-bottom: 18px;
-}
 .r-section-intro {
   max-width: 650px;
   font-size: 17px;
   line-height: 1.8;
-  color: #526155;
+  color: var(--r-suave);
   margin-bottom: 30px;
 }
+/* V4.10.6: en Inicio, las modalidades son renglones de carta, no tres tarjetas con ícono arriba. */
 .r-home-service .r-service-options {
+  gap: 0;
   margin: 20px 0 12px;
+  border-top: 1px solid var(--r-linea-fuerte);
+}
+.r-home-service .r-service-card {
+  border: 0;
+  border-bottom: 1px solid var(--r-linea-fuerte);
+  border-radius: 0;
+  padding: 22px 8px;
 }
 .r-home-service h2 {
   font-size: clamp(2rem, 4vw, 3rem);
@@ -2079,7 +2099,7 @@
   font-size: 10px;
   font-weight: 400;
   line-height: 1.4;
-  color: #526155;
+  color: var(--r-suave);
 }
 .r-active-local strong {
   font-size: 13px;
@@ -2099,13 +2119,13 @@
   margin: 0;
 }
 .r-local-card {
-  border: 1px solid #c5cec6;
-  background: #fff;
+  border: 1px solid var(--r-linea-media);
+  background: var(--r-papel);
   min-width: 0;
 }
 .r-local-card.is-viewed {
-  border-color: #203b2e;
-  box-shadow: 0 0 0 1px #203b2e;
+  border-color: var(--r-tinta);
+  box-shadow: 0 0 0 1px var(--r-tinta);
 }
 .r-locals-grid {
   display: grid;
@@ -2119,7 +2139,7 @@
   padding: 24px;
   aspect-ratio: 1.9;
   background: #e7eddf;
-  color: #203b2e;
+  color: var(--r-tinta);
   overflow: hidden;
 }
 .r-local-postcard::after {
@@ -2144,17 +2164,12 @@
   z-index: 1;
 }
 .r-local-postcard strong {
-  font-family: "Patio Bitter", Georgia, serif;
+  font-family: var(--r-letra-titulo);
   font-size: clamp(28px, 3vw, 43px);
   font-weight: 500;
   letter-spacing: -0.05em;
   position: relative;
   z-index: 1;
-}
-.r-local-postcard > svg {
-  position: absolute;
-  top: 22px;
-  right: 24px;
 }
 .r-local-color-1 {
   background: #f1d77a;
@@ -2170,7 +2185,7 @@
 }
 .r-local-card-body > p {
   font-size: 13px;
-  color: #526155;
+  color: var(--r-suave);
 }
 .r-local-card-body > .r-text-button {
   justify-content: flex-start;
@@ -2230,21 +2245,21 @@
   border-width: 3px;
 }
 .r-map-canvas .r-local-marker.is-selected {
-  background: #edd068;
-  color: #203b2e;
+  background: var(--r-amarillo);
+  color: var(--r-tinta);
   z-index: 2;
 }
 .r-map-canvas .r-local-cluster {
   width: 48px;
   height: 48px;
-  border: 4px double #fff;
-  background: #203b2e;
-  color: white;
+  border: 4px double var(--r-papel);
+  background: var(--r-tinta);
+  color: var(--r-papel);
   cursor: pointer;
 }
 .r-map-canvas .r-local-cluster.is-selected {
-  background: #edd068;
-  color: #203b2e;
+  background: var(--r-amarillo);
+  color: var(--r-tinta);
 }
 .r-map-selection {
   display: flex;
@@ -2253,8 +2268,8 @@
   flex-wrap: wrap;
   gap: 14px;
   padding: 20px;
-  border: 1px solid #a7b6a9;
-  background: #edf2ec;
+  border: 1px solid var(--r-linea-fuerte);
+  background: var(--r-salvia);
 }
 .r-map-selection p {
   font-size: 14px;
@@ -2262,7 +2277,7 @@
 .r-map-selection span {
   display: block;
   font-size: 12px;
-  color: #526155;
+  color: var(--r-suave);
   margin-top: 6px;
 }
 .r-locals-list-head {
@@ -2278,8 +2293,8 @@
 }
 .r-local-visit-card {
   padding: 28px;
-  background: #edf2ec;
-  border-top: 4px solid #203b2e;
+  background: var(--r-salvia);
+  border-top: 4px solid var(--r-tinta);
 }
 .r-local-visit-card h2 {
   font-size: 34px;
@@ -2294,7 +2309,7 @@
 .r-local-information {
   display: grid;
   gap: 45px;
-  border-top: 1px solid #a7b6a9;
+  border-top: 1px solid var(--r-linea-fuerte);
   padding-top: 35px;
 }
 .r-local-information h2 {
@@ -2309,13 +2324,13 @@
   display: grid;
   gap: 7px;
   padding: 15px 0;
-  border-bottom: 1px solid #c5cec6;
+  border-bottom: 1px solid var(--r-linea-media);
 }
 .r-local-facts dt {
   font-weight: 600;
 }
 .r-local-facts dd {
-  color: #526155;
+  color: var(--r-suave);
 }
 .r-about-intro {
   display: grid;
@@ -2328,7 +2343,7 @@
   object-fit: cover;
 }
 .r-about-values {
-  border-block: 1px solid #c5cec6;
+  border-block: 1px solid var(--r-linea-media);
 }
 .r-about-values h2 {
   max-width: 780px;
@@ -2340,11 +2355,11 @@
 }
 .r-about-columns article {
   padding-top: 20px;
-  border-top: 1px solid #a7b6a9;
+  border-top: 1px solid var(--r-linea-fuerte);
 }
 .r-about-columns article > span:not(.r-team-avatar) {
   font-size: 12px;
-  color: #9c3b26;
+  color: var(--r-oxido);
 }
 .r-about-columns h3 {
   font-size: 27px;
@@ -2352,7 +2367,7 @@
   letter-spacing: -0.035em;
 }
 .r-about-columns p {
-  color: #526155;
+  color: var(--r-suave);
   font-size: 14px;
   line-height: 1.8;
 }
@@ -2368,9 +2383,9 @@
   width: 72px;
   height: 72px;
   border-radius: 50%;
-  background: #edd068;
-  color: #203b2e;
-  font-family: "Patio Bitter", Georgia, serif;
+  background: var(--r-amarillo);
+  color: var(--r-tinta);
+  font-family: var(--r-letra-titulo);
   font-size: 25px;
 }
 .r-panel-page {
@@ -2395,9 +2410,9 @@
   font-size: 48px;
 }
 .r-panel-body :where(button, input, select, summary):focus-visible {
-  outline: 3px solid #1260bc;
+  outline: 3px solid var(--r-foco);
   outline-offset: 3px;
-  box-shadow: 0 0 0 5px #fff;
+  box-shadow: 0 0 0 5px var(--r-papel);
 }
 .r-panel-body .r-button {
   margin-block: 10px;
@@ -2414,16 +2429,15 @@
   .r-locals-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-  .r-home-service .r-service-options {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+  .r-home-service .r-service-card span {
+    display: grid;
+    grid-template-columns: minmax(180px, 260px) 1fr;
+    align-items: baseline;
+    gap: 24px;
   }
-  .r-home-service .r-service-card {
-    align-items: flex-start;
-    flex-direction: column;
-    padding: 22px;
-  }
-  .r-home-service .r-service-card > svg:last-child {
-    align-self: flex-end;
+  .r-home-service .r-service-card small {
+    margin-top: 0;
+    font-size: 14px;
   }
   .r-about-columns {
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -2491,22 +2505,6 @@
 }
 
 /* V4.2.4: respuesta visual breve; el estado de la visita vive fuera de las páginas. */
-@keyframes r-page-enter {
-  from {
-    transform: translateY(6px);
-  }
-  to {
-    transform: none;
-  }
-}
-@keyframes r-results-enter {
-  from {
-    transform: translateY(4px);
-  }
-  to {
-    transform: none;
-  }
-}
 @keyframes r-photo-next {
   from {
     opacity: 0.4;
@@ -2539,20 +2537,6 @@
     transform: scale(1);
   }
 }
-@keyframes r-notice-enter {
-  from {
-    transform: translateY(8px);
-  }
-  to {
-    transform: none;
-  }
-}
-.r-page-content {
-  animation: r-page-enter 200ms ease-out;
-}
-.r-menu-results {
-  animation: r-results-enter 160ms ease-out;
-}
 .r-gallery-next {
   animation: r-photo-next 180ms ease-out;
 }
@@ -2562,24 +2546,148 @@
 .r-cart-updated {
   animation: r-cart-arrival 320ms ease-out;
 }
-.r-notice-card {
-  animation: r-notice-enter 180ms ease-out;
-}
 .r-notice-card > svg {
   flex-shrink: 0;
-  color: #315342;
+  color: var(--r-tinta-media);
 }
 .r-notice-success {
-  border-left: 4px solid #315342;
+  border-left: 4px solid var(--r-tinta-media);
+}
+
+/* ---------- Movimiento de V4.10.6: servir la mesa (docs/FICHA_RESTAURANTE.md) ----------
+   Las cosas se asientan, como un plato puesto en la mesa: ease-out, de 200 a 300 ms y desde
+   escala 0.95. Nada sube desde abajo. El título, el párrafo de entrada y las fotos principales no
+   se funden: el navegador no da por pintado lo que se funde hasta que termina de aparecer, y eso
+   retrasaría la carga (docs/RENDIMIENTO.md). */
+@keyframes r-asienta {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+}
+@keyframes r-aparece {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes r-estampa {
+  from {
+    opacity: 0;
+    transform: rotate(-16deg) scale(1.3);
+  }
+}
+@keyframes r-acomoda {
+  from {
+    transform: scale(1.04);
+  }
+}
+/* Portada: la foto se acomoda sin cambiar de opacidad, el sello se estampa y los botones y datos
+   llegan después del título. */
+.r-hero-photo {
+  overflow: hidden;
+}
+.r-hero-photo > img {
+  animation: r-acomoda 300ms ease-out both;
+}
+.r-hero-seal {
+  animation: r-estampa 300ms ease-out 180ms both;
+}
+.r-photo-caption {
+  animation: r-asienta 260ms ease-out 260ms both;
+}
+.r-hero-actions,
+.r-hero-facts {
+  animation: r-asienta 260ms ease-out both;
+}
+.r-hero-actions {
+  animation-delay: 70ms;
+}
+.r-hero-facts {
+  animation-delay: 140ms;
+}
+/* Secciones que entran a la pantalla (RestauranteApp, useEntradas). */
+[data-entra] {
+  transition:
+    opacity 300ms ease-out var(--r-retraso, 0ms),
+    transform 300ms ease-out var(--r-retraso, 0ms);
+}
+[data-entra].r-espera {
+  opacity: 0;
+  transform: scale(0.95);
+}
+/* Resultados de la carta y avisos: se asientan en el lugar. */
+.r-menu-results {
+  animation: r-aparece 160ms ease-out;
+}
+.r-notice-card {
+  animation: r-asienta 200ms ease-out;
+}
+/* Al pasar el cursor, la foto se acerca un poco al plato (solo con ratón: en el teléfono, el
+   toque dejaría la foto acercada). */
+.r-food-photo img,
+.r-menu-item .r-gallery-frame img {
+  transition: transform 260ms ease-out;
+}
+@media (hover: hover) {
+  .r-food-photo:hover img,
+  .r-menu-item:hover .r-gallery-frame img {
+    transform: scale(1.03);
+  }
+}
+/* Los botones ceden un poco al presionarlos (más específico que la transición general de los
+   botones, al principio de este archivo). */
+:is(.restaurant-root, .restaurant-modal) :is(.r-button, .r-secondary-button) {
+  transition:
+    background-color 160ms,
+    color 160ms,
+    transform 150ms ease-out;
+}
+.r-button:active:not(:disabled),
+.r-secondary-button:active:not(:disabled) {
+  transform: scale(0.97);
+}
+/* Plegables que se abren con suavidad (Chrome y Edge 131 o posterior; los demás, sin transición). */
+.restaurant-root,
+.restaurant-modal {
+  interpolate-size: allow-keywords;
+}
+:is(.restaurant-root, .restaurant-modal) details::details-content {
+  block-size: 0;
+  overflow: hidden;
+  transition:
+    block-size 250ms ease-out,
+    content-visibility 250ms ease-out allow-discrete;
+}
+:is(.restaurant-root, .restaurant-modal) details[open]::details-content {
+  block-size: auto;
 }
 @media (prefers-reduced-motion: reduce) {
-  .r-page-content,
   .r-menu-results,
   .r-gallery-image,
   .r-cart-updated,
-  .r-notice-card {
+  .r-notice-card,
+  .r-hero-photo > img,
+  .r-hero-seal {
     animation: none !important;
     transform: none !important;
+  }
+  /* Con movimiento reducido, solo fundidos. */
+  .r-photo-caption,
+  .r-hero-actions,
+  .r-hero-facts {
+    animation-name: r-aparece;
+  }
+  [data-entra].r-espera {
+    transform: none;
+  }
+  .r-food-photo:hover img,
+  .r-menu-item:hover .r-gallery-frame img,
+  .r-button:active:not(:disabled),
+  .r-secondary-button:active:not(:disabled) {
+    transform: none;
+  }
+  :is(.restaurant-root, .restaurant-modal) details::details-content {
+    transition: none;
   }
 }
 
@@ -2595,7 +2703,7 @@
 }
 .r-browse-sidebar {
   min-width: 0;
-  border-block: 1px solid #a7b6a9;
+  border-block: 1px solid var(--r-linea-fuerte);
   padding-block: 20px;
 }
 .r-sidebar-desktop {
@@ -2610,14 +2718,8 @@
 .r-sidebar-note {
   font-size: 12px;
   line-height: 1.7;
-  color: #526155;
+  color: var(--r-suave);
   margin-top: 16px;
-}
-.r-sidebar-title {
-  color: #9c3b26;
-  font-size: 10px;
-  letter-spacing: 0.14em;
-  margin-bottom: 10px;
 }
 .r-browse-sidebar h2 {
   font-size: 23px;
@@ -2629,7 +2731,7 @@
   align-items: center;
   flex-wrap: wrap;
   gap: 12px;
-  border-top: 1px solid #a7b6a9;
+  border-top: 1px solid var(--r-linea-fuerte);
   padding: 18px 0 24px;
   margin-bottom: 16px;
 }
@@ -2644,7 +2746,7 @@
 .r-carta-local > p span {
   display: block;
   font-size: 12px;
-  color: #526155;
+  color: var(--r-suave);
   margin-top: 4px;
 }
 .r-carta-local .r-text-button {
@@ -2683,7 +2785,7 @@
   flex-wrap: wrap;
   gap: 10px 18px;
   justify-content: space-between;
-  border-bottom: 1px solid #a7b6a9;
+  border-bottom: 1px solid var(--r-linea-fuerte);
   padding-bottom: 14px;
   margin-bottom: 8px;
 }
@@ -2696,12 +2798,12 @@
 }
 .r-menu-group-head > span {
   font-size: 11px;
-  color: #526155;
+  color: var(--r-suave);
 }
 .r-region-intro {
   font-size: 13px;
   line-height: 1.8;
-  color: #526155;
+  color: var(--r-suave);
   max-width: 620px;
   margin-top: 16px;
 }
@@ -2769,7 +2871,7 @@
   text-align: left;
   font-size: 13px;
   line-height: 1.4;
-  border-radius: 3px;
+  border-radius: var(--r-radio-chico);
 }
 .r-geo-nav button > span:first-of-type,
 .r-category-list button > span:first-child {
@@ -2783,7 +2885,7 @@
 .r-geo-nav .r-country-button {
   font-weight: 600;
   font-size: 15px;
-  border-bottom: 1px solid #c5cec6;
+  border-bottom: 1px solid var(--r-linea-media);
   border-radius: 0;
 }
 .r-geo-nav ul {
@@ -2798,15 +2900,15 @@
 .r-sidebar-subheading {
   font-size: 11px;
   letter-spacing: 0.03em;
-  color: #526155;
+  color: var(--r-suave);
   padding: 5px 12px 10px;
 }
 .r-geo-nav li button {
   padding-left: 22px;
 }
 .r-geo-nav button[aria-pressed="true"] {
-  background: #203b2e;
-  color: white;
+  background: var(--r-tinta);
+  color: var(--r-papel);
 }
 .r-geo-nav button:hover:not([aria-pressed="true"]) {
   background: #e8ede6;
@@ -2829,8 +2931,8 @@
   font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 0.14em;
-  color: #9c3b26;
-  border-top: 2px solid #203b2e;
+  color: var(--r-oxido);
+  border-top: 2px solid var(--r-tinta);
   padding-top: 18px;
   margin-bottom: 30px;
   font-weight: 600;
@@ -2849,12 +2951,10 @@
   margin-bottom: 14px;
 }
 .r-state-group > h3 > span {
-  font:
-    11px/1.5 "Patio Sans",
-    sans-serif;
+  font: 11px/1.5 var(--r-letra-texto);
   letter-spacing: 0;
   white-space: nowrap;
-  color: #526155;
+  color: var(--r-suave);
 }
 .r-locals-directory-list {
   grid-template-columns: 1fr;
@@ -2862,12 +2962,12 @@
 }
 .r-directory-card {
   border: 0;
-  border-top: 1px solid #c5cec6;
+  border-top: 1px solid var(--r-linea-media);
   background: transparent;
 }
 .r-directory-card.is-viewed {
   box-shadow: none;
-  border-color: #203b2e;
+  border-color: var(--r-tinta);
   background: #eef1e9;
 }
 .r-directory-card .r-local-card-body {
@@ -2935,7 +3035,7 @@
     overscroll-behavior: contain;
     scrollbar-gutter: stable;
     border-block: 0;
-    border-right: 1px solid #c5cec6;
+    border-right: 1px solid var(--r-linea-media);
     padding: 0 18px 16px 0;
   }
   .r-sidebar-desktop {

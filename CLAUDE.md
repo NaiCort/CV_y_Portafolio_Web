@@ -43,7 +43,7 @@ acciones ficticias del negocio.
   **Revista digital (cerrada en V4.7.21 con Rubor, Prisma y Umbral)**. Las siete demos están
   terminadas; sigue la **fase de ajustes V4.8 a V4.11**, cuyo plan está en `docs/PLAN_V4.8.md`
   (leerlo antes de trabajar): V4.8.0 preparación (hecha) → V4.8.1–V4.8.7 CV web y portafolio (cerrado en V4.8.7; la portada
-  se prerenderiza al compilar con `scripts/prerender.mjs`; las demás rutas usan `dist/app.html`)
+  se prerenderiza al compilar con `scripts/prerender.mjs`; las demás rutas usan `dist/app.html`; desde V4.10.6 el código del CV se carga aparte y solo la portada lo precarga)
   en `/` → **V4.9** cotizador base (cerrado en V4.9.5) → **V4.10** demos en orden (Psicólogo, que se reconstruye desde cero como landing de una página, Patio 12, Ladera,
   Brío, Taller y Cotejo), con subversiones consecutivas V4.10.1, V4.10.2…, cada una conectada al cotizador →
   **V4.11** ajuste final del cotizador (cada etapa con su versión menor, decisión de Ian del 25/11/2026). Catálogo de demos en `src/data/demos.js` y datos del CV en
@@ -130,8 +130,20 @@ formularios. Cada tema se cotiza con su identificador (`psicologo-sala`, `psicol
 `psicologo-cuaderno`). Desde V4.10.5: al cambiar de tema, un velo y vuelta arriba; «Respira conmigo»
 con un disco que nace, crece, se encoge y se apaga; portada animada, plegables suaves y mapa sin
 advertencias (`src/lib/estiloMapa.js`). Leer `docs/FICHA_PSICOLOGO.md` antes de tocar
-`src/giros/psicologo/`. Pruebas de navegador en `npm run test:browser`. Pendiente del visto bueno de
-Ian en la vista previa.
+`src/giros/psicologo/`. Pruebas de navegador en `npm run test:browser`. Ian revisó la vista previa e
+integró V4.10.5 (pull request #91, 26/11/2026).
+
+## Estado de Restaurante
+
+**Restaurante = Patio 12**, cadena ficticia de «cocina de barrio» con 16 locales simulados en México y
+Estados Unidos: carta con personalización, carrito, espera de mesa, pedido, seguimiento con contador
+flotante, reservas, perfil de ejemplo, mapa y QR. Entregada en V4.10.6 con su ficha a posteriori
+(`docs/FICHA_RESTAURANTE.md`, leerla antes de tocar `src/giros/restaurante/`): sin etiquetas en
+mayúsculas ni numeración decorativa, aviso de privacidad de ejemplo, «Cotiza un sitio como este»
+(`patio-12`), colores y tipografías como variables, fotos en el tamaño justo y movimiento «servir la
+mesa». Su estado y su contador llegan con su ruta (`RestauranteRuta.jsx`), no con el paquete común.
+Pruebas de navegador en `npm run test:browser:restaurante` (y `:v423`, `:v424`, `:v425`). Pendiente
+del visto bueno de Ian en la vista previa.
 
 ## Estado de Café
 
@@ -217,12 +229,13 @@ Se resuelven dentro de la entrega de cada demo (ver `docs/PLAN_V4.8.md`).
    web, con un solo patrón vigilado, y el catálogo vive en `src/data/demos.js`). LinkedIn va al final.
 3. ~~**Psicólogo:** fotos desde el sitio, Inter y consolidación de los temas~~ (hecho en V4.10.2: se
    reconstruyó desde cero con tres temas sobre un solo contenido).
-4. **Patio 12:** quitar la etiqueta en mayúsculas sobre el título en Inicio y Carta.
-5. Ficha de identidad a posteriori de Patio 12 (la de Psicólogo se hizo en V4.10.1 y la nueva está en `docs/FICHA_PSICOLOGO.md`).
+4. ~~**Patio 12:** quitar la etiqueta en mayúsculas sobre el título en Inicio y Carta~~ (hecho en V4.10.6,
+   en todas sus páginas).
+5. ~~Ficha de identidad a posteriori de Patio 12~~ (hecha en V4.10.6: `docs/FICHA_RESTAURANTE.md`).
 6. ~~Componentes compartidos (llamada comercial, banner, marca de agua)~~ (hecho en V4.8.0:
    `ComercialCTA` con h2 y sin etiqueta ni tarjeta; banner y autoría como `aside` con nombre;
    la marca de agua pasó a cerrar la página en vez de flotar).
-7. **Precarga de fuentes en `index.html`** (todas las demos; Psicólogo ya tiene respaldos medidos desde V4.10.2): en red lenta, el cambio de
+7. **Precarga de fuentes en `index.html`** (todas las demos; Psicólogo y Patio 12 ya tienen respaldos medidos, desde V4.10.2 y V4.10.6): en red lenta, el cambio de
    tipografía mueve el texto (CLS 0.146 medido en Créditos de Ladera). Modelo ya probado en
    Cotejo (V4.6.8): tipografías de respaldo con `size-adjust` medido, que bajaron el CLS a 0.002.
 8. Dependencias: en V4.10.3 se actualizaron vite, vitest, undici y zod, y Tailwind pasó a
@@ -231,5 +244,8 @@ Se resuelven dentro de la entrega de cada demo (ver `docs/PLAN_V4.8.md`).
 9. **Animaciones (DEC-027, pedido de Ian del 26/11/2026):** más y mejores en cada demo, con Psicólogo
    V4.10.5 como modelo; en **Taller**, además, transición con vuelta arriba al cambiar entre Rosales
    y Vértice (DEC-025). En Brío no hace falta: solo cambia la paleta.
-10. **Mapas de Patio 12, Brío y Taller:** adoptar el estilo corregido de `src/lib/estiloMapa.js`
-   (DEC-028) para que la consola quede sin advertencias.
+10. **Mapas de Brío y Taller:** pasar su motor al mapa base compartido (`src/lib/mapaBase.js`, con el
+   estilo corregido de DEC-028) para que la consola quede sin advertencias. Patio 12 y Psicólogo ya lo
+   usan desde V4.10.6.
+11. **Taller:** su portada midió 2.77 s en el laboratorio de `docs/RENDIMIENTO.md` (meta: 2.5 s); se
+   corrige en su entrega.

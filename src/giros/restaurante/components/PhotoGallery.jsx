@@ -1,5 +1,6 @@
 import { useEffect, useId, useRef, useState } from "react"
 import { ChevronLeft, ChevronRight } from "lucide-react"
+import { fotoResponsiva, TAMANOS } from "../data/fotos"
 export default function PhotoGallery({ product, compact = false }) {
   const [selection, setSelection] = useState({ index: 0, direction: 1, change: 0 })
   const start = useRef(null)
@@ -78,7 +79,7 @@ export default function PhotoGallery({ product, compact = false }) {
               ? `r-gallery-image ${selection.direction > 0 ? "r-gallery-next" : "r-gallery-previous"}`
               : "r-gallery-image"
           }
-          src={current.src}
+          {...fotoResponsiva(current.src, compact ? TAMANOS.tarjeta : TAMANOS.galeria)}
           alt={`${product.name}: ${current.label.toLowerCase()}`}
           width="800"
           height="600"
