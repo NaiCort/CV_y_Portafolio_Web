@@ -7,6 +7,7 @@ import { useRestaurant } from "../state/context"
 import PatioSeal from "../components/PatioSeal"
 import ServiceOptions from "../components/ServiceOptions"
 import LocationCard from "../components/LocationCard"
+import { FOTO_PORTADA } from "../portada"
 
 export default function Inicio({ onChoose, onMode, onReserve, onLocalOrder, onLocalReserve }) {
   const { state } = useRestaurant()
@@ -53,9 +54,9 @@ export default function Inicio({ onChoose, onMode, onReserve, onLocalOrder, onLo
             <PatioSeal />
           </div>
           <img
-            src="/restaurante/pasta.webp"
-            width="1000"
-            height="667"
+            src={FOTO_PORTADA.src}
+            width={FOTO_PORTADA.width}
+            height={FOTO_PORTADA.height}
             alt="Fotografía ilustrativa de pasta con pesto y jitomates"
             fetchPriority="high"
           />

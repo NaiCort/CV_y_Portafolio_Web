@@ -1,4 +1,5 @@
 import { precargarPortada as precargarPortadaPsicologo } from "./giros/psicologo/portadas"
+import { precargarPortada as precargarPortadaPatio } from "./giros/restaurante/portada"
 
 // Carga diferida de cada demo y del cotizador. La usa App (rutas perezosas) y el CV, que precarga
 // la ruta al pasar el cursor o enfocarla para que la transición de entrada no muestre «Cargando…».
@@ -22,8 +23,9 @@ export const CARGAS = {
 
 export const precargar = (ruta) => CARGAS[ruta]?.().catch(() => {})
 
-// Foto principal de la ruta de entrada, pedida antes de que llegue el código de la demo (V4.10.5,
-// docs/RENDIMIENTO.md). Solo al cargar la página: al navegar desde el CV, el código ya se precargó.
-// Las demás demos la agregan en su entrega de V4.10 si su medición lo pide.
-const PORTADAS = { "/psicologo": precargarPortadaPsicologo }
-export const precargarPortada = (ruta) => PORTADAS[`/${ruta.split("/")[1]}`]?.()
+// Foto principal de la página de entrada, pedida antes de que llegue el código de la demo (V4.10.5,
+// docs/RENDIMIENTO.md). Solo al cargar la página y solo en la portada de cada demo (la ruta exacta):
+// en las demás páginas el elemento principal suele ser el título. Al navegar desde el CV, el código
+// ya se precargó. Las demás demos la agregan en su entrega de V4.10 si su medición lo pide.
+const PORTADAS = { "/psicologo": precargarPortadaPsicologo, "/restaurante": precargarPortadaPatio }
+export const precargarPortada = (ruta) => PORTADAS[ruta.replace(/\/+$/, "") || "/"]?.()

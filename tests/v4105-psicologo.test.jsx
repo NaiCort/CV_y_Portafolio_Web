@@ -150,7 +150,8 @@ describe("V4.10.5: precarga de la foto de portada", () => {
       precargarPortada("/psicologo")
     }
     localStorage.setItem("demo-psicologo-theme", "neblina")
-    for (const ruta of ["/", "/cotizador", "/restaurante", "/psicologia"]) precargarPortada(ruta)
+    for (const ruta of ["/", "/cotizador", "/restaurante/carta", "/psicologia"])
+      precargarPortada(ruta)
     expect(precargas()).toHaveLength(0)
   })
 })
