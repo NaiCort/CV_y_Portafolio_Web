@@ -70,7 +70,7 @@ Patio 12 lo usa y, con él, el estilo corregido: su estilo de color tenía los m
   - registro con huella en `public/restaurante/fotos-origen-v4.10.6.json`.
 
   Recorrer la carta en el teléfono baja 887 KB de fotos en lugar de 2.8 MB.
-- **Carga por página:** precarga de la foto principal al entrar directo a Inicio y a Conócenos. Conócenos bajó de 4.4 a 2.2 s, e Inicio queda en 2.2 s (sin la etiqueta, su foto pasó a ser el elemento principal).
+- **Carga por página:** precarga de la foto principal al entrar directo a Inicio y a Conócenos. Conócenos bajó de 4.4 a 2.2 o 2.3 s, e Inicio queda en 2.2 s (sin la etiqueta, su foto pasó a ser el elemento principal).
 - **Movimiento «servir la mesa»:**
   - el sello «12» se estampa y la foto de portada se asienta, sin fundirse;
   - botones y datos de la portada llegan después del título;
