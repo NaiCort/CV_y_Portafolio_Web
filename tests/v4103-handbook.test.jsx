@@ -21,8 +21,14 @@ describe("V4.10.3: seguridad (G4, docs/SEGURIDAD.md)", () => {
     expect(encabezados["Permissions-Policy"]).toContain("geolocation=(self)")
     expect(encabezados["Content-Security-Policy"]).toContain("frame-ancestors 'none'")
   })
+  it("la política de contenido completa va aplicada, no solo en reporte (V4.10.4, DEC-020)", () => {
+    expect(encabezados["Content-Security-Policy-Report-Only"]).toBeUndefined()
+    const csp = encabezados["Content-Security-Policy"]
+    for (const directiva of ["default-src 'self'", "object-src 'none'", "base-uri 'self'"])
+      expect(csp).toContain(directiva)
+  })
   it("la política de contenido no permite scripts en línea ni eval", () => {
-    const csp = encabezados["Content-Security-Policy-Report-Only"]
+    const csp = encabezados["Content-Security-Policy"]
     const scripts = csp.split(";").find((d) => d.trim().startsWith("script-src"))
     expect(scripts.trim()).toBe("script-src 'self'")
     expect(csp).not.toContain("unsafe-eval")

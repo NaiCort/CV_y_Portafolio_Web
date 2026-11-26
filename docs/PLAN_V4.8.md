@@ -48,7 +48,8 @@ Cada etapa lleva su propia versión menor (decisión de Ian del 25/11/2026): V4.
      - registro de decisiones, trazabilidad, seguridad, despliegue y licencias.
 
      El número es la propuesta DEC-019 de `docs/DECISIONES.md`.
-   - Patio 12, desde V4.10.4;
+   - V4.10.4, la política de contenido completa pasa de «solo en reporte» a aplicada (DEC-020, aprobada por Ian el 25/11/2026);
+   - Patio 12, desde V4.10.5;
    - Ladera;
    - Brío;
    - Rosales y Vértice;

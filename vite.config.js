@@ -28,9 +28,10 @@ const encabezados = (vercel.headers ?? []).map((h) => ({
 
 // En la vista previa, como en Vercel (vercel.json): la portada usa el HTML prerenderizado y las
 // demás rutas el HTML vacío de la aplicación (dist/app.html, scripts/prerender.mjs), con los mismos
-// encabezados de seguridad y caché (V4.10.3). Con CSP_ESTRICTA=1, la política de contenido que en
-// producción va «solo en reporte» se aplica de verdad, para comprobar en las pruebas de navegador
-// que no bloquea nada antes de activarla (docs/SEGURIDAD.md).
+// encabezados de seguridad y caché (V4.10.3). Desde V4.10.4 la política de contenido completa va
+// aplicada en vercel.json. Si algún día se prueba un cambio como «solo en reporte», CSP_ESTRICTA=1
+// lo aplica de verdad aquí, para ver en las pruebas de navegador que no bloquea nada antes de
+// activarlo (docs/SEGURIDAD.md).
 const rutasDeAplicacion = {
   name: "rutas-de-aplicacion",
   configurePreviewServer(server) {
