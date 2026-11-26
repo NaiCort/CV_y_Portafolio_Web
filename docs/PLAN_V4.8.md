@@ -49,7 +49,8 @@ Cada etapa lleva su propia versión menor (decisión de Ian del 25/11/2026): V4.
 
      El número es la propuesta DEC-019 de `docs/DECISIONES.md`.
    - V4.10.4, la política de contenido completa pasa de «solo en reporte» a aplicada (DEC-020, aprobada por Ian el 25/11/2026);
-   - Patio 12, desde V4.10.5;
+   - V4.10.5, Psicólogo: transición al cambiar de tema con vuelta arriba (DEC-025), figura nueva de «Respira conmigo» (DEC-026), más animaciones (DEC-027) y mapa sin advertencias (DEC-028), a pedido de Ian (26/11/2026); además, la portada de Neblina carga a tiempo (`docs/RENDIMIENTO.md`);
+   - Patio 12, desde V4.10.6;
    - Ladera;
    - Brío;
    - Rosales y Vértice;
@@ -67,6 +68,10 @@ Cada etapa lleva su propia versión menor (decisión de Ian del 25/11/2026): V4.
    7. Metadatos propios por ruta.
    8. Sin aclaraciones repetidas (DEC-005).
    9. Su matriz en `docs/TRAZABILIDAD.md` y, en `VALIDACION`, la tabla de puertas G0 a G7.
+   10. Más y mejores animaciones (DEC-027), con Psicólogo V4.10.5 como modelo: entrada de la portada, gesto propio por tema, microinteracciones y apertura suave de lo plegable, siempre con su versión de movimiento reducido. Al cargar, no se funde lo que puede ser el elemento principal, sea foto o texto (`RENDIMIENTO.md`).
+   11. Si sus temas cambian la estructura (Taller: Rosales y Vértice), transición con vuelta arriba al cambiar de tema (DEC-025).
+   12. Si tiene mapa, el estilo corregido de `src/lib/estiloMapa.js` (DEC-028).
+   13. Medir la carga (`npm run audit:cwv`) y los textos encimados (`npm run audit:encimados`) en cada tema o variante, no solo en la de entrada. `DEMO_STORAGE="clave=valor"` fija el tema antes de cargar. En V4.10.5, Neblina tardaba 3.9 s y no se había visto porque solo se medía Sala con luz.
 
    Patio 12, además:
    - sacar su estado del paquete principal (DEC-021);

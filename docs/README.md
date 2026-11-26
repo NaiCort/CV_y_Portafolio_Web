@@ -60,6 +60,6 @@ Cada entrega tiene dos documentos:
 | V4.7 | 22 | Revista |
 | V4.8 | 8 | CV y portafolio |
 | V4.9 | 6 | Cotizador |
-| V4.10 | en curso | Demos con el cotizador; V4.10.2, Psicólogo; V4.10.3, adopción del handbook |
+| V4.10 | en curso | Demos con el cotizador; V4.10.2, Psicólogo; V4.10.3, adopción del handbook; V4.10.4, política de contenido aplicada; V4.10.5, cambio de tema, «Respira conmigo» y animaciones de Psicólogo |
 
 El resumen de cada versión está en `CHANGELOG.md`, en la raíz.

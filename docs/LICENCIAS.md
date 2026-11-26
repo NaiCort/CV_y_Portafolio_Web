@@ -13,7 +13,7 @@ Regla GEN-013 del Digital Development Handbook (adopción en `HANDBOOK.md`). Act
 | Dónde | Origen y licencia | Registro | Atribución visible |
 | --- | --- | --- | --- |
 | CV | Foto de Ian y capturas de las propias demos | — | — |
-| Psicólogo | Unsplash, licencia de Unsplash (6 fotos, cada una en dos tamaños) | `public/psicologo/medios-origen.json` (nuevo en V4.10.3) | Pie de la página |
+| Psicólogo | Unsplash, licencia de Unsplash (6 fotos en dos tamaños; la del bosque, en tres desde V4.10.5) | `public/psicologo/medios-origen.json` (nuevo en V4.10.3) | Pie de la página |
 | Patio 12 | Unsplash, licencia de Unsplash | `public/restaurante/fotos-origen-v4.2.1.json`, `-v4.2.4.json` y `-v4.2.5.json`; `docs/RECURSOS_RESTAURANTE.md` | `public/restaurante/creditos-fotos.html` |
 | Ladera | Wikimedia Commons: CC0, dominio público, CC BY 3.0 y CC BY-SA 2.0, 3.0 y 4.0 | `public/cafe/fotos/fotos-origen.json`; `docs/RECURSOS_CAFE.md` | `/cafe/creditos` |
 | Brío | Wikimedia Commons, fotos y videos: CC BY 3.0, CC BY-SA 4.0 y dominio público | `public/gimnasio/medios-origen.json` | Créditos de la demo |

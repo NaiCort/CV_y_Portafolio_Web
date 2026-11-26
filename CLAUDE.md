@@ -89,7 +89,8 @@ V4.10.4), y cualquier aviso de esa política hace fallar la suite. Para probar u
 política, se agrega primero «solo en reporte» y se prueba con `CSP_ESTRICTA=1`, que lo aplica de
 verdad en la vista previa. Herramientas de la pasada final:
 `npm run audit:encimados -- /ruta1,/ruta2` y `npm run audit:cwv -- /ruta` (contra
-`vite preview` en 4173). Chromium y Playwright ya están instalados en el entorno de nube.
+`vite preview` en 4173), una vez por tema o variante: `DEMO_STORAGE=clave=valor` la fija antes de
+cargar (p. ej. `DEMO_STORAGE=demo-psicologo-theme=neblina`). Chromium y Playwright ya están instalados en el entorno de nube.
 
 ## Diseño: Guía de identidad y calidad visual v1.1
 
@@ -126,8 +127,11 @@ con tres temas intercambiables que comparten el contenido de `src/giros/psicolog
 sesión, zona horaria y recordatorio por WhatsApp de ejemplo), «Respira conmigo», ayuda en crisis con
 teléfonos reales, cédula verificable, sin testimonios ni autoevaluaciones ni datos de salud en
 formularios. Cada tema se cotiza con su identificador (`psicologo-sala`, `psicologo-neblina`,
-`psicologo-cuaderno`). Leer `docs/FICHA_PSICOLOGO.md` antes de tocar `src/giros/psicologo/`. Pruebas
-de navegador en `npm run test:browser`. Pendiente del visto bueno de Ian en la vista previa.
+`psicologo-cuaderno`). Desde V4.10.5: al cambiar de tema, un velo y vuelta arriba; «Respira conmigo»
+con un disco que nace, crece, se encoge y se apaga; portada animada, plegables suaves y mapa sin
+advertencias (`src/lib/estiloMapa.js`). Leer `docs/FICHA_PSICOLOGO.md` antes de tocar
+`src/giros/psicologo/`. Pruebas de navegador en `npm run test:browser`. Pendiente del visto bueno de
+Ian en la vista previa.
 
 ## Estado de Café
 
@@ -224,3 +228,8 @@ Se resuelven dentro de la entrega de cada demo (ver `docs/PLAN_V4.8.md`).
 8. Dependencias: en V4.10.3 se actualizaron vite, vitest, undici y zod, y Tailwind pasó a
    `devDependencies`; producción queda sin avisos. Quedan 3 moderados de `minimatch` dentro de
    ESLint, sin versión compatible: actualizar cuando la haya.
+9. **Animaciones (DEC-027, pedido de Ian del 26/11/2026):** más y mejores en cada demo, con Psicólogo
+   V4.10.5 como modelo; en **Taller**, además, transición con vuelta arriba al cambiar entre Rosales
+   y Vértice (DEC-025). En Brío no hace falta: solo cambia la paleta.
+10. **Mapas de Patio 12, Brío y Taller:** adoptar el estilo corregido de `src/lib/estiloMapa.js`
+   (DEC-028) para que la consola quede sin advertencias.

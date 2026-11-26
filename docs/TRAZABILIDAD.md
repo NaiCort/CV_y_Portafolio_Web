@@ -54,7 +54,10 @@ Las demás demos ya tienen pruebas (`tests/` y `scripts/verify-*.mjs`). Su matri
 | RF-P05 | Sin testimonios ni reseñas inventadas (DEC-014) | `piezas.jsx` (`Resenas`) | `verify-psicologo.mjs` («no muestra opiniones inventadas») | Aprobado |
 | RF-P06 | Tres temas intercambiables que se recuerdan | `PsicologoApp.jsx` y `themeStorage.js` | `verify-psicologo.mjs` («Cambio de tema y recuerdo»); `themes-routes.test.jsx`; `storage.test.js` | Aprobado |
 | RF-P07 | Fotos y tipografías servidas desde el sitio | `public/psicologo/` | `themes-routes.test.jsx`; `verify-psicologo.mjs` | Aprobado |
-| RF-P08 | «Respira conmigo» solo corre cuando el visitante lo pide | `components/Respira.jsx` | `verify-psicologo.mjs` | Aprobado |
+| RF-P08 | «Respira conmigo» solo corre cuando el visitante lo pide, y su figura nace, crece, se encoge y se apaga con el conteo (DEC-026) | `components/Respira.jsx` | `verify-psicologo.mjs` («Velo, respiración y mapa»); `tests/v4105-psicologo.test.jsx` | Aprobado |
+| RF-P09 | Al cambiar de tema, la página vuelve arriba; con movimiento, a través de un velo con el nombre del tema (DEC-025) | `PsicologoApp.jsx` (`useCambioDeTema`) | `verify-psicologo.mjs` («Cambio de tema y recuerdo» y «Velo, respiración y mapa»); `v4105-psicologo.test.jsx` | Aprobado |
+| RNF-P01 | El mapa del consultorio no deja advertencias en la consola (DEC-028) | `src/lib/estiloMapa.js` y `components/mapaMotor.js` | `verify-psicologo.mjs`; `v4105-psicologo.test.jsx` | Aprobado |
+| RNF-P02 | La portada de cada tema carga en 2.5 s o menos (laboratorio de `RENDIMIENTO.md`) | `portadas.js` (tamaños de la foto y precarga de Neblina); `psicologo.css` (título y párrafo de entrada sin fundido) | `npm run audit:cwv` por tema (V4.10.5); `v4105-psicologo.test.jsx` (la precarga pide la misma foto que dibuja el tema) | Aprobado |
 
 ## Discrepancias y pendientes
 

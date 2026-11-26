@@ -28,7 +28,7 @@ Activarla no abre ningún problema de seguridad. Al contrario, el navegador deja
 ## Implementado, verificado y desplegado
 
 - Implementado y verificado en pruebas: sí (ver [VALIDACION_V4.10.4.md](VALIDACION_V4.10.4.md)).
-- Desplegado en producción: no; espera la revisión de Ian.
+- Desplegado en producción: sí. Ian lo integró en `main` (pull request #90, 25/11/2026). Luego revisó en InPrivate la consola del sitio publicado en el CV, el cotizador, Psicólogo, Brío y Taller: ningún aviso de la política de contenido. Quedaban advertencias del estilo de los mapas, que se corrigen en V4.10.5.
 
 ## Pendiente
 
