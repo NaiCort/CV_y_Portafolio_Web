@@ -8,9 +8,11 @@ import {
 } from "maplibre-gl"
 import workerUrl from "maplibre-gl/dist/maplibre-gl-worker.mjs?worker&url"
 import "maplibre-gl/dist/maplibre-gl.css"
+import { completarImagenes, corregirEstilo } from "../../../lib/estiloMapa"
 
 // Motor del mapa del consultorio: MapLibre con OpenFreeMap (sin clave), igual que en Taller, Brío y
-// Patio 12. Se importa en diferido desde Mapa.jsx.
+// Patio 12. Se importa en diferido desde Mapa.jsx. Desde V4.10.5, el estilo se corrige antes de
+// aplicarse (src/lib/estiloMapa.js) para que la consola quede sin advertencias.
 setWorkerUrl(workerUrl)
 
 const ESTILOS = {
@@ -28,7 +30,6 @@ export function crearMapa(
   puntos.forEach((p) => limites.extend(p.coordenadas))
   const map = new Map({
     container: contenedor,
-    style: ESTILOS[estilo],
     ...(uno
       ? { center: puntos[0].coordenadas, zoom: 15 }
       : {
@@ -50,6 +51,10 @@ export function crearMapa(
       "CooperativeGesturesHandler.MacHelpText": "Usa ⌘ y la rueda para acercar el mapa",
       "CooperativeGesturesHandler.MobileHelpText": "Usa dos dedos para mover el mapa",
     },
+  })
+  completarImagenes(map)
+  map.setStyle(ESTILOS[estilo], {
+    transformStyle: (_previo, siguiente) => corregirEstilo(siguiente),
   })
   map.addControl(new NavigationControl({ showCompass: false }), "top-right")
   map.addControl(new AttributionControl({ compact: true }), "bottom-left")
