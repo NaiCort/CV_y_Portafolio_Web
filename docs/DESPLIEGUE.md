@@ -49,9 +49,9 @@ curl -sI https://cv-y-portafolio-web.vercel.app/ | grep -iE "content-security|x-
   3. mientras tanto, se vuelve a la publicación anterior (ver «Volver atrás»).
 - **Extensiones del navegador:** las extensiones pueden dejar errores propios en la consola, como «Unchecked runtime.lastError». Para descartarlas, la revisión se hace en una ventana InPrivate.
 
-**Automatizar esta comprobación** contra la vista previa en cada pull request es DEC-022. Queda propuesta porque necesita el enlace de la vista previa dentro de GitHub y no se puede probar desde este entorno.
+**Automatizar esta comprobación** contra la vista previa en cada pull request era DEC-022. Quedó descartada por ahora: Ian revisa la vista previa y avisa si hay problemas (26/11/2026).
 
-## Decisiones abiertas
+## Decisiones
 
-- DEC-009: alojamiento comercial (Vercel Pro o Cloudflare Pages) antes de recibir solicitudes reales.
-- DEC-022: prueba de humo automática en cada pull request.
+- **DEC-009:** el portafolio se queda en Vercel y, antes de recibir solicitudes reales, pasa a Vercel Pro (el plan gratuito es solo para uso no comercial).
+- **DEC-029 a DEC-031:** hospedaje de los clientes, a elegir y explicado para ellos; el dominio siempre es del cliente; plan de mantenimiento web opcional. Entran al cotizador en V4.11.

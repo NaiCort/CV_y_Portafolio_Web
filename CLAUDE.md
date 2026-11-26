@@ -130,8 +130,8 @@ formularios. Cada tema se cotiza con su identificador (`psicologo-sala`, `psicol
 `psicologo-cuaderno`). Desde V4.10.5: al cambiar de tema, un velo y vuelta arriba; «Respira conmigo»
 con un disco que nace, crece, se encoge y se apaga; portada animada, plegables suaves y mapa sin
 advertencias (`src/lib/estiloMapa.js`). Leer `docs/FICHA_PSICOLOGO.md` antes de tocar
-`src/giros/psicologo/`. Pruebas de navegador en `npm run test:browser`. Pendiente del visto bueno de
-Ian en la vista previa.
+`src/giros/psicologo/`. Pruebas de navegador en `npm run test:browser`. Ian revisó la vista previa e
+integró V4.10.5 (pull request #91, 26/11/2026).
 
 ## Estado de Café
 

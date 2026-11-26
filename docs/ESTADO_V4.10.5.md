@@ -63,7 +63,7 @@ Además, al medir la carga de cada tema por separado apareció un problema que v
 ## Implementado, verificado y desplegado
 
 - Implementado y verificado en pruebas: sí (ver [VALIDACION_V4.10.5.md](VALIDACION_V4.10.5.md)).
-- Desplegado en producción: no; espera la revisión de Ian.
+- Desplegado en producción: sí. Ian revisó la vista previa y lo integró en `main` (pull request #91, 26/11/2026).
 
 ## Pendiente
 
