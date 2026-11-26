@@ -12,6 +12,18 @@
   font-weight: 400 700;
   font-display: swap;
 }
+/* Respaldos con el ancho medido en Chromium contra Times New Roman y Arial (o sus equivalentes
+   métricos Liberation), para que el texto no salte cuando llega la fuente (V4.10.6, pendiente 7). */
+@font-face {
+  font-family: "Patio Bitter Respaldo";
+  src: local("Times New Roman"), local("Liberation Serif"), local("Tinos");
+  size-adjust: 114.1%;
+}
+@font-face {
+  font-family: "Patio Sans Respaldo";
+  src: local("Arial"), local("Liberation Sans"), local("Arimo");
+  size-adjust: 102.1%;
+}
 
 /* Paleta, radios y tipografía de Patio 12 (V4.10.6, docs/FICHA_RESTAURANTE.md). Van en :root
    porque los diálogos se abren fuera de .restaurant-root; el prefijo --r- es solo de esta demo.
@@ -36,13 +48,15 @@
   --r-foco: #1260bc;
   --r-radio: 4px;
   --r-radio-chico: 3px;
+  --r-letra-titulo: "Patio Bitter", "Patio Bitter Respaldo", Georgia, serif;
+  --r-letra-texto: "Patio Sans", "Patio Sans Respaldo", sans-serif;
 }
 
 .restaurant-root {
   padding-top: 44px;
   background: var(--r-papel);
   color: var(--r-tinta);
-  font-family: "Patio Sans", sans-serif;
+  font-family: var(--r-letra-texto);
   font-size: 16px;
   line-height: 1.6;
 }
@@ -51,7 +65,7 @@
 .restaurant-root h3,
 .restaurant-modal h2,
 .restaurant-modal h3 {
-  font-family: "Patio Bitter", Georgia, serif;
+  font-family: var(--r-letra-titulo);
   line-height: 1.15;
   font-weight: 600;
 }
@@ -102,13 +116,13 @@
   align-items: center;
   gap: 10px;
   line-height: 0.95;
-  font-family: "Patio Bitter", Georgia, serif;
+  font-family: var(--r-letra-titulo);
   font-size: 31px;
   letter-spacing: -0.07em;
 }
 .r-brand small {
   display: block;
-  font-family: "Patio Sans", sans-serif;
+  font-family: var(--r-letra-texto);
   font-size: 10px;
   letter-spacing: 0.12em;
   margin-top: 8px;
@@ -265,7 +279,7 @@
   font-size: 12px;
 }
 .r-photo-caption strong {
-  font-family: "Patio Bitter", Georgia, serif;
+  font-family: var(--r-letra-titulo);
   font-size: 20px;
   line-height: 1.2;
 }
@@ -585,7 +599,7 @@
   border-top: 1px solid #ffffff38;
 }
 .r-footer > a {
-  font-family: "Patio Bitter", Georgia, serif;
+  font-family: var(--r-letra-titulo);
   font-size: 28px;
   letter-spacing: -0.06em;
   min-height: 44px;
@@ -627,7 +641,7 @@
   background: var(--r-papel);
   color: var(--r-tinta);
   border: 1px solid var(--r-suave);
-  font-family: "Patio Sans", sans-serif;
+  font-family: var(--r-letra-texto);
 }
 .restaurant-modal h2 {
   font-size: 24px;
@@ -1367,7 +1381,7 @@
 }
 .r-service-card strong {
   display: block;
-  font-family: "Patio Bitter", Georgia, serif;
+  font-family: var(--r-letra-titulo);
   font-size: 22px;
 }
 .r-service-card small {
@@ -1544,7 +1558,7 @@
   letter-spacing: 0.06em;
 }
 .r-seal strong {
-  font-family: "Patio Bitter", Georgia, serif;
+  font-family: var(--r-letra-titulo);
   font-size: 54px;
   font-weight: 600;
   letter-spacing: -0.08em;
@@ -1597,9 +1611,7 @@
 }
 .r-menu-number {
   display: block;
-  font:
-    11px/1.5 "Patio Sans",
-    sans-serif;
+  font: 11px/1.5 var(--r-letra-texto);
   letter-spacing: 0.1em;
   color: var(--r-oxido);
   margin-bottom: 7px;
@@ -1680,7 +1692,7 @@
   background: var(--r-crema);
 }
 .r-combo > legend {
-  font-family: "Patio Bitter", Georgia, serif;
+  font-family: var(--r-letra-titulo);
   font-size: 21px;
   padding: 0 7px;
 }
@@ -1703,16 +1715,11 @@
   font-size: 14px;
 }
 .r-config-price > strong {
-  font:
-    26px/1.4 "Patio Bitter",
-    Georgia,
-    serif;
+  font: 26px/1.4 var(--r-letra-titulo);
   white-space: nowrap;
 }
 .r-config-price small {
-  font:
-    11px/1.5 "Patio Sans",
-    sans-serif;
+  font: 11px/1.5 var(--r-letra-texto);
   color: var(--r-suave);
 }
 .r-tracking-steps {
@@ -1770,7 +1777,7 @@
   width: min(60rem, calc(100vw - 2rem));
 }
 .r-location-intro {
-  font-family: "Patio Bitter", Georgia, serif;
+  font-family: var(--r-letra-titulo);
   font-size: clamp(23px, 3vw, 34px);
   line-height: 1.2;
   max-width: 550px;
@@ -1875,7 +1882,7 @@
   background: radial-gradient(circle at 50% 50%, #fff7, #e8eddf);
 }
 .r-map-placeholder strong {
-  font-family: "Patio Bitter", Georgia, serif;
+  font-family: var(--r-letra-titulo);
   font-size: 20px;
 }
 .r-map-placeholder > p {
@@ -1913,9 +1920,7 @@
   border: 2px solid var(--r-papel);
   border-radius: 50%;
   color: var(--r-papel);
-  font:
-    700 13px/1 "Patio Sans",
-    sans-serif;
+  font: 700 13px/1 var(--r-letra-texto);
   box-shadow: 0 2px 7px #0004;
 }
 .r-map-destination {
@@ -1929,7 +1934,7 @@
   z-index: 1;
 }
 .r-map-canvas .maplibregl-control-container {
-  font-family: "Patio Sans", sans-serif;
+  font-family: var(--r-letra-texto);
 }
 .r-map-canvas .maplibregl-ctrl-attrib {
   color: #1c2920;
@@ -2167,7 +2172,7 @@
   z-index: 1;
 }
 .r-local-postcard strong {
-  font-family: "Patio Bitter", Georgia, serif;
+  font-family: var(--r-letra-titulo);
   font-size: clamp(28px, 3vw, 43px);
   font-weight: 500;
   letter-spacing: -0.05em;
@@ -2388,7 +2393,7 @@
   border-radius: 50%;
   background: var(--r-amarillo);
   color: var(--r-tinta);
-  font-family: "Patio Bitter", Georgia, serif;
+  font-family: var(--r-letra-titulo);
   font-size: 25px;
 }
 .r-panel-page {
@@ -2860,9 +2865,7 @@
   margin-bottom: 14px;
 }
 .r-state-group > h3 > span {
-  font:
-    11px/1.5 "Patio Sans",
-    sans-serif;
+  font: 11px/1.5 var(--r-letra-texto);
   letter-spacing: 0;
   white-space: nowrap;
   color: var(--r-suave);

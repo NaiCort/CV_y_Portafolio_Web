@@ -39,7 +39,7 @@ export default function ItemPicker({
       title={product.name}
       onClose={onClose}
       className="restaurant-modal"
-      fontFamily="'Patio Sans', sans-serif"
+      fontFamily="var(--r-letra-texto)"
       radius={4}
     >
       <PhotoGallery product={product} />

@@ -473,8 +473,8 @@ export default function RestauranteApp() {
             accentColor="#edd068"
             backgroundColor="#203b2e"
             textColor="#ffffff"
-            fontFamily="Patio Sans, sans-serif"
-            headingFontFamily="Patio Bitter, serif"
+            fontFamily="var(--r-letra-texto)"
+            headingFontFamily="var(--r-letra-titulo)"
             radius={4}
           />
         )}
@@ -609,7 +609,7 @@ export default function RestauranteApp() {
         isOpen={panel === "whatsapp"}
         onClose={close}
         businessName="Patio 12"
-        fontFamily="Patio Sans, sans-serif"
+        fontFamily="var(--r-letra-texto)"
         radius={4}
         messages={[
           "Hola, ¿cómo puedo reservar una mesa?",
