@@ -1,4 +1,5 @@
 import { CONTACTO_INTRO, PERSONA, PORTADA, SOBRE_MI } from "../data/consultorio"
+import { PORTADAS } from "../portadas"
 import Contacto from "../components/Contacto"
 import Respira from "../components/Respira"
 import {
@@ -60,14 +61,7 @@ export default function Neblina({ onAgendar, onPrivacidad, onPedirInfo, temaCont
       <Cabecera marca="Valeria Romero · Psicología" onAgendar={() => onAgendar("llamada")} />
       <main id="contenido" tabIndex={-1}>
         <section id="inicio" className="p-portada" aria-labelledby="inicio-titulo">
-          <Foto
-            nombre="bosque-niebla"
-            anchos={[1000, 2000]}
-            sizes="100vw"
-            alt=""
-            className="p-portada-foto"
-            prioridad
-          />
+          <Foto {...PORTADAS.neblina} alt="" className="p-portada-foto" prioridad />
           <div className="p-wrap p-portada-in p-portada-carga">
             <h1 id="inicio-titulo">{PORTADA.titulo.neblina}</h1>
             <p className="p-entrada">{PORTADA.texto}</p>

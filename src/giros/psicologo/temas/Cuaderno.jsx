@@ -1,4 +1,5 @@
 import { CONTACTO_INTRO, PERSONA, PORTADA } from "../data/consultorio"
+import { PORTADAS } from "../portadas"
 import Contacto from "../components/Contacto"
 import Respira from "../components/Respira"
 import {
@@ -78,9 +79,7 @@ export default function Cuaderno({ onAgendar, onPrivacidad, onPedirInfo, temaCon
             </div>
             <figure className="p-polaroid">
               <Foto
-                nombre="retrato"
-                anchos={[500, 900]}
-                sizes="(min-width: 900px) 300px, 240px"
+                {...PORTADAS.cuaderno}
                 alt="Retrato de una mujer sonriente con saco gris, sentada junto a una ventana"
                 prioridad
               />
