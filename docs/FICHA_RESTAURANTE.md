@@ -17,24 +17,33 @@ Se siente como el pizarrón de una fonda bien cuidada:
 
 ## Paleta
 
-Desde V4.10.6, cada color es una variable de `.restaurant-root` (`restaurante.css`).
+Desde V4.10.6, cada color de la paleta es una variable en `:root` (`restaurante.css`). Van en `:root` porque los diálogos se abren fuera de `.restaurant-root`; el prefijo `--r-` es solo de esta demo.
 
 | Papel | Variable | Valor | Uso |
 | --- | --- | --- | --- |
 | Dominante | `--r-amarillo` | `#edd068` | Barra de navegación y portada. Es superficie, no texto |
+| Dominante claro | `--r-amarillo-claro` | `#fff4d1` | Avisos de espera |
 | Tinta | `--r-tinta` | `#203b2e` | Texto, botones principales, franja verde y la llamada comercial |
 | Tinta media | `--r-tinta-media` | `#315342` | Avisos de éxito y estados activos |
 | Texto secundario | `--r-suave` | `#526155` | Párrafos de apoyo y etiquetas |
 | Texto terciario | `--r-tenue` | `#85948a` | Notas pequeñas y conteos |
 | Fondo | `--r-papel` | `#ffffff` | Base de la página y de las tarjetas |
-| Fondo crema | `--r-crema` | `#fcfaf4` | Carta, páginas internas y franja del local |
+| Fondo crema | `--r-crema` | `#fcfaf4` | Fondo de las páginas |
+| Fondo arena | `--r-arena` | `#f4f3eb` | Franja del local y bloques de apoyo |
 | Fondo salvia | `--r-salvia` | `#edf2ec` | Bloques destacados (Conócenos, plan de hoy) |
 | Líneas | `--r-linea` | `#d1d8d2` | Filetes de 1 px |
+| Líneas medias | `--r-linea-media` | `#c5cec6` | Separadores de listas |
 | Líneas fuertes | `--r-linea-fuerte` | `#a7b6a9` | Bordes de campos y tarjetas |
 | Acento | `--r-oxido` | `#9c3b26` | Solo en piezas chicas de atención (números de los locales en la lista, el destino en el mapa, errores) |
 | Foco | `--r-foco` | `#1260bc` | Solo el anillo de foco del teclado |
 
 **Regla del acento:** el amarillo es la marca y nunca va como texto sobre blanco; el óxido no se usa en superficies grandes ni en títulos.
+
+**Lo que queda escrito en su regla:**
+- los colores de una sola vez: el fondo de cada tarjeta de local, el recibo y los trazos del mapa;
+- el contador flotante, con sus colores en `timer.css`, porque también se abre en una ventana aparte.
+
+El cambio a variables se comprobó con 18 capturas (9 escenas a 390 y 1280 px, con diálogos): todas idénticas, píxel por píxel.
 
 ## Tipografía
 
@@ -55,7 +64,7 @@ Desde V4.10.6, cada color es una variable de `.restaurant-root` (`restaurante.cs
 
 ## Forma, sombras y densidad
 
-- Radios de 3 a 4 px en botones, tarjetas y campos; círculos solo en el sello y los contadores.
+- Radios de 4 px (`--r-radio`) y 3 px (`--r-radio-chico`) en botones, tarjetas y campos; círculos solo en el sello y los contadores.
 - Casi sin sombras: filetes de 1 px. Solo flotan el contador y los avisos.
 - Densidad cómoda: títulos grandes, mucho aire alrededor y la carta en dos columnas en escritorio.
 
