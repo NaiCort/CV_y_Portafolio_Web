@@ -16,6 +16,19 @@ export const close = async (page) => {
 export const saved = (page) =>
   page.evaluate(() => JSON.parse(localStorage.getItem("patio12-demo-v1")))
 export async function audit(page) {
+  // V4.10.6: axe mide el contraste con la opacidad de ese momento, así que se espera a que terminen
+  // las animaciones y transiciones finitas de toda la página (las infinitas, como un indicador de
+  // carga, no cuentan). Con el movimiento de Patio 12, axe veía textos a medio aparecer.
+  await page.waitForFunction(
+    () =>
+      document
+        .getAnimations()
+        .every(
+          (a) => a.playState !== "running" || a.effect?.getComputedTiming().iterations === Infinity,
+        ),
+    null,
+    { timeout: 5000 },
+  )
   await page.waitForFunction(() =>
     [
       ...document.querySelectorAll(

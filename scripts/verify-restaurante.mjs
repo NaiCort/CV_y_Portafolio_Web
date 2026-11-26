@@ -370,4 +370,58 @@ await suite("restaurante", async ({ run, base, output }) => {
       await audit(page)
     },
   )
+  // V4.10.6: entrega de Patio 12 en V4.10 (docs/ESTADO_V4.10.6.md).
+  await run(
+    "V4.10.6: patrones, cotizador, privacidad, movimiento y mapa sin advertencias",
+    {
+      viewport: { width: 390, height: 844 },
+      reducedMotion: "no-preference",
+      isMobile: true,
+      hasTouch: true,
+    },
+    async ({ page }) => {
+      const avisos = []
+      page.on("console", (m) => {
+        if (/Expected value to be of type|could not be loaded/.test(m.text())) avisos.push(m.text())
+      })
+      await page.goto(`${base}/restaurante`)
+      const titulo = page.locator(".r-hero h1")
+      await titulo.waitFor()
+      // El título no se funde; el sello y la foto hacen su gesto.
+      assert.equal(await titulo.evaluate((h) => getComputedStyle(h).opacity), "1")
+      assert.equal(
+        await page.locator(".r-hero-seal").evaluate((s) => getComputedStyle(s).animationName),
+        "r-estampa",
+      )
+      assert.equal(await page.locator(".r-kicker, .r-sidebar-title").count(), 0)
+      const cotiza = page.getByRole("link", { name: "Cotiza un sitio como este" })
+      assert((await cotiza.getAttribute("href")).includes("demo=patio-12"))
+      // Las secciones de más abajo esperan y, al bajar, ninguna queda oculta.
+      assert((await page.locator("[data-entra].r-espera").count()) > 0)
+      for (let y = 0; y < 9000; y += 400) {
+        await page.evaluate((y) => window.scrollTo(0, y), y)
+        await page.waitForTimeout(80)
+      }
+      await page.waitForTimeout(500)
+      assert.equal(await page.locator("[data-entra].r-espera").count(), 0)
+      // Aviso de privacidad con su borrado.
+      await page.getByRole("button", { name: "Aviso de privacidad" }).click()
+      assert.deepEqual(await dialog(page).locator("h3").allTextContents(), [
+        "Lo que guarda en este navegador",
+        "Mapa y ubicación",
+        "Lo que pediría un restaurante real",
+      ])
+      await audit(page)
+      await button(dialog(page), "Entendido").click()
+      // Mapa del directorio, con el estilo corregido (DEC-028): sin advertencias en la consola.
+      await nav(page, "Locales")
+      await page.getByRole("button", { name: "Mostrar mapa interactivo" }).click()
+      await page.locator(".maplibregl-canvas").waitFor()
+      await page.waitForTimeout(3000)
+      assert((await page.locator(".maplibregl-marker").count()) > 0)
+      assert.deepEqual(avisos, [])
+      await bounds(page)
+      await audit(page)
+    },
+  )
 })
