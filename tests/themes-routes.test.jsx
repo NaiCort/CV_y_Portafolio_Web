@@ -85,9 +85,9 @@ describe("Psicólogo, tres temas (V4.10.2)", () => {
     expect(document.querySelector("h1").textContent).toBe("Esta página no existe")
     await click(document.querySelector('a[href="/"]'))
     // Desde V4.10.6 el CV llega en su propio trozo, como las demos.
-    await vi.waitFor(() =>
-      expect(document.querySelector("h1").textContent).toBe("Ian Habid Aldana Martínez"),
-    )
-    expect(document.title).toContain("CV y portafolio")
+    await vi.waitFor(() => {
+      expect(document.querySelector("h1").textContent).toBe("Ian Habid Aldana Martínez")
+      expect(document.title).toContain("CV y portafolio")
+    })
   })
 })

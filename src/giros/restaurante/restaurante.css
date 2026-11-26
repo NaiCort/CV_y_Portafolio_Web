@@ -1601,14 +1601,6 @@
   border-bottom: 1px solid var(--r-linea);
   margin-bottom: 55px;
 }
-.r-food-photo img {
-  transition: transform 350ms ease;
-}
-@media (hover: hover) {
-  .r-food-photo:hover img {
-    transform: scale(1.035);
-  }
-}
 .r-menu-number {
   display: block;
   font: 11px/1.5 var(--r-letra-texto);
@@ -2513,22 +2505,6 @@
 }
 
 /* V4.2.4: respuesta visual breve; el estado de la visita vive fuera de las páginas. */
-@keyframes r-page-enter {
-  from {
-    transform: translateY(6px);
-  }
-  to {
-    transform: none;
-  }
-}
-@keyframes r-results-enter {
-  from {
-    transform: translateY(4px);
-  }
-  to {
-    transform: none;
-  }
-}
 @keyframes r-photo-next {
   from {
     opacity: 0.4;
@@ -2561,20 +2537,6 @@
     transform: scale(1);
   }
 }
-@keyframes r-notice-enter {
-  from {
-    transform: translateY(8px);
-  }
-  to {
-    transform: none;
-  }
-}
-.r-page-content {
-  animation: r-page-enter 200ms ease-out;
-}
-.r-menu-results {
-  animation: r-results-enter 160ms ease-out;
-}
 .r-gallery-next {
   animation: r-photo-next 180ms ease-out;
 }
@@ -2584,9 +2546,6 @@
 .r-cart-updated {
   animation: r-cart-arrival 320ms ease-out;
 }
-.r-notice-card {
-  animation: r-notice-enter 180ms ease-out;
-}
 .r-notice-card > svg {
   flex-shrink: 0;
   color: var(--r-tinta-media);
@@ -2594,14 +2553,141 @@
 .r-notice-success {
   border-left: 4px solid var(--r-tinta-media);
 }
+
+/* ---------- Movimiento de V4.10.6: servir la mesa (docs/FICHA_RESTAURANTE.md) ----------
+   Las cosas se asientan, como un plato puesto en la mesa: ease-out, de 200 a 300 ms y desde
+   escala 0.95. Nada sube desde abajo. El título, el párrafo de entrada y las fotos principales no
+   se funden: el navegador no da por pintado lo que se funde hasta que termina de aparecer, y eso
+   retrasaría la carga (docs/RENDIMIENTO.md). */
+@keyframes r-asienta {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+}
+@keyframes r-aparece {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes r-estampa {
+  from {
+    opacity: 0;
+    transform: rotate(-16deg) scale(1.3);
+  }
+}
+@keyframes r-acomoda {
+  from {
+    transform: scale(1.04);
+  }
+}
+/* Portada: la foto se acomoda sin cambiar de opacidad, el sello se estampa y los botones y datos
+   llegan después del título. */
+.r-hero-photo {
+  overflow: hidden;
+}
+.r-hero-photo > img {
+  animation: r-acomoda 300ms ease-out both;
+}
+.r-hero-seal {
+  animation: r-estampa 300ms ease-out 180ms both;
+}
+.r-photo-caption {
+  animation: r-asienta 260ms ease-out 260ms both;
+}
+.r-hero-actions,
+.r-hero-facts {
+  animation: r-asienta 260ms ease-out both;
+}
+.r-hero-actions {
+  animation-delay: 70ms;
+}
+.r-hero-facts {
+  animation-delay: 140ms;
+}
+/* Secciones que entran a la pantalla (RestauranteApp, useEntradas). */
+[data-entra] {
+  transition:
+    opacity 300ms ease-out var(--r-retraso, 0ms),
+    transform 300ms ease-out var(--r-retraso, 0ms);
+}
+[data-entra].r-espera {
+  opacity: 0;
+  transform: scale(0.95);
+}
+/* Resultados de la carta y avisos: se asientan en el lugar. */
+.r-menu-results {
+  animation: r-aparece 160ms ease-out;
+}
+.r-notice-card {
+  animation: r-asienta 200ms ease-out;
+}
+/* Al pasar el cursor, la foto se acerca un poco al plato (solo con ratón: en el teléfono, el
+   toque dejaría la foto acercada). */
+.r-food-photo img,
+.r-menu-item .r-gallery-frame img {
+  transition: transform 260ms ease-out;
+}
+@media (hover: hover) {
+  .r-food-photo:hover img,
+  .r-menu-item:hover .r-gallery-frame img {
+    transform: scale(1.03);
+  }
+}
+/* Los botones ceden un poco al presionarlos (más específico que la transición general de los
+   botones, al principio de este archivo). */
+:is(.restaurant-root, .restaurant-modal) :is(.r-button, .r-secondary-button) {
+  transition:
+    background-color 160ms,
+    color 160ms,
+    transform 150ms ease-out;
+}
+.r-button:active:not(:disabled),
+.r-secondary-button:active:not(:disabled) {
+  transform: scale(0.97);
+}
+/* Plegables que se abren con suavidad (Chrome y Edge 131 o posterior; los demás, sin transición). */
+.restaurant-root,
+.restaurant-modal {
+  interpolate-size: allow-keywords;
+}
+:is(.restaurant-root, .restaurant-modal) details::details-content {
+  block-size: 0;
+  overflow: hidden;
+  transition:
+    block-size 250ms ease-out,
+    content-visibility 250ms ease-out allow-discrete;
+}
+:is(.restaurant-root, .restaurant-modal) details[open]::details-content {
+  block-size: auto;
+}
 @media (prefers-reduced-motion: reduce) {
-  .r-page-content,
   .r-menu-results,
   .r-gallery-image,
   .r-cart-updated,
-  .r-notice-card {
+  .r-notice-card,
+  .r-hero-photo > img,
+  .r-hero-seal {
     animation: none !important;
     transform: none !important;
+  }
+  /* Con movimiento reducido, solo fundidos. */
+  .r-photo-caption,
+  .r-hero-actions,
+  .r-hero-facts {
+    animation-name: r-aparece;
+  }
+  [data-entra].r-espera {
+    transform: none;
+  }
+  .r-food-photo:hover img,
+  .r-menu-item:hover .r-gallery-frame img,
+  .r-button:active:not(:disabled),
+  .r-secondary-button:active:not(:disabled) {
+    transform: none;
+  }
+  :is(.restaurant-root, .restaurant-modal) details::details-content {
+    transition: none;
   }
 }
 

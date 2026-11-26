@@ -27,7 +27,11 @@ export default function Conocenos() {
           alt="Ambientación ilustrativa de mesas y plantas en un restaurante"
         />
       </section>
-      <section className="r-page-section r-about-values" aria-labelledby="values-title">
+      <section
+        className="r-page-section r-about-values"
+        aria-labelledby="values-title"
+        data-entra=""
+      >
         <h2 id="values-title">
           La cocina y la mesa,
           <br />
@@ -59,7 +63,7 @@ export default function Conocenos() {
           ))}
         </div>
       </section>
-      <section className="r-page-section r-team" aria-labelledby="team-title">
+      <section className="r-page-section r-team" aria-labelledby="team-title" data-entra="">
         <div className="r-section-head">
           <h2 id="team-title">Detrás del patio.</h2>
           <p>

@@ -77,9 +77,10 @@ El cambio a variables se comprobó con 18 capturas (9 escenas a 390 y 1280 px, c
   - botones y datos de la portada entran escalonados.
 
   El título y el párrafo de entrada están quietos desde el primer cuadro (ver `RENDIMIENTO.md`, lecciones de V4.10.5).
-- **Secciones** que entran a la pantalla: fundido desde escala 0.95, una sola vez. Sustituye a la subida de los destacados y de las páginas.
-- **Platos destacados y tarjetas de la carta:** al pasar el cursor, la foto se acerca un poco al plato (escala 1.03).
-- **«Agregar al pedido»:** el botón confirma con una palomita breve. El contador del pedido ya da un salto (V4.2.4).
+- **Secciones** que entran a la pantalla: fundido desde escala 0.95, una sola vez. Solo esperan las que empiezan fuera de la pantalla, así nada parpadea al cargar. Sustituye a la subida de los destacados y de las páginas, que dejan de moverse al cambiar de página.
+- **Platos destacados y tarjetas de la carta:** al pasar el cursor, la foto se acerca un poco al plato (escala 1.03). Solo con ratón: en el teléfono, el toque la dejaría acercada.
+- **«Agregar al pedido»:** el diálogo se cierra y el aviso de éxito, con su palomita, se asienta; el contador del pedido da un salto (V4.2.4).
+- **Plegables** (nutrientes, recibos, QR): se abren con suavidad en Chrome y Edge 131 o posterior.
 - **Botones:** ceden un poco al presionarlos.
 - **Modo reducido:** solo fundidos o nada; el contador del pedido y los avisos cambian sin animación.
 

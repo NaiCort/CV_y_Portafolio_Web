@@ -90,6 +90,35 @@ function RestaurantGuide() {
     </div>
   )
 }
+// Secciones que entran a la pantalla (V4.10.6, docs/FICHA_RESTAURANTE.md): se asientan desde escala
+// 0.95, una sola vez. Solo esperan las que empiezan fuera de la pantalla, así nada parpadea al
+// cargar; lo que aparece después (filtros de la carta) se ve de inmediato. Sin IntersectionObserver
+// o con movimiento reducido (CSS), todo se ve sin animación.
+function useEntradas(pathname) {
+  useEffect(() => {
+    if (typeof IntersectionObserver === "undefined") return undefined
+    const nodos = [...document.querySelectorAll(".restaurant-root [data-entra]")].filter(
+      (n) => n.getBoundingClientRect().top > window.innerHeight,
+    )
+    const observador = new IntersectionObserver(
+      (entradas) =>
+        entradas.forEach((e) => {
+          if (!e.isIntersecting) return
+          e.target.classList.remove("r-espera")
+          observador.unobserve(e.target)
+        }),
+      { rootMargin: "0px 0px -8% 0px" },
+    )
+    nodos.forEach((n) => {
+      n.classList.add("r-espera")
+      observador.observe(n)
+    })
+    return () => {
+      observador.disconnect()
+      nodos.forEach((n) => n.classList.remove("r-espera"))
+    }
+  }, [pathname])
+}
 export default function RestauranteApp() {
   useFavicon("/favicons/restaurante.svg")
   const { state, dispatch, cartDispatch, storageAvailable } = useRestaurant()
@@ -97,6 +126,7 @@ export default function RestauranteApp() {
   const location = useLocation(),
     navigate = useNavigate()
   const pathname = location.pathname.replace(/\/+$/, "")
+  useEntradas(pathname)
   const [params] = useSearchParams()
   const reduced = useReducedMotion()
   const [panel, setPanel] = useState(null)
@@ -366,8 +396,9 @@ export default function RestauranteApp() {
         pathname !== "/restaurante/seguimiento" && (
           <motion.div
             className="r-table-alert"
-            initial={reduced ? false : { opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={reduced ? false : { opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: reduced ? 0 : 0.26, ease: "easeOut" }}
             role="status"
           >
             <UtensilsCrossed size={23} aria-hidden="true" />

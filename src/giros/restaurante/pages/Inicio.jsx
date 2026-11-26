@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom"
 import { ArrowUpRight, Clock, MapPin } from "lucide-react"
-import { motion, useReducedMotion } from "framer-motion"
 import { FEATURED, money } from "../data/menu"
 import { localLabel, POINTS, pointOrDefault } from "../data/locations"
 import { useRestaurant } from "../state/context"
@@ -13,7 +12,6 @@ import { FOTO_LOCAL, fotoResponsiva, TAMANOS } from "../data/fotos"
 export default function Inicio({ onChoose, onMode, onReserve, onLocalOrder, onLocalReserve }) {
   const { state } = useRestaurant()
   const point = pointOrDefault(state.pointId)
-  const reduced = useReducedMotion()
   return (
     <>
       <section className="r-hero" id="inicio">
@@ -75,7 +73,11 @@ export default function Inicio({ onChoose, onMode, onReserve, onLocalOrder, onLo
         <span aria-hidden="true">✳</span>
         <p>La sobremesa también cuenta.</p>
       </div>
-      <section className="r-home-service r-page-section" aria-labelledby="service-title">
+      <section
+        className="r-home-service r-page-section"
+        aria-labelledby="service-title"
+        data-entra=""
+      >
         <div className="r-section-head">
           <div>
             <h2 id="service-title">¿Cómo vienes hoy?</h2>
@@ -103,13 +105,11 @@ export default function Inicio({ onChoose, onMode, onReserve, onLocalOrder, onLo
         </div>
         <div className="r-featured-grid">
           {FEATURED.map((item, index) => (
-            <motion.article
+            <article
               key={item.id}
               className={`r-featured-item r-featured-${index}`}
-              initial={reduced ? false : { opacity: 0, y: 18 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.08 }}
-              transition={{ duration: reduced ? 0 : 0.4 }}
+              data-entra=""
+              style={{ "--r-retraso": `${index * 70}ms` }}
             >
               <button
                 type="button"
@@ -133,11 +133,15 @@ export default function Inicio({ onChoose, onMode, onReserve, onLocalOrder, onLo
                 <strong>{money(item.price)}</strong>
               </div>
               <p>{item.description}</p>
-            </motion.article>
+            </article>
           ))}
         </div>
       </section>
-      <section className="r-home-locals r-page-section" aria-labelledby="home-locals-title">
+      <section
+        className="r-home-locals r-page-section"
+        aria-labelledby="home-locals-title"
+        data-entra=""
+      >
         <div className="r-section-head">
           <div>
             <h2 id="home-locals-title">
@@ -167,7 +171,7 @@ export default function Inicio({ onChoose, onMode, onReserve, onLocalOrder, onLo
           ))}
         </div>
       </section>
-      <section className="r-place">
+      <section className="r-place" data-entra="">
         <div className="r-place-photo">
           <img
             {...FOTO_LOCAL}
