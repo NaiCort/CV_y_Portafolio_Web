@@ -43,6 +43,7 @@ import TrackingPanel from "./components/TrackingPanel"
 import ProfilePanel from "./components/ProfilePanel"
 import TableReservation from "./components/TableReservation"
 import EntryPanel from "./components/EntryPanel"
+import Privacidad from "./components/Privacidad"
 import "./restaurante.css"
 
 const LINKS = [
@@ -85,10 +86,7 @@ function RestaurantGuide() {
           comparten pedidos entre dispositivos.
         </li>
       </ul>
-      <p>
-        Las otras identidades del giro Restaurante se desarrollarán después. “Contactar” y
-        “Hablemos” abren los canales reales de Ian para consultar un proyecto.
-      </p>
+      <p>«Contactar» y «Hablemos» abren los canales reales de Ian para consultar un proyecto.</p>
     </div>
   )
 }
@@ -117,20 +115,43 @@ export default function RestauranteApp() {
   const entry = parseEntry(params)
   const locked = !!order && order.status !== "completed"
   const count = cart.reduce((sum, row) => sum + row.quantity, 0)
-  const titles = {
-    "/restaurante": "Inicio",
-    "/restaurante/carta": "La carta",
-    "/restaurante/locales": "Locales",
-    "/restaurante/conocenos": "Conócenos",
-    "/restaurante/pedido": "Tu pedido",
-    "/restaurante/seguimiento": "Seguimiento",
+  // Título y descripción propios de cada página (V4.10.6).
+  const pages = {
+    "/restaurante": [
+      "Inicio",
+      "Patio 12, cocina de barrio: carta, locales, reservas y pedidos de ejemplo en un restaurante ficticio. Demo del portafolio de Ian Aldana Martínez.",
+    ],
+    "/restaurante/carta": [
+      "La carta",
+      `La carta de Patio 12: ${menuForPoint(DEFAULT_POINT).length} opciones por local, búsqueda, preferencias y platos que se personalizan. Restaurante ficticio con precios de ejemplo.`,
+    ],
+    "/restaurante/locales": [
+      "Locales",
+      `${POINTS.length} locales simulados de Patio 12 en México y Estados Unidos, con mapa, filtros por país y estado, reserva y pedido.`,
+    ],
+    "/restaurante/conocenos": [
+      "Conócenos",
+      "La idea detrás de Patio 12, sus valores y un equipo de ejemplo. Restaurante ficticio, demo de Ian Aldana Martínez.",
+    ],
+    "/restaurante/pedido": [
+      "Tu pedido",
+      "Tu pedido de ejemplo en Patio 12: carrito editable, modalidad, local y confirmación simulada.",
+    ],
+    "/restaurante/seguimiento": [
+      "Seguimiento",
+      "Seguimiento de un pedido de ejemplo en Patio 12: preparación, recorrido y entrega con tiempos acelerados.",
+    ],
   }
   const detail = findPoint(pathname.split("/").at(-1))
-  const title = titles[pathname] || (detail ? localLabel(detail.id) : "Página no encontrada")
-  usePageMetadata(
-    `${title} — Patio 12 · Demo de Ian Aldana Martínez`,
-    "Restaurante ficticio: carta configurable, locales simulados, reservas y pedidos de demostración. Portafolio de Ian Aldana Martínez.",
-  )
+  const [title, description] =
+    pages[pathname] ||
+    (detail
+      ? [
+          localLabel(detail.id),
+          `${localLabel(detail.id)}: ficha de un local simulado de Patio 12, con mapa, horario de muestra, reserva y pedido.`,
+        ]
+      : ["Página no encontrada", "Esta página no existe en Patio 12, el restaurante de ejemplo."])
+  usePageMetadata(`${title} — Patio 12 · Demo de Ian Aldana Martínez`, description)
   useEffect(() => {
     if (pathname === "/restaurante/carta") lastCarta.current = pathname + location.search
   }, [pathname, location.search])
@@ -145,6 +166,13 @@ export default function RestauranteApp() {
   const close = () => {
     setPanel(null)
     setPendingItem(null)
+  }
+  // Borra lo que la demo guarda en este navegador (perfil de ejemplo y aviso de privacidad).
+  const borrarDatos = () => {
+    dispatch({ type: "reset" })
+    close()
+    setNotice(null)
+    navigate("/restaurante")
   }
   const goToMenu = () => {
     close()
@@ -441,6 +469,7 @@ export default function RestauranteApp() {
         {!isTransaction && (
           <ComercialCTA
             giro="restaurante"
+            cotizar="patio-12"
             accentColor="#edd068"
             backgroundColor="#203b2e"
             textColor="#ffffff"
@@ -462,7 +491,7 @@ export default function RestauranteApp() {
               WhatsApp · demo
             </button>
             <button type="button" className="r-text-button" onClick={() => setPanel("privacy")}>
-              Privacidad de la demo
+              Aviso de privacidad
             </button>
           </div>
         </footer>
@@ -532,17 +561,7 @@ export default function RestauranteApp() {
         />
       )}
       {panel === "mode" && <ServiceChoice onClose={afterMode} onReservation={() => reserve()} />}
-      {panel === "profile" && (
-        <ProfilePanel
-          onClose={close}
-          onReset={() => {
-            dispatch({ type: "reset" })
-            close()
-            setNotice(null)
-            navigate("/restaurante")
-          }}
-        />
-      )}
+      {panel === "profile" && <ProfilePanel onClose={close} onReset={borrarDatos} />}
       {panel === "reservation" && (
         <TableReservation
           key={reservationPointId}
@@ -599,64 +618,7 @@ export default function RestauranteApp() {
         ]}
         autoReply="¡Hola! Explora La carta y Locales para preparar tu visita. Puedes probar una reserva o un pedido. Esta respuesta es de ejemplo."
       />
-      {panel === "privacy" && (
-        <Modal
-          title="Privacidad de la demo de restaurante"
-          onClose={close}
-          className="restaurant-modal"
-          radius={4}
-        >
-          <div className="r-privacy">
-            <p>
-              Utiliza solamente datos ficticios. El punto elegido, la visita, el carrito y el pedido
-              activo se guardan en el almacenamiento local de este navegador, junto con la posición
-              del contador. Se recuperan al volver o recargar, y la visita caduca a las seis horas
-              de su inicio.
-            </p>
-            <p>
-              Si activas el perfil de ejemplo, este conserva hasta diez recibos y su contador de
-              visitas. No es una cuenta autenticada ni se comparte entre dispositivos. Un invitado
-              deja de conservar su pedido al finalizar la sesión. “Reiniciar datos de la demo”, en
-              Mi perfil, borra estos datos del restaurante.
-            </p>
-            <p>
-              No se solicitan tarjetas, contraseñas ni datos fiscales. No se realizan pagos,
-              correos, pedidos o reservas reales. La reserva futura y WhatsApp permanecen en memoria
-              y se descartan al cerrar su ventana. Fotos y fuentes del restaurante se sirven
-              localmente. Al pulsar “Mostrar mapa interactivo”, se consulta la cartografía de
-              OpenFreeMap/OpenStreetMap; esos proveedores reciben las solicitudes e información
-              técnica de conexión. Sin abrir el mapa no se solicitan sus teselas. El alojamiento
-              recibe las solicitudes necesarias para cargar la página.
-            </p>
-            <p>
-              La ventana flotante de escritorio es opcional y depende del navegador. Termina al
-              cerrar la pestaña; no se pide acceso a notificaciones. “Usar mi ubicación” solicita
-              opcionalmente la geolocalización del navegador para encontrar la referencia más
-              cercana. Se usa en memoria y no se guarda ni se envía al mapa; el dispositivo o
-              navegador puede usar sus propios servicios de ubicación. Si no la autorizas, la lista
-              manual sigue disponible.
-            </p>
-            <p>
-              Los QR contienen únicamente el punto y, si se elige, la mesa ficticia. No comparten
-              pedidos o perfiles entre dispositivos. Las rutas y coberturas son preparadas e
-              ilustrativas; no se consultan domicilios ni tráfico.
-            </p>
-            <p>
-              La portada y Psicólogo conservan su propio comportamiento: pueden utilizar Google
-              Fonts, Unsplash y almacenamiento local de preferencias. Sus avisos describen esas
-              funciones.
-            </p>
-            <p>
-              “Contactar” y “Hablemos” abren los canales reales de Ian. Se aplican las condiciones
-              del proveedor que elijas. Este texto explica un prototipo; un negocio real necesitará
-              su propio aviso.
-            </p>
-          </div>
-          <button type="button" className="r-button r-full" onClick={close}>
-            Entendido
-          </button>
-        </Modal>
-      )}
+      {panel === "privacy" && <Privacidad onCerrar={close} onBorrar={borrarDatos} />}
     </div>
   )
 }

@@ -13,14 +13,13 @@ export default function LocalDetalle({ onLocalOrder, onLocalReserve, onSelectLoc
   if (!point)
     return (
       <section className="r-page-section r-local-not-found">
-        <p className="r-kicker">LOCALES</p>
         <h1 tabIndex={-1}>
           Ese local no está
           <br />
           en esta demo.
         </h1>
         <p className="r-section-intro">
-          Puedes elegir cualquiera de los locales simulados. Tu carrito y pedido se conservan.
+          Puedes elegir cualquiera de los locales. Tu carrito y tu pedido se conservan.
         </p>
         <Link className="r-button" to="/restaurante/locales">
           Explorar locales
@@ -37,7 +36,6 @@ export default function LocalDetalle({ onLocalOrder, onLocalReserve, onSelectLoc
       </Link>
       <div className="r-local-detail-head">
         <div>
-          <p className="r-kicker">PATIO 12 · LOCAL SIMULADO</p>
           <h1 tabIndex={-1}>
             {point.cityLabel}.<br />
             {point.localName}.
@@ -52,7 +50,6 @@ export default function LocalDetalle({ onLocalOrder, onLocalReserve, onSelectLoc
           </p>
         </div>
         <div className="r-local-visit-card">
-          <p className="r-kicker">EL PLAN DE HOY</p>
           <h2>
             Nos vemos
             <br />
@@ -61,7 +58,7 @@ export default function LocalDetalle({ onLocalOrder, onLocalReserve, onSelectLoc
           <p>
             Mar–dom · 13:00–22:00
             <br />
-            Lunes cerrado · horario ficticio
+            Lunes cerrado
           </p>
           <p className="r-demo-note">
             Hora en esta ciudad: {pointTime(point.id, now)} · {point.timeZone}. La prueba permanece
@@ -113,7 +110,7 @@ export default function LocalDetalle({ onLocalOrder, onLocalReserve, onSelectLoc
             </div>
             <div>
               <dt>Comer aquí</dt>
-              <dd>25 mesas ficticias; espera de un minuto con salto de prueba</dd>
+              <dd>25 mesas; espera de un minuto que puedes saltar</dd>
             </div>
             <div>
               <dt>Entrega</dt>

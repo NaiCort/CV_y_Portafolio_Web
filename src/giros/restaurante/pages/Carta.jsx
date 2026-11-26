@@ -61,7 +61,6 @@ export default function Carta({ onChoose, onChangeLocal }) {
     <section className="r-menu-section r-carta-page" id="carta">
       <div className="r-section-head">
         <div>
-          <p className="r-kicker">LA COCINA DEL PATIO</p>
           <h1 tabIndex={-1}>
             La carta,
             <br />
@@ -78,7 +77,7 @@ export default function Carta({ onChoose, onChangeLocal }) {
         <MapPin size={20} aria-hidden="true" />
         <p>
           <strong>Carta de {localLabel(state.pointId)}</strong>
-          <span>Una base común y un sabor propio de este local simulado.</span>
+          <span>Una base común y un sabor propio de este local.</span>
         </p>
         <button type="button" className="r-text-button" onClick={onChangeLocal}>
           Cambiar local de la carta <ArrowUpRight size={16} aria-hidden="true" />
@@ -87,7 +86,6 @@ export default function Carta({ onChoose, onChangeLocal }) {
       <div className="r-browse-layout">
         <aside className="r-browse-sidebar r-carta-sidebar" aria-label="Categorías de la carta">
           <div className="r-sidebar-desktop">
-            <p className="r-sidebar-title">PARA CADA ANTOJO</p>
             <h2>Categorías</h2>
             <div className="r-category-list" role="group" aria-label="Filtrar carta por categoría">
               {CATEGORIES.map((label) => (

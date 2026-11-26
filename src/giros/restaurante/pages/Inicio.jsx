@@ -16,7 +16,6 @@ export default function Inicio({ onChoose, onMode, onReserve, onLocalOrder, onLo
     <>
       <section className="r-hero" id="inicio">
         <div className="r-hero-copy">
-          <p className="r-kicker">COCINA DE BARRIO · PATIO 12</p>
           <h1 tabIndex={-1}>
             Buen comer.
             <br />
@@ -37,24 +36,17 @@ export default function Inicio({ onChoose, onMode, onReserve, onLocalOrder, onLo
           <div className="r-hero-facts">
             <p>
               <Clock size={17} aria-hidden="true" />
-              <span>
-                Mar–dom · 13:00–22:00
-                <br />
-                <small>Horario de muestra</small>
-              </span>
+              <span>Mar–dom · 13:00–22:00</span>
             </p>
             <p>
               <MapPin size={17} aria-hidden="true" />
               <span>
                 {localLabel(point.id)}
                 <br />
-                <small>Local simulado · referencia: {point.name}</small>
+                <small>Referencia: {point.name}</small>
               </span>
             </p>
           </div>
-          <p className="r-hero-note">
-            Un restaurante ficticio para explorar, reservar y pedir de forma simulada.
-          </p>
         </div>
         <div className="r-hero-photo">
           <div className="r-hero-seal">
@@ -84,12 +76,11 @@ export default function Inicio({ onChoose, onMode, onReserve, onLocalOrder, onLo
       <section className="r-home-service r-page-section" aria-labelledby="service-title">
         <div className="r-section-head">
           <div>
-            <p className="r-kicker">TÚ ELIGES EL PLAN</p>
             <h2 id="service-title">¿Cómo vienes hoy?</h2>
           </div>
           <p>
-            Local simulado: {localLabel(point.id)}.<br />
-            Puedes cambiarlo desde la barra superior.
+            Pides en {localLabel(point.id)}.<br />
+            Puedes cambiar de local desde la barra superior.
           </p>
         </div>
         <ServiceOptions onSelect={onMode} />
@@ -147,7 +138,6 @@ export default function Inicio({ onChoose, onMode, onReserve, onLocalOrder, onLo
       <section className="r-home-locals r-page-section" aria-labelledby="home-locals-title">
         <div className="r-section-head">
           <div>
-            <p className="r-kicker">DEL CENTRO AL NORTE</p>
             <h2 id="home-locals-title">
               Un patio.
               <br />
@@ -187,7 +177,6 @@ export default function Inicio({ onChoose, onMode, onReserve, onLocalOrder, onLo
           <span>Un espacio para la sobremesa.</span>
         </div>
         <div className="r-place-copy">
-          <p className="r-kicker">EL GUSTO DE QUEDARSE</p>
           <h2>
             Tu mesa.
             <br />
@@ -202,9 +191,6 @@ export default function Inicio({ onChoose, onMode, onReserve, onLocalOrder, onLo
           <Link to="/restaurante/conocenos" className="r-button">
             Conócenos <ArrowUpRight size={18} aria-hidden="true" />
           </Link>
-          <p className="r-demo-note">
-            Ambientación ilustrativa; no representa un establecimiento real.
-          </p>
         </div>
       </section>
     </>

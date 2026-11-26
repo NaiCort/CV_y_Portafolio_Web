@@ -163,11 +163,6 @@
 .r-hero h1 em {
   font-style: normal;
 }
-.r-hero-copy > p:first-of-type {
-  max-width: 365px;
-  font-size: 17px;
-  line-height: 1.65;
-}
 .r-hero-actions {
   display: flex;
   gap: 12px;
@@ -222,11 +217,6 @@
 }
 .r-hero-facts small {
   font-size: 12px;
-}
-.r-hero-note {
-  font-size: 12px;
-  margin-top: 22px;
-  max-width: 370px;
 }
 .r-hero-photo {
   position: relative;
@@ -930,12 +920,30 @@
 }
 .r-privacy {
   display: grid;
-  gap: 18px;
+  gap: 14px;
   font-size: 14px;
   line-height: 1.7;
 }
-.r-privacy + button {
+.r-privacy h3 {
+  margin-top: 8px;
+  font-size: 1.1rem;
+}
+.r-privacy ul {
+  display: grid;
+  gap: 4px;
+  padding-left: 1.2em;
+  list-style: disc;
+}
+.r-privacy-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
   margin-top: 24px;
+}
+.r-privacy-actions p {
+  flex-basis: 100%;
+  font-size: 14px;
 }
 
 @media (min-width: 640px) {
@@ -1480,18 +1488,7 @@
   background: #fcfaf4;
   --r-rust: #9c3b26;
 }
-.r-kicker {
-  font-family: "Patio Sans", sans-serif;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.13em;
-  line-height: 1.6;
-}
-.r-hero-copy > p.r-kicker {
-  margin-bottom: 28px;
-  font-size: 11px;
-}
-.r-hero-copy > p:not(.r-kicker):not(.r-hero-note) {
+.r-hero-copy > p {
   max-width: 365px;
   font-size: 17px;
 }
@@ -1815,7 +1812,7 @@
   margin-block: 12px 8px;
   font-size: 27px;
 }
-.r-point-detail > p:not(.r-kicker) {
+.r-point-detail > p {
   font-size: 13px;
 }
 .r-local-time {
@@ -2048,10 +2045,6 @@
   font-weight: 600;
   margin-block: 12px 24px;
 }
-.r-page-section .r-kicker,
-.r-carta-page .r-kicker {
-  margin-bottom: 18px;
-}
 .r-section-intro {
   max-width: 650px;
   font-size: 17px;
@@ -2059,8 +2052,17 @@
   color: #526155;
   margin-bottom: 30px;
 }
+/* V4.10.6: en Inicio, las modalidades son renglones de carta, no tres tarjetas con ícono arriba. */
 .r-home-service .r-service-options {
+  gap: 0;
   margin: 20px 0 12px;
+  border-top: 1px solid #a7b6a9;
+}
+.r-home-service .r-service-card {
+  border: 0;
+  border-bottom: 1px solid #a7b6a9;
+  border-radius: 0;
+  padding: 22px 8px;
 }
 .r-home-service h2 {
   font-size: clamp(2rem, 4vw, 3rem);
@@ -2150,11 +2152,6 @@
   letter-spacing: -0.05em;
   position: relative;
   z-index: 1;
-}
-.r-local-postcard > svg {
-  position: absolute;
-  top: 22px;
-  right: 24px;
 }
 .r-local-color-1 {
   background: #f1d77a;
@@ -2414,16 +2411,15 @@
   .r-locals-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-  .r-home-service .r-service-options {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+  .r-home-service .r-service-card span {
+    display: grid;
+    grid-template-columns: minmax(180px, 260px) 1fr;
+    align-items: baseline;
+    gap: 24px;
   }
-  .r-home-service .r-service-card {
-    align-items: flex-start;
-    flex-direction: column;
-    padding: 22px;
-  }
-  .r-home-service .r-service-card > svg:last-child {
-    align-self: flex-end;
+  .r-home-service .r-service-card small {
+    margin-top: 0;
+    font-size: 14px;
   }
   .r-about-columns {
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -2612,12 +2608,6 @@
   line-height: 1.7;
   color: #526155;
   margin-top: 16px;
-}
-.r-sidebar-title {
-  color: #9c3b26;
-  font-size: 10px;
-  letter-spacing: 0.14em;
-  margin-bottom: 10px;
 }
 .r-browse-sidebar h2 {
   font-size: 23px;

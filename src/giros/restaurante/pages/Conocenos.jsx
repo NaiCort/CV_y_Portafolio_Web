@@ -6,7 +6,6 @@ export default function Conocenos() {
     <>
       <section className="r-about-intro r-page-section">
         <div>
-          <p className="r-kicker">CONÓCENOS</p>
           <h1 tabIndex={-1}>
             Una mesa
             <br />
@@ -29,7 +28,6 @@ export default function Conocenos() {
         />
       </section>
       <section className="r-page-section r-about-values" aria-labelledby="values-title">
-        <p className="r-kicker">ASÍ IMAGINAMOS EL PATIO</p>
         <h2 id="values-title">
           La cocina y la mesa,
           <br />
