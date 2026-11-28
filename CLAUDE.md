@@ -11,11 +11,12 @@ conversación, manda lo que Ian diga y luego se actualiza este archivo.
 
 ## Metodología: Digital Development Handbook
 
-Desde V4.10.3, el proyecto adopta el **Digital Development Handbook** (repositorio
-`NaiCort/Digital-Development-Handbook-Claude`, versión 1.1.0), y el portafolio completo es su
-**demo piloto** (`examples/cv-y-portafolio-web/` en ese repositorio). El repositorio
-`Digital-Development-Handbook-GPT` no se toca. Leer `docs/HANDBOOK.md` (adopción, perfiles,
-equivalencias de plantillas y estado de cada regla GEN) y `docs/README.md` (índice de `docs/`).
+Desde V4.10.3, el proyecto adopta el **Digital Development Handbook**, y el portafolio completo es su
+**demo piloto** (`examples/cv-y-portafolio-web/` en ese repositorio). Desde V4.10.7 el handbook es
+uno solo: `NaiCort/Digital-Development-Handbook`, versión 1.3.0 (DEC-033). La edición Claude
+(`Digital-Development-Handbook-Claude`, 1.1.0) se integró en él y deja de usarse. Lo que el piloto
+enseñe se anota en su `LESSONS.md` de ese repositorio. Leer `docs/HANDBOOK.md` (versión adoptada,
+perfiles, equivalencias de plantillas y estado de cada regla GEN) y `docs/README.md` (índice de `docs/`).
 - **Modo de cada pedido:** investigar, proponer, implementar o revisar. En los modos investigar
   y revisar no se cambia nada.
 - **Decisiones** en `docs/DECISIONES.md` (DEC-…), con fecha, estado y fuente.

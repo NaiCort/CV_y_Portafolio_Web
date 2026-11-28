@@ -1,10 +1,10 @@
 # Documentación del proyecto
 
-Índice de `docs/` (V4.10.3), ordenado por uso. La metodología es el Digital Development Handbook, y la adopción y las equivalencias con sus plantillas están en [HANDBOOK.md](HANDBOOK.md). Las reglas de trabajo diarias están en `CLAUDE.md`, en la raíz.
+Índice de `docs/` (V4.10.7), ordenado por uso. La metodología es el Digital Development Handbook (`NaiCort/Digital-Development-Handbook`, el único handbook; versión 1.3.0), y la adopción y las equivalencias con sus plantillas están en [HANDBOOK.md](HANDBOOK.md). Las reglas de trabajo diarias están en `CLAUDE.md`, en la raíz.
 
 ## Para empezar
 
-- [HANDBOOK.md](HANDBOOK.md): versión adoptada del handbook, perfiles, estado de cada regla y cómo se trabaja.
+- [HANDBOOK.md](HANDBOOK.md): versión adoptada del handbook único, perfiles, equivalencias, estado de cada regla y cómo se trabaja.
 - [PLAN_V4.8.md](PLAN_V4.8.md): plan de las etapas V4.8 a V4.11 y la lista de cada entrega.
 - [DECISIONES.md](DECISIONES.md): decisiones vigentes y propuestas abiertas.
 

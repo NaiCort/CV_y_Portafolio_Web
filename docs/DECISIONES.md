@@ -37,7 +37,7 @@ Las decisiones nuevas se agregan al final con el siguiente número; los números
 | DEC-014 | 25/11/2026 | Sin testimonios en Psicólogo: formación, supervisión y reseñas públicas simuladas | ACEPTADA | `PLAN_V4.8.md` | `TRAZABILIDAD.md` (RF-P05) |
 | DEC-015 | 25/11/2026 | Sin autoevaluación clínica (PHQ-9 ni GAD-7) | ACEPTADA | `PLAN_V4.8.md` | Psicólogo |
 | DEC-016 | 25/11/2026 | Psicólogo con «Instituciones y colegas» y «Recursos» | ACEPTADA | `PLAN_V4.8.md` | Psicólogo |
-| DEC-017 | 25/11/2026 | `Digital-Development-Handbook-GPT` se queda intacto; `Digital-Development-Handbook-Claude` se llena con el zip de la versión 1.0 | ACEPTADA | Conversación con Ian | Repositorios del handbook |
+| DEC-017 | 25/11/2026 | `Digital-Development-Handbook-GPT` se queda intacto; `Digital-Development-Handbook-Claude` se llena con el zip de la versión 1.0 | SUSTITUIDA por DEC-033 | Conversación con Ian | Repositorios del handbook |
 | DEC-018 | 25/11/2026 | El portafolio completo es la demo piloto del handbook y adopta su contenido | ACEPTADA | Conversación con Ian | `HANDBOOK.md`; V4.10.3 |
 | DEC-019 | 25/11/2026 | Cada entrega toma el siguiente número consecutivo: V4.10.3 (handbook), V4.10.4 (política de contenido) y V4.10.5 (animaciones de Psicólogo); Patio 12 empieza en V4.10.6. Ian la aprobó el 26/11/2026 | ACEPTADA | Conversación con Ian | Numeración |
 | DEC-020 | 25/11/2026 | Aplicar de verdad la política de contenido completa, que en V4.10.3 iba «solo en reporte». Ian revisó la consola del sitio publicado sin avisos de la política y aprobó: «si eso no causa problemas de seguridad entonces adelante» | ACEPTADA | Conversación con Ian; V4.10.4 | `vercel.json` |
@@ -53,6 +53,7 @@ Las decisiones nuevas se agregan al final con el siguiente número; los números
 | DEC-030 | 26/11/2026 | El dominio siempre es del cliente, aunque Ian lo pague o lo administre | ACEPTADA | Conversación con Ian | Cotizador y contratos |
 | DEC-031 | 26/11/2026 | El hospedaje lo paga el cliente directamente o va incluido en el precio. Se ofrece un plan de mantenimiento web (administración del sitio: hospedaje y renovación del dominio, revisión, cambios pequeños, respaldo y contacto directo) para que el cliente no se preocupe por nada técnico. El correo con dominio propio es una opción aparte, solo si el negocio lo necesita | ACEPTADA | Conversación con Ian | Cotizador, V4.11 |
 | DEC-032 | 26/11/2026 | En «Ajuste» del cotizador, cada opción lleva un desplegable en lenguaje sencillo: qué es, qué gana su negocio, un ejemplo en una demo, qué no incluye y «¿lo necesito?». El precio se ve sin abrirlo. Antes de construir, una maqueta con dos o tres desplegables para que Ian apruebe el tono | ACEPTADA | Idea de Ian | Cotizador, V4.11 |
+| DEC-033 | 28/11/2026 | El handbook es uno solo, `NaiCort/Digital-Development-Handbook`; la edición Claude se integra en él y deja de usarse. Sustituye a DEC-017 | ACEPTADA | Conversación con Ian, 28/11/2026 | `CLAUDE.md`, `HANDBOOK.md` y `docs/README.md` apuntan al handbook único (versión 1.3.0); Ian archiva o borra `Digital-Development-Handbook-Claude` en GitHub |
 
 ## Excepciones a reglas del handbook
 

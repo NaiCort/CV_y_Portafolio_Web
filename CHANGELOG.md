@@ -1,3 +1,11 @@
+# V4.10.7 · 28 de noviembre de 2026 · Un solo handbook
+
+- **Decisión de Ian (28/11/2026, DEC-033):** el handbook es uno solo, `NaiCort/Digital-Development-Handbook`. La edición Claude se integra en él y deja de usarse; DEC-017 queda sustituida.
+- **El handbook único (versión 1.3.0)** trae el ejemplo de este piloto, con los límites al día y las lecciones de V4.10.4 a V4.10.6.
+- **Documentos:** `CLAUDE.md`, `docs/HANDBOOK.md` (versión, perfiles, equivalencias con las 68 plantillas y estado de las reglas GEN), `docs/README.md` y `docs/PLAN_V4.8.md` apuntan al handbook único. Ladera pasa a V4.10.8.
+- **Prueba nueva:** `tests/v4107-handbook.test.js`.
+- Sin cambios en el sitio.
+
 # V4.10.6 · 26 de noviembre de 2026 · Patio 12 en V4.10 y una carga más ligera para todas las demos
 
 - **Decisiones de Ian (26/11/2026):**

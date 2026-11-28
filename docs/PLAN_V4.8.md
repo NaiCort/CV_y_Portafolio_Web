@@ -51,7 +51,8 @@ Cada etapa lleva su propia versión menor (decisión de Ian del 25/11/2026): V4.
    - V4.10.4, la política de contenido completa pasa de «solo en reporte» a aplicada (DEC-020, aprobada por Ian el 25/11/2026);
    - V4.10.5, Psicólogo: transición al cambiar de tema con vuelta arriba (DEC-025), figura nueva de «Respira conmigo» (DEC-026), más animaciones (DEC-027) y mapa sin advertencias (DEC-028), a pedido de Ian (26/11/2026); además, la portada de Neblina carga a tiempo (`docs/RENDIMIENTO.md`);
    - V4.10.6, Patio 12: ficha a posteriori, patrones, aviso de privacidad, cotizador, fotos y movimiento; además, la carga más ligera para todas las demos (DEC-021) y el mapa base compartido;
-   - Ladera, desde V4.10.7;
+   - V4.10.7, el handbook es uno solo (DEC-033, decisión de Ian del 28/11/2026): `CLAUDE.md`, `docs/HANDBOOK.md` y `docs/README.md` apuntan a `NaiCort/Digital-Development-Handbook` 1.3.0, sin cambios en el sitio;
+   - Ladera, desde V4.10.8;
    - Brío;
    - Rosales y Vértice;
    - Cotejo. Idea de Ian (22/11/2026): llevar a Cotejo el fondo de cuadrícula que tuvo el CV en V4.8.3 (parecido a una hoja de Excel), que encaja con la contabilidad.
