@@ -99,7 +99,7 @@ Patio 12 lo usa y, con él, el estilo corregido: su estilo de color tenía los m
 ## Implementado, verificado y desplegado
 
 - Implementado y verificado en pruebas: sí (ver [VALIDACION_V4.10.6.md](VALIDACION_V4.10.6.md)).
-- Desplegado en producción: no; espera la revisión de Ian.
+- Desplegado en producción: sí. Ian lo integró en `main` (pull request #93, 26/11/2026).
 
 ## Pendiente
 
